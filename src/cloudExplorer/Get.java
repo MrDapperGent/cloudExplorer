@@ -9,8 +9,6 @@ import com.amazonaws.services.s3.model.S3Object;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import static cloudExplorer.NewJFrame.jTextArea1;
 
 public class Get implements Runnable {

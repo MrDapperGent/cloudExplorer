@@ -1,8 +1,6 @@
 package cloudExplorer;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
 import static cloudExplorer.NewJFrame.jTextArea1;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
@@ -29,6 +27,7 @@ public class BucketMigration implements Runnable {
     String new_endpoint = null;
     String new_region = null;
     Thread bucketMigration;
+    String destinationBucketlist = null;
     String Home = System.getProperty("user.home");
     String temp_file = (Home + File.separator + "object.tmp");
     String config_file = (Home + File.separator + "s3Migrate.config");
@@ -76,15 +75,25 @@ public class BucketMigration implements Runnable {
 
         for (int i = 1; i != mainFrame.objectarray.length; i++) {
             if (mainFrame.objectarray[i] != null) {
-                get = new Get(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, temp_file, null);
-                get.run();
-                put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, mainFrame.objectarray[i]);
-                put.run();
-                if (deleteOrigin) {
-                    del = new Delete(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, null);
-                    del.run();
+                if (destinationBucketlist.contains(mainFrame.objectarray[i])) {
+                    if (deleteOrigin) {
+                        del = new Delete(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, null);
+                        del.run();
+                    }
+                    mainFrame.jTextArea1.append("\nSkipping: " + mainFrame.objectarray[i] + " because it exists on the destination bucket already.");
+                    calibrate();
+                } else {
+                    get = new Get(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, temp_file, null);
+                    get.run();
+                    put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, mainFrame.objectarray[i]);
+                    put.run();
+                    if (deleteOrigin) {
+                        del = new Delete(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, null);
+                        del.run();
+                    }
                 }
             }
+
         }
         jTextArea1.append("\nBucket migration complete.");
         calibrate();
@@ -143,7 +152,12 @@ public class BucketMigration implements Runnable {
     void checkBucket() {
         ReloadBuckets buckets = new ReloadBuckets(new_access_key, new_secret_key, new_endpoint, null);
         bucketlist = listBuckets(new_access_key, new_secret_key, new_endpoint);
+    }
 
+    void scanDestination() {
+        BucketClass bucketObject = new BucketClass();
+        destinationBucketlist = bucketObject.listBucketContents(new_access_key, new_secret_key, new_bucket, new_endpoint);
+        System.gc();
     }
 
     public void run() {
@@ -152,8 +166,9 @@ public class BucketMigration implements Runnable {
             loadDestinationAccount();
             checkBucket();
             if (bucketlist.contains(new_bucket)) {
-                jTextArea1.append("\nBucket migration has started. Please view this window for any errors.");
+                jTextArea1.setText("\nBucket migration has started. Please view this window for any errors.");
                 calibrate();
+                scanDestination();
                 migrate();
             } else {
                 jTextArea1.append("\nError: Destination S3 account does not have the same bucket name as the origin bucket: " + bucket + ".");
@@ -173,8 +188,9 @@ public class BucketMigration implements Runnable {
     }
 
     void stop() {
-        get.stop();
-        mainFrame.jTextArea1.setText("\nDownload completed or aborted.\n");
+        mainFrame.jTextArea1.append("\nMigration aborted.\n");
+        calibrate();
+        bucketMigration.stop();
     }
 
 }

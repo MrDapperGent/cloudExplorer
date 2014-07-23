@@ -23,9 +23,6 @@ public class MakeBucket implements Runnable {
 
     public void run() {
         try {
-
-            URL music_url = null;
-
             final JButton createBucket = new JButton("Create Bucket");
             final JButton close = new JButton("Close");
             final JLabel blank = new JLabel(" ");

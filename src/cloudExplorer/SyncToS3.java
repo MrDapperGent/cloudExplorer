@@ -2,8 +2,6 @@ package cloudExplorer;
 
 import java.io.File;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 import static cloudExplorer.NewJFrame.jTextArea1;

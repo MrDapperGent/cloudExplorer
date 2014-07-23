@@ -1,9 +1,6 @@
 package cloudExplorer;
 
-import java.io.IOException;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
-import static cloudExplorer.NewJFrame.jTextArea1;
 
 public class HostChecker implements Runnable {
 
@@ -32,16 +29,7 @@ public class HostChecker implements Runnable {
     }
 
     public void run() {
-        /**
-         * if (host.contains("https")) { host = host.replace("https://", ""); }
-         * else { host = host.replace("http://", ""); }
-         *
-         * if (ping(host) || host.contains("amazon") || host.contains("gemini"))
-         * { mainFrame.reloadBuckets(); } else {
-         * NewJFrame.jTextArea1.append("\nError: host not found");
-         * mainFrame.calibrateTextArea(); }
-         *
-         */
+   
         mainFrame.reloadBuckets();
 
     }

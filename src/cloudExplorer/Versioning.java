@@ -40,19 +40,19 @@ public class Versioning {
             if (Versioning.delete) {
                 do {
                     summary = vListing.getVersionSummaries();
-                    for (S3VersionSummary foo : summary) {
-                        del = new Delete(foo.getKey(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), foo.getVersionId());
-                        del.startc(foo.getKey(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), foo.getVersionId());
+                    for (S3VersionSummary object : summary) {
+                        del = new Delete(object.getKey(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), object.getVersionId());
+                        del.startc(object.getKey(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), object.getVersionId());
                         System.gc();
                     }
                 } while (vListing.isTruncated());
             } else {
 
                 summary = vListing.getVersionSummaries();
-                for (S3VersionSummary foo : summary) {
-                    mainFrame.versioning_date.add(foo.getLastModified().toString());
-                    mainFrame.versioning_id.add(foo.getVersionId());
-                    mainFrame.versioning_name.add(foo.getKey());
+                for (S3VersionSummary object : summary) {
+                    mainFrame.versioning_date.add(object.getLastModified().toString());
+                    mainFrame.versioning_id.add(object.getVersionId());
+                    mainFrame.versioning_name.add(object.getKey());
                     System.gc();
                 }
 
