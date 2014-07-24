@@ -54,10 +54,11 @@ public class MakeDestinationBucket implements Runnable {
                     if (bucketName.getText().length() < 3) {
                         close.doClick();
                     } else {
+                        jTextArea1.setText("\nBucket migration has started. Please view this window for any errors.");
+                        calibrate();
+                        ReloadObjects object = new ReloadObjects(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), mainFrame);
+                        object.run();
                         if (deleteOrigin.isSelected()) {
-                            jTextArea1.setText("\nBucket migration has started. Please view this window for any errors.");
-                            ReloadObjects object = new ReloadObjects(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), mainFrame);
-                            object.run();
                             migrate = new BucketMigration(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, bucketName.getText(), true);
                             migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, bucketName.getText(), true);
                         } else {
@@ -104,6 +105,13 @@ public class MakeDestinationBucket implements Runnable {
         }
         mainFrame.calibrateTextArea();
 
+    }
+
+    public void calibrate() {
+        try {
+            jTextArea1.setCaretPosition(jTextArea1.getLineStartOffset(jTextArea1.getLineCount() - 1));
+        } catch (Exception e) {
+        }
     }
 
     void startc() {

@@ -167,12 +167,10 @@ public class BucketMigration implements Runnable {
             loadDestinationAccount();
             checkBucket();
             if (bucketlist.contains(new_bucket)) {
-                jTextArea1.setText("\nBucket migration has started. Please view this window for any errors.");
-                calibrate();
                 scanDestination();
                 migrate();
             } else {
-                jTextArea1.append("\nError: Destination S3 account does not have the same bucket name as the origin bucket: " + bucket + ".");
+                jTextArea1.append("\nError: Destination S3 account does not have the bucket: " + new_bucket + ".");
                 calibrate();
             }
 
