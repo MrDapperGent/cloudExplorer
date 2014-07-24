@@ -67,7 +67,7 @@ public class Delete implements Runnable {
 
     void stop() {
         delete.stop();
-        mainFrame.jTextArea1.setText("\nDownload compelted or aborted.\n");
+        mainFrame.jTextArea1.setText("\nDownload compelted or aborted. Please click search to refresh the Object Explorer if needed.\n");
     }
 
 }

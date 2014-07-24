@@ -2009,7 +2009,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         objectarray = null;
         reloadObjects();
         jTextField10.setText("");
-        jTextArea1.append("\nDelete operation finished.");
+        jTextArea1.append("\nDelete operation finished. Please click search to refresh the Object Explorer if needed.");
         calibrateTextArea();
         jButton6.doClick();
     }//GEN-LAST:event_jButton4ActionPerformed
