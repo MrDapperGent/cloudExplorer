@@ -90,15 +90,14 @@ public class BucketMigration implements Runnable {
 
                     if (deleteOrigin) {
                         scanDestination();
+                        if (destinationBucketlist.contains(mainFrame.objectarray[i])) {
+                            del = new Delete(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, null);
+                            del.run();
+                        }
                     }
-                    
-                    if (deleteOrigin && destinationBucketlist.contains(mainFrame.objectarray[i])) {
-                        del = new Delete(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, null);
-                        del.run();
-                    }
+
                 }
             }
-
         }
         jTextArea1.append("\nBucket migration complete.");
         calibrate();
