@@ -7,7 +7,6 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.S3VersionSummary;
 import com.amazonaws.services.s3.model.VersionListing;
 import java.util.List;
-import static cloudExplorer.NewJFrame.jTextArea1;
 
 public class Versioning {
 

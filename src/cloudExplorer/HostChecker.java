@@ -1,7 +1,5 @@
 package cloudExplorer;
 
-import java.net.InetAddress;
-
 public class HostChecker implements Runnable {
 
     public static String host;
