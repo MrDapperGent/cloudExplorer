@@ -87,7 +87,8 @@ public class BucketMigration implements Runnable {
                     get.run();
                     put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, mainFrame.objectarray[i]);
                     put.run();
-                    if (deleteOrigin) {
+                    scanDestination();
+                    if (deleteOrigin && destinationBucketlist.contains(mainFrame.objectarray[i])) {
                         del = new Delete(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, null);
                         del.run();
                     }
