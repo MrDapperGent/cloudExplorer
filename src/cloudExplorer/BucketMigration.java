@@ -113,8 +113,8 @@ public class BucketMigration implements Runnable {
                 if (account_array[i] != null) {
                     new_access_key = account_array[0];
                     new_secret_key = account_array[1];
-                    new_region = account_array[4];
                     new_endpoint = account_array[2] + ":" + account_array[3];
+                    new_region = account_array[4];
                 }
             }
 
@@ -126,7 +126,9 @@ public class BucketMigration implements Runnable {
 
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials);
+
         s3Client.setEndpoint(endpoint);
+
         String[] array = new String[10];
 
         String bucketlist = null;
