@@ -1269,7 +1269,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 }
             }
         } catch (Exception ItemStateChanged) {
-            System.out.print(ItemStateChanged.getMessage());
         }
 
         try {
