@@ -1181,6 +1181,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jButton12.setEnabled(true);
             jButton13.setEnabled(true);
             jButton14.setEnabled(true);
+            jPanel14.removeAll();
+            jPanel14.repaint();
+            jPanel14.revalidate();
+            jPanel14.validate();
             jButton1.setEnabled(true);
             jButton17.setEnabled(true);
             jButton18.setEnabled(true);
