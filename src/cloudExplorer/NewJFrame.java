@@ -2191,11 +2191,15 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     void var() {
-        cred.setAccess_key(jTextField1.getText());
-        cred.setSecret_key(jTextField2.getText());
-        String endpoint = (jTextField3.getText() + ":" + jTextField4.getText());
-        cred.setEndpoint(endpoint);
-        cred.setRegion(jTextField5.getText());
+        try {
+            cred.setAccess_key(jTextField1.getText());
+            cred.setSecret_key(jTextField2.getText());
+            String endpoint = (jTextField3.getText() + ":" + jTextField4.getText());
+            cred.setEndpoint(endpoint);
+            cred.setRegion(jTextField5.getText());
+        } catch (Exception var) {
+
+        }
     }
 
     public static void main(String args[]) {
