@@ -167,9 +167,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
@@ -959,7 +956,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jTextArea4.setEditable(false);
         jTextArea4.setColumns(20);
         jTextArea4.setRows(5);
-        jTextArea4.setText("Version 3.1\n\nNew GUI layout: smaller window, more compact.\nCheckbox to disable automatically loading buckets after selecting an account.\nDefault Host URL and Port defaults to Amazon.\nS3 Bucket migration will scan destination bucket and not upload the object if it already exists.\nS3 Bucket migration has an option to abort the current migration.\n\nFeatures:\n\n1. Tier buckets to and from Amazon Glacier.\n2. Sync files to and from S3 storage.\n3. Stream music from Amazon S3.\n4. Text editor.\n5. Modify Bucket and Object ACL's.\n6. Take screen shots and upload them to Amazon S3.\n7. Bucket versioning and lifecycles.\n8. Graphical and console based background syncing.\n9. Store multiple Amazon S3 accounts.\n10. Image viewer.\n11. Migrate data between S3 accounts.\n\nHow to migrate data between S3 accounts:\n\n1. Load the destination account and click \"Set as migration Account\" under Settings.\n2. Create the destination bucket with the same name as the origin bucket name.\n3. Load the origin S3 account and select the bucket to transfer to the new S3 account.\n4. Under the \"Tools\" menu, select \"Migrate bucket to another S3 account\".\n5. Type in the destination bucket name and click \"Start Bucket Migration\".\n6. Wait for transfers to complete.");
+        jTextArea4.setText("Version 3.1\n\nNew GUI layout: smaller window, more compact.\nMany of the items in the \"Bucket\"  moved to \"Bucket Properties\".\nCheckbox to disable automatically loading buckets after selecting an account.\nDefault Host URL and Port defaults to Amazon.\nS3 Bucket migration will scan destination bucket and not upload the object if it already exists.\nS3 Bucket migration has an option to abort the current migration.\n\nFeatures:\n\n1. Tier buckets to and from Amazon Glacier.\n2. Sync files to and from S3 storage.\n3. Stream music from Amazon S3.\n4. Text editor.\n5. Modify Bucket and Object ACL's.\n6. Take screen shots and upload them to Amazon S3.\n7. Bucket versioning and lifecycles.\n8. Graphical and console based background syncing.\n9. Store multiple Amazon S3 accounts.\n10. Image viewer.\n11. Migrate data between S3 accounts.\n\nHow to migrate data between S3 accounts:\n\n1. Load the destination account and click \"Set as migration Account\" under Settings.\n2. Create the destination bucket with the same name as the origin bucket name.\n3. Load the origin S3 account and select the bucket to transfer to the new S3 account.\n4. Under the \"Tools\" menu, select \"Migrate bucket to another S3 account\".\n5. Type in the destination bucket name and click \"Start Bucket Migration\".\n6. Wait for transfers to complete.");
         jTextArea4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jTextArea4.setCaretPosition(0);
         jScrollPane6.setViewportView(jTextArea4);
@@ -1010,7 +1007,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu3.setText("Bucket");
+        jMenu3.setText("Bucket Properties");
 
         jMenuItem1.setText("Create Bucket");
         jMenuItem1.setToolTipText("");
@@ -1021,7 +1018,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu3.add(jMenuItem1);
 
-        jMenuItem2.setText("Bucket ACL");
+        jMenuItem2.setText("Bucket Properties");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -1036,30 +1033,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
         jMenu3.add(jMenuItem13);
-
-        jMenuItem11.setText("Enable Versioning");
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem11);
-
-        jMenuItem12.setText("Suspend Versioning");
-        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem12ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem12);
-
-        jMenuItem3.setText("Delete");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem3);
 
         jMenuBar1.add(jMenu3);
 
@@ -1494,38 +1467,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jTextArea1.append("\nError: Configuration not loaded\n");
         }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-
-        if (active_bucket > 0) {
-            BucketACL bucketACL = new BucketACL(this);
-            bucketACL.startc();
-        } else {
-            jTextArea1.append("\nError: No bucket has been selected\n");
-        }
-
-
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        if ((jTextField1.getText().length() > 1 || jTextField2.getText().length() > 1)) {
-            var();
-
-            for (int i = 0; i != bucketarray.length; i++) {
-                if (bucket_item[i] != null) {
-
-                    if (bucket_item[i].isSelected()) {
-                        jTextArea1.append(bucket.deleteBucket(cred.access_key, cred.secret_key, bucket_item[i].getText(), cred.end_point, cred.region));
-                        bucket_item[i].setSelected(false);
-                        active_bucket = 0;
-                    }
-                }
-            }
-            reloadBuckets();
-        } else {
-            jTextArea1.append("\nError: Configuration not loaded\n");
-        }
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         System.exit(-1);
@@ -2115,24 +2056,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         }
     }//GEN-LAST:event_jButton16ActionPerformed
 
-    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-        if (active_bucket > 0) {
-            jTextArea1.append(bucket.controlVersioning(cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), cred.getRegion(), true));
-            calibrateTextArea();
-        } else {
-            jTextArea1.append("\nError: No bucket has been selected");
-        }
-    }//GEN-LAST:event_jMenuItem11ActionPerformed
-
-    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        if (active_bucket > 0) {
-            jTextArea1.append(bucket.controlVersioning(cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), cred.getRegion(), false));
-            calibrateTextArea();
-        } else {
-            jTextArea1.append("\nError: No bucket has been selected");
-        }
-    }//GEN-LAST:event_jMenuItem12ActionPerformed
-
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         if (active_bucket > 0) {
             jTextArea1.append("\nPlease wait, loading MP3 player.");
@@ -2256,6 +2179,17 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+
+        if (active_bucket > 0) {
+            BucketACL bucketACL = new BucketACL(this);
+            bucketACL.startc();
+        } else {
+            jTextArea1.append("\nError: No bucket has been selected\n");
+        }
+
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     void var() {
         cred.setAccess_key(jTextField1.getText());
         cred.setSecret_key(jTextField2.getText());
@@ -2316,15 +2250,12 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
