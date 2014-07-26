@@ -1591,6 +1591,11 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         String[] account = new String[account_array.length];
         String account_value = null;
 
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
         try {
 
             for (int i = 0; i != account_array.length; i++) {
