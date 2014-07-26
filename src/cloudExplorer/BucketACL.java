@@ -27,9 +27,9 @@ public class BucketACL implements Runnable {
 
             final JCheckBox static_website = new JCheckBox("Static Website");
             final JCheckBox disable_website = new JCheckBox("Disable Static Website");
-            final JCheckBox enable_versioning = new JCheckBox("Enable Versioning.");
-            final JCheckBox suspend_versioning = new JCheckBox("Suspend Versioning.");
-            final JCheckBox delete_bucket = new JCheckBox("Delete Bucket.");
+            final JCheckBox enable_versioning = new JCheckBox("Enable Versioning");
+            final JCheckBox suspend_versioning = new JCheckBox("Suspend Versioning");
+            final JCheckBox delete_bucket = new JCheckBox("Delete Bucket");
             final JLabel blank = new JLabel(" ");
             final JButton bucketACLbutton = new JButton("        Commit");
             final JButton close = new JButton("        Close");
