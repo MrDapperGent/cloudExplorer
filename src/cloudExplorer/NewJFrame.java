@@ -956,7 +956,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jTextArea4.setEditable(false);
         jTextArea4.setColumns(20);
         jTextArea4.setRows(5);
-        jTextArea4.setText("Version 3.1\n\nNew GUI layout: smaller window, more compact.\nMany of the items in the \"Bucket\"  moved to \"Bucket Properties\".\nCheckbox to disable automatically loading buckets after selecting an account.\nDefault Host URL and Port defaults to Amazon.\nS3 Bucket migration will scan destination bucket and not upload the object if it already exists.\nS3 Bucket migration has an option to abort the current migration.\nFixed bug when switching from Amazon S3 to S3 compatible accounts.\n\nFeatures:\n\n1. Tier buckets to and from Amazon Glacier.\n2. Sync files to and from S3 storage.\n3. Stream music from Amazon S3.\n4. Text editor.\n5. Modify Bucket and Object ACL's.\n6. Take screen shots and upload them to Amazon S3.\n7. Bucket versioning and lifecycles.\n8. Graphical and console based background syncing.\n9. Store multiple Amazon S3 accounts.\n10. Image viewer.\n11. Migrate data between S3 accounts.\n\nHow to migrate data between S3 accounts:\n\n1. Load the destination account and click \"Set as migration Account\" under Settings.\n2. Create the destination bucket with the same name as the origin bucket name.\n3. Load the origin S3 account and select the bucket to transfer to the new S3 account.\n4. Under the \"Tools\" menu, select \"Migrate bucket to another S3 account\".\n5. Type in the destination bucket name and click \"Start Bucket Migration\".\n6. Wait for transfers to complete.");
+        jTextArea4.setText("Version 3.1\n\nNew GUI layout: smaller window, more compact.\nMany of the items in the \"Bucket Properties\"  menu moved to Bucket ->  \"Bucket Properties\".\nCheckbox to disable automatically loading buckets after selecting an account.\nDefault Host URL and Port defaults to Amazon.\nS3 Bucket migration will scan destination bucket and not upload the object if it already exists.\nS3 Bucket migration has an option to abort the current migration.\nFixed bug when switching from Amazon S3 to S3 compatible accounts.\n\nFeatures:\n\n1. Tier buckets to and from Amazon Glacier.\n2. Sync files to and from S3 storage.\n3. Stream music from Amazon S3.\n4. Text editor.\n5. Modify Bucket and Object ACL's.\n6. Take screen shots and upload them to Amazon S3.\n7. Bucket versioning and lifecycles.\n8. Graphical and console based background syncing.\n9. Store multiple Amazon S3 accounts.\n10. Image viewer.\n11. Migrate data between S3 accounts.\n\nHow to migrate data between S3 accounts:\n\n1. Load the destination account and click \"Set as migration Account\" under Settings.\n2. Create the destination bucket with the same name as the origin bucket name.\n3. Load the origin S3 account and select the bucket to transfer to the new S3 account.\n4. Under the \"Tools\" menu, select \"Migrate bucket to another S3 account\".\n5. Type in the destination bucket name and click \"Start Bucket Migration\".\n6. Wait for transfers to complete.");
         jTextArea4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jTextArea4.setCaretPosition(0);
         jScrollPane6.setViewportView(jTextArea4);
@@ -1007,7 +1007,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu3.setText("Bucket Properties");
+        jMenu3.setText("Bucket");
 
         jMenuItem1.setText("Create Bucket");
         jMenuItem1.setToolTipText("");
@@ -1018,7 +1018,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu3.add(jMenuItem1);
 
-        jMenuItem2.setText("Bucket Properties");
+        jMenuItem2.setText("Properties");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
