@@ -1242,31 +1242,34 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     public void itemStateChanged(ItemEvent event) {
         try {
-            for (int h = 1; h != bucketarray.length; h++) {
-                if (bucketarray.length > 1) {
-                    if (bucket_item[h] != null) {
-                        if (bucket_item[h].isSelected()) {
-                            if (h != active_bucket) {
-                                active_bucket = h;
-                                jLabel11.setText("Bucket Selected: " + bucket_item[h].getText());
-                                jLabel13.setText("Bucket Selected: " + bucket_item[h].getText());
-                                cred.setBucket(bucket_item[h].getText());
-                                clear_old_radio_buttons();
-                                h = bucketarray.length;
-                                objectarray = null;
-                                jTextArea1.append("\nPlease wait, loading objects.");
-                                calibrateTextArea();
-                                java.awt.EventQueue.invokeLater(new Runnable() {
-                                    public void run() {
-                                        jButton6.doClick();
-                                    }
-                                });
+            if (bucket_item != null) {
+                for (int h = 1; h != bucketarray.length; h++) {
+                    if (bucketarray.length > 1) {
+                        if (bucket_item[h] != null) {
+                            if (bucket_item[h].isSelected()) {
+                                if (h != active_bucket) {
+                                    active_bucket = h;
+                                    jLabel11.setText("Bucket Selected: " + bucket_item[h].getText());
+                                    jLabel13.setText("Bucket Selected: " + bucket_item[h].getText());
+                                    cred.setBucket(bucket_item[h].getText());
+                                    clear_old_radio_buttons();
+                                    h = bucketarray.length;
+                                    objectarray = null;
+                                    jTextArea1.append("\nPlease wait, loading objects.");
+                                    calibrateTextArea();
+                                    java.awt.EventQueue.invokeLater(new Runnable() {
+                                        public void run() {
+                                            jButton6.doClick();
+                                        }
+                                    });
+                                }
                             }
                         }
                     }
                 }
             }
         } catch (Exception ItemStateChanged) {
+            System.out.print(ItemStateChanged.getMessage());
         }
 
         try {
@@ -1388,6 +1391,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         if ((jTextField1.getText().length() > 1 || jTextField2.getText().length() > 1)) {
             var();
             bucketarray = null;
+            bucket_item = new JRadioButton[object_size];
             ReloadBuckets buckets = new ReloadBuckets(cred.getAccess_key(), cred.getSecret_key(), cred.getEndpoint(), this);
             buckets.run();
             active_bucket = 0;
