@@ -66,7 +66,7 @@ public class MakeDestinationBucket implements Runnable {
                             migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, bucketName.getText(), false);
                         }
                     }
-                     close.doClick();
+                     //close.doClick();
                 }
             });
 
