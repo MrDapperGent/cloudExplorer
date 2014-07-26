@@ -80,8 +80,8 @@ public class MakeBucket implements Runnable {
             mainFrame.jPanel14.revalidate();
             mainFrame.jPanel14.validate();
 
-        } catch (Exception mp3player) {
-            jTextArea1.append("\n" + mp3player.getMessage());
+        } catch (Exception makebucket) {
+            jTextArea1.append("\n" + makebucket.getMessage());
         }
         mainFrame.calibrateTextArea();
 
