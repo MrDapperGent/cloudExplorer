@@ -8,6 +8,17 @@ This is a simple, free, and open-source S3 client made by me. It works on Window
 
 [How to run the program]
 
+To run the application, most users should be able to run the program by double clicking on the CloudExplorer.jar file. If not, there are two scripts included to assist:
+
+Linux and OS X users can run it as follows:
+./cloudExplorer
+
+Windows users can run Cloud Explorer by double clicking on the cloudExplorer.bat or CloudExplorer.jar file.
+
+For any OS, you can start the program with the Java command:
+
+java -jar -Xms100m -Xmx500m ./CloudExplorer.jar
+
 [How to migrate data between S3 accounts]
 
 Load the destination account and click "Set as migration Account" under Settings.
