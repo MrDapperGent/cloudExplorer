@@ -6,6 +6,8 @@ This is a simple, free, and open-source S3 client made by me. It works on Window
 ![Editor](https://linux-toys.com/editor.png)
 
 
+[How to run the program]
+
 [How to migrate data between S3 accounts]
 
 Load the destination account and click "Set as migration Account" under Settings.
