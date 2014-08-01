@@ -2,8 +2,8 @@ This is a simple, free, and open-source S3 client made by me. It works on Window
 
 
 
-![Music Player](https://www.linux-toys.com/object.png)
-![Editor](https://linux-toys.com/editor.png)
+![Music Player](https://www.linux-toys.com/objects.png)
+![Editor](https://linux-toys.com/editor-new.png)
 
 
 [How to run the program]
