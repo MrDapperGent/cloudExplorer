@@ -91,6 +91,8 @@ public class SyncFromS3 implements Runnable {
         } catch (Exception SyncLocal) {
             mainFrame.jTextArea1.append("\n" + SyncLocal.getMessage());
         }
+        mainFrame.jTextArea1.append("\nSync operation finished running. Please observe this window for any transfers that may still be running.");
+        calibrate();
     }
 
     void startc(String[] Aobjectarray, String[] AObjectsConverted, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String Adestination) {
