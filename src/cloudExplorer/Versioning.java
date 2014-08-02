@@ -43,6 +43,12 @@ public class Versioning {
                         del = new Delete(object.getKey(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), object.getVersionId());
                         del.startc(object.getKey(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), object.getVersionId());
                         System.gc();
+                        long t1 = System.currentTimeMillis();
+                        long diff = 0;
+                        while (diff < 1000) {
+                            long t2 = System.currentTimeMillis();
+                            diff = t2 - t1;
+                        }
                     }
                 } while (vListing.isTruncated());
             } else {
