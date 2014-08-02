@@ -21,15 +21,16 @@ public class SyncToS3 implements Runnable {
     Get get;
     Thread syncToS3;
     Put put;
+    Boolean rrs = false;
 
-    SyncToS3(File Alocation, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobjectarray) {
+    SyncToS3(File Alocation, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobjectarray, Boolean Arrs) {
         objectarray = Aobjectarray;
         location = Alocation;
         access_key = Aaccess_key;
         secret_key = Asecret_key;
         bucket = Abucket;
         endpoint = Aendpoint;
-
+        rrs = Arrs;
     }
 
     public void calibrate() {
@@ -60,8 +61,14 @@ public class SyncToS3 implements Runnable {
             if (found == 0) {
                 String object = makeDirectory(file_found.getAbsolutePath().toString());
                 if (SyncToS3.running) {
-                    put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object);
-                    put.run();
+                    if (rrs) {
+                        put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object, true);
+                        put.run();
+                    } else {
+                        put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object, false);
+                        put.run();
+                    }
+
                 }
                 found = 0;
             }
@@ -101,10 +108,10 @@ public class SyncToS3 implements Runnable {
         return what;
     }
 
-    void startc(File location, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobjectarray
+    void startc(File location, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobjectarray, Boolean Arrs
     ) {
         if (SyncToS3.running) {
-            syncToS3 = new Thread(new SyncToS3(location, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aobjectarray));
+            syncToS3 = new Thread(new SyncToS3(location, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aobjectarray, Arrs));
             syncToS3.start();
 
         }

@@ -11,6 +11,7 @@ import com.amazonaws.services.s3.transfer.Upload;
 import java.io.File;
 import javax.activation.MimetypesFileTypeMap;
 import static cloudExplorer.NewJFrame.jTextArea1;
+import com.amazonaws.services.s3.model.StorageClass;
 
 public class Put implements Runnable {
 
@@ -23,6 +24,7 @@ public class Put implements Runnable {
     String endpoint = null;
     String ObjectKey = null;
     String secret_key = null;
+    Boolean rrs = false;
     Thread put;
     public static Boolean running = true;
 
@@ -33,13 +35,14 @@ public class Put implements Runnable {
         }
     }
 
-    Put(String Awhat, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String AObjectKey) {
+    Put(String Awhat, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String AObjectKey, Boolean Arrs) {
         what = Awhat;
         access_key = Aaccess_key;
         secret_key = Asecret_key;
         bucket = Abucket;
         endpoint = Aendpoint;
         ObjectKey = AObjectKey;
+        rrs = Arrs;
     }
 
     public void run() {
@@ -49,8 +52,12 @@ public class Put implements Runnable {
             s3Client.setEndpoint(endpoint);
             TransferManager tx = new TransferManager(s3Client);
             File file = new File(what);
-            PutObjectRequest putRequest = new PutObjectRequest(bucket, ObjectKey, file);
-
+            PutObjectRequest putRequest;
+            if (!rrs) {
+                putRequest = new PutObjectRequest(bucket, ObjectKey, file);
+            } else {
+                putRequest = new PutObjectRequest(bucket, ObjectKey, file).withStorageClass(StorageClass.ReducedRedundancy);
+            }
             MimetypesFileTypeMap mimeTypesMap = new MimetypesFileTypeMap();
             String mimeType = mimeTypesMap.getContentType(file);
             mimeType = mimeTypesMap.getContentType(file);
@@ -75,9 +82,9 @@ public class Put implements Runnable {
         calibrate();
     }
 
-    void startc(String Awhat, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String AObjectKey) {
+    void startc(String Awhat, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String AObjectKey, Boolean Arrs) {
 
-        put = new Thread(new Put(Awhat, Aaccess_key, Asecret_key, Abucket, Aendpoint, AObjectKey));
+        put = new Thread(new Put(Awhat, Aaccess_key, Asecret_key, Abucket, Aendpoint, AObjectKey, Arrs));
         put.start();
     }
 
