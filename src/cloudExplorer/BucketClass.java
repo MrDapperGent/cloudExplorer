@@ -89,6 +89,9 @@ public class BucketClass {
         } catch (Exception listBucket) {
             mainFrame.jTextArea1.append("\n\nAn error has occurred in listBucket.");
             mainFrame.jTextArea1.append("\n\nError Message:    " + listBucket.getMessage());
+            if (listBucket.getMessage().contains("peer not authenticated")) {
+                mainFrame.jTextArea1.append("\nError: This program does not support non-trusted SSL certificates.");
+            }
         }
         String parse = null;
 
