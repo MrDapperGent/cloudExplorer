@@ -45,7 +45,7 @@ public class Versioning {
                         System.gc();
                         long t1 = System.currentTimeMillis();
                         long diff = 0;
-                        while (diff < 1000) {
+                        while (diff < 500) {
                             long t2 = System.currentTimeMillis();
                             diff = t2 - t1;
                         }
