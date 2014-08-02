@@ -62,7 +62,11 @@ public class Versioning {
                 }
 
             }
-            mainFrame.jTextArea1.append("\n\nDone gathering Versions.");
+            if (Versioning.delete) {
+                mainFrame.jTextArea1.append("\nCompleted deleting every object. Please observe this window for any tasks that are still running.");
+            } else {
+                mainFrame.jTextArea1.append("\nDone gathering Versions.");
+            }
             mainFrame.calibrateTextArea();
         } catch (Exception getVersions) {
 
