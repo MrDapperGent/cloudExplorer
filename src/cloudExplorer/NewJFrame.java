@@ -1710,7 +1710,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             if (jCheckBox4.isSelected()) {
                 Zip zip = new Zip(upload, "compress");
                 zip.run();
-                upload = upload + ".zip";
+                upload = Home + File.separator + "compress.tmp";
                 new_object_name = new_object_name + ".zip";
                 File checkZip = new File(upload);
                 if (checkZip.exists()) {

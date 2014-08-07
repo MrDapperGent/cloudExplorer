@@ -14,6 +14,7 @@ public class Zip implements Runnable {
     String what = null;
     Thread zip;
     String operation = null;
+    String Home = System.getProperty("user.home");
 
     public void calibrate() {
         try {
@@ -27,7 +28,7 @@ public class Zip implements Runnable {
             jTextArea1.append("\nAttempting to compress: " + what);
             calibrate();
             File file = new File(what);
-            FileOutputStream fos = new FileOutputStream(what + ".zip");
+            FileOutputStream fos = new FileOutputStream(Home + File.separator + "compress.tmp");
             ZipOutputStream zos = new ZipOutputStream(fos);
             ZipEntry ze = new ZipEntry(file.getName());
             zos.putNextEntry(ze);
