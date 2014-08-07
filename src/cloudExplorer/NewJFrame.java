@@ -145,6 +145,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jButton15 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jCheckBox2 = new javax.swing.JCheckBox();
+        jCheckBox4 = new javax.swing.JCheckBox();
         jPanel4 = new javax.swing.JPanel();
         jFileChooser2 = new javax.swing.JFileChooser();
         jToggleButton3 = new javax.swing.JToggleButton();
@@ -777,6 +778,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jCheckBox2.setBackground(java.awt.SystemColor.text);
         jCheckBox2.setText("RRS");
 
+        jCheckBox4.setBackground(java.awt.SystemColor.text);
+        jCheckBox4.setText("Compress");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -784,17 +788,19 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             .addComponent(jFileChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel11)
-                .addGap(132, 132, 132)
+                .addGap(29, 29, 29)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jButton15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox2)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox4)
+                .addGap(0, 61, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -814,13 +820,12 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                                 .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                        .addGap(1, 1, 1)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jCheckBox2))))))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jCheckBox2)
+                                        .addComponent(jCheckBox4)))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -881,9 +886,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jFileChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel13)
-                        .addGap(132, 132, 132)
+                        .addGap(20, 20, 20)
                         .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(44, 44, 44)
                         .addComponent(jToggleButton4)
@@ -891,10 +897,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addComponent(jToggleButton3)
                         .addGap(43, 43, 43)
                         .addComponent(jRadioButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox3))
-                    .addComponent(jFileChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 978, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
+                        .addGap(37, 37, 37)
+                        .addComponent(jCheckBox3)
+                        .addGap(99, 99, 99))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -936,17 +941,17 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
 
-        jLabel8.setText("Object Name:");
+        jLabel8.setText("File Name:");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addComponent(jLabel8)
                 .addGap(1, 1, 1)
-                .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 836, Short.MAX_VALUE)
+                .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 847, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton11)
                 .addGap(14, 14, 14))
@@ -971,7 +976,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jTextArea4.setEditable(false);
         jTextArea4.setColumns(20);
         jTextArea4.setRows(5);
-        jTextArea4.setText("Version 3.2\n\nSupport for Amazon RRS (Reduced Redundancy Storage). Storage pricing will be cheaper because less copies of the data will exist on Amazon S3.\nAdded checkbox for Upload and Sync tabs called \"RRS\". \nAdded error message when trying to connect to a server with a non-trusted SSL certificate because this program does not support it.\n\"Delete every object and version\" is now throtteled for stability.\nA message will be displayed when a sync operation is complete.\n\nVersion 3.1\n\nNew GUI layout: smaller window, more compact.\nMany of the items in the \"Bucket Properties\"  menu moved to Bucket ->  \"Bucket Properties\".\nCheckbox to disable automatically loading buckets after selecting an account.\nDefault Host URL and Port defaults to Amazon.\nS3 Bucket migration will scan destination bucket and not upload the object if it already exists.\nS3 Bucket migration has an option to abort the current migration.\nFixed bug when switching from Amazon S3 to S3 compatible accounts.\n\nFeatures:\n\n1. Tier buckets to and from Amazon Glacier.\n2. Sync files to and from S3 storage.\n3. Stream music from Amazon S3.\n4. Text editor.\n5. Modify Bucket and Object ACL's.\n6. Take screen shots and upload them to Amazon S3.\n7. Bucket versioning and lifecycles.\n8. Graphical and console based background syncing.\n9. Store multiple Amazon S3 accounts.\n10. Image viewer.\n11. Migrate data between S3 accounts.\n\nHow to migrate data between S3 accounts:\n\n1. Load the destination account and click \"Set as migration Account\" under Settings.\n2. Create the destination bucket on the destination account.\n3. Load the origin S3 account and select the bucket to transfer to the new S3 account.\n4. Under the \"Tools\" menu, select \"Migrate bucket to another S3 account\".\n5. Type in the destination bucket name and click \"Start Bucket Migration\".\n6. Wait for transfers to complete.");
+        jTextArea4.setText("Version 3.3\n\nSpacing tweak on GUI for Sync and Upload tabs.\nUpload has new feature to compress a file. The zip file will be uploaded to S3.\n\"Object Name\" has been renamed to \"File Name\" in Text Editor.\n\nVersion 3.2\n\nSupport for Amazon RRS (Reduced Redundancy Storage). Storage pricing will be cheaper because less copies of the data will exist on Amazon S3.\nAdded checkbox for Upload and Sync tabs called \"RRS\". \nAdded error message when trying to connect to a server with a non-trusted SSL certificate because this program does not support it.\n\"Delete every object and version\" is now throtteled for stability.\nA message will be displayed when a sync operation is complete.\n\nVersion 3.1\n\nNew GUI layout: smaller window, more compact.\nMany of the items in the \"Bucket Properties\"  menu moved to Bucket ->  \"Bucket Properties\".\nCheckbox to disable automatically loading buckets after selecting an account.\nDefault Host URL and Port defaults to Amazon.\nS3 Bucket migration will scan destination bucket and not upload the object if it already exists.\nS3 Bucket migration has an option to abort the current migration.\nFixed bug when switching from Amazon S3 to S3 compatible accounts.\n\nFeatures:\n\n1. Tier buckets to and from Amazon Glacier.\n2. Sync files to and from S3 storage.\n3. Stream music from Amazon S3.\n4. Text editor.\n5. Modify Bucket and Object ACL's.\n6. Take screen shots and upload them to Amazon S3.\n7. Bucket versioning and lifecycles.\n8. Graphical and console based background syncing.\n9. Store multiple Amazon S3 accounts.\n10. Image viewer.\n11. Migrate data between S3 accounts.\n\nHow to migrate data between S3 accounts:\n\n1. Load the destination account and click \"Set as migration Account\" under Settings.\n2. Create the destination bucket on the destination account.\n3. Load the origin S3 account and select the bucket to transfer to the new S3 account.\n4. Under the \"Tools\" menu, select \"Migrate bucket to another S3 account\".\n5. Type in the destination bucket name and click \"Start Bucket Migration\".\n6. Wait for transfers to complete.");
         jTextArea4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jTextArea4.setCaretPosition(0);
         jScrollPane6.setViewportView(jTextArea4);
@@ -1702,6 +1707,19 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             String upload = (file.getAbsolutePath());
             String new_object_name = convertObject(file.getAbsolutePath().toString(), "upload");
             jTextField7.setText(jTextField7.getText().replace("null", ""));
+            if (jCheckBox4.isSelected()) {
+                Zip zip = new Zip(upload, "compress");
+                zip.run();
+                upload = upload + ".zip";
+                new_object_name = new_object_name + ".zip";
+                File checkZip = new File(upload);
+                if (checkZip.exists()) {
+                } else {
+                    jTextArea1.setText("\nError: Zip file does not exist.");
+                    calibrateTextArea();
+                }
+            }
+
             if (jCheckBox2.isSelected()) {
                 put = new Put(upload, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), jTextField7.getText() + new_object_name, true);
                 put.startc(upload, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), jTextField7.getText() + new_object_name, true);
@@ -2272,6 +2290,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     public static javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JCheckBox jCheckBox4;
     public javax.swing.JFileChooser jFileChooser1;
     public static javax.swing.JFileChooser jFileChooser2;
     private javax.swing.JLabel jLabel1;
