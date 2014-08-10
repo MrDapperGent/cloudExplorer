@@ -1,13 +1,26 @@
 package cloudExplorer;
 
+import static cloudExplorer.NewJFrame.jTextArea1;
 import jaco.mp3.player.MP3Player;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.annotation.Native;
 import java.net.URL;
+import javafx.scene.media.MediaPlayer;
+import javax.media.Manager;
+import javax.media.MediaLocator;
+import javax.media.Player;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import static cloudExplorer.NewJFrame.jTextArea1;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import uk.co.caprica.vlcj.binding.LibVlc;
+import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;
+import uk.co.caprica.vlcj.runtime.RuntimeUtil;
 
 public class MusicPlayer implements Runnable {
 
@@ -24,6 +37,7 @@ public class MusicPlayer implements Runnable {
             URL music_url = null;
 
             final MP3Player mp3 = new MP3Player();
+
             final JButton stopMusic = new JButton("Stop Music");
             final JButton replayMusic = new JButton("Play/Replay");
             final JButton forwardMusic = new JButton("Forward");
@@ -83,6 +97,18 @@ public class MusicPlayer implements Runnable {
                         music_url = (new URL(url));
                         mp3.addToPlayList(music_url);
                         count++;
+                    } else {
+                        mainFrame.objectacl.setACLpublic(mainFrame.object_item[h].getText(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getEndpoint(), mainFrame.cred.getBucket());
+                        String url = mainFrame.objectacl.setACLurl(mainFrame.object_item[h].getText(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getEndpoint(), mainFrame.cred.getBucket());
+                        url = url.replace("Pre-Signed URL = ", "");
+                        music_url = (new URL(url));
+                        JFrame mediaTest = new JFrame("Movie Player");
+                        MediaLocator mlr = new MediaLocator(music_url);
+                        mediaTest.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        Player mediaPlayer = Manager.createRealizedPlayer(music_url);
+                        Component video = mediaPlayer.getVisualComponent();
+                        Component controls = mediaPlayer.getControlPanelComponent();
+                        mediaPlayer.start();
                     }
                     if (count == 1) {
                         mainFrame.jPanel14.removeAll();
