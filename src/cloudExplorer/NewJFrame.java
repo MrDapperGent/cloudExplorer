@@ -73,30 +73,43 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .getResource("cloud.jpg")).getImage());
         this.jTextField3.setText("https://s3.amazonaws.com");
         this.jTextField4.setText("443");
-        ImageIcon tabUpload = new ImageIcon(
-                this.getClass().getResource("tab-upload.png"));
-        ImageIcon tabSettings = new ImageIcon(
-                this.getClass().getResource("tab-settings.png"));
-        ImageIcon tabEditor = new ImageIcon(
-                this.getClass().getResource("tab-editor.png"));
-        ImageIcon tabDownload = new ImageIcon(
-                this.getClass().getResource("tab-download.png"));
-        ImageIcon tabExplorer = new ImageIcon(
-                this.getClass().getResource("tab-explorer.png"));
-        ImageIcon tabAbout = new ImageIcon(
-                this.getClass().getResource("tab-about.png"));
-        this.jTabbedPane1.setTitleAt(2, "");
-        this.jTabbedPane1.setIconAt(2, tabUpload);
-        this.jTabbedPane1.setTitleAt(0, "");
-        this.jTabbedPane1.setIconAt(0, tabSettings);
-        this.jTabbedPane1.setTitleAt(4, "");
-        this.jTabbedPane1.setIconAt(4, tabEditor);
-        this.jTabbedPane1.setTitleAt(3, "");
-        this.jTabbedPane1.setIconAt(3, tabDownload);
-        this.jTabbedPane1.setTitleAt(1, "");
-        this.jTabbedPane1.setIconAt(1, tabExplorer);
-        this.jTabbedPane1.setTitleAt(5, "");
-        this.jTabbedPane1.setIconAt(5, tabAbout);
+
+        for (int i = 0; i != this.jTabbedPane1.getTabCount(); i++) {
+            this.jTabbedPane1.setTitleAt(i, "");
+            if (i == 0) {
+                ImageIcon tabSettings = new ImageIcon(
+                        this.getClass().getResource("tab-settings.png"));
+                this.jTabbedPane1.setIconAt(0, tabSettings);
+            }
+            if (i == 1) {
+                ImageIcon tabExplorer = new ImageIcon(
+                        this.getClass().getResource("tab-explorer.png"));
+                this.jTabbedPane1.setIconAt(1, tabExplorer);
+
+            }
+            if (i == 2) {
+                ImageIcon tabUpload = new ImageIcon(
+                        this.getClass().getResource("tab-upload.png"));
+                this.jTabbedPane1.setIconAt(2, tabUpload);
+            }
+            if (i == 3) {
+                ImageIcon tabDownload = new ImageIcon(
+                        this.getClass().getResource("tab-download.png"));
+                this.jTabbedPane1.setIconAt(3, tabDownload);
+            }
+            if (i == 4) {
+                ImageIcon tabEditor = new ImageIcon(
+                        this.getClass().getResource("tab-editor.png"));
+                this.jTabbedPane1.setIconAt(4, tabEditor);
+            }
+            if (i == 5) {
+                ImageIcon tabAbout = new ImageIcon(
+                        this.getClass().getResource("tab-about.png"));
+                this.jTabbedPane1.setIconAt(5, tabAbout);
+            }
+
+        }
+
         this.jCheckBox1.setSelected(true);
         File config = new File(config_file);
         if (config.exists()) {
