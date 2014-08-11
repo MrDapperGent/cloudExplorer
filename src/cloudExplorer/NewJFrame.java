@@ -12,7 +12,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -23,6 +22,8 @@ import javax.swing.JRadioButton;
 
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
+    ImageIcon genericEngine = new ImageIcon(
+            this.getClass().getResource("engine.png"));
     Credentials cred = new Credentials();
     BucketClass bucket = new BucketClass();
     Acl objectacl = new Acl();
@@ -172,13 +173,11 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         this.jButton18.setIcon(versionButton);
         this.jButton18.setText("Versions");
 
-        ImageIcon engingBUtton = new ImageIcon(
-                this.getClass().getResource("engine.png"));
-        this.jButton9.setIcon(engingBUtton);
-        this.jButton2.setIcon(engingBUtton);
-        this.jButton8.setIcon(engingBUtton);
-        this.jButton10.setIcon(engingBUtton);
-        this.jButton20.setIcon(engingBUtton);
+        this.jButton9.setIcon(genericEngine);
+        this.jButton2.setIcon(genericEngine);
+        this.jButton8.setIcon(genericEngine);
+        this.jButton10.setIcon(genericEngine);
+        this.jButton20.setIcon(genericEngine);
 
         this.jCheckBox1.setSelected(true);
         File config = new File(config_file);

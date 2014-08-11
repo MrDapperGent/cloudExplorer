@@ -64,13 +64,8 @@ public class BucketACL implements Runnable {
             close.setBorder(null);
             close.setForeground(Color.blue);
 
-            ImageIcon commitButton = new ImageIcon(
-                    this.getClass().getResource("engine.png"));
-            bucketACLbutton.setIcon(commitButton);
-
-            ImageIcon closeBut = new ImageIcon(
-                    this.getClass().getResource("engine.png"));
-            close.setIcon(closeBut);
+            bucketACLbutton.setIcon(mainFrame.genericEngine);
+            close.setIcon(mainFrame.genericEngine);
 
             bucketACLbutton.addActionListener(new ActionListener() {
 

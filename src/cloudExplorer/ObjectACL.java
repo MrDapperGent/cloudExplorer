@@ -48,9 +48,7 @@ public class ObjectACL implements Runnable {
             acl.setBorder(null);
             acl.setForeground(Color.blue);
 
-            ImageIcon comBut = new ImageIcon(
-                    getClass().getResource("engine.png"));
-            acl.setIcon(comBut);
+            acl.setIcon(mainFrame.genericEngine);
 
             acl.addActionListener(new ActionListener() {
 

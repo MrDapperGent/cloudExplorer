@@ -43,10 +43,8 @@ public class MakeBucket implements Runnable {
             close.setBorder(null);
             close.setForeground(Color.blue);
 
-            ImageIcon createBucketButton = new ImageIcon(
-                    this.getClass().getResource("engine.png"));
-            createBucket.setIcon(createBucketButton);
-            close.setIcon(createBucketButton);
+            createBucket.setIcon(mainFrame.genericEngine);
+            close.setIcon(mainFrame.genericEngine);
 
             createBucket.addActionListener(new ActionListener() {
 

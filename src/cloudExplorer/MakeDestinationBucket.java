@@ -50,11 +50,9 @@ public class MakeDestinationBucket implements Runnable {
             close.setBorder(null);
             close.setForeground(Color.blue);
 
-            ImageIcon engineMigration = new ImageIcon(
-                    this.getClass().getResource("engine.png"));
-            close.setIcon(engineMigration);
-            abortMigration.setIcon(engineMigration);
-            startMigration.setIcon(engineMigration);
+            close.setIcon(mainFrame.genericEngine);
+            abortMigration.setIcon(mainFrame.genericEngine);
+            startMigration.setIcon(mainFrame.genericEngine);
 
             startMigration.addActionListener(new ActionListener() {
 

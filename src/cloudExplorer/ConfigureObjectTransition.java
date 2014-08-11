@@ -52,10 +52,8 @@ public class ConfigureObjectTransition implements Runnable {
             disableRules.setBorder(null);
             disableRules.setForeground(Color.blue);
 
-            ImageIcon commitTransitionButton = new ImageIcon(
-                    this.getClass().getResource("engine.png"));
-            disableRules.setIcon(commitTransitionButton);
-            commitTransition.setIcon(commitTransitionButton);
+            disableRules.setIcon(mainFrame.genericEngine);
+            commitTransition.setIcon(mainFrame.genericEngine);
 
             commitTransition.addActionListener(new ActionListener() {
 
