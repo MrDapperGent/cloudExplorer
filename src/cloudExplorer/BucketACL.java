@@ -8,6 +8,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import static cloudExplorer.NewJFrame.jTextArea1;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class BucketACL implements Runnable {
@@ -31,8 +32,8 @@ public class BucketACL implements Runnable {
             final JCheckBox suspend_versioning = new JCheckBox("Suspend Versioning");
             final JCheckBox delete_bucket = new JCheckBox("Delete Bucket");
             final JLabel blank = new JLabel(" ");
-            final JButton bucketACLbutton = new JButton("        Commit");
-            final JButton close = new JButton("        Close");
+            final JButton bucketACLbutton = new JButton("Commit");
+            final JButton close = new JButton("Close");
             final JLabel blank_label = new JLabel(" ");
 
             static_website.setBackground(Color.white);
@@ -62,6 +63,14 @@ public class BucketACL implements Runnable {
             close.setBackground(Color.white);
             close.setBorder(null);
             close.setForeground(Color.blue);
+
+            ImageIcon commitButton = new ImageIcon(
+                    this.getClass().getResource("engine.png"));
+            bucketACLbutton.setIcon(commitButton);
+
+            ImageIcon closeBut = new ImageIcon(
+                    this.getClass().getResource("engine.png"));
+            close.setIcon(closeBut);
 
             bucketACLbutton.addActionListener(new ActionListener() {
 

@@ -14,6 +14,7 @@ import javax.media.Manager;
 import javax.media.MediaLocator;
 import javax.media.Player;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -56,6 +57,22 @@ public class MusicPlayer implements Runnable {
             forwardMusic.setBackground(Color.white);
             forwardMusic.setBorder(null);
             forwardMusic.setForeground(Color.blue);
+
+            ImageIcon play = new ImageIcon(
+                    getClass().getResource("play.png"));
+            replayMusic.setIcon(play);
+
+            ImageIcon stop = new ImageIcon(
+                    getClass().getResource("abort.png"));
+            stopMusic.setIcon(stop);
+
+            ImageIcon forward = new ImageIcon(
+                    getClass().getResource("forward.png"));
+            forwardMusic.setIcon(forward);
+
+            ImageIcon rewind = new ImageIcon(
+                    getClass().getResource("rewind.png"));
+            backwardMusic.setIcon(rewind);
 
             forwardMusic.addActionListener(new ActionListener() {
 
