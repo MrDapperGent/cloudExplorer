@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import static cloudExplorer.NewJFrame.jTextArea1;
+import javax.swing.ImageIcon;
 
 public class ObjectACL implements Runnable {
 
@@ -29,7 +30,7 @@ public class ObjectACL implements Runnable {
             final JLabel blank = new JLabel(" ");
             final JCheckBox url_box = new JCheckBox("URL Access");
             final JCheckBox private_box = new JCheckBox("Private Access");
-            final JButton acl = new JButton("        Commit");
+            final JButton acl = new JButton("Commit");
 
             public_box.setBackground(Color.white);
             public_box.setForeground(Color.blue);
@@ -47,6 +48,10 @@ public class ObjectACL implements Runnable {
             acl.setBorder(null);
             acl.setForeground(Color.blue);
 
+            ImageIcon comBut = new ImageIcon(
+                    getClass().getResource("engine.png"));
+            acl.setIcon(comBut);
+
             acl.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
@@ -63,7 +68,7 @@ public class ObjectACL implements Runnable {
                                     String url = mainFrame.objectacl.setACLurl(object_acl_change, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getEndpoint(), mainFrame.cred.getBucket());
                                     url = url.replace("Pre-Signed URL = ", "");
                                     jTextArea1.append("\n" + url);
-                                     mainFrame.calibrateTextArea();
+                                    mainFrame.calibrateTextArea();
                                 }
                                 if (private_box.isSelected()) {
                                     mainFrame.objectacl.setACLprivate(object_acl_change, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getEndpoint(), mainFrame.cred.getBucket());
