@@ -1,13 +1,14 @@
 package cloudExplorer;
 
+import static cloudExplorer.NewJFrame.jTextArea1;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import static cloudExplorer.NewJFrame.jTextArea1;
 
 public class MakeBucket implements Runnable {
 
@@ -41,6 +42,11 @@ public class MakeBucket implements Runnable {
             close.setBackground(Color.white);
             close.setBorder(null);
             close.setForeground(Color.blue);
+
+            ImageIcon createBucketButton = new ImageIcon(
+                    this.getClass().getResource("engine.png"));
+            createBucket.setIcon(createBucketButton);
+            close.setIcon(createBucketButton);
 
             createBucket.addActionListener(new ActionListener() {
 
