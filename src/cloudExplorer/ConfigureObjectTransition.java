@@ -1,14 +1,15 @@
 package cloudExplorer;
 
+import static cloudExplorer.NewJFrame.jTextArea1;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import static cloudExplorer.NewJFrame.jTextArea1;
 
 public class ConfigureObjectTransition implements Runnable {
 
@@ -50,6 +51,11 @@ public class ConfigureObjectTransition implements Runnable {
             disableRules.setBackground(Color.white);
             disableRules.setBorder(null);
             disableRules.setForeground(Color.blue);
+
+            ImageIcon commitTransitionButton = new ImageIcon(
+                    this.getClass().getResource("engine.png"));
+            disableRules.setIcon(commitTransitionButton);
+            commitTransition.setIcon(commitTransitionButton);
 
             commitTransition.addActionListener(new ActionListener() {
 
