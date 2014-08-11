@@ -902,7 +902,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addGap(29, 29, 29)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -911,7 +911,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCheckBox4)
-                .addGap(0, 61, Short.MAX_VALUE))
+                .addGap(0, 113, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -927,16 +927,16 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jCheckBox2)
                                         .addComponent(jCheckBox4))
-                                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -1002,15 +1002,15 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addComponent(jLabel13)
                         .addGap(20, 20, 20)
                         .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
+                        .addGap(30, 30, 30)
                         .addComponent(jToggleButton4)
-                        .addGap(49, 49, 49)
+                        .addGap(47, 47, 47)
                         .addComponent(jToggleButton3)
                         .addGap(43, 43, 43)
                         .addComponent(jRadioButton1)
-                        .addGap(37, 37, 37)
+                        .addGap(32, 32, 32)
                         .addComponent(jCheckBox3)
-                        .addGap(99, 99, 99))))
+                        .addContainerGap())))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1086,7 +1086,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jTextArea4.setEditable(false);
         jTextArea4.setColumns(20);
         jTextArea4.setRows(5);
-        jTextArea4.setText("Version 3.2\n\nNew buttons for the GUI.\nSpacing tweak on GUI for Sync and Upload tabs.\nUpload has new feature to compress a file. The zip file will be uploaded to S3.\n\"Object Name\" has been renamed to \"File Name\" in Text Editor.\nSupport for Amazon RRS (Reduced Redundancy Storage). Storage pricing will be cheaper because less copies of the data will exist on Amazon S3.\nAdded checkbox for Upload and Sync tabs called \"RRS\". \nAdded error message when trying to connect to a server with a non-trusted SSL certificate because this program does not support it.\n\"Delete every object and version\" is now throtteled for stability.\nA message will be displayed when a sync operation is complete.\n\nVersion 3.1\n\nNew GUI layout: smaller window, more compact.\nMany of the items in the \"Bucket Properties\"  menu moved to Bucket ->  \"Bucket Properties\".\nCheckbox to disable automatically loading buckets after selecting an account.\nDefault Host URL and Port defaults to Amazon.\nS3 Bucket migration will scan destination bucket and not upload the object if it already exists.\nS3 Bucket migration has an option to abort the current migration.\nFixed bug when switching from Amazon S3 to S3 compatible accounts.\n\nFeatures:\n\n1. Tier buckets to and from Amazon Glacier.\n2. Sync files to and from S3 storage.\n3. Stream music from Amazon S3.\n4. Text editor.\n5. Modify Bucket and Object ACL's.\n6. Take screen shots and upload them to Amazon S3.\n7. Bucket versioning and lifecycles.\n8. Graphical and console based background syncing.\n9. Store multiple Amazon S3 accounts.\n10. Image viewer.\n11. Migrate data between S3 accounts.\n\nHow to migrate data between S3 accounts:\n\n1. Load the destination account and click \"Set as migration Account\" under Settings.\n2. Create the destination bucket on the destination account.\n3. Load the origin S3 account and select the bucket to transfer to the new S3 account.\n4. Under the \"Tools\" menu, select \"Migrate bucket to another S3 account\".\n5. Type in the destination bucket name and click \"Start Bucket Migration\".\n6. Wait for transfers to complete.");
+        jTextArea4.setText("Version 3.3\n\nNew Icons throughout the program.\n\nVersion 3.2\n\nNew buttons for the GUI.\nSpacing tweak on GUI for Sync and Upload tabs.\nUpload has new feature to compress a file. The zip file will be uploaded to S3.\n\"Object Name\" has been renamed to \"File Name\" in Text Editor.\nSupport for Amazon RRS (Reduced Redundancy Storage). Storage pricing will be cheaper because less copies of the data will exist on Amazon S3.\nAdded checkbox for Upload and Sync tabs called \"RRS\". \nAdded error message when trying to connect to a server with a non-trusted SSL certificate because this program does not support it.\n\"Delete every object and version\" is now throtteled for stability.\nA message will be displayed when a sync operation is complete.\n\nFeatures:\n\n1. Tier buckets to and from Amazon Glacier.\n2. Sync files to and from S3 storage.\n3. Stream music from Amazon S3.\n4. Text editor.\n5. Modify Bucket and Object ACL's.\n6. Take screen shots and upload them to Amazon S3.\n7. Bucket versioning and lifecycles.\n8. Graphical and console based background syncing.\n9. Store multiple Amazon S3 accounts.\n10. Image viewer.\n11. Migrate data between S3 accounts.\n\nHow to migrate data between S3 accounts:\n\n1. Load the destination account and click \"Set as migration Account\" under Settings.\n2. Create the destination bucket on the destination account.\n3. Load the origin S3 account and select the bucket to transfer to the new S3 account.\n4. Under the \"Tools\" menu, select \"Migrate bucket to another S3 account\".\n5. Type in the destination bucket name and click \"Start Bucket Migration\".\n6. Wait for transfers to complete.");
         jTextArea4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jTextArea4.setCaretPosition(0);
         jScrollPane6.setViewportView(jTextArea4);

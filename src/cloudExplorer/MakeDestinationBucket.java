@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import static cloudExplorer.NewJFrame.jTextArea1;
+import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 
 public class MakeDestinationBucket implements Runnable {
@@ -48,6 +49,13 @@ public class MakeDestinationBucket implements Runnable {
             close.setBackground(Color.white);
             close.setBorder(null);
             close.setForeground(Color.blue);
+
+            ImageIcon engineMigration = new ImageIcon(
+                    this.getClass().getResource("engine.png"));
+            close.setIcon(engineMigration);
+            abortMigration.setIcon(engineMigration);
+            startMigration.setIcon(engineMigration);
+
             startMigration.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
@@ -66,7 +74,7 @@ public class MakeDestinationBucket implements Runnable {
                             migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, bucketName.getText(), false);
                         }
                     }
-                     //close.doClick();
+                    //close.doClick();
                 }
             });
 
