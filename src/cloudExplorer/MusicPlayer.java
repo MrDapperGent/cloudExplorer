@@ -2,26 +2,18 @@ package cloudExplorer;
 
 import static cloudExplorer.NewJFrame.jTextArea1;
 import jaco.mp3.player.MP3Player;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.annotation.Native;
 import java.net.URL;
-import javafx.scene.media.MediaPlayer;
 import javax.media.Manager;
 import javax.media.MediaLocator;
 import javax.media.Player;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
-import uk.co.caprica.vlcj.binding.LibVlc;
-import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;
-import uk.co.caprica.vlcj.runtime.RuntimeUtil;
 
 public class MusicPlayer implements Runnable {
 
