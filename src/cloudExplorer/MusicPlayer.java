@@ -7,9 +7,6 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
-import javax.media.Manager;
-import javax.media.MediaLocator;
-import javax.media.Player;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -106,18 +103,6 @@ public class MusicPlayer implements Runnable {
                         music_url = (new URL(url));
                         mp3.addToPlayList(music_url);
                         count++;
-                    } else {
-                        mainFrame.objectacl.setACLpublic(mainFrame.object_item[h].getText(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getEndpoint(), mainFrame.cred.getBucket());
-                        String url = mainFrame.objectacl.setACLurl(mainFrame.object_item[h].getText(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getEndpoint(), mainFrame.cred.getBucket());
-                        url = url.replace("Pre-Signed URL = ", "");
-                        music_url = (new URL(url));
-                        JFrame mediaTest = new JFrame("Movie Player");
-                        MediaLocator mlr = new MediaLocator(music_url);
-                        mediaTest.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        Player mediaPlayer = Manager.createRealizedPlayer(music_url);
-                        Component video = mediaPlayer.getVisualComponent();
-                        Component controls = mediaPlayer.getControlPanelComponent();
-                        mediaPlayer.start();
                     }
                     if (count == 1) {
                         mainFrame.jPanel14.removeAll();
