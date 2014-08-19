@@ -1,8 +1,4 @@
-License: GPL v3
-
-This is a simple, free, and open-source S3 client made by me. It works on Windows, Linux, and Mac.  Cloud Explorer provides extras that are not found elsewhere in other S3 browsers like search for objects, music player, transition to Amazon Glacier, Amazon RRS, migrate buckets between S3 accounts, compress files piror to upload,take screen shots to S3, simple text editor, and image viewer. Users can easily sync folders to their S3 account and upload and download files to their computer.
-
-
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or  (at your option) any later version.This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ![Objects](https://www.linux-toys.com/object33.png)
 
