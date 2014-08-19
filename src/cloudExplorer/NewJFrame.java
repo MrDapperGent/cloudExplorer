@@ -1,3 +1,20 @@
+/**
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.package
+ * cloudExplorer
+ *
+ */
+
 package cloudExplorer;
 
 import java.awt.Color;
@@ -1085,7 +1102,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jTextArea4.setEditable(false);
         jTextArea4.setColumns(20);
         jTextArea4.setRows(5);
-        jTextArea4.setText("Version 3.2.1\n\nNew Icons throughout the program.\nCode fix for Music player.\n\nVersion 3.2\n\nNew buttons for the GUI.\nSpacing tweak on GUI for Sync and Upload tabs.\nUpload has new feature to compress a file. The zip file will be uploaded to S3.\n\"Object Name\" has been renamed to \"File Name\" in Text Editor.\nSupport for Amazon RRS (Reduced Redundancy Storage). Storage pricing will be cheaper because less copies of the data will exist on Amazon S3.\nAdded checkbox for Upload and Sync tabs called \"RRS\". \nAdded error message when trying to connect to a server with a non-trusted SSL certificate because this program does not support it.\n\"Delete every object and version\" is now throtteled for stability.\nA message will be displayed when a sync operation is complete.\n\nFeatures:\n\n1. Tier buckets to and from Amazon Glacier.\n2. Sync files to and from S3 storage.\n3. Stream music from Amazon S3.\n4. Text editor.\n5. Modify Bucket and Object ACL's.\n6. Take screen shots and upload them to Amazon S3.\n7. Bucket versioning and lifecycles.\n8. Graphical and console based background syncing.\n9. Store multiple Amazon S3 accounts.\n10. Image viewer.\n11. Migrate data between S3 accounts.\n\nHow to migrate data between S3 accounts:\n\n1. Load the destination account and click \"Set as migration Account\" under Settings.\n2. Create the destination bucket on the destination account.\n3. Load the origin S3 account and select the bucket to transfer to the new S3 account.\n4. Under the \"Tools\" menu, select \"Migrate bucket to another S3 account\".\n5. Type in the destination bucket name and click \"Start Bucket Migration\".\n6. Wait for transfers to complete.");
+        jTextArea4.setText("This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by\nthe Free Software Foundation, either version 3 of the License, or  (at your option) any later version.This program is distributed in the hope\nthat it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A \nPARTICULAR PURPOSE.  See the GNU General Public License for more details. You should have received a copy of the GNU General \nPublic License along with this program.  If not, see <http://www.gnu.org/licenses/>.\n\nVersion 3.2.1\n\nNew Icons throughout the program.\nCode fix for Music player.\n\nVersion 3.2\n\nNew buttons for the GUI.\nSpacing tweak on GUI for Sync and Upload tabs.\nUpload has new feature to compress a file. The zip file will be uploaded to S3.\n\"Object Name\" has been renamed to \"File Name\" in Text Editor.\nSupport for Amazon RRS (Reduced Redundancy Storage). Storage pricing will be cheaper because less copies of the data will exist on Amazon S3.\nAdded checkbox for Upload and Sync tabs called \"RRS\". \nAdded error message when trying to connect to a server with a non-trusted SSL certificate because this program does not support it.\n\"Delete every object and version\" is now throtteled for stability.\nA message will be displayed when a sync operation is complete.\n\nFeatures:\n\n1. Tier buckets to and from Amazon Glacier.\n2. Sync files to and from S3 storage.\n3. Stream music from Amazon S3.\n4. Text editor.\n5. Modify Bucket and Object ACL's.\n6. Take screen shots and upload them to Amazon S3.\n7. Bucket versioning and lifecycles.\n8. Graphical and console based background syncing.\n9. Store multiple Amazon S3 accounts.\n10. Image viewer.\n11. Migrate data between S3 accounts.\n\nHow to migrate data between S3 accounts:\n\n1. Load the destination account and click \"Set as migration Account\" under Settings.\n2. Create the destination bucket on the destination account.\n3. Load the origin S3 account and select the bucket to transfer to the new S3 account.\n4. Under the \"Tools\" menu, select \"Migrate bucket to another S3 account\".\n5. Type in the destination bucket name and click \"Start Bucket Migration\".\n6. Wait for transfers to complete.");
         jTextArea4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jTextArea4.setCaretPosition(0);
         jScrollPane6.setViewportView(jTextArea4);
