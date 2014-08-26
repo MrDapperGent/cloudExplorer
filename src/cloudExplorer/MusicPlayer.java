@@ -14,7 +14,6 @@
  * cloudExplorer
  *
  */
-
 package cloudExplorer;
 
 import static cloudExplorer.NewJFrame.jTextArea1;
@@ -114,7 +113,6 @@ public class MusicPlayer implements Runnable {
             for (int h = 1; h != mainFrame.previous_objectarray_length; h++) {
                 if (mainFrame.object_item[h].isSelected()) {
                     if (mainFrame.object_item[h].getText().contains(".mp3")) {
-                        mainFrame.objectacl.setACLpublic(mainFrame.object_item[h].getText(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getEndpoint(), mainFrame.cred.getBucket());
                         String url = mainFrame.objectacl.setACLurl(mainFrame.object_item[h].getText(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getEndpoint(), mainFrame.cred.getBucket());
                         url = url.replace("Pre-Signed URL = ", "");
                         music_url = (new URL(url));
