@@ -14,7 +14,6 @@
  * cloudExplorer
  *
  */
-
 package cloudExplorer;
 
 import com.amazonaws.auth.AWSCredentials;
@@ -53,29 +52,28 @@ public class Versioning {
 
             List<S3VersionSummary> summary;
 
-            if (Versioning.delete) {
-                do {
-                    summary = vListing.getVersionSummaries();
-                    for (S3VersionSummary object : summary) {
-                        del = new Delete(object.getKey(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), object.getVersionId());
-                        del.startc(object.getKey(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), object.getVersionId());
-                        System.gc();
-                        long t1 = System.currentTimeMillis();
-                        long diff = 0;
-                        while (diff < 500) {
-                            long t2 = System.currentTimeMillis();
-                            diff = t2 - t1;
-                        }
-                    }
-                } while (vListing.isTruncated());
-            } else {
-
-                summary = vListing.getVersionSummaries();
-                for (S3VersionSummary object : summary) {
+            summary = vListing.getVersionSummaries();
+            for (S3VersionSummary object : summary) {
+                if (!Versioning.delete) {
                     mainFrame.versioning_date.add(object.getLastModified().toString());
-                    mainFrame.versioning_id.add(object.getVersionId());
-                    mainFrame.versioning_name.add(object.getKey());
-                    System.gc();
+                }
+                mainFrame.versioning_id.add(object.getVersionId());
+                mainFrame.versioning_name.add(object.getKey());
+                System.gc();
+            }
+
+            if (Versioning.delete) {
+                int i = 0;
+                for (String delVer : mainFrame.versioning_name) {
+                    del = new Delete(delVer, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.versioning_id.get(i));
+                    del.startc(delVer, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.versioning_id.get(i));
+                    long t1 = System.currentTimeMillis();
+                    long diff = 0;
+                    while (diff < 100) {
+                        long t2 = System.currentTimeMillis();
+                        diff = t2 - t1;
+                    }
+                    i++;
                 }
 
             }
