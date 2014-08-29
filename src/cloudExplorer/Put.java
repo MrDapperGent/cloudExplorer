@@ -14,7 +14,6 @@
  * cloudExplorer
  *
  */
-
 package cloudExplorer;
 
 import com.amazonaws.auth.AWSCredentials;
@@ -43,6 +42,7 @@ public class Put implements Runnable {
     String secret_key = null;
     Boolean rrs = false;
     Thread put;
+    Boolean encrypt = false;
     public static Boolean running = true;
 
     public void calibrate() {
@@ -52,7 +52,7 @@ public class Put implements Runnable {
         }
     }
 
-    Put(String Awhat, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String AObjectKey, Boolean Arrs) {
+    Put(String Awhat, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String AObjectKey, Boolean Arrs, Boolean Aencrypt) {
         what = Awhat;
         access_key = Aaccess_key;
         secret_key = Asecret_key;
@@ -60,6 +60,7 @@ public class Put implements Runnable {
         endpoint = Aendpoint;
         ObjectKey = AObjectKey;
         rrs = Arrs;
+        encrypt = Aencrypt;
     }
 
     public void run() {
@@ -79,7 +80,9 @@ public class Put implements Runnable {
             String mimeType = mimeTypesMap.getContentType(file);
             mimeType = mimeTypesMap.getContentType(file);
             ObjectMetadata objectMetadata = new ObjectMetadata();
-
+            if (encrypt) {
+                objectMetadata.setSSEAlgorithm(ObjectMetadata.AES_256_SERVER_SIDE_ENCRYPTION);
+            }
             if ((ObjectKey.contains(".html")) || ObjectKey.contains(".txt")) {
                 objectMetadata.setContentType("text/html");
             } else {
@@ -99,9 +102,9 @@ public class Put implements Runnable {
         calibrate();
     }
 
-    void startc(String Awhat, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String AObjectKey, Boolean Arrs) {
+    void startc(String Awhat, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String AObjectKey, Boolean Arrs, Boolean Aencrypt) {
 
-        put = new Thread(new Put(Awhat, Aaccess_key, Asecret_key, Abucket, Aendpoint, AObjectKey, Arrs));
+        put = new Thread(new Put(Awhat, Aaccess_key, Asecret_key, Abucket, Aendpoint, AObjectKey, Arrs, Aencrypt));
         put.start();
     }
 

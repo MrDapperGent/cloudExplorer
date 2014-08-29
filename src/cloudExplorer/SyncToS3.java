@@ -14,7 +14,6 @@
  * cloudExplorer
  *
  */
-
 package cloudExplorer;
 
 import java.io.File;
@@ -79,10 +78,10 @@ public class SyncToS3 implements Runnable {
                 String object = makeDirectory(file_found.getAbsolutePath().toString());
                 if (SyncToS3.running) {
                     if (rrs) {
-                        put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object, true);
+                        put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object, true, false);
                         put.run();
                     } else {
-                        put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object, false);
+                        put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object, false, false);
                         put.run();
                     }
 

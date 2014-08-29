@@ -14,7 +14,6 @@
  * cloudExplorer
  *
  */
-
 package cloudExplorer;
 
 import java.io.BufferedReader;
@@ -220,7 +219,7 @@ public class Daemon {
 
             if (found == 0) {
                 String object = makeDirectory(file_found.getAbsolutePath().toString());
-                put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object, false);
+                put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object, false, false);
                 put.run();
                 found = 0;
             }

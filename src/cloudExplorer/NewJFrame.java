@@ -270,6 +270,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jLabel11 = new javax.swing.JLabel();
         jCheckBox2 = new javax.swing.JCheckBox();
         jCheckBox4 = new javax.swing.JCheckBox();
+        jCheckBox5 = new javax.swing.JCheckBox();
         jPanel4 = new javax.swing.JPanel();
         jFileChooser2 = new javax.swing.JFileChooser();
         jToggleButton3 = new javax.swing.JToggleButton();
@@ -907,6 +908,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jCheckBox4.setBackground(java.awt.SystemColor.text);
         jCheckBox4.setText("Compress");
+        jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox4ActionPerformed(evt);
+            }
+        });
+
+        jCheckBox5.setBackground(java.awt.SystemColor.text);
+        jCheckBox5.setText("Encrypt\n");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -918,8 +927,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addGap(29, 29, 29)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton15)
@@ -927,12 +936,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCheckBox4)
-                .addGap(0, 113, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox5)
+                .addGap(0, 126, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jFileChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
+                .addComponent(jFileChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -948,7 +959,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jCheckBox2)
-                                        .addComponent(jCheckBox4))
+                                        .addComponent(jCheckBox4)
+                                        .addComponent(jCheckBox5))
                                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
@@ -1102,7 +1114,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jTextArea4.setEditable(false);
         jTextArea4.setColumns(20);
         jTextArea4.setRows(5);
-        jTextArea4.setText("This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by\nthe Free Software Foundation, either version 3 of the License, or  (at your option) any later version.This program is distributed in the hope\nthat it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  \nSee the GNU General Public License for more details. You should have received a copy of the GNU General  Public License along with this program. \nIf not, see <http://www.gnu.org/licenses/>.\n\nVersion 3.2.2\n\nFixed horizontal scrollbar distoring the GUI.\nAdded GPL v3 license.\nMusic player does not set the mp3 as public anymore.\nFixed a bug with versioning to support downloading multiple versions of files.\nBug fix for \"Delete every object and version\". Faster and more stable.\n\nVersion 3.2.1\n\nNew Icons throughout the program.\nCode fix for Music player.\n\nVersion 3.2\n\nNew buttons for the GUI.\nSpacing tweak on GUI for Sync and Upload tabs.\nUpload has new feature to compress a file. The zip file will be uploaded to S3.\n\"Object Name\" has been renamed to \"File Name\" in Text Editor.\nSupport for Amazon RRS (Reduced Redundancy Storage). Storage pricing will be cheaper because less copies of the data will exist on Amazon S3.\nAdded checkbox for Upload and Sync tabs called \"RRS\". \nAdded error message when trying to connect to a server with a non-trusted SSL certificate because this program does not support it.\n\"Delete every object and version\" is now throtteled for stability.\nA message will be displayed when a sync operation is complete.\n\nFeatures:\n\n1. Tier buckets to and from Amazon Glacier.\n2. Sync files to and from S3 storage.\n3. Stream music from Amazon S3.\n4. Text editor.\n5. Modify Bucket and Object ACL's.\n6. Take screen shots and upload them to Amazon S3.\n7. Bucket versioning and lifecycles.\n8. Graphical and console based background syncing.\n9. Store multiple Amazon S3 accounts.\n10. Image viewer.\n11. Migrate data between S3 accounts.\n\nHow to migrate data between S3 accounts:\n\n1. Load the destination account and click \"Set as migration Account\" under Settings.\n2. Create the destination bucket on the destination account.\n3. Load the origin S3 account and select the bucket to transfer to the new S3 account.\n4. Under the \"Tools\" menu, select \"Migrate bucket to another S3 account\".\n5. Type in the destination bucket name and click \"Start Bucket Migration\".\n6. Wait for transfers to complete.");
+        jTextArea4.setText("This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by\nthe Free Software Foundation, either version 3 of the License, or  (at your option) any later version.This program is distributed in the hope\nthat it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  \nSee the GNU General Public License for more details. You should have received a copy of the GNU General  Public License along with this program. \nIf not, see <http://www.gnu.org/licenses/>.\n\nVersion 3.3\n\nFixed horizontal scrollbar distoring the GUI.\nAdded GPL v3 license.\nMusic player does not set the mp3 as public anymore.\nFixed a bug with versioning to support downloading multiple versions of files.\nBug fix for \"Delete every object and version\". Faster and more stable.\nEncryption for Uploads.\nSupport for Folders and files with the name \"null\".\n\nVersion 3.2.1\n\nNew Icons throughout the program.\nCode fix for Music player.\n\nVersion 3.2\n\nNew buttons for the GUI.\nSpacing tweak on GUI for Sync and Upload tabs.\nUpload has new feature to compress a file. The zip file will be uploaded to S3.\n\"Object Name\" has been renamed to \"File Name\" in Text Editor.\nSupport for Amazon RRS (Reduced Redundancy Storage). Storage pricing will be cheaper because less copies of the data will exist on Amazon S3.\nAdded checkbox for Upload and Sync tabs called \"RRS\". \nAdded error message when trying to connect to a server with a non-trusted SSL certificate because this program does not support it.\n\"Delete every object and version\" is now throtteled for stability.\nA message will be displayed when a sync operation is complete.\n\nFeatures:\n\n1. Tier buckets to and from Amazon Glacier.\n2. Sync files to and from S3 storage.\n3. Stream music from Amazon S3.\n4. Text editor.\n5. Modify Bucket and Object ACL's.\n6. Take screen shots and upload them to Amazon S3.\n7. Bucket versioning and lifecycles.\n8. Graphical and console based background syncing.\n9. Store multiple Amazon S3 accounts.\n10. Image viewer.\n11. Migrate data between S3 accounts.\n\nHow to migrate data between S3 accounts:\n\n1. Load the destination account and click \"Set as migration Account\" under Settings.\n2. Create the destination bucket on the destination account.\n3. Load the origin S3 account and select the bucket to transfer to the new S3 account.\n4. Under the \"Tools\" menu, select \"Migrate bucket to another S3 account\".\n5. Type in the destination bucket name and click \"Start Bucket Migration\".\n6. Wait for transfers to complete.");
         jTextArea4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jTextArea4.setCaretPosition(0);
         jScrollPane6.setViewportView(jTextArea4);
@@ -1677,8 +1689,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
             temp_file = (Home + File.separator + "object.tmp");
             editorSync(jTextField6.getText());
-            put = new Put(temp_file, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), jTextField6.getText(), false);
-            put.startc(temp_file, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), jTextField6.getText(), false);
+            put = new Put(temp_file, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), jTextField6.getText(), false, false);
+            put.startc(temp_file, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), jTextField6.getText(), false, false);
             jTextArea1.append("\nSaved Object\n");
             objectarray = null;
             bucket_item[active_bucket].setSelected(true);
@@ -1847,14 +1859,19 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     calibrateTextArea();
                 }
             }
+            Boolean rrs = false;
+            Boolean encrypt = false;
 
             if (jCheckBox2.isSelected()) {
-                put = new Put(upload, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), jTextField7.getText() + new_object_name, true);
-                put.startc(upload, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), jTextField7.getText() + new_object_name, true);
-            } else {
-                put = new Put(upload, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), jTextField7.getText() + new_object_name, false);
-                put.startc(upload, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), jTextField7.getText() + new_object_name, false);
+                rrs = true;
             }
+            if (jCheckBox5.isSelected()) {
+                encrypt = true;
+            }
+
+            put = new Put(upload, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), jTextField7.getText() + new_object_name, rrs, encrypt);
+            put.startc(upload, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), jTextField7.getText() + new_object_name, rrs, encrypt);
+
         } else {
             jTextArea1.append("\nError: No bucket selected.");
         }
@@ -2373,6 +2390,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox4ActionPerformed
+
     void var() {
         try {
             cred.setAccess_key(jTextField1.getText());
@@ -2418,6 +2439,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox jCheckBox4;
+    private javax.swing.JCheckBox jCheckBox5;
     public javax.swing.JFileChooser jFileChooser1;
     public static javax.swing.JFileChooser jFileChooser2;
     private javax.swing.JLabel jLabel1;

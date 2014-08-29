@@ -14,7 +14,6 @@
  * cloudExplorer
  *
  */
-
 package cloudExplorer;
 
 import static cloudExplorer.NewJFrame.jTextArea1;
@@ -77,8 +76,8 @@ public class ScreenShot implements Runnable {
             BufferedImage image = robot.createScreenCapture(screenRectangle);
             ImageIO.write(image, "png", new File(screenshot_file.getAbsolutePath()));
             mainFrame.jTextArea1.append("\nCreated Screen Shot.");
-            put = new Put(screenshot_file.getAbsolutePath(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), random_name, false);
-            put.startc(screenshot_file.getAbsolutePath(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), random_name, false);
+            put = new Put(screenshot_file.getAbsolutePath(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), random_name, false, false);
+            put.startc(screenshot_file.getAbsolutePath(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), random_name, false, false);
         } catch (Exception screenShot) {
 
         }

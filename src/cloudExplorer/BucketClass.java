@@ -149,9 +149,12 @@ public class BucketClass {
         String parse = null;
 
         if (objectlist != null) {
-            parse = objectlist.replace("null", "");
+            if (objectlist.substring(0, 5).contains("null@")) {
+                objectlist.substring(0, 4).replace("null@", "");
+                parse = objectlist;
+            }
         } else {
-            parse = "no_objects_found";
+            parse = "No objects_found.";
         }
 
         return parse;
