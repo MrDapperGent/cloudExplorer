@@ -113,7 +113,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             if (i == 3) {
                 ImageIcon tabDownload = new ImageIcon(
                         this.getClass().getResource("tab-download.png"));
-                this.jTabbedPane1.setIconAt(3, tabDownload);
+                ImageIcon tabSync2 = new ImageIcon(
+                        this.getClass().getResource("tab-sync2.png"));
+                this.jTabbedPane1.setIconAt(3, tabSync2);
                 this.jToggleButton4.setIcon(tabDownload);
                 this.jToggleButton4.setText("From S3");
                 this.jToggleButton3.setIcon(tabDownload);
@@ -178,7 +180,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 this.getClass().getResource("abort-sync.png"));
         this.jButton1.setIcon(abortButton);
         this.jButton15.setIcon(abortButton);
-        this.jButton16.setIcon(abortSyncButton);
+        this.jButton16.setIcon(abortButton);
         this.jButton1.setText("Stop");
 
         ImageIcon saveEditButton = new ImageIcon(
