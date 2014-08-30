@@ -1401,6 +1401,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     if (account_item[h].isSelected()) {
                         if (h != active_account) {
                             active_account = h;
+                            jLabel9.setText("None");
                             changeAccountRadioButtons();
                             h = account_array.length;
                             objectarray = null;
