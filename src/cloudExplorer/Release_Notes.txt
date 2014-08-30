@@ -15,6 +15,7 @@ Fixed a bug with versioning to support downloading multiple versions of files.
 Bug fix for "Delete every object and version". Faster and more stable.
 Encryption for Uploads.
 Support for Folders and files with the name "null".
+Removed "Selected Bucket" from Sync and Upload tabs.
 
 Version 3.2.1
 
