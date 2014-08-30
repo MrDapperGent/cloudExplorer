@@ -363,8 +363,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
 
+        jLabel2.setForeground(java.awt.Color.blue);
         jLabel2.setText("Current Bucket:");
 
+        jLabel9.setForeground(java.awt.Color.blue);
         jLabel9.setText("None");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
