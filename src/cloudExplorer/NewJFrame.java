@@ -1071,9 +1071,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addComponent(jLabel8)
                 .addGap(1, 1, 1)
                 .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 852, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton11)
-                .addGap(14, 14, 14))
+                .addGap(8, 8, 8))
             .addComponent(jScrollPane4)
         );
         jPanel6Layout.setVerticalGroup(
