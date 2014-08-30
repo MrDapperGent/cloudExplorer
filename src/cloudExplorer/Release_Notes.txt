@@ -6,9 +6,9 @@ If not, see <http://www.gnu.org/licenses/>.
 
 Version 3.3
 
-Fixed horizontal scrollbar distoring the GUI.
+Fixed horizontal scrollbar distorting the GUI.
 Icon alignment under the Sync tab. 
-Resized searchbar icon.
+Resized search bar icon.
 Added GPL v3 license.
 Music player does not set the mp3 as public anymore.
 Fixed a bug with versioning to support downloading multiple versions of files.
@@ -28,9 +28,9 @@ Spacing tweak on GUI for Sync and Upload tabs.
 Upload has new feature to compress a file. The zip file will be uploaded to S3.
 "Object Name" has been renamed to "File Name" in Text Editor.
 Support for Amazon RRS (Reduced Redundancy Storage). Storage pricing will be cheaper because less copies of the data will exist on Amazon S3.
-Added checkbox for Upload and Sync tabs called "RRS". 
+Added check box for Upload and Sync tabs called "RRS". 
 Added error message when trying to connect to a server with a non-trusted SSL certificate because this program does not support it.
-"Delete every object and version" is now throtteled for stability.
+"Delete every object and version" is now throttled for stability.
 A message will be displayed when a sync operation is complete.
 
 Features:
