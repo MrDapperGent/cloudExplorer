@@ -176,8 +176,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         ImageIcon abortButton = new ImageIcon(
                 this.getClass().getResource("abort.png"));
-        ImageIcon abortSyncButton = new ImageIcon(
-                this.getClass().getResource("abort-sync.png"));
         this.jButton1.setIcon(abortButton);
         this.jButton15.setIcon(abortButton);
         this.jButton16.setIcon(abortButton);
