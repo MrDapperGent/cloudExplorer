@@ -363,7 +363,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
 
-        jLabel2.setText("Active Bucket:");
+        jLabel2.setText("Current Bucket:");
 
         jLabel9.setText("None");
 
