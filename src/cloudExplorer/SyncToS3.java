@@ -38,8 +38,9 @@ public class SyncToS3 implements Runnable {
     Thread syncToS3;
     Put put;
     Boolean rrs = false;
+    Boolean encrypt = false;
 
-    SyncToS3(File Alocation, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobjectarray, Boolean Arrs) {
+    SyncToS3(File Alocation, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobjectarray, Boolean Arrs, Boolean Aencrypt) {
         objectarray = Aobjectarray;
         location = Alocation;
         access_key = Aaccess_key;
@@ -47,6 +48,7 @@ public class SyncToS3 implements Runnable {
         bucket = Abucket;
         endpoint = Aendpoint;
         rrs = Arrs;
+        encrypt = Aencrypt;
     }
 
     public void calibrate() {
@@ -65,6 +67,7 @@ public class SyncToS3 implements Runnable {
             if (mainFrame.jRadioButton1.isSelected()) {
 
             } else {
+
                 for (int y = 1; y != objectarray.length; y++) {
                     if (objectarray[y].contains(makeDirectory(file_found.getAbsolutePath().toString()))) {
                         //mainFrame.jTextArea1.append("\nObject already exists on S3: " + file_found);
@@ -77,14 +80,8 @@ public class SyncToS3 implements Runnable {
             if (found == 0) {
                 String object = makeDirectory(file_found.getAbsolutePath().toString());
                 if (SyncToS3.running) {
-                    if (rrs) {
-                        put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object, true, false);
-                        put.run();
-                    } else {
-                        put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object, false, false);
-                        put.run();
-                    }
-
+                    put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object, rrs, encrypt);
+                    put.run();
                 }
                 found = 0;
             }
@@ -126,10 +123,10 @@ public class SyncToS3 implements Runnable {
         return what;
     }
 
-    void startc(File location, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobjectarray, Boolean Arrs
+    void startc(File location, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobjectarray, Boolean Arrs, Boolean Aencrypt
     ) {
         if (SyncToS3.running) {
-            syncToS3 = new Thread(new SyncToS3(location, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aobjectarray, Arrs));
+            syncToS3 = new Thread(new SyncToS3(location, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aobjectarray, Arrs, Aencrypt));
             syncToS3.start();
 
         }
