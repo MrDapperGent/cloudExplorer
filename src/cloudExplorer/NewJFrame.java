@@ -126,11 +126,13 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         this.getClass().getResource("tab-editor.png"));
                 this.jTabbedPane1.setIconAt(4, tabEditor);
             }
+           /**
             if (i == 5) {
                 ImageIcon tabAbout = new ImageIcon(
                         this.getClass().getResource("tab-about.png"));
                 this.jTabbedPane1.setIconAt(5, tabAbout);
             }
+            * **/
 
         }
 
@@ -286,9 +288,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jButton11 = new javax.swing.JButton();
         jTextField6 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTextArea4 = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -1090,31 +1089,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         );
 
         jTabbedPane1.addTab("Text Editor", jPanel6);
-
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-
-        jTextArea4.setEditable(false);
-        jTextArea4.setColumns(20);
-        jTextArea4.setRows(5);
-        jTextArea4.setText("This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by\nthe Free Software Foundation, either version 3 of the License, or  (at your option) any later version.This program is distributed in the hope\nthat it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  \nSee the GNU General Public License for more details. You should have received a copy of the GNU General  Public License along with this program. \nIf not, see <http://www.gnu.org/licenses/>.\n\nVersion 3.3\n\nFixed horizontal scrollbar distoring the GUI.\nIcon alignment under the Sync tab. Rescaled some of the icons.\nAdded GPL v3 license.\nMusic player does not set the mp3 as public anymore.\nFixed a bug with versioning to support downloading multiple versions of files.\nBug fix for \"Delete every object and version\". Faster and more stable.\nEncryption for Uploads.\nSupport for Folders and files with the name \"null\".\n\nVersion 3.2.1\n\nNew Icons throughout the program.\nCode fix for Music player.\n\nVersion 3.2\n\nNew buttons for the GUI.\nSpacing tweak on GUI for Sync and Upload tabs.\nUpload has new feature to compress a file. The zip file will be uploaded to S3.\n\"Object Name\" has been renamed to \"File Name\" in Text Editor.\nSupport for Amazon RRS (Reduced Redundancy Storage). Storage pricing will be cheaper because less copies of the data will exist on Amazon S3.\nAdded checkbox for Upload and Sync tabs called \"RRS\". \nAdded error message when trying to connect to a server with a non-trusted SSL certificate because this program does not support it.\n\"Delete every object and version\" is now throtteled for stability.\nA message will be displayed when a sync operation is complete.\n\nFeatures:\n\n1. Tier buckets to and from Amazon Glacier.\n2. Sync files to and from S3 storage.\n3. Stream music from Amazon S3.\n4. Text editor.\n5. Modify Bucket and Object ACL's.\n6. Take screen shots and upload them to Amazon S3.\n7. Bucket versioning and lifecycles.\n8. Graphical and console based background syncing.\n9. Store multiple Amazon S3 accounts.\n10. Image viewer.\n11. Migrate data between S3 accounts.\n\nHow to migrate data between S3 accounts:\n\n1. Load the destination account and click \"Set as migration Account\" under Settings.\n2. Create the destination bucket on the destination account.\n3. Load the origin S3 account and select the bucket to transfer to the new S3 account.\n4. Under the \"Tools\" menu, select \"Migrate bucket to another S3 account\".\n5. Type in the destination bucket name and click \"Start Bucket Migration\".\n6. Wait for transfers to complete.");
-        jTextArea4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jTextArea4.setCaretPosition(0);
-        jScrollPane6.setViewportView(jTextArea4);
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jTabbedPane1.addTab("About", jPanel7);
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -2469,7 +2443,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JPanel jPanel4;
     public static javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     public static javax.swing.JRadioButton jRadioButton1;
@@ -2480,12 +2453,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     public static javax.swing.JTabbedPane jTabbedPane1;
     public static javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;

@@ -1,0 +1,57 @@
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or  (at your option) any later version.This program is distributed in the hope
+that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details. You should have received a copy of the GNU General  Public License along with this program. 
+If not, see <http://www.gnu.org/licenses/>.
+
+Version 3.3
+
+Fixed horizontal scrollbar distoring the GUI.
+Icon alignment under the Sync tab. 
+Resized searchbar icon.
+Added GPL v3 license.
+Music player does not set the mp3 as public anymore.
+Fixed a bug with versioning to support downloading multiple versions of files.
+Bug fix for "Delete every object and version". Faster and more stable.
+Encryption for Uploads.
+Support for Folders and files with the name "null".
+
+Version 3.2.1
+
+New Icons throughout the program.
+Code fix for Music player.
+
+Version 3.2
+
+New buttons for the GUI.
+Spacing tweak on GUI for Sync and Upload tabs.
+Upload has new feature to compress a file. The zip file will be uploaded to S3.
+"Object Name" has been renamed to "File Name" in Text Editor.
+Support for Amazon RRS (Reduced Redundancy Storage). Storage pricing will be cheaper because less copies of the data will exist on Amazon S3.
+Added checkbox for Upload and Sync tabs called "RRS". 
+Added error message when trying to connect to a server with a non-trusted SSL certificate because this program does not support it.
+"Delete every object and version" is now throtteled for stability.
+A message will be displayed when a sync operation is complete.
+
+Features:
+
+1. Tier buckets to and from Amazon Glacier.
+2. Sync files to and from S3 storage.
+3. Stream music from Amazon S3.
+4. Text editor.
+5. Modify Bucket and Object ACL's.
+6. Take screen shots and upload them to Amazon S3.
+7. Bucket versioning and lifecycles.
+8. Graphical and console based background syncing.
+9. Store multiple Amazon S3 accounts.
+10. Image viewer.
+11. Migrate data between S3 accounts.
+
+How to migrate data between S3 accounts:
+
+1. Load the destination account and click "Set as migration Account" under Settings.
+2. Create the destination bucket on the destination account.
+3. Load the origin S3 account and select the bucket to transfer to the new S3 account.
+4. Under the "Tools" menu, select "Migrate bucket to another S3 account".
+5. Type in the destination bucket name and click "Start Bucket Migration".
+6. Wait for transfers to complete.
