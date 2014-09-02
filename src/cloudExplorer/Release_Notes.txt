@@ -17,6 +17,7 @@ Encryption for Uploads.
 Support for Folders and files with the name "null".
 Removed "Selected Bucket" from Sync and Upload tabs.
 Added "Current Bucket" above search bar.
+GUI resized to fit on smaller screen.
 
 Version 3.2.1
 
