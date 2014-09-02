@@ -579,11 +579,11 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addComponent(jButton9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jCheckBox1)
-                .addGap(97, 97, 97))
+                .addGap(111, 111, 111))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -622,7 +622,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     .addComponent(jButton2))
                 .addGap(18, 18, 18)
                 .addComponent(jCheckBox1)
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addGap(98, 98, 98))
         );
 
         jTabbedPane1.addTab("Settings", jPanel3);
