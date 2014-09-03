@@ -1020,7 +1020,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(0, 0, 0)
                         .addComponent(jToggleButton4)
                         .addGap(15, 15, 15)
                         .addComponent(jToggleButton3)
@@ -2087,7 +2087,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         try {
 
             if (active_bucket > 0) {
-                //reloadObjects();
                 calibrateTextArea();
                 jTextArea1.append("\nPlease wait, deleting selected file(s)");
                 calibrateTextArea();
@@ -2101,13 +2100,15 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 } else {
                     for (int i = 1; i != previous_objectarray_length; i++) {
                         if (object_item[i].isSelected()) {
-                            if (delcounter < 500) {
+                            if (delcounter < 3000) {
                                 del = new Delete(object_item[i].getText(), cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), null);
                                 del.startc(object_item[i].getText(), cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), null);
+                            } else {
+                                break;
                             }
                         }
+                        delcounter++;
                     }
-                    delcounter++;
                 }
             } else {
                 jTextArea1.append("\nError: No bucked selected.");

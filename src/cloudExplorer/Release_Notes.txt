@@ -4,6 +4,11 @@ that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warra
 See the GNU General Public License for more details. You should have received a copy of the GNU General  Public License along with this program. 
 If not, see <http://www.gnu.org/licenses/>.
 
+Version 3.4
+
+Improvement for delete: Support for deleting 3000 objects at a time. The old value was 500.
+GUI icon alignment.
+
 Version 3.3
 
 Fixed horizontal scrollbar distorting the GUI.
@@ -20,36 +25,20 @@ Added "Current Bucket" above search bar.
 GUI resized to fit on smaller screen.
 GUI no longer moves to the top left of the screen after selecting an account.
 
-Version 3.2.1
-
-New Icons throughout the program.
-Code fix for Music player.
-
-Version 3.2
-
-New buttons for the GUI.
-Spacing tweak on GUI for Sync and Upload tabs.
-Upload has new feature to compress a file. The zip file will be uploaded to S3.
-"Object Name" has been renamed to "File Name" in Text Editor.
-Support for Amazon RRS (Reduced Redundancy Storage). Storage pricing will be cheaper because less copies of the data will exist on Amazon S3.
-Added check box for Upload and Sync tabs called "RRS". 
-Added error message when trying to connect to a server with a non-trusted SSL certificate because this program does not support it.
-"Delete every object and version" is now throttled for stability.
-A message will be displayed when a sync operation is complete.
-
 Features:
 
 1. Tier buckets to and from Amazon Glacier.
 2. Sync files to and from S3 storage.
-3. Stream music from Amazon S3.
+3. Stream music.
 4. Text editor.
 5. Modify Bucket and Object ACL's.
-6. Take screen shots and upload them to Amazon S3.
+6. Take screen shots and upload them to your bucket.
 7. Bucket versioning and lifecycles.
 8. Graphical and console based background syncing.
 9. Store multiple Amazon S3 accounts.
 10. Image viewer.
-11. Migrate data between S3 accounts.
+11. Migrate buckets between S3 accounts.
+12. Bucket search.
 
 How to migrate data between S3 accounts:
 
