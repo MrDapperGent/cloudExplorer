@@ -17,6 +17,7 @@
 package cloudExplorer;
 
 import java.awt.Color;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -87,6 +88,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     public NewJFrame() {
         initComponents();
+        setLocationRelativeTo(null);
         this.setIconImage(new ImageIcon(getClass()
                 .getResource("cloud.jpg")).getImage());
         this.jTextField3.setText("https://s3.amazonaws.com");
@@ -1504,7 +1506,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 bucket_item[h].setBackground(Color.white);
                 bucket_item[h].setForeground(Color.blue);
                 jPanel5.add(bucket_item[h]);
-                setLocation(h, 5);
                 jPanel5.revalidate();
                 validate();
             }
