@@ -42,10 +42,11 @@ public class Versioning {
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
             AmazonS3 s3Client = new AmazonS3Client(credentials);
             s3Client.setEndpoint(endpoint);
+            final int nDEFAULTSIZE = 20000;
 
             VersionListing vListing;
             if (key == null) {
-                vListing = s3Client.listVersions(bucket, null);
+                vListing = s3Client.listVersions(bucket, null, null, null, null, nDEFAULTSIZE);
             } else {
                 vListing = s3Client.listVersions(bucket, key);
             }
