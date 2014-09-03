@@ -42,18 +42,16 @@ public class Versioning {
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
             AmazonS3 s3Client = new AmazonS3Client(credentials);
             s3Client.setEndpoint(endpoint);
-            final int nDEFAULTSIZE = 20000;
 
             VersionListing vListing;
             if (key == null) {
-                vListing = s3Client.listVersions(bucket, null, null, null, null, nDEFAULTSIZE);
+                vListing = s3Client.listVersions(bucket, null);
             } else {
                 vListing = s3Client.listVersions(bucket, key);
             }
 
-            List<S3VersionSummary> summary;
+            List<S3VersionSummary> summary = vListing.getVersionSummaries();
 
-            summary = vListing.getVersionSummaries();
             for (S3VersionSummary object : summary) {
                 if (!Versioning.delete) {
                     mainFrame.versioning_date.add(object.getLastModified().toString());
