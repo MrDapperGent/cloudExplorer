@@ -18,7 +18,7 @@ Support for Folders and files with the name "null".
 Removed "Selected Bucket" from Sync and Upload tabs.
 Added "Current Bucket" above search bar.
 GUI resized to fit on smaller screen.
-GUI no longer moves to thr top left of screen after selecting an account.
+GUI no longer moves to the top left of the screen after selecting an account.
 
 Version 3.2.1
 
