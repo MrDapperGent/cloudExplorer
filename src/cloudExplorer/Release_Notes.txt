@@ -8,6 +8,9 @@ Version 3.4
 
 Improvement for delete: Support for deleting 3000 objects at a time. The old value was 500.
 GUI icon alignment.
+Fixed bug when displaying more than 100 objects in the object explorer.
+Reduced memory footprint on startup.
+
 
 Version 3.3
 
