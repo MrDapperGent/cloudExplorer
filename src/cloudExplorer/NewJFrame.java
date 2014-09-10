@@ -17,6 +17,7 @@
 package cloudExplorer;
 
 import java.awt.Color;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -48,12 +49,11 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     String OS = System.getProperty("os.name");
     String[] bucketarray = null;
     public String[] objectarray = null;
-     //public ArrayList<String> objectarray = new ArrayList()
     String[] syncarray = null;
     String[] account_array = new String[20];
     String[] simple_account_array = new String[account_array.length];
     int active_account = 0;
-    int object_size = 100000;
+    int object_size = 500000;
     int total_accounts = 0;
     JRadioButton bucket_item[] = new JRadioButton[object_size];
     public JRadioButton object_item[] = new JRadioButton[object_size];
@@ -66,6 +66,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     JFrame dialog = new JFrame();
     JLabel dialog_label = new JLabel("Please wait for operation to complete. This will close upon completion.");
     JPanel dialog_panel = new JPanel();
+    int initial_display = 1000;
     int account_counter = 0;
     int content_counter = 0;
     int previous_objectarray_length = 0;
@@ -1320,10 +1321,13 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
             try {
                 int found = 0;
+                int display_counter = initial_display;
 
                 jTabbedPane1.setSelectedIndex(1);
-                int len = objectarray.length;
-                for (int i = 1; i != len; i++) {
+
+                display_counter = objectarray.length;
+
+                for (int i = 1; i != display_counter; i++) {
                     if (object_item[i] != null) {
                         if (object_item[i].getText().toLowerCase().contains(jTextField10.getText().toLowerCase())) {
                             jPanel11.add(object_item[i]);

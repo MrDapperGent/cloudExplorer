@@ -14,6 +14,7 @@
  * cloudExplorer
  *
  */
+
 package cloudExplorer;
 
 public class ReloadObjects implements Runnable {
@@ -25,6 +26,7 @@ public class ReloadObjects implements Runnable {
     String access_key = null;
     String bucket = null;
     String endpoint = null;
+    String ObjectKey = null;
     String secret_key = null;
     String objectlist = null;
 
