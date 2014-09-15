@@ -87,6 +87,7 @@ public class Versioning {
         }
         if (Versioning.delete) {
             Versioning.delete = false;
+            mainFrame.reloadObjects();
         }
 
     }

@@ -14,7 +14,6 @@
  * cloudExplorer
  *
  */
-
 package cloudExplorer;
 
 import java.awt.Color;
@@ -34,6 +33,7 @@ public class ShowVersions implements Runnable {
     String destination = null;
     String version = null;
     Thread showVersions;
+    Boolean Delete = false;
 
     ShowVersions(String Awhat, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, NewJFrame Frame) {
         what = Awhat;
@@ -53,29 +53,37 @@ public class ShowVersions implements Runnable {
         Versioning version = new Versioning(mainFrame);
         version.getVersions(what, access_key, secret_key, bucket, endpoint);
 
-        mainFrame.jPanel11.removeAll();
-        mainFrame.jPanel11.revalidate();
-        mainFrame.jPanel11.setLayout(new BoxLayout(mainFrame.jPanel11, BoxLayout.PAGE_AXIS));
-        mainFrame.jPanel11.setLayout(new BoxLayout(mainFrame.jPanel11, BoxLayout.Y_AXIS));
-        int i = 0;
+        if (!Delete) {
+            mainFrame.jPanel11.removeAll();
+            mainFrame.jPanel11.revalidate();
+            mainFrame.jPanel11.setLayout(new BoxLayout(mainFrame.jPanel11, BoxLayout.PAGE_AXIS));
+            mainFrame.jPanel11.setLayout(new BoxLayout(mainFrame.jPanel11, BoxLayout.Y_AXIS));
 
-        for (String what : mainFrame.versioning_id) {
-            if (what != null) {
-                mainFrame.object_item[i] = new JRadioButton();
-                mainFrame.object_item[i].setText(mainFrame.versioning_name.get(i) + "     " + mainFrame.versioning_date.get(i));
-                mainFrame.object_item[i].setBackground(Color.white);
-                mainFrame.object_item[i].setForeground(Color.blue);
-                mainFrame.jPanel11.add(mainFrame.object_item[i]);
-                mainFrame.versionDownload = true;
+            int i = 0;
+            mainFrame.object_item = new JRadioButton[mainFrame.versioning_id.size()];
+
+            for (String what : mainFrame.versioning_id) {
+                if (what != null) {
+                    mainFrame.object_item[i] = new JRadioButton();
+                    mainFrame.object_item[i].setText(mainFrame.versioning_name.get(i) + "     " + mainFrame.versioning_date.get(i));
+                    mainFrame.object_item[i].setBackground(Color.white);
+                    mainFrame.object_item[i].setForeground(Color.blue);
+                    mainFrame.jPanel11.add(mainFrame.object_item[i]);
+                    mainFrame.versionDownload = true;
+                }
+                i++;
             }
-            i++;
-        }
 
-        mainFrame.jPanel11.setLayout(new BoxLayout(mainFrame.jPanel11, BoxLayout.Y_AXIS));
-        mainFrame.jPanel11.repaint();
-        mainFrame.jPanel11.revalidate();
-        mainFrame.jPanel11.validate();
-        System.gc();
+            mainFrame.jPanel11.setLayout(
+                    new BoxLayout(mainFrame.jPanel11, BoxLayout.Y_AXIS));
+            mainFrame.jPanel11.repaint();
+
+            mainFrame.jPanel11.revalidate();
+
+            mainFrame.jPanel11.validate();
+
+            System.gc();
+        }
     }
 
     void startc(String Awhat, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, NewJFrame Frame) {

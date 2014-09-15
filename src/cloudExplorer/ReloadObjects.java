@@ -14,7 +14,6 @@
  * cloudExplorer
  *
  */
-
 package cloudExplorer;
 
 public class ReloadObjects implements Runnable {
@@ -43,7 +42,7 @@ public class ReloadObjects implements Runnable {
         objectlist = bucketObject.listBucketContents(access_key, secret_key, bucket, endpoint);
         mainFrame.objectarray = objectlist.split("@@");
         mainFrame.previous_objectarray_length = mainFrame.objectarray.length;
-        System.gc();
+        objectlist = null;
     }
 
     public void startc(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint) {

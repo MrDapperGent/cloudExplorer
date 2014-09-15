@@ -14,7 +14,6 @@
  * cloudExplorer
  *
  */
-
 package cloudExplorer;
 
 public class DeleteEverything implements Runnable {
@@ -30,6 +29,7 @@ public class DeleteEverything implements Runnable {
 
     public void run() {
         showVersions = new ShowVersions(null, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame);
+        showVersions.Delete = true;
         showVersions.run();
     }
 

@@ -17,7 +17,6 @@
 package cloudExplorer;
 
 import java.awt.Color;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -50,23 +49,20 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     String[] bucketarray = null;
     public String[] objectarray = null;
     String[] syncarray = null;
-    String[] account_array = new String[20];
-    String[] simple_account_array = new String[account_array.length];
+    String[] account_array = new String[1];
+    String[] simple_account_array = null;
     int active_account = 0;
-    int object_size = 500000;
     int total_accounts = 0;
-    JRadioButton bucket_item[] = new JRadioButton[object_size];
-    public JRadioButton object_item[] = new JRadioButton[object_size];
-    JRadioButton account_item[] = new JRadioButton[account_array.length];
+    JRadioButton bucket_item[] = null;
+    public JRadioButton object_item[];
+    JRadioButton account_item[] = null;
     int active_bucket = 0;
     String object_acl_change = null;
     String temp_file = (Home + File.separator + "object.tmp");
     String config_file = (Home + File.separator + "s3.config");
-    String[] localdata = new String[object_size];
     JFrame dialog = new JFrame();
     JLabel dialog_label = new JLabel("Please wait for operation to complete. This will close upon completion.");
     JPanel dialog_panel = new JPanel();
-    int initial_display = 1000;
     int account_counter = 0;
     int content_counter = 0;
     int previous_objectarray_length = 0;
@@ -1321,11 +1317,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
             try {
                 int found = 0;
-                int display_counter = initial_display;
 
                 jTabbedPane1.setSelectedIndex(1);
 
-                display_counter = objectarray.length;
+                int display_counter = objectarray.length;
 
                 for (int i = 1; i != display_counter; i++) {
                     if (object_item[i] != null) {
@@ -1340,12 +1335,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 }
 
                 if (found == 0) {
-                    reloadObjects();
                     jTextArea1.append("\nNo objects found for search. \n");
                 } else {
                     int display = objectarray.length - 1;
                     jTextArea1.append("\nLoaded objects. Total number of objects in this bucket: " + display);
-                    calibrateTextArea();
                 }
             } catch (Exception searchBar) {
 
@@ -1437,6 +1430,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     void loadConfig() {
         String data = null;
         account_array = new String[20];
+        account_item = new JRadioButton[account_array.length];
         config_file = (Home + File.separator + "s3.config");
 
         try {
@@ -1497,6 +1491,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jPanel5.repaint();
         jPanel5.setLayout(new BoxLayout(jPanel5, BoxLayout.PAGE_AXIS));
 
+        bucket_item = new JRadioButton[bucketarray.length];
+
         if (bucketarray != null) {
             for (int h = 1; h != bucketarray.length; h++) {
                 jPanel5.setLayout(new BoxLayout(jPanel5, BoxLayout.Y_AXIS));
@@ -1520,7 +1516,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         if ((jTextField1.getText().length() > 1 || jTextField2.getText().length() > 1)) {
             var();
             bucketarray = null;
-            bucket_item = new JRadioButton[object_size];
             ReloadBuckets buckets = new ReloadBuckets(cred.getAccess_key(), cred.getSecret_key(), cred.getEndpoint(), this);
             buckets.run();
             active_bucket = 0;
@@ -1533,6 +1528,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     void redrawObjects() {
         jPanel11.setLayout(new BoxLayout(jPanel11, BoxLayout.PAGE_AXIS));
         jPanel14.removeAll();
+        object_item = new JRadioButton[objectarray.length];
         for (int h = 1; h != objectarray.length; h++) {
             jPanel11.setLayout(new BoxLayout(jPanel11, BoxLayout.Y_AXIS));
             object_item[h] = new JRadioButton();
