@@ -49,13 +49,13 @@ public class BucketClass {
                 request = new SetBucketVersioningConfigurationRequest(bucket, new BucketVersioningConfiguration(BucketVersioningConfiguration.SUSPENDED));
             }
             s3Client.setBucketVersioningConfiguration(request);
-            mainFrame.jTextArea1.append("\nBucket Versioning is:" + request.getVersioningConfiguration().getStatus());
+            message = "\nBucket Versioning is:" + request.getVersioningConfiguration().getStatus();
         } catch (Exception versioning) {
-            mainFrame.jTextArea1.append("\n\nAn error has occurred in versioning.");
-            mainFrame.jTextArea1.append("\n\nError Message:    " + versioning.getMessage());
-            message = message + "\n" + versioning.getMessage();
+            message = "\n" + versioning.getMessage();
         }
-
+        if (message == null) {
+            message = "\nVersioning failed.";
+        }
         return message;
 
     }
@@ -74,14 +74,13 @@ public class BucketClass {
                 s3Client.createBucket(new CreateBucketRequest(bucket, region));
             }
 
-            message = ("\nMaking bucket: " + bucket);
+            message = ("\nAttempting to create the bucket. Please view the Bucket list window for an update.");
         } catch (Exception makeBucket) {
-            mainFrame.jTextArea1.append("\n\nAn error has occurred in makeBucket.");
-            mainFrame.jTextArea1.append("\n\nError Message:    " + makeBucket.getMessage());
-            message = message + "\n" + makeBucket.getMessage();
+            mainFrame.jTextArea1.append("\n" + makeBucket.getMessage() + "\n");
         }
-
-        message.replace("null", "");
+        if (message == null) {
+            message = "Failed to create bucket.";
+        }
         return message;
 
     }
@@ -103,8 +102,8 @@ public class BucketClass {
             }
 
         } catch (Exception listBucket) {
-            mainFrame.jTextArea1.append("\n\nAn error has occurred in listBucket.");
-            mainFrame.jTextArea1.append("\n\nError Message:    " + listBucket.getMessage());
+
+            mainFrame.jTextArea1.append("\n" + listBucket.getMessage());
             if (listBucket.getMessage().contains("peer not authenticated")) {
                 mainFrame.jTextArea1.append("\nError: This program does not support non-trusted SSL certificates.");
             }
@@ -142,8 +141,7 @@ public class BucketClass {
             } while (objectListing.isTruncated());
 
         } catch (Exception listBucket) {
-            mainFrame.jTextArea1.append("\n\nAn error has occurred in listBucketContents.");
-            mainFrame.jTextArea1.append("\n\nError Message:    " + listBucket.getMessage());
+            mainFrame.jTextArea1.append("\n" + listBucket.getMessage());
         }
 
         String parse = null;
@@ -190,8 +188,7 @@ public class BucketClass {
             } while (objectListing.isTruncated());
 
         } catch (Exception listBucket) {
-            mainFrame.jTextArea1.append("\n\nAn error has occurred in listBucketContents.");
-            mainFrame.jTextArea1.append("\n\nError Message:    " + listBucket.getMessage());
+            mainFrame.jTextArea1.append("\n" + listBucket.getMessage());
         }
 
         return objectlist;
@@ -208,11 +205,13 @@ public class BucketClass {
         try {
             s3Client.deleteBucket(new DeleteBucketRequest(bucket));
         } catch (Exception Delete) {
-            mainFrame.jTextArea1.append("\n\nAn error has occurred in DeleteBucket.");
-            mainFrame.jTextArea1.append("\n\nError Message:    " + Delete.getMessage());
             message = message + "\n" + Delete.getMessage();
         }
-        message.replace("null", "");
+
+        if (message == null) {
+            message = "\nDelete operation failed.";
+        }
+
         return message;
     }
 }

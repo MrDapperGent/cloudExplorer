@@ -1595,6 +1595,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         } else {
             jTextArea1.append("\nError: Configuration not loaded\n");
         }
+        calibrateTextArea();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -2003,8 +2004,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         File File_Destination = new File(downloadChooser.getSelectedFile().getAbsolutePath());
 
                         if (versionDownload) {
-                            int i = 0;
-                            for (String what : versioning_name) {
+
+                            for (int i = 0; i != versioning_name.size() + 1; i++) {
                                 if (object_item[i].isSelected()) {
                                     download.setVisible(false);
                                     String new_object_name = convertObject(versioning_name.get(i), "download");
@@ -2013,7 +2014,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                                     object_item[i].setSelected(false);
                                     break;
                                 }
-                                i++;
                             }
                         } else {
                             for (int i = 1; i != previous_objectarray_length; i++) {
