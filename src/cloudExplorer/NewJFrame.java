@@ -318,7 +318,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jTextArea1.setColumns(20);
-        jTextArea1.setForeground(java.awt.Color.black);
         jTextArea1.setRows(5);
         jTextArea1.setBorder(null);
         jScrollPane1.setViewportView(jTextArea1);
@@ -409,7 +408,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         panel1.setBackground(java.awt.Color.white);
 
         jTabbedPane1.setBackground(java.awt.SystemColor.text);
-        jTabbedPane1.setBorder(null);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -462,7 +460,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
 
-        jScrollPane27.setBackground(java.awt.Color.white);
         jScrollPane27.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jPanel21.setBackground(java.awt.SystemColor.text);
@@ -471,7 +468,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jPanel21.setAlignmentY(0.0F);
         jPanel21.setAutoscrolls(true);
 
-        jScrollPane28.setBackground(java.awt.SystemColor.text);
         jScrollPane28.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jPanel12.setBackground(java.awt.SystemColor.text);
@@ -636,7 +632,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jPanel5.setAlignmentY(0.0F);
         jPanel5.setAutoscrolls(true);
 
-        jScrollPane3.setBackground(java.awt.SystemColor.text);
         jScrollPane3.setBorder(null);
 
         jPanel13.setBackground(java.awt.SystemColor.text);
@@ -1112,7 +1107,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jMenuBar1.setBackground(java.awt.SystemColor.text);
         jMenuBar1.setBorder(null);
 
         jMenu1.setText("File");
@@ -1253,7 +1247,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addGap(0, 0, 0))
         );
 
         pack();
