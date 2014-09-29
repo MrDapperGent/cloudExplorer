@@ -2143,29 +2143,44 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         try {
             temp_file = (Home + File.separator + "object.tmp");
-
-            for (int i = 1; i != previous_objectarray_length; i++) {
-                if (object_item[i].isSelected()) {
-                    String new_object_name = convertObject(object_item[i].getText(), "download");
-                    get = new Get(object_item[i].getText(), cred.access_key, cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), temp_file, null);
-                    get.run();
-                    try {
-                        FileReader frr = new FileReader(temp_file);
-                        BufferedReader bfrr = new BufferedReader(frr);
-                        String read = null;
-                        jTextArea2.setText("");
-                        while ((read = bfrr.readLine()) != null) {
-                            jTextArea2.append("\n" + read);
-                        }
-                        bfrr.close();
-                    } catch (Exception tempFile) {
-                        jTextArea1.append("\n" + tempFile.getMessage());
+            String objectToedit = null;
+            if (versionDownload) {
+                for (int i = 0; i != versioning_name.size() + 1; i++) {
+                    if (object_item[i].isSelected()) {
+                        String new_object_name = convertObject(versioning_name.get(i), "download");
+                        get = new Get(versioning_name.get(i), cred.access_key, cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), temp_file, versioning_id.get(i));
+                        get.run();
+                        objectToedit = versioning_name.get(i);
+                        object_item[i].setSelected(false);
+                        break;
                     }
-                    jTabbedPane1.setSelectedIndex(4);
-                    jTextField6.setText(object_item[i].getText());
                 }
-
+            } else {
+                for (int i = 1; i != previous_objectarray_length; i++) {
+                    if (object_item[i].isSelected()) {
+                        String new_object_name = convertObject(object_item[i].getText(), "download");
+                        get = new Get(object_item[i].getText(), cred.access_key, cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), temp_file, null);
+                        get.run();
+                        objectToedit = object_item[i].getText();
+                        object_item[i].setSelected(false);
+                        break;
+                    }
+                }
             }
+            try {
+                FileReader frr = new FileReader(temp_file);
+                BufferedReader bfrr = new BufferedReader(frr);
+                String read = null;
+                jTextArea2.setText("");
+                while ((read = bfrr.readLine()) != null) {
+                    jTextArea2.append("\n" + read);
+                }
+                bfrr.close();
+            } catch (Exception tempFile) {
+                jTextArea1.append("\n" + tempFile.getMessage());
+            }
+            jTabbedPane1.setSelectedIndex(4);
+            jTextField6.setText(objectToedit);
 
         } catch (Exception Download) {
         }
@@ -2246,9 +2261,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         if (active_bucket > 0) {
             boolean countSelected = false;
-            jButton7.setEnabled(false);
-            jButton12.setEnabled(false);
             jButton1.setEnabled(false);
+            jButton7.setEnabled(false);
             jButton17.setEnabled(false);
             jButton18.setEnabled(false);
             jButton19.setEnabled(false);

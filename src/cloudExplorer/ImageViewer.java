@@ -14,7 +14,6 @@
  * cloudExplorer
  *
  */
-
 package cloudExplorer;
 
 import java.awt.Color;
@@ -73,6 +72,7 @@ public class ImageViewer implements Runnable {
                     mainFrame.deleteFle(temp_file + i);
                     image_frame.setVisible(true);
                     image_frame.setAlwaysOnTop(true);
+                    mainFrame.object_item[i].setSelected(false);
                     break;
                 }
 

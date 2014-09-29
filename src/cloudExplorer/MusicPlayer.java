@@ -19,14 +19,12 @@ package cloudExplorer;
 import static cloudExplorer.NewJFrame.jTextArea1;
 import jaco.mp3.player.MP3Player;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 
 public class MusicPlayer implements Runnable {
 
