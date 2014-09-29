@@ -14,7 +14,7 @@ Fixed exception for "Delete every object and version".
 Cleaned up exception messages.
 Enabled exception messages.
 Improved code for displaying version objects.
-GUI Alignment fix for OSX.
+GUI fix for OSX. GUI will look the same on every platform now. 
 
 Version 3.3
 

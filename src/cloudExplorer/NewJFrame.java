@@ -27,6 +27,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -36,6 +38,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
@@ -83,123 +87,128 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     ImageViewer imageviewer;
 
     public NewJFrame() {
-        initComponents();
-        setLocationRelativeTo(null);
-        this.setIconImage(new ImageIcon(getClass()
-                .getResource("cloud.jpg")).getImage());
-        this.jTextField3.setText("https://s3.amazonaws.com");
-        this.jTextField4.setText("443");
+        try {
+            initComponents();
+            setLocationRelativeTo(null);
+            UIManager.setLookAndFeel(
+                    UIManager.getCrossPlatformLookAndFeelClassName());
+            this.setIconImage(new ImageIcon(getClass()
+                    .getResource("cloud.jpg")).getImage());
+            this.jTextField3.setText("https://s3.amazonaws.com");
+            this.jTextField4.setText("443");
 
-        for (int i = 0; i != this.jTabbedPane1.getTabCount(); i++) {
-            this.jTabbedPane1.setTitleAt(i, "");
-            if (i == 0) {
-                ImageIcon tabSettings = new ImageIcon(
-                        this.getClass().getResource("tab-settings.png"));
-                this.jTabbedPane1.setIconAt(0, tabSettings);
+            for (int i = 0; i != this.jTabbedPane1.getTabCount(); i++) {
+                this.jTabbedPane1.setTitleAt(i, "");
+                if (i == 0) {
+                    ImageIcon tabSettings = new ImageIcon(
+                            this.getClass().getResource("tab-settings.png"));
+                    this.jTabbedPane1.setIconAt(0, tabSettings);
+                }
+                if (i == 1) {
+                    ImageIcon tabExplorer = new ImageIcon(
+                            this.getClass().getResource("tab-explorer.png"));
+                    this.jTabbedPane1.setIconAt(1, tabExplorer);
+
+                }
+                if (i == 2) {
+                    ImageIcon tabUpload = new ImageIcon(
+                            this.getClass().getResource("tab-upload.png"));
+                    this.jTabbedPane1.setIconAt(2, tabUpload);
+                }
+                if (i == 3) {
+                    ImageIcon tabDownload = new ImageIcon(
+                            this.getClass().getResource("tab-download.png"));
+                    ImageIcon tabSync2 = new ImageIcon(
+                            this.getClass().getResource("tab-sync2.png"));
+                    this.jTabbedPane1.setIconAt(3, tabSync2);
+                    this.jToggleButton4.setIcon(tabDownload);
+                    this.jToggleButton4.setText("From S3");
+                    this.jToggleButton3.setIcon(tabDownload);
+                    this.jToggleButton3.setText("To S3");
+                }
+                if (i == 4) {
+                    ImageIcon tabEditor = new ImageIcon(
+                            this.getClass().getResource("tab-editor.png"));
+                    this.jTabbedPane1.setIconAt(4, tabEditor);
+                }
+                /**
+                 * if (i == 5) { ImageIcon tabAbout = new ImageIcon(
+                 * this.getClass().getResource("tab-about.png"));
+                 * this.jTabbedPane1.setIconAt(5, tabAbout); } *
+                 */
+
             }
-            if (i == 1) {
-                ImageIcon tabExplorer = new ImageIcon(
-                        this.getClass().getResource("tab-explorer.png"));
-                this.jTabbedPane1.setIconAt(1, tabExplorer);
 
+            ImageIcon searchBUtton = new ImageIcon(
+                    this.getClass().getResource("search-button.png"));
+            this.jButton6.setText("");
+            this.jButton6.setIcon(searchBUtton);
+
+            ImageIcon downloadButton = new ImageIcon(
+                    this.getClass().getResource("download.png"));
+            this.jButton3.setIcon(downloadButton);
+            this.jButton3.setText("Get");
+
+            ImageIcon deleteButton = new ImageIcon(
+                    this.getClass().getResource("delete.png"));
+            this.jButton4.setIcon(deleteButton);
+            this.jButton4.setText("Delete");
+
+            ImageIcon selectButton = new ImageIcon(
+                    this.getClass().getResource("select.png"));
+            this.jButton13.setIcon(selectButton);
+            this.jButton14.setIcon(selectButton);
+
+            ImageIcon propertiesButton = new ImageIcon(
+                    this.getClass().getResource("properties.png"));
+            this.jButton7.setText("Info");
+            this.jButton7.setIcon(propertiesButton);
+
+            ImageIcon editButton2 = new ImageIcon(
+                    this.getClass().getResource("edit2.png"));
+            this.jButton12.setIcon(editButton2);
+            this.jButton12.setText("Edit");
+
+            ImageIcon playBUtton = new ImageIcon(
+                    this.getClass().getResource("play.png"));
+            this.jButton17.setIcon(playBUtton);
+            this.jButton17.setText("Play");
+
+            ImageIcon viewButton = new ImageIcon(
+                    this.getClass().getResource("viewimage.png"));
+            this.jButton19.setIcon(viewButton);
+            this.jButton19.setText("View");
+
+            ImageIcon abortButton = new ImageIcon(
+                    this.getClass().getResource("abort.png"));
+            this.jButton1.setIcon(abortButton);
+            this.jButton15.setIcon(abortButton);
+            this.jButton16.setIcon(abortButton);
+            this.jButton1.setText("Stop");
+
+            ImageIcon saveEditButton = new ImageIcon(
+                    this.getClass().getResource("uploadbutton.png"));
+            this.jButton11.setIcon(saveEditButton);
+            this.jButton5.setIcon(saveEditButton);
+            this.jButton11.setText("Save");
+
+            ImageIcon versionButton = new ImageIcon(
+                    this.getClass().getResource("versions.png"));
+            this.jButton18.setIcon(versionButton);
+            this.jButton18.setText("Versions");
+
+            this.jButton9.setIcon(genericEngine);
+            this.jButton2.setIcon(genericEngine);
+            this.jButton8.setIcon(genericEngine);
+            this.jButton10.setIcon(genericEngine);
+            this.jButton20.setIcon(genericEngine);
+            this.jScrollPane1.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
+            this.jCheckBox1.setSelected(true);
+            File config = new File(config_file);
+            if (config.exists()) {
+                this.jButton9.doClick();
             }
-            if (i == 2) {
-                ImageIcon tabUpload = new ImageIcon(
-                        this.getClass().getResource("tab-upload.png"));
-                this.jTabbedPane1.setIconAt(2, tabUpload);
-            }
-            if (i == 3) {
-                ImageIcon tabDownload = new ImageIcon(
-                        this.getClass().getResource("tab-download.png"));
-                ImageIcon tabSync2 = new ImageIcon(
-                        this.getClass().getResource("tab-sync2.png"));
-                this.jTabbedPane1.setIconAt(3, tabSync2);
-                this.jToggleButton4.setIcon(tabDownload);
-                this.jToggleButton4.setText("From S3");
-                this.jToggleButton3.setIcon(tabDownload);
-                this.jToggleButton3.setText("To S3");
-            }
-            if (i == 4) {
-                ImageIcon tabEditor = new ImageIcon(
-                        this.getClass().getResource("tab-editor.png"));
-                this.jTabbedPane1.setIconAt(4, tabEditor);
-            }
-            /**
-             * if (i == 5) { ImageIcon tabAbout = new ImageIcon(
-             * this.getClass().getResource("tab-about.png"));
-             * this.jTabbedPane1.setIconAt(5, tabAbout); } *
-             */
-
-        }
-
-        ImageIcon searchBUtton = new ImageIcon(
-                this.getClass().getResource("search-button.png"));
-        this.jButton6.setText("");
-        this.jButton6.setIcon(searchBUtton);
-
-        ImageIcon downloadButton = new ImageIcon(
-                this.getClass().getResource("download.png"));
-        this.jButton3.setIcon(downloadButton);
-        this.jButton3.setText("Get");
-
-        ImageIcon deleteButton = new ImageIcon(
-                this.getClass().getResource("delete.png"));
-        this.jButton4.setIcon(deleteButton);
-        this.jButton4.setText("Delete");
-
-        ImageIcon selectButton = new ImageIcon(
-                this.getClass().getResource("select.png"));
-        this.jButton13.setIcon(selectButton);
-        this.jButton14.setIcon(selectButton);
-
-        ImageIcon propertiesButton = new ImageIcon(
-                this.getClass().getResource("properties.png"));
-        this.jButton7.setText("Info");
-        this.jButton7.setIcon(propertiesButton);
-
-        ImageIcon editButton2 = new ImageIcon(
-                this.getClass().getResource("edit2.png"));
-        this.jButton12.setIcon(editButton2);
-        this.jButton12.setText("Edit");
-
-        ImageIcon playBUtton = new ImageIcon(
-                this.getClass().getResource("play.png"));
-        this.jButton17.setIcon(playBUtton);
-        this.jButton17.setText("Play");
-
-        ImageIcon viewButton = new ImageIcon(
-                this.getClass().getResource("viewimage.png"));
-        this.jButton19.setIcon(viewButton);
-        this.jButton19.setText("View");
-
-        ImageIcon abortButton = new ImageIcon(
-                this.getClass().getResource("abort.png"));
-        this.jButton1.setIcon(abortButton);
-        this.jButton15.setIcon(abortButton);
-        this.jButton16.setIcon(abortButton);
-        this.jButton1.setText("Stop");
-
-        ImageIcon saveEditButton = new ImageIcon(
-                this.getClass().getResource("uploadbutton.png"));
-        this.jButton11.setIcon(saveEditButton);
-        this.jButton5.setIcon(saveEditButton);
-        this.jButton11.setText("Save");
-
-        ImageIcon versionButton = new ImageIcon(
-                this.getClass().getResource("versions.png"));
-        this.jButton18.setIcon(versionButton);
-        this.jButton18.setText("Versions");
-
-        this.jButton9.setIcon(genericEngine);
-        this.jButton2.setIcon(genericEngine);
-        this.jButton8.setIcon(genericEngine);
-        this.jButton10.setIcon(genericEngine);
-        this.jButton20.setIcon(genericEngine);
-        this.jScrollPane1.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
-        this.jCheckBox1.setSelected(true);
-        File config = new File(config_file);
-        if (config.exists()) {
-            this.jButton9.doClick();
+        } catch (Exception ex) {
         }
     }
 
@@ -318,6 +327,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jTextArea1.setColumns(20);
+        jTextArea1.setForeground(java.awt.Color.black);
         jTextArea1.setRows(5);
         jTextArea1.setBorder(null);
         jScrollPane1.setViewportView(jTextArea1);
@@ -408,6 +418,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         panel1.setBackground(java.awt.Color.white);
 
         jTabbedPane1.setBackground(java.awt.SystemColor.text);
+        jTabbedPane1.setBorder(null);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -460,6 +471,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
 
+        jScrollPane27.setBackground(java.awt.Color.white);
         jScrollPane27.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jPanel21.setBackground(java.awt.SystemColor.text);
@@ -468,6 +480,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jPanel21.setAlignmentY(0.0F);
         jPanel21.setAutoscrolls(true);
 
+        jScrollPane28.setBackground(java.awt.SystemColor.text);
         jScrollPane28.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jPanel12.setBackground(java.awt.SystemColor.text);
@@ -632,6 +645,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jPanel5.setAlignmentY(0.0F);
         jPanel5.setAutoscrolls(true);
 
+        jScrollPane3.setBackground(java.awt.SystemColor.text);
         jScrollPane3.setBorder(null);
 
         jPanel13.setBackground(java.awt.SystemColor.text);
@@ -1107,6 +1121,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jMenuBar1.setBackground(java.awt.SystemColor.text);
         jMenuBar1.setBorder(null);
 
         jMenu1.setText("File");
@@ -1247,7 +1262,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addGap(50, 50, 50))
         );
 
         pack();
