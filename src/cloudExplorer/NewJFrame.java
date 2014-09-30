@@ -311,6 +311,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         jMenuItem5.setText("jMenuItem5");
 
@@ -327,7 +329,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jTextArea1.setColumns(20);
-        jTextArea1.setForeground(java.awt.Color.black);
         jTextArea1.setRows(5);
         jTextArea1.setBorder(null);
         jScrollPane1.setViewportView(jTextArea1);
@@ -418,7 +419,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         panel1.setBackground(java.awt.Color.white);
 
         jTabbedPane1.setBackground(java.awt.SystemColor.text);
-        jTabbedPane1.setBorder(null);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -471,7 +471,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
 
-        jScrollPane27.setBackground(java.awt.Color.white);
         jScrollPane27.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jPanel21.setBackground(java.awt.SystemColor.text);
@@ -480,7 +479,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jPanel21.setAlignmentY(0.0F);
         jPanel21.setAutoscrolls(true);
 
-        jScrollPane28.setBackground(java.awt.SystemColor.text);
         jScrollPane28.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jPanel12.setBackground(java.awt.SystemColor.text);
@@ -645,7 +643,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jPanel5.setAlignmentY(0.0F);
         jPanel5.setAutoscrolls(true);
 
-        jScrollPane3.setBackground(java.awt.SystemColor.text);
         jScrollPane3.setBorder(null);
 
         jPanel13.setBackground(java.awt.SystemColor.text);
@@ -1121,7 +1118,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jMenuBar1.setBackground(java.awt.SystemColor.text);
         jMenuBar1.setBorder(null);
 
         jMenu1.setText("File");
@@ -1240,6 +1236,18 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenu6.add(jMenuItem8);
 
         jMenuBar1.add(jMenu6);
+
+        jMenu7.setText("Performance");
+
+        jMenuItem3.setText("Test");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem3);
+
+        jMenuBar1.add(jMenu7);
 
         setJMenuBar(jMenuBar1);
 
@@ -2382,6 +2390,19 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox4ActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+       if (active_bucket > 0) {
+            jTextArea1.append("\nPlease wait, loading Performance test module.");
+            calibrateTextArea();
+            Performance performanceTest = new Performance(this);
+            performanceTest.startc();
+            jTextArea1.append("\nPerformance test module has started. Please observe for any errors.");
+            calibrateTextArea();
+        } else {
+            jTextArea1.append("\nError: No bucket has been selected");
+        }
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     void var() {
         try {
             cred.setAccess_key(jTextField1.getText());
@@ -2447,6 +2468,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
@@ -2456,6 +2478,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
