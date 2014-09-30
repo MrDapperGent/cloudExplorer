@@ -71,11 +71,11 @@ public class PerformanceThread implements Runnable {
 
     public void run() {
 
-        File file = new File(temp_file);
+        File tempFile = new File(temp_file);
         File outputlog = new File(output_log);
 
-        if (file.exists()) {
-            file.delete();
+        if (tempFile.exists()) {
+            tempFile.delete();
         }
 
         if (outputlog.exists()) {
@@ -100,11 +100,9 @@ public class PerformanceThread implements Runnable {
             } catch (Exception add) {
             }
 
-            File tempFile = new File(temp_file);
-
             if (tempFile.exists()) {
 
-                String upload = file.getAbsolutePath();
+                String upload = tempFile.getAbsolutePath();
                 calibrate();
 
                 if (!operation) {

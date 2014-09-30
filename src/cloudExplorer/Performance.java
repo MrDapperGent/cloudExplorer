@@ -72,16 +72,15 @@ public class Performance implements Runnable {
             startPerformanceTest.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
-
+                    mainFrame.perf = true;
                     mainFrame.jTextArea1.append("\nStarting test. Please wait.");
                     mainFrame.calibrateTextArea();
-
                     int threadcount = Integer.parseInt(getTheadCount.getText());
                     String getValue = getFileSize.getText();
                     String operationCount = getOperationCount.getText();
                     performancethread = new PerformanceThread(threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation);
                     performancethread.startc(threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation);
-                    close.doClick();
+                    //close.doClick();
                 }
             });
 
