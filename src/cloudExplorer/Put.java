@@ -28,9 +28,12 @@ import java.io.File;
 import javax.activation.MimetypesFileTypeMap;
 import static cloudExplorer.NewJFrame.jTextArea1;
 import com.amazonaws.services.s3.model.StorageClass;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 
 public class Put implements Runnable {
 
+    String Home = System.getProperty("user.home");
     String message = null;
     NewJFrame mainFrame;
     public static boolean isRunning = true;
@@ -95,17 +98,40 @@ public class Put implements Runnable {
             tx.shutdownNow();
             long t2 = System.currentTimeMillis();
             long diff = t2 - t1;
-            mainFrame.jTextArea1.append("\nUploaded object: " + ObjectKey + " in " + diff / 1000 + " second(s).");
+            if (mainFrame.perf) {
+                performance_logger(diff / 1000);
+            }
+
+            if (!mainFrame.perf) {
+                mainFrame.jTextArea1.append("\nUploaded object: " + ObjectKey + " in " + diff / 1000 + " second(s).");
+            }
         } catch (Exception manager) {
         }
 
         calibrate();
     }
 
+    public void performance_logger(long what) {
+        try {
+            String item = String.valueOf(what);
+            FileWriter frr = new FileWriter(Home + File.separator + "perf.txt", true);
+            BufferedWriter bfrr = new BufferedWriter(frr);
+            bfrr.write("\n" + item);
+            bfrr.close();
+        } catch (Exception perf_logger) {
+        }
+    }
+
     void startc(String Awhat, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String AObjectKey, Boolean Arrs, Boolean Aencrypt) {
 
         put = new Thread(new Put(Awhat, Aaccess_key, Asecret_key, Abucket, Aendpoint, AObjectKey, Arrs, Aencrypt));
         put.start();
+        if (NewJFrame.perf) {
+            try {
+                put.join();
+            } catch (Exception joiner) {
+            }
+        }
     }
 
     void stop() {

@@ -27,8 +27,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -39,7 +37,6 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
@@ -82,6 +79,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     public ArrayList<String> versioning_id;
     public ArrayList<String> versioning_date;
     public ArrayList<String> versioning_name;
+    public static Boolean perf = false;
     public Boolean versionDownload = false;
     ShowVersions showVersions;
     ImageViewer imageviewer;
@@ -313,6 +311,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
 
         jMenuItem5.setText("jMenuItem5");
 
@@ -1239,13 +1238,21 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jMenu7.setText("Performance");
 
-        jMenuItem3.setText("Test");
+        jMenuItem3.setText("PUT");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
             }
         });
         jMenu7.add(jMenuItem3);
+
+        jMenuItem11.setText("GET");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem11);
 
         jMenuBar1.add(jMenu7);
 
@@ -1316,6 +1323,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         if (active_bucket > 0) {
+            NewJFrame.perf = false;
             jButton4.setEnabled(true);
             jButton7.setEnabled(true);
             jButton12.setEnabled(true);
@@ -2391,10 +2399,12 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     }//GEN-LAST:event_jCheckBox4ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-       if (active_bucket > 0) {
+        if (active_bucket > 0) {
+            jTabbedPane1.setSelectedIndex(1);
             jTextArea1.append("\nPlease wait, loading Performance test module.");
             calibrateTextArea();
-            Performance performanceTest = new Performance(this);
+            NewJFrame.perf = true;
+            PutPerformance performanceTest = new PutPerformance(this);
             performanceTest.startc();
             jTextArea1.append("\nPerformance test module has started. Please observe for any errors.");
             calibrateTextArea();
@@ -2402,6 +2412,21 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jTextArea1.append("\nError: No bucket has been selected");
         }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+         if (active_bucket > 0) {
+            jTabbedPane1.setSelectedIndex(1);
+            jTextArea1.append("\nPlease wait, loading Performance test module.");
+            calibrateTextArea();
+            NewJFrame.perf = true;
+            GetPerformance getperformanceTest = new GetPerformance(this);
+            getperformanceTest.startc();
+            jTextArea1.append("\nPerformance test module has started. Please observe for any errors.");
+            calibrateTextArea();
+        } else {
+            jTextArea1.append("\nError: No bucket has been selected");
+        }
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     void var() {
         try {
@@ -2472,6 +2497,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;

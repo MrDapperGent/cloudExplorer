@@ -8,7 +8,8 @@ Version 3.5
 
 Editor can now edit file versions.
 Image viewer now deselects the image after viewing to make it easier to view next image.
-
+Performance test for uploads.
+Performance test for downloads.
 
 Version 3.4
 

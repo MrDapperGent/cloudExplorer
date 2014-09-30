@@ -14,7 +14,6 @@
  * cloudExplorer
  *
  */
-
 package cloudExplorer;
 
 import com.amazonaws.auth.AWSCredentials;
@@ -27,9 +26,12 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import static cloudExplorer.NewJFrame.jTextArea1;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 
 public class Get implements Runnable {
 
+    String Home = System.getProperty("user.home");
     NewJFrame mainFrame;
     String what = null;
     String access_key = null;
@@ -71,7 +73,19 @@ public class Get implements Runnable {
 
     }
 
+    public void performance_logger(long what) {
+        try {
+            String item = String.valueOf(what);
+            FileWriter frr = new FileWriter(Home + File.separator + "perf.txt", true);
+            BufferedWriter bfrr = new BufferedWriter(frr);
+            bfrr.write("\n" + item);
+            bfrr.close();
+        } catch (Exception perf_logger) {
+        }
+    }
+
     public void run() {
+         System.out.print("\nDone");
         String message = null;
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         File file = new File(what);
@@ -85,9 +99,16 @@ public class Get implements Runnable {
             this.writeFile(objectData, destination);
             long t2 = System.currentTimeMillis();
             long diff = t2 - t1;
-            mainFrame.jTextArea1.append("\nDownloaded: " + what + " in " + diff / 1000 + " second(s).");
-            mainFrame.calibrateTextArea();
 
+            if (mainFrame.perf) {
+                performance_logger(diff / 1000);
+            }
+
+            if (!mainFrame.perf) {
+                mainFrame.jTextArea1.append("\nDownloaded: " + what + " in " + diff / 1000 + " second(s).");
+                mainFrame.calibrateTextArea();
+            }
+            
         } catch (Exception get) {
             //mainFrame.jTextArea1.append("\n\nAn error has occurred in GET.");
             //mainFrame.jTextArea1.append("\n\nError Message: " + get.getMessage());
@@ -100,6 +121,13 @@ public class Get implements Runnable {
     void startc(String Awhat, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String Adestination, String Aversion) {
         get = new Thread(new Get(Awhat, Aaccess_key, Asecret_key, Abucket, Aendpoint, Adestination, Aversion));
         get.start();
+        if (NewJFrame.perf) {
+            try {
+                get.join();
+            } catch (Exception get) {
+            }
+        }
+
     }
 
     void stop() {
