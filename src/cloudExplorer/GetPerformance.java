@@ -137,8 +137,8 @@ public class GetPerformance implements Runnable {
                             for (int z = 0; z != op_count; z++) {
 
                                 for (int i = 0; i != num_threads; i++) {
-                                    get = new Get(upload, mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.temp_file + i, null);
-                                    get.startc(upload, mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.temp_file + i, null);
+                                    get = new Get("test_download", mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.temp_file + i, null);
+                                    get.startc("test_download", mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.temp_file + i, null);
                                 }
 
                                 long total_time = 0;
