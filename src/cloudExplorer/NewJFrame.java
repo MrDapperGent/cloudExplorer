@@ -2512,7 +2512,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     public static javax.swing.JPanel jPanel1;
-    public javax.swing.JPanel jPanel11;
+    public static javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     public static javax.swing.JPanel jPanel14;

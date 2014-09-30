@@ -17,10 +17,26 @@
 package cloudExplorer;
 
 import static cloudExplorer.NewJFrame.jTextArea1;
+import com.googlecode.charts4j.AxisLabels;
+import com.googlecode.charts4j.AxisLabelsFactory;
+import static com.googlecode.charts4j.Color.LIGHTBLUE;
+import com.googlecode.charts4j.Data;
+import com.googlecode.charts4j.GCharts;
+import com.googlecode.charts4j.LineChart;
+import com.googlecode.charts4j.Plots;
+import com.googlecode.charts4j.ScatterPlot;
+import com.googlecode.charts4j.ScatterPlotData;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Arrays;
+import javafx.scene.chart.ScatterChart;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class PerformanceThread implements Runnable {
 
@@ -39,6 +55,8 @@ public class PerformanceThread implements Runnable {
     String bucket = null;
     String endpoint = null;
     Boolean operation = true;
+    double[] x;
+    double[] y;
     Get get;
 
     public void performance_logger(double time, float rate) {
@@ -88,9 +106,6 @@ public class PerformanceThread implements Runnable {
         if (num_threads > 0) {
 
             try {
-                NewJFrame.jTextArea1.append("\nCreating creating temp file....");
-                calibrate();
-
                 file_size = Integer.parseInt(getValue);
                 FileOutputStream s = new FileOutputStream(temp_file);
                 byte[] buf = new byte[file_size * 1024];
@@ -102,39 +117,66 @@ public class PerformanceThread implements Runnable {
 
             if (tempFile.exists()) {
 
-                String upload = tempFile.getAbsolutePath();
-                calibrate();
-
-                if (!operation) {
-                    put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
-                    put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
-                }
-
-                int op_count = Integer.parseInt(getOperationCount);
-                for (int z = 0; z != op_count; z++) {
-                    long t1 = System.currentTimeMillis();
-
-                    for (int i = 0; i != num_threads; i++) {
-                        if (operation) {
-                            put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
-                            put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
-                        } else {
-                            get = new Get("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + i, null);
-                            get.startc("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + i, null);
-                        }
-                    }
-                    long t2 = System.currentTimeMillis();
-                    long diff = t2 - t1;
-                    long total_time = diff / 1000;
-                    if (total_time == 0) {
-                        total_time = 1;
-                    }
-                    float float_file_size = file_size;
-                    float rate = (num_threads * float_file_size / total_time / 1024);
-                    NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " threads is: " + rate + " MB/s");
-                    performance_logger(total_time, rate);
+                try {
+                    String upload = tempFile.getAbsolutePath();
                     calibrate();
+
+                    if (!operation) {
+                        put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
+                        put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
+                    }
+
+                    int op_count = Integer.parseInt(getOperationCount);
+
+                    x = new double[op_count];
+                    y = new double[op_count];
+
+                    for (int z = 0; z != op_count; z++) {
+                        long t1 = System.currentTimeMillis();
+
+                        for (int i = 0; i != num_threads; i++) {
+                            if (operation) {
+                                put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
+                                put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
+                            } else {
+                                get = new Get("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + i, null);
+                                get.startc("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + i, null);
+                            }
+                        }
+                        double t2 = System.currentTimeMillis();
+                        double diff = t2 - t1;
+                        double total_time = diff / 1000;
+                        if (total_time == 0) {
+                            total_time = 1;
+                        }
+
+                        double float_file_size = file_size;
+                        double rate = (num_threads * float_file_size / total_time / 1024);
+                        NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " threads is: " + rate + " MB/s");
+                        performance_logger(total_time, (float) rate);
+
+                        //Draw Graph
+                        y[z] = rate + rate;
+                        x[z] = total_time;
+                        Data xdata = new Data(x);
+                        Data ydata = new Data(y);
+                        ScatterPlotData plot = Plots.newScatterPlotData(xdata, ydata);
+                        ScatterPlot chart = GCharts.newScatterPlot(plot);
+                        chart.setSize(500, 300);
+                        chart.setMargins(500, 100, 200, 100);
+                        chart.setTitle(" Live Performance Benchmarks");
+                        chart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Time")));
+                        chart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "MB/s")));
+                        NewJFrame.jPanel11.removeAll();
+                        JLabel label = new JLabel(new ImageIcon(ImageIO.read(new URL(chart.toURLString()))));
+                        NewJFrame.jPanel11.add(label);
+                        NewJFrame.jPanel11.revalidate();
+                        NewJFrame.jPanel11.repaint();
+                        calibrate();
+                    }
+                } catch (IOException ex) {
                 }
+
             } else {
                 NewJFrame.jTextArea1.append("\n Please specifiy more than 0 threads.");
                 calibrate();
