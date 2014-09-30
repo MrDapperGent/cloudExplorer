@@ -26,8 +26,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import static cloudExplorer.NewJFrame.jTextArea1;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 
 public class Get implements Runnable {
 
@@ -73,17 +71,7 @@ public class Get implements Runnable {
 
     }
 
-    public void performance_logger(long what) {
-        try {
-            String item = String.valueOf(what);
-            FileWriter frr = new FileWriter(Home + File.separator + "perf.txt", true);
-            BufferedWriter bfrr = new BufferedWriter(frr);
-            bfrr.write("\n" + item);
-            bfrr.close();
-        } catch (Exception perf_logger) {
-        }
-    }
-
+   
     public void run() {
         String message = null;
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
@@ -98,10 +86,6 @@ public class Get implements Runnable {
             this.writeFile(objectData, destination);
             long t2 = System.currentTimeMillis();
             long diff = t2 - t1;
-
-            if (mainFrame.perf) {
-                performance_logger(diff / 1000);
-            }
 
             if (!mainFrame.perf) {
                 mainFrame.jTextArea1.append("\nDownloaded: " + what + " in " + diff / 1000 + " second(s).");

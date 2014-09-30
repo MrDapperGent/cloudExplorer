@@ -28,8 +28,6 @@ import java.io.File;
 import javax.activation.MimetypesFileTypeMap;
 import static cloudExplorer.NewJFrame.jTextArea1;
 import com.amazonaws.services.s3.model.StorageClass;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 
 public class Put implements Runnable {
 
@@ -98,10 +96,7 @@ public class Put implements Runnable {
             tx.shutdownNow();
             long t2 = System.currentTimeMillis();
             long diff = t2 - t1;
-            if (mainFrame.perf) {
-                performance_logger(diff / 1000);
-            }
-
+      
             if (!mainFrame.perf) {
                 mainFrame.jTextArea1.append("\nUploaded object: " + ObjectKey + " in " + diff / 1000 + " second(s).");
             }
@@ -111,16 +106,6 @@ public class Put implements Runnable {
         calibrate();
     }
 
-    public void performance_logger(long what) {
-        try {
-            String item = String.valueOf(what);
-            FileWriter frr = new FileWriter(Home + File.separator + "perf.txt", true);
-            BufferedWriter bfrr = new BufferedWriter(frr);
-            bfrr.write("\n" + item);
-            bfrr.close();
-        } catch (Exception perf_logger) {
-        }
-    }
 
     void startc(String Awhat, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String AObjectKey, Boolean Arrs, Boolean Aencrypt) {
 

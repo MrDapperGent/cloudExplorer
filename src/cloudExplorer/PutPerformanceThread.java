@@ -71,7 +71,6 @@ public class PutPerformanceThread implements Runnable {
     public void run() {
 
         File file = new File(temp_file);
-        File check_results = new File(Home + File.separator + "perf.txt");
         File outputlog = new File(output_log);
 
         if (file.exists()) {
@@ -80,10 +79,6 @@ public class PutPerformanceThread implements Runnable {
 
         if (outputlog.exists()) {
             outputlog.delete();
-        }
-
-        if (check_results.exists()) {
-            check_results.delete();
         }
 
         int file_size = 0;
@@ -111,6 +106,7 @@ public class PutPerformanceThread implements Runnable {
                 String upload = file.getAbsolutePath();
                 calibrate();
 
+                long t1 = System.currentTimeMillis();
                 int op_count = Integer.parseInt(getOperationCount);
                 for (int z = 0; z != op_count; z++) {
 
@@ -119,24 +115,9 @@ public class PutPerformanceThread implements Runnable {
                         put.startc(upload, access_key, secret_key, bucket, endpoint, "test_" + i, false, false);
                     }
 
-                    long total_time = 0;
-
-                    if (check_results.exists()) {
-                        try {
-                            FileReader frr = new FileReader(check_results);
-                            BufferedReader bfrr = new BufferedReader(frr);
-                            String read = null;
-                            while ((read = bfrr.readLine()) != null) {
-                                if (read.length() > 0) {
-                                    int translate = Integer.parseInt(read);
-                                    total_time = total_time + translate;
-                                }
-                            }
-                        } catch (Exception ex) {
-                        }
-
-                    }
-
+                    long t2 = System.currentTimeMillis();
+                    long diff = t2 - t1;
+                    long total_time = diff / 1000;
                     float float_file_size = file_size;
                     float rate = (num_threads * float_file_size / total_time / 1024);
                     NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time:" + total_time + " seconds." + " Average speed with " + num_threads + " threads is: " + rate + " MB/s");
@@ -147,10 +128,6 @@ public class PutPerformanceThread implements Runnable {
         } else {
             NewJFrame.jTextArea1.append("\n Please specifiy more than 0 threads.");
             calibrate();
-        }
-
-        if (check_results.exists()) {
-            check_results.delete();
         }
 
         NewJFrame.jTextArea1.append("\nResults saved in CSV format to: " + output_log);

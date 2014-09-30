@@ -17,11 +17,9 @@
 package cloudExplorer;
 
 import static cloudExplorer.NewJFrame.jTextArea1;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 
 public class GetPerformanceThread implements Runnable {
@@ -72,7 +70,6 @@ public class GetPerformanceThread implements Runnable {
     public void run() {
 
         File file = new File(temp_file);
-        File check_results = new File(Home + File.separator + "perf.txt");
         File outputlog = new File(output_log);
 
         if (file.exists()) {
@@ -81,10 +78,6 @@ public class GetPerformanceThread implements Runnable {
 
         if (outputlog.exists()) {
             outputlog.delete();
-        }
-
-        if (check_results.exists()) {
-            check_results.delete();
         }
 
         int file_size = 0;
@@ -116,34 +109,18 @@ public class GetPerformanceThread implements Runnable {
 
                 put = new Put(upload, access_key, secret_key, bucket, endpoint, "test_download", false, false);
                 put.startc(upload, access_key, secret_key, bucket, endpoint, "test_download", false, false);
-                
+
+                long t1 = System.currentTimeMillis();
                 for (int z = 0; z != op_count; z++) {
 
                     for (int i = 0; i != num_threads; i++) {
-
                         get = new Get("test_download", access_key, secret_key, bucket, endpoint, temp_file + i, null);
                         get.startc("test_download", access_key, secret_key, bucket, endpoint, temp_file + i, null);
-
                     }
 
-                    long total_time = 0;
-
-                    if (check_results.exists()) {
-                        try {
-                            FileReader frr = new FileReader(check_results);
-                            BufferedReader bfrr = new BufferedReader(frr);
-                            String read = null;
-                            while ((read = bfrr.readLine()) != null) {
-                                if (read.length() > 0) {
-                                    int translate = Integer.parseInt(read);
-                                    total_time = total_time + translate;
-                                }
-                            }
-                        } catch (Exception ex) {
-                        }
-
-                    }
-
+                    long t2 = System.currentTimeMillis();
+                    long diff = t2 - t1;
+                    long total_time = diff / 1000;
                     float float_file_size = file_size;
                     float rate = (num_threads * float_file_size / total_time / 1024);
                     NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time:" + total_time + " seconds." + " Average speed with " + num_threads + " threads is: " + rate + " MB/s");
@@ -155,11 +132,7 @@ public class GetPerformanceThread implements Runnable {
             NewJFrame.jTextArea1.append("\n Please specifiy more than 0 threads.");
             calibrate();
         }
-
-        if (check_results.exists()) {
-            check_results.delete();
-        }
-
+        
         NewJFrame.jTextArea1.append("\nResults saved in CSV format to: " + output_log);
         calibrate();
         NewJFrame.perf = false;
