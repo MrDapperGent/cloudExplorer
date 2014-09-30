@@ -136,20 +136,22 @@ public class PerformanceThread implements Runnable {
                                 get.startc("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + i, null);
                             }
                         }
+
                         double t2 = System.currentTimeMillis();
                         double diff = t2 - t1;
                         double total_time = diff / 1000;
+
                         if (total_time == 0) {
                             total_time = 1;
                         }
 
                         double float_file_size = file_size;
                         double rate = (num_threads * float_file_size / total_time / 1024);
-                        NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " threads is: " + rate + " MB/s");
+                        NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s");
                         performance_logger(total_time, (float) rate);
 
                         //Draw Graph
-                        y[z] = rate + rate;
+                        y[z] = rate;
                         x[z] = total_time;
                         Data xdata = new Data(x);
                         Data ydata = new Data(y);
@@ -168,7 +170,8 @@ public class PerformanceThread implements Runnable {
 
                         calibrate();
                     }
-                } catch (IOException ex) {
+                } catch (Exception ex) {
+                    System.out.print("\nDebug: " + ex.getMessage());
                 }
 
             } else {
