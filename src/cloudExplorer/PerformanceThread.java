@@ -41,7 +41,7 @@ public class PerformanceThread implements Runnable {
     Boolean operation = true;
     Get get;
 
-    public void performance_logger(float time, float rate) {
+    public void performance_logger(double time, float rate) {
         try {
             FileWriter frr = new FileWriter(output_log, true);
             BufferedWriter bfrr = new BufferedWriter(frr);
@@ -126,6 +126,9 @@ public class PerformanceThread implements Runnable {
                     long t2 = System.currentTimeMillis();
                     long diff = t2 - t1;
                     long total_time = diff / 1000;
+                    if (total_time == 0) {
+                        total_time = 1;
+                    }
                     float float_file_size = file_size;
                     float rate = (num_threads * float_file_size / total_time / 1024);
                     NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " threads is: " + rate + " MB/s");
