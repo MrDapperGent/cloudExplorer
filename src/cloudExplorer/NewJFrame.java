@@ -2404,8 +2404,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jTextArea1.append("\nPlease wait, loading Performance test module.");
             calibrateTextArea();
             NewJFrame.perf = true;
-            PutPerformance performanceTest = new PutPerformance(this);
-            performanceTest.startc();
+            Performance performanceTest = new Performance(this, true);
+            performanceTest.startc(true);
             jTextArea1.append("\nPerformance test module has started. Please observe for any errors.");
             calibrateTextArea();
         } else {
@@ -2414,13 +2414,13 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-         if (active_bucket > 0) {
+        if (active_bucket > 0) {
             jTabbedPane1.setSelectedIndex(1);
             jTextArea1.append("\nPlease wait, loading Performance test module.");
             calibrateTextArea();
             NewJFrame.perf = true;
-            GetPerformance getperformanceTest = new GetPerformance(this);
-            getperformanceTest.startc();
+            Performance performanceTest = new Performance(this, true);
+            performanceTest.startc(true);
             jTextArea1.append("\nPerformance test module has started. Please observe for any errors.");
             calibrateTextArea();
         } else {

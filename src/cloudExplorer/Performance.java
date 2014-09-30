@@ -25,16 +25,17 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import static cloudExplorer.NewJFrame.jTextArea1;
 
-public class PutPerformance implements Runnable {
+public class Performance implements Runnable {
 
     NewJFrame mainFrame;
     Put put;
-    PutPerformance putperformance;
+    Performance putperformance;
+    Boolean operation = true;
+    PerformanceThread performancethread;
 
-    PutPerformanceThread performancethreadPUT;
-
-    public PutPerformance(NewJFrame Frame) {
+    public Performance(NewJFrame Frame, Boolean Aoperation) {
         mainFrame = Frame;
+        operation = Aoperation;
 
     }
 
@@ -42,7 +43,7 @@ public class PutPerformance implements Runnable {
         try {
 
             final JButton startPerformanceTest = new JButton("Start Test");
-            //final JButton abortPerformanceTest = new JButton("Abort");
+            final JButton abortPerformanceTest = new JButton("Abort");
             final JButton close = new JButton("Close");
             final JLabel fileSize = new JLabel("File Size in KB: ");
             final JLabel threadCount = new JLabel("Thread Count:");
@@ -55,9 +56,9 @@ public class PutPerformance implements Runnable {
 
             startPerformanceTest.setBackground(Color.white);
             startPerformanceTest.setForeground(Color.blue);
-            //abortPerformanceTest.setBackground(Color.white);
-            //abortPerformanceTest.setForeground(Color.blue);
-            //abortPerformanceTest.setBorder(null);
+            abortPerformanceTest.setBackground(Color.white);
+            abortPerformanceTest.setForeground(Color.blue);
+            abortPerformanceTest.setBorder(null);
             startPerformanceTest.setBorder(null);
 
             close.setBackground(Color.white);
@@ -65,7 +66,7 @@ public class PutPerformance implements Runnable {
             close.setForeground(Color.blue);
 
             close.setIcon(mainFrame.genericEngine);
-            //abortPerformanceTest.setIcon(mainFrame.genericEngine);
+            abortPerformanceTest.setIcon(mainFrame.genericEngine);
             startPerformanceTest.setIcon(mainFrame.genericEngine);
 
             startPerformanceTest.addActionListener(new ActionListener() {
@@ -78,21 +79,19 @@ public class PutPerformance implements Runnable {
                     int threadcount = Integer.parseInt(getTheadCount.getText());
                     String getValue = getFileSize.getText();
                     String operationCount = getOperationCount.getText();
-                    performancethreadPUT = new PutPerformanceThread(threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint());
-                    performancethreadPUT.startc(threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint());
+                    performancethread = new PerformanceThread(threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation);
+                    performancethread.startc(threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation);
                     close.doClick();
                 }
             });
 
-            /**
-             * abortPerformanceTest.addActionListener(new ActionListener() {
-             *
-             * public void actionPerformed(ActionEvent e) {
-             *
-             * }
-             * });
-             *
-             */
+            abortPerformanceTest.addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent e) {
+                    performancethread.stop();
+                }
+            });
+
             close.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
@@ -113,7 +112,7 @@ public class PutPerformance implements Runnable {
             mainFrame.jPanel14.add(getOperationCount);
             mainFrame.jPanel14.add(blank);
             mainFrame.jPanel14.add(startPerformanceTest);
-            // mainFrame.jPanel14.add(abortPerformanceTest);
+            mainFrame.jPanel14.add(abortPerformanceTest);
             mainFrame.jPanel14.add(close);
             mainFrame.jPanel14.repaint();
             mainFrame.jPanel14.revalidate();
@@ -133,7 +132,7 @@ public class PutPerformance implements Runnable {
         }
     }
 
-    void startc() {
-        (new Thread(new PutPerformance(mainFrame))).start();
+    void startc(boolean Aoperation) {
+        (new Thread(new Performance(mainFrame, Aoperation))).start();
     }
 }

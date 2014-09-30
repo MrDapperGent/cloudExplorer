@@ -17,14 +17,12 @@
 package cloudExplorer;
 
 import static cloudExplorer.NewJFrame.jTextArea1;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 
-public class PutPerformanceThread implements Runnable {
+public class PerformanceThread implements Runnable {
 
     String Home = System.getProperty("user.home");
     NewJFrame mainFrame;
@@ -33,13 +31,15 @@ public class PutPerformanceThread implements Runnable {
     String getValue;
     String getOperationCount;
     Put put;
-    Thread performancethreadPUT;
+    Thread performancethread;
     String temp_file = (Home + File.separator + "object.tmp");
     String what = null;
     String access_key = null;
     String secret_key = null;
     String bucket = null;
     String endpoint = null;
+    Boolean operation = true;
+    Get get;
 
     public void performance_logger(float time, float rate) {
         try {
@@ -58,7 +58,7 @@ public class PutPerformanceThread implements Runnable {
         }
     }
 
-    PutPerformanceThread(int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint) {
+    PerformanceThread(int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation) {
         threadcount = Athreadcount;
         getValue = AgetValue;
         getOperationCount = AgetOperationCount;
@@ -66,6 +66,7 @@ public class PutPerformanceThread implements Runnable {
         secret_key = Asecret_key;
         bucket = Abucket;
         endpoint = Aendpoint;
+        operation = Aoperation;
     }
 
     public void run() {
@@ -106,38 +107,55 @@ public class PutPerformanceThread implements Runnable {
                 String upload = file.getAbsolutePath();
                 calibrate();
 
+                if (!operation) {
+                    put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
+                    put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
+                }
+
                 int op_count = Integer.parseInt(getOperationCount);
                 for (int z = 0; z != op_count; z++) {
                     long t1 = System.currentTimeMillis();
-                    for (int i = 0; i != num_threads; i++) {
-                        put = new Put(upload, access_key, secret_key, bucket, endpoint, "test_upload", false, false);
-                        put.startc(upload, access_key, secret_key, bucket, endpoint, "test_upload", false, false);
-                    }
 
+                    for (int i = 0; i != num_threads; i++) {
+                        if (operation) {
+                            put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
+                            put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
+                        } else {
+                            get = new Get("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + i, null);
+                            get.startc("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + i, null);
+                        }
+                    }
                     long t2 = System.currentTimeMillis();
                     long diff = t2 - t1;
                     long total_time = diff / 1000;
                     float float_file_size = file_size;
                     float rate = (num_threads * float_file_size / total_time / 1024);
-                    NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time:" + total_time + " seconds." + " Average speed with " + num_threads + " threads is: " + rate + " MB/s");
+                    NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " threads is: " + rate + " MB/s");
                     performance_logger(total_time, rate);
                     calibrate();
                 }
+            } else {
+                NewJFrame.jTextArea1.append("\n Please specifiy more than 0 threads.");
+                calibrate();
             }
-        } else {
-            NewJFrame.jTextArea1.append("\n Please specifiy more than 0 threads.");
+
+            NewJFrame.jTextArea1.append("\nResults saved in CSV format to: " + output_log);
             calibrate();
+            NewJFrame.perf = false;
+
         }
-
-        NewJFrame.jTextArea1.append("\nResults saved in CSV format to: " + output_log);
-        calibrate();
-        NewJFrame.perf = false;
-
     }
 
-    void startc(int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint) {
-        performancethreadPUT = new Thread(new PutPerformanceThread(Athreadcount, AgetValue, AgetOperationCount, Aaccess_key, Asecret_key, Abucket, Aendpoint));
-        performancethreadPUT.start();
+    void stop() {
+        performancethread.stop();
+        NewJFrame.jTextArea1.append("\nTest aborted.");
+        calibrate();
+    }
+
+    void startc(int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation
+    ) {
+        performancethread = new Thread(new PerformanceThread(Athreadcount, AgetValue, AgetOperationCount, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aoperation));
+        performancethread.start();
 
     }
 
