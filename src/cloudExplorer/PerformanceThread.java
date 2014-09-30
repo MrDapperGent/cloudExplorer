@@ -91,6 +91,9 @@ public class PerformanceThread implements Runnable {
 
         File tempFile = new File(temp_file);
         File outputlog = new File(output_log);
+        int op_count = Integer.parseInt(getOperationCount);
+        int file_size = Integer.parseInt(getValue);
+        float num_threads = threadcount;
 
         if (tempFile.exists()) {
             tempFile.delete();
@@ -100,13 +103,9 @@ public class PerformanceThread implements Runnable {
             outputlog.delete();
         }
 
-        int file_size = 0;
-        float num_threads = threadcount;
-
-        if (num_threads > 0) {
+        if (file_size > 0 && num_threads > 0 && op_count > 0) {
 
             try {
-                file_size = Integer.parseInt(getValue);
                 FileOutputStream s = new FileOutputStream(temp_file);
                 byte[] buf = new byte[file_size * 1024];
                 s.write(buf);
@@ -125,8 +124,6 @@ public class PerformanceThread implements Runnable {
                         put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
                         put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
                     }
-
-                    int op_count = Integer.parseInt(getOperationCount);
 
                     x = new double[op_count];
                     y = new double[op_count];
@@ -163,7 +160,6 @@ public class PerformanceThread implements Runnable {
                         ScatterPlotData plot = Plots.newScatterPlotData(xdata, ydata);
                         ScatterPlot chart = GCharts.newScatterPlot(plot);
                         chart.setSize(500, 300);
-                        chart.setMargins(500, 100, 200, 100);
                         chart.setTitle(" Live Performance Benchmarks");
                         chart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Time")));
                         chart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "MB/s")));
@@ -172,6 +168,8 @@ public class PerformanceThread implements Runnable {
                         NewJFrame.jPanel11.add(label);
                         NewJFrame.jPanel11.revalidate();
                         NewJFrame.jPanel11.repaint();
+                        //End Graph
+
                         calibrate();
                     }
                 } catch (IOException ex) {
@@ -186,6 +184,9 @@ public class PerformanceThread implements Runnable {
             calibrate();
             NewJFrame.perf = false;
 
+        } else {
+            NewJFrame.jTextArea1.append("\nError: values must be greater than 0");
+            calibrate();
         }
     }
 
