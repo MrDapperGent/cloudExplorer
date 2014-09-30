@@ -85,7 +85,6 @@ public class Get implements Runnable {
     }
 
     public void run() {
-         System.out.print("\nDone");
         String message = null;
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         File file = new File(what);

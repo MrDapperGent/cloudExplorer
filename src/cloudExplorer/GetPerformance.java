@@ -24,11 +24,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import static cloudExplorer.NewJFrame.jTextArea1;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 
 public class GetPerformance implements Runnable {
@@ -37,6 +34,8 @@ public class GetPerformance implements Runnable {
     Put put;
     Get get;
     GetPerformance getperformance;
+    GetPerformanceThread getperformancethread;
+//    GetPerformanceThread performancethread;
     String Home = System.getProperty("user.home");
     String output_log = Home + File.separator + "performance_results.csv";
 
@@ -88,103 +87,15 @@ public class GetPerformance implements Runnable {
             startPerformanceTest.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
-                    File file = new File(mainFrame.temp_file);
-                    File check_results = new File(mainFrame.Home + File.separator + "perf.txt");
-                    File outputlog = new File(output_log);
-
-                    if (file.exists()) {
-                        file.delete();
-                    }
-
-                    if (outputlog.exists()) {
-                        outputlog.delete();
-                    }
-
-                    if (check_results.exists()) {
-                        check_results.delete();
-                    }
-
-                    int file_size = 0;
-                    float num_threads = num_threads = Integer.parseInt(getTheadCount.getText());
-
-                    if (num_threads > 0) {
-
-                        try {
-                            mainFrame.jTextArea1.append("\nCreating creating temp file....");
-                            mainFrame.calibrateTextArea();
-                            String getValue = getFileSize.getText();
-                            file_size = Integer.parseInt(getValue);
-                            FileOutputStream s = new FileOutputStream(mainFrame.temp_file);
-                            byte[] buf = new byte[file_size * 1024];
-                            s.write(buf);
-                            s.flush();
-                            s.close();
-                        } catch (Exception add) {
-                        }
-
-                        File tempFile = new File(mainFrame.temp_file);
-
-                        if (tempFile.exists()) {
-
-                            String upload = file.getAbsolutePath();
-                            mainFrame.calibrateTextArea();
-
-                            int op_count = Integer.parseInt(getOperationCount.getText());
-
-                            mainFrame.put = new Put(upload, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), "test_download", false, false);
-                            mainFrame.put.startc(upload, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), "test_download", false, false);
-
-                            for (int z = 0; z != op_count; z++) {
-
-                                for (int i = 0; i != num_threads; i++) {
-                                    get = new Get("test_download", mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.temp_file + i, null);
-                                    get.startc("test_download", mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.temp_file + i, null);
-                                }
-
-                                long total_time = 0;
-
-                                if (check_results.exists()) {
-                                    try {
-                                        FileReader frr = new FileReader(check_results);
-                                        BufferedReader bfrr = new BufferedReader(frr);
-                                        String read = null;
-                                        while ((read = bfrr.readLine()) != null) {
-                                            if (read.length() > 0) {
-                                                int translate = Integer.parseInt(read);
-                                                total_time = total_time + translate;
-                                            }
-                                        }
-                                    } catch (Exception ex) {
-                                    }
-
-                                }
-
-                                for (int i = 0; i != num_threads; i++) {
-                                    File delete = new File(mainFrame.temp_file + i);
-                                    if (delete.exists()) {
-                                        delete.delete();
-                                    }
-                                }
-
-                                float float_file_size = file_size;
-                                float rate = (num_threads * float_file_size / total_time / 1024);
-                                mainFrame.jTextArea1.append("Operation: " + z + ". Time:" + total_time + " seconds." + " Average speed with " + num_threads + " threads is: " + rate + " MB/s");
-                                performance_logger(total_time, rate);
-                                mainFrame.calibrateTextArea();
-                            }
-                        }
-                    } else {
-                        mainFrame.jTextArea1.append("\n Please specifiy more than 0 threads.");
-                        mainFrame.calibrateTextArea();
-                    }
-
-                    if (check_results.exists()) {
-                        check_results.delete();
-                    }
-
-                    mainFrame.jTextArea1.append("Results saved in CSV format to: " + output_log);
+                    mainFrame.jTextArea1.append("\nStarting test. Please wait.");
                     mainFrame.calibrateTextArea();
-                    NewJFrame.perf = false;
+
+                    int threadcount = Integer.parseInt(getTheadCount.getText());
+                    String getValue = getFileSize.getText();
+                    String operationCount = getOperationCount.getText();
+                    getperformancethread = new GetPerformanceThread(threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint());
+                    getperformancethread.startc(threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint());
+                    close.doClick();
                 }
             });
 
