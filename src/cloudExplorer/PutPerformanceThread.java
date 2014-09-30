@@ -106,13 +106,12 @@ public class PutPerformanceThread implements Runnable {
                 String upload = file.getAbsolutePath();
                 calibrate();
 
-                long t1 = System.currentTimeMillis();
                 int op_count = Integer.parseInt(getOperationCount);
                 for (int z = 0; z != op_count; z++) {
-
+                    long t1 = System.currentTimeMillis();
                     for (int i = 0; i != num_threads; i++) {
-                        put = new Put(upload, access_key, secret_key, bucket, endpoint, "test_" + i, false, false);
-                        put.startc(upload, access_key, secret_key, bucket, endpoint, "test_" + i, false, false);
+                        put = new Put(upload, access_key, secret_key, bucket, endpoint, "test_upload", false, false);
+                        put.startc(upload, access_key, secret_key, bucket, endpoint, "test_upload", false, false);
                     }
 
                     long t2 = System.currentTimeMillis();

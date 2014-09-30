@@ -110,8 +110,8 @@ public class GetPerformanceThread implements Runnable {
                 put = new Put(upload, access_key, secret_key, bucket, endpoint, "test_download", false, false);
                 put.startc(upload, access_key, secret_key, bucket, endpoint, "test_download", false, false);
 
-                long t1 = System.currentTimeMillis();
                 for (int z = 0; z != op_count; z++) {
+                    long t1 = System.currentTimeMillis();
 
                     for (int i = 0; i != num_threads; i++) {
                         get = new Get("test_download", access_key, secret_key, bucket, endpoint, temp_file + i, null);
@@ -132,7 +132,7 @@ public class GetPerformanceThread implements Runnable {
             NewJFrame.jTextArea1.append("\n Please specifiy more than 0 threads.");
             calibrate();
         }
-        
+
         NewJFrame.jTextArea1.append("\nResults saved in CSV format to: " + output_log);
         calibrate();
         NewJFrame.perf = false;
