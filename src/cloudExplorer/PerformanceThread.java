@@ -17,12 +17,9 @@
 package cloudExplorer;
 
 import static cloudExplorer.NewJFrame.jTextArea1;
-import com.googlecode.charts4j.AxisLabels;
 import com.googlecode.charts4j.AxisLabelsFactory;
-import static com.googlecode.charts4j.Color.LIGHTBLUE;
 import com.googlecode.charts4j.Data;
 import com.googlecode.charts4j.GCharts;
-import com.googlecode.charts4j.LineChart;
 import com.googlecode.charts4j.Plots;
 import com.googlecode.charts4j.ScatterPlot;
 import com.googlecode.charts4j.ScatterPlotData;
@@ -33,7 +30,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
-import javafx.scene.chart.ScatterChart;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
