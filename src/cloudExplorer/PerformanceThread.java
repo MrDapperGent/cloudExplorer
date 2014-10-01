@@ -18,12 +18,11 @@ package cloudExplorer;
 
 import static cloudExplorer.NewJFrame.jTextArea1;
 import com.googlecode.charts4j.AxisLabelsFactory;
+import com.googlecode.charts4j.Color;
 import com.googlecode.charts4j.Data;
 import com.googlecode.charts4j.GCharts;
 import com.googlecode.charts4j.Plot;
 import com.googlecode.charts4j.Plots;
-import com.googlecode.charts4j.ScatterPlot;
-import com.googlecode.charts4j.ScatterPlotData;
 import com.googlecode.charts4j.XYLineChart;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -152,12 +151,10 @@ public class PerformanceThread implements Runnable {
                         }
 
                         double float_file_size = file_size;
-                        //double rate = (num_threads * float_file_size / total_time / 1024);
                         double rate = (num_threads * float_file_size / total_time);
                         //NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s");
                         NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " KB/s");
-
-                        //performance_logger(total_time, (float) rate);
+                        performance_logger(total_time, (float) rate);
                         if (counter == 100) {
                             counter = 0;
                             x = new double[op_count];
@@ -197,6 +194,7 @@ public class PerformanceThread implements Runnable {
             Data xdata = new Data(x);
             Data ydata = new Data(y);
             Plot plot = Plots.newXYLine(xdata, ydata);
+            plot.setColor(Color.BLUE);
             XYLineChart xyLineChart = GCharts.newXYLineChart(plot);
             xyLineChart.setSize(700, 300);
             xyLineChart.setTitle("Performance Benchmarks");
@@ -208,7 +206,6 @@ public class PerformanceThread implements Runnable {
             NewJFrame.jPanel11.revalidate();
             NewJFrame.jPanel11.repaint();
         } catch (Exception graph) {
-            System.out.print("\n" + graph.getMessage());
         }
     }
 
