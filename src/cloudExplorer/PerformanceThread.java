@@ -103,7 +103,7 @@ public class PerformanceThread implements Runnable {
         }
 
         if (file_size > 0 && num_threads > 0 && op_count > 0) {
-            
+
             try {
                 FileOutputStream s = new FileOutputStream(temp_file);
                 byte[] buf = new byte[file_size * 1024];
@@ -152,7 +152,9 @@ public class PerformanceThread implements Runnable {
 
                         float float_file_size = file_size;
                         float rate = (num_threads * float_file_size / total_time / 1024);
-                        NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s");
+                        float iops = (num_threads * float_file_size / total_time);
+
+                        NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s. OPS/s: " + iops);
                         performance_logger(total_time, (float) rate);
                         if (counter == 100) {
                             counter = 0;
