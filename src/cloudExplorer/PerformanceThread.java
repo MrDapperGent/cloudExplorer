@@ -127,7 +127,7 @@ public class PerformanceThread implements Runnable {
 
                     x = new double[op_count];
                     y = new double[op_count];
-                    
+
                     int counter = 0;
 
                     for (int z = 0; z != op_count; z++) {
@@ -156,8 +156,13 @@ public class PerformanceThread implements Runnable {
                         double rate = (num_threads * float_file_size / total_time);
                         //NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s");
                         NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " KB/s");
-                       
+
                         //performance_logger(total_time, (float) rate);
+                        if (counter == 100) {
+                            counter = 0;
+                            x = new double[op_count];
+                            y = new double[op_count];
+                        }
                         y[counter] = rate;
                         x[counter] = counter;
 
@@ -193,7 +198,7 @@ public class PerformanceThread implements Runnable {
             Data ydata = new Data(y);
             Plot plot = Plots.newXYLine(xdata, ydata);
             XYLineChart xyLineChart = GCharts.newXYLineChart(plot);
-            xyLineChart.setSize(1000, 300);
+            xyLineChart.setSize(700, 300);
             xyLineChart.setTitle("Performance Benchmarks");
             xyLineChart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
             xyLineChart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "KB/s")));
