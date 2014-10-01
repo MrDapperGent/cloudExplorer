@@ -10,6 +10,7 @@ Editor can now edit file versions.
 Image viewer now deselects the image after viewing to make it easier to view next image.
 Performance test for uploads.
 Performance test for downloads.
+Objects accessible with a public URL no longer expire after an hour.
 
 Version 3.4
 

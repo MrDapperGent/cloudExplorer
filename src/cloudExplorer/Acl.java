@@ -14,7 +14,6 @@
  * cloudExplorer
  *
  */
-
 package cloudExplorer;
 
 import com.amazonaws.HttpMethod;
@@ -97,14 +96,14 @@ public class Acl {
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
             AmazonS3 s3Client = new AmazonS3Client(credentials);
             s3Client.setEndpoint(endpoint);
-            java.util.Date expiration = new java.util.Date();
-            long milliSeconds = expiration.getTime();
-            milliSeconds += 1000 * 60 * 60; // Add 1 hour.
-            expiration.setTime(milliSeconds);
+            //java.util.Date expiration = new java.util.Date();
+            //long milliSeconds = expiration.getTime();
+            //milliSeconds += 1000 * 60 * 60; // Add 1 hour.
+            //expiration.setTime(milliSeconds);
             GeneratePresignedUrlRequest generatePresignedUrlRequest
                     = new GeneratePresignedUrlRequest(bucket, object);
             generatePresignedUrlRequest.setMethod(HttpMethod.GET);
-            generatePresignedUrlRequest.setExpiration(expiration);
+           // generatePresignedUrlRequest.setExpiration(expiration);
             URL url = s3Client.generatePresignedUrl(generatePresignedUrlRequest);
             URL = ("Pre-Signed URL = " + url.toString());
         } catch (Exception setACLpublic) {
