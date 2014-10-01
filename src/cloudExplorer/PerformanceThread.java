@@ -151,14 +151,7 @@ public class PerformanceThread implements Runnable {
                         double diff = t2 - t1;
                         double total_time = diff / 1000;
 
-                     /**
-                        if (total_time < 1) {
-                            total_time = 1;
-                        }
-**/
-                        
                         double rate = (file_size / total_time / 1024);
-                       
                         double iops = (num_threads / total_time);
 
                         NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s. OPS/s: " + iops);
