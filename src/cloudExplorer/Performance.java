@@ -46,7 +46,7 @@ public class Performance implements Runnable {
             final JButton startPerformanceTest = new JButton("Start Test");
             final JButton abortPerformanceTest = new JButton("Abort");
             final JButton close = new JButton("Close");
-            final JLabel fileSize = new JLabel("File Size in KB: ");
+            final JLabel fileSize = new JLabel("Object Size in KB: ");
             final JLabel threadCount = new JLabel("Thread Count:");
             final JLabel operationCount = new JLabel("Operation Count:");
             final JCheckBox graph = new JCheckBox("Graph");
