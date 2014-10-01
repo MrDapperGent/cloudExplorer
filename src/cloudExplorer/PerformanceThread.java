@@ -203,7 +203,7 @@ public class PerformanceThread implements Runnable {
             Plot plot_latency = Plots.newXYLine(xdata_latency, ydata_latency);
             plot_latency.setColor(Color.RED);
             XYLineChart xyLineChart_latency = GCharts.newXYLineChart(plot_latency);
-            xyLineChart_latency.setSize(300, 300);
+            xyLineChart_latency.setSize(375, 300);
             xyLineChart_latency.setTitle("Latency Benchmarks");
             xyLineChart_latency.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
             xyLineChart_latency.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Seconds")));
@@ -215,7 +215,7 @@ public class PerformanceThread implements Runnable {
             Plot plot = Plots.newXYLine(xdata, ydata);
             plot.setColor(Color.BLUE);
             XYLineChart xyLineChart = GCharts.newXYLineChart(plot);
-            xyLineChart.setSize(300, 300);
+            xyLineChart.setSize(375, 300);
             xyLineChart.setTitle("Performance Benchmarks");
             xyLineChart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
             xyLineChart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "MB/s")));
