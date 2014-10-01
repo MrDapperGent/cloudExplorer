@@ -151,9 +151,8 @@ public class PerformanceThread implements Runnable {
                         }
 
                         float float_file_size = file_size;
-                        float rate = (num_threads * float_file_size / total_time);
-                        //NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s");
-                        NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " KB/s");
+                        float rate = (num_threads * float_file_size / total_time / 1024);
+                        NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s");
                         performance_logger(total_time, (float) rate);
                         if (counter == 100) {
                             counter = 0;
@@ -199,7 +198,7 @@ public class PerformanceThread implements Runnable {
             xyLineChart.setSize(700, 300);
             xyLineChart.setTitle("Performance Benchmarks");
             xyLineChart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
-            xyLineChart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "KB/s")));
+            xyLineChart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "MB/s")));
             NewJFrame.jPanel11.removeAll();
             label = new JLabel(new ImageIcon(ImageIO.read(new URL(xyLineChart.toURLString()))));
             NewJFrame.jPanel11.add(label);
