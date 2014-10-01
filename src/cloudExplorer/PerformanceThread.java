@@ -139,8 +139,8 @@ public class PerformanceThread implements Runnable {
 
                         for (int i = 0; i != num_threads; i++) {
                             if (operation) {
-                                put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data" + i, false, false);
-                                put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data" + i, false, false);
+                                put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false);
+                                put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false);
                             } else {
                                 get = new Get("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + i, null);
                                 get.startc("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + i, null);
