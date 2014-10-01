@@ -57,7 +57,7 @@ public class PerformanceThread implements Runnable {
     Get get;
     JLabel label;
 
-    public void performance_logger(double time, float rate) {
+    public void performance_logger(float time, float rate) {
         try {
             FileWriter frr = new FileWriter(output_log, true);
             BufferedWriter bfrr = new BufferedWriter(frr);
