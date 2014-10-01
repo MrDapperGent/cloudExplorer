@@ -27,22 +27,22 @@ import static cloudExplorer.NewJFrame.jTextArea1;
 import javax.swing.JCheckBox;
 
 public class Performance implements Runnable {
-    
+
     NewJFrame mainFrame;
     Put put;
     Performance putperformance;
     Boolean operation = true;
     PerformanceThread performancethread;
-    
+
     public Performance(NewJFrame Frame, Boolean Aoperation) {
         mainFrame = Frame;
         operation = Aoperation;
-        
+
     }
-    
+
     public void run() {
         try {
-            
+
             final JButton startPerformanceTest = new JButton("Start Test");
             final JButton abortPerformanceTest = new JButton("Abort");
             final JButton close = new JButton("Close");
@@ -51,10 +51,11 @@ public class Performance implements Runnable {
             final JLabel operationCount = new JLabel("Operation Count:");
             final JCheckBox graph = new JCheckBox("Graph");
             final JLabel blank = new JLabel(" ");;
+            final JLabel blank2 = new JLabel(" ");;
             final JTextField getFileSize = new JTextField();
             final JTextField getTheadCount = new JTextField("5");
             final JTextField getOperationCount = new JTextField("5");
-            
+
             getFileSize.setText("1024");
             graph.setBackground(Color.white);
             graph.setForeground(Color.blue);
@@ -66,20 +67,20 @@ public class Performance implements Runnable {
             abortPerformanceTest.setForeground(Color.blue);
             abortPerformanceTest.setBorder(null);
             startPerformanceTest.setBorder(null);
-            
+
             close.setBackground(Color.white);
             close.setBorder(null);
             close.setForeground(Color.blue);
-            
+
             close.setIcon(mainFrame.genericEngine);
             abortPerformanceTest.setIcon(mainFrame.genericEngine);
             startPerformanceTest.setIcon(mainFrame.genericEngine);
-            
+
             startPerformanceTest.addActionListener(new ActionListener() {
-                
+
                 public void actionPerformed(ActionEvent e) {
                     Boolean graphData = false;
-                    
+
                     if (graph.isSelected()) {
                         graphData = true;
                     }
@@ -94,16 +95,16 @@ public class Performance implements Runnable {
                     //close.doClick();
                 }
             });
-            
+
             abortPerformanceTest.addActionListener(new ActionListener() {
-                
+
                 public void actionPerformed(ActionEvent e) {
                     performancethread.stop();
                 }
             });
-            
+
             close.addActionListener(new ActionListener() {
-                
+
                 public void actionPerformed(ActionEvent e) {
                     mainFrame.jPanel14.removeAll();
                     mainFrame.jPanel14.repaint();
@@ -111,7 +112,7 @@ public class Performance implements Runnable {
                     mainFrame.jPanel14.validate();
                 }
             });
-            
+
             mainFrame.jPanel14.removeAll();
             mainFrame.jPanel14.setLayout(new BoxLayout(mainFrame.jPanel14, BoxLayout.Y_AXIS));
             mainFrame.jPanel14.add(fileSize);
@@ -120,6 +121,7 @@ public class Performance implements Runnable {
             mainFrame.jPanel14.add(getTheadCount);
             mainFrame.jPanel14.add(operationCount);
             mainFrame.jPanel14.add(getOperationCount);
+            mainFrame.jPanel14.add(blank2);
             mainFrame.jPanel14.add(graph);
             mainFrame.jPanel14.add(blank);
             mainFrame.jPanel14.add(startPerformanceTest);
@@ -129,21 +131,21 @@ public class Performance implements Runnable {
             mainFrame.jPanel14.repaint();
             mainFrame.jPanel14.revalidate();
             mainFrame.jPanel14.validate();
-            
+
         } catch (Exception mp3player) {
             jTextArea1.append("\n" + mp3player.getMessage());
         }
         mainFrame.calibrateTextArea();
-        
+
     }
-    
+
     public void calibrate() {
         try {
             jTextArea1.setCaretPosition(jTextArea1.getLineStartOffset(jTextArea1.getLineCount() - 1));
         } catch (Exception e) {
         }
     }
-    
+
     void startc(boolean Aoperation) {
         (new Thread(new Performance(mainFrame, Aoperation))).start();
     }
