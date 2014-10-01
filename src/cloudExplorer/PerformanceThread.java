@@ -27,7 +27,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import javax.imageio.ImageIO;
@@ -51,9 +50,11 @@ public class PerformanceThread implements Runnable {
     String bucket = null;
     String endpoint = null;
     Boolean operation = true;
+    Boolean graphdata = true;
     double[] x;
     double[] y;
     Get get;
+    JLabel label;
 
     public void performance_logger(double time, float rate) {
         try {
@@ -72,7 +73,7 @@ public class PerformanceThread implements Runnable {
         }
     }
 
-    PerformanceThread(int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation) {
+    PerformanceThread(int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation, Boolean Agraphdata) {
         threadcount = Athreadcount;
         getValue = AgetValue;
         getOperationCount = AgetOperationCount;
@@ -81,6 +82,7 @@ public class PerformanceThread implements Runnable {
         bucket = Abucket;
         endpoint = Aendpoint;
         operation = Aoperation;
+        graphdata = Agraphdata;
     }
 
     public void run() {
@@ -148,30 +150,16 @@ public class PerformanceThread implements Runnable {
                         double float_file_size = file_size;
                         double rate = (num_threads * float_file_size / total_time / 1024);
                         NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s");
-                        performance_logger(total_time, (float) rate);
-
-                        //Draw Graph
+                        //performance_logger(total_time, (float) rate);
                         y[z] = rate;
-                        x[z] = total_time;
-                        Data xdata = new Data(x);
-                        Data ydata = new Data(y);
-                        ScatterPlotData plot = Plots.newScatterPlotData(xdata, ydata);
-                        ScatterPlot chart = GCharts.newScatterPlot(plot);
-                        chart.setSize(500, 300);
-                        chart.setTitle(" Live Performance Benchmarks");
-                        chart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Time")));
-                        chart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "MB/s")));
-                        NewJFrame.jPanel11.removeAll();
-                        JLabel label = new JLabel(new ImageIcon(ImageIO.read(new URL(chart.toURLString()))));
-                        NewJFrame.jPanel11.add(label);
-                        NewJFrame.jPanel11.revalidate();
-                        NewJFrame.jPanel11.repaint();
-                        //End Graph
-
+                        x[z] = z;
                         calibrate();
                     }
+
+                    if (graphdata) {
+                        graph();
+                    }
                 } catch (Exception ex) {
-                    System.out.print("\nDebug: " + ex.getMessage());
                 }
 
             } else {
@@ -189,15 +177,35 @@ public class PerformanceThread implements Runnable {
         }
     }
 
+    void graph() {
+
+        try {
+            Data xdata = new Data(x);
+            Data ydata = new Data(y);
+            ScatterPlotData plot = Plots.newScatterPlotData(xdata, ydata);
+            ScatterPlot chart = GCharts.newScatterPlot(plot);
+            chart.setSize(500, 300);
+            chart.setTitle("Performance Benchmarks");
+            chart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
+            chart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "MB/s")));
+            NewJFrame.jPanel11.removeAll();
+            label = new JLabel(new ImageIcon(ImageIO.read(new URL(chart.toURLString()))));
+            NewJFrame.jPanel11.add(label);
+            NewJFrame.jPanel11.revalidate();
+            NewJFrame.jPanel11.repaint();
+        } catch (Exception graph) {
+            System.out.print("\n" + graph.getMessage());
+        }
+    }
+
     void stop() {
         performancethread.stop();
         NewJFrame.jTextArea1.append("\nTest aborted.");
         calibrate();
     }
 
-    void startc(int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation
-    ) {
-        performancethread = new Thread(new PerformanceThread(Athreadcount, AgetValue, AgetOperationCount, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aoperation));
+    void startc(int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation, Boolean Agraphdata) {
+        performancethread = new Thread(new PerformanceThread(Athreadcount, AgetValue, AgetOperationCount, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aoperation, Agraphdata));
         performancethread.start();
 
     }

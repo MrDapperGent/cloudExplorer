@@ -24,6 +24,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import static cloudExplorer.NewJFrame.jTextArea1;
+import javax.swing.JCheckBox;
 
 public class Performance implements Runnable {
 
@@ -48,12 +49,15 @@ public class Performance implements Runnable {
             final JLabel fileSize = new JLabel("File Size in KB: ");
             final JLabel threadCount = new JLabel("Thread Count:");
             final JLabel operationCount = new JLabel("Operation Count:");
+            final JCheckBox graph = new JCheckBox("Graph");
             final JLabel blank = new JLabel(" ");;
             final JTextField getFileSize = new JTextField();
             final JTextField getTheadCount = new JTextField("5");
             final JTextField getOperationCount = new JTextField("5");
             getFileSize.setText("1024");
 
+            graph.setBackground(Color.white);
+            graph.setForeground(Color.blue);
             startPerformanceTest.setBackground(Color.white);
             startPerformanceTest.setForeground(Color.blue);
             abortPerformanceTest.setBackground(Color.white);
@@ -72,14 +76,18 @@ public class Performance implements Runnable {
             startPerformanceTest.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
+                    Boolean graphData = false;
+                    if(graph.isSelected()){
+                        graphData = true;
+                    }
                     mainFrame.perf = true;
                     mainFrame.jTextArea1.append("\nStarting test. Please wait.");
                     mainFrame.calibrateTextArea();
                     int threadcount = Integer.parseInt(getTheadCount.getText());
                     String getValue = getFileSize.getText();
                     String operationCount = getOperationCount.getText();
-                    performancethread = new PerformanceThread(threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation);
-                    performancethread.startc(threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation);
+                    performancethread = new PerformanceThread(threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation,graphData);
+                    performancethread.startc(threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation,graphData);
                     //close.doClick();
                 }
             });
@@ -109,10 +117,12 @@ public class Performance implements Runnable {
             mainFrame.jPanel14.add(getTheadCount);
             mainFrame.jPanel14.add(operationCount);
             mainFrame.jPanel14.add(getOperationCount);
+            mainFrame.jPanel14.add(graph);
             mainFrame.jPanel14.add(blank);
             mainFrame.jPanel14.add(startPerformanceTest);
             mainFrame.jPanel14.add(abortPerformanceTest);
-            mainFrame.jPanel14.add(close);
+
+           // mainFrame.jPanel14.add(close);
             mainFrame.jPanel14.repaint();
             mainFrame.jPanel14.revalidate();
             mainFrame.jPanel14.validate();
