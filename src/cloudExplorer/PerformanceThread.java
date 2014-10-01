@@ -106,7 +106,7 @@ public class PerformanceThread implements Runnable {
             outputlog.delete();
         }
 
-        if (file_size > 0 && num_threads > 0 && op_count > 0) {
+        if (file_size >= 1024 && num_threads > 0 && op_count > 0) {
 
             try {
                 FileOutputStream s = new FileOutputStream(temp_file);
@@ -148,14 +148,16 @@ public class PerformanceThread implements Runnable {
                             }
                         }
 
-                        long t2 = System.currentTimeMillis();
+                        float t2 = System.currentTimeMillis();
                         float diff = t2 - t1;
                         float total_time = diff / 1000;
-                        
-                        float float_file_size = file_size;
-                        float rate = (num_threads * float_file_size / total_time / 1024 / 10);
 
-                        //Round the rate decimal place to two
+                        if (total_time < 1) {
+                            total_time = (float) 0.1;
+                        }
+
+                        float rate = (num_threads * file_size / total_time / 1024 / 10);
+
                         float iops = (num_threads / total_time);
 
                         NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s. OPS/s: " + iops);
@@ -192,7 +194,7 @@ public class PerformanceThread implements Runnable {
             NewJFrame.perf = false;
 
         } else {
-            NewJFrame.jTextArea1.append("\nError: values must be greater than 0");
+            NewJFrame.jTextArea1.append("\nError: Thread and Count values must be greater than 0. Object Size value must be 1024 or greater.");
             calibrate();
         }
     }
