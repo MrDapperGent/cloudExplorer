@@ -103,7 +103,7 @@ public class PerformanceThread implements Runnable {
         }
 
         if (file_size > 0 && num_threads > 0 && op_count > 0) {
-
+            
             try {
                 FileOutputStream s = new FileOutputStream(temp_file);
                 byte[] buf = new byte[file_size * 1024];

@@ -81,6 +81,10 @@ public class Performance implements Runnable {
                 public void actionPerformed(ActionEvent e) {
                     Boolean graphData = false;
 
+                    NewJFrame.jPanel11.removeAll();
+                    NewJFrame.jPanel11.revalidate();
+                    NewJFrame.jPanel11.repaint();
+
                     if (graph.isSelected()) {
                         graphData = true;
                     }
