@@ -146,7 +146,7 @@ public class PerformanceThread implements Runnable {
                         long diff = t2 - t1;
                         long total_time = diff / 1000;
 
-                        if (total_time == 0) {
+                        if (total_time < 1) {
                             total_time = 1;
                         }
 
