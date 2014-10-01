@@ -24,6 +24,7 @@ import com.googlecode.charts4j.GCharts;
 import com.googlecode.charts4j.Plot;
 import com.googlecode.charts4j.Plots;
 import com.googlecode.charts4j.XYLineChart;
+import java.awt.GridLayout;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -54,6 +55,8 @@ public class PerformanceThread implements Runnable {
     Boolean graphdata = true;
     double[] x;
     double[] y;
+    double[] x_latency;
+    double[] y_latency;
     Get get;
     JLabel label;
 
@@ -126,6 +129,8 @@ public class PerformanceThread implements Runnable {
 
                     x = new double[op_count];
                     y = new double[op_count];
+                    x_latency = new double[op_count];
+                    y_latency = new double[op_count];
 
                     int counter = 0;
 
@@ -144,15 +149,14 @@ public class PerformanceThread implements Runnable {
 
                         long t2 = System.currentTimeMillis();
                         long diff = t2 - t1;
-                        long total_time = diff / 1000;
+                        float total_time = diff / 1000;
 
-                        if (total_time < 1) {
-                            total_time = 1;
-                        }
-
+                      //  if (total_time < 1) {
+                        //     total_time = 1;
+                        // }
                         float float_file_size = file_size;
-                        float rate = (num_threads * float_file_size / total_time / 1024);
-                        float iops = (num_threads * float_file_size / total_time);
+                        double rate = (num_threads * float_file_size / total_time / 1024);
+                        float iops = (num_threads / total_time);
 
                         NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s. OPS/s: " + iops);
                         performance_logger(total_time, (float) rate);
@@ -160,9 +164,13 @@ public class PerformanceThread implements Runnable {
                             counter = 0;
                             x = new double[op_count];
                             y = new double[op_count];
+                            x_latency = new double[op_count];
+                            y_latency = new double[op_count];
                         }
                         y[counter] = rate;
                         x[counter] = counter;
+                        y_latency[counter] = total_time;
+                        x_latency[counter] = counter;
 
                         if (graphdata) {
                             graph();
@@ -192,18 +200,37 @@ public class PerformanceThread implements Runnable {
     void graph() {
 
         try {
+
+            //Configures the latency graph
+            Data xdata_latency = new Data(x_latency);
+            Data ydata_latency = new Data(y_latency);
+            Plot plot_latency = Plots.newXYLine(xdata_latency, ydata_latency);
+            plot_latency.setColor(Color.RED);
+            XYLineChart xyLineChart_latency = GCharts.newXYLineChart(plot_latency);
+            xyLineChart_latency.setSize(300, 300);
+            xyLineChart_latency.setTitle("Latency Benchmarks");
+            xyLineChart_latency.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
+            xyLineChart_latency.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Seconds")));
+            JLabel label_latency = new JLabel(new ImageIcon(ImageIO.read(new URL(xyLineChart_latency.toURLString()))));
+
+            //Configures the operations graph
             Data xdata = new Data(x);
             Data ydata = new Data(y);
             Plot plot = Plots.newXYLine(xdata, ydata);
             plot.setColor(Color.BLUE);
             XYLineChart xyLineChart = GCharts.newXYLineChart(plot);
-            xyLineChart.setSize(700, 300);
+            xyLineChart.setSize(300, 300);
             xyLineChart.setTitle("Performance Benchmarks");
             xyLineChart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
             xyLineChart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "MB/s")));
-            NewJFrame.jPanel11.removeAll();
             label = new JLabel(new ImageIcon(ImageIO.read(new URL(xyLineChart.toURLString()))));
+
+            //Configures the panel
+            NewJFrame.jPanel11.removeAll();
+            GridLayout layout = new GridLayout(0, 3);
+            NewJFrame.jPanel11.setLayout(layout);
             NewJFrame.jPanel11.add(label);
+            NewJFrame.jPanel11.add(label_latency);
             NewJFrame.jPanel11.revalidate();
             NewJFrame.jPanel11.repaint();
         } catch (Exception graph) {
