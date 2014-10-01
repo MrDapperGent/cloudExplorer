@@ -30,7 +30,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.net.URL;
-import java.text.DecimalFormat;
 import java.util.Arrays;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
