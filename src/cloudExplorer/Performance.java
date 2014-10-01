@@ -96,7 +96,6 @@ public class Performance implements Runnable {
                     String operationCount = getOperationCount.getText();
                     performancethread = new PerformanceThread(threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation, graphData);
                     performancethread.startc(threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation, graphData);
-                    //close.doClick();
                 }
             });
 
