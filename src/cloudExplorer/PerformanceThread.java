@@ -149,21 +149,17 @@ public class PerformanceThread implements Runnable {
                         }
 
                         long t2 = System.currentTimeMillis();
-                        long diff = t2 - t1;
+                        float diff = t2 - t1;
                         float total_time = diff / 1000;
-
+                        
                         float float_file_size = file_size;
-                        double rate = (num_threads * float_file_size / total_time / 1024);
+                        float rate = (num_threads * float_file_size / total_time / 1024 / 10);
 
                         //Round the rate decimal place to two
-                        DecimalFormat df = new DecimalFormat();
-                        df.setMaximumFractionDigits(2);
-
                         float iops = (num_threads / total_time);
-                        String final_iops = df.format(iops);
-                        String final_rate = df.format(rate);
-                        NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + final_rate + " MB/s. OPS/s: " + final_iops);
-                        performance_logger(total_time, Float.valueOf(final_rate));
+
+                        NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s. OPS/s: " + iops);
+                        performance_logger(total_time, (float) rate);
                         if (counter == 100) {
                             counter = 0;
                             x = new double[op_count];
@@ -171,7 +167,7 @@ public class PerformanceThread implements Runnable {
                             x_latency = new double[op_count];
                             y_latency = new double[op_count];
                         }
-                        y[counter] = Double.valueOf(final_rate);
+                        y[counter] = Double.valueOf(rate);
                         x[counter] = counter;
                         y_latency[counter] = total_time;
                         x_latency[counter] = counter;
