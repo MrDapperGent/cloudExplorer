@@ -30,6 +30,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -151,15 +152,18 @@ public class PerformanceThread implements Runnable {
                         long diff = t2 - t1;
                         float total_time = diff / 1000;
 
-                      //  if (total_time < 1) {
-                        //     total_time = 1;
-                        // }
                         float float_file_size = file_size;
                         double rate = (num_threads * float_file_size / total_time / 1024);
-                        float iops = (num_threads / total_time);
 
-                        NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s. OPS/s: " + iops);
-                        performance_logger(total_time, (float) rate);
+                        //Round the rate decimal place to two
+                        DecimalFormat df = new DecimalFormat();
+                        df.setMaximumFractionDigits(2);
+
+                        float iops = (num_threads / total_time);
+                        String final_iops = df.format(iops);
+                        String final_rate = df.format(rate);
+                        NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + final_rate + " MB/s. OPS/s: " + final_iops);
+                        performance_logger(total_time, Float.valueOf(final_rate));
                         if (counter == 100) {
                             counter = 0;
                             x = new double[op_count];
@@ -167,7 +171,7 @@ public class PerformanceThread implements Runnable {
                             x_latency = new double[op_count];
                             y_latency = new double[op_count];
                         }
-                        y[counter] = rate;
+                        y[counter] = Double.valueOf(final_rate);
                         x[counter] = counter;
                         y_latency[counter] = total_time;
                         x_latency[counter] = counter;
