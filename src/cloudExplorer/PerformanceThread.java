@@ -20,9 +20,11 @@ import static cloudExplorer.NewJFrame.jTextArea1;
 import com.googlecode.charts4j.AxisLabelsFactory;
 import com.googlecode.charts4j.Data;
 import com.googlecode.charts4j.GCharts;
+import com.googlecode.charts4j.Plot;
 import com.googlecode.charts4j.Plots;
 import com.googlecode.charts4j.ScatterPlot;
 import com.googlecode.charts4j.ScatterPlotData;
+import com.googlecode.charts4j.XYLineChart;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -125,6 +127,8 @@ public class PerformanceThread implements Runnable {
 
                     x = new double[op_count];
                     y = new double[op_count];
+                    
+                    int counter = 0;
 
                     for (int z = 0; z != op_count; z++) {
                         long t1 = System.currentTimeMillis();
@@ -148,17 +152,22 @@ public class PerformanceThread implements Runnable {
                         }
 
                         double float_file_size = file_size;
-                        double rate = (num_threads * float_file_size / total_time / 1024);
-                        NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s");
+                        //double rate = (num_threads * float_file_size / total_time / 1024);
+                        double rate = (num_threads * float_file_size / total_time);
+                        //NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s");
+                        NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " KB/s");
+                       
                         //performance_logger(total_time, (float) rate);
-                        y[z] = rate;
-                        x[z] = z;
+                        y[counter] = rate;
+                        x[counter] = counter;
+
+                        if (graphdata) {
+                            graph();
+                        }
+                        counter++;
                         calibrate();
                     }
 
-                    if (graphdata) {
-                        graph();
-                    }
                 } catch (Exception ex) {
                 }
 
@@ -182,14 +191,14 @@ public class PerformanceThread implements Runnable {
         try {
             Data xdata = new Data(x);
             Data ydata = new Data(y);
-            ScatterPlotData plot = Plots.newScatterPlotData(xdata, ydata);
-            ScatterPlot chart = GCharts.newScatterPlot(plot);
-            chart.setSize(500, 300);
-            chart.setTitle("Performance Benchmarks");
-            chart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
-            chart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "MB/s")));
+            Plot plot = Plots.newXYLine(xdata, ydata);
+            XYLineChart xyLineChart = GCharts.newXYLineChart(plot);
+            xyLineChart.setSize(1000, 300);
+            xyLineChart.setTitle("Performance Benchmarks");
+            xyLineChart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
+            xyLineChart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "KB/s")));
             NewJFrame.jPanel11.removeAll();
-            label = new JLabel(new ImageIcon(ImageIO.read(new URL(chart.toURLString()))));
+            label = new JLabel(new ImageIcon(ImageIO.read(new URL(xyLineChart.toURLString()))));
             NewJFrame.jPanel11.add(label);
             NewJFrame.jPanel11.revalidate();
             NewJFrame.jPanel11.repaint();
