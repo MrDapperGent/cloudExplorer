@@ -26,7 +26,6 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import static cloudExplorer.NewJFrame.jTextArea1;
-import javax.swing.ImageIcon;
 
 public class ObjectACL implements Runnable {
 
