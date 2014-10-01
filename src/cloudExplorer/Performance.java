@@ -27,22 +27,22 @@ import static cloudExplorer.NewJFrame.jTextArea1;
 import javax.swing.JCheckBox;
 
 public class Performance implements Runnable {
-
+    
     NewJFrame mainFrame;
     Put put;
     Performance putperformance;
     Boolean operation = true;
     PerformanceThread performancethread;
-
+    
     public Performance(NewJFrame Frame, Boolean Aoperation) {
         mainFrame = Frame;
         operation = Aoperation;
-
+        
     }
-
+    
     public void run() {
         try {
-
+            
             final JButton startPerformanceTest = new JButton("Start Test");
             final JButton abortPerformanceTest = new JButton("Abort");
             final JButton close = new JButton("Close");
@@ -54,30 +54,33 @@ public class Performance implements Runnable {
             final JTextField getFileSize = new JTextField();
             final JTextField getTheadCount = new JTextField("5");
             final JTextField getOperationCount = new JTextField("5");
+            
             getFileSize.setText("1024");
-
             graph.setBackground(Color.white);
             graph.setForeground(Color.blue);
+            graph.setSelected(true);
+            graph.setBorder(null);
             startPerformanceTest.setBackground(Color.white);
             startPerformanceTest.setForeground(Color.blue);
             abortPerformanceTest.setBackground(Color.white);
             abortPerformanceTest.setForeground(Color.blue);
             abortPerformanceTest.setBorder(null);
             startPerformanceTest.setBorder(null);
-
+            
             close.setBackground(Color.white);
             close.setBorder(null);
             close.setForeground(Color.blue);
-
+            
             close.setIcon(mainFrame.genericEngine);
             abortPerformanceTest.setIcon(mainFrame.genericEngine);
             startPerformanceTest.setIcon(mainFrame.genericEngine);
-
+            
             startPerformanceTest.addActionListener(new ActionListener() {
-
+                
                 public void actionPerformed(ActionEvent e) {
                     Boolean graphData = false;
-                    if(graph.isSelected()){
+                    
+                    if (graph.isSelected()) {
                         graphData = true;
                     }
                     mainFrame.perf = true;
@@ -86,21 +89,21 @@ public class Performance implements Runnable {
                     int threadcount = Integer.parseInt(getTheadCount.getText());
                     String getValue = getFileSize.getText();
                     String operationCount = getOperationCount.getText();
-                    performancethread = new PerformanceThread(threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation,graphData);
-                    performancethread.startc(threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation,graphData);
+                    performancethread = new PerformanceThread(threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation, graphData);
+                    performancethread.startc(threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation, graphData);
                     //close.doClick();
                 }
             });
-
+            
             abortPerformanceTest.addActionListener(new ActionListener() {
-
+                
                 public void actionPerformed(ActionEvent e) {
                     performancethread.stop();
                 }
             });
-
+            
             close.addActionListener(new ActionListener() {
-
+                
                 public void actionPerformed(ActionEvent e) {
                     mainFrame.jPanel14.removeAll();
                     mainFrame.jPanel14.repaint();
@@ -108,7 +111,7 @@ public class Performance implements Runnable {
                     mainFrame.jPanel14.validate();
                 }
             });
-
+            
             mainFrame.jPanel14.removeAll();
             mainFrame.jPanel14.setLayout(new BoxLayout(mainFrame.jPanel14, BoxLayout.Y_AXIS));
             mainFrame.jPanel14.add(fileSize);
@@ -122,25 +125,25 @@ public class Performance implements Runnable {
             mainFrame.jPanel14.add(startPerformanceTest);
             mainFrame.jPanel14.add(abortPerformanceTest);
 
-           // mainFrame.jPanel14.add(close);
+            // mainFrame.jPanel14.add(close);
             mainFrame.jPanel14.repaint();
             mainFrame.jPanel14.revalidate();
             mainFrame.jPanel14.validate();
-
+            
         } catch (Exception mp3player) {
             jTextArea1.append("\n" + mp3player.getMessage());
         }
         mainFrame.calibrateTextArea();
-
+        
     }
-
+    
     public void calibrate() {
         try {
             jTextArea1.setCaretPosition(jTextArea1.getLineStartOffset(jTextArea1.getLineCount() - 1));
         } catch (Exception e) {
         }
     }
-
+    
     void startc(boolean Aoperation) {
         (new Thread(new Performance(mainFrame, Aoperation))).start();
     }
