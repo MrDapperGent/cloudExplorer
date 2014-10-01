@@ -142,16 +142,16 @@ public class PerformanceThread implements Runnable {
                             }
                         }
 
-                        double t2 = System.currentTimeMillis();
-                        double diff = t2 - t1;
-                        double total_time = diff / 1000;
+                        long t2 = System.currentTimeMillis();
+                        long diff = t2 - t1;
+                        long total_time = diff / 1000;
 
                         if (total_time == 0) {
                             total_time = 1;
                         }
 
-                        double float_file_size = file_size;
-                        double rate = (num_threads * float_file_size / total_time);
+                        float float_file_size = file_size;
+                        float rate = (num_threads * float_file_size / total_time);
                         //NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s");
                         NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " KB/s");
                         performance_logger(total_time, (float) rate);
