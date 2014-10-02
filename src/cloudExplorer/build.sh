@@ -12,7 +12,7 @@ LINUX="$SRC/src/cloudExplorer/cloudExplorer.bat"
 LOC="$HOME"
 LOCBUILD="$LOC/$BUILD_NAME/"
 ZIP="$LOC/$BUILD_NAME.zip"
-BUCKET="cloudexplorer"
+BUCKET="abc81572"
 
 rm -rf $LOC/$BUILD_NAME
 mkdir $LOC/$BUILD_NAME
