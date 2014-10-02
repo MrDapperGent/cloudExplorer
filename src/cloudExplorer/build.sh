@@ -9,7 +9,7 @@ JARLOC="$JARHOME/dist"
 README="$SRC/src/cloudExplorer/Release_Notes.txt"
 WINDOWS="$SRC/src/cloudExplorer/cloudExplorer"
 LINUX="$SRC/src/cloudExplorer/cloudExplorer.bat"
-LOC="$HOME/ownCloud/cloudian"
+LOC="$HOME"
 LOCBUILD="$LOC/$BUILD_NAME/"
 ZIP="$LOC/$BUILD_NAME.zip"
 
