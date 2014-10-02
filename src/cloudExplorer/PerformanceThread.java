@@ -57,6 +57,8 @@ public class PerformanceThread implements Runnable {
     double[] y;
     double[] x_latency;
     double[] y_latency;
+    double[] x_iops;
+    double[] y_iops;
     Get get;
     JLabel label;
 
@@ -131,6 +133,8 @@ public class PerformanceThread implements Runnable {
                     y = new double[op_count];
                     x_latency = new double[op_count];
                     y_latency = new double[op_count];
+                    x_iops = new double[op_count];
+                    y_iops = new double[op_count];
 
                     int counter = 0;
 
@@ -158,7 +162,7 @@ public class PerformanceThread implements Runnable {
                         double iops = (num_threads / total_time);
                         iops = Math.round(iops * 100);
                         iops = iops / 100;
-                                 
+
                         NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s. OPS/s: " + iops);
                         performance_logger(total_time, rate);
                         if (counter == 100) {
@@ -167,11 +171,15 @@ public class PerformanceThread implements Runnable {
                             y = new double[op_count];
                             x_latency = new double[op_count];
                             y_latency = new double[op_count];
+                            x_iops = new double[op_count];
+                            y_iops = new double[op_count];
                         }
                         y[counter] = (Double) rate;
                         x[counter] = counter;
                         y_latency[counter] = total_time;
                         x_latency[counter] = counter;
+                        y_iops[counter] = iops;
+                        x_iops[counter] = counter;
 
                         if (graphdata) {
                             graph();
@@ -202,6 +210,18 @@ public class PerformanceThread implements Runnable {
 
         try {
 
+            //Configures the IO graph
+            Data xdata_iops = new Data(x_iops);
+            Data ydata_iops = new Data(y_iops);
+            Plot plot_iops = Plots.newXYLine(xdata_iops, ydata_iops);
+            plot_iops.setColor(Color.GREEN);
+            XYLineChart xyLineChart_iops = GCharts.newXYLineChart(plot_iops);
+            xyLineChart_iops.setSize(375, 300);
+            xyLineChart_iops.setTitle("OP/s Benchmarks");
+            xyLineChart_iops.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
+            xyLineChart_iops.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Seconds")));
+            JLabel label_iops = new JLabel(new ImageIcon(ImageIO.read(new URL(xyLineChart_iops.toURLString()))));
+
             //Configures the latency graph
             Data xdata_latency = new Data(x_latency);
             Data ydata_latency = new Data(y_latency);
@@ -221,7 +241,7 @@ public class PerformanceThread implements Runnable {
             plot.setColor(Color.BLUE);
             XYLineChart xyLineChart = GCharts.newXYLineChart(plot);
             xyLineChart.setSize(375, 300);
-            xyLineChart.setTitle("Performance Benchmarks");
+            xyLineChart.setTitle("Throughput Benchmarks");
             xyLineChart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
             xyLineChart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "MB/s")));
             label = new JLabel(new ImageIcon(ImageIO.read(new URL(xyLineChart.toURLString()))));
@@ -231,6 +251,7 @@ public class PerformanceThread implements Runnable {
             GridLayout layout = new GridLayout(0, 3);
             NewJFrame.jPanel11.setLayout(layout);
             NewJFrame.jPanel11.add(label);
+            NewJFrame.jPanel11.add(label_iops);
             NewJFrame.jPanel11.add(label_latency);
             NewJFrame.jPanel11.revalidate();
             NewJFrame.jPanel11.repaint();

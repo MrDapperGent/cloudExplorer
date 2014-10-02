@@ -1,5 +1,5 @@
 #!/bin/bash
-BUILD_NAME="cloudExplorer-3.5testing"
+BUILD_NAME="cloudExplorer-devel"
 HOME="/Users/philliptribble"
 #HOME="/home/ptribble"
 SRC="$HOME/cloudExplorer"
@@ -12,7 +12,7 @@ LINUX="$SRC/src/cloudExplorer/cloudExplorer.bat"
 LOC="$HOME"
 LOCBUILD="$LOC/$BUILD_NAME/"
 ZIP="$LOC/$BUILD_NAME.zip"
-BUCKET="abc81572"
+BUCKET="cloudexplorer"
 
 rm -rf $LOC/$BUILD_NAME
 mkdir $LOC/$BUILD_NAME
