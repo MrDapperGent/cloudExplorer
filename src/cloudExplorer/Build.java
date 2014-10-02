@@ -133,8 +133,6 @@ public class Build {
             System.out.print("\n\n" + url);
 
         } catch (Exception send) {
-            System.out.print("\n" + send.getMessage());
-            System.out.print("\nbuild_name=" + build_name);
         }
     }
 }
