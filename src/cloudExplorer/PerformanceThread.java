@@ -24,6 +24,9 @@ import com.googlecode.charts4j.GCharts;
 import com.googlecode.charts4j.Plot;
 import com.googlecode.charts4j.Plots;
 import com.googlecode.charts4j.XYLineChart;
+import static java.awt.Color.BLUE;
+import static java.awt.Color.GREEN;
+import static java.awt.Color.WHITE;
 import java.awt.GridLayout;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -198,6 +201,8 @@ public class PerformanceThread implements Runnable {
 
                         if (graphdata) {
                             graph();
+                        } else {
+                            display(rate, iops);
                         }
                         counter++;
                         calibrate();
@@ -219,6 +224,28 @@ public class PerformanceThread implements Runnable {
             NewJFrame.jTextArea1.append("\nError: Thread and Count values must be greater than 0. Object Size value must be 1024 or greater.");
             calibrate();
         }
+    }
+
+    void display(double throughput, double iops) {
+
+        JLabel throughputIcon = new JLabel("\n                                        Average Throughput\n\n" + Double.toString(throughput));
+        throughputIcon.setForeground(BLUE);
+        throughputIcon.setBackground(WHITE);
+        throughputIcon.setSize(100, 100);
+        JLabel iopsIcon = new JLabel("\n                                                   OP/s\n\n" + Double.toString(iops));
+        iopsIcon.setForeground(GREEN);
+        iopsIcon.setBackground(WHITE);
+        iopsIcon.setSize(100, 100);
+       
+        //Configures the panel
+        NewJFrame.jPanel11.removeAll();
+        GridLayout layout = new GridLayout(0, 3);
+        NewJFrame.jPanel11.setLayout(layout);
+        NewJFrame.jPanel11.add(throughputIcon);
+        NewJFrame.jPanel11.add(iopsIcon);
+        //   NewJFrame.jPanel11.add(latencyIcon);
+        NewJFrame.jPanel11.revalidate();
+        NewJFrame.jPanel11.repaint();
     }
 
     void graph() {

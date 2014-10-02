@@ -59,7 +59,7 @@ public class Performance implements Runnable {
             getFileSize.setText("1024");
             graph.setBackground(Color.white);
             graph.setForeground(Color.blue);
-            graph.setSelected(true);
+            graph.setSelected(false);
             graph.setBorder(null);
             startPerformanceTest.setBackground(Color.white);
             startPerformanceTest.setForeground(Color.blue);
