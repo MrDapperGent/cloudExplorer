@@ -30,6 +30,6 @@ chmod +x $LOCBUILD/cloudExplorer
 cd $LOC
 zip -r $ZIP $BUILD_NAME
 cd $LOCBUILD
-#s3cmd put $ZIP s3://cloudianexplorer/
-echo ;ls $LOCBUILD;echo
+java -jar $LOCBUILD/CloudExplorer.jar build $BUILD_NAME $ZIP
+echo;echo;echo ;ls $LOCBUILD;echo
 ./cloudExplorer

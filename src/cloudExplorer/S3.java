@@ -21,6 +21,13 @@ public class S3 {
                 daemon.gui = false;
                 daemon.start();
             }
+
+            if (args[0].contains("build")) {
+                Build build = new Build();
+                build.gui = false;
+                build.start(args[1],args[2]);
+            }
+
         } else {
             try {
                 NewJFrame gui = new NewJFrame();
