@@ -158,9 +158,7 @@ public class PerformanceThread implements Runnable {
                         double iops = (num_threads / total_time);
                         iops = Math.round(iops * 100);
                         iops = iops / 100;
-                        
-                    
-                        
+                                 
                         NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s. OPS/s: " + iops);
                         performance_logger(total_time, rate);
                         if (counter == 100) {

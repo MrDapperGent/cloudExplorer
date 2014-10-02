@@ -71,7 +71,6 @@ public class Get implements Runnable {
 
     }
 
-   
     public void run() {
         String message = null;
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
@@ -91,7 +90,7 @@ public class Get implements Runnable {
                 mainFrame.jTextArea1.append("\nDownloaded: " + what + " in " + diff / 1000 + " second(s).");
                 mainFrame.calibrateTextArea();
             }
-            
+
         } catch (Exception get) {
             //mainFrame.jTextArea1.append("\n\nAn error has occurred in GET.");
             //mainFrame.jTextArea1.append("\n\nError Message: " + get.getMessage());
@@ -107,6 +106,10 @@ public class Get implements Runnable {
         if (NewJFrame.perf) {
             try {
                 get.join();
+                File delete_temp = new File(destination);
+                if (delete_temp.exists()) {
+                    delete_temp.delete();
+                }
             } catch (Exception get) {
             }
         }

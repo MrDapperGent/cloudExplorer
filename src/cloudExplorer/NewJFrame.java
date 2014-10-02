@@ -2405,7 +2405,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             calibrateTextArea();
             NewJFrame.perf = true;
             Performance performanceTest = new Performance(this, true);
-            performanceTest.startc(true);
+            performanceTest.startc(this,true);
             jTextArea1.append("\nPerformance test module has started. Please observe for any errors.");
             calibrateTextArea();
         } else {
@@ -2419,8 +2419,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jTextArea1.append("\nPlease wait, loading Performance test module.");
             calibrateTextArea();
             NewJFrame.perf = true;
-            Performance performanceTest = new Performance(this, true);
-            performanceTest.startc(true);
+            Performance performanceTest = new Performance(this, false);
+            performanceTest.startc(this,false);
             jTextArea1.append("\nPerformance test module has started. Please observe for any errors.");
             calibrateTextArea();
         } else {

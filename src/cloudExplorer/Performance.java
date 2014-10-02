@@ -149,7 +149,7 @@ public class Performance implements Runnable {
         }
     }
 
-    void startc(boolean Aoperation) {
+    void startc(NewJFrame mainFrame,boolean Aoperation) {
         (new Thread(new Performance(mainFrame, Aoperation))).start();
     }
 }
