@@ -39,7 +39,9 @@ public class PerformanceThread implements Runnable {
 
     String Home = System.getProperty("user.home");
     NewJFrame mainFrame;
-    String output_log = Home + File.separator + "performance_results.csv";
+    String throughput_log = Home + File.separator + "throughput_results.csv";
+    String latency_log = Home + File.separator + "latency_results.csv";
+    String ops_log = Home + File.separator + "ops_results.csv";
     int threadcount;
     String getValue;
     String getOperationCount;
@@ -62,9 +64,9 @@ public class PerformanceThread implements Runnable {
     Get get;
     JLabel label;
 
-    public void performance_logger(double time, double rate) {
+    public void performance_logger(double time, double rate, String what) {
         try {
-            FileWriter frr = new FileWriter(output_log, true);
+            FileWriter frr = new FileWriter(what, true);
             BufferedWriter bfrr = new BufferedWriter(frr);
             bfrr.write("\n" + time + "," + rate);
             bfrr.close();
@@ -94,7 +96,10 @@ public class PerformanceThread implements Runnable {
     public void run() {
 
         File tempFile = new File(temp_file);
-        File outputlog = new File(output_log);
+        File throughputfile = new File(throughput_log);
+        File opsfile = new File(ops_log);
+        File latencyfile = new File(latency_log);
+
         int op_count = Integer.parseInt(getOperationCount);
         int file_size = Integer.parseInt(getValue);
         float num_threads = threadcount;
@@ -103,8 +108,15 @@ public class PerformanceThread implements Runnable {
             tempFile.delete();
         }
 
-        if (outputlog.exists()) {
-            outputlog.delete();
+        if (throughputfile.exists()) {
+            throughputfile.delete();
+        }
+        if (latencyfile.exists()) {
+            latencyfile.delete();
+        }
+
+        if (opsfile.exists()) {
+            opsfile.delete();
         }
 
         if (file_size > 0 && num_threads > 0 && op_count > 0) {
@@ -164,7 +176,10 @@ public class PerformanceThread implements Runnable {
                         iops = iops / 100;
 
                         NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s. OPS/s: " + iops);
-                        performance_logger(total_time, rate);
+                        performance_logger(counter, rate, throughput_log);
+                        performance_logger(counter, iops, ops_log);
+                        performance_logger(counter, total_time, latency_log);
+
                         if (counter == 100) {
                             counter = 0;
                             x = new double[op_count];
@@ -196,7 +211,7 @@ public class PerformanceThread implements Runnable {
                 calibrate();
             }
 
-            NewJFrame.jTextArea1.append("\nResults saved in CSV format to: " + output_log);
+            NewJFrame.jTextArea1.append("\nResults saved in CSV format to: " + "\n" + throughput_log + "\n" + latency_log + "\n" + ops_log);
             calibrate();
             NewJFrame.perf = false;
 
