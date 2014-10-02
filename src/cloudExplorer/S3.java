@@ -25,7 +25,7 @@ public class S3 {
             if (args[0].contains("build")) {
                 Build build = new Build();
                 build.gui = false;
-                build.start(args[1],args[2]);
+                build.start(args[1],args[2],args[3]);
             }
 
         } else {

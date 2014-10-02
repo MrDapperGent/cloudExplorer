@@ -64,7 +64,7 @@ public class Daemon {
                 messageParser("\n");
             }
             messageParser("\n------------------------------------------------");
-            messageParser("\nCloudian Explorer is running in Daemon mode.");
+            messageParser("\n   Cloud Explorer is running in Daemon mode.");
             messageParser("\n------------------------------------------------");
         } else {
             messageParser("\nBackground Sync mode is running.....");

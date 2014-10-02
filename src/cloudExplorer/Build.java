@@ -53,7 +53,7 @@ public class Build {
                 messageParser("\n");
             }
             messageParser("\n------------------------------------------------");
-            messageParser("\n           Cloudian Explorer Build mode.");
+            messageParser("\n           Cloud Explorer Build mode.");
             messageParser("\n------------------------------------------------");
         } else {
             messageParser("\nBuild Sync mode is running.....");
@@ -97,8 +97,9 @@ public class Build {
         return remove_symbol;
     }
 
-    void start(String Aname, String Abuild_file) {
+    void start(String Aname, String Abuild_file, String Abucket) {
         build_name = Aname;
+        bucket = Abucket;
         build_file = new File(Abuild_file);
 
         mainmenu();
@@ -130,12 +131,18 @@ public class Build {
     }
 
     void putTOs3(File dir) {
-        NewJFrame.perf = true;
-        System.out.print("\n\nUploading " + build_file.getAbsolutePath().toString() + "........");
-        put = new Put(build_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, build_name, false, false);
-        put.startc(build_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, build_name, false, false);
-        String url = objectacl.setACLurl(build_name, access_key, secret_key, endpoint, bucket);
-        url = url.replace("Pre-Signed URL = ", "");
-        System.out.print("\n\n" + url);
+        try {
+            NewJFrame.perf = true;
+            System.out.print("\n\nUploading " + build_file.getAbsolutePath().toString() + "........");
+            put = new Put(build_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, build_name, false, false);
+            put.startc(build_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, build_name, false, false);
+            String url = objectacl.setACLurl(build_name, access_key, secret_key, endpoint, bucket);
+            url = url.replace("Pre-Signed URL = ", "");
+            System.out.print("\n\n" + url);
+
+        } catch (Exception send) {
+            System.out.print("\n" + send.getMessage());
+            System.out.print("\nbuild_name=" + build_name);
+        }
     }
 }

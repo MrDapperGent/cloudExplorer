@@ -12,6 +12,7 @@ LINUX="$SRC/src/cloudExplorer/cloudExplorer.bat"
 LOC="$HOME"
 LOCBUILD="$LOC/$BUILD_NAME/"
 ZIP="$LOC/$BUILD_NAME.zip"
+BUCKET="cloudexplorer"
 
 rm -rf $LOC/$BUILD_NAME
 mkdir $LOC/$BUILD_NAME
@@ -30,6 +31,6 @@ chmod +x $LOCBUILD/cloudExplorer
 cd $LOC
 zip -r $ZIP $BUILD_NAME
 cd $LOCBUILD
-java -jar $LOCBUILD/CloudExplorer.jar build $BUILD_NAME $ZIP
+java -jar $LOCBUILD/CloudExplorer.jar build $BUILD_NAME $ZIP $BUCKET
 echo;echo;echo ;ls $LOCBUILD;echo
 ./cloudExplorer
