@@ -295,6 +295,7 @@ public class PerformanceThread implements Runnable {
             NewJFrame.jPanel11.add(label_latency);
             NewJFrame.jPanel11.revalidate();
             NewJFrame.jPanel11.repaint();
+            System.gc();
         } catch (Exception graph) {
         }
     }
