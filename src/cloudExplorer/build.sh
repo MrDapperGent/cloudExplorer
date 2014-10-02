@@ -1,5 +1,5 @@
 #!/bin/bash
-BUILD_NAME="cloudExplorer-test"
+BUILD_NAME="cloudExplorer-3.5testing"
 HOME="/Users/philliptribble"
 #HOME="/home/ptribble"
 SRC="$HOME/cloudExplorer"
