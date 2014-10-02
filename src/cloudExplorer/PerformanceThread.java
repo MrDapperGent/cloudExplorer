@@ -217,9 +217,9 @@ public class PerformanceThread implements Runnable {
             plot_iops.setColor(Color.GREEN);
             XYLineChart xyLineChart_iops = GCharts.newXYLineChart(plot_iops);
             xyLineChart_iops.setSize(375, 300);
-            xyLineChart_iops.setTitle("OP/s Benchmarks");
+            xyLineChart_iops.setTitle("OP/s");
             xyLineChart_iops.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
-            xyLineChart_iops.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Seconds")));
+            xyLineChart_iops.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "OP/s")));
             JLabel label_iops = new JLabel(new ImageIcon(ImageIO.read(new URL(xyLineChart_iops.toURLString()))));
 
             //Configures the latency graph
@@ -229,7 +229,7 @@ public class PerformanceThread implements Runnable {
             plot_latency.setColor(Color.RED);
             XYLineChart xyLineChart_latency = GCharts.newXYLineChart(plot_latency);
             xyLineChart_latency.setSize(375, 300);
-            xyLineChart_latency.setTitle("Latency Benchmarks");
+            xyLineChart_latency.setTitle("Latency");
             xyLineChart_latency.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
             xyLineChart_latency.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Seconds")));
             JLabel label_latency = new JLabel(new ImageIcon(ImageIO.read(new URL(xyLineChart_latency.toURLString()))));
@@ -241,7 +241,7 @@ public class PerformanceThread implements Runnable {
             plot.setColor(Color.BLUE);
             XYLineChart xyLineChart = GCharts.newXYLineChart(plot);
             xyLineChart.setSize(375, 300);
-            xyLineChart.setTitle("Throughput Benchmarks");
+            xyLineChart.setTitle("Throughput");
             xyLineChart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
             xyLineChart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "MB/s")));
             label = new JLabel(new ImageIcon(ImageIO.read(new URL(xyLineChart.toURLString()))));
