@@ -163,7 +163,7 @@ public class PerformanceThread implements Runnable {
                             x_latency = new double[op_count];
                             y_latency = new double[op_count];
                         }
-                        y[counter] = Double.valueOf(rate);
+                        y[counter] = rate;
                         x[counter] = counter;
                         y_latency[counter] = total_time;
                         x_latency[counter] = counter;
