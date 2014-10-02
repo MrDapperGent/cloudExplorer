@@ -22,7 +22,6 @@ import java.io.FileReader;
 
 public class Build {
 
-    NewJFrame mainFrame;
     String name = null;
     String Home = System.getProperty("user.home");
     String s3_config_file = Home + File.separator + "s3.config";
@@ -32,32 +31,26 @@ public class Build {
     String build_file_location;
     Put put;
     String build_name = null;
-
     String[] saved_s3_configs = null;
-    String[] saved_directory_to_sync = null;
-    File dirToSync = new File("");
     String secret_key = null;
     String access_key = null;
     String endpoint = null;
     String bucket = null;
     String region = null;
-    boolean gui = false;
 
     void messageParser(String message) {
         System.out.print(message);
     }
 
     void mainmenu() {
-        if (!gui) {
-            for (int i = 0; i != 20; i++) {
-                messageParser("\n");
-            }
-            messageParser("\n------------------------------------------------");
-            messageParser("\n           Cloud Explorer Build mode.");
-            messageParser("\n------------------------------------------------");
-        } else {
-            messageParser("\nBuild Sync mode is running.....");
+
+        for (int i = 0; i != 20; i++) {
+            messageParser("\n");
         }
+        messageParser("\n------------------------------------------------");
+        messageParser("\n           Cloud Explorer Build mode.");
+        messageParser("\n------------------------------------------------");
+
     }
 
     void loadS3credentials() {
@@ -65,9 +58,7 @@ public class Build {
             for (String what : saved_s3_configs) {
                 if (what == null) {
                     messageParser("\nError: an S3 config was null");
-                    if (!gui) {
-                        System.exit(-1);
-                    }
+                    System.exit(-1);
                 }
             }
 
@@ -134,8 +125,8 @@ public class Build {
         try {
             NewJFrame.perf = true;
             System.out.print("\n\nUploading " + build_file.getAbsolutePath().toString() + "........");
-            put = new Put(build_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, build_name, false, false);
-            put.startc(build_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, build_name, false, false);
+            put = new Put(build_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, build_name + ".zip", false, false);
+            put.startc(build_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, build_name + ".zip", false, false);
             String url = objectacl.setACLurl(build_name, access_key, secret_key, endpoint, bucket);
             url = url.replace("Pre-Signed URL = ", "");
             System.out.print("\n\n" + url);
