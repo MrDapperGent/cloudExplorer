@@ -152,10 +152,17 @@ public class PerformanceThread implements Runnable {
                         double total_time = diff / 1000;
 
                         double rate = (file_size / total_time / 1024);
-                        double iops = (num_threads / total_time);
+                        rate = Math.round(rate * 100);
+                        rate = rate / 100;
 
+                        double iops = (num_threads / total_time);
+                        iops = Math.round(iops * 100);
+                        iops = iops / 100;
+                        
+                    
+                        
                         NewJFrame.jTextArea1.append("\nOperation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s. OPS/s: " + iops);
-                        performance_logger(total_time, (float) rate);
+                        performance_logger(total_time, rate);
                         if (counter == 100) {
                             counter = 0;
                             x = new double[op_count];
@@ -163,7 +170,7 @@ public class PerformanceThread implements Runnable {
                             x_latency = new double[op_count];
                             y_latency = new double[op_count];
                         }
-                        y[counter] = rate;
+                        y[counter] = (Double) rate;
                         x[counter] = counter;
                         y_latency[counter] = total_time;
                         x_latency[counter] = counter;
