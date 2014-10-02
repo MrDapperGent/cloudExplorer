@@ -151,7 +151,7 @@ public class PerformanceThread implements Runnable {
                         double diff = t2 - t1;
                         double total_time = diff / 1000;
 
-                        double rate = (file_size / total_time / 1024);
+                        double rate = (num_threads * file_size / total_time / 1024);
                         rate = Math.round(rate * 100);
                         rate = rate / 100;
 
