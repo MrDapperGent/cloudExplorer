@@ -228,15 +228,13 @@ public class PerformanceThread implements Runnable {
 
     void display(double throughput, double iops) {
 
-        JLabel throughputIcon = new JLabel("\n                                        Average Throughput\n\n" + Double.toString(throughput));
+        JLabel throughputIcon = new JLabel("\n                                   Average Throughput\n\n" + Double.toString(throughput) + " MB/s");
         throughputIcon.setForeground(BLUE);
         throughputIcon.setBackground(WHITE);
-        throughputIcon.setSize(100, 100);
         JLabel iopsIcon = new JLabel("\n                                                   OP/s\n\n" + Double.toString(iops));
         iopsIcon.setForeground(GREEN);
         iopsIcon.setBackground(WHITE);
-        iopsIcon.setSize(100, 100);
-       
+
         //Configures the panel
         NewJFrame.jPanel11.removeAll();
         GridLayout layout = new GridLayout(0, 3);
