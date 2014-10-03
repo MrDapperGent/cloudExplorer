@@ -39,6 +39,7 @@ Features:
 10. Image viewer.
 11. Migrate buckets between S3 accounts.
 12. Bucket search.
+13. Perfomrance testing with graphs.
 
 How to migrate data between S3 accounts:
 
