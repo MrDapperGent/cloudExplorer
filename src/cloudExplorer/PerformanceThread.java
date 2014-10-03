@@ -152,6 +152,7 @@ public class PerformanceThread implements Runnable {
                     y_iops = new double[op_count];
 
                     int counter = 0;
+                    int display_counter = 0;
 
                     for (int z = 0; z != op_count; z++) {
                         long t1 = System.currentTimeMillis();
@@ -204,11 +205,18 @@ public class PerformanceThread implements Runnable {
                         x_iops[counter] = counter;
 
                         if (graphdata) {
+                            //  if (display_counter == 2) {
+                            //      display_counter = 0;
                             graph();
+                            //  }
                         } else {
-                            display(rate, iops);
+                            if (display_counter == 10) {
+                                display(rate, iops);
+                                display_counter = 0;
+                            }
                         }
                         counter++;
+                        display_counter++;
                         calibrate();
                     }
 
@@ -230,7 +238,8 @@ public class PerformanceThread implements Runnable {
         }
     }
 
-    void display(double throughput, double iops) {
+    void display(double throughput, double iops
+    ) {
 
         JLabel throughputIcon = new JLabel("\n                                   Average Throughput \n\n" + Double.toString(throughput) + " MB/s");
         throughputIcon.setForeground(BLUE);
@@ -245,7 +254,6 @@ public class PerformanceThread implements Runnable {
         NewJFrame.jPanel11.setLayout(layout);
         NewJFrame.jPanel11.add(throughputIcon);
         NewJFrame.jPanel11.add(iopsIcon);
-        //   NewJFrame.jPanel11.add(latencyIcon);
         NewJFrame.jPanel11.revalidate();
         NewJFrame.jPanel11.repaint();
     }
@@ -310,7 +318,8 @@ public class PerformanceThread implements Runnable {
         calibrate();
     }
 
-    void startc(int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation, Boolean Agraphdata) {
+    void startc(int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation, Boolean Agraphdata
+    ) {
         performancethread = new Thread(new PerformanceThread(Athreadcount, AgetValue, AgetOperationCount, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aoperation, Agraphdata));
         performancethread.start();
 
