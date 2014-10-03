@@ -1,7 +1,7 @@
 #!/bin/bash
 BUILD_NAME="cloudExplorer-3.5"
-HOME="/Users/philliptribble"
-#HOME="/home/ptribble"
+#HOME="/Users/philliptribble"
+HOME="/home/ptribble"
 SRC="$HOME/cloudExplorer"
 JAR="CloudExplorer.jar"
 JARHOME="$HOME/NetBeansProjects/CloudExplorer"
