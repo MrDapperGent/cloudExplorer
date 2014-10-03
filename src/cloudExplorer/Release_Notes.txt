@@ -1,5 +1,7 @@
 Version 3.5
 
+***** Java 8 is required for this release. *****
+
 Editor can now edit file versions.
 Image viewer now deselects the image after viewing to make it easier to view next image.
 Performance test for uploads.
