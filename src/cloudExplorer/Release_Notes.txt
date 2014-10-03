@@ -1,5 +1,6 @@
 Version 3.6
 
+Search text box automatically clears after search.
 
 Version 3.5
 

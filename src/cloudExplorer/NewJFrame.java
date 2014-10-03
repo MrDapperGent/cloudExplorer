@@ -1365,6 +1365,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     int display = objectarray.length - 1;
                     jTextArea1.append("\nLoaded objects. Total number of objects in this bucket: " + display);
                 }
+                jTextField10.setText("");
             } catch (Exception searchBar) {
 
             }
@@ -2405,7 +2406,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             calibrateTextArea();
             NewJFrame.perf = true;
             Performance performanceTest = new Performance(this, true);
-            performanceTest.startc(this,true);
+            performanceTest.startc(this, true);
             jTextArea1.append("\nPerformance test module has started. Please observe for any errors.");
             calibrateTextArea();
         } else {
@@ -2420,7 +2421,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             calibrateTextArea();
             NewJFrame.perf = true;
             Performance performanceTest = new Performance(this, false);
-            performanceTest.startc(this,false);
+            performanceTest.startc(this, false);
             jTextArea1.append("\nPerformance test module has started. Please observe for any errors.");
             calibrateTextArea();
         } else {
