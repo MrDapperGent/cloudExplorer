@@ -3,6 +3,8 @@ Version 3.6
 ***** Java 8 is required for this release. *****
 
 Search text box automatically clears after search.
+Performance improvements when deleting thousands of objects.
+"Delete every object and version" is more stable.
 
 Version 3.5
 

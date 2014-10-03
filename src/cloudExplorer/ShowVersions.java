@@ -20,7 +20,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.JRadioButton;
-import cloudExplorer.NewJFrame;
 
 public class ShowVersions implements Runnable {
 
@@ -77,12 +76,8 @@ public class ShowVersions implements Runnable {
             mainFrame.jPanel11.setLayout(
                     new BoxLayout(mainFrame.jPanel11, BoxLayout.Y_AXIS));
             mainFrame.jPanel11.repaint();
-
             mainFrame.jPanel11.revalidate();
-
             mainFrame.jPanel11.validate();
-
-            System.gc();
         }
     }
 

@@ -2122,12 +2122,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 } else {
                     for (int i = 1; i != previous_objectarray_length; i++) {
                         if (object_item[i].isSelected()) {
-                            if (delcounter < 3000) {
-                                del = new Delete(object_item[i].getText(), cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), null);
-                                del.startc(object_item[i].getText(), cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), null);
-                            } else {
-                                break;
-                            }
+                            del = new Delete(object_item[i].getText(), cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), null);
+                            del.startc(object_item[i].getText(), cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), null);
                         }
                         delcounter++;
                     }

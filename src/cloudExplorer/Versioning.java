@@ -66,12 +66,6 @@ public class Versioning {
                 for (String delVer : mainFrame.versioning_name) {
                     del = new Delete(delVer, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.versioning_id.get(i));
                     del.startc(delVer, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.versioning_id.get(i));
-                    long t1 = System.currentTimeMillis();
-                    long diff = 0;
-                    while (diff < 100) {
-                        long t2 = System.currentTimeMillis();
-                        diff = t2 - t1;
-                    }
                     i++;
                 }
 

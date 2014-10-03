@@ -14,7 +14,6 @@
  * cloudExplorer
  *
  */
-
 package cloudExplorer;
 
 import com.amazonaws.auth.AWSCredentials;
@@ -35,7 +34,7 @@ public class Delete implements Runnable {
     String endpoint = null;
     String secret_key = null;
     String destination = null;
-    Thread delete;
+    Thread del;
     String version = null;
 
     public void calibrate() {
@@ -67,11 +66,11 @@ public class Delete implements Runnable {
             } else {
                 s3Client.deleteObject(new DeleteObjectRequest(bucket, what));
             }
-            jTextArea1.append("\nDeleted object: " + what);
+            NewJFrame.jTextArea1.append("\nDeleted object: " + what);
             calibrate();
         } catch (Exception Delete) {
-            mainFrame.jTextArea1.append("\n\nAn error has occurred in DeleteFile.");
-            mainFrame.jTextArea1.append("\n\nError Message:    " + Delete.getMessage());
+            NewJFrame.jTextArea1.append("\n\nAn error has occurred in DeleteFile.");
+            NewJFrame.jTextArea1.append("\n\nError Message:    " + Delete.getMessage());
             message = message + "\n" + Delete.getMessage();
             calibrate();
         }
@@ -79,11 +78,16 @@ public class Delete implements Runnable {
     }
 
     void startc(String Awhat, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String Aversion) {
-        (new Thread(new Delete(Awhat, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aversion))).start();
+        del = new Thread(new Delete(Awhat, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aversion));
+        del.start();
+        try {
+            del.join();
+        } catch (Exception Delete) {
+        }
     }
 
     void stop() {
-        delete.stop();
+        del.stop();
         mainFrame.jTextArea1.setText("\nDownload compelted or aborted. Please click search to refresh the Object Explorer if needed.\n");
     }
 
