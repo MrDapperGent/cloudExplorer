@@ -210,7 +210,11 @@ public class PerformanceThread implements Runnable {
                             graph();
                             //  }
                         } else {
-                            if (display_counter == 10) {
+                            if (op_count <= 9 || z <= 9) {
+                                display(rate, iops);
+                                display_counter = 0;
+                            }
+                            if (display_counter == 9) {
                                 display(rate, iops);
                                 display_counter = 0;
                             }
