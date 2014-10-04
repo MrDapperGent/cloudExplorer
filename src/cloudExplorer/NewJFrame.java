@@ -89,7 +89,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     public NewJFrame() {
         try {
-             this.setTitle(version + " -  No bucket selected.");
+            this.setTitle(version + " -  No bucket selected.");
             initComponents();
             setLocationRelativeTo(null);
             UIManager.setLookAndFeel(
@@ -154,7 +154,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             ImageIcon deleteButton = new ImageIcon(
                     this.getClass().getResource("delete.png"));
             this.jButton4.setIcon(deleteButton);
-            this.jButton4.setText("Delete");
 
             ImageIcon selectButton = new ImageIcon(
                     this.getClass().getResource("select.png"));
@@ -708,7 +707,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton4.setBackground(java.awt.SystemColor.text);
-        jButton4.setText("Delete");
+        jButton4.setText("Del");
         jButton4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -717,7 +716,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton7.setBackground(java.awt.SystemColor.text);
-        jButton7.setText("Properties");
+        jButton7.setText("Info");
         jButton7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

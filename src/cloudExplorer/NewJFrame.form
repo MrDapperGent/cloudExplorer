@@ -1097,7 +1097,7 @@
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" id="Text" palette="2" red="ff" type="palette"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Delete"/>
+                        <Property name="text" type="java.lang.String" value="Del"/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
                             <BevelBorder/>
@@ -1113,7 +1113,7 @@
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" id="Text" palette="2" red="ff" type="palette"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Properties"/>
+                        <Property name="text" type="java.lang.String" value="Info"/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
                             <BevelBorder/>
