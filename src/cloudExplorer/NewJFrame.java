@@ -782,7 +782,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton19.setBackground(java.awt.SystemColor.text);
-        jButton19.setText("View Image");
+        jButton19.setText("View");
         jButton19.setToolTipText("");
         jButton19.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton19.addActionListener(new java.awt.event.ActionListener() {
