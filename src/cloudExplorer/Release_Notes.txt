@@ -1,4 +1,4 @@
-Version 3.6
+Version 4.0 
 
 Java 8 is required for this release.
 Search text box automatically clears after search.

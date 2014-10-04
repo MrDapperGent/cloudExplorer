@@ -24,9 +24,16 @@ import java.awt.event.ItemListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -41,7 +48,7 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
-    
+
     ImageIcon genericEngine = new ImageIcon(
             this.getClass().getResource("engine.png"));
     Credentials cred = new Credentials();
@@ -314,6 +321,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenu7 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
+        jMenu8 = new javax.swing.JMenu();
+        jMenuItem12 = new javax.swing.JMenuItem();
 
         jMenuItem5.setText("jMenuItem5");
 
@@ -1252,6 +1261,18 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenu7.add(jMenuItem11);
 
         jMenuBar1.add(jMenu7);
+
+        jMenu8.setText("Help");
+
+        jMenuItem12.setText("About");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem12);
+
+        jMenuBar1.add(jMenu8);
 
         setJMenuBar(jMenuBar1);
 
@@ -2423,6 +2444,25 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         }
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        FileReader frr = null;
+        try {
+            jTabbedPane1.setSelectedIndex(4);
+            InputStream is = getClass().getResourceAsStream("Release_Notes.txt");
+            InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader bfrr = new BufferedReader(isr);
+            String read = null;
+            while ((read = bfrr.readLine()) != null) {
+                jTextArea2.append("\n" + read);
+            }
+            bfrr.close();
+            jTextArea2.setCaretPosition(0);
+        } catch (Exception releasenotes) {
+        }
+
+
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
     void var() {
         try {
             cred.setAccess_key(jTextField1.getText());
@@ -2489,10 +2529,12 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
