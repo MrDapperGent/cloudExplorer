@@ -62,7 +62,8 @@ public class BucketClass {
 
     String makeBucket(String access_key, String secret_key, String bucket, String endpoint, String region) {
         String message = null;
-
+  System.out.print("\n" + bucket + " " + region + " "+ access_key+ " " + secret_key+ " " + endpoint);
+      
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials);
         s3Client.setEndpoint(endpoint);
@@ -91,7 +92,7 @@ public class BucketClass {
         AmazonS3 s3Client = new AmazonS3Client(credentials);
         s3Client.setEndpoint(endpoint);
         String[] array = new String[10];
-
+       
         String bucketlist = null;
 
         int i = 0;
