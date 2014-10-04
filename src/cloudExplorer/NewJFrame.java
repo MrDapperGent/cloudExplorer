@@ -735,7 +735,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton13.setBackground(java.awt.SystemColor.text);
-        jButton13.setText("Select All");
+        jButton13.setText("Select");
         jButton13.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -744,7 +744,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton14.setBackground(java.awt.SystemColor.text);
-        jButton14.setText("Deselect All");
+        jButton14.setText("Deselect");
         jButton14.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
