@@ -2197,6 +2197,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
             jTabbedPane1.setSelectedIndex(4);
             jTextField6.setText(objectToedit);
+            jTextArea2.setCaretPosition(0);
 
         } catch (Exception Download) {
         }
