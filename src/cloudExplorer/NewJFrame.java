@@ -2461,12 +2461,12 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jTextArea1.append("\nError: No bucket has been selected");
         }
     }//GEN-LAST:event_jMenuItem11ActionPerformed
+    void helpMenu(String what) {
 
-    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        FileReader frr = null;
         try {
+            jTextArea2.setText("");
             jTabbedPane1.setSelectedIndex(4);
-            InputStream is = getClass().getResourceAsStream("Release_Notes.txt");
+            InputStream is = getClass().getResourceAsStream(what);
             InputStreamReader isr = new InputStreamReader(is);
             BufferedReader bfrr = new BufferedReader(isr);
             String read = null;
@@ -2477,40 +2477,18 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jTextArea2.setCaretPosition(0);
         } catch (Exception releasenotes) {
         }
+
+    }
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        helpMenu("Release_Notes.txt");
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
-        FileReader frr = null;
-        try {
-            jTabbedPane1.setSelectedIndex(4);
-            InputStream is = getClass().getResourceAsStream("migrate.txt");
-            InputStreamReader isr = new InputStreamReader(is);
-            BufferedReader bfrr = new BufferedReader(isr);
-            String read = null;
-            while ((read = bfrr.readLine()) != null) {
-                jTextArea2.append("\n" + read);
-            }
-            bfrr.close();
-            jTextArea2.setCaretPosition(0);
-        } catch (Exception releasenotes) {
-        }
+        helpMenu("migrate.txt");
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
-        FileReader frr = null;
-        try {
-            jTabbedPane1.setSelectedIndex(4);
-            InputStream is = getClass().getResourceAsStream("backsync.txt");
-            InputStreamReader isr = new InputStreamReader(is);
-            BufferedReader bfrr = new BufferedReader(isr);
-            String read = null;
-            while ((read = bfrr.readLine()) != null) {
-                jTextArea2.append("\n" + read);
-            }
-            bfrr.close();
-            jTextArea2.setCaretPosition(0);
-        } catch (Exception releasenotes) {
-        }
+        helpMenu("backsync.txt");
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 
     void var() {
