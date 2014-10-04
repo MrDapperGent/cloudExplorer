@@ -323,6 +323,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem18 = new javax.swing.JMenuItem();
+        jMenuItem19 = new javax.swing.JMenuItem();
 
         jMenuItem5.setText("jMenuItem5");
 
@@ -1271,6 +1273,22 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
         jMenu8.add(jMenuItem12);
+
+        jMenuItem18.setText("Bucket Migraton");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem18);
+
+        jMenuItem19.setText("Background Sync");
+        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem19ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem19);
 
         jMenuBar1.add(jMenu8);
 
@@ -2459,9 +2477,41 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jTextArea2.setCaretPosition(0);
         } catch (Exception releasenotes) {
         }
-
-
     }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        FileReader frr = null;
+        try {
+            jTabbedPane1.setSelectedIndex(4);
+            InputStream is = getClass().getResourceAsStream("migrate.txt");
+            InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader bfrr = new BufferedReader(isr);
+            String read = null;
+            while ((read = bfrr.readLine()) != null) {
+                jTextArea2.append("\n" + read);
+            }
+            bfrr.close();
+            jTextArea2.setCaretPosition(0);
+        } catch (Exception releasenotes) {
+        }
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
+
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+        FileReader frr = null;
+        try {
+            jTabbedPane1.setSelectedIndex(4);
+            InputStream is = getClass().getResourceAsStream("backsync.txt");
+            InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader bfrr = new BufferedReader(isr);
+            String read = null;
+            while ((read = bfrr.readLine()) != null) {
+                jTextArea2.append("\n" + read);
+            }
+            bfrr.close();
+            jTextArea2.setCaretPosition(0);
+        } catch (Exception releasenotes) {
+        }
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
 
     void var() {
         try {
@@ -2540,6 +2590,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
+    private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
