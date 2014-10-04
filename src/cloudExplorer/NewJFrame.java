@@ -17,6 +17,7 @@
 package cloudExplorer;
 
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -408,12 +409,13 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton6)
-                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(jLabel2)))
+                            .addComponent(jLabel2))
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton6)
+                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
 
@@ -1564,7 +1566,17 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
 
             objectarray = null;
-
+            jPanel11.removeAll();
+            JLabel helpmessage = new JLabel("1. Buckets are displayed on the left. Click on a bucket to see your files.");
+            JLabel blank = new JLabel("");
+            JLabel helpmessage2 = new JLabel("2. You can search buckets by typing text in the search box followed by clicking on the magnifying glass.");
+            helpmessage.setForeground(Color.blue);
+            helpmessage2.setForeground(Color.blue);
+            jPanel11.setLayout(new BoxLayout(jPanel11, BoxLayout.Y_AXIS));
+            jPanel11.add(helpmessage);
+            jPanel11.add(blank);
+            jPanel11.add(helpmessage2);
+            jPanel11.repaint();
         }
 
     }
