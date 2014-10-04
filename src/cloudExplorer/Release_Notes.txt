@@ -8,6 +8,7 @@ Display improvements for performance testing.
 GUI redesign.
 Text Editor - Caret position is set to the beginning of the file.
 Added Help menu.
+Updated Amazon S3 API
 
 Version 3.5
 
