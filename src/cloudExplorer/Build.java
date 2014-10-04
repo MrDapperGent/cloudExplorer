@@ -21,7 +21,7 @@ import java.io.File;
 import java.io.FileReader;
 
 public class Build {
-
+    
     String name = null;
     String Home = System.getProperty("user.home");
     String s3_config_file = Home + File.separator + "s3.config";
@@ -37,22 +37,22 @@ public class Build {
     String endpoint = null;
     String bucket = null;
     String region = null;
-
+    
     void messageParser(String message) {
         System.out.print(message);
     }
-
+    
     void mainmenu() {
-
+        
         for (int i = 0; i != 20; i++) {
             messageParser("\n");
         }
         messageParser("\n------------------------------------------------");
         messageParser("\n           Cloud Explorer Build mode.");
         messageParser("\n------------------------------------------------");
-
+        
     }
-
+    
     void loadS3credentials() {
         try {
             for (String what : saved_s3_configs) {
@@ -61,7 +61,7 @@ public class Build {
                     System.exit(-1);
                 }
             }
-
+            
             access_key = saved_s3_configs[0];
             secret_key = saved_s3_configs[1];
             endpoint = saved_s3_configs[2] + ":" + saved_s3_configs[3];
@@ -69,15 +69,15 @@ public class Build {
         } catch (Exception loadS3Credentials) {
         }
     }
-
+    
     String loadConfig(String what) {
         String data = null;
-
+        
         try {
             FileReader fr = new FileReader(what);
             BufferedReader bfr = new BufferedReader(fr);
             String read = null;
-
+            
             while ((read = bfr.readLine()) != null) {
                 data = data + read;
             }
@@ -87,40 +87,40 @@ public class Build {
         String remove_symbol = remove_null.replace("@", " ");
         return remove_symbol;
     }
-
+    
     void start(String Aname, String Abuild_file, String Abucket) {
         build_name = Aname;
         bucket = Abucket;
         build_file = new File(Abuild_file);
-
+        
         mainmenu();
-
+        
         try {
             File s3config = new File(s3_config_file);
             if (s3config.exists()) {
             } else {
                 messageParser("\nError: Build config file not found.");
             }
-
+            
             saved_s3_configs = loadConfig(this.s3_config_file).toString().split(" ");
             loadS3credentials();
-
+            
             if (build_file.exists()) {
-
+                
                 new Thread(new Runnable() {
                     public void run() {
                         putTOs3(build_file);
                     }
                 }).start();
-
+                
             } else {
                 messageParser("\nError: " + build_file.toString() + " does not exist");
             }
         } catch (Exception Start) {
         }
-
+        
     }
-
+    
     void putTOs3(File dir) {
         try {
             NewJFrame.perf = true;
@@ -131,8 +131,10 @@ public class Build {
             String url = objectacl.setACLurl(build_name + ".zip", access_key, secret_key, endpoint, bucket);
             url = url.replace("Pre-Signed URL = ", "");
             System.out.print("\n\n" + url);
-
+            
         } catch (Exception send) {
+            System.out.print("\n\nAn Error has occured while uploading the file");
+            System.exit(-1);
         }
     }
 }

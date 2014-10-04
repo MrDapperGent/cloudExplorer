@@ -11,6 +11,7 @@ Added Help menu.
 Updated Amazon S3 API to 1.8.11
 Cloud Explorer version number is displayed in the title bar.
 "Current Bucket" is now in the title bar of the program.
+Added exception message for errors when using the build system.
 
 Version 3.5
 
