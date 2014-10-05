@@ -94,6 +94,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             setLocationRelativeTo(null);
             UIManager.setLookAndFeel(
                     UIManager.getCrossPlatformLookAndFeelClassName());
+            UIManager.put("TabbedPane.selected", Color.white);
             this.setIconImage(new ImageIcon(getClass()
                     .getResource("cloud.jpg")).getImage());
             this.jTextField3.setText("https://s3.amazonaws.com");

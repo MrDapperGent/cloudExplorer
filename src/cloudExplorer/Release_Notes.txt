@@ -6,6 +6,7 @@ Performance improvements when deleting thousands of objects.
 "Delete every object and version" is more stable.
 Display improvements for performance testing.
 GUI redesign.
+Improved tab icon images.
 Text Editor - Caret position is set to the beginning of the file.
 Added Help menu.
 Updated Amazon S3 API to 1.8.9
