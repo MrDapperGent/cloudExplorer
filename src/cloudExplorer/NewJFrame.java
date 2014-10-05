@@ -107,6 +107,11 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             UIManager.put("TabbedPane.darkShadow", java.awt.Color.white);
             UIManager.put("TabbedPane.focus", java.awt.Color.white);
             UIManager.put("ScrollBar.background", java.awt.Color.white);
+            UIManager.put("ScrollBar.thumbHighlight", new ColorUIResource(Color.white));
+            UIManager.put("ScrollBar.thumbDarkShadow", new ColorUIResource(Color.white));
+            UIManager.put("ScrollBar.highlight", new ColorUIResource(Color.white));
+            UIManager.put("ScrollBar.trackHighlight", new ColorUIResource(Color.white));
+
             UIManager.getLookAndFeelDefaults().put("Panel.background", Color.white);
             UIManager.getLookAndFeelDefaults().put("Panel.foreground", Color.white);
 
