@@ -8,7 +8,7 @@ Display improvements for performance testing.
 GUI redesign.
 Text Editor - Caret position is set to the beginning of the file.
 Added Help menu.
-Updated Amazon S3 API to 1.8.11
+Updated Amazon S3 API to 1.8.9
 Cloud Explorer version number is displayed in the title bar.
 "Current Bucket" is now in the title bar of the program.
 Added exception message for errors when using the build system.
