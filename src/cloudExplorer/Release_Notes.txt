@@ -14,6 +14,7 @@ Cloud Explorer version number is displayed in the title bar.
 "Current Bucket" is now in the title bar of the program.
 Added exception message for errors when using the build system.
 Fixed "Info" button. File size said KB, but it is actually in bytes.
+The presigned URL is copied to the clipboard automatically.
 
 Version 3.5
 

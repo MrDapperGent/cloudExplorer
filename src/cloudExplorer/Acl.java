@@ -24,6 +24,9 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.BucketWebsiteConfiguration;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.net.URL;
 
 public class Acl {
@@ -105,7 +108,10 @@ public class Acl {
             generatePresignedUrlRequest.setMethod(HttpMethod.GET);
             generatePresignedUrlRequest.setExpiration(expiration);
             URL url = s3Client.generatePresignedUrl(generatePresignedUrlRequest);
-            URL = ("Pre-Signed URL = " + url.toString());
+            URL = ("Pre-Signed URL = " + url.toString() + "\nThe URL has been copied to your clipboard.");
+            StringSelection stringSelection = new StringSelection(url.toString());
+            Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clpbrd.setContents(stringSelection, null);
         } catch (Exception setACLpublic) {
             mainFrame.jTextArea1.append("\nException occured in ACL");
         }
