@@ -126,17 +126,19 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     ImageIcon tabSettings = new ImageIcon(
                             this.getClass().getResource("tab-settings.png"));
                     this.jTabbedPane1.setIconAt(0, tabSettings);
+                    this.jTabbedPane1.setToolTipTextAt(0, "Settings");
                 }
                 if (i == 1) {
                     ImageIcon tabExplorer = new ImageIcon(
                             this.getClass().getResource("tab-explorer.png"));
                     this.jTabbedPane1.setIconAt(1, tabExplorer);
-
+                    this.jTabbedPane1.setToolTipTextAt(1, "Explore");
                 }
                 if (i == 2) {
                     ImageIcon tabUpload = new ImageIcon(
                             this.getClass().getResource("tab-upload.png"));
                     this.jTabbedPane1.setIconAt(2, tabUpload);
+                    this.jTabbedPane1.setToolTipTextAt(2, "Upload a file");
                 }
                 if (i == 3) {
                     ImageIcon tabDownload = new ImageIcon(
@@ -144,6 +146,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     ImageIcon tabSync2 = new ImageIcon(
                             this.getClass().getResource("tab-sync2.png"));
                     this.jTabbedPane1.setIconAt(3, tabSync2);
+                    this.jTabbedPane1.setToolTipTextAt(3, "Sync to and from S3");
                     this.jToggleButton4.setIcon(tabDownload);
                     this.jToggleButton4.setText("From S3");
                     this.jToggleButton3.setIcon(tabDownload);
@@ -153,6 +156,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     ImageIcon tabEditor = new ImageIcon(
                             this.getClass().getResource("tab-editor.png"));
                     this.jTabbedPane1.setIconAt(4, tabEditor);
+                    this.jTabbedPane1.setToolTipTextAt(4, "Text Editor");
                 }
                 /**
                  * if (i == 5) { ImageIcon tabAbout = new ImageIcon(
