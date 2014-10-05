@@ -17,6 +17,7 @@
 package cloudExplorer;
 
 import java.awt.Color;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -39,6 +40,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
 import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
@@ -95,6 +97,19 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             UIManager.setLookAndFeel(
                     UIManager.getCrossPlatformLookAndFeelClassName());
             UIManager.put("TabbedPane.selected", Color.white);
+            UIManager.put("TabbedPane.background", Color.white);
+            UIManager.put("TabbedPane.contentBorderInsets", new Insets(0, 0, 0, 0));
+            UIManager.put("TabbedPane.borderHightlightColor", java.awt.Color.white);
+            UIManager.put("TabbedPane.borderHightlightColor", java.awt.Color.white);
+            UIManager.put("TabbedPane.darkShadow", java.awt.Color.white);
+            UIManager.put("TabbedPane.light", java.awt.Color.white);
+            UIManager.put("TabbedPane.selectHighlight", java.awt.Color.white);
+            UIManager.put("TabbedPane.darkShadow", java.awt.Color.white);
+            UIManager.put("TabbedPane.focus", java.awt.Color.white);
+            UIManager.put("ScrollBar.background", java.awt.Color.white);
+            UIManager.getLookAndFeelDefaults().put("Panel.background", Color.white);
+            UIManager.getLookAndFeelDefaults().put("Panel.foreground", Color.white);
+
             this.setIconImage(new ImageIcon(getClass()
                     .getResource("cloud.jpg")).getImage());
             this.jTextField3.setText("https://s3.amazonaws.com");
