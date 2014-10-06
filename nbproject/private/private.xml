@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/ptribble/cloudExplorer/src/cloudExplorer/Put.java</file>
-            <file>file:/home/ptribble/cloudExplorer/src/cloudExplorer/Performance.java</file>
-            <file>file:/home/ptribble/cloudExplorer/src/cloudExplorer/PerformanceThread.java</file>
-            <file>file:/home/ptribble/cloudExplorer/src/cloudExplorer/NewJFrame.java</file>
+            <file>file:src/cloudExplorer/Put.java</file>
+            <file>file:src/cloudExplorer/Performance.java</file>
+            <file>file:src/cloudExplorer/PerformanceThread.java</file>
+            <file>file:cloudExplorer/src/cloudExplorer/NewJFrame.java</file>
         </group>
     </open-files>
 </project-private>
