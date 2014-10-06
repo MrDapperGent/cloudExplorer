@@ -125,10 +125,10 @@ public class Build {
         try {
             NewJFrame.perf = true;
             System.out.print("\n\nUploading " + build_file.getAbsolutePath().toString() + "........");
-            put = new Put(build_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, build_name + ".zip", false, false);
-            put.startc(build_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, build_name + ".zip", false, false);
-            objectacl.setACLpublic(build_name + ".zip", access_key, secret_key, endpoint, bucket);
-            String url = objectacl.setACLurl(build_name + ".zip", access_key, secret_key, endpoint, bucket);
+            put = new Put(build_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, build_name, false, false);
+            put.startc(build_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, build_name, false, false);
+            objectacl.setACLpublic(build_name, access_key, secret_key, endpoint, bucket);
+            String url = objectacl.setACLurl(build_name, access_key, secret_key, endpoint, bucket);
             url = url.replace("Pre-Signed URL = ", "");
             System.out.print("\n\n" + url);
 

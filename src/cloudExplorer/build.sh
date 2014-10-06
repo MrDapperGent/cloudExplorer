@@ -1,7 +1,5 @@
 #!/bin/bash
 BUILD_NAME="cloudExplorer-3.5"
-#HOME="/Users/philliptribble"
-HOME="/home/ptribble"
 SRC="$HOME/cloudExplorer"
 JAR="CloudExplorer.jar"
 JARHOME="$HOME/NetBeansProjects/CloudExplorer"
@@ -31,6 +29,6 @@ chmod +x $LOCBUILD/cloudExplorer
 cd $LOC
 zip -r $ZIP $BUILD_NAME
 cd $LOCBUILD
-#java -jar $LOCBUILD/CloudExplorer.jar build $BUILD_NAME $ZIP $BUCKET
+#java -jar $LOCBUILD/CloudExplorer.jar build $BUILD_NAME.zip $ZIP $BUCKET
 echo;echo;echo ;ls $LOCBUILD;echo
 ./cloudExplorer
