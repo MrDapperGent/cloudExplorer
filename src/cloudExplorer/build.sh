@@ -2,8 +2,7 @@
 BUILD_NAME="cloudExplorer-3.5"
 SRC="$HOME/cloudExplorer"
 JAR="CloudExplorer.jar"
-JARHOME="$HOME/NetBeansProjects/CloudExplorer"
-JARLOC="$JARHOME/dist"
+JARLOC="$SRC/dist"
 README="$SRC/src/cloudExplorer/Release_Notes.txt"
 WINDOWS="$SRC/src/cloudExplorer/cloudExplorer"
 LINUX="$SRC/src/cloudExplorer/cloudExplorer.bat"
@@ -16,7 +15,6 @@ rm -rf $LOC/$BUILD_NAME
 mkdir $LOC/$BUILD_NAME
 cd $SRC
 git pull
-cd $JARHOME
 ant
 rm -f $LOCBUILD/$JAR
 rm -f $ZIP
