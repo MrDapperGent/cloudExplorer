@@ -1,0 +1,45 @@
+Version 3.5
+
+Editor can now edit file versions.
+Image viewer now deselects the image after viewing to make it easier to view next image.
+Performance test for uploads.
+Performance test for downloads.
+Pre-signed URL is now good for 5 hours.
+
+Version 3.4
+
+Improvement for delete: Support for deleting 3000 objects at a time. The old value was 500.
+GUI icon alignment.
+Memory improvements.
+Performance improvements.
+Fixed exception for "Delete every object and version".
+Cleaned up exception messages.
+Enabled exception messages.
+Improved code for displaying version objects.
+GUI fix for OSX. GUI will look the same on every platform now. 
+
+
+Features:
+
+1. Tier buckets to and from Amazon Glacier.
+2. Sync files to and from S3 storage.
+3. Stream music.
+4. Text editor.
+5. Modify Bucket and Object ACL's.
+6. Take screen shots and upload them to your bucket.
+7. Bucket versioning and life cycles.
+8. Graphical and console based background syncing.
+9. Store multiple Amazon S3 accounts.
+10. Image viewer.
+11. Migrate buckets between S3 accounts.
+12. Bucket search.
+13. Performance testing with graphs.
+
+How to migrate data between S3 accounts:
+
+1. Load the destination account and click "Set as migration Account" under Settings.
+2. Create the destination bucket on the destination account.
+3. Load the origin S3 account and select the bucket to transfer to the new S3 account.
+4. Under the "Tools" menu, select "Migrate bucket to another S3 account".
+5. Type in the destination bucket name and click "Start Bucket Migration".
+6. Wait for transfers to complete.
