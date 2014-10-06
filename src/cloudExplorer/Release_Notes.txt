@@ -24,6 +24,8 @@ Image viewer now deselects the image after viewing to make it easier to view nex
 Performance test for uploads.
 Performance test for downloads.
 Pre-signed URL is now good for 5 hours.
+When deleting files, each file is displayed on the screen and does not lock up anymore.
+
 
 Features:
 

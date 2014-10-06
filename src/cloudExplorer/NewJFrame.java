@@ -1026,7 +1026,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addComponent(jFileChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 872, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(82, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
                 .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jToggleButton4)
@@ -1609,7 +1608,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             object_item[h].setForeground(Color.blue);
         }
         jPanel11.setLayout(new BoxLayout(jPanel11, BoxLayout.PAGE_AXIS));
-
     }
 
     void reloadObjects() {
@@ -2166,26 +2164,29 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         }
                     }
                 } else {
+                    String[] delArray = new String[previous_objectarray_length];
+
                     for (int i = 1; i != previous_objectarray_length; i++) {
                         if (object_item[i].isSelected()) {
-                            del = new Delete(object_item[i].getText(), cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), null);
-                            del.startc(object_item[i].getText(), cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), null);
+                            delArray[i] = object_item[i].getText();
                         }
                         delcounter++;
                     }
+                    Thread delThread = new Thread(new DeleteThread(this, delArray, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), null));
+                    delThread.start();
                 }
+
             } else {
                 jTextArea1.append("\nError: No bucked selected.");
             }
+
+            versionDownload = false;
+            jTextField10.setText("");
+            objectarray = null;
+            //jButton6.doClick();
         } catch (Exception checkbox) {
         }
-        versionDownload = false;
-        objectarray = null;
-        reloadObjects();
-        jTextField10.setText("");
-        jTextArea1.append("\nDelete operation finished. Please click search to refresh the Object Explorer if needed.");
-        calibrateTextArea();
-        jButton6.doClick();
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -2538,7 +2539,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    public static javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
@@ -2612,7 +2613,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     public static javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
+    public static javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
     public static javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
