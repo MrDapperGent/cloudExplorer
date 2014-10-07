@@ -16,6 +16,7 @@
  */
 package cloudExplorer;
 
+import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
@@ -40,7 +41,8 @@ public class Versioning {
             mainFrame.jTextArea1.append("\nPlease wait, loading versions.");
             mainFrame.calibrateTextArea();
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
-            AmazonS3 s3Client = new AmazonS3Client(credentials);
+            AmazonS3 s3Client = new AmazonS3Client(credentials,
+                    new ClientConfiguration().withSignerOverride("S3SignerType"));
             s3Client.setEndpoint(endpoint);
 
             VersionListing vListing;

@@ -16,6 +16,7 @@
  */
 package cloudExplorer;
 
+import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
@@ -62,10 +63,11 @@ public class BucketClass {
 
     String makeBucket(String access_key, String secret_key, String bucket, String endpoint, String region) {
         String message = null;
-  System.out.print("\n" + bucket + " " + region + " "+ access_key+ " " + secret_key+ " " + endpoint);
-      
+        System.out.print("\n" + bucket + " " + region + " " + access_key + " " + secret_key + " " + endpoint);
+
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
-        AmazonS3 s3Client = new AmazonS3Client(credentials);
+        AmazonS3 s3Client = new AmazonS3Client(credentials,
+                new ClientConfiguration().withSignerOverride("S3SignerType"));
         s3Client.setEndpoint(endpoint);
         try {
             if (endpoint.contains("amazon")) {
@@ -89,10 +91,11 @@ public class BucketClass {
     String listBuckets(String access_key, String secret_key, String endpoint) {
 
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
-        AmazonS3 s3Client = new AmazonS3Client(credentials);
+        AmazonS3 s3Client = new AmazonS3Client(credentials,
+                new ClientConfiguration().withSignerOverride("S3SignerType"));
         s3Client.setEndpoint(endpoint);
         String[] array = new String[10];
-       
+
         String bucketlist = null;
 
         int i = 0;
@@ -125,7 +128,8 @@ public class BucketClass {
         objectlist = null;
 
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
-        AmazonS3 s3Client = new AmazonS3Client(credentials);
+        AmazonS3 s3Client = new AmazonS3Client(credentials,
+                new ClientConfiguration().withSignerOverride("S3SignerType"));
         s3Client.setEndpoint(endpoint);
 
         try {
@@ -200,7 +204,8 @@ public class BucketClass {
         String message = null;
 
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
-        AmazonS3 s3Client = new AmazonS3Client(credentials);
+        AmazonS3 s3Client = new AmazonS3Client(credentials,
+                new ClientConfiguration().withSignerOverride("S3SignerType"));
         s3Client.setEndpoint(endpoint);
         message = ("\nDeleting bucket: " + bucket);
         try {

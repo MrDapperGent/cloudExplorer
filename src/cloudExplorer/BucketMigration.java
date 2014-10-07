@@ -18,6 +18,7 @@ package cloudExplorer;
 
 import java.io.File;
 import static cloudExplorer.NewJFrame.jTextArea1;
+import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
@@ -141,8 +142,8 @@ public class BucketMigration implements Runnable {
     String listBuckets(String access_key, String secret_key, String endpoint) {
 
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
-        AmazonS3 s3Client = new AmazonS3Client(credentials);
-
+        AmazonS3 s3Client = new AmazonS3Client(credentials,
+                new ClientConfiguration().withSignerOverride("S3SignerType"));
         s3Client.setEndpoint(endpoint);
 
         String[] array = new String[10];

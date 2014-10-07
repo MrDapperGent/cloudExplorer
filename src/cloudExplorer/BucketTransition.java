@@ -14,7 +14,6 @@
  * cloudExplorer
  *
  */
-
 package cloudExplorer;
 
 import com.amazonaws.auth.AWSCredentials;
@@ -25,6 +24,7 @@ import com.amazonaws.services.s3.model.BucketLifecycleConfiguration;
 import java.util.ArrayList;
 import java.util.List;
 import static cloudExplorer.NewJFrame.jTextArea1;
+import com.amazonaws.ClientConfiguration;
 
 public class BucketTransition implements Runnable {
 
@@ -61,7 +61,8 @@ public class BucketTransition implements Runnable {
 
     public void run() {
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
-        AmazonS3 s3Client = new AmazonS3Client(credentials);
+        AmazonS3 s3Client = new AmazonS3Client(credentials,
+                new ClientConfiguration().withSignerOverride("S3SignerType"));
         s3Client.setEndpoint(endpoint);
         int converted_days = 0;
         if (!disabled) {

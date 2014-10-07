@@ -26,6 +26,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import static cloudExplorer.NewJFrame.jTextArea1;
+import com.amazonaws.ClientConfiguration;
 
 public class Get implements Runnable {
 
@@ -75,7 +76,8 @@ public class Get implements Runnable {
         String message = null;
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         File file = new File(what);
-        AmazonS3 s3Client = new AmazonS3Client(credentials);
+        AmazonS3 s3Client = new AmazonS3Client(credentials,
+                new ClientConfiguration().withSignerOverride("S3SignerType"));
         s3Client.setEndpoint(endpoint);
 
         try {

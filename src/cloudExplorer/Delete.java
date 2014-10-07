@@ -23,6 +23,7 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.DeleteVersionRequest;
 import static cloudExplorer.NewJFrame.jTextArea1;
+import com.amazonaws.ClientConfiguration;
 
 public class Delete implements Runnable {
 
@@ -55,8 +56,8 @@ public class Delete implements Runnable {
 
     public void run() {
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
-        AmazonS3 s3Client;
-        s3Client = new AmazonS3Client(credentials);
+        AmazonS3 s3Client = new AmazonS3Client(credentials,
+                new ClientConfiguration().withSignerOverride("S3SignerType"));
         s3Client.setEndpoint(endpoint);
 
         try {

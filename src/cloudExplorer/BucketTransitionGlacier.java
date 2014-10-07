@@ -14,7 +14,6 @@
  * cloudExplorer
  *
  */
-
 package cloudExplorer;
 
 import com.amazonaws.auth.AWSCredentials;
@@ -26,6 +25,7 @@ import com.amazonaws.services.s3.model.BucketLifecycleConfiguration.Transition;
 import java.util.ArrayList;
 import java.util.List;
 import static cloudExplorer.NewJFrame.jTextArea1;
+import com.amazonaws.ClientConfiguration;
 import com.amazonaws.services.s3.model.StorageClass;
 
 public class BucketTransitionGlacier implements Runnable {
@@ -63,7 +63,8 @@ public class BucketTransitionGlacier implements Runnable {
 
     public void run() {
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
-        AmazonS3 s3Client = new AmazonS3Client(credentials);
+        AmazonS3 s3Client = new AmazonS3Client(credentials,
+                new ClientConfiguration().withSignerOverride("S3SignerType"));
         s3Client.setEndpoint(endpoint);
         int converted_days = 0;
         if (!disabled) {
@@ -71,7 +72,7 @@ public class BucketTransitionGlacier implements Runnable {
         }
 
         Transition transToArchive = new Transition()
-                .withDays(converted_days) 
+                .withDays(converted_days)
                 .withStorageClass(StorageClass.Glacier);
 
         BucketLifecycleConfiguration.Rule ruleArchiveAndExpire = null;
@@ -79,7 +80,7 @@ public class BucketTransitionGlacier implements Runnable {
             ruleArchiveAndExpire = new BucketLifecycleConfiguration.Rule()
                     .withPrefix(prefix)
                     .withTransition(transToArchive)
-                  // .withExpirationInDays(converted_days + 1)
+                    // .withExpirationInDays(converted_days + 1)
                     .withStatus(BucketLifecycleConfiguration.ENABLED.toString());
         } else {
             ruleArchiveAndExpire = new BucketLifecycleConfiguration.Rule()

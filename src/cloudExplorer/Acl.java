@@ -16,6 +16,7 @@
  */
 package cloudExplorer;
 
+import com.amazonaws.ClientConfiguration;
 import com.amazonaws.HttpMethod;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
@@ -36,7 +37,8 @@ public class Acl {
     void setACLpublic(String object, String access_key, String secret_key, String endpoint, String bucket) {
         try {
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
-            AmazonS3 s3Client = new AmazonS3Client(credentials);
+            AmazonS3 s3Client = new AmazonS3Client(credentials,
+                    new ClientConfiguration().withSignerOverride("S3SignerType"));
             s3Client.setEndpoint(endpoint);
             s3Client.setObjectAcl(bucket, object, CannedAccessControlList.PublicRead);
         } catch (Exception setACLpublic) {
@@ -47,7 +49,8 @@ public class Acl {
     void setACLprivate(String object, String access_key, String secret_key, String endpoint, String bucket) {
         try {
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
-            AmazonS3 s3Client = new AmazonS3Client(credentials);
+            AmazonS3 s3Client = new AmazonS3Client(credentials,
+                    new ClientConfiguration().withSignerOverride("S3SignerType"));
             s3Client.setEndpoint(endpoint);
             s3Client.setObjectAcl(bucket, object, CannedAccessControlList.Private);
         } catch (Exception setACLprivate) {
@@ -59,7 +62,8 @@ public class Acl {
         String message = null;
         try {
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
-            AmazonS3 s3Client = new AmazonS3Client(credentials);
+            AmazonS3 s3Client = new AmazonS3Client(credentials,
+                    new ClientConfiguration().withSignerOverride("S3SignerType"));
             s3Client.setEndpoint(endpoint);
             message = s3Client.getObjectAcl(bucket, object).toString();
         } catch (Exception viewACL) {
@@ -72,7 +76,8 @@ public class Acl {
     void setBUCKETwebsite(String object, String access_key, String secret_key, String endpoint, String bucket) {
         try {
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
-            AmazonS3 s3Client = new AmazonS3Client(credentials);
+            AmazonS3 s3Client = new AmazonS3Client(credentials,
+                    new ClientConfiguration().withSignerOverride("S3SignerType"));
             s3Client.setEndpoint(endpoint);
             BucketWebsiteConfiguration bucketWebsiteConfiguration = s3Client.getBucketWebsiteConfiguration(bucket);
             s3Client.setBucketAcl(bucket, CannedAccessControlList.PublicRead);
@@ -85,7 +90,8 @@ public class Acl {
     void removeBUCKETwebsite(String object, String access_key, String secret_key, String endpoint, String bucket) {
         try {
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
-            AmazonS3 s3Client = new AmazonS3Client(credentials);
+            AmazonS3 s3Client = new AmazonS3Client(credentials,
+                    new ClientConfiguration().withSignerOverride("S3SignerType"));
             s3Client.setEndpoint(endpoint);
             s3Client.deleteBucketWebsiteConfiguration(bucket);
         } catch (Exception removeBUCKETwebsite) {
@@ -97,7 +103,8 @@ public class Acl {
         String URL = null;
         try {
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
-            AmazonS3 s3Client = new AmazonS3Client(credentials);
+            AmazonS3 s3Client = new AmazonS3Client(credentials,
+                    new ClientConfiguration().withSignerOverride("S3SignerType"));
             s3Client.setEndpoint(endpoint);
             java.util.Date expiration = new java.util.Date();
             long milliSeconds = expiration.getTime();
