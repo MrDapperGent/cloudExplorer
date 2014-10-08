@@ -1024,9 +1024,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jFileChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 872, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
                 .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jToggleButton4)
@@ -1038,7 +1038,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addComponent(jCheckBox3)
                 .addGap(15, 15, 15)
                 .addComponent(jCheckBox6)
-                .addGap(88, 88, 88))
+                .addGap(74, 74, 74))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
