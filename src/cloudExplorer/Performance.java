@@ -16,15 +16,16 @@
  */
 package cloudExplorer;
 
+import static cloudExplorer.NewJFrame.jTextArea1;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import static cloudExplorer.NewJFrame.jTextArea1;
-import javax.swing.JCheckBox;
 
 public class Performance implements Runnable {
 
@@ -149,7 +150,7 @@ public class Performance implements Runnable {
         }
     }
 
-    void startc(NewJFrame mainFrame,boolean Aoperation) {
+    void startc(NewJFrame mainFrame, boolean Aoperation) {
         (new Thread(new Performance(mainFrame, Aoperation))).start();
     }
 }

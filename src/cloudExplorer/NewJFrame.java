@@ -88,7 +88,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     public Boolean versionDownload = false;
     ShowVersions showVersions;
     ImageViewer imageviewer;
-    Thread getThread;
+    // Thread getThread;
 
     public NewJFrame() {
         try {
@@ -594,7 +594,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addComponent(jButton9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jCheckBox1)
@@ -938,19 +938,21 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 874, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(189, 189, 189)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton15)
-                .addGap(20, 20, 20)
-                .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox5)
-                .addGap(80, 80, 80))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 874, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(189, 189, 189)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton15)
+                        .addGap(20, 20, 20)
+                        .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCheckBox4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jCheckBox5)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1360,6 +1362,21 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         if (active_bucket > 0) {
             NewJFrame.perf = false;
+            jScrollPane1.setVisible(true);
+            jScrollPane2.setVisible(true);
+            jPanel13.setVisible(true);
+            jLabel1.setVisible(true);
+            jButton1.setVisible(true);
+            jButton3.setVisible(true);
+            jButton4.setVisible(true);
+            jButton7.setVisible(true);
+            jButton12.setVisible(true);
+            jButton13.setVisible(true);
+            jButton14.setVisible(true);
+            jButton17.setVisible(true);
+            jButton18.setVisible(true);
+            jButton19.setVisible(true);
+
             jButton4.setEnabled(true);
             jButton7.setEnabled(true);
             jButton12.setEnabled(true);
@@ -2098,8 +2115,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                                     }
                                 }
                             }
-                            getThread = new Thread(new GetThread(getArray, cred.access_key, cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), null, File_Destination));
-                            getThread.start();
+//                            getThread = new Thread(new GetThread(getArray, cred.access_key, cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), null, File_Destination));
+                            //   getThread.start();
                         }
 
                     } else {
@@ -2292,7 +2309,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        getThread.stop();
+//        getThread.stop();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
@@ -2451,6 +2468,19 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jTextArea1.append("\nPlease wait, loading Performance test module.");
             calibrateTextArea();
             NewJFrame.perf = true;
+            jScrollPane2.setVisible(false);
+            jPanel13.setVisible(false);
+            jLabel1.setVisible(false);
+            jButton1.setVisible(false);
+            jButton3.setVisible(false);
+            jButton4.setVisible(false);
+            jButton7.setVisible(false);
+            jButton12.setVisible(false);
+            jButton13.setVisible(false);
+            jButton14.setVisible(false);
+            jButton17.setVisible(false);
+            jButton18.setVisible(false);
+            jButton19.setVisible(false);
             Performance performanceTest = new Performance(this, true);
             performanceTest.startc(this, true);
             jTextArea1.append("\nPerformance test module has started. Please observe for any errors.");
@@ -2525,12 +2555,12 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    public static javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
+    public static javax.swing.JButton jButton12;
+    public static javax.swing.JButton jButton13;
+    public static javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     public static javax.swing.JButton jButton17;
@@ -2538,11 +2568,11 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     public static javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    public static javax.swing.JButton jButton3;
+    public static javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     public static javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
+    public static javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     public static javax.swing.JCheckBox jCheckBox1;
@@ -2553,7 +2583,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JCheckBox jCheckBox6;
     public javax.swing.JFileChooser jFileChooser1;
     public static javax.swing.JFileChooser jFileChooser2;
-    private javax.swing.JLabel jLabel1;
+    public static javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -2592,7 +2622,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     public static javax.swing.JPanel jPanel1;
     public static javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
+    public static javax.swing.JPanel jPanel13;
     public static javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
     public javax.swing.JPanel jPanel21;
@@ -2604,7 +2634,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JPanel jPanel9;
     public static javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    public static javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane27;
     public static javax.swing.JScrollPane jScrollPane28;
     private javax.swing.JScrollPane jScrollPane3;
