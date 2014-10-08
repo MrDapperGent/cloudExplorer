@@ -2,7 +2,7 @@
 BUILD_NAME="cloudExplorer-devel"
 SRC="$HOME/cloudexplorer"
 JAR="CloudExplorer.jar"
-JARLOC="$HOME/NetBeansProjects/CloudExplorer/dist"
+JARLOC="$HOME/NetBeansProjects/CloudExplorer"
 README="$SRC/src/cloudExplorer/Release_Notes.txt"
 WINDOWS="$SRC/src/cloudExplorer/cloudExplorer"
 LINUX="$SRC/src/cloudExplorer/cloudExplorer.bat"
@@ -18,7 +18,7 @@ cd $JARLOC
 ant
 rm -f $ZIP
 rm -rf $LOCBUILD/home
-cp -rf $JARLOC/* $LOCBUILD
+cp -rf $JARLOC/dist/* $LOCBUILD
 cp -f $README $LOCBUILD
 cp -f $WINDOWS $LOCBUILD
 cp -f $LINUX $LOCBUILD
