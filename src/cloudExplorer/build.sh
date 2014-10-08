@@ -1,6 +1,6 @@
 #!/bin/bash
 BUILD_NAME="cloudExplorer-devel"
-SRC="$HOME/cloudExplorer"
+SRC="$HOME/NetBeansProjects/CloudExplorer"
 JAR="CloudExplorer.jar"
 JARLOC="$SRC/dist"
 README="$SRC/src/cloudExplorer/Release_Notes.txt"
@@ -15,6 +15,7 @@ rm -rf $LOC/$BUILD_NAME
 mkdir $LOC/$BUILD_NAME
 cd $SRC
 git pull
+cd $SRC
 ant
 rm -f $LOCBUILD/$JAR
 rm -f $ZIP
