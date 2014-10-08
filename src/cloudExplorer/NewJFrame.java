@@ -88,6 +88,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     public Boolean versionDownload = false;
     ShowVersions showVersions;
     ImageViewer imageviewer;
+    Thread getThread;
 
     public NewJFrame() {
         try {
@@ -2072,6 +2073,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     if (downloadChooser.getSelectedFile().getAbsolutePath() != null) {
 
                         File File_Destination = new File(downloadChooser.getSelectedFile().getAbsolutePath());
+                        String[] getArray = new String[previous_objectarray_length];
 
                         if (versionDownload) {
 
@@ -2091,13 +2093,13 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
                                     if (object_item[i].isSelected()) {
                                         download.setVisible(false);
-                                        String new_object_name = convertObject(object_item[i].getText(), "download");
-                                        get = new Get(object_item[i].getText(), cred.access_key, cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), File_Destination.toString() + File.separator + new_object_name, null);
-                                        get.startc(object_item[i].getText(), cred.access_key, cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), File_Destination.toString() + File.separator + new_object_name, null);
+                                        getArray[i] = object_item[i].getText();
                                         object_item[i].setSelected(false);
                                     }
                                 }
                             }
+                            getThread = new Thread(new GetThread(getArray, cred.access_key, cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), null, File_Destination));
+                            getThread.start();
                         }
 
                     } else {
@@ -2290,7 +2292,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        get.stop();
+        getThread.stop();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
