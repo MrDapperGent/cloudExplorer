@@ -53,11 +53,12 @@ public class Performance implements Runnable {
             final JCheckBox graph = new JCheckBox("Graph");
             final JLabel blank = new JLabel(" ");;
             final JLabel blank2 = new JLabel(" ");;
-            final JTextField getFileSize = new JTextField();
+            final JTextField getFileSize = new JTextField("1024");
             final JTextField getTheadCount = new JTextField("5");
             final JTextField getOperationCount = new JTextField("5");
-
-            getFileSize.setText("1024");
+            getFileSize.setMaximumSize(new Dimension(220, 40));
+            getTheadCount.setMaximumSize(new Dimension(220, 40));
+            getOperationCount.setMaximumSize(new Dimension(220, 40));
             graph.setBackground(Color.white);
             graph.setForeground(Color.blue);
             graph.setSelected(false);

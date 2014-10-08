@@ -1362,21 +1362,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         if (active_bucket > 0) {
             NewJFrame.perf = false;
-            jScrollPane1.setVisible(true);
-            jScrollPane2.setVisible(true);
-            jPanel13.setVisible(true);
-            jLabel1.setVisible(true);
-            jButton1.setVisible(true);
-            jButton3.setVisible(true);
-            jButton4.setVisible(true);
-            jButton7.setVisible(true);
-            jButton12.setVisible(true);
-            jButton13.setVisible(true);
-            jButton14.setVisible(true);
-            jButton17.setVisible(true);
-            jButton18.setVisible(true);
-            jButton19.setVisible(true);
-
+            showPanel();
             jButton4.setEnabled(true);
             jButton7.setEnabled(true);
             jButton12.setEnabled(true);
@@ -1564,10 +1550,47 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         calibrateTextArea();
     }
 
+    void showPanel() {
+        jScrollPane1.setVisible(true);
+        jScrollPane2.setVisible(true);
+        jPanel13.setVisible(true);
+        jLabel1.setVisible(true);
+        jButton1.setVisible(true);
+        jButton3.setVisible(true);
+        jButton4.setVisible(true);
+        jButton7.setVisible(true);
+        jButton12.setVisible(true);
+        jButton13.setVisible(true);
+        jButton14.setVisible(true);
+        jButton17.setVisible(true);
+        jButton18.setVisible(true);
+        jButton19.setVisible(true);
+        jPanel14.removeAll();
+        jPanel14.repaint();
+    }
+
+    void hidePanel() {
+
+        jScrollPane2.setVisible(false);
+        jPanel13.setVisible(false);
+        jLabel1.setVisible(false);
+        jButton1.setVisible(false);
+        jButton3.setVisible(false);
+        jButton4.setVisible(false);
+        jButton7.setVisible(false);
+        jButton12.setVisible(false);
+        jButton13.setVisible(false);
+        jButton14.setVisible(false);
+        jButton17.setVisible(false);
+        jButton18.setVisible(false);
+        jButton19.setVisible(false);
+    }
+
     void drawBuckets() {
         jPanel5.removeAll();
         jPanel5.revalidate();
         jPanel5.repaint();
+        showPanel();
         jPanel5.setLayout(new BoxLayout(jPanel5, BoxLayout.PAGE_AXIS));
 
         bucket_item = new JRadioButton[bucketarray.length];
@@ -2468,19 +2491,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jTextArea1.append("\nPlease wait, loading Performance test module.");
             calibrateTextArea();
             NewJFrame.perf = true;
-            jScrollPane2.setVisible(false);
-            jPanel13.setVisible(false);
-            jLabel1.setVisible(false);
-            jButton1.setVisible(false);
-            jButton3.setVisible(false);
-            jButton4.setVisible(false);
-            jButton7.setVisible(false);
-            jButton12.setVisible(false);
-            jButton13.setVisible(false);
-            jButton14.setVisible(false);
-            jButton17.setVisible(false);
-            jButton18.setVisible(false);
-            jButton19.setVisible(false);
+            hidePanel();
             Performance performanceTest = new Performance(this, true);
             performanceTest.startc(this, true);
             jTextArea1.append("\nPerformance test module has started. Please observe for any errors.");
@@ -2496,6 +2507,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jTextArea1.append("\nPlease wait, loading Performance test module.");
             calibrateTextArea();
             NewJFrame.perf = true;
+            hidePanel();
             Performance performanceTest = new Performance(this, false);
             performanceTest.startc(this, false);
             jTextArea1.append("\nPerformance test module has started. Please observe for any errors.");
