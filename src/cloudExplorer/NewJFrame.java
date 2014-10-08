@@ -88,7 +88,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     public Boolean versionDownload = false;
     ShowVersions showVersions;
     ImageViewer imageviewer;
-    // Thread getThread;
+    Thread getThread;
 
     public NewJFrame() {
         try {
@@ -2115,8 +2115,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                                     }
                                 }
                             }
-//                            getThread = new Thread(new GetThread(getArray, cred.access_key, cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), null, File_Destination));
-                            //   getThread.start();
+                            getThread = new Thread(new GetThread(getArray, cred.access_key, cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), null, File_Destination));
+                            getThread.start();
                         }
 
                     } else {
