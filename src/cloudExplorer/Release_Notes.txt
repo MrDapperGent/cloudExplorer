@@ -19,7 +19,7 @@ The left tabs now have tooltips.
 When downloading multiple files in Object Explorer, each one will be downloaded 
 individually rather than spawning a thread for each.
 Cleaner GUI interface for performance testing.
-
+Removed "View Object ACL".
 
 Version 3.5
 

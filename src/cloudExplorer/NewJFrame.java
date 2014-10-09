@@ -328,7 +328,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
@@ -1188,14 +1187,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu2.add(jMenuItem16);
 
-        jMenuItem7.setText("View Object ACL");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem7);
-
         jMenuBar1.add(jMenu2);
 
         jMenu5.setText("Background Syncing");
@@ -1725,25 +1716,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
 
     }//GEN-LAST:event_jMenuItem6ActionPerformed
-
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        try {
-
-            if (active_bucket > 0) {
-                for (int i = 1; i != previous_objectarray_length; i++) {
-                    if (object_item[i].isSelected()) {
-                        object_acl_change = object_item[i].getText();
-                        jTextArea1.append("\n" + objectacl.viewACL(object_acl_change, cred.getAccess_key(), cred.getSecret_key(), cred.getEndpoint(), cred.getBucket()));
-                    }
-                }
-            } else {
-                jTextArea1.append("\nError: No bucket has been selected");
-            }
-        } catch (Exception Download) {
-            jTextArea1.append("\n" + Download.getMessage());
-        }
-        calibrateTextArea();
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
     void deleteFle(String what) {
         try {
             File file = new File(what);
@@ -2628,7 +2600,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     public static javax.swing.JPanel jPanel1;
