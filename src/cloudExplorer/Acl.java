@@ -115,7 +115,7 @@ public class Acl {
             generatePresignedUrlRequest.setMethod(HttpMethod.GET);
             generatePresignedUrlRequest.setExpiration(expiration);
             URL url = s3Client.generatePresignedUrl(generatePresignedUrlRequest);
-            URL = ("Pre-Signed URL = " + url.toString() + "\nThe URL has been copied to your clipboard.");
+            URL = ("Pre-Signed URL = " + url.toString());
             StringSelection stringSelection = new StringSelection(url.toString());
             Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
             clpbrd.setContents(stringSelection, null);
