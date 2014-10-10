@@ -14,15 +14,14 @@
  * cloudExplorer
  *
  */
-
 package cloudExplorer;
 
 import static cloudExplorer.NewJFrame.jTextArea1;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -48,6 +47,9 @@ public class ConfigureObjectTransition implements Runnable {
             final JButton commitTransition = new JButton("Commit");
             final JButton disableRules = new JButton("Disable Rules");
             final JCheckBox glacier = new JCheckBox("Tier to Glacier");
+
+            days.setMaximumSize(new Dimension(240, 40));
+            prefix_field.setMaximumSize(new Dimension(215, 40));
 
             days.setBackground(Color.white);
             days.setForeground(Color.blue);
