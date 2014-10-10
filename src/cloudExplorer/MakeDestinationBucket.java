@@ -14,7 +14,6 @@
  * cloudExplorer
  *
  */
-
 package cloudExplorer;
 
 import java.awt.Color;
@@ -25,7 +24,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import static cloudExplorer.NewJFrame.jTextArea1;
-import javax.swing.ImageIcon;
+import java.awt.Dimension;
 import javax.swing.JCheckBox;
 
 public class MakeDestinationBucket implements Runnable {
@@ -52,6 +51,7 @@ public class MakeDestinationBucket implements Runnable {
             final JLabel blank2 = new JLabel(" ");
             final JLabel blank3 = new JLabel(" ");
             final JTextField bucketName = new JTextField();
+            bucketName.setMaximumSize(new Dimension(245, 40));
             final JLabel name = new JLabel("Destination Bucket:");
             name.setBackground(Color.white);
             name.setForeground(Color.blue);
