@@ -4,8 +4,8 @@ Cloud Explorer is a simple, free, and open-source S3 client made by me. It works
 
 
 
-![Objects](https://www.linux-toys.com/object33.png)
-
+![Objects](https://www.linux-toys.com/objects4.png)
+![Graph](https://www.linux-toys.com/graph4.png)
 
 
 [How to run the program]
