@@ -19,10 +19,10 @@ package cloudExplorer;
 
 import static cloudExplorer.NewJFrame.jTextArea1;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -49,6 +49,8 @@ public class MakeBucket implements Runnable {
             final JTextField regionName = new JTextField(mainFrame.cred.getRegion());
             final JLabel name = new JLabel("Bucket Name:");
             final JLabel region_name = new JLabel("Region Name:");
+            bucketName.setMaximumSize(new Dimension(170, 40));
+            regionName.setMaximumSize(new Dimension(170, 40));
             name.setBackground(Color.white);
             name.setForeground(Color.blue);
             region_name.setBackground(Color.white);
