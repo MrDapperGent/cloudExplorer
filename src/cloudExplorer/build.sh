@@ -1,6 +1,6 @@
 #!/bin/bash
 BUILD_NAME="cloudExplorer-devel"
-SRC="$HOME/cloudexplorer"
+SRC="$HOME/cloudExplorer"
 JAR="CloudExplorer.jar"
 JARLOC="$HOME/NetBeansProjects/CloudExplorer"
 README="$SRC/src/cloudExplorer/Release_Notes.txt"
