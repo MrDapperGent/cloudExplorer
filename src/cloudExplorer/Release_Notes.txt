@@ -1,7 +1,7 @@
 Version 4.1
 
-Versioning Fix: Latest object will be in blue. Deleted object will be in red.
-
+Versioning: Latest object will be in blue. Deleted object will be in red.
+Versioning: Version enabled buckets will be displayed in green.
 
 
 Features:

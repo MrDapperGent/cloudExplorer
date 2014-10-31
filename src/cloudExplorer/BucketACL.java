@@ -14,7 +14,6 @@
  * cloudExplorer
  *
  */
-
 package cloudExplorer;
 
 import java.awt.Color;
@@ -90,6 +89,7 @@ public class BucketACL implements Runnable {
 
                         if (enable_versioning.isSelected()) {
                             jTextArea1.append(mainFrame.bucket.controlVersioning(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.cred.getRegion(), true));
+                            mainFrame.reloadBuckets();
                         }
 
                         if (suspend_versioning.isSelected()) {

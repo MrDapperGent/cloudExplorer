@@ -19,6 +19,7 @@ package cloudExplorer;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
+import static com.amazonaws.auth.policy.actions.S3Actions.GetBucketVersioningConfiguration;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.Bucket;
@@ -31,13 +32,33 @@ import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.amazonaws.services.s3.model.SetBucketVersioningConfigurationRequest;
 
 public class BucketClass {
-
+    
     String objectlist = null;
-
+    
     NewJFrame mainFrame;
-
+    
+    Boolean VersioningStatus(String access_key, String secret_key, String bucket, String endpoint, String region, Boolean enable) {
+        String message = null;
+        boolean result = false;
+        AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
+        AmazonS3 s3Client = new AmazonS3Client(credentials,
+                new ClientConfiguration().withSignerOverride("S3SignerType"));
+        s3Client.setEndpoint(endpoint);
+        try {
+            message = s3Client.getBucketVersioningConfiguration(bucket).getStatus().toString();
+            if (message.contains("Enabled") || message.contains("Suspended")) {
+                result = true;
+            } else {
+                result = false;
+            }
+        } catch (Exception versioning) {
+        }
+        
+        return result;
+    }
+    
     String controlVersioning(String access_key, String secret_key, String bucket, String endpoint, String region, Boolean enable) {
-
+        
         String message = null;
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
@@ -59,9 +80,9 @@ public class BucketClass {
             message = "\nVersioning failed.";
         }
         return message;
-
+        
     }
-
+    
     String makeBucket(String access_key, String secret_key, String bucket, String endpoint, String region) {
         String message = null;
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
@@ -71,11 +92,11 @@ public class BucketClass {
         try {
             if (endpoint.contains("amazon")) {
                 s3Client.createBucket(new CreateBucketRequest(bucket));
-
+                
             } else {
                 s3Client.createBucket(new CreateBucketRequest(bucket, region));
             }
-
+            
             message = ("\nAttempting to create the bucket. Please view the Bucket list window for an update.");
         } catch (Exception makeBucket) {
             mainFrame.jTextArea1.append("\n" + makeBucket.getMessage() + "\n");
@@ -84,56 +105,56 @@ public class BucketClass {
             message = "Failed to create bucket.";
         }
         return message;
-
+        
     }
-
+    
     String listBuckets(String access_key, String secret_key, String endpoint) {
-
+        
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration().withSignerOverride("S3SignerType"));
         s3Client.setEndpoint(endpoint);
         String[] array = new String[10];
-
+        
         String bucketlist = null;
-
+        
         int i = 0;
         try {
-
+            
             for (Bucket bucket : s3Client.listBuckets()) {
                 bucketlist = bucketlist + " " + bucket.getName();
             }
-
+            
         } catch (Exception listBucket) {
-
+            
             mainFrame.jTextArea1.append("\n" + listBucket.getMessage());
             if (listBucket.getMessage().contains("peer not authenticated")) {
                 mainFrame.jTextArea1.append("\nError: This program does not support non-trusted SSL certificates.");
             }
         }
         String parse = null;
-
+        
         if (bucketlist != null) {
             parse = bucketlist.replace("null", "");
-
+            
         } else {
             parse = "no_bucket_found";
         }
-
+        
         return parse;
     }
-
+    
     String listBucketContents(String access_key, String secret_key, String bucket, String endpoint) {
         objectlist = null;
-
+        
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration().withSignerOverride("S3SignerType"));
         s3Client.setEndpoint(endpoint);
-
+        
         try {
             ObjectListing current = s3Client.listObjects((bucket));
-
+            
             ListObjectsRequest listObjectsRequest = new ListObjectsRequest().withBucketName(bucket);
             ObjectListing objectListing;
             do {
@@ -143,11 +164,11 @@ public class BucketClass {
                 }
                 listObjectsRequest.setMarker(objectListing.getNextMarker());
             } while (objectListing.isTruncated());
-
+            
         } catch (Exception listBucket) {
             mainFrame.jTextArea1.append("\n" + listBucket.getMessage());
         }
-
+        
         String parse = null;
         if (objectlist != null) {
             parse = objectlist;
@@ -156,52 +177,52 @@ public class BucketClass {
         }
         return parse;
     }
-
+    
     String getObjectInfo(String key, String access_key, String secret_key, String bucket, String endpoint, String process) {
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials);
         s3Client.setEndpoint(endpoint);
         objectlist = null;
-
+        
         try {
             ObjectListing current = s3Client.listObjects((bucket));
-
+            
             ListObjectsRequest listObjectsRequest = new ListObjectsRequest().withBucketName(bucket);
             ObjectListing objectListing;
             do {
                 objectListing = s3Client.listObjects(listObjectsRequest);
-
+                
                 for (S3ObjectSummary objectSummary : objectListing.getObjectSummaries()) {
-
+                    
                     if (process.contains("objectsize")) {
                         if (objectSummary.getKey().contains(key)) {
                             objectlist = String.valueOf(objectSummary.getSize());
                             break;
                         }
                     }
-
+                    
                     if (process.contains("objectdate")) {
                         if (objectSummary.getKey().contains(key)) {
                             objectlist = String.valueOf(objectSummary.getLastModified());
                             break;
                         }
-
+                        
                     }
                 }
                 listObjectsRequest.setMarker(objectListing.getNextMarker());
             } while (objectListing.isTruncated());
-
+            
         } catch (Exception listBucket) {
             mainFrame.jTextArea1.append("\n" + listBucket.getMessage());
         }
-
+        
         return objectlist;
     }
-
+    
     String deleteBucket(String access_key, String secret_key, String bucket, String endpoint, String region) {
-
+        
         String message = null;
-
+        
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration().withSignerOverride("S3SignerType"));
@@ -212,11 +233,11 @@ public class BucketClass {
         } catch (Exception Delete) {
             message = message + "\n" + Delete.getMessage();
         }
-
+        
         if (message == null) {
             message = "\nDelete operation failed.";
         }
-
+        
         return message;
     }
 }

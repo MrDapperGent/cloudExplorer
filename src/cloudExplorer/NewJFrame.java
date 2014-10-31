@@ -1593,7 +1593,11 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 bucket_item[h].setText(bucketarray[h]);
                 bucket_item[h].addItemListener(this);
                 bucket_item[h].setBackground(Color.white);
-                bucket_item[h].setForeground(Color.blue);
+                if (bucket.VersioningStatus(cred.getAccess_key(), cred.getSecret_key(), bucketarray[h], cred.getEndpoint(), cred.getRegion(), false)) {
+                    bucket_item[h].setForeground(Color.green);
+                } else {
+                    bucket_item[h].setForeground(Color.blue);
+                }
                 jPanel5.add(bucket_item[h]);
                 jPanel5.revalidate();
                 validate();
