@@ -88,6 +88,7 @@ public class ConfigureObjectTransition implements Runnable {
                                 BucketTransition bucketTransition = new BucketTransition(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), days.getText(), prefix_field.getText(), false);
                                 bucketTransition.startc(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), days.getText(), prefix_field.getText(), false);
                             }
+                            mainFrame.reloadBuckets();
                         }
 
                     } catch (Exception Transition) {
@@ -119,6 +120,7 @@ public class ConfigureObjectTransition implements Runnable {
                     mainFrame.jPanel14.repaint();
                     mainFrame.jPanel14.revalidate();
                     mainFrame.jPanel14.validate();
+                    mainFrame.reloadBuckets();
 
                 }
             });

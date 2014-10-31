@@ -1598,6 +1598,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 } else {
                     bucket_item[h].setForeground(Color.blue);
                 }
+                if (bucket.LifeCycleStatus(cred.getAccess_key(), cred.getSecret_key(), bucketarray[h], cred.getEndpoint(), cred.getRegion(), false)) {
+                    bucket_item[h].setForeground(Color.magenta);
+                }
                 jPanel5.add(bucket_item[h]);
                 jPanel5.revalidate();
                 validate();
