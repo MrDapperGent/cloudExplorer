@@ -2,7 +2,6 @@ Version 4.1
 
 Versioning: Latest file will be in blue. Deleted files will be in red.
 Versioning: Version enabled buckets will be displayed in green.
-Buckets: Buckets with LifeCycle rules will be displayed in magenta.
 
 Features:
 
