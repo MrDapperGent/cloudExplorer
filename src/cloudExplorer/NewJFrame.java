@@ -44,7 +44,7 @@ import javax.swing.plaf.ColorUIResource;
 
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
-    String version = "Cloud Explorer v4.0  ";
+    String version = "Cloud Explorer v4.1  ";
     ImageIcon genericEngine = new ImageIcon(
             this.getClass().getResource("engine.png"));
     Credentials cred = new Credentials();

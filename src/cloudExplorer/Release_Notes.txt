@@ -1,34 +1,7 @@
-Version 4.0 
+Version 4.1
 
-Java 8 is required for this release.
-Search text box automatically clears after search.
-Performance improvements when deleting thousands of objects.
-"Delete every object and version" is more stable.
-Display improvements for performance testing.
-GUI redesign.
-Improved tab icon images.
-Text Editor - Caret position is set to the beginning of the file.
-Added Help menu.
-Updated Amazon S3 API to 1.8.11
-Cloud Explorer version number is displayed in the title bar.
-"Current Bucket" is now in the title bar of the program.
-Added exception message for errors when using the build system.
-Fixed "Info" button. File size said KB, but it is actually in bytes.
-The presigned URL is copied to the clipboard automatically.
-The left tabs now have tooltips.
-When downloading multiple files in Object Explorer, each one will be downloaded 
-individually rather than spawning a thread for each.
-Cleaner GUI interface for performance testing.
-Removed "View Object ACL".
+Versioning Fix: Latest object will be in blue. Deleted object will be in red.
 
-Version 3.5
-
-Editor can now edit file versions.
-Image viewer now deselects the image after viewing to make it easier to view next image.
-Performance test for uploads.
-Performance test for downloads.
-Pre-signed URL is now good for 5 hours.
-When deleting files, each file is displayed on the screen and does not lock up anymore.
 
 
 Features:
