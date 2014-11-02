@@ -162,13 +162,12 @@ public class CLI_GET {
             NewJFrame.perf = true;
             System.out.print("\n\nDownloading " + get_file + "........");
             String new_object_name = convertObject(get_file, "download");
-
             get = new Get(get_file, access_key, secret_key, bucket, endpoint, Home + File.separator + new_object_name, null);
             Get.debug = true;
             get.startc(get_file, access_key, secret_key, bucket, endpoint, Home + File.separator + new_object_name, null);
             File check = new File(Home + File.separator + get_file);
             if (check.exists()) {
-                System.out.print("\n\nGET operation Complete. Saved to: " + Home + File.separator +new_object_name + ". \n\n\n");
+                System.out.print("\n\nGET operation Complete. Saved to: " + Home + File.separator + new_object_name + ". \n\n\n");
             } else {
                 System.out.print("\n\nError: GET did not complete successfully.\n\n\n");
             }
