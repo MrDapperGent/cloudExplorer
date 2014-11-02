@@ -114,7 +114,7 @@ public class Daemon {
 
         mainmenu();
         if (!gui) {
-            messageParser("\n\nCloudian Explorer will perform a bidirectional \nsync on the directory listed in the config file:\n\n" + sync_config_file);
+            messageParser("\n\nCloud Explorer will perform a bidirectional \nsync on the directory listed in the config file:\n\n" + sync_config_file);
         }
         try {
             File s3config = new File(s3_config_file);
