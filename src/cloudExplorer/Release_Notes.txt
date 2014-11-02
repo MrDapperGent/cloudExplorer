@@ -2,6 +2,7 @@ Version 4.1
 
 Versioning: Latest file will be in blue. Deleted files will be in red.
 Versioning: Version enabled buckets will be displayed in green.
+New Command Line Options: PUT, DELETE, and LS.
 
 Features:
 
@@ -18,3 +19,11 @@ Features:
 11. Migrate buckets between S3 accounts.
 12. Bucket search.
 13. Performance testing with graphs.
+14. Command Line options.
+
+
+Command Line Options: PUT, DELETE, and LS.
+
+java -jar CloudExplorer.jar put filename bucket
+java -jar CloudExplorer.jar delete filename bucket
+java -jar CloudExplorer.jar ls bucket

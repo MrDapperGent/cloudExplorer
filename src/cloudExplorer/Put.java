@@ -43,6 +43,7 @@ public class Put implements Runnable {
     String ObjectKey = null;
     String secret_key = null;
     Boolean rrs = false;
+    public static Boolean debug = false;
     Thread put;
     Boolean encrypt = false;
     public static Boolean running = true;
@@ -68,8 +69,8 @@ public class Put implements Runnable {
     public void run() {
         try {
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
-        AmazonS3 s3Client = new AmazonS3Client(credentials,
-            new ClientConfiguration().withSignerOverride("S3SignerType"));
+            AmazonS3 s3Client = new AmazonS3Client(credentials,
+                    new ClientConfiguration().withSignerOverride("S3SignerType"));
             s3Client.setEndpoint(endpoint);
             TransferManager tx = new TransferManager(s3Client);
             File file = new File(what);
@@ -98,16 +99,19 @@ public class Put implements Runnable {
             tx.shutdownNow();
             long t2 = System.currentTimeMillis();
             long diff = t2 - t1;
-      
+
             if (!mainFrame.perf) {
                 mainFrame.jTextArea1.append("\nUploaded object: " + ObjectKey + " in " + diff / 1000 + " second(s).");
             }
         } catch (Exception manager) {
+            if (debug) {
+                System.out.print("\n\n" + manager.getMessage() + "\n\n");
+                System.exit(-1);
+            }
         }
 
         calibrate();
     }
-
 
     void startc(String Awhat, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String AObjectKey, Boolean Arrs, Boolean Aencrypt) {
 

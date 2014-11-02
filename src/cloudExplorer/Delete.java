@@ -37,6 +37,7 @@ public class Delete implements Runnable {
     String destination = null;
     Thread del;
     String version = null;
+    public static Boolean debug = false;
 
     public void calibrate() {
         try {
@@ -67,15 +68,16 @@ public class Delete implements Runnable {
             } else {
                 s3Client.deleteObject(new DeleteObjectRequest(bucket, what));
             }
-            NewJFrame.jTextArea1.append("\nDeleted object: " + what);
+            if (!debug) {
+                NewJFrame.jTextArea1.append("\nDeleted object: " + what);
+            }
             calibrate();
-        } catch (Exception Delete) {
-            NewJFrame.jTextArea1.append("\n\nAn error has occurred in DeleteFile.");
-            NewJFrame.jTextArea1.append("\n\nError Message:    " + Delete.getMessage());
-            message = message + "\n" + Delete.getMessage();
-            calibrate();
+        } catch (Exception DeleteMessage) {
+            if (debug) {
+                System.out.print("\n\nError: " + DeleteMessage.getMessage() + "\n\n\n");
+                System.exit(-1);
+            }
         }
-        calibrate();
     }
 
     void startc(String Awhat, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String Aversion) {
