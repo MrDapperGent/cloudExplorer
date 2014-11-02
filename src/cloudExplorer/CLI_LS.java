@@ -134,7 +134,7 @@ public class CLI_LS {
             System.out.print("\n\n\nBucket listing operation Complete\n\n\n");
 
         } catch (Exception ls) {
-            System.out.print("\n\nAn Error has occured while listing the objects.\n\n\n");
+            System.out.print("\n\nAn Error has occured while listing the objects or the bucket does not exist.\n\n\n");
             System.exit(-1);
         }
     }
