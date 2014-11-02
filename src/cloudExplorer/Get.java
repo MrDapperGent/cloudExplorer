@@ -69,6 +69,9 @@ public class Get implements Runnable {
             }
             fo.close();
         } catch (Exception add) {
+            if (debug) {
+                System.out.print("\n\n\n" + add.getMessage() + "\n\n\n");
+            }
         }
 
     }
