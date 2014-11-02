@@ -40,6 +40,7 @@ public class Get implements Runnable {
     String destination = null;
     String version = null;
     Thread get;
+    public static Boolean debug = false;
 
     public void calibrate() {
         try {
@@ -94,6 +95,9 @@ public class Get implements Runnable {
             }
 
         } catch (Exception get) {
+            if (debug) {
+                System.out.print("\n\n\n" + get.getMessage() + "\n\n\n");
+            }
             //mainFrame.jTextArea1.append("\n\nAn error has occurred in GET.");
             //mainFrame.jTextArea1.append("\n\nError Message: " + get.getMessage());
             //message = message + "\n" + get.getMessage();

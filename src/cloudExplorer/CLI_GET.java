@@ -119,13 +119,59 @@ public class CLI_GET {
 
     }
 
+    String convertObject(String what, String operation) {
+
+        if (what.contains("/")) {
+            what = what.replace("/", File.separator);
+        }
+
+        if (what.contains("\\")) {
+            what = what.replace("\\", File.separator);
+        }
+
+        int count = 0;
+        int slash_counter = 0;
+        String out_file = null;
+        int another_counter = 0;
+
+        for (int y = 0; y != what.length(); y++) {
+            if (what.substring(y, y + 1).contains(File.separator)) {
+                slash_counter++;
+                another_counter = y;
+            }
+        }
+
+        for (int y = 0; y != what.length(); y++) {
+            if (y == another_counter) {
+                if (operation.contains("download")) {
+                    if (what.contains(File.separator)) {
+                        out_file = (what.substring(y, what.length()));
+                    } else {
+                        out_file = (what);
+                    }
+                } else {
+                    out_file = (what.substring(y + 1, what.length()));
+                }
+            }
+        }
+        return out_file;
+    }
+
     void getFromS3() {
         try {
             NewJFrame.perf = true;
             System.out.print("\n\nDownloading " + get_file + "........");
-            get = new Get(get_file, access_key, secret_key, bucket, endpoint, Home + get_file, null);
-            get.startc(get_file, access_key, secret_key, bucket, endpoint, Home + get_file, null);
-            System.out.print("\n\nGET operation Complete\n\n\n");
+            String new_object_name = convertObject(get_file, "download");
+
+            get = new Get(get_file, access_key, secret_key, bucket, endpoint, Home + File.separator + get_file, null);
+            Get.debug = true;
+            get.startc(get_file, access_key, secret_key, bucket, endpoint, Home + File.separator + get_file, null);
+            File check = new File(Home + File.separator + get_file);
+            if (check.exists()) {
+                System.out.print("\n\nGET operation Complete. Saved to: " + Home + File.separator + get_file + ". \n\n\n");
+            } else {
+                System.out.print("\n\nError: GET did not complete successfully.\n\n\n");
+            }
         } catch (Exception send) {
             System.out.print("\n\nAn Error has occured while downloading the file");
             System.exit(-1);
