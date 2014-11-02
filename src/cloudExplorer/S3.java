@@ -28,7 +28,7 @@ public class S3 {
                     CLI_LS ls = new CLI_LS();
                     ls.start(args[1]);
                 }
-                
+
                 if (args[0].contains("build")) {
                     Build build = new Build();
                     build.start(args[1], args[2], args[3]);
@@ -38,6 +38,11 @@ public class S3 {
                     CLI_PUT put = new CLI_PUT();
                     put.start(args[1], args[2]);
                 }
+                if (args[0].contains("get")) {
+                    CLI_GET get = new CLI_GET();
+                    get.start(args[1], args[2]);
+                }
+                
                 if (args[0].contains("delete")) {
                     CLI_DELETE delete = new CLI_DELETE();
                     delete.start(args[1], args[2]);
