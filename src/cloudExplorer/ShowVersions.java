@@ -72,6 +72,9 @@ public class ShowVersions implements Runnable {
                     } else {
                         mainFrame.object_item[i].setForeground(Color.blue);
                     }
+                    if (i == 0) {
+                        mainFrame.object_item[i].setForeground(Color.blue);
+                    }
                     mainFrame.object_item[i].setBackground(Color.white);
                     mainFrame.jPanel11.add(mainFrame.object_item[i]);
                     mainFrame.versionDownload = true;
