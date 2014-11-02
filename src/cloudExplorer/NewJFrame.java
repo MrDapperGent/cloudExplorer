@@ -1607,13 +1607,18 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jPanel11.removeAll();
             JLabel helpmessage = new JLabel("1. Buckets are displayed on the left. Click on a bucket to see your files.");
             JLabel blank = new JLabel("");
+            JLabel blank2 = new JLabel("");
             JLabel helpmessage2 = new JLabel("2. You can search buckets by typing text in the search box.");
+            JLabel helpmessage3 = new JLabel("3. Buckets with versioning enabled are displayed in green.");
             helpmessage.setForeground(Color.blue);
             helpmessage2.setForeground(Color.blue);
+            helpmessage3.setForeground(Color.blue);
             jPanel11.setLayout(new BoxLayout(jPanel11, BoxLayout.Y_AXIS));
             jPanel11.add(helpmessage);
             jPanel11.add(blank);
             jPanel11.add(helpmessage2);
+            jPanel11.add(blank2);
+            jPanel11.add(helpmessage3);
             jPanel11.repaint();
         }
 
