@@ -97,56 +97,78 @@ public class CLI {
 
     void start(String arg0, String arg1, String arg2) {
         operation = arg0;
-        if (arg2 == null) {
-            bucket = arg1;
-        } else {
-            bucket = arg2;
-        }
-        System.out.print("\bDebug: " + bucket);
-
-        put_file = new File(arg1);
-        get_file = arg1;
-        delete_file = arg1;
-
-        mainmenu();
-
-        try {
-            File s3config = new File(s3_config_file);
-            if (s3config.exists()) {
-            } else {
-                messageParser("\nError: Build config file not found.");
-            }
-
+        if (operation.contains("lsbuckets") || operation.contains("makebucket") || operation.contains("rmbucket")) {
             saved_s3_configs = loadConfig(this.s3_config_file).toString().split(" ");
             loadS3credentials();
+            mainmenu();
+            if (operation.contains("lsbuckets")) {
+                listBuckets();
+            }
 
-            new Thread(new Runnable() {
-                public void run() {
-                    if (operation.contains("del")) {
-                        deleteFromS3();
-                    }
+            if (operation.contains("makebucket")) {
+                bucket = arg1;
+                makeBucket();
+            }
+            if (operation.contains("rmbucket")) {
+                bucket = arg1;
+                rmBucket();
+            }
 
-                    if (operation.contains("ls")) {
-                        ls();
-                    }
-                    if (operation.contains("put")) {
-                        if (put_file.exists()) {
-                            putTOs3(put_file);
-                        } else {
-                            messageParser("\nError: " + put_file.toString() + " does not exist");
-                        }
-                    }
-                    if (operation.contains("get")) {
-                        getFromS3();
-                    }
+        } else {
+            if (arg2 == null) {
+                bucket = arg1;
+            } else {
+                bucket = arg2;
+            }
 
+            put_file = new File(arg1);
+            get_file = arg1;
+            delete_file = arg1;
+
+            mainmenu();
+
+            try {
+                File s3config = new File(s3_config_file);
+                if (s3config.exists()) {
+                } else {
+                    messageParser("\nError: Build config file not found.");
                 }
 
-            }).start();
+                saved_s3_configs = loadConfig(this.s3_config_file).toString().split(" ");
+                loadS3credentials();
 
-        } catch (Exception Start) {
+                new Thread(new Runnable() {
+                    public void run() {
+                        if (operation.contains("del")) {
+                            deleteFromS3();
+                        }
+
+                        if (operation.contains("mb")) {
+                            makeBucket();
+                        }
+
+                        if (operation.contains("ls")) {
+                            ls();
+                        }
+                        if (operation.contains("put")) {
+                            if (put_file.exists()) {
+                                putTOs3(put_file);
+                            } else {
+                                messageParser("\nError: " + put_file.toString() + " does not exist");
+                            }
+                        }
+                        if (operation.contains("get")) {
+                            getFromS3();
+                        }
+
+                    }
+
+                }).start();
+
+            } catch (Exception Start) {
+            }
+
         }
-
     }
 
     void ls() {
@@ -227,6 +249,40 @@ public class CLI {
         } catch (Exception send) {
             System.out.print("\n\nAn Error has occured while downloading the file.");
             System.exit(-1);
+        }
+    }
+
+    void listBuckets() {
+        try {
+            System.out.print("\n\n\nListing Buckets:");
+            BucketClass.terminal = true;
+            System.out.print(bucketObject.listBuckets(access_key, secret_key, endpoint));
+            System.out.print("\n\n\nBucket listing operation Complete\n\n\n");
+        } catch (Exception listBuckets) {
+            System.out.print("\n\n\nAn error has occurred while listing buckets.\n\n\n");
+        }
+    }
+
+    void makeBucket() {
+        try {
+            BucketClass.terminal = true;
+            System.out.print("\n\n\nCreating Bucket:" + bucket);
+            bucketObject.makeBucket(access_key, secret_key, bucket, endpoint, region);
+            System.out.printf("\n\n\nBucket creation operaton complete.\n\n\n");
+        } catch (Exception makeBucket) {
+            System.out.print("\n\n\nAn error has occurred with making a bucket.\n\n\n");
+        }
+    }
+
+    void rmBucket() {
+        try {
+            BucketClass.terminal = true;
+            System.out.print("\n\n\nDeleting Bucket:" + bucket);
+            bucketObject.deleteBucket(access_key, secret_key, bucket, endpoint, region);
+            System.out.print("\n\n\nBucket Delete operation Complete\n\n\n");
+
+        } catch (Exception deleteBucket) {
+            System.out.print("\n\n\nAn error has occurred with deleting a bucket.");
         }
     }
 

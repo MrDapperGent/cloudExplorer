@@ -15,29 +15,38 @@ public class S3 {
      **/
 
     public static void main(String[] args) {
+        int stop = 0;
+
         if (args.length > 0) {
             if (args[0].contains("daemon")) {
                 Daemon daemon = new Daemon();
                 daemon.gui = false;
                 daemon.start();
+                stop = 1;
+            } else if (args[0].contains("lsbuckets")) {
+                CLI cli = new CLI();
+                cli.start(args[0], null, null);
+                stop = 1;
             }
 
-            if (args.length >= 2) {
+            if (stop == 0) {
+                if (args.length >= 2) {
 
-                if (args[0].contains("build")) {
-                    Build build = new Build();
-                    build.start(args[1], args[2], args[3]);
-                } else {
-                    CLI cli = new CLI();
-                    if (args.length < 3) {
-                        cli.start(args[0], args[1], null);
+                    if (args[0].contains("build")) {
+                        Build build = new Build();
+                        build.start(args[1], args[2], args[3]);
                     } else {
-                        cli.start(args[0], args[1], args[2]);
+                        CLI cli = new CLI();
+                        if (args.length < 3) {
+                            cli.start(args[0], args[1], null);
+                        } else {
+                            cli.start(args[0], args[1], args[2]);
+                        }
                     }
-                }
 
-            } else {
-                System.out.print("\nError: not enough arguments used.\n\n\n");
+                } else {
+                    System.out.print("\nError: not enough arguments used.\n\n\n");
+                }
             }
 
         } else {

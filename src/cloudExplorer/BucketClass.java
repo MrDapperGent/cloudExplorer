@@ -34,7 +34,7 @@ import com.amazonaws.services.s3.model.SetBucketVersioningConfigurationRequest;
 public class BucketClass {
 
     String objectlist = null;
-
+    public static Boolean terminal = false;
     NewJFrame mainFrame;
 
     Boolean VersioningStatus(String access_key, String secret_key, String bucket, String endpoint, String region, Boolean enable) {
@@ -119,7 +119,11 @@ public class BucketClass {
 
             message = ("\nAttempting to create the bucket. Please view the Bucket list window for an update.");
         } catch (Exception makeBucket) {
-            mainFrame.jTextArea1.append("\n" + makeBucket.getMessage() + "\n");
+            if (terminal) {
+                System.out.print("\n\n\n" + makeBucket.getMessage() + "\n\n\n");
+            } else {
+                mainFrame.jTextArea1.append("\n" + makeBucket.getMessage() + "\n");
+            }
         }
         if (message == null) {
             message = "Failed to create bucket.";
@@ -146,11 +150,15 @@ public class BucketClass {
             }
 
         } catch (Exception listBucket) {
-
-            mainFrame.jTextArea1.append("\n" + listBucket.getMessage());
+            if (terminal) {
+                System.out.print("\n\n\n" + listBucket.getMessage() + "\n\n\n");
+            } else {
+                mainFrame.jTextArea1.append("\n" + listBucket.getMessage());
+            }
             if (listBucket.getMessage().contains("peer not authenticated")) {
                 mainFrame.jTextArea1.append("\nError: This program does not support non-trusted SSL certificates.");
             }
+
         }
         String parse = null;
 
