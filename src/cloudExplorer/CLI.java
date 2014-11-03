@@ -104,20 +104,23 @@ public class CLI {
         operation = arg0;
         Put.terminal = true;
         Get.terminal = true;
-        if (operation.contains("lsbuckets") || operation.contains("makebucket") || operation.contains("rmbucket")) {
+        if (operation.contains("listbuckets") || operation.contains("makebucket") || operation.contains("rmbucket") || operation.contains("ls")) {
             saved_s3_configs = loadConfig(this.s3_config_file).toString().split(" ");
             loadS3credentials();
             mainmenu();
-            if (operation.contains("lsbuckets")) {
+            bucket = arg1;
+
+            if (operation.contains("ls")) {
+                ls();
+            }
+            if (operation.contains("listbuckets")) {
                 listBuckets();
             }
 
             if (operation.contains("makebucket")) {
-                bucket = arg1;
                 makeBucket();
             }
             if (operation.contains("rmbucket")) {
-                bucket = arg1;
                 rmBucket();
             }
 
@@ -167,9 +170,6 @@ public class CLI {
                             deleteFromS3();
                         }
 
-                        if (operation.contains("ls")) {
-                            ls();
-                        }
                         if (operation.contains("put")) {
                             if (put_file.exists()) {
                                 putTOs3(put_file);

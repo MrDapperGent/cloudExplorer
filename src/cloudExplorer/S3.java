@@ -20,7 +20,7 @@ public class S3 {
                 + "\nget filename bucket"
                 + "\ndelete filename bucket"
                 + "\nls bucket"
-                + "\nlsbuckets"
+                + "\nlistbuckets"
                 + "\nrmbucket bucket"
                 + "\nsynctos3 location bucket"
                 + "\nsyncfroms3 destination bucket"
@@ -37,7 +37,7 @@ public class S3 {
                 daemon.gui = false;
                 daemon.start();
                 stop = 1;
-            } else if (args[0].contains("lsbuckets")) {
+            } else if (args[0].contains("listbuckets")) {
                 CLI cli = new CLI();
                 cli.start(args[0], null, null);
                 stop = 1;

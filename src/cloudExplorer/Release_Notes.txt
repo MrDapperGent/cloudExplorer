@@ -32,7 +32,7 @@ java -jar CloudExplorer.jar delete filename bucket
 java -jar CloudExplorer.jar ls bucket
 
 #List buckets
-java -jar CloudExplorer.jar lsbuckets
+java -jar CloudExplorer.jar listbuckets
 
 #Delete a bucket
 java -jar CloudExplorer.jar rmbucket bucket
