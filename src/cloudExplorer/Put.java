@@ -47,6 +47,7 @@ public class Put implements Runnable {
     Thread put;
     Boolean encrypt = false;
     public static Boolean running = true;
+    public static Boolean terminal = false;
 
     public void calibrate() {
         try {
@@ -101,7 +102,11 @@ public class Put implements Runnable {
             long diff = t2 - t1;
 
             if (!mainFrame.perf) {
-                mainFrame.jTextArea1.append("\nUploaded object: " + ObjectKey + " in " + diff / 1000 + " second(s).");
+                if (terminal) {
+                    System.out.print("\nUploaded object: " + ObjectKey + " in " + diff / 1000 + " second(s).\n");
+                } else {
+                    mainFrame.jTextArea1.append("\nUploaded object: " + ObjectKey + " in " + diff / 1000 + " second(s).");
+                }
             }
         } catch (Exception manager) {
             if (debug) {

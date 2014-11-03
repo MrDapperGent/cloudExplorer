@@ -102,6 +102,8 @@ public class CLI {
 
     void start(String arg0, String arg1, String arg2) {
         operation = arg0;
+        Put.terminal = true;
+        Get.terminal = true;
         if (operation.contains("lsbuckets") || operation.contains("makebucket") || operation.contains("rmbucket")) {
             saved_s3_configs = loadConfig(this.s3_config_file).toString().split(" ");
             loadS3credentials();
@@ -150,6 +152,7 @@ public class CLI {
 
                             File check_destination = new File(destination);
                             if (check_destination.exists()) {
+
                                 if (operation.contains("syncfroms3")) {
                                     syncFromS3();
                                 }
@@ -223,7 +226,7 @@ public class CLI {
     }
 
     void syncToS3() {
-        System.out.print("\n\nStarting sync to bucket: " + bucket + "\n");
+        System.out.print("\n\nStarting sync from: " + destination + " to bucket: " + bucket + "\n");
         File dir = new File(destination);
         reloadObjects();
         String[] extensions = new String[]{" "};
@@ -261,7 +264,7 @@ public class CLI {
 
     void syncFromS3() {
         try {
-            System.out.print("\n\nStarting sync from bucket: " + bucket + "\n");
+            System.out.print("\n\nStarting sync from bucket: " + bucket + " to destination: " + destination + ".\n");
             reloadObjects();
             File[] fromS3File = new File[object_array.length];
             for (int i = 1; i != object_array.length; i++) {
@@ -341,7 +344,7 @@ public class CLI {
 
     void getFromS3() {
         try {
-            NewJFrame.perf = true;
+            // NewJFrame.perf = true;
             System.out.print("\n\nDownloading " + get_file + "........");
             String new_object_name = convertObject(get_file, "download");
             String destination = Home + File.separator + new_object_name;
@@ -409,7 +412,7 @@ public class CLI {
 
     void putTOs3(File dir) {
         try {
-            NewJFrame.perf = true;
+            //NewJFrame.perf = true;
             System.out.print("\n\nUploading: " + put_file.getAbsolutePath().toString() + "........");
             put = new Put(put_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, put_file.getName(), false, false);
             Put.debug = true;
