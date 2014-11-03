@@ -143,10 +143,6 @@ public class CLI {
                             deleteFromS3();
                         }
 
-                        if (operation.contains("mb")) {
-                            makeBucket();
-                        }
-
                         if (operation.contains("ls")) {
                             ls();
                         }
