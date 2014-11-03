@@ -159,7 +159,7 @@ public class CLI {
                                     syncToS3();
                                 }
                             } else {
-                                System.out.print("\n\n\nError: origin/destination directory not found.");
+                                System.out.print("\n\n\nError: origin/destination directory not found.\n\n\n");
                                 System.exit(-1);
                             }
                         }
