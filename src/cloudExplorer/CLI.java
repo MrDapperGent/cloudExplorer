@@ -146,7 +146,6 @@ public class CLI {
 
                 new Thread(new Runnable() {
                     public void run() {
-                        System.out.print("\ndebug: " + bucket);
                         if (operation.contains("syncfroms3") || operation.contains("synctos3")) {
 
                             File check_destination = new File(destination);
