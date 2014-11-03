@@ -223,6 +223,7 @@ public class CLI {
     }
 
     void syncToS3() {
+        System.out.print("\nStarting sync to: " + bucket + "\n");
         File dir = new File(destination);
         reloadObjects();
         String[] extensions = new String[]{" "};
@@ -253,12 +254,13 @@ public class CLI {
                 System.out.print("\n\n\nError, no bucket specified.\n\n\n");
             }
         } catch (Exception reloadObjects) {
-            System.out.print("\n\n\nError with loading objects.\n\n\n");
+            System.out.print("\n\n\nError with loading objects:\n\n\n");
         }
     }
 
     void syncFromS3() {
         try {
+             System.out.print("\nStarting sync to: " + bucket + "\n");
             reloadObjects();
             File[] fromS3File = new File[object_array.length];
             for (int i = 1; i != object_array.length; i++) {
