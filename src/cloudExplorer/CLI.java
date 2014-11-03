@@ -211,7 +211,6 @@ public class CLI {
 
     void getFromS3() {
         try {
-            NewJFrame.perf = true;
             System.out.print("\n\nDownloading " + get_file + "........");
             String new_object_name = convertObject(get_file, "download");
             String destination = Home + File.separator + new_object_name;
@@ -245,8 +244,7 @@ public class CLI {
 
     void putTOs3(File dir) {
         try {
-            NewJFrame.perf = true;
-            System.out.print("\n\nUploading " + put_file.getAbsolutePath().toString() + "........");
+            System.out.print("\n\nUploading: " + put_file.getAbsolutePath().toString() + "........");
             put = new Put(put_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, put_file.getName(), false, false);
             Put.debug = true;
             put.startc(put_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, put_file.getName(), false, false);
