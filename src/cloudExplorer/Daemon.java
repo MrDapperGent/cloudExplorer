@@ -114,7 +114,7 @@ public class Daemon {
 
         mainmenu();
         if (!gui) {
-            messageParser("\n\nCloud Explorer will perform a bidirectional \nsync on the directory listed in the config file:\n\n" + sync_config_file);
+            messageParser("\n\nCloud Explorer will sync the directory listed in the config file:\n\n" + sync_config_file + " to S3 every 5 minutes.");
         }
         try {
             File s3config = new File(s3_config_file);
@@ -153,7 +153,7 @@ public class Daemon {
                         try {
                             reloadObjects();
                             SyncToS3(dirToSync);
-                            syncFromS3(dirToSync.toString());
+                            //syncFromS3(dirToSync.toString());
                             Thread.sleep(TimeUnit.MINUTES.toMillis(5));
                             if (gui) {
                                 mainFrame.jTextArea1.setText("");

@@ -2,7 +2,8 @@ Version 4.1
 
 Bug Fixes:
 Fixed a bug with the info button to support displaying object information for S3-compatible cloud providers.
-
+Daemon mode now only syncs to S3. 
+ 
 Improvements:
 Performance Testing: Graph and non-graph display are labeled as PUT or GET.
 Versioning: Latest file will be in blue. Deleted files will be in red.
