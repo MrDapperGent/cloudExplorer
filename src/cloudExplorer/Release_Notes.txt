@@ -7,6 +7,7 @@ Improvements:
 Performance Testing: Graph and non-graph display are labeled as PUT or GET.
 Versioning: Latest file will be in blue. Deleted files will be in red.
 Versioning: Version enabled buckets will be displayed in green.
+Upgraded S3 API to 1.9.3
 
 New Features:
 Command-line interface: put, get, delete, makebucket, rmbucket, listbuckets, syncfroms3, and synctos3.
