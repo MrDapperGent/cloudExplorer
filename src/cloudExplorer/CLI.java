@@ -20,15 +20,23 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
-public class CLI_GET {
+public class CLI {
 
+    Delete delete;
+    String[] object_array = null;
+    Get get;
     String name = null;
+    String arg1 = null;
+    String operation = null;
+    String delete_file = null;
+    String get_file = null;
     String Home = System.getProperty("user.home");
     String s3_config_file = Home + File.separator + "s3.config";
-    BucketClass Bucket = new BucketClass();
+    BucketClass bucketObject = new BucketClass();
     Acl objectacl = new Acl();
-    String get_file;
-    Get get;
+    File put_file;
+    String build_file_location;
+    Put put;
     String build_name = null;
     String[] saved_s3_configs = null;
     String secret_key = null;
@@ -47,7 +55,7 @@ public class CLI_GET {
             messageParser("\n");
         }
         messageParser("\n------------------------------------------------");
-        messageParser("\n           Cloud Explorer GET request.");
+        messageParser("\n           Cloud Explorer CLI: " + operation);
         messageParser("\n------------------------------------------------");
 
     }
@@ -87,9 +95,18 @@ public class CLI_GET {
         return remove_symbol;
     }
 
-    void start(String Aget_file, String Abucket) {
-        bucket = Abucket;
-        get_file = Aget_file;
+    void start(String arg0, String arg1, String arg2) {
+        operation = arg0;
+        if (arg2 == null) {
+            bucket = arg1;
+        } else {
+            bucket = arg2;
+        }
+        System.out.print("\bDebug: " + bucket);
+
+        put_file = new File(arg1);
+        get_file = arg1;
+        delete_file = arg1;
 
         mainmenu();
 
@@ -103,20 +120,55 @@ public class CLI_GET {
             saved_s3_configs = loadConfig(this.s3_config_file).toString().split(" ");
             loadS3credentials();
 
-            if (get_file != null) {
+            new Thread(new Runnable() {
+                public void run() {
+                    if (operation.contains("del")) {
+                        deleteFromS3();
+                    }
 
-                new Thread(new Runnable() {
-                    public void run() {
+                    if (operation.contains("ls")) {
+                        ls();
+                    }
+                    if (operation.contains("put")) {
+                        if (put_file.exists()) {
+                            putTOs3(put_file);
+                        } else {
+                            messageParser("\nError: " + put_file.toString() + " does not exist");
+                        }
+                    }
+                    if (operation.contains("get")) {
                         getFromS3();
                     }
-                }).start();
 
-            } else {
-                messageParser("\n\n\nError: no file specified to GET.\n\n\n");
-            }
+                }
+
+            }).start();
+
         } catch (Exception Start) {
         }
 
+    }
+
+    void ls() {
+        try {
+            System.out.print("\n\nLoading objects for Bucket: " + bucket + "........\n\n");
+            String objectlist = bucketObject.listBucketContents(access_key, secret_key, bucket, endpoint);
+            object_array = objectlist.split("@@");
+
+            for (String obj : object_array) {
+                if (obj.contains("null")) {
+
+                } else {
+                    System.out.print("\n" + obj);
+                }
+            }
+
+            System.out.print("\n\n\nBucket listing operation Complete\n\n\n");
+
+        } catch (Exception ls) {
+            System.out.print("\n\nAn Error has occured while listing the objects or the bucket does not exist.\n\n\n");
+            System.exit(-1);
+        }
     }
 
     String convertObject(String what, String operation) {
@@ -174,6 +226,33 @@ public class CLI_GET {
             }
         } catch (Exception send) {
             System.out.print("\n\nAn Error has occured while downloading the file.");
+            System.exit(-1);
+        }
+    }
+
+    void deleteFromS3() {
+        try {
+            System.out.print("\n\nDeleting: " + delete_file + "........");
+            delete = new Delete(delete_file, access_key, secret_key, bucket, endpoint, null);
+            Delete.debug = true;
+            delete.startc(delete_file, access_key, secret_key, bucket, endpoint, null);
+            System.out.print("\n\nDELETE operation Complete\n\n\n");
+        } catch (Exception send) {
+            System.out.print("\n\nAn Error has occured while deleting the file");
+            System.exit(-1);
+        }
+    }
+
+    void putTOs3(File dir) {
+        try {
+            NewJFrame.perf = true;
+            System.out.print("\n\nUploading " + put_file.getAbsolutePath().toString() + "........");
+            put = new Put(put_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, put_file.getName(), false, false);
+            Put.debug = true;
+            put.startc(put_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, put_file.getName(), false, false);
+            System.out.print("\n\nPUT operation Complete\n\n\n");
+        } catch (Exception send) {
+            System.out.print("\n\nAn Error has occured while uploading the file");
             System.exit(-1);
         }
     }

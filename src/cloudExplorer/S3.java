@@ -24,28 +24,16 @@ public class S3 {
 
             if (args.length >= 2) {
 
-                if (args[0].contains("ls")) {
-                    CLI_LS ls = new CLI_LS();
-                    ls.start(args[1]);
-                }
-
                 if (args[0].contains("build")) {
                     Build build = new Build();
                     build.start(args[1], args[2], args[3]);
-                }
-
-                if (args[0].contains("put")) {
-                    CLI_PUT put = new CLI_PUT();
-                    put.start(args[1], args[2]);
-                }
-                if (args[0].contains("get")) {
-                    CLI_GET get = new CLI_GET();
-                    get.start(args[1], args[2]);
-                }
-                
-                if (args[0].contains("delete")) {
-                    CLI_DELETE delete = new CLI_DELETE();
-                    delete.start(args[1], args[2]);
+                } else {
+                    CLI cli = new CLI();
+                    if (args.length < 3) {
+                        cli.start(args[0], args[1], null);
+                    } else {
+                        cli.start(args[0], args[1], args[2]);
+                    }
                 }
 
             } else {
