@@ -124,6 +124,7 @@ public class CLI {
         } else {
             if (arg2 == null) {
                 System.out.print("\n\n\nError, no bucket specified.\n\n\n");
+                System.exit(-1);
             } else {
                 bucket = arg2;
             }
