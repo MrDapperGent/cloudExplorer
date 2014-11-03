@@ -1,9 +1,15 @@
 Version 4.1
 
+Bug Fixes:
+Fixed a bug with the info button to support displaying object information for S3-compatible cloud providers.
+
+Improvements:
+Performance Testing: Graph and non-graph display are labeled as PUT or GET.
 Versioning: Latest file will be in blue. Deleted files will be in red.
 Versioning: Version enabled buckets will be displayed in green.
-New Command-line interface: put, get, delete, makebucket, rmbucket,listbuckets, syncfroms3, and synctos3.
-Performance Testing: Graphs are labeled as PUT or GET.
+
+New Features:
+Command-line interface: put, get, delete, makebucket, rmbucket,listbuckets, syncfroms3, and synctos3.
 
 Features:
 

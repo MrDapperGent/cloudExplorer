@@ -245,11 +245,16 @@ public class PerformanceThread implements Runnable {
 
     void display(double throughput, double iops
     ) {
+        if (!operation) {
+            type_operation = "GET";
+        } else {
+            type_operation = "PUT";
+        }
 
-        JLabel throughputIcon = new JLabel("\n                         Average Throughput \n\n" + Double.toString(throughput) + " MB/s");
+        JLabel throughputIcon = new JLabel("\n                         Average " + type_operation + " Throughput \n\n" + Double.toString(throughput) + " MB/s");
         throughputIcon.setForeground(BLUE);
         throughputIcon.setBackground(WHITE);
-        JLabel iopsIcon = new JLabel("\n                                                   OP/s \n\n" + Double.toString(iops));
+        JLabel iopsIcon = new JLabel("\n                                                   " + type_operation + " OP/s \n\n" + Double.toString(iops));
         iopsIcon.setForeground(GREEN);
         iopsIcon.setBackground(WHITE);
 

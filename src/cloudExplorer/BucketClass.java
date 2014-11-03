@@ -208,7 +208,8 @@ public class BucketClass {
 
     String getObjectInfo(String key, String access_key, String secret_key, String bucket, String endpoint, String process) {
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
-        AmazonS3 s3Client = new AmazonS3Client(credentials);
+        AmazonS3 s3Client = new AmazonS3Client(credentials,
+                new ClientConfiguration().withSignerOverride("S3SignerType"));
         s3Client.setEndpoint(endpoint);
         objectlist = null;
 
