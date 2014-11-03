@@ -246,10 +246,14 @@ public class CLI {
 
     void reloadObjects() {
         try {
+            if(bucket !=null) {
             String objectlist = bucketObject.listBucketContents(access_key, secret_key, bucket, endpoint);
             object_array = objectlist.split("@@");
+            } else {
+                System.out.print("\n\n\nError, no bucket specified.\n\n\n");
+            }
         } catch (Exception reloadObjects) {
-            System.out.print("\n\n\nError with loading objects\n\n\n");
+            System.out.print("\n\n\nError with loading objects.\n\n\n");
         }
     }
 
