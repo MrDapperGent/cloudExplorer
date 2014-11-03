@@ -32,7 +32,7 @@ Wait for transfers to complete.
 
 [Background Sync]
 
-Background Sync allows Cloud Explorer to function like Dropbox. It will sync to and from the S3 server. Please note that no files will be deleted. 
+Background Sync allows Cloud Explorer to sync a directory in the background to S3 every 5 minutes. Sync will only upload files that do not exist on S3 and no files will be deleted. 
 <br>
 <br>
 From the GUI: 
