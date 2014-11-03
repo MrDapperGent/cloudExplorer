@@ -132,7 +132,6 @@ public class CLI {
             get_file = arg1;
             delete_file = arg1;
             destination = arg1;
-
             mainmenu();
 
             try {
@@ -344,10 +343,10 @@ public class CLI {
 
     void getFromS3() {
         try {
-            // NewJFrame.perf = true;
+            NewJFrame.perf = true;
             System.out.print("\n\nDownloading " + get_file + "........");
             String new_object_name = convertObject(get_file, "download");
-            String destination = Home + File.separator + new_object_name;
+            destination = Home + File.separator + new_object_name;
             get = new Get(get_file, access_key, secret_key, bucket, endpoint, destination, null);
             Get.debug = true;
             get.run();
@@ -412,7 +411,7 @@ public class CLI {
 
     void putTOs3(File dir) {
         try {
-            //NewJFrame.perf = true;
+            NewJFrame.perf = true;
             System.out.print("\n\nUploading: " + put_file.getAbsolutePath().toString() + "........");
             put = new Put(put_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, put_file.getName(), false, false);
             Put.debug = true;
