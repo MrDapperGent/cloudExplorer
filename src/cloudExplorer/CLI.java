@@ -139,7 +139,7 @@ public class CLI {
 
                 new Thread(new Runnable() {
                     public void run() {
-                        if (operation.contains("del")) {
+                        if (operation.contains("delete")) {
                             deleteFromS3();
                         }
 
