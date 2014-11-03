@@ -248,9 +248,7 @@ public class BucketClass {
     }
 
     String deleteBucket(String access_key, String secret_key, String bucket, String endpoint, String region) {
-
         String message = null;
-
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration().withSignerOverride("S3SignerType"));

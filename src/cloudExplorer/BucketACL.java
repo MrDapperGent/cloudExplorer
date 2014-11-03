@@ -96,11 +96,12 @@ public class BucketACL implements Runnable {
                             jTextArea1.append(mainFrame.bucket.controlVersioning(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.cred.getRegion(), false));
                         }
                         if (delete_bucket.isSelected()) {
-                            jTextArea1.append(mainFrame.bucket.deleteBucket(mainFrame.cred.access_key, mainFrame.cred.secret_key, mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.end_point, mainFrame.cred.region));
                             mainFrame.bucket_item[mainFrame.active_bucket].setSelected(false);
-                            mainFrame.active_bucket = 0;
-                            mainFrame.reloadBuckets();
+                            DeleteBucketThread delBucket = new DeleteBucketThread(mainFrame.cred.access_key, mainFrame.cred.secret_key, mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.end_point, mainFrame.cred.region, mainFrame);
+                            delBucket.startc(mainFrame.cred.access_key, mainFrame.cred.secret_key, mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.end_point, mainFrame.cred.region, mainFrame);
+                           
                         }
+
                         if (static_website.isSelected()) {
                             mainFrame.objectacl.setBUCKETwebsite(object_acl_change, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getEndpoint(), mainFrame.cred.getBucket());
                             jTextArea1.append("\nWebsite access enabled.\n");
