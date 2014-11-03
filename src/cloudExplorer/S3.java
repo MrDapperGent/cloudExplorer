@@ -14,6 +14,20 @@ public class S3 {
      * Place, Suite 330, Boston, MA 02111-1307 USA
      **/
 
+    public static void helpargs() {
+        System.out.print("\n[Cloud Explorer - CLI arguments.]\n"
+                + "\nput filename bucket"
+                + "\nget filename bucket"
+                + "\ndelete filename bucket"
+                + "\nls bucket"
+                + "\nlsbuckets"
+                + "\nrmbucket bucket"
+                + "\nsynctos3 location bucket"
+                + "\nsyncfroms3 destination bucket"
+                + "\n\n\n");
+
+    }
+
     public static void main(String[] args) {
         int stop = 0;
 
@@ -46,6 +60,7 @@ public class S3 {
 
                 } else {
                     System.out.print("\nError: not enough arguments used.\n\n\n");
+                    helpargs();
                 }
             }
 
