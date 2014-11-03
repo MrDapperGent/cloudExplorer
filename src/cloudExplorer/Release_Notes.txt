@@ -2,7 +2,7 @@ Version 4.1
 
 Versioning: Latest file will be in blue. Deleted files will be in red.
 Versioning: Version enabled buckets will be displayed in green.
-New Command Line Options: put, get, delete, makebucket, rmbucket,listbuckets, syncfroms3, and synctos3.
+New Command-line interface: put, get, delete, makebucket, rmbucket,listbuckets, syncfroms3, and synctos3.
 
 Features:
 
@@ -22,7 +22,7 @@ Features:
 14. Command-line interface.
 
 
-Command Line Options:
+Command-line Options:
 
 java -jar CloudExplorer.jar put filename bucket
 java -jar CloudExplorer.jar get filename bucket
