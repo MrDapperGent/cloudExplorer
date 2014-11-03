@@ -14,7 +14,6 @@
  * cloudExplorer
  *
  */
-
 package cloudExplorer;
 
 import static cloudExplorer.NewJFrame.jTextArea1;
@@ -71,9 +70,9 @@ public class MakeBucket implements Runnable {
                     if (bucketName.getText().length() < 3) {
                         close.doClick();
                     } else {
-                        mainFrame.jTextArea1.append("\n" + mainFrame.bucket.makeBucket(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), bucketName.getText().toLowerCase(), mainFrame.cred.getEndpoint(), regionName.getText()));
+                        MakeBucketThread bt = new MakeBucketThread(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), bucketName.getText().toLowerCase(), mainFrame.cred.getEndpoint(), regionName.getText(), mainFrame);
+                        bt.startc(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), bucketName.getText().toLowerCase(), mainFrame.cred.getEndpoint(), regionName.getText(), mainFrame);
                         close.doClick();
-                        mainFrame.reloadBuckets();
                     }
                 }
             });
