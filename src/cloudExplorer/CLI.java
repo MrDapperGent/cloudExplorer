@@ -123,7 +123,7 @@ public class CLI {
 
         } else {
             if (arg2 == null) {
-                bucket = arg1;
+                System.out.print("\n\n\nError, no bucket specified.\n\n\n");
             } else {
                 bucket = arg2;
             }
@@ -146,7 +146,7 @@ public class CLI {
 
                 new Thread(new Runnable() {
                     public void run() {
-
+                        System.out.print("\ndebug: " + bucket);
                         if (operation.contains("syncfroms3") || operation.contains("synctos3")) {
 
                             File check_destination = new File(destination);
@@ -263,6 +263,7 @@ public class CLI {
 
     void syncFromS3() {
         try {
+
             System.out.print("\n\nStarting sync from bucket: " + bucket + " to destination: " + destination + ".\n");
             reloadObjects();
             File[] fromS3File = new File[object_array.length];
