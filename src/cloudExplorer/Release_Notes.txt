@@ -10,6 +10,7 @@ Versioning: Version enabled buckets will be displayed in green.
 
 New Features:
 Command-line interface: put, get, delete, makebucket, rmbucket,listbuckets, syncfroms3, and synctos3.
+Performance testing is now available from the command-line
 
 Features:
 
@@ -49,5 +50,12 @@ java -jar CloudExplorer.jar synctos3 location bucket
 
 #Sync from S3
 java -jar CloudExplorer.jar syncfroms3 destination bucket
+
+#Performance Test - PUT
+java -jar CloudExplorer.jar uploadtest bucket size threads operations
+
+#Performance Test - GET
+java -jar CloudExplorer.jar downloadtest bucket size threads operations
+
 
 *Please note that Cloud Explorer will use the first account listed in the config file*

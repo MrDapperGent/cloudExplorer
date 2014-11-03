@@ -24,8 +24,9 @@ public class S3 {
                 + "\nrmbucket bucket"
                 + "\nsynctos3 location bucket"
                 + "\nsyncfroms3 destination bucket"
+                + "\nuploadtest bucket size threads operations"
+                + "\ndownloadtest bucket size threads operations"
                 + "\n\n\n");
-
     }
 
     public static void main(String[] args) {
@@ -39,7 +40,7 @@ public class S3 {
                 stop = 1;
             } else if (args[0].contains("listbuckets")) {
                 CLI cli = new CLI();
-                cli.start(args[0], null, null);
+                cli.start(args[0], null, null, null, null);
                 stop = 1;
             }
 
@@ -52,9 +53,13 @@ public class S3 {
                     } else {
                         CLI cli = new CLI();
                         if (args.length < 3) {
-                            cli.start(args[0], args[1], null);
-                        } else {
-                            cli.start(args[0], args[1], args[2]);
+                            cli.start(args[0], args[1], null, null, null);
+                        }
+                        if (args.length == 3) {
+                            cli.start(args[0], args[1], args[2], null, null);
+                        }
+                        if (args.length == 5) {
+                            cli.start(args[0], args[1], args[2], args[3], args[4]);
                         }
                     }
 

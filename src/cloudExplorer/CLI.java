@@ -17,8 +17,11 @@
 package cloudExplorer;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
@@ -27,7 +30,7 @@ public class CLI {
 
     Delete delete;
     String[] object_array = null;
-
+    String getOperationCount;
     Get get;
     String name = null;
     String arg1 = null;
@@ -49,6 +52,19 @@ public class CLI {
     String endpoint = null;
     String bucket = null;
     String region = null;
+    double[] x;
+    double[] y;
+    double[] x_latency;
+    double[] y_latency;
+    double[] x_iops;
+    double[] y_iops;
+    String temp_file = (Home + File.separator + "object.tmp");
+    String throughput_log = Home + File.separator + "throughput_results.csv";
+    String latency_log = Home + File.separator + "latency_results.csv";
+    String ops_log = Home + File.separator + "ops_results.csv";
+    int threadcount;
+    String getValue;
+    Boolean performance_operation = true;
 
     void messageParser(String message) {
         System.out.print(message);
@@ -100,7 +116,7 @@ public class CLI {
         return remove_symbol;
     }
 
-    void start(String arg0, String arg1, String arg2) {
+    void start(String arg0, String arg1, String arg2, String arg3, String arg4) {
         operation = arg0;
         Put.terminal = true;
         Get.terminal = true;
@@ -150,6 +166,20 @@ public class CLI {
 
                 new Thread(new Runnable() {
                     public void run() {
+                        if (operation.contains("downloadtest") || operation.contains("uploadtest")) {
+                            if (operation.contains("downloadtest")) {
+                                performance_operation = false;
+                            } else {
+                                performance_operation = true;
+                            }
+
+                            bucket = arg1;
+                            getValue = arg2;
+                            threadcount = Integer.parseInt(arg3);
+                            getOperationCount = arg4;
+                            performance();
+                        }
+
                         if (operation.contains("syncfroms3") || operation.contains("synctos3")) {
 
                             File check_destination = new File(destination);
@@ -158,6 +188,7 @@ public class CLI {
                                 if (operation.contains("syncfroms3")) {
                                     syncFromS3();
                                 }
+
                                 if (operation.contains("synctos3")) {
                                     syncToS3();
                                 }
@@ -421,6 +452,142 @@ public class CLI {
         } catch (Exception send) {
             System.out.print("\n\nAn Error has occured while uploading the file");
             System.exit(-1);
+        }
+    }
+
+    public void performance_logger(double time, double rate, String what) {
+        try {
+            FileWriter frr = new FileWriter(what, true);
+            BufferedWriter bfrr = new BufferedWriter(frr);
+            bfrr.write("\n" + time + "," + rate);
+            bfrr.close();
+        } catch (Exception perf_logger) {
+        }
+    }
+
+    void performance() {
+        System.out.print("\n\nStarting performance test.....\n\n\n");
+        NewJFrame.perf = true;
+        File tempFile = new File(temp_file);
+        File throughputfile = new File(throughput_log);
+        File opsfile = new File(ops_log);
+        File latencyfile = new File(latency_log);
+
+        int op_count = Integer.parseInt(getOperationCount);
+        int file_size = Integer.parseInt(getValue);
+        float num_threads = threadcount;
+
+        if (tempFile.exists()) {
+            tempFile.delete();
+        }
+
+        if (throughputfile.exists()) {
+            throughputfile.delete();
+        }
+        if (latencyfile.exists()) {
+            latencyfile.delete();
+        }
+
+        if (opsfile.exists()) {
+            opsfile.delete();
+        }
+
+        if (file_size > 0 && num_threads > 0 && op_count > 0) {
+
+            try {
+                FileOutputStream s = new FileOutputStream(temp_file);
+                byte[] buf = new byte[file_size * 1024];
+                s.write(buf);
+                s.flush();
+                s.close();
+            } catch (Exception add) {
+            }
+
+            if (tempFile.exists()) {
+
+                try {
+                    String upload = tempFile.getAbsolutePath();
+
+                    if (!performance_operation) {
+                        put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
+                        put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
+                    }
+
+                    x = new double[op_count];
+                    y = new double[op_count];
+                    x_latency = new double[op_count];
+                    y_latency = new double[op_count];
+                    x_iops = new double[op_count];
+                    y_iops = new double[op_count];
+
+                    int counter = 0;
+                    int display_counter = 0;
+
+                    for (int z = 0; z != op_count; z++) {
+                        long t1 = System.currentTimeMillis();
+
+                        for (int i = 0; i != num_threads; i++) {
+                            if (performance_operation) {
+                                put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false);
+                                put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false);
+                            } else {
+                                get = new Get("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + i, null);
+                                get.startc("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + i, null);
+                            }
+                        }
+
+                        double t2 = System.currentTimeMillis();
+                        double diff = t2 - t1;
+                        double total_time = diff / 1000;
+
+                        double rate = (num_threads * file_size / total_time / 1024);
+                        rate = Math.round(rate * 100);
+                        rate = rate / 100;
+
+                        double iops = (num_threads / total_time);
+                        iops = Math.round(iops * 100);
+                        iops = iops / 100;
+
+                        if (performance_operation) {
+                            System.out.print("\nPUT Operation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s. OPS/s: " + iops);
+                        } else {
+                            System.out.print("\nGET Operation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s. OPS/s: " + iops);
+                        }
+                        performance_logger(counter, rate, throughput_log);
+                        performance_logger(counter, iops, ops_log);
+                        performance_logger(counter, total_time, latency_log);
+
+                        if (counter == 100) {
+                            counter = 0;
+                            x = new double[op_count];
+                            y = new double[op_count];
+                            x_latency = new double[op_count];
+                            y_latency = new double[op_count];
+                            x_iops = new double[op_count];
+                            y_iops = new double[op_count];
+                        }
+                        y[counter] = (Double) rate;
+                        x[counter] = counter;
+                        y_latency[counter] = total_time;
+                        x_latency[counter] = counter;
+                        y_iops[counter] = iops;
+                        x_iops[counter] = counter;
+                        counter++;
+                        display_counter++;
+                    }
+
+                } catch (Exception ex) {
+                }
+
+            } else {
+                System.out.print("\n Please specifiy more than 0 threads.");
+            }
+
+            System.out.print("\n\n\nResults saved in CSV format to: " + "\n" + throughput_log + "\n" + latency_log + "\n" + ops_log + "\n\n\n");
+            NewJFrame.perf = false;
+
+        } else {
+            System.out.print("\nError: Thread and Count values must be greater than 0. Object Size value must be 1024 or greater.");
         }
     }
 }
