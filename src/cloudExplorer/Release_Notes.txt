@@ -19,7 +19,7 @@ Features:
 11. Migrate buckets between S3 accounts.
 12. Bucket search.
 13. Performance testing with graphs.
-14. Command Line options.
+14. Command-line interface.
 
 
 Command Line Options:
