@@ -259,7 +259,11 @@ public class BucketClass {
         try {
             s3Client.deleteBucket(new DeleteBucketRequest(bucket));
         } catch (Exception Delete) {
-            message = message + "\n" + Delete.getMessage();
+            if (terminal) {
+                System.out.print("\n\n\n" + Delete.getMessage() + "\n\n\n");
+            } else {
+                message = message + "\n" + Delete.getMessage();
+            }
         }
 
         if (message == null) {
