@@ -2,7 +2,7 @@ Version 4.1
 
 Versioning: Latest file will be in blue. Deleted files will be in red.
 Versioning: Version enabled buckets will be displayed in green.
-New Command Line Options: PUT, GET, DELETE, and LS.
+New Command Line Options: put, get, delete, makebucket, rmbucket, and lsbuckets.
 
 Features:
 
@@ -22,11 +22,19 @@ Features:
 14. Command Line options.
 
 
-Command Line Options: PUT, GET, DELETE, and LS. 
+Command Line Options: put, get, delete, makebucket, rmbucket, and lsbuckets:  
 
 java -jar CloudExplorer.jar put filename bucket
 java -jar CloudExplorer.jar get filename bucket
 java -jar CloudExplorer.jar delete filename bucket
+
+#List bucket contents
 java -jar CloudExplorer.jar ls bucket
+
+#List buckets
+java -jar CloudExplorer.jar lsbuckets
+
+#Delete a bucket
+java -jar CloudExplorer.jar rmbucket bucket
 
 *Please note that Cloud Explorer will use the first account listed in the config file*
