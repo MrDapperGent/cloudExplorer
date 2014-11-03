@@ -94,7 +94,7 @@ public class Get implements Runnable {
             long diff = t2 - t1;
 
             if (!mainFrame.perf) {
-                if (!terminal) {
+                if (terminal) {
                     System.out.print("\nDownloaded: " + what + " in " + diff / 1000 + " second(s).\n");
                 } else {
                     mainFrame.jTextArea1.append("\nDownloaded: " + what + " in " + diff / 1000 + " second(s).");
