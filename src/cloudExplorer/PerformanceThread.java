@@ -40,6 +40,7 @@ import javax.swing.JLabel;
 
 public class PerformanceThread implements Runnable {
 
+    String type_operation = null;
     String Home = System.getProperty("user.home");
     NewJFrame mainFrame;
     String throughput_log = Home + File.separator + "throughput_results.csv";
@@ -265,7 +266,11 @@ public class PerformanceThread implements Runnable {
     void graph() {
 
         try {
-
+            if (!operation) {
+                type_operation = "GET";
+            } else {
+                type_operation = "PUT";
+            }
             //Configures the IO graph
             Data xdata_iops = new Data(x_iops);
             Data ydata_iops = new Data(y_iops);
@@ -273,7 +278,7 @@ public class PerformanceThread implements Runnable {
             plot_iops.setColor(Color.GREEN);
             XYLineChart xyLineChart_iops = GCharts.newXYLineChart(plot_iops);
             xyLineChart_iops.setSize(375, 300);
-            xyLineChart_iops.setTitle("OP/s");
+            xyLineChart_iops.setTitle(type_operation + " OP/s");
             xyLineChart_iops.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
             xyLineChart_iops.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "OP/s")));
             JLabel label_iops = new JLabel(new ImageIcon(ImageIO.read(new URL(xyLineChart_iops.toURLString()))));
@@ -285,7 +290,7 @@ public class PerformanceThread implements Runnable {
             plot_latency.setColor(Color.RED);
             XYLineChart xyLineChart_latency = GCharts.newXYLineChart(plot_latency);
             xyLineChart_latency.setSize(375, 300);
-            xyLineChart_latency.setTitle("Latency");
+            xyLineChart_latency.setTitle(type_operation + " Latency");
             xyLineChart_latency.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
             xyLineChart_latency.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Seconds")));
             JLabel label_latency = new JLabel(new ImageIcon(ImageIO.read(new URL(xyLineChart_latency.toURLString()))));
@@ -297,7 +302,7 @@ public class PerformanceThread implements Runnable {
             plot.setColor(Color.BLUE);
             XYLineChart xyLineChart = GCharts.newXYLineChart(plot);
             xyLineChart.setSize(375, 300);
-            xyLineChart.setTitle("Throughput");
+            xyLineChart.setTitle(type_operation + " Throughput");
             xyLineChart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
             xyLineChart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "MB/s")));
             label = new JLabel(new ImageIcon(ImageIO.read(new URL(xyLineChart.toURLString()))));
