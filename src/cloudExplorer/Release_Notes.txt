@@ -10,7 +10,7 @@ Versioning: Version enabled buckets will be displayed in green.
 
 New Features:
 Command-line interface: put, get, delete, makebucket, rmbucket,listbuckets, syncfroms3, and synctos3.
-Performance testing is now available from the command-line
+Performance testing available from the command-line
 
 Features:
 
