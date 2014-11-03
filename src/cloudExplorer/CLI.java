@@ -223,7 +223,7 @@ public class CLI {
     }
 
     void syncToS3() {
-        System.out.print("\nStarting sync to: " + bucket + "\n");
+        System.out.print("\n\nStarting sync to bucket: " + bucket + "\n");
         File dir = new File(destination);
         reloadObjects();
         String[] extensions = new String[]{" "};
@@ -243,13 +243,14 @@ public class CLI {
                 found = 0;
             }
         }
+        System.out.print("\nSync operation complete.\n\n\n");
     }
 
     void reloadObjects() {
         try {
-            if(bucket !=null) {
-            String objectlist = bucketObject.listBucketContents(access_key, secret_key, bucket, endpoint);
-            object_array = objectlist.split("@@");
+            if (bucket != null) {
+                String objectlist = bucketObject.listBucketContents(access_key, secret_key, bucket, endpoint);
+                object_array = objectlist.split("@@");
             } else {
                 System.out.print("\n\n\nError, no bucket specified.\n\n\n");
             }
@@ -260,7 +261,7 @@ public class CLI {
 
     void syncFromS3() {
         try {
-             System.out.print("\nStarting sync to: " + bucket + "\n");
+            System.out.print("\n\nStarting sync from bucket: " + bucket + "\n");
             reloadObjects();
             File[] fromS3File = new File[object_array.length];
             for (int i = 1; i != object_array.length; i++) {
@@ -276,6 +277,7 @@ public class CLI {
             }
         } catch (Exception SyncLocal) {
         }
+        System.out.print("\nSync operation complete.\n\n\n");
     }
 
     void ls() {
@@ -286,7 +288,6 @@ public class CLI {
 
             for (String obj : object_array) {
                 if (obj.contains("null")) {
-
                 } else {
                     System.out.print("\n" + obj);
                 }
