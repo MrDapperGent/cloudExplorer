@@ -19,15 +19,20 @@ package cloudExplorer;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.List;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.filefilter.TrueFileFilter;
 
 public class CLI {
 
     Delete delete;
     String[] object_array = null;
+
     Get get;
     String name = null;
     String arg1 = null;
     String operation = null;
+    String destination = null;
     String delete_file = null;
     String get_file = null;
     String Home = System.getProperty("user.home");
@@ -124,6 +129,7 @@ public class CLI {
             put_file = new File(arg1);
             get_file = arg1;
             delete_file = arg1;
+            destination = arg1;
 
             mainmenu();
 
@@ -139,6 +145,22 @@ public class CLI {
 
                 new Thread(new Runnable() {
                     public void run() {
+
+                        if (operation.contains("syncfroms3") || operation.contains("synctos3")) {
+
+                            File check_destination = new File(destination);
+                            if (check_destination.exists()) {
+                                if (operation.contains("syncfroms3")) {
+                                    syncFromS3();
+                                }
+                                if (operation.contains("synctos3")) {
+                                    syncToS3();
+                                }
+                            } else {
+                                System.out.print("\n\n\nError: origin/destination directory not found.");
+                                System.exit(-1);
+                            }
+                        }
                         if (operation.contains("delete")) {
                             deleteFromS3();
                         }
@@ -164,6 +186,89 @@ public class CLI {
             } catch (Exception Start) {
             }
 
+        }
+    }
+
+    String makeDirectory(String what) {
+
+        if (what.substring(0, 2).contains(":")) {
+            what = what.substring(3, what.length());
+        }
+
+        if (what.substring(0, 1).contains("/")) {
+            what = what.substring(1, what.length());
+        }
+
+        if (what.contains("/")) {
+            what = what.replace("/", File.separator);
+        }
+
+        if (what.contains("\\")) {
+            what = what.replace("\\", File.separator);
+        }
+
+        int slash_counter = 0;
+        int another_counter = 0;
+
+        for (int y = 0; y != what.length(); y++) {
+            if (what.substring(y, y + 1).contains(File.separator)) {
+                slash_counter++;
+                another_counter = y;
+            }
+        }
+
+        File dir = new File(File.separator + what.substring(0, another_counter));
+        dir.mkdirs();
+        return what;
+    }
+
+    void syncToS3() {
+        File dir = new File(destination);
+        reloadObjects();
+        String[] extensions = new String[]{" "};
+        List<File> files = (List<File>) FileUtils.listFiles(dir, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE);
+        for (File file_found : files) {
+            int found = 0;
+            for (int y = 1; y != object_array.length; y++) {
+                if (object_array[y].contains(makeDirectory(file_found.getAbsolutePath().toString()))) {
+                    found++;
+                }
+            }
+
+            if (found == 0) {
+                String object = makeDirectory(file_found.getAbsolutePath().toString());
+                put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object, false, false);
+                put.run();
+                found = 0;
+            }
+        }
+    }
+
+    void reloadObjects() {
+        try {
+            String objectlist = bucketObject.listBucketContents(access_key, secret_key, bucket, endpoint);
+            object_array = objectlist.split("@@");
+        } catch (Exception reloadObjects) {
+            System.out.print("\n\n\nError with loading objects\n\n\n");
+        }
+    }
+
+    void syncFromS3() {
+        try {
+            reloadObjects();
+            File[] fromS3File = new File[object_array.length];
+            for (int i = 1; i != object_array.length; i++) {
+                String new_object_name = convertObject(object_array[i], "download");
+                fromS3File[i] = new File(destination + new_object_name);
+                if (fromS3File[i].exists()) {
+                } else {
+                    makeDirectory(destination + File.separator + object_array[i]);
+                    String object = makeDirectory(object_array[i]);
+                    get = new Get(object_array[i], access_key, secret_key, bucket, endpoint, destination + File.separator + object, null);
+                    get.run();
+                }
+            }
+        } catch (Exception SyncLocal) {
         }
     }
 

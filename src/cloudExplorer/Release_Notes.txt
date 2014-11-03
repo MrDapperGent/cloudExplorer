@@ -37,4 +37,10 @@ java -jar CloudExplorer.jar lsbuckets
 #Delete a bucket
 java -jar CloudExplorer.jar rmbucket bucket
 
+#Sync to S3
+java -jar CloudExplorer.jar synctos3 location bucket
+
+#Sync from S3
+java -jar CloudExplorer.jar syncfroms3 destination bucket
+
 *Please note that Cloud Explorer will use the first account listed in the config file*
