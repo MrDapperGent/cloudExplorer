@@ -424,7 +424,7 @@ public class CLI {
     void makeBucket() {
         try {
             BucketClass.terminal = true;
-            System.out.print("\n\n\nCreating Bucket:" + bucket);
+            System.out.print("\n\n\nCreating Bucket \"" + bucket + "\".......");
             bucketObject.makeBucket(access_key, secret_key, bucket, endpoint, region);
             System.out.printf("\n\n\nBucket creation operaton complete.\n\n\n");
         } catch (Exception makeBucket) {
@@ -435,7 +435,7 @@ public class CLI {
     void rmBucket() {
         try {
             BucketClass.terminal = true;
-            System.out.print("\n\n\nDeleting Bucket:" + bucket);
+            System.out.print("\n\n\nDeleting Bucket \"" + bucket + "\".......");
             bucketObject.deleteBucket(access_key, secret_key, bucket, endpoint, region);
             System.out.print("\n\n\nBucket Delete operation Complete\n\n\n");
 
