@@ -325,7 +325,7 @@ public class CLI {
             if (op == 0) {
                 System.out.print("\n\nLoading objects for Bucket: " + bucket + "........\n\n");
             } else {
-                System.out.print("\n\nSearching for: \"" + get_file + "\" in bucket: " + bucket + "........\n\n");
+                System.out.print("\n\nSearching for \"" + get_file + "\" in bucket \"" + bucket + "\"........\n\n");
             }
             String objectlist = bucketObject.listBucketContents(access_key, secret_key, bucket, endpoint);
             object_array = objectlist.split("@@");
