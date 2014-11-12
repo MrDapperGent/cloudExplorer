@@ -26,6 +26,7 @@ public class S3 {
                 + "\nsyncfroms3 destination bucket"
                 + "\nuploadtest bucket size threads operations"
                 + "\ndownloadtest bucket size threads operations"
+                + "\nsearch bucket what"
                 + "\n\n\n");
     }
 

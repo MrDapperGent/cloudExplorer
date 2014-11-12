@@ -127,7 +127,7 @@ public class CLI {
             bucket = arg1;
 
             if (operation.contains("ls")) {
-                ls();
+                ls(0);
             }
             if (operation.contains("listbuckets")) {
                 listBuckets();
@@ -208,6 +208,12 @@ public class CLI {
                                 messageParser("\nError: " + put_file.toString() + " does not exist");
                             }
                         }
+                        if (operation.contains("search")) {
+                            bucket = arg1;
+                            get_file = arg2;
+                            ls(1);
+                        }
+
                         if (operation.contains("get")) {
                             getFromS3();
                         }
@@ -314,16 +320,26 @@ public class CLI {
         System.out.print("\nSync operation complete.\n\n\n");
     }
 
-    void ls() {
+    void ls(int op) {
         try {
-            System.out.print("\n\nLoading objects for Bucket: " + bucket + "........\n\n");
+            if (op == 0) {
+                System.out.print("\n\nLoading objects for Bucket: " + bucket + "........\n\n");
+            } else {
+                System.out.print("\n\nSearching for: \"" + get_file + "\" in bucket: " + bucket + "........\n\n");
+            }
             String objectlist = bucketObject.listBucketContents(access_key, secret_key, bucket, endpoint);
             object_array = objectlist.split("@@");
 
             for (String obj : object_array) {
                 if (obj.contains("null")) {
                 } else {
-                    System.out.print("\n" + obj);
+                    if (op == 0) {
+                        System.out.print("\n" + obj);
+                    } else {
+                        if (obj.contains(get_file)) {
+                            System.out.print("\n" + obj);
+                        }
+                    }
                 }
             }
 

@@ -60,5 +60,8 @@ java -jar CloudExplorer.jar uploadtest bucket size threads operations
 #Performance Test - GET
 java -jar CloudExplorer.jar downloadtest bucket size threads operations
 
+#Search for files 
+java -jar CloudExplorer.jar search bucket what
+
 
 *Please note that Cloud Explorer will use the first account listed in the config file*
