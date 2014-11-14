@@ -17,6 +17,8 @@
 package cloudExplorer;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,6 +29,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -38,6 +41,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
@@ -89,6 +94,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     ShowVersions showVersions;
     ImageViewer imageviewer;
     Thread getThread;
+    public static JTextArea ircarea;
+    public static JButton irc_send_button;
+    public static JTextField irc_input_text;
 
     public NewJFrame() {
         try {
@@ -338,6 +346,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenu7 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
+        jMenu9 = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem18 = new javax.swing.JMenuItem();
@@ -1256,6 +1266,18 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenu7.add(jMenuItem11);
 
         jMenuBar1.add(jMenu7);
+
+        jMenu9.setText("IRC");
+
+        jMenuItem7.setText("Start IRC");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem7);
+
+        jMenuBar1.add(jMenu9);
 
         jMenu8.setText("Help");
 
@@ -2527,6 +2549,75 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         helpMenu("backsync.txt");
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        if (active_bucket > 0) {
+            String server = null;
+            String room = null;
+            String nick = null;
+            int port = 6667;
+
+            File checkBotConfig = new File(Home + File.separator + ".zulubot");
+            if (checkBotConfig.exists()) {
+                try {
+                    FileReader frr = new FileReader(Home + File.separator + ".zulubot");
+                    BufferedReader bfrr = new BufferedReader(frr);
+                    String read = null;
+                    while ((read = bfrr.readLine()) != null) {
+                        String cut[] = read.split("=");
+                        if (cut[0].contains("server")) {
+                            server = (cut[1]);
+                        }
+                        if (cut[0].contains("room")) {
+                            room = (cut[1]);
+                        }
+
+                        if (cut[0].contains("port")) {
+                            port = (Integer.parseInt(cut[1]));
+                        }
+                        if (cut[0].contains("nick")) {
+                            nick = (cut[1]);
+                        }
+                    }
+                } catch (IOException e) {
+                    jTextArea1.append("\nConfig file not found!.Please create .zulubot in your home directory by running the GUI.\n\nAfter a config is created, you can use the bot in CLI mode by adding \n\ngui=no \n\nto the configuration file.\n\n");
+                    calibrateTextArea();
+                }
+
+                jPanel1.removeAll();
+               jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
+                ircarea = new JTextArea("\nLoading IRC......");
+                irc_input_text = new JTextField("");
+                irc_send_button = new JButton("Send to channel");
+
+                ircarea.setSize(new Dimension(1000, 1000));
+                  irc_input_text.setSize(new Dimension(50, 50));
+                  irc_send_button.setSize(new Dimension(50, 50));
+                ircarea.setVisible(true);
+                irc_input_text.setVisible(true);
+                 irc_send_button.setVisible(true);
+                ircarea.setAutoscrolls(true);
+                jPanel1.add(ircarea);
+                jPanel1.add(irc_input_text);
+                jPanel1.add(irc_send_button);
+                jPanel1.repaint();
+                jPanel1.revalidate();
+                jPanel1.validate();
+
+                Bot bot = new Bot(nick, server, port, room, bucket_item[active_bucket].toString());
+                bot.startc(nick, server, port, room, bucket_item[active_bucket].toString());
+
+            } else {
+                jTextArea1.append("\nConfig file not found!.Please create .zulubot in your home directory by running the GUI.\n\nAfter a config is created, you can use the bot in CLI mode by adding \n\ngui=no \n\nto the configuration file.\n\n");
+                calibrateTextArea();
+            }
+
+        } else {
+            jTextArea1.append("\nError: No bucket has been selected\n");
+        }
+
+
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
     void var() {
         try {
             cred.setAccess_key(jTextField1.getText());
@@ -2592,6 +2683,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
@@ -2609,6 +2701,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     public static javax.swing.JPanel jPanel1;
