@@ -51,8 +51,8 @@ public class Performance implements Runnable {
             final JLabel threadCount = new JLabel("Thread Count:");
             final JLabel operationCount = new JLabel("Operation Count:");
             final JCheckBox graph = new JCheckBox("Graph");
-            final JLabel blank = new JLabel(" ");;
-            final JLabel blank2 = new JLabel(" ");;
+            final JLabel blank = new JLabel(" ");
+            final JLabel blank2 = new JLabel(" ");
             final JTextField getFileSize = new JTextField("1024");
             final JTextField getTheadCount = new JTextField("5");
             final JTextField getOperationCount = new JTextField("5");

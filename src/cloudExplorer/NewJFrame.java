@@ -17,8 +17,6 @@
 package cloudExplorer;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,7 +27,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -41,15 +38,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
-    String version = "Cloud Explorer v4.1  ";
+    String version = "Cloud Explorer v4.2  ";
     ImageIcon genericEngine = new ImageIcon(
             this.getClass().getResource("engine.png"));
     Credentials cred = new Credentials();
@@ -94,9 +89,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     ShowVersions showVersions;
     ImageViewer imageviewer;
     Thread getThread;
-    public static JTextArea ircarea;
-    public static JButton irc_send_button;
-    public static JTextField irc_input_text;
 
     public NewJFrame() {
         try {
@@ -2551,66 +2543,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         if (active_bucket > 0) {
-            String server = null;
-            String room = null;
-            String nick = null;
-            int port = 6667;
-
-            File checkBotConfig = new File(Home + File.separator + ".zulubot");
-            if (checkBotConfig.exists()) {
-                try {
-                    FileReader frr = new FileReader(Home + File.separator + ".zulubot");
-                    BufferedReader bfrr = new BufferedReader(frr);
-                    String read = null;
-                    while ((read = bfrr.readLine()) != null) {
-                        String cut[] = read.split("=");
-                        if (cut[0].contains("server")) {
-                            server = (cut[1]);
-                        }
-                        if (cut[0].contains("room")) {
-                            room = (cut[1]);
-                        }
-
-                        if (cut[0].contains("port")) {
-                            port = (Integer.parseInt(cut[1]));
-                        }
-                        if (cut[0].contains("nick")) {
-                            nick = (cut[1]);
-                        }
-                    }
-                } catch (IOException e) {
-                    jTextArea1.append("\nConfig file not found!.Please create .zulubot in your home directory by running the GUI.\n\nAfter a config is created, you can use the bot in CLI mode by adding \n\ngui=no \n\nto the configuration file.\n\n");
-                    calibrateTextArea();
-                }
-
-                jPanel1.removeAll();
-               jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
-                ircarea = new JTextArea("\nLoading IRC......");
-                irc_input_text = new JTextField("");
-                irc_send_button = new JButton("Send to channel");
-
-                ircarea.setSize(new Dimension(1000, 1000));
-                  irc_input_text.setSize(new Dimension(50, 50));
-                  irc_send_button.setSize(new Dimension(50, 50));
-                ircarea.setVisible(true);
-                irc_input_text.setVisible(true);
-                 irc_send_button.setVisible(true);
-                ircarea.setAutoscrolls(true);
-                jPanel1.add(ircarea);
-                jPanel1.add(irc_input_text);
-                jPanel1.add(irc_send_button);
-                jPanel1.repaint();
-                jPanel1.revalidate();
-                jPanel1.validate();
-
-                Bot bot = new Bot(nick, server, port, room, bucket_item[active_bucket].toString());
-                bot.startc(nick, server, port, room, bucket_item[active_bucket].toString());
-
-            } else {
-                jTextArea1.append("\nConfig file not found!.Please create .zulubot in your home directory by running the GUI.\n\nAfter a config is created, you can use the bot in CLI mode by adding \n\ngui=no \n\nto the configuration file.\n\n");
-                calibrateTextArea();
-            }
-
+            Bot bot = new Bot(cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint());
+            bot.startc(cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint());
         } else {
             jTextArea1.append("\nError: No bucket has been selected\n");
         }

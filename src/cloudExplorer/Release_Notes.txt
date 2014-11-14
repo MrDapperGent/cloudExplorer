@@ -1,3 +1,14 @@
+Version 4.2
+
+Bug Fixes:
+
+Improvements:
+
+New Features:
+
+IRC client to chat and save meetings to S3.
+
+
 Version 4.1
 
 Bug Fixes:
