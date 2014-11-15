@@ -90,7 +90,7 @@ public class MyBot extends PircBot {
     }
 
     void calibrateTextArea() {
-        NewJFrame.jTextArea1.append("\n");
+        Bot.ircarea.append("\n");
         try {
             Bot.ircarea.setCaretPosition(Bot.ircarea.getLineStartOffset(Bot.ircarea.getLineCount() - 1));
         } catch (Exception e) {
