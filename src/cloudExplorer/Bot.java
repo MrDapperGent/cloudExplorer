@@ -90,10 +90,10 @@ public class Bot implements Runnable {
 
     public void run() {
 
-        File checkBotConfig = new File(Home + File.separator + ".zulubot");
+        File checkBotConfig = new File(Home + File.separator + ".cloudExplorerIRC");
         if (checkBotConfig.exists()) {
             try {
-                FileReader frr = new FileReader(Home + File.separator + ".zulubot");
+                FileReader frr = new FileReader(Home + File.separator + ".cloudExplorerIRC");
                 BufferedReader bfrr = new BufferedReader(frr);
                 String read = null;
                 while ((read = bfrr.readLine()) != null) {
@@ -101,7 +101,7 @@ public class Bot implements Runnable {
                     if (cut[0].contains("server")) {
                         server = (cut[1]);
                     }
-                    if (cut[0].contains("room")) {
+                    if (cut[0].contains("channel")) {
                         room = (cut[1]);
                     }
 
@@ -113,14 +113,14 @@ public class Bot implements Runnable {
                     }
                 }
             } catch (IOException e) {
-                mainFrame.jTextArea1.append("\nConfig file not found!.Please create .zulubot in your home directory by running the GUI.\n\nAfter a config is created, you can use the bot in CLI mode by adding \n\ngui=no \n\nto the configuration file.\n\n");
+                mainFrame.jTextArea1.append("\nConfig file not found!. Please create .cloudExplorerIRC in your home directory by running the GUI.\n\nAfter a config is created, you can use the bot in CLI mode by adding \n\ngui=no \n\nto the configuration file.\n\n");
                 calibrateTextArea();
             }
 
             load_gui_components();
 
         } else {
-            mainFrame.jTextArea1.append("\nConfig file not found!.Please create .zulubot in your home directory by running the GUI.\n\nAfter a config is created, you can use the bot in CLI mode by adding \n\ngui=no \n\nto the configuration file.\n\n");
+            mainFrame.jTextArea1.append("\nConfig file not found!. Please create .cloudExplorerIRC in your home directory by running the GUI.\n\nAfter a config is created, you can use the bot in CLI mode by adding \n\ngui=no \n\nto the configuration file.\n\n");
             calibrateTextArea();
         }
 

@@ -340,6 +340,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem20 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem18 = new javax.swing.JMenuItem();
@@ -1268,6 +1269,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
         jMenu9.add(jMenuItem7);
+
+        jMenuItem20.setText("Configure");
+        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem20ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem20);
 
         jMenuBar1.add(jMenu9);
 
@@ -2552,6 +2561,17 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
+    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+        if (active_bucket > 0) {
+            ConfigureIRC irc = new ConfigureIRC(this);
+            jTabbedPane1.setSelectedIndex(1);
+            irc.startc();
+        } else {
+            jTextArea1.append("\nError: No bucket has been selected\n");
+        }
+
+    }//GEN-LAST:event_jMenuItem20ActionPerformed
+
     void var() {
         try {
             cred.setAccess_key(jTextField1.getText());
@@ -2631,6 +2651,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
