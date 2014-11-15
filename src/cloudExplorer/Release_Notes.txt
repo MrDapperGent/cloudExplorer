@@ -42,6 +42,7 @@ Features:
 12. Bucket search.
 13. Performance testing with graphs.
 14. Command-line interface.
+15. IRC client that allows you to save chat sessions to S3.
 
 
 Command-line Options:
