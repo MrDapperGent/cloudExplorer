@@ -1377,6 +1377,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         if (active_bucket > 0) {
             NewJFrame.perf = false;
             showPanel();
+            jButton3.setEnabled(true);
+            jButton1.setEnabled(true);
             jButton4.setEnabled(true);
             jButton7.setEnabled(true);
             jButton12.setEnabled(true);
@@ -2552,6 +2554,16 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         if (active_bucket > 0) {
+            jButton1.setEnabled(false);
+            jButton3.setEnabled(false);
+            jButton4.setEnabled(false);
+            jButton7.setEnabled(false);
+            jButton12.setEnabled(false);
+            jButton13.setEnabled(false);
+            jButton14.setEnabled(false);
+            jButton17.setEnabled(false);
+            jButton18.setEnabled(false);
+            jButton19.setEnabled(false);
             Bot bot = new Bot(cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint());
             bot.startc(cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint());
         } else {
