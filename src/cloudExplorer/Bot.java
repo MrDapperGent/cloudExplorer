@@ -48,6 +48,7 @@ public class Bot implements Runnable {
     String nick = null;
     int port;
     Put put;
+    String password = null;
 
     public static JTextArea ircarea;
     public static JButton irc_send_button;
@@ -107,6 +108,12 @@ public class Bot implements Runnable {
 
                     if (cut[0].contains("port")) {
                         port = (Integer.parseInt(cut[1]));
+                    }
+
+                    if (cut[0].contains("password")) {
+                        if (read.length() > 10) {
+                            password = (cut[1]);
+                        }
                     }
                     if (cut[0].contains("nick")) {
                         nick = (cut[1]);
@@ -229,7 +236,11 @@ public class Bot implements Runnable {
         botobject.setRoom(room);
 
         try {
-            botobject.connect(server, port);
+            if (password == null) {
+                botobject.connect(server, port);
+            } else {
+                botobject.connect(server, port, password);
+            }
             botobject.joinChannel(room);
             ircarea.append("\n\nJoined channel: " + room + ". \n\nCurrent Time is: " + date() + "\n\nType your message in the message box and then press enter to send the message.\n\n");
 

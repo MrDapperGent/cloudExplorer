@@ -55,10 +55,12 @@ public class ConfigureIRC implements Runnable {
         final JLabel info = new JLabel("Please enter your IRC account information here for the bot.");
         final JLabel blank = new JLabel(" ");
         final JLabel blank2 = new JLabel(" ");
+        final JLabel password_label = new JLabel("Password:");
         final JLabel port_label = new JLabel("Port:");
         final JLabel nick_label = new JLabel("Nick:");
         final JLabel room_label = new JLabel("Channel:");
         final JTextField server_field = new JTextField(null);
+        final JTextField password_field = new JTextField(null);
         final JTextField port_field = new JTextField(null);
         final JTextField nick_field = new JTextField(null);
         final JTextField room_field = new JTextField(null);
@@ -68,6 +70,10 @@ public class ConfigureIRC implements Runnable {
         server_label.setBackground(Color.white);
         server_label.setForeground(Color.blue);
         server_label.setBorder(null);
+
+        password_label.setBackground(Color.white);
+        password_label.setForeground(Color.blue);
+        password_label.setBorder(null);
 
         port_label.setBackground(Color.white);
         port_label.setForeground(Color.blue);
@@ -95,11 +101,11 @@ public class ConfigureIRC implements Runnable {
 
         close.setMaximumSize(new Dimension(150, 15));
         save.setMaximumSize(new Dimension(150, 15));
-
-        server_field.setMaximumSize(new Dimension(200, 20));
+        server_field.setMaximumSize(new Dimension(250, 20));
         port_field.setMaximumSize(new Dimension(100, 20));
-        room_field.setMaximumSize(new Dimension(200, 20));
-        nick_field.setMaximumSize(new Dimension(200, 20));
+        password_field.setMaximumSize(new Dimension(250, 20));
+        room_field.setMaximumSize(new Dimension(250, 20));
+        nick_field.setMaximumSize(new Dimension(250, 20));
 
         mainFrame.jPanel11.removeAll();
         mainFrame.jPanel14.removeAll();
@@ -113,8 +119,11 @@ public class ConfigureIRC implements Runnable {
         mainFrame.jPanel11.add(nick_field);
         mainFrame.jPanel11.add(room_label);
         mainFrame.jPanel11.add(room_field);
+        mainFrame.jPanel11.add(password_label);
+        mainFrame.jPanel11.add(password_field);
         mainFrame.jPanel11.add(port_label);
         mainFrame.jPanel11.add(port_field);
+
         mainFrame.jPanel11.add(blank);
         mainFrame.jPanel11.add(close);
         mainFrame.jPanel11.add(save);
@@ -124,8 +133,6 @@ public class ConfigureIRC implements Runnable {
         mainFrame.jPanel11.validate();
 
         if (config.exists()) {
-            System.out.print("\ndebug");
-
             try {
                 FileReader frr = new FileReader(config);
                 BufferedReader bfrr = new BufferedReader(frr);
@@ -142,6 +149,13 @@ public class ConfigureIRC implements Runnable {
                     if (cut[0].contains("port")) {
                         port_field.setText(cut[1]);
                     }
+
+                    if (cut[0].contains("password")) {
+                        if (cut[1] != null) {
+                            password_field.setText(cut[1]);
+                        }
+                    }
+
                     if (cut[0].contains("nick")) {
                         nick_field.setText(cut[1]);
                     }
@@ -164,9 +178,11 @@ public class ConfigureIRC implements Runnable {
                     bot.writer("\nserver=" + server_field.getText()
                             + "\nnick=" + nick_field.getText()
                             + "\nport=" + port_field.getText()
-                            + "\nchannel=" + room_field.getText(), mainFrame.Home + File.separator + ".cloudExplorerIRC");
+                            + "\nchannel=" + room_field.getText()
+                            + "\npassword=" + password_field.getText(), mainFrame.Home + File.separator + ".cloudExplorerIRC");
                     if (config.exists()) {
                         NewJFrame.jTextArea1.append("\nConfiguration saved.");
+                        calibrateTextArea();
                     } else {
                         NewJFrame.jTextArea1.append("\nError, configuration not saved.");
                     }
