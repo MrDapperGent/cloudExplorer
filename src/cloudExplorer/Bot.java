@@ -179,6 +179,7 @@ public class Bot implements Runnable {
         irc_close_button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 botobject.disconnect();
+                save();
                 mainFrame.jPanel14.removeAll();
                 mainFrame.jPanel14.repaint();
                 mainFrame.jPanel14.revalidate();
