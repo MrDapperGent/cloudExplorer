@@ -230,7 +230,7 @@ public class Bot implements Runnable {
         try {
             botobject.connect(server, port);
             botobject.joinChannel(room);
-            ircarea.append("\n\nJoined channel: " + room + ". \n\nCurrent Time is: " + date() + "\n\nType your message in the message box and then press enter to send the message.");
+            ircarea.append("\n\nJoined channel: " + room + ". \n\nCurrent Time is: " + date() + "\n\nType your message in the message box and then press enter to send the message.\n\n");
 
         } catch (Exception connect) {
             NewJFrame.jTextArea1.append("\n" + connect.getMessage());
