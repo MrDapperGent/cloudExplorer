@@ -1,8 +1,8 @@
 Version 4.2
 
-Bug Fixes:
+Bug Fixes: <none>
 
-Improvements:
+Improvements: <none>
 
 New Features:
 
