@@ -145,10 +145,10 @@ public class Bot implements Runnable {
         irc_close_button.setForeground(Color.blue);
         irc_close_button.setBorder(null);
 
-        ircarea.setMaximumSize(new Dimension(1500, 500));
+        ircarea.setMaximumSize(new Dimension(1300, 500));
         irc_send_button.setMaximumSize(new Dimension(150, 15));
         irc_close_button.setMaximumSize(new Dimension(150, 15));
-        irc_input_text.setMaximumSize(new Dimension(1500, 20));
+        irc_input_text.setMaximumSize(new Dimension(1400, 20));
         irc_scrollpane.setMaximumSize(new Dimension(1500, 500));
 
         ircarea.setVisible(true);
