@@ -16,15 +16,8 @@
  */
 package cloudExplorer;
 
-import static cloudExplorer.NewJFrame.jTextArea1;
-import java.io.*;
-import java.util.Random;
 import org.jibble.pircbot.*;
 
-/**
- *
- * @author ptribble
- */
 public class MyBot extends PircBot {
 
     public static String servername;
@@ -99,7 +92,7 @@ public class MyBot extends PircBot {
     void calibrateTextArea() {
         NewJFrame.jTextArea1.append("\n");
         try {
-            NewJFrame.jTextArea1.setCaretPosition(NewJFrame.jTextArea1.getLineStartOffset(NewJFrame.jTextArea1.getLineCount() - 1));
+            Bot.ircarea.setCaretPosition(Bot.ircarea.getLineStartOffset(Bot.ircarea.getLineCount() - 1));
         } catch (Exception e) {
 
         }
