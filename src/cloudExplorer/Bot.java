@@ -186,7 +186,8 @@ public class Bot implements Runnable {
         irc_close_button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 botobject.disconnect();
-                save();
+                NewJFrame.jTextArea1.append("\nDisconnected from IRC.");
+                calibrateTextArea();
                 mainFrame.jPanel14.removeAll();
                 mainFrame.jPanel14.repaint();
                 mainFrame.jPanel14.revalidate();
@@ -219,7 +220,8 @@ public class Bot implements Runnable {
     }
 
     void save() {
-
+        ircarea.append("\n\nStopped recording at: " + date());
+        calibrateTextArea();
         writer(ircarea.getText(), temp_file);
         put = new Put(temp_file, access_key, secret_key, bucket, endpoint, "IRC Transcript-" + date() + ".txt", false, false);
         put.startc(temp_file, access_key, secret_key, bucket, endpoint, "IRC Transcript-" + date() + ".txt", false, false);
@@ -227,7 +229,7 @@ public class Bot implements Runnable {
 
     void start_bot() {
 
-        NewJFrame.jTextArea1.append("\nStarting IRC bot......");
+        NewJFrame.jTextArea1.append("\nStarting IRC......");
         calibrateTextArea();
 
         botobject = new MyBot(nick);
