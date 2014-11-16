@@ -70,7 +70,7 @@ public class Bot implements Runnable {
         endpoint = Aendpoint;
     }
 
-    void calibrateTextArea() {
+    public void calibrateTextArea() {
         mainFrame.jTextArea1.append("\n");
         try {
             mainFrame.jTextArea1.setCaretPosition(jTextArea1.getLineStartOffset(jTextArea1.getLineCount() - 1));
@@ -79,10 +79,45 @@ public class Bot implements Runnable {
         }
     }
 
-    public static void sendText() {
-        botobject.sendMessage(botobject.getRoom(), irc_input_text.getText());
-        ircarea.append("\n" + botobject.getNick() + ": " + irc_input_text.getText());
+    public void calibrateIRCarea() {
+        ircarea.append("\n");
+        try {
+            ircarea.setCaretPosition(ircarea.getLineStartOffset(ircarea.getLineCount() - 1));
+        } catch (Exception e) {
+
+        }
+    }
+
+    public void sendText() {
+        try {
+            if (irc_input_text.getText().contains("/nick")) {
+                String[] cut = irc_input_text.getText().split(" ");
+                if (cut[1].length() > 0) {
+                    botobject.changeNick(cut[1]);
+                    ircarea.append("\nChanged nick to: " + cut[1]);
+                }
+            } else if (irc_input_text.getText().contains("/join")) {
+                String[] cut = irc_input_text.getText().split(" ");
+                if (cut[1].length() > 0) {
+                    botobject.partChannel(room);
+                    ircarea.append("\nDeparted channel: " + room);
+                    calibrateTextArea();
+                    botobject.setRoom(cut[1]);
+                    botobject.joinChannel(cut[1]);
+                    ircarea.append("\nJoined channel: " + cut[1]);
+                }
+            } else {
+                botobject.sendMessage(botobject.getRoom(), irc_input_text.getText());
+                ircarea.append("\n" + botobject.getNick() + ": " + irc_input_text.getText());
+                irc_input_text.setText("");
+            }
+
+        } catch (Exception send) {
+            NewJFrame.jTextArea1.append("\nAn Error has occurred. Invalid command.");
+            calibrateTextArea();
+        }
         irc_input_text.setText("");
+        calibrateIRCarea();
     }
 
     void buttons() {
