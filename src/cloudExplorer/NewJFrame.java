@@ -332,15 +332,16 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
-        jMenuItem14 = new javax.swing.JMenuItem();
-        jMenuItem17 = new javax.swing.JMenuItem();
+        jMenu10 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
-        jMenu7 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuItem17 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem20 = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem18 = new javax.swing.JMenuItem();
@@ -1214,21 +1215,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jMenu6.setText("Tools");
 
-        jMenuItem14.setText("Screen shot to S3");
-        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem14ActionPerformed(evt);
-            }
-        });
-        jMenu6.add(jMenuItem14);
-
-        jMenuItem17.setText("Migrate bucket to another S3 account.");
-        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem17ActionPerformed(evt);
-            }
-        });
-        jMenu6.add(jMenuItem17);
+        jMenu10.setText("S3");
 
         jMenuItem8.setText("Delete every object and version");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
@@ -1236,7 +1223,45 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 jMenuItem8ActionPerformed(evt);
             }
         });
-        jMenu6.add(jMenuItem8);
+        jMenu10.add(jMenuItem8);
+
+        jMenuItem17.setText("Migrate bucket to another S3 account.");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem17);
+
+        jMenuItem14.setText("Screen shot to S3");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem14);
+
+        jMenu6.add(jMenu10);
+
+        jMenu9.setText("IRC");
+
+        jMenuItem7.setText("Start IRC");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem7);
+
+        jMenuItem20.setText("Configure");
+        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem20ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem20);
+
+        jMenu6.add(jMenu9);
 
         jMenuBar1.add(jMenu6);
 
@@ -1259,26 +1284,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenu7.add(jMenuItem11);
 
         jMenuBar1.add(jMenu7);
-
-        jMenu9.setText("IRC");
-
-        jMenuItem7.setText("Start IRC");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
-            }
-        });
-        jMenu9.add(jMenuItem7);
-
-        jMenuItem20.setText("Configure");
-        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem20ActionPerformed(evt);
-            }
-        });
-        jMenu9.add(jMenuItem20);
-
-        jMenuBar1.add(jMenu9);
 
         jMenu8.setText("Help");
 
@@ -2642,6 +2647,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
