@@ -104,6 +104,7 @@ public class MyBot extends PircBot {
     }
 
     public void onPrivateMessage(String sender, String login, String hostname, String message) {
-
+        Bot.ircarea.append("\n<Private Message from: " + sender + " > " + message);
+        calibrateTextArea();
     }
 }

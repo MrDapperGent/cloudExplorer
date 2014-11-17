@@ -27,8 +27,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -90,14 +88,28 @@ public class Bot implements Runnable {
 
     public void sendText() {
         try {
+            String[] cut = irc_input_text.getText().split(" ");
+            String message = null;
+            String to = null;
+
             if (irc_input_text.getText().contains("/nick")) {
-                String[] cut = irc_input_text.getText().split(" ");
+
                 if (cut[1].length() > 0) {
                     botobject.changeNick(cut[1]);
                     ircarea.append("\nChanged nick to: " + cut[1]);
                 }
+            } else if (irc_input_text.getText().contains("/msg")) {
+
+                if (cut[1].length() > 0) {
+                    to = cut[1];
+
+                    if (cut[2].length() > 0) {
+                        message = cut[2];
+                    }
+                    botobject.sendMessage(to, message);
+                    ircarea.append("\n<Private Message To " + to + "> " + message);
+                }
             } else if (irc_input_text.getText().contains("/join")) {
-                String[] cut = irc_input_text.getText().split(" ");
                 if (cut[1].length() > 0) {
                     botobject.partChannel(room);
                     ircarea.append("\nDeparted channel: " + room);
