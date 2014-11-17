@@ -2,7 +2,9 @@ Version 4.2
 
 Bug Fixes: <none>
 
-Improvements: <none>
+Improvements: 
+
+CLI - When listing objects, the number of objects will be printed.
 
 New Features:
 

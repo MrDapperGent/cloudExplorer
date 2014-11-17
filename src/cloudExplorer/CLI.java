@@ -322,6 +322,8 @@ public class CLI {
 
     void ls(int op) {
         try {
+            int found = 0;
+
             if (op == 0) {
                 System.out.print("\n\nLoading objects for Bucket: " + bucket + "........\n\n");
             } else {
@@ -335,15 +337,17 @@ public class CLI {
                 } else {
                     if (op == 0) {
                         System.out.print("\n" + obj);
+                        found++;
                     } else {
                         if (obj.contains(get_file)) {
                             System.out.print("\n" + obj);
+                            found++;
                         }
                     }
                 }
             }
 
-            System.out.print("\n\n\nBucket listing operation Complete\n\n\n");
+            System.out.print("\n\n\nBucket listing operation Complete. Found: " + found + " file(s).\n\n\n");
 
         } catch (Exception ls) {
             System.out.print("\n\nAn Error has occured while listing the objects or the bucket does not exist.\n\n\n");
