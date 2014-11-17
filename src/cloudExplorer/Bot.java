@@ -86,6 +86,15 @@ public class Bot implements Runnable {
         }
     }
 
+    public String help() {
+        String info = "\nCloud Explorer IRC help.\n"
+                + "\n/msg nick message"
+                + "\n/join #channel"
+                + "\n/nick newNick"
+                + "\n/help";
+        return info;
+    }
+
     public void sendText() {
         try {
             String[] cut = irc_input_text.getText().split(" ");
@@ -98,6 +107,9 @@ public class Bot implements Runnable {
                     botobject.changeNick(cut[1]);
                     ircarea.append("\nChanged nick to: " + cut[1]);
                 }
+            } else if (irc_input_text.getText().contains("/help")) {
+                ircarea.append(help());
+
             } else if (irc_input_text.getText().contains("/msg")) {
 
                 if (cut[1].length() > 0) {
