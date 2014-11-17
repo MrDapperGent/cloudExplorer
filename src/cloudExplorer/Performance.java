@@ -56,9 +56,9 @@ public class Performance implements Runnable {
             final JTextField getFileSize = new JTextField("1024");
             final JTextField getTheadCount = new JTextField("5");
             final JTextField getOperationCount = new JTextField("5");
-            getFileSize.setMaximumSize(new Dimension(220, 40));
-            getTheadCount.setMaximumSize(new Dimension(220, 40));
-            getOperationCount.setMaximumSize(new Dimension(220, 40));
+            getFileSize.setMaximumSize(new Dimension(250, 40));
+            getTheadCount.setMaximumSize(new Dimension(250, 40));
+            getOperationCount.setMaximumSize(new Dimension(250, 40));
             graph.setBackground(Color.white);
             graph.setForeground(Color.blue);
             graph.setSelected(false);

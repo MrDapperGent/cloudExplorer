@@ -5,6 +5,7 @@ Bug Fixes: <none>
 Improvements: 
 
 CLI - When listing objects, the number of objects will be printed.
+GUI Text box size fixes when creating a bucket, running performance tests, migrating accounts, and modifying bucket lifecycle rules.
 
 New Features:
 

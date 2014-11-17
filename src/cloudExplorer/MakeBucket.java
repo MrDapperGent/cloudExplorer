@@ -48,8 +48,8 @@ public class MakeBucket implements Runnable {
             final JTextField regionName = new JTextField(mainFrame.cred.getRegion());
             final JLabel name = new JLabel("Bucket Name:");
             final JLabel region_name = new JLabel("Region Name:");
-            bucketName.setMaximumSize(new Dimension(170, 40));
-            regionName.setMaximumSize(new Dimension(170, 40));
+            bucketName.setMaximumSize(new Dimension(200, 40));
+            regionName.setMaximumSize(new Dimension(200, 40));
             name.setBackground(Color.white);
             name.setForeground(Color.blue);
             region_name.setBackground(Color.white);

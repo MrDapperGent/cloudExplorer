@@ -48,8 +48,8 @@ public class ConfigureObjectTransition implements Runnable {
             final JButton disableRules = new JButton("Disable Rules");
             final JCheckBox glacier = new JCheckBox("Tier to Glacier");
 
-            days.setMaximumSize(new Dimension(240, 40));
-            prefix_field.setMaximumSize(new Dimension(215, 40));
+            days.setMaximumSize(new Dimension(300, 40));
+            prefix_field.setMaximumSize(new Dimension(300, 40));
 
             days.setBackground(Color.white);
             days.setForeground(Color.blue);

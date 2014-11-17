@@ -51,7 +51,7 @@ public class MakeDestinationBucket implements Runnable {
             final JLabel blank2 = new JLabel(" ");
             final JLabel blank3 = new JLabel(" ");
             final JTextField bucketName = new JTextField();
-            bucketName.setMaximumSize(new Dimension(245, 40));
+            bucketName.setMaximumSize(new Dimension(300, 40));
             final JLabel name = new JLabel("Destination Bucket:");
             name.setBackground(Color.white);
             name.setForeground(Color.blue);
