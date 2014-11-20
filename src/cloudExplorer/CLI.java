@@ -215,6 +215,7 @@ public class CLI {
                         }
 
                         if (operation.contains("get")) {
+                            destination = arg3;
                             getFromS3();
                         }
 
@@ -398,7 +399,11 @@ public class CLI {
             NewJFrame.perf = true;
             System.out.print("\n\nDownloading " + get_file + "........");
             String new_object_name = convertObject(get_file, "download");
-            destination = Home + File.separator + new_object_name;
+            if (destination == null) {
+                destination = Home + File.separator + new_object_name;
+            } else {
+                destination = destination + File.separator + new_object_name;
+            }
             get = new Get(get_file, access_key, secret_key, bucket, endpoint, destination, null);
             Get.debug = true;
             get.run();

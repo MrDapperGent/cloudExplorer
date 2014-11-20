@@ -15,13 +15,14 @@ public class S3 {
      **/
 
     public static void helpargs() {
-        System.out.print("\n[Cloud Explorer - CLI arguments.]\n"
+        System.out.print("\n[Cloud Explorer - CLI arguments]\n"
                 + "\nput filename bucket"
-                + "\nget filename bucket"
+                + "\nget filename bucket destination"
                 + "\ndelete filename bucket"
                 + "\nls bucket"
                 + "\nlistbuckets"
                 + "\nrmbucket bucket"
+                + "\nmakebucket what"
                 + "\nsynctos3 location bucket"
                 + "\nsyncfroms3 destination bucket"
                 + "\nuploadtest bucket size threads operations"
@@ -32,6 +33,7 @@ public class S3 {
 
     public static void main(String[] args) {
         int stop = 0;
+        System.out.print("\ndebug:" + args.length);
 
         if (args.length > 0) {
             if (args[0].contains("daemon")) {
@@ -58,6 +60,9 @@ public class S3 {
                         }
                         if (args.length == 3) {
                             cli.start(args[0], args[1], args[2], null, null);
+                        }
+                         if (args.length == 4) {
+                            cli.start(args[0], args[1], args[2], args[3], null);
                         }
                         if (args.length == 5) {
                             cli.start(args[0], args[1], args[2], args[3], args[4]);

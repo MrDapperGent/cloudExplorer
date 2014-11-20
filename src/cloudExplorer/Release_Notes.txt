@@ -5,6 +5,7 @@ Bug Fixes: <none>
 Improvements: 
 
 CLI - When listing objects, the number of objects will be printed.
+CLI - GET now has a destination argument instead of downloading to the users home directory only.
 GUI Text box size fixes when creating a bucket, running performance tests, migrating accounts, and modifying bucket lifecycle rules.
 
 New Features:
@@ -51,8 +52,8 @@ Features:
 Command-line Options:
 
 java -jar CloudExplorer.jar put filename bucket
-java -jar CloudExplorer.jar get filename bucket
-java -jar CloudExplorer.jar delete filename bucket
+java -jar CloudExplorer.jar get filename bucket destination
+java -jar CloudExplorer.jar delete filename bucket 
 
 #List bucket contents
 java -jar CloudExplorer.jar ls bucket
@@ -62,6 +63,9 @@ java -jar CloudExplorer.jar listbuckets
 
 #Delete a bucket
 java -jar CloudExplorer.jar rmbucket bucket
+
+#Create a bucket
+java -jar CloudExplorer.jar makebucket bucket
 
 #Sync to S3
 java -jar CloudExplorer.jar synctos3 location bucket
