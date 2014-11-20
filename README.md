@@ -19,6 +19,9 @@ For any OS, you can start the program with the Java command:
 
 java -jar -Xms100m -Xmx500m ./CloudExplorer.jar
 
+[How to compile from source]
+
+http://youtu.be/54v3rIUh0h8
 
 [How to migrate data between S3 accounts]
 
