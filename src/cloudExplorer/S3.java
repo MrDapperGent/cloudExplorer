@@ -33,8 +33,7 @@ public class S3 {
 
     public static void main(String[] args) {
         int stop = 0;
-        System.out.print("\ndebug:" + args.length);
-
+     
         if (args.length > 0) {
             if (args[0].contains("daemon")) {
                 Daemon daemon = new Daemon();
