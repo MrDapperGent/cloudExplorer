@@ -16,6 +16,13 @@
  */
 package cloudExplorer;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.jibble.pircbot.*;
 
 public class MyBot extends PircBot {
@@ -50,6 +57,49 @@ public class MyBot extends PircBot {
 
     public static void setMasternic(String string) {
         masternic = string;
+    }
+
+    public static String getPageTitle(URL url) throws Exception {
+
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(url.openStream(), "UTF-8"));
+
+        Pattern pHead = Pattern.compile("(?i)</HEAD>");
+        Matcher mHead;
+        Pattern pTitle = Pattern.compile("(?i)</TITLE>");
+        Matcher mTitle;
+
+        String inputLine;
+        boolean found = false;
+        boolean notFound = false;
+        String html = "";
+        String title = new String();
+        try {
+            while (!(((inputLine = in.readLine()) == null) || found || notFound)) {
+                html = html + inputLine;
+                mHead = pHead.matcher(inputLine);
+                if (mHead.find()) {
+                    notFound = true;
+                } else {
+                    mTitle = pTitle.matcher(inputLine);
+                    if (mTitle.find()) {
+                        found = true;
+                    }
+                }
+            }
+            in.close();
+
+            html = html.replaceAll("\\s+", " ");
+            if (found) {
+                Pattern p = Pattern.compile("(?i)<TITLE.*?>(.*?)</TITLE>");
+                Matcher m = p.matcher(html);
+                while (m.find() == true) {
+                    title = m.group(1);
+                }
+            }
+        } catch (Exception e) {
+        }
+        return title;
     }
 
     public static String getServername() {
@@ -100,6 +150,20 @@ public class MyBot extends PircBot {
 
     public void onMessage(String channel, String sender, String login, String hostname, String message) {
         Bot.ircarea.append("\n" + sender + ": " + message);
+        if (message.contains("http")) {
+            URL url = null;
+            try {
+                String[] disectURL = message.split(" ");
+                for (String foo : disectURL) {
+                    if (foo.contains("http")) {
+                        url = new URL(foo);
+                    }
+                }
+                this.sendMessage(channel, "^ " + getPageTitle(url));
+                Bot.ircarea.append("\n" + sender + ": ^ " + getPageTitle(url));
+            } catch (Exception ex) {
+            }
+        }
         calibrateTextArea();
     }
 
