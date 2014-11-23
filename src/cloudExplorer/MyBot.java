@@ -150,12 +150,12 @@ public class MyBot extends PircBot {
 
     public void onMessage(String channel, String sender, String login, String hostname, String message) {
         Bot.ircarea.append("\n" + sender + ": " + message);
-        if (message.contains("http")) {
+        if (message.contains("http://") || message.contains("https://")) {
             URL url = null;
             try {
                 String[] disectURL = message.split(" ");
                 for (String foo : disectURL) {
-                    if (foo.contains("http")) {
+                    if (foo.contains("http://") || foo.contains("https://")) {
                         url = new URL(foo);
                     }
                 }
