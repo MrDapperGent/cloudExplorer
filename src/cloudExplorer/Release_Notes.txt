@@ -7,7 +7,7 @@ Improvements:
 CLI - When listing objects, the number of objects will be printed.
 CLI - GET now has a destination argument instead of downloading to the users home directory only.
 GUI Text box size fixes when creating a bucket, running performance tests, migrating accounts, and modifying bucket lifecycle rules.
-GUI - When files are deleted, the object listing is refreshed.
+GUI - When files are deleted, the file listing in object explorer is refreshed.
 
 New Features:
 
