@@ -85,3 +85,10 @@ java -jar CloudExplorer.jar search bucket what
 
 
 *Please note that Cloud Explorer will use the first account listed in the config file*
+
+
+IRC Options:
+
+URL bot: This bot will show a description of links posted in the channel.
+!starturlbot
+!stopurlbot

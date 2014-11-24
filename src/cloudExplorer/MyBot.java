@@ -16,17 +16,17 @@
  */
 package cloudExplorer;
 
+import static cloudExplorer.NewJFrame.jButton6;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.jibble.pircbot.*;
 
 public class MyBot extends PircBot {
 
+    public static Boolean urlbot = false;
     public static String servername;
     public static String nick;
     public static String date;
@@ -150,19 +150,35 @@ public class MyBot extends PircBot {
 
     public void onMessage(String channel, String sender, String login, String hostname, String message) {
         Bot.ircarea.append("\n" + sender + ": " + message);
-        if (message.contains("http://") || message.contains("https://")) {
-            URL url = null;
-            try {
-                String[] disectURL = message.split(" ");
-                for (String foo : disectURL) {
-                    if (foo.contains("http://") || foo.contains("https://")) {
-                        url = new URL(foo);
+
+        if (message.contains("!starturlbot")) {
+            urlbot = true;
+            Bot.ircarea.append("\n" + sender + ": URL bot activated.");
+        }
+        if (message.contains("!stopurlbot")) {
+            urlbot = false;
+            Bot.ircarea.append("\n" + sender + ": URL bot deactivated.");
+        }
+
+        if (urlbot) {
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    if (message.contains("http://") || message.contains("https://")) {
+                        URL url = null;
+                        try {
+                            String[] disectURL = message.split(" ");
+                            for (String foo : disectURL) {
+                                if (foo.contains("http://") || foo.contains("https://")) {
+                                    url = new URL(foo);
+                                }
+                            }
+                            sendMessage(channel, "^ " + getPageTitle(url));
+                            Bot.ircarea.append("\n" + sender + ": ^ " + getPageTitle(url));
+                        } catch (Exception ex) {
+                        }
                     }
                 }
-                this.sendMessage(channel, "^ " + getPageTitle(url));
-                Bot.ircarea.append("\n" + sender + ": ^ " + getPageTitle(url));
-            } catch (Exception ex) {
-            }
+            });
         }
         calibrateTextArea();
     }

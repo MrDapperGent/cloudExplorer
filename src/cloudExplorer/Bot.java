@@ -179,14 +179,14 @@ public class Bot implements Runnable {
                     }
                 }
             } catch (IOException e) {
-                mainFrame.jTextArea1.append("\nConfig file not found!. Please create .cloudExplorerIRC in your home directory by running the GUI.\n\nAfter a config is created, you can use the bot in CLI mode by adding \n\ngui=no \n\nto the configuration file.\n\n");
+                mainFrame.jTextArea1.append("\nConfig file not found!. Please create .cloudExplorerIRC in your home directory by running the GUI.");
                 calibrateTextArea();
             }
 
             load_gui_components();
 
         } else {
-            mainFrame.jTextArea1.append("\nConfig file not found!. Please create .cloudExplorerIRC in your home directory by running the GUI.\n\nAfter a config is created, you can use the bot in CLI mode by adding \n\ngui=no \n\nto the configuration file.\n\n");
+            mainFrame.jTextArea1.append("\nConfig file not found!. Please create .cloudExplorerIRC in your home directory by running the GUI.");
             calibrateTextArea();
         }
 
