@@ -51,6 +51,5 @@ public class DeleteBucketThread implements Runnable {
 
     void startc(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String Aregion, NewJFrame AmainFrame) {
         (new Thread(new DeleteBucketThread(Aaccess_key, Asecret_key, Abucket, Aendpoint, Aregion, AmainFrame))).start();
-        System.out.print("\nhere4");
     }
 }

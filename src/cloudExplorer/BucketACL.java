@@ -48,7 +48,7 @@ public class BucketACL implements Runnable {
             final JCheckBox delete_bucket = new JCheckBox("Delete Bucket");
             final JLabel blank = new JLabel(" ");
             final JButton bucketACLbutton = new JButton("Commit");
-            final JButton close = new JButton("Close");
+           // final JButton close = new JButton("Close");
             final JLabel blank_label = new JLabel(" ");
 
             static_website.setBackground(Color.white);
@@ -75,12 +75,12 @@ public class BucketACL implements Runnable {
             bucketACLbutton.setBorder(null);
             bucketACLbutton.setForeground(Color.blue);
 
-            close.setBackground(Color.white);
-            close.setBorder(null);
-            close.setForeground(Color.blue);
+            //close.setBackground(Color.white);
+            //close.setBorder(null);
+            //close.setForeground(Color.blue);
 
             bucketACLbutton.setIcon(mainFrame.genericEngine);
-            close.setIcon(mainFrame.genericEngine);
+            //close.setIcon(mainFrame.genericEngine);
 
             bucketACLbutton.addActionListener(new ActionListener() {
 
@@ -119,7 +119,7 @@ public class BucketACL implements Runnable {
                     }
 
                     mainFrame.calibrateTextArea();
-                    mainFrame.jPanel14.removeAll();
+                    //mainFrame.jPanel14.removeAll();
                     mainFrame.jPanel14.repaint();
                     mainFrame.jPanel14.revalidate();
                     mainFrame.jPanel14.validate();
@@ -127,6 +127,7 @@ public class BucketACL implements Runnable {
                 }
             });
 
+            /**
             close.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
@@ -138,7 +139,7 @@ public class BucketACL implements Runnable {
 
                 }
             });
-
+**/
             mainFrame.jPanel14.removeAll();
             mainFrame.jPanel14.setLayout(new BoxLayout(mainFrame.jPanel14, BoxLayout.Y_AXIS));
             mainFrame.jPanel14.add(static_website);
@@ -148,7 +149,7 @@ public class BucketACL implements Runnable {
             mainFrame.jPanel14.add(delete_bucket);
             mainFrame.jPanel14.add(blank_label);
             mainFrame.jPanel14.add(bucketACLbutton);
-            mainFrame.jPanel14.add(close);
+            //mainFrame.jPanel14.add(close);
             mainFrame.jPanel14.repaint();
             mainFrame.jPanel14.revalidate();
             mainFrame.jPanel14.validate();

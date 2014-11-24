@@ -47,6 +47,7 @@ import javax.swing.plaf.ColorUIResource;
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     String version = "Cloud Explorer v4.2  ";
+    public boolean selectToggle = false;
     public static JRadioButton deleting = new JRadioButton("foo");
     ImageIcon genericEngine = new ImageIcon(
             this.getClass().getResource("engine.png"));
@@ -189,7 +190,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             ImageIcon selectButton = new ImageIcon(
                     this.getClass().getResource("select.png"));
             this.jButton13.setIcon(selectButton);
-            this.jButton14.setIcon(selectButton);
 
             ImageIcon propertiesButton = new ImageIcon(
                     this.getClass().getResource("properties.png"));
@@ -297,7 +297,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jButton7 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
@@ -328,7 +327,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -778,15 +776,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
 
-        jButton14.setBackground(java.awt.SystemColor.text);
-        jButton14.setText("Deselect");
-        jButton14.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
-            }
-        });
-
         jButton1.setBackground(java.awt.SystemColor.text);
         jButton1.setText("Abort");
         jButton1.setToolTipText("");
@@ -855,9 +844,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addComponent(jButton12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(6, 6, 6)
                         .addComponent(jButton17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton18)
@@ -873,7 +860,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     .addComponent(jLabel1)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1160,14 +1146,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu3.add(jMenuItem1);
 
-        jMenuItem2.setText("Properties");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem2);
-
         jMenuItem13.setText("Bucket Life Cycle");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1393,7 +1371,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jButton7.setEnabled(true);
             jButton12.setEnabled(true);
             jButton13.setEnabled(true);
-            jButton14.setEnabled(true);
             jPanel14.removeAll();
             jPanel14.repaint();
             jPanel14.revalidate();
@@ -1404,7 +1381,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jButton19.setEnabled(true);
             reloadObjects();
             versionDownload = false;
-
+            
+            BucketACL bucketACL = new BucketACL(this);
+            bucketACL.startc();
+            
             try {
                 int found = 0;
 
@@ -1600,7 +1580,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jButton7.setVisible(true);
         jButton12.setVisible(true);
         jButton13.setVisible(true);
-        jButton14.setVisible(true);
         jButton17.setVisible(true);
         jButton18.setVisible(true);
         jButton19.setVisible(true);
@@ -1619,7 +1598,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jButton7.setVisible(false);
         jButton12.setVisible(false);
         jButton13.setVisible(false);
-        jButton14.setVisible(false);
         jButton17.setVisible(false);
         jButton18.setVisible(false);
         jButton19.setVisible(false);
@@ -2325,38 +2303,29 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             if (versionDownload) {
                 for (int i = 0; i != versioning_id.size(); i++) {
                     if (object_item[i].isVisible()) {
-                        object_item[i].setSelected(true);
+                        if (object_item[i].isSelected()) {
+                            object_item[i].setSelected(false);
+                        } else {
+                            object_item[i].setSelected(true);
+                        }
                     }
                 }
             } else {
+
                 for (int i = 1; i != previous_objectarray_length; i++) {
                     if (object_item[i].isVisible()) {
-                        object_item[i].setSelected(true);
+
+                        if (object_item[i].isSelected()) {
+                            object_item[i].setSelected(false);
+                        } else {
+                            object_item[i].setSelected(true);
+                        }
                     }
                 }
             }
         } catch (Exception SelectALL) {
         }
     }//GEN-LAST:event_jButton13ActionPerformed
-
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        try {
-            if (versionDownload) {
-                for (int i = 0; i != versioning_id.size(); i++) {
-                    if (object_item[i].isVisible()) {
-                        object_item[i].setSelected(false);
-                    }
-                }
-            } else {
-                for (int i = 1; i != previous_objectarray_length; i++) {
-                    if (object_item[i].isVisible()) {
-                        object_item[i].setSelected(false);
-                    }
-                }
-            }
-        } catch (Exception SelectALL) {
-        }
-    }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         put.stop();
@@ -2501,17 +2470,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-
-        if (active_bucket > 0) {
-            BucketACL bucketACL = new BucketACL(this);
-            bucketACL.startc();
-        } else {
-            jTextArea1.append("\nError: No bucket has been selected\n");
-        }
-
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
     private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox4ActionPerformed
@@ -2585,7 +2543,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jButton7.setEnabled(false);
             jButton12.setEnabled(false);
             jButton13.setEnabled(false);
-            jButton14.setEnabled(false);
             jButton17.setEnabled(false);
             jButton18.setEnabled(false);
             jButton19.setEnabled(false);
@@ -2635,7 +2592,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JButton jButton11;
     public static javax.swing.JButton jButton12;
     public static javax.swing.JButton jButton13;
-    public static javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     public static javax.swing.JButton jButton17;
@@ -2688,7 +2644,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
