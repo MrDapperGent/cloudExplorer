@@ -50,12 +50,14 @@ public class DeleteThread implements Runnable {
     }
 
     public void run() {
+       
         for (int i = 0; i != what.length; i++) {
             if (what[i] != null) {
                 delete = new Delete(what[i], access_key, secret_key, bucket, endpoint, null);
                 delete.startc(what[i], access_key, secret_key, bucket, endpoint, null);
             }
         }
+        NewJFrame.deleting.setSelected(true);
     }
 
     void startc(NewJFrame AmainFrame, String[] Awhat, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String Aversion) {
@@ -63,6 +65,7 @@ public class DeleteThread implements Runnable {
         del.start();
         try {
             del.join();
+           
         } catch (Exception Delete) {
         }
     }

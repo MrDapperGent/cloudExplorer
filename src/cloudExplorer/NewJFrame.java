@@ -40,11 +40,14 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
 import javax.swing.UIManager;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.plaf.ColorUIResource;
 
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     String version = "Cloud Explorer v4.2  ";
+    public static JRadioButton deleting = new JRadioButton("foo");
     ImageIcon genericEngine = new ImageIcon(
             this.getClass().getResource("engine.png"));
     Credentials cred = new Credentials();
@@ -92,6 +95,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     public NewJFrame() {
         try {
+            deleting.setEnabled(true);
+
             this.setTitle(version + " -  No bucket selected.");
             initComponents();
             setLocationRelativeTo(null);
@@ -1451,6 +1456,19 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     }
 
     public void itemStateChanged(ItemEvent event) {
+
+        if (deleting.isSelected()) {
+            deleting.removeItemListener(this);
+
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    jButton6.doClick();
+                }
+            });
+
+            deleting.setSelected(false);
+        }
+
         try {
             if (bucket_item != null) {
                 for (int h = 1; h != bucketarray.length; h++) {
@@ -2226,7 +2244,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         delcounter++;
                     }
                     Thread delThread = new Thread(new DeleteThread(this, delArray, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), null));
+                    deleting.addItemListener(this);
                     delThread.start();
+
                 }
 
             } else {
