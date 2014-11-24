@@ -40,8 +40,6 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
 import javax.swing.UIManager;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.plaf.ColorUIResource;
 
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
