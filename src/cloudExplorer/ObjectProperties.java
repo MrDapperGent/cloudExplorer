@@ -16,7 +16,6 @@
  */
 package cloudExplorer;
 
-import static cloudExplorer.NewJFrame.jButton7;
 import static cloudExplorer.NewJFrame.jTextArea1;
 
 public class ObjectProperties implements Runnable {
