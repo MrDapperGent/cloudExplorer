@@ -43,6 +43,7 @@ public class ObjectProperties implements Runnable {
                     mainFrame.jButton17.setEnabled(false);
                     mainFrame.jButton18.setEnabled(false);
                     mainFrame.jButton19.setEnabled(false);
+                    System.gc();
                 }
             }
         } catch (Exception ObjectACL) {
