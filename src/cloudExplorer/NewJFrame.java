@@ -2404,6 +2404,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         if (active_bucket > 0) {
             DeleteEverything delEverything = new DeleteEverything(this);
             Versioning.delete = true;
+            jPanel14.removeAll();
+            jPanel14.repaint();
+            jPanel14.validate();
             delEverything.startc(this);
         } else {
             jTextArea1.append("\nError: No bucket has been selected");

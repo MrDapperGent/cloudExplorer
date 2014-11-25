@@ -70,7 +70,6 @@ public class Versioning {
                     del.startc(delVer, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.versioning_id.get(i));
                     i++;
                 }
-
             }
             if (Versioning.delete) {
                 mainFrame.jTextArea1.append("\nCompleted deleting every object. Please observe this window for any tasks that are still running.");
