@@ -24,7 +24,10 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import static cloudExplorer.NewJFrame.jTextArea1;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import javax.swing.JLabel;
+import javax.swing.JRadioButton;
 
 public class BucketACL implements Runnable {
 
@@ -36,19 +39,25 @@ public class BucketACL implements Runnable {
 
     }
 
+    public void refresh() {
+        mainFrame.calibrateTextArea();
+        //mainFrame.jPanel14.removeAll();
+        mainFrame.jPanel14.repaint();
+        mainFrame.jPanel14.revalidate();
+        mainFrame.jPanel14.validate();
+    }
+
     public void run() {
         try {
 
             URL music_url = null;
 
-            final JCheckBox static_website = new JCheckBox("Static Website");
-            final JCheckBox disable_website = new JCheckBox("Disable Static Website");
-            final JCheckBox enable_versioning = new JCheckBox("Enable Versioning");
-            final JCheckBox suspend_versioning = new JCheckBox("Suspend Versioning");
-            final JCheckBox delete_bucket = new JCheckBox("Delete Bucket");
+            final JRadioButton static_website = new JRadioButton("Static Website");
+            final JRadioButton disable_website = new JRadioButton("Disable Static Website");
+            final JRadioButton enable_versioning = new JRadioButton("Enable Versioning");
+            final JRadioButton suspend_versioning = new JRadioButton("Suspend Versioning");
+            final JRadioButton delete_bucket = new JRadioButton("Delete Bucket");
             final JLabel blank = new JLabel(" ");
-            final JButton bucketACLbutton = new JButton("Commit");
-           // final JButton close = new JButton("Close");
             final JLabel blank_label = new JLabel(" ");
 
             static_website.setBackground(Color.white);
@@ -71,75 +80,61 @@ public class BucketACL implements Runnable {
             delete_bucket.setBorder(null);
             delete_bucket.setForeground(Color.blue);
 
-            bucketACLbutton.setBackground(Color.white);
-            bucketACLbutton.setBorder(null);
-            bucketACLbutton.setForeground(Color.blue);
-
-            //close.setBackground(Color.white);
-            //close.setBorder(null);
-            //close.setForeground(Color.blue);
-
-            bucketACLbutton.setIcon(mainFrame.genericEngine);
-            //close.setIcon(mainFrame.genericEngine);
-
-            bucketACLbutton.addActionListener(new ActionListener() {
-
+            enable_versioning.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    try {
-
-                        if (enable_versioning.isSelected()) {
-                            jTextArea1.append(mainFrame.bucket.controlVersioning(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.cred.getRegion(), true));
-                            mainFrame.reloadBuckets();
-                        }
-
-                        if (suspend_versioning.isSelected()) {
-                            jTextArea1.append(mainFrame.bucket.controlVersioning(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.cred.getRegion(), false));
-                        }
-                        if (delete_bucket.isSelected()) {
-                            mainFrame.bucket_item[mainFrame.active_bucket].setSelected(false);
-                            DeleteBucketThread delBucket = new DeleteBucketThread(mainFrame.cred.access_key, mainFrame.cred.secret_key, mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.end_point, mainFrame.cred.region, mainFrame);
-                            delBucket.startc(mainFrame.cred.access_key, mainFrame.cred.secret_key, mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.end_point, mainFrame.cred.region, mainFrame);
-                           
-                        }
-
-                        if (static_website.isSelected()) {
-                            mainFrame.objectacl.setBUCKETwebsite(object_acl_change, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getEndpoint(), mainFrame.cred.getBucket());
-                            jTextArea1.append("\nWebsite access enabled.\n");
-
-                        }
-
-                        if (disable_website.isSelected()) {
-                            mainFrame.objectacl.removeBUCKETwebsite(object_acl_change, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getEndpoint(), mainFrame.cred.getBucket());
-                            jTextArea1.append("\nBucket is no longer serving a website.\n");
-
-                        }
-
-                    } catch (Exception ObjectACL) {
-                        jTextArea1.append("\n" + ObjectACL.getMessage() + "\n");
+                    if (enable_versioning.isSelected()) {
+                        jTextArea1.append(mainFrame.bucket.controlVersioning(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.cred.getRegion(), true));
+                        mainFrame.reloadBuckets();
+                        enable_versioning.setSelected(false);
+                        refresh();
                     }
-
-                    mainFrame.calibrateTextArea();
-                    //mainFrame.jPanel14.removeAll();
-                    mainFrame.jPanel14.repaint();
-                    mainFrame.jPanel14.revalidate();
-                    mainFrame.jPanel14.validate();
-
                 }
             });
 
-            /**
-            close.addActionListener(new ActionListener() {
-
+            suspend_versioning.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    mainFrame.calibrateTextArea();
-                    mainFrame.jPanel14.removeAll();
-                    mainFrame.jPanel14.repaint();
-                    mainFrame.jPanel14.revalidate();
-                    mainFrame.jPanel14.validate();
-
+                    if (suspend_versioning.isSelected()) {
+                        jTextArea1.append(mainFrame.bucket.controlVersioning(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.cred.getRegion(), false));
+                        suspend_versioning.setSelected(false);
+                        refresh();
+                    }
                 }
             });
-**/
+
+            disable_website.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    if (disable_website.isSelected()) {
+                        mainFrame.objectacl.removeBUCKETwebsite(object_acl_change, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getEndpoint(), mainFrame.cred.getBucket());
+                        jTextArea1.append("\nBucket is no longer serving a website.\n");
+                        disable_website.setSelected(false);
+                        refresh();
+                    }
+                }
+            });
+
+            delete_bucket.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    if (delete_bucket.isSelected()) {
+                        mainFrame.bucket_item[mainFrame.active_bucket].setSelected(false);
+                        DeleteBucketThread delBucket = new DeleteBucketThread(mainFrame.cred.access_key, mainFrame.cred.secret_key, mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.end_point, mainFrame.cred.region, mainFrame);
+                        delBucket.startc(mainFrame.cred.access_key, mainFrame.cred.secret_key, mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.end_point, mainFrame.cred.region, mainFrame);
+                        delete_bucket.setSelected(false);
+                        refresh();
+                    }
+                }
+            });
+
+            static_website.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    if (static_website.isSelected()) {
+                        mainFrame.objectacl.setBUCKETwebsite(object_acl_change, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getEndpoint(), mainFrame.cred.getBucket());
+                        jTextArea1.append("\nWebsite access enabled.\n");
+                        static_website.setSelected(false);
+                        refresh();
+                    }
+                }
+            });
+            
             mainFrame.jPanel14.removeAll();
             mainFrame.jPanel14.setLayout(new BoxLayout(mainFrame.jPanel14, BoxLayout.Y_AXIS));
             mainFrame.jPanel14.add(static_website);
@@ -148,8 +143,6 @@ public class BucketACL implements Runnable {
             mainFrame.jPanel14.add(suspend_versioning);
             mainFrame.jPanel14.add(delete_bucket);
             mainFrame.jPanel14.add(blank_label);
-            mainFrame.jPanel14.add(bucketACLbutton);
-            //mainFrame.jPanel14.add(close);
             mainFrame.jPanel14.repaint();
             mainFrame.jPanel14.revalidate();
             mainFrame.jPanel14.validate();
@@ -157,6 +150,7 @@ public class BucketACL implements Runnable {
         } catch (Exception mp3player) {
             jTextArea1.append("\n" + mp3player.getMessage());
         }
+
         mainFrame.calibrateTextArea();
 
     }
