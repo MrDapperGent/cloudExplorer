@@ -1377,7 +1377,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jButton17.setEnabled(true);
             jButton18.setEnabled(true);
             jButton19.setEnabled(true);
-
             reloadObjects();
             versionDownload = false;
 
