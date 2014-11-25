@@ -1377,12 +1377,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jButton17.setEnabled(true);
             jButton18.setEnabled(true);
             jButton19.setEnabled(true);
+
             reloadObjects();
             versionDownload = false;
-            
+
             BucketACL bucketACL = new BucketACL(this);
             bucketACL.startc();
-            
+            jButton13.setText("Select All");
+
             try {
                 int found = 0;
 
@@ -2303,8 +2305,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     if (object_item[i].isVisible()) {
                         if (object_item[i].isSelected()) {
                             object_item[i].setSelected(false);
+                            jButton13.setText("Select All");
                         } else {
                             object_item[i].setSelected(true);
+                            jButton13.setText("Deselect All");
                         }
                     }
                 }
@@ -2315,8 +2319,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
                         if (object_item[i].isSelected()) {
                             object_item[i].setSelected(false);
+                            jButton13.setText("Select All");
                         } else {
                             object_item[i].setSelected(true);
+                            jButton13.setText("Deselect All");
                         }
                     }
                 }
