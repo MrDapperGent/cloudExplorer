@@ -1379,7 +1379,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jButton19.setEnabled(true);
             reloadObjects();
             versionDownload = false;
-
             BucketACL bucketACL = new BucketACL(this);
             bucketACL.startc();
             jButton13.setText("Select All");

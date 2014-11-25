@@ -9,8 +9,9 @@ CLI - GET now has a destination argument instead of downloading to the users hom
 GUI Text box size fixes when creating a bucket, running performance tests, migrating accounts, and modifying bucket lifecycle rules.
 GUI - When files are deleted, the file listing in object explorer is refreshed.
 GUI - Select and Deselect are one toggle button. Issue #18.
-GUI - Bucket properties are always visible. Issue #16.
+GUI - Bucket properties are always visible. Issue #16 and #17.
 GUI - Bucket properties takes action upon selecting the button. Issue #15.
+GUI - Info button supports file information for multiple files in Object Explorer. Issue #19.
 
 New Features:
 
