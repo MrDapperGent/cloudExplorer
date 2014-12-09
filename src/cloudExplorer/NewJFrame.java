@@ -44,7 +44,7 @@ import javax.swing.plaf.ColorUIResource;
 
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     
-    String version = "Cloud Explorer v4.2  ";
+    String version = "Cloud Explorer v4.3  ";
     public boolean selectToggle = false;
     public static JRadioButton deleting = new JRadioButton("foo");
     ImageIcon genericEngine = new ImageIcon(

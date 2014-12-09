@@ -1,40 +1,13 @@
-Version 4.2
+Version 4.3
 
 Bug Fixes: <none>
 
 Improvements: 
 
-CLI - When listing objects, the number of objects will be printed.
-CLI - GET now has a destination argument instead of downloading to the users home directory only.
-GUI Text box size fixes when creating a bucket, running performance tests, migrating accounts, and modifying bucket lifecycle rules.
-GUI - When files are deleted, the file listing in object explorer is refreshed.
-GUI - Select and Deselect are one toggle button. Issue #18.
-GUI - Bucket properties are always visible. Issue #16 and #17.
-GUI - Bucket properties takes action upon selecting the button. Issue #15.
-GUI - Info button supports file information for multiple files in Object Explorer. Issue #19.
-GUI - Stop button has been replaced with the Upload button. This will bring you to the upload tab.
+S3 JDK v1.9.10
 
-New Features:
+New Features: <none>
 
-IRC client to chat and save sessions to S3.
-
-
-Version 4.1
-
-Bug Fixes:
-Fixed a bug with the info button to support displaying object information for S3-compatible cloud providers.
-Daemon mode now only syncs to S3 to avoid having duplicate files.
- 
-Improvements:
-Performance Testing: Graph and non-graph display are labeled as PUT or GET.
-Versioning: Latest file will be in blue. Deleted files will be in red.
-Versioning: Version enabled buckets will be displayed in green.
-Upgraded S3 API to 1.9.3
-GUI creates and deletes buckets in a background thread to be more responsive.
-
-New Features:
-Command-line interface: put, get, delete, makebucket, rmbucket, listbuckets, syncfroms3, and synctos3.
-Performance testing available from the command-line
 
 Features:
 
