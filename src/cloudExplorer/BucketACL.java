@@ -53,12 +53,17 @@ public class BucketACL implements Runnable {
             URL music_url = null;
 
             final JRadioButton static_website = new JRadioButton("Static Website");
+            final JRadioButton refresh_bucket = new JRadioButton("Refresh Bucket");
             final JRadioButton disable_website = new JRadioButton("Disable Static Website");
             final JRadioButton enable_versioning = new JRadioButton("Enable Versioning");
             final JRadioButton suspend_versioning = new JRadioButton("Suspend Versioning");
             final JRadioButton delete_bucket = new JRadioButton("Delete Bucket");
             final JLabel blank = new JLabel(" ");
             final JLabel blank_label = new JLabel(" ");
+
+            refresh_bucket.setBackground(Color.white);
+            refresh_bucket.setBorder(null);
+            refresh_bucket.setForeground(Color.blue);
 
             static_website.setBackground(Color.white);
             static_website.setBorder(null);
@@ -88,6 +93,13 @@ public class BucketACL implements Runnable {
                         enable_versioning.setSelected(false);
                         refresh();
                     }
+                }
+            });
+
+            refresh_bucket.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    jTextArea1.append("\nRefreshing Buckets....");
+                    NewJFrame.jButton6.doClick();
                 }
             });
 
@@ -134,9 +146,10 @@ public class BucketACL implements Runnable {
                     }
                 }
             });
-            
+
             mainFrame.jPanel14.removeAll();
             mainFrame.jPanel14.setLayout(new BoxLayout(mainFrame.jPanel14, BoxLayout.Y_AXIS));
+            mainFrame.jPanel14.add(refresh_bucket);
             mainFrame.jPanel14.add(static_website);
             mainFrame.jPanel14.add(disable_website);
             mainFrame.jPanel14.add(enable_versioning);
