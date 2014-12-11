@@ -98,7 +98,7 @@ public class BucketACL implements Runnable {
 
             refresh_bucket.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    jTextArea1.append("\nRefreshing Buckets....");
+                    jTextArea1.append("\nRefreshing Bucket....");
                     NewJFrame.jButton6.doClick();
                 }
             });
