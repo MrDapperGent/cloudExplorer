@@ -957,7 +957,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addComponent(jCheckBox4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jCheckBox5)
-                .addGap(150, 150, 150))
+                .addGap(140, 140, 140))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
