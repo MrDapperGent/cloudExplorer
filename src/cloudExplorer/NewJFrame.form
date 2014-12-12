@@ -1474,7 +1474,7 @@
                               </Group>
                               <Component id="jFileChooser2" min="-2" pref="785" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
