@@ -5,7 +5,7 @@ Bug Fixes: <none>
 Improvements: 
 
 S3 JDK v1.9.10
-Added "Refresh Buckets" button. Functions just like the search button. Added it for ease of use.
+Added "Refresh Bucket" button. Functions just like the search button. Added it for ease of use.
 
 New Features: <none>
 
