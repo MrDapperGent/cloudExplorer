@@ -396,6 +396,11 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jTabbedPane1.setBackground(java.awt.SystemColor.text);
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane1StateChanged(evt);
+            }
+        });
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1397,6 +1402,27 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         return out_file;
     }
 
+    void miniReload() {
+        NewJFrame.perf = false;
+        showPanel();
+        jPanel15.setVisible(true);
+        jButton3.setEnabled(true);
+        jButton1.setEnabled(true);
+        jButton4.setEnabled(true);
+        jButton7.setEnabled(true);
+        jButton12.setEnabled(true);
+        jButton13.setEnabled(true);
+        jPanel14.removeAll();
+        jPanel14.repaint();
+        jPanel14.revalidate();
+        jPanel14.validate();
+        jButton1.setEnabled(true);
+        jButton17.setEnabled(true);
+        jButton18.setEnabled(true);
+        jButton19.setEnabled(true);
+        versionDownload = false;
+        jButton13.setText("Select All");
+    }
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         if (active_bucket > 0) {
             NewJFrame.perf = false;
@@ -2614,6 +2640,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private void jCheckBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox6ActionPerformed
+
+    private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
+
+    }//GEN-LAST:event_jTabbedPane1StateChanged
 
     void var() {
         try {
