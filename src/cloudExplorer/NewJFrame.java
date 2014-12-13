@@ -124,22 +124,11 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     .getResource("cloud.jpg")).getImage());
             this.jTextField3.setText("https://s3.amazonaws.com");
             this.jTextField4.setText("443");
-
-            for (int i = 0; i != this.jTabbedPane1.getTabCount(); i++) {
-                this.jTabbedPane1.setTitleAt(i, "");
-                if (i == 0) {
-                    ImageIcon tabSettings = new ImageIcon(
-                            this.getClass().getResource("tab-settings.png"));
-                    this.jTabbedPane1.setIconAt(0, tabSettings);
-                    this.jTabbedPane1.setToolTipTextAt(0, "Settings");
-                }
-
-                this.jTabbedPane1.setToolTipTextAt(1, "Explore");
-                this.jTabbedPane1.setToolTipTextAt(2, "Upload a file");
-                this.jTabbedPane1.setToolTipTextAt(3, "Sync to and from S3");
-                this.jTabbedPane1.setToolTipTextAt(4, "Text Editor");
-
-            }
+            
+            this.jTabbedPane1.setToolTipTextAt(1, "Explore");
+            this.jTabbedPane1.setToolTipTextAt(2, "Upload a file");
+            this.jTabbedPane1.setToolTipTextAt(3, "Sync to and from S3");
+            this.jTabbedPane1.setToolTipTextAt(4, "Text Editor");
 
             this.jScrollPane1.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
             this.jCheckBox1.setSelected(true);
