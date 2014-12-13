@@ -212,8 +212,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             ImageIcon uploadButton = new ImageIcon(
                     this.getClass().getResource("uploadbutton.png"));
             this.jButton1.setIcon(uploadButton);
-            this.jButton15.setIcon(uploadButton);
-            this.jButton16.setIcon(uploadButton);
             this.jButton1.setText("Upload");
             
             ImageIcon saveEditButton = new ImageIcon(
@@ -900,6 +898,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton5.setBackground(java.awt.SystemColor.text);
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/uploadbutton.png"))); // NOI18N
         jButton5.setText("Upload");
         jButton5.setBorder(null);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -909,6 +908,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton15.setBackground(java.awt.SystemColor.text);
+        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/abort.png"))); // NOI18N
         jButton15.setText("Abort upload");
         jButton15.setBorder(null);
         jButton15.addActionListener(new java.awt.event.ActionListener() {
@@ -937,35 +937,34 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton15)
-                        .addGap(20, 20, 20)
-                        .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox5))
+                    .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton15)
+                    .addComponent(jCheckBox4)
+                    .addComponent(jCheckBox5)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, 0)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
                         .addComponent(jCheckBox2)
+                        .addGap(18, 18, 18)
                         .addComponent(jCheckBox4)
+                        .addGap(18, 18, 18)
                         .addComponent(jCheckBox5))
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0))
+                    .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(116, 116, 116))
         );
 
         jTabbedPane1.addTab("Upload", jPanel2);
@@ -985,6 +984,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jToggleButton3.setBackground(java.awt.SystemColor.text);
+        jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/tab-sync2.png"))); // NOI18N
         jToggleButton3.setText("Sync to S3");
         jToggleButton3.setBorder(null);
         jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -994,6 +994,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jToggleButton4.setBackground(java.awt.SystemColor.text);
+        jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/tab-sync2.png"))); // NOI18N
         jToggleButton4.setText("Sync from S3");
         jToggleButton4.setBorder(null);
         jToggleButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -1003,7 +1004,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton16.setBackground(java.awt.SystemColor.text);
-        jButton16.setText("Abort");
+        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/abort.png"))); // NOI18N
+        jButton16.setText("       Abort");
         jButton16.setBorder(null);
         jButton16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1019,42 +1021,49 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jCheckBox6.setBackground(java.awt.SystemColor.text);
         jCheckBox6.setText("Encrypt\n");
+        jCheckBox6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jToggleButton3)
+                    .addComponent(jToggleButton4)
+                    .addComponent(jCheckBox3)
+                    .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckBox6)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9)
-                        .addComponent(jToggleButton4)
-                        .addGap(15, 15, 15)
-                        .addComponent(jToggleButton3)
-                        .addGap(15, 15, 15)
-                        .addComponent(jRadioButton1)
-                        .addGap(15, 15, 15)
-                        .addComponent(jCheckBox3)
-                        .addGap(15, 15, 15)
-                        .addComponent(jCheckBox6))
-                    .addComponent(jFileChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 785, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0))
+                        .addContainerGap()
+                        .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jFileChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jFileChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jButton16)
-                    .addComponent(jCheckBox3)
-                    .addComponent(jCheckBox6))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(jRadioButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jCheckBox3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jCheckBox6))
+                    .addComponent(jFileChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Sync", jPanel4);
@@ -2595,6 +2604,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         }
 
     }//GEN-LAST:event_jMenuItem20ActionPerformed
+
+    private void jCheckBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox6ActionPerformed
     
     void var() {
         try {
