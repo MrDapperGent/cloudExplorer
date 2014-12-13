@@ -133,105 +133,17 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     this.jTabbedPane1.setIconAt(0, tabSettings);
                     this.jTabbedPane1.setToolTipTextAt(0, "Settings");
                 }
-                if (i == 1) {
-                    ImageIcon tabExplorer = new ImageIcon(
-                            this.getClass().getResource("tab-explorer.png"));
-                    this.jTabbedPane1.setIconAt(1, tabExplorer);
-                    this.jTabbedPane1.setToolTipTextAt(1, "Explore");
-                }
-                if (i == 2) {
-                    ImageIcon tabUpload = new ImageIcon(
-                            this.getClass().getResource("tab-upload.png"));
-                    this.jTabbedPane1.setIconAt(2, tabUpload);
-                    this.jTabbedPane1.setToolTipTextAt(2, "Upload a file");
-                }
-                if (i == 3) {
-                    ImageIcon tabDownload = new ImageIcon(
-                            this.getClass().getResource("tab-download.png"));
-                    ImageIcon tabSync2 = new ImageIcon(
-                            this.getClass().getResource("tab-sync2.png"));
-                    this.jTabbedPane1.setIconAt(3, tabSync2);
-                    this.jTabbedPane1.setToolTipTextAt(3, "Sync to and from S3");
-                    this.jToggleButton4.setIcon(tabDownload);
-                    this.jToggleButton4.setText("From S3");
-                    this.jToggleButton3.setIcon(tabDownload);
-                    this.jToggleButton3.setText("To S3");
-                }
-                if (i == 4) {
-                    ImageIcon tabEditor = new ImageIcon(
-                            this.getClass().getResource("tab-editor.png"));
-                    this.jTabbedPane1.setIconAt(4, tabEditor);
-                    this.jTabbedPane1.setToolTipTextAt(4, "Text Editor");
-                }
-                /**
-                 * if (i == 5) { ImageIcon tabAbout = new ImageIcon(
-                 * this.getClass().getResource("tab-about.png"));
-                 * this.jTabbedPane1.setIconAt(5, tabAbout); } *
-                 */
+
+                this.jTabbedPane1.setToolTipTextAt(1, "Explore");
+                this.jTabbedPane1.setToolTipTextAt(2, "Upload a file");
+                this.jTabbedPane1.setToolTipTextAt(3, "Sync to and from S3");
+                this.jTabbedPane1.setToolTipTextAt(4, "Text Editor");
 
             }
 
-            ImageIcon searchBUtton = new ImageIcon(
-                    this.getClass().getResource("search-button.png"));
-            this.jButton6.setText("");
-            this.jButton6.setIcon(searchBUtton);
-
-            ImageIcon downloadButton = new ImageIcon(
-                    this.getClass().getResource("download.png"));
-            this.jButton3.setIcon(downloadButton);
-            this.jButton3.setText("Get");
-
-            ImageIcon deleteButton = new ImageIcon(
-                    this.getClass().getResource("delete.png"));
-            this.jButton4.setIcon(deleteButton);
-
-            ImageIcon selectButton = new ImageIcon(
-                    this.getClass().getResource("select.png"));
-            this.jButton13.setIcon(selectButton);
-
-            ImageIcon propertiesButton = new ImageIcon(
-                    this.getClass().getResource("properties.png"));
-            this.jButton7.setText("Info");
-            this.jButton7.setIcon(propertiesButton);
-
-            ImageIcon editButton2 = new ImageIcon(
-                    this.getClass().getResource("edit2.png"));
-            this.jButton12.setIcon(editButton2);
-            this.jButton12.setText("Edit");
-
-            ImageIcon playBUtton = new ImageIcon(
-                    this.getClass().getResource("play.png"));
-            this.jButton17.setIcon(playBUtton);
-            this.jButton17.setText("Play");
-
-            ImageIcon viewButton = new ImageIcon(
-                    this.getClass().getResource("viewimage.png"));
-            this.jButton19.setIcon(viewButton);
-            this.jButton19.setText("View");
-
-            ImageIcon uploadButton = new ImageIcon(
-                    this.getClass().getResource("uploadbutton.png"));
-            this.jButton1.setIcon(uploadButton);
-            this.jButton1.setText("Upload");
-
-            ImageIcon saveEditButton = new ImageIcon(
-                    this.getClass().getResource("uploadbutton.png"));
-            this.jButton11.setIcon(saveEditButton);
-            this.jButton5.setIcon(saveEditButton);
-            this.jButton11.setText("Save");
-
-            ImageIcon versionButton = new ImageIcon(
-                    this.getClass().getResource("versions.png"));
-            this.jButton18.setIcon(versionButton);
-            this.jButton18.setText("Versions");
-
-            this.jButton9.setIcon(genericEngine);
-            this.jButton2.setIcon(genericEngine);
-            this.jButton8.setIcon(genericEngine);
-            this.jButton10.setIcon(genericEngine);
-            this.jButton20.setIcon(genericEngine);
             this.jScrollPane1.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
             this.jCheckBox1.setSelected(true);
+
             File config = new File(config_file);
             if (config.exists()) {
                 this.jButton9.doClick();
@@ -436,6 +348,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jTextField5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jButton8.setBackground(java.awt.SystemColor.text);
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/engine.png"))); // NOI18N
         jButton8.setText("Save");
         jButton8.setBorder(null);
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -445,6 +358,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton10.setBackground(java.awt.SystemColor.text);
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/engine.png"))); // NOI18N
         jButton10.setText("Clear");
         jButton10.setBorder(null);
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -497,6 +411,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jScrollPane27.setViewportView(jPanel21);
 
         jButton9.setBackground(java.awt.SystemColor.text);
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/engine.png"))); // NOI18N
         jButton9.setText("Load Account");
         jButton9.setBorder(null);
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -506,6 +421,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton2.setBackground(java.awt.SystemColor.text);
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/engine.png"))); // NOI18N
         jButton2.setText("Delete Account");
         jButton2.setBorder(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -515,6 +431,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton20.setBackground(java.awt.SystemColor.text);
+        jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/engine.png"))); // NOI18N
         jButton20.setText("Set as migration account");
         jButton20.setBorder(null);
         jButton20.addActionListener(new java.awt.event.ActionListener() {
@@ -572,7 +489,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jCheckBox1)
-                .addGap(111, 111, 111))
+                .addGap(52, 52, 52))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -700,7 +617,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         );
 
         jButton3.setBackground(java.awt.SystemColor.text);
-        jButton3.setText("Download");
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/download.png"))); // NOI18N
+        jButton3.setText("Get");
         jButton3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -709,6 +627,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton4.setBackground(java.awt.SystemColor.text);
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/delete.png"))); // NOI18N
         jButton4.setText("Del");
         jButton4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -718,6 +637,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton7.setBackground(java.awt.SystemColor.text);
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/properties.png"))); // NOI18N
         jButton7.setText("Info");
         jButton7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -727,6 +647,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton12.setBackground(java.awt.SystemColor.text);
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/edit2.png"))); // NOI18N
         jButton12.setText("Edit");
         jButton12.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton12.addActionListener(new java.awt.event.ActionListener() {
@@ -736,6 +657,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton13.setBackground(java.awt.SystemColor.text);
+        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/select.png"))); // NOI18N
         jButton13.setText("Select");
         jButton13.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton13.addActionListener(new java.awt.event.ActionListener() {
@@ -745,6 +667,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton1.setBackground(java.awt.SystemColor.text);
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/uploadbutton.png"))); // NOI18N
         jButton1.setText("Upload");
         jButton1.setToolTipText("");
         jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -755,6 +678,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton17.setBackground(java.awt.SystemColor.text);
+        jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/play.png"))); // NOI18N
         jButton17.setText("Play");
         jButton17.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton17.addActionListener(new java.awt.event.ActionListener() {
@@ -764,6 +688,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton18.setBackground(java.awt.SystemColor.text);
+        jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/versions.png"))); // NOI18N
         jButton18.setText("Versions");
         jButton18.setToolTipText("");
         jButton18.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -774,6 +699,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton19.setBackground(java.awt.SystemColor.text);
+        jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/viewimage.png"))); // NOI18N
         jButton19.setText("View");
         jButton19.setToolTipText("");
         jButton19.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -794,6 +720,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton6.setBackground(java.awt.SystemColor.text);
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/search-button.png"))); // NOI18N
         jButton6.setText(".");
         jButton6.setBorder(null);
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -1042,7 +969,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     .addComponent(jToggleButton3)
                     .addComponent(jToggleButton4)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
+                        .addGap(10, 10, 10)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jCheckBox3)
                             .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1064,7 +991,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21)
                         .addComponent(jRadioButton1)
-                        .addGap(18, 18, 18)
+                        .addGap(14, 14, 14)
                         .addComponent(jCheckBox3)
                         .addGap(18, 18, 18)
                         .addComponent(jCheckBox6))
