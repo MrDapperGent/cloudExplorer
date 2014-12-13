@@ -16,7 +16,6 @@
  */
 package cloudExplorer;
 
-import static cloudExplorer.NewJFrame.jButton6;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
