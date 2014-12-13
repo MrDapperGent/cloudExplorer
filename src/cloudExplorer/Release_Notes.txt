@@ -7,6 +7,7 @@ Improvements:
 Added "Refresh Bucket" button. Functions just like the search button. Added it for ease of use.
 Search button and text field are now located under the bucket list.
 Minor GUI alignment fixes.
+More compact GUI; ideal for smaller screens.
 
 New Features: <none>
 
