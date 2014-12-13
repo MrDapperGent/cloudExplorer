@@ -77,6 +77,7 @@ public class MusicPlayer implements Runnable {
                     getClass().getResource("rewind.png"));
             backwardMusic.setIcon(rewind);
 
+            mainFrame.jPanel15.setVisible(false);
             forwardMusic.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {

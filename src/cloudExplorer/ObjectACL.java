@@ -14,7 +14,6 @@
  * cloudExplorer
  *
  */
-
 package cloudExplorer;
 
 import java.awt.Color;
@@ -66,6 +65,7 @@ public class ObjectACL implements Runnable {
 
             acl.setIcon(mainFrame.genericEngine);
 
+            mainFrame.jPanel15.setVisible(false);
             acl.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {

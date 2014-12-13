@@ -71,6 +71,8 @@ public class MakeDestinationBucket implements Runnable {
             abortMigration.setIcon(mainFrame.genericEngine);
             startMigration.setIcon(mainFrame.genericEngine);
 
+            mainFrame.jPanel15.setVisible(false);
+
             startMigration.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {

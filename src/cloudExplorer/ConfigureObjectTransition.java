@@ -73,7 +73,8 @@ public class ConfigureObjectTransition implements Runnable {
 
             disableRules.setIcon(mainFrame.genericEngine);
             commitTransition.setIcon(mainFrame.genericEngine);
-
+            mainFrame.jPanel15.setVisible(false);
+            
             commitTransition.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {

@@ -16,6 +16,7 @@
  */
 package cloudExplorer;
 
+import static cloudExplorer.NewJFrame.jPanel15;
 import static cloudExplorer.NewJFrame.jTextArea1;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -64,6 +65,7 @@ public class MakeBucket implements Runnable {
             createBucket.setIcon(mainFrame.genericEngine);
             close.setIcon(mainFrame.genericEngine);
 
+             jPanel15.setVisible(false);
             createBucket.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {

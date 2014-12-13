@@ -78,6 +78,8 @@ public class Performance implements Runnable {
             abortPerformanceTest.setIcon(mainFrame.genericEngine);
             startPerformanceTest.setIcon(mainFrame.genericEngine);
 
+            mainFrame.jPanel15.setVisible(false);
+
             startPerformanceTest.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {

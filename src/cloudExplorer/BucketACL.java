@@ -21,11 +21,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import static cloudExplorer.NewJFrame.jTextArea1;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 
