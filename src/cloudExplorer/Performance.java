@@ -106,12 +106,15 @@ public class Performance implements Runnable {
             abortPerformanceTest.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
-                    performancethread.stop();
+                    try {
+                        performancethread.stop();
+                    } catch (Exception stopPerf) {
+                    }
                     mainFrame.jPanel14.removeAll();
                     mainFrame.jPanel14.repaint();
                     mainFrame.jPanel14.revalidate();
                     mainFrame.jPanel14.validate();
-                    mainFrame.miniReload();
+                    mainFrame.jButton6.doClick();
                 }
             });
 
