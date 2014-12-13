@@ -721,7 +721,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jButton6.setBackground(java.awt.SystemColor.text);
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/search-button.png"))); // NOI18N
-        jButton6.setText(".");
         jButton6.setBorder(null);
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
