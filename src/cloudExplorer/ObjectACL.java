@@ -46,6 +46,7 @@ public class ObjectACL implements Runnable {
             final JCheckBox url_box = new JCheckBox("URL Access");
             final JCheckBox private_box = new JCheckBox("Private Access");
             final JButton acl = new JButton("Commit");
+            final JButton close = new JButton("Close");
 
             public_box.setBackground(Color.white);
             public_box.setForeground(Color.blue);
@@ -63,9 +64,27 @@ public class ObjectACL implements Runnable {
             acl.setBorder(null);
             acl.setForeground(Color.blue);
 
+            close.setBackground(Color.white);
+            close.setBorder(null);
+            close.setForeground(Color.blue);
+
+            close.setIcon(mainFrame.genericEngine);
+
             acl.setIcon(mainFrame.genericEngine);
 
             mainFrame.jPanel15.setVisible(false);
+
+            close.addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent e) {
+                    mainFrame.jPanel14.removeAll();
+                    mainFrame.jPanel14.repaint();
+                    mainFrame.jPanel14.revalidate();
+                    mainFrame.jPanel14.validate();
+                    mainFrame.miniReload();
+                }
+            });
+
             acl.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
@@ -108,7 +127,8 @@ public class ObjectACL implements Runnable {
             mainFrame.jPanel14.add(url_box);
             mainFrame.jPanel14.add(private_box);
             mainFrame.jPanel14.add(blank);
-            mainFrame.jPanel14.add(acl);
+            mainFrame.jPanel14.add(acl);  
+            mainFrame.jPanel14.add(close);
             mainFrame.jPanel14.repaint();
             mainFrame.jPanel14.revalidate();
             mainFrame.jPanel14.validate();

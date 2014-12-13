@@ -107,6 +107,11 @@ public class Performance implements Runnable {
 
                 public void actionPerformed(ActionEvent e) {
                     performancethread.stop();
+                    mainFrame.jPanel14.removeAll();
+                    mainFrame.jPanel14.repaint();
+                    mainFrame.jPanel14.revalidate();
+                    mainFrame.jPanel14.validate();
+                    mainFrame.miniReload();
                 }
             });
 
@@ -117,6 +122,7 @@ public class Performance implements Runnable {
                     mainFrame.jPanel14.repaint();
                     mainFrame.jPanel14.revalidate();
                     mainFrame.jPanel14.validate();
+                    mainFrame.miniReload();
                 }
             });
 
