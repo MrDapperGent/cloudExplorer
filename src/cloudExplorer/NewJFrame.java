@@ -359,7 +359,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jScrollPane27.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jScrollPane27.setPreferredSize(new java.awt.Dimension(489, 331));
+        jScrollPane27.setPreferredSize(new java.awt.Dimension(494, 331));
 
         jPanel21.setBackground(java.awt.SystemColor.text);
         jPanel21.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -473,7 +473,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addComponent(jButton10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton8)))
-                .addGap(55, 55, 55)
+                .addGap(59, 59, 59)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jButton9)
