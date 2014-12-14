@@ -482,7 +482,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     .addComponent(jScrollPane27, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(3, 3, 3)
                 .addComponent(jCheckBox1)
                 .addGap(52, 52, 52))
         );
@@ -821,9 +821,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jFileChooser1.setFileSelectionMode(javax.swing.JFileChooser.FILES_AND_DIRECTORIES);
         jFileChooser1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jFileChooser1.setDragEnabled(true);
+        jFileChooser1.setMinimumSize(new java.awt.Dimension(404, 250));
         jFileChooser1.setMultiSelectionEnabled(true);
         jFileChooser1.setOpaque(true);
-        jFileChooser1.setPreferredSize(new java.awt.Dimension(990, 393));
+        jFileChooser1.setPreferredSize(new java.awt.Dimension(989, 393));
         jFileChooser1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFileChooser1ActionPerformed(evt);
@@ -907,7 +908,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jFileChooser2.setFileSelectionMode(javax.swing.JFileChooser.FILES_AND_DIRECTORIES);
         jFileChooser2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jFileChooser2.setDragEnabled(true);
-        jFileChooser2.setPreferredSize(new java.awt.Dimension(990, 393));
+        jFileChooser2.setPreferredSize(new java.awt.Dimension(1000, 393));
         jFileChooser2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFileChooser2ActionPerformed(evt);
@@ -975,7 +976,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                             .addComponent(jCheckBox6)
                             .addComponent(jButton16))))
                 .addGap(28, 28, 28)
-                .addComponent(jFileChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 654, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jFileChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 658, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
