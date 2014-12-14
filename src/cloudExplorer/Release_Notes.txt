@@ -1,6 +1,8 @@
 Version 4.3
 
-Bug Fixes: <none>
+Bug Fixes: 
+
+Upload tab - Abort icon was set incorrectly.
 
 Improvements: 
 
@@ -8,9 +10,19 @@ Added "Refresh Bucket" button. Functions just like the search button. Added it f
 Search button and text field are now located under the bucket list.
 Minor GUI alignment fixes.
 More compact GUI; ideal for smaller screens.
+CLI - When listing objects, the number of objects will be printed.
+CLI - GET now has a destination argument instead of downloading to the users home directory only.
+GUI Text box size fixes when creating a bucket, running performance tests, migrating accounts, and modifying bucket lifecycle rules.
+GUI - When files are deleted, the file listing in object explorer is refreshed.
+GUI - Select and Deselect are one toggle button. Issue #18.
+GUI - Bucket properties are always visible. Issue #16 and #17.
+GUI - Bucket properties takes action upon selecting the button. Issue #15.
+GUI - Info button supports file information for multiple files in Object Explorer. Issue #19.
+GUI - Stop button has been replaced with the Upload button. This will bring you to the upload tab.
 
-New Features: <none>
+New Features: 
 
+IRC client to chat and save sessions to S3.
 
 Features:
 
