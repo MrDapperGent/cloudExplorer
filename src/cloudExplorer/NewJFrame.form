@@ -476,8 +476,9 @@
                                   <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                                   <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane27" min="-2" pref="323" max="-2" attributes="0"/>
+                              <Component id="jScrollPane27" min="-2" pref="316" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
@@ -660,6 +661,9 @@
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
                       </Border>
+                    </Property>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[489, 331]"/>
                     </Property>
                   </Properties>
 
