@@ -576,7 +576,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jLabel1.setText("Bucket");
 
         jScrollPane7.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jScrollPane7.setPreferredSize(new java.awt.Dimension(659, 318));
+        jScrollPane7.setPreferredSize(new java.awt.Dimension(660, 314));
 
         jPanel11.setBackground(javax.swing.UIManager.getDefaults().getColor("text"));
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -873,8 +873,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     .addComponent(jCheckBox4)
                     .addComponent(jCheckBox5)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(79, 79, 79)
-                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81)
+                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 662, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
