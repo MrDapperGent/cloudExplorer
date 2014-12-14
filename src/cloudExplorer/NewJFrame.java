@@ -261,25 +261,27 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(240, 99));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setBorder(null);
-        jTextArea1.setPreferredSize(new java.awt.Dimension(659, 57));
+        jTextArea1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addGap(258, 258, 258)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(257, 257, 257)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
