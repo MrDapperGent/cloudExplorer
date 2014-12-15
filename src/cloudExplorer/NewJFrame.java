@@ -45,6 +45,7 @@ import javax.swing.plaf.ColorUIResource;
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     String version = "Cloud Explorer v4.3  ";
+    public boolean consoleToggle = false;
     public boolean selectToggle = false;
     public static JRadioButton deleting = new JRadioButton("foo");
     ImageIcon genericEngine = new ImageIcon(
@@ -1372,6 +1373,11 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         if (active_bucket > 0) {
             NewJFrame.perf = false;
+            if (consoleToggle) {
+                jPanel9.setVisible(true);
+            } else {
+                jPanel9.setVisible(false);
+            }
             showPanel();
             jPanel15.setVisible(true);
             jButton3.setEnabled(true);
@@ -1753,6 +1759,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         if (active_bucket > 0) {
             ObjectACL acl = new ObjectACL(this);
             acl.startc();
+            jPanel9.setVisible(true);
         } else {
             jTextArea1.append("\nError: No bucket has been selected");
             calibrateTextArea();
@@ -2603,10 +2610,12 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         jPanel9.setVisible(false);
+        consoleToggle = false;
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
         jPanel9.setVisible(true);
+        consoleToggle = true;
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
     void var() {
