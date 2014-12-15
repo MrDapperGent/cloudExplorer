@@ -2421,6 +2421,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         if (active_bucket > 0) {
             imageviewer = new ImageViewer(this);
             imageviewer.startc();
+            jPanel9.setVisible(true);
         } else {
             jTextArea1.append("\nError: No bucket has been selected");
         }
