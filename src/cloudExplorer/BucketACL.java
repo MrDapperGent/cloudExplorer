@@ -88,7 +88,11 @@ public class BucketACL implements Runnable {
                         jTextArea1.append(mainFrame.bucket.controlVersioning(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.cred.getRegion(), true));
                         mainFrame.reloadBuckets();
                         enable_versioning.setSelected(false);
-                        refresh();
+                        //refresh();
+                        mainFrame.jPanel14.repaint();
+                        mainFrame.jPanel14.revalidate();
+                        mainFrame.jPanel14.validate();
+                        mainFrame.jPanel9.setVisible(true);
                     }
                 }
             });
