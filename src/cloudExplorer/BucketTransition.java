@@ -96,6 +96,7 @@ public class BucketTransition implements Runnable {
             mainFrame.jTextArea1.append("\nSent request to disable the bucket life cycle. Please observe for any errors.");
         }
         calibrate();
+        mainFrame.jPanel9.setVisible(true);
     }
 
     void startc(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String Adays, String Aprefix, Boolean Adisabled) {
