@@ -1782,7 +1782,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         if (active_bucket > 0) {
-
+jPanel9.setVisible(true);
             temp_file = (Home + File.separator + "object.tmp");
             editorSync(jTextField6.getText());
             put = new Put(temp_file, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), jTextField6.getText(), false, false);
@@ -2471,7 +2471,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     }
                 }
             }
-
+            jPanel9.setVisible(true);
         } else {
             jTextArea1.append("\nError: No bucket has been selected");
         }
@@ -2482,6 +2482,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jTabbedPane1.setSelectedIndex(1);
             MakeDestinationBucket makeDestbucket = new MakeDestinationBucket(this);
             makeDestbucket.startc();
+            jPanel9.setVisible(true);
         } else {
             jTextArea1.append("\nError: No bucket has been selected");
         }
