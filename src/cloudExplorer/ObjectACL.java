@@ -113,11 +113,11 @@ public class ObjectACL implements Runnable {
                         jTextArea1.append("\n" + ObjectACL.getMessage() + "\n");
                     }
 
-                    mainFrame.jPanel14.removeAll();
-                    mainFrame.jPanel14.repaint();
-                    mainFrame.jPanel14.revalidate();
-                    mainFrame.jPanel14.validate();
-
+                   // mainFrame.jPanel14.removeAll();
+                    //mainFrame.jPanel14.repaint();
+                    //mainFrame.jPanel14.revalidate();
+                    //mainFrame.jPanel14.validate();
+                    mainFrame.miniReload();
                 }
             });
 
@@ -127,7 +127,7 @@ public class ObjectACL implements Runnable {
             mainFrame.jPanel14.add(url_box);
             mainFrame.jPanel14.add(private_box);
             mainFrame.jPanel14.add(blank);
-            mainFrame.jPanel14.add(acl);  
+            mainFrame.jPanel14.add(acl);
             mainFrame.jPanel14.add(close);
             mainFrame.jPanel14.repaint();
             mainFrame.jPanel14.revalidate();
