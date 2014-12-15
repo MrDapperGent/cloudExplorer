@@ -24,7 +24,7 @@ New Features:
 
 IRC client to chat and save sessions to S3.
 Console window is disabled by default and can be turned on or off.
-When a download or upload is started, the console window will appear.
+Console window will automatically appear upon important events.
 When deleting a version of a file, the bucket is refreshed to show the changes.
 
 Features:
