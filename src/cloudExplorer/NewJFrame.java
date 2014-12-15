@@ -95,7 +95,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     public NewJFrame() {
         try {
             deleting.setEnabled(true);
-
             this.setTitle(version + " -  No bucket selected.");
             initComponents();
             setLocationRelativeTo(null);
@@ -124,7 +123,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     .getResource("cloud.jpg")).getImage());
             this.jTextField3.setText("https://s3.amazonaws.com");
             this.jTextField4.setText("443");
-            
+
             this.jTabbedPane1.setToolTipTextAt(1, "Explore");
             this.jTabbedPane1.setToolTipTextAt(2, "Upload a file");
             this.jTabbedPane1.setToolTipTextAt(3, "Sync to and from S3");
@@ -132,7 +131,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
             this.jScrollPane1.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
             this.jCheckBox1.setSelected(true);
-
+            this.jPanel9.setVisible(false);
             File config = new File(config_file);
             if (config.exists()) {
                 this.jButton9.doClick();
@@ -243,6 +242,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenu7 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
+        jMenu11 = new javax.swing.JMenu();
+        jMenuItem21 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem18 = new javax.swing.JMenuItem();
@@ -1226,6 +1228,26 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jMenuBar1.add(jMenu7);
 
+        jMenu11.setText("Console");
+
+        jMenuItem21.setText("On");
+        jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem21ActionPerformed(evt);
+            }
+        });
+        jMenu11.add(jMenuItem21);
+
+        jMenuItem2.setText("Off");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu11.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu11);
+
         jMenu8.setText("Help");
 
         jMenuItem12.setText("About");
@@ -1945,6 +1967,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jTextArea1.append("\nError: No bucket selected.");
         }
         objectarray = null;
+        jButton6.doClick();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
@@ -2118,10 +2141,12 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                                     get = new Get(versioning_name.get(i), cred.access_key, cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), File_Destination.toString() + File.separator + new_object_name, versioning_id.get(i));
                                     get.startc(versioning_name.get(i), cred.access_key, cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), File_Destination.toString() + File.separator + new_object_name, versioning_id.get(i));
                                     object_item[i].setSelected(false);
+                                    object_item[i].setForeground(Color.MAGENTA);
                                     break;
                                 }
                             }
                         } else {
+                            int p = 0;
                             for (int i = 1; i != previous_objectarray_length; i++) {
                                 if (object_item[i] != null) {
 
@@ -2129,11 +2154,13 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                                         download.setVisible(false);
                                         getArray[i] = object_item[i].getText();
                                         object_item[i].setSelected(false);
+                                        p = i;
                                     }
                                 }
                             }
                             getThread = new Thread(new GetThread(getArray, cred.access_key, cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), null, File_Destination));
                             getThread.start();
+                            object_item[p].setForeground(Color.MAGENTA);
                         }
 
                     } else {
@@ -2570,6 +2597,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     }//GEN-LAST:event_jTabbedPane1StateChanged
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        jPanel9.setVisible(false);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
+        jPanel9.setVisible(true);
+    }//GEN-LAST:event_jMenuItem21ActionPerformed
+
     void var() {
         try {
             cred.setAccess_key(jTextField1.getText());
@@ -2628,6 +2663,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
+    private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -2648,7 +2684,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
+    private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

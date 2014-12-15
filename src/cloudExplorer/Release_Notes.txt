@@ -23,6 +23,9 @@ GUI - Stop button has been replaced with the Upload button. This will bring you 
 New Features: 
 
 IRC client to chat and save sessions to S3.
+Console window is disabled by default and can be turned on or off.
+When downloads are complete, the file name is magenta.
+When uploads are complete, the buckets are refreshed.
 
 Features:
 
