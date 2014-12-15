@@ -1962,12 +1962,11 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
             put = new Put(upload, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), new_object_name, rrs, encrypt);
             put.startc(upload, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), new_object_name, rrs, encrypt);
-
+            jPanel9.setVisible(true);
         } else {
             jTextArea1.append("\nError: No bucket selected.");
         }
         objectarray = null;
-        jButton6.doClick();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
@@ -2131,7 +2130,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
                         File File_Destination = new File(downloadChooser.getSelectedFile().getAbsolutePath());
                         String[] getArray = new String[previous_objectarray_length];
-
+                        jPanel9.setVisible(true);
                         if (versionDownload) {
 
                             for (int i = 0; i != versioning_name.size() + 1; i++) {
@@ -2141,7 +2140,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                                     get = new Get(versioning_name.get(i), cred.access_key, cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), File_Destination.toString() + File.separator + new_object_name, versioning_id.get(i));
                                     get.startc(versioning_name.get(i), cred.access_key, cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), File_Destination.toString() + File.separator + new_object_name, versioning_id.get(i));
                                     object_item[i].setSelected(false);
-                                    object_item[i].setForeground(Color.MAGENTA);
                                     break;
                                 }
                             }
@@ -2160,7 +2158,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                             }
                             getThread = new Thread(new GetThread(getArray, cred.access_key, cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), null, File_Destination));
                             getThread.start();
-                            object_item[p].setForeground(Color.MAGENTA);
                         }
 
                     } else {
@@ -2220,12 +2217,19 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 jTextArea1.append("\nPlease wait, deleting selected file(s)");
                 calibrateTextArea();
                 if (versionDownload) {
+                    String[] delArray = new String[previous_objectarray_length];
+                    String[] verArray = new String[previous_objectarray_length];
                     for (int i = 0; i != versioning_name.size(); i++) {
                         if (object_item[i].isSelected()) {
-                            del = new Delete(versioning_name.get(i), cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), versioning_id.get(i));
-                            del.startc(versioning_name.get(i), cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), versioning_id.get(i));
+                            delArray[i] = versioning_name.get(i);
+                            verArray[i] = versioning_id.get(i);
                         }
                     }
+
+                    Thread delThread = new Thread(new DeleteThread(this, delArray, verArray, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), null));
+                    deleting.addItemListener(this);
+                    delThread.start();
+
                 } else {
                     String[] delArray = new String[previous_objectarray_length];
 
@@ -2235,7 +2239,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         }
                         delcounter++;
                     }
-                    Thread delThread = new Thread(new DeleteThread(this, delArray, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), null));
+                    Thread delThread = new Thread(new DeleteThread(this, delArray, null, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), null));
                     deleting.addItemListener(this);
                     delThread.start();
 

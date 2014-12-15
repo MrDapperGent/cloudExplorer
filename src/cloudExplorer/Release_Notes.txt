@@ -24,8 +24,8 @@ New Features:
 
 IRC client to chat and save sessions to S3.
 Console window is disabled by default and can be turned on or off.
-When downloads are complete, the file name is magenta.
-When uploads are complete, the buckets are refreshed.
+When a download or upload is started, the console window will appear.
+When deleting a version of a file, the bucket is refreshed to show the changes.
 
 Features:
 

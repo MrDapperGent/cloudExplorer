@@ -23,6 +23,7 @@ public class DeleteThread implements Runnable {
     String message = null;
     NewJFrame mainFrame;
     String[] what = null;
+    String[] verWhat = null;
     String access_key = null;
     String bucket = null;
     Delete delete;
@@ -39,8 +40,9 @@ public class DeleteThread implements Runnable {
         }
     }
 
-    DeleteThread(NewJFrame AmainFrame, String[] Awhat, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String Aversion) {
+    DeleteThread(NewJFrame AmainFrame, String[] Awhat, String[] AverWhat, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String Aversion) {
         what = Awhat;
+        verWhat = AverWhat;
         access_key = Aaccess_key;
         secret_key = Asecret_key;
         bucket = Abucket;
@@ -50,22 +52,28 @@ public class DeleteThread implements Runnable {
     }
 
     public void run() {
-       
+
         for (int i = 0; i != what.length; i++) {
             if (what[i] != null) {
-                delete = new Delete(what[i], access_key, secret_key, bucket, endpoint, null);
-                delete.startc(what[i], access_key, secret_key, bucket, endpoint, null);
+                if (verWhat == null) {
+                    delete = new Delete(what[i], access_key, secret_key, bucket, endpoint, null);
+                    delete.startc(what[i], access_key, secret_key, bucket, endpoint, null);
+                } else {
+                    delete = new Delete(what[i], access_key, secret_key, bucket, endpoint, verWhat[i]);
+                    delete.startc(what[i], access_key, secret_key, bucket, endpoint, verWhat[i]);
+                }
+
             }
         }
         NewJFrame.deleting.setSelected(true);
     }
 
-    void startc(NewJFrame AmainFrame, String[] Awhat, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String Aversion) {
-        del = new Thread(new DeleteThread(AmainFrame, Awhat, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aversion));
+    void startc(NewJFrame AmainFrame, String[] Awhat, String[] AverWhat, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String Aversion) {
+        del = new Thread(new DeleteThread(AmainFrame, Awhat, AverWhat, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aversion));
         del.start();
         try {
             del.join();
-           
+
         } catch (Exception Delete) {
         }
     }
