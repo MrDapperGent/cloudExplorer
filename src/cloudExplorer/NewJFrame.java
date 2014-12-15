@@ -2434,6 +2434,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jPanel14.repaint();
             jPanel14.validate();
             delEverything.startc(this);
+            jPanel9.setVisible(true);
         } else {
             jTextArea1.append("\nError: No bucket has been selected");
         }
@@ -2455,6 +2456,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             calibrateTextArea();
             ScreenShot foo = new ScreenShot(null, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), null, this);
             foo.startc(null, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), null, this);
+            jPanel9.setVisible(true);
         } else {
             jTextArea1.append("\nError: No bucket has been selected");
             calibrateTextArea();
