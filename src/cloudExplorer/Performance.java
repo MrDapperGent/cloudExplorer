@@ -93,6 +93,7 @@ public class Performance implements Runnable {
                         graphData = true;
                     }
                     mainFrame.perf = true;
+                    mainFrame.jPanel9.setVisible(true);
                     mainFrame.jTextArea1.append("\nStarting test. Please wait.");
                     mainFrame.calibrateTextArea();
                     int threadcount = Integer.parseInt(getTheadCount.getText());
