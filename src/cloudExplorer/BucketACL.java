@@ -87,12 +87,9 @@ public class BucketACL implements Runnable {
                     if (enable_versioning.isSelected()) {
                         jTextArea1.append(mainFrame.bucket.controlVersioning(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.cred.getRegion(), true));
                         mainFrame.reloadBuckets();
+                        mainFrame.jPanel15.setVisible(false);
                         enable_versioning.setSelected(false);
-                        //refresh();
-                        mainFrame.jPanel14.repaint();
-                        mainFrame.jPanel14.revalidate();
-                        mainFrame.jPanel14.validate();
-                        mainFrame.jPanel9.setVisible(true);
+                        refresh();
                     }
                 }
             });
@@ -132,6 +129,7 @@ public class BucketACL implements Runnable {
                         DeleteBucketThread delBucket = new DeleteBucketThread(mainFrame.cred.access_key, mainFrame.cred.secret_key, mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.end_point, mainFrame.cred.region, mainFrame);
                         delBucket.startc(mainFrame.cred.access_key, mainFrame.cred.secret_key, mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.end_point, mainFrame.cred.region, mainFrame);
                         delete_bucket.setSelected(false);
+                        mainFrame.jPanel15.setVisible(false);
                         refresh();
                     }
                 }
