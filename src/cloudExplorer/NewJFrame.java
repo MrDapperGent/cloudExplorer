@@ -1487,7 +1487,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 }
 
                 if (found == 0) {
-                    jTextArea1.append("\nNo objects found for search. \n");
+                    jTextArea1.append("\n\nNo objects found for search.");
                 } else {
                     int display = objectarray.length - 1;
                     jTextArea1.append("\n\nLoaded objects. Total number of objects in this bucket: " + display);
