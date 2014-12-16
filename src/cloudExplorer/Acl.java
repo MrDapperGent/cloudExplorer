@@ -44,8 +44,8 @@ public class Acl {
 
     void setAccess(String id, int what, String access_key, String secret_key, String endpoint, String bucket) {
         try {
-            Collection<Grant> grantCollection = new ArrayList<Grant>();
 
+            Collection<Grant> grantCollection = new ArrayList<Grant>();
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
             AmazonS3 s3Client = new AmazonS3Client(credentials,
                     new ClientConfiguration().withSignerOverride("S3SignerType"));
