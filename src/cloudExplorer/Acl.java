@@ -57,15 +57,20 @@ public class Acl {
                 grant = new Grant(
                         new CanonicalGrantee(id),
                         Permission.Read);
+                grantCollection.add(grant);
             }
 
             if (what == 1) {
                 grant = new Grant(
                         new CanonicalGrantee(id),
                         Permission.FullControl);
+                grantCollection.add(grant);
             }
 
-            grantCollection.add(grant);
+            if (what == 3) {
+                grantCollection.removeAll(grantCollection);
+            }
+
             bucketAcl.getGrants().addAll(grantCollection);
             s3Client.setBucketAcl(bucket, bucketAcl);
         } catch (Exception setACLpublic) {
