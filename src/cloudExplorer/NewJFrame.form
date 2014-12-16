@@ -1486,7 +1486,7 @@
                       <Group type="102" attributes="0">
                           <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="jFileChooser1" min="-2" pref="612" max="-2" attributes="0"/>
+                          <Component id="jFileChooser1" min="-2" pref="637" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
