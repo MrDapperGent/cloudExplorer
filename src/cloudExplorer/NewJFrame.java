@@ -229,6 +229,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem22 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
@@ -1181,6 +1182,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
         jMenu3.add(jMenuItem13);
+
+        jMenuItem22.setText("Add External Bucket");
+        jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem22ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem22);
 
         jMenuBar1.add(jMenu3);
 
@@ -2690,6 +2699,11 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         consoleToggle = true;
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
+    private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
+        AddExternalBucket addBucket = new AddExternalBucket(this);
+        addBucket.startc();
+    }//GEN-LAST:event_jMenuItem22ActionPerformed
+
     void var() {
         try {
             cred.setAccess_key(jTextField1.getText());
@@ -2772,6 +2786,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
+    private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

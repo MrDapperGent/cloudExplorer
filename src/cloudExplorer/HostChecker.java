@@ -35,6 +35,7 @@ public class HostChecker implements Runnable {
     }
 
     void startc() {
+        mainFrame.jPanel9.setVisible(true);
         mainFrame.jTextArea1.append("\nLoading configuration: " + mainFrame.jTextField3.getText());
         mainFrame.calibrateTextArea();
         (new Thread(new HostChecker(host, mainFrame))).start();
