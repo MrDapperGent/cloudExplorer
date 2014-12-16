@@ -2257,6 +2257,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         try {
 
             if (active_bucket > 0) {
+                jPanel9.setVisible(true);
                 calibrateTextArea();
                 jTextArea1.append("\nPlease wait, deleting selected file(s)");
                 calibrateTextArea();
