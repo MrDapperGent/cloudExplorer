@@ -931,7 +931,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(7, 7, 7)
+                .addGap(10, 10, 10)
                 .addComponent(jButton5)
                 .addContainerGap())
         );
