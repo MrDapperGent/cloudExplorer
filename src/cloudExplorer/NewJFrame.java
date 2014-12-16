@@ -2465,6 +2465,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jButton17.setEnabled(false);
             jButton18.setEnabled(false);
             jButton19.setEnabled(false);
+            jPanel9.setVisible(true);
 
             for (int i = 1; i != objectarray.length; i++) {
                 if (object_item[i].isSelected()) {
