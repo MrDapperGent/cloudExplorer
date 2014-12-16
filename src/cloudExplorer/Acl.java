@@ -73,7 +73,7 @@ public class Acl {
 
             bucketAcl.getGrants().addAll(grantCollection);
             s3Client.setBucketAcl(bucket, bucketAcl);
-        } catch (Exception setACLpublic) {
+        } catch (Exception SetAccess) {
             mainFrame.jTextArea1.append("\nException occurred in SetAccess");
         }
     }
