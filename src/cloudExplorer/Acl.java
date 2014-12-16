@@ -22,17 +22,56 @@ import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.AccessControlList;
 import com.amazonaws.services.s3.model.BucketWebsiteConfiguration;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.CanonicalGrantee;
+import com.amazonaws.services.s3.model.EmailAddressGrantee;
 import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
+import com.amazonaws.services.s3.model.Grant;
+import com.amazonaws.services.s3.model.GroupGrantee;
+import com.amazonaws.services.s3.model.Permission;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class Acl {
 
     NewJFrame mainFrame;
+
+    void setAccess(String id, int what, String access_key, String secret_key, String endpoint, String bucket) {
+        try {
+            Collection<Grant> grantCollection = new ArrayList<Grant>();
+
+            AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
+            AmazonS3 s3Client = new AmazonS3Client(credentials,
+                    new ClientConfiguration().withSignerOverride("S3SignerType"));
+            s3Client.setEndpoint(endpoint);
+            AccessControlList bucketAcl = s3Client.getBucketAcl(bucket);
+            Grant grant = null;
+
+            if (what == 0) {
+                grant = new Grant(
+                        new CanonicalGrantee(id),
+                        Permission.Read);
+            }
+
+            if (what == 1) {
+                grant = new Grant(
+                        new CanonicalGrantee(id),
+                        Permission.FullControl);
+            }
+
+            grantCollection.add(grant);
+            bucketAcl.getGrants().addAll(grantCollection);
+            s3Client.setBucketAcl(bucket, bucketAcl);
+        } catch (Exception setACLpublic) {
+            mainFrame.jTextArea1.append("\nException occurred in SetAccess");
+        }
+    }
 
     void setACLpublic(String object, String access_key, String secret_key, String endpoint, String bucket) {
         try {
