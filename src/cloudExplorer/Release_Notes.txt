@@ -20,14 +20,15 @@ GUI - Bucket properties takes action upon selecting the button. Issue #15.
 GUI - Info button supports file information for multiple files in Object Explorer. Issue #19.
 GUI - Stop button has been replaced with the Upload button. This will bring you to the upload tab.
 Versioning - Improved delete.
+When deleting a version of a file, the bucket is refreshed to show the changes.
+Console window is disabled by default and can be turned on or off.
+Console window will automatically appear upon important events.
 
 New Features: 
 
+Improved GUI.
 IRC client to chat and save sessions to S3.
-Console window is disabled by default and can be turned on or off.
-Console window will automatically appear upon important events.
-When deleting a version of a file, the bucket is refreshed to show the changes.
-Support for adding a shared bucket.
+Support for accessing a shared bucket.
 Support for sharing bucket access with a canonical ID.
 
 Features:
@@ -47,7 +48,8 @@ Features:
 13. Performance testing with graphs.
 14. Command-line interface.
 15. IRC client that allows you to save chat sessions to S3.
-
+16. Access shared buckets on the same S3 provider.
+17. Share buckets with the Canonical ID of a user on the same S3 provider.
 
 Command-line Options:
 
