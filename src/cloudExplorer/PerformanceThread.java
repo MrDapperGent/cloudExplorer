@@ -181,9 +181,9 @@ public class PerformanceThread implements Runnable {
                         iops = iops / 100;
 
                         if (operation) {
-                            NewJFrame.jTextArea1.append("\nPUT Operation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s. OPS/s: " + iops);
+                            NewJFrame.jTextArea1.append("\nPUT : " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s. OPS/s: " + iops);
                         } else {
-                            NewJFrame.jTextArea1.append("\nGET Operation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s. OPS/s: " + iops);
+                            NewJFrame.jTextArea1.append("\nGET : " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s. OPS/s: " + iops);
                         }
                         performance_logger(counter, rate, throughput_log);
                         performance_logger(counter, iops, ops_log);
