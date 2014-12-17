@@ -59,7 +59,7 @@ public class ImageViewer implements Runnable {
                 if (mainFrame.object_item[i].isSelected()) {
                     image_panel.setLayout(new BoxLayout(image_panel, BoxLayout.PAGE_AXIS));
                     String new_object_name = mainFrame.convertObject(mainFrame.object_item[i].getText(), "download");
-                    jTextArea1.setText("\nPlease wait, the image is loading.");
+                    jTextArea1.setText("\n\nPlease wait, the image is loading.");
                     mainFrame.calibrateTextArea();
                     mainFrame.get = new Get(mainFrame.object_item[i].getText(), mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), temp_file + i, null);
                     mainFrame.get.run();
