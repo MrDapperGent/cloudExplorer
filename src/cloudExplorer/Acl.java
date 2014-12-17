@@ -77,7 +77,7 @@ public class Acl {
             s3Client.setBucketAcl(bucket, bucketAcl);
             
         } catch (AmazonServiceException ase) {
-            NewJFrame.jTextArea1.append("\n" + ase.getErrorMessage());
+            NewJFrame.jTextArea1.append("\n\nError: " + ase.getErrorMessage());
         }
     }
     
