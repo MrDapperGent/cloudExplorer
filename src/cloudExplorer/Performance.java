@@ -45,7 +45,7 @@ public class Performance implements Runnable {
         try {
 
             final JButton startPerformanceTest = new JButton("Start Test");
-            final JButton abortPerformanceTest = new JButton("Abort");
+            final JButton abortPerformanceTest = new JButton("Close / Abort");
             final JButton close = new JButton("Close");
             final JLabel fileSize = new JLabel("Object Size in KB: ");
             final JLabel threadCount = new JLabel("Thread Count:");
