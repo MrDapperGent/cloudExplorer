@@ -16,6 +16,7 @@
  */
 package cloudExplorer;
 
+import static cloudExplorer.NewJFrame.jPanel9;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -181,6 +182,7 @@ public class ConfigureIRC implements Runnable {
                             + "\nchannel=" + room_field.getText()
                             + "\npassword=" + password_field.getText(), mainFrame.Home + File.separator + ".cloudExplorerIRC");
                     if (config.exists()) {
+                        mainFrame.jPanel9.setVisible(true);
                         NewJFrame.jTextArea1.append("\nConfiguration saved.");
                         calibrateTextArea();
                     } else {

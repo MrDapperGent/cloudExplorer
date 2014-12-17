@@ -2102,6 +2102,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         Daemon daemon = new Daemon();
         daemon.gui = true;
+        jPanel9.setVisible(true);
         daemon.start();
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
@@ -2128,6 +2129,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         } catch (Exception writeConfig) {
                             jTextArea1.append("\n" + writeConfig.getMessage());
                         }
+                        jPanel9.setVisible(true);
                         jTextArea1.append("\nWritten config: " + Home + File.separator + "s3config.sync");
                         calibrateTextArea();
                         bg_frame.setVisible(false);
