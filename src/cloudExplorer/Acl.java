@@ -16,6 +16,8 @@
  */
 package cloudExplorer;
 
+import com.amazonaws.AmazonClientException;
+import com.amazonaws.AmazonServiceException;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.HttpMethod;
 import com.amazonaws.auth.AWSCredentials;
@@ -52,8 +54,8 @@ public class Acl {
             s3Client.setEndpoint(endpoint);
             AccessControlList bucketAcl = s3Client.getBucketAcl(bucket);
             Grant grant = null;
-
             if (what == 0) {
+
                 grant = new Grant(
                         new CanonicalGrantee(id),
                         Permission.Read);
@@ -68,13 +70,28 @@ public class Acl {
             }
 
             if (what == 3) {
-                grantCollection.removeAll(grantCollection);
+                bucketAcl.getGrants().clear();
             }
 
             bucketAcl.getGrants().addAll(grantCollection);
             s3Client.setBucketAcl(bucket, bucketAcl);
-        } catch (Exception SetAccess) {
-            mainFrame.jTextArea1.append("\nException occurred in SetAccess");
+        } catch (AmazonServiceException ase) {
+            System.out.println("Caught an AmazonServiceException, which"
+                    + " means your request made it "
+                    + "to Amazon S3, but was rejected with an error response"
+                    + " for some reason.");
+            System.out.println("Error Message:    " + ase.getMessage());
+            System.out.println("HTTP Status Code: " + ase.getStatusCode());
+            System.out.println("AWS Error Code:   " + ase.getErrorCode());
+            System.out.println("Error Type:       " + ase.getErrorType());
+            System.out.println("Request ID:       " + ase.getRequestId());
+        } catch (AmazonClientException ace) {
+            System.out.println("Caught an AmazonClientException, which means"
+                    + " the client encountered "
+                    + "a serious internal problem while trying to "
+                    + "communicate with S3, "
+                    + "such as not being able to access the network.");
+            System.out.println("Error Message: " + ace.getMessage());
         }
     }
 
