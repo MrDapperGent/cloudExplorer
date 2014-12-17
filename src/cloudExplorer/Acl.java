@@ -41,12 +41,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class Acl {
-
+    
     NewJFrame mainFrame;
-
+    
     void setAccess(String id, int what, String access_key, String secret_key, String endpoint, String bucket) {
         try {
-
+            
             Collection<Grant> grantCollection = new ArrayList<Grant>();
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
             AmazonS3 s3Client = new AmazonS3Client(credentials,
@@ -55,46 +55,32 @@ public class Acl {
             AccessControlList bucketAcl = s3Client.getBucketAcl(bucket);
             Grant grant = null;
             if (what == 0) {
-
+                
                 grant = new Grant(
                         new CanonicalGrantee(id),
                         Permission.Read);
                 grantCollection.add(grant);
             }
-
+            
             if (what == 1) {
                 grant = new Grant(
                         new CanonicalGrantee(id),
                         Permission.FullControl);
                 grantCollection.add(grant);
             }
-
+            
             if (what == 3) {
                 bucketAcl.getGrants().clear();
             }
-
+            
             bucketAcl.getGrants().addAll(grantCollection);
             s3Client.setBucketAcl(bucket, bucketAcl);
+            
         } catch (AmazonServiceException ase) {
-            System.out.println("Caught an AmazonServiceException, which"
-                    + " means your request made it "
-                    + "to Amazon S3, but was rejected with an error response"
-                    + " for some reason.");
-            System.out.println("Error Message:    " + ase.getMessage());
-            System.out.println("HTTP Status Code: " + ase.getStatusCode());
-            System.out.println("AWS Error Code:   " + ase.getErrorCode());
-            System.out.println("Error Type:       " + ase.getErrorType());
-            System.out.println("Request ID:       " + ase.getRequestId());
-        } catch (AmazonClientException ace) {
-            System.out.println("Caught an AmazonClientException, which means"
-                    + " the client encountered "
-                    + "a serious internal problem while trying to "
-                    + "communicate with S3, "
-                    + "such as not being able to access the network.");
-            System.out.println("Error Message: " + ace.getMessage());
+            NewJFrame.jTextArea1.append("\n" + ase.getErrorMessage());
         }
     }
-
+    
     void setACLpublic(String object, String access_key, String secret_key, String endpoint, String bucket) {
         try {
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
@@ -106,7 +92,7 @@ public class Acl {
             mainFrame.jTextArea1.append("\nException occurred in ACL");
         }
     }
-
+    
     void setACLprivate(String object, String access_key, String secret_key, String endpoint, String bucket) {
         try {
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
@@ -118,7 +104,7 @@ public class Acl {
             mainFrame.jTextArea1.append("\nException occurred in setACLprivate");
         }
     }
-
+    
     String viewACL(String object, String access_key, String secret_key, String endpoint, String bucket) {
         String message = null;
         try {
@@ -130,10 +116,10 @@ public class Acl {
         } catch (Exception viewACL) {
             mainFrame.jTextArea1.append("\nException occurred in viewACL");
         }
-
+        
         return object + ":     " + message;
     }
-
+    
     void setBUCKETwebsite(String object, String access_key, String secret_key, String endpoint, String bucket) {
         try {
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
@@ -147,7 +133,7 @@ public class Acl {
             mainFrame.jTextArea1.append("\nException occurred in ACL");
         }
     }
-
+    
     void removeBUCKETwebsite(String object, String access_key, String secret_key, String endpoint, String bucket) {
         try {
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
@@ -159,7 +145,7 @@ public class Acl {
             mainFrame.jTextArea1.append("\nException occurred in ACL");
         }
     }
-
+    
     String setACLurl(String object, String access_key, String secret_key, String endpoint, String bucket) {
         String URL = null;
         try {

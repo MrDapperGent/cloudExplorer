@@ -28,6 +28,7 @@ Console window is disabled by default and can be turned on or off.
 Console window will automatically appear upon important events.
 When deleting a version of a file, the bucket is refreshed to show the changes.
 Support for adding a shared bucket.
+Support for sharing bucket access with a canonical ID.
 
 Features:
 

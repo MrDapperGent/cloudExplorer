@@ -112,8 +112,9 @@ public class BucketACL implements Runnable {
                 public void actionPerformed(ActionEvent e) {
                     mainFrame.jPanel14.removeAll();
                     mainFrame.jPanel15.setVisible(false);
-                    final JLabel canon_label = new JLabel("Canonicle ID:");
+                    final JLabel canon_label = new JLabel("Canonical ID:");
                     final JLabel canon_blank = new JLabel(" ");
+                    final JLabel canon_blank2 = new JLabel(" ");
                     final JButton canon_button = new JButton("Commit");
                     final JRadioButton ro = new JRadioButton("Read Only");
                     final JRadioButton full = new JRadioButton("Full Access");
@@ -142,6 +143,7 @@ public class BucketACL implements Runnable {
 
                     mainFrame.jPanel14.add(canon_label);
                     mainFrame.jPanel14.add(canon_field);
+                    mainFrame.jPanel14.add(canon_blank2);
                     mainFrame.jPanel14.add(ro);
                     mainFrame.jPanel14.add(full);
                     mainFrame.jPanel14.add(remove);
@@ -162,6 +164,7 @@ public class BucketACL implements Runnable {
                                 operation = 1;
                                 proceed = true;
                             }
+
                             if (ro.isSelected()) {
                                 operation = 0;
                                 proceed = true;
@@ -174,7 +177,7 @@ public class BucketACL implements Runnable {
                             mainFrame.jPanel9.setVisible(true);
 
                             if (proceed) {
-                                change.setAccess(canon_field.getText(), 0, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getEndpoint(), mainFrame.cred.getBucket());
+                                change.setAccess(canon_field.getText(), operation, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getEndpoint(), mainFrame.cred.getBucket());
                                 mainFrame.jTextArea1.append("\nSent request to modify ACL. Please obeserve this window for any errors.");
                             }
                             mainFrame.reloadBuckets();
