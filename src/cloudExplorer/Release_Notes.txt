@@ -27,7 +27,7 @@ Console window will automatically appear upon important events.
 New Features: 
 
 Improved GUI.
-IRC client to chat and save sessions to S3.
+IRC client with the ability to save chat sessions to a S3 bucket.
 Support for accessing a shared bucket.
 Support for sharing bucket access with a canonical ID.
 
