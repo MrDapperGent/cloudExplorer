@@ -2573,6 +2573,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
         if (active_account > 0) {
+            jPanel9.setVisible(true);
             String save = cred.writeMigrateConfig(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jTextField5.getText());
             jTextArea1.append(save);
             calibrateTextArea();
