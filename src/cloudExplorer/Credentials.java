@@ -14,7 +14,6 @@
  * cloudExplorer
  *
  */
-
 package cloudExplorer;
 
 import java.io.BufferedReader;
@@ -122,12 +121,17 @@ public class Credentials {
 
     }
 
-    String writeConfig(String access_key, String secret_key, String host, String port, String region) {
+    String writeConfig(String access_key, String secret_key, String host, String port, String region, String name) {
         try {
             config_file = (Home + File.separator + "s3.config");
             FileWriter fr = new FileWriter(config_file, true);
             BufferedWriter bfr = new BufferedWriter(fr);
-            bfr.write("\n" + access_key + "@" + secret_key + "@" + host + "@" + port + "@" + region);
+            if (name == null) {
+                bfr.write("\n" + access_key + "@" + secret_key + "@" + host + "@" + port + "@" + region);
+            } else {
+                bfr.write("\n" + access_key + "@" + secret_key + "@" + host + "@" + port + "@" + region + "@" + name);
+            }
+
             bfr.close();
         } catch (Exception writeConfig) {
         }

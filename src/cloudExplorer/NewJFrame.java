@@ -177,6 +177,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jButton2 = new javax.swing.JButton();
         jButton20 = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
         scrollPane1 = new java.awt.ScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -504,6 +506,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addContainerGap())
         );
 
+        jLabel9.setText("Name");
+
+        jTextField7.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -528,12 +534,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(45, 45, 45)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField7)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel9))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -570,9 +578,13 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(8, 8, 8)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(192, 192, 192))))
+                        .addGap(158, 158, 158))))
         );
 
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/tab-settings.png")), jPanel3); // NOI18N
@@ -1642,30 +1654,44 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         } catch (Exception loadConfig) {
         }
 
-        for (int h = 0; h != account_array.length; h++) {
-            if (account_array[h] != null) {
-                String[] analyze_array = account_array[h].split("@");
-                jPanel21.setLayout(new BoxLayout(jPanel21, BoxLayout.Y_AXIS));
-                account_item[h] = new JRadioButton();
-                account_item[h].setText(analyze_array[2]);
-                account_item[h].addItemListener(this);
-                account_item[h].setBackground(Color.white);
-                account_item[h].setForeground(Color.blue);
-                jPanel21.add(account_item[h]);
-                jPanel21.revalidate();
-                validate();
+        try {
+            for (int h = 0; h != account_array.length; h++) {
+                if (account_array[h] != null) {
+                    String[] analyze_array = account_array[h].split("@");
+                    jPanel21.setLayout(new BoxLayout(jPanel21, BoxLayout.Y_AXIS));
+                    account_item[h] = new JRadioButton();
+
+                    if (analyze_array.length == 6) {
+                        account_item[h].setText(analyze_array[5]);
+                    } else {
+                        account_item[h].setText(analyze_array[2]);
+                    }
+
+                    account_item[h].addItemListener(this);
+                    account_item[h].setBackground(Color.white);
+                    account_item[h].setForeground(Color.blue);
+                    jPanel21.add(account_item[h]);
+                    jPanel21.revalidate();
+                    validate();
+                }
             }
+        } catch (Exception draw) {
         }
 
-        jPanel21.setLayout(new BoxLayout(jPanel21, BoxLayout.Y_AXIS));
+        jPanel21.setLayout(
+                new BoxLayout(jPanel21, BoxLayout.Y_AXIS));
         jPanel21.repaint();
+
         jPanel21.revalidate();
+
         jPanel21.validate();
 
-        if (content_counter == 0) {
+        if (content_counter
+                == 0) {
             jTextArea1.append("\nError: No saved configurations found.\n");
             account_counter = 0;
         }
+
         calibrateTextArea();
     }
 
@@ -1809,7 +1835,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    void editorSync(String file) {
+    void editorSync(String file
+    ) {
 
         temp_file = (Home + File.separator + "object.tmp");
 
@@ -1931,6 +1958,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jTextField3.setText("");
             jTextField4.setText("");
             jTextField5.setText("");
+            jTextField7.setText("");
         } catch (Exception clear) {
         }
     }//GEN-LAST:event_jButton10ActionPerformed
@@ -1953,6 +1981,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jTextField3.setText("");
         jTextField4.setText("");
         jTextField5.setText("");
+        jTextField7.setText("");
+
         try {
 
             for (int i = 0; i != account_array.length; i++) {
@@ -1965,6 +1995,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         jTextField3.setText(account[2]);
                         jTextField4.setText(account[3]);
                         jTextField5.setText(account[4]);
+                        if (account.length == 6) {
+                            jTextField7.setText(account[5]);
+                        }
                     }
                 }
             }
@@ -2007,7 +2040,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        String save = cred.writeConfig(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jTextField5.getText());
+        String save = cred.writeConfig(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jTextField5.getText(), jTextField7.getText());
         jTextArea1.append(save);
         account_counter = 0;
         jButton9.doClick();
@@ -2719,7 +2752,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
         try {
             String java_home = System.getProperty("java.home");
-            String path = NewJFrame.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+            String path = NewJFrame.class
+                    .getProtectionDomain().getCodeSource().getLocation().getPath();
             Process pb = Runtime.getRuntime().exec(java_home + File.separator + "bin/java -jar " + path);
             InputStream in = pb.getInputStream();
             InputStream err = pb.getErrorStream();
@@ -2785,6 +2819,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
@@ -2856,6 +2891,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
     private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JToggleButton jToggleButton4;
     private java.awt.Panel panel1;

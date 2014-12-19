@@ -146,7 +146,7 @@ public class Daemon {
             File syncDIR = new File(saved_directory_to_sync[0]);
             if (syncDIR.exists()) {
 
-                messageParser("\n\nDirectroy to sync: " + dirToSync.toString() + "  Bucket: " + bucket);
+                messageParser("\n\nDirectory to sync: " + dirToSync.toString() + "  Bucket: " + bucket);
 
                 new Thread(new Runnable() {
                     public void run() {

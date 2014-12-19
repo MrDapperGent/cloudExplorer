@@ -31,6 +31,7 @@ IRC client with the ability to save chat sessions to a S3 bucket.
 Support for accessing a shared bucket.
 Support for sharing bucket access with a canonical ID.
 "File -> New Window" - Run another instance of Cloud Explorer!
+S3 Accounts can now have a unique name rather than using the endpoint.
 
 Features:
 
