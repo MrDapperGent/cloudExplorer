@@ -2752,7 +2752,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
         try {
             jPanel9.setVisible(true);
-            NewJFrame.jTextArea1.append("\nTrying to start another Cloud Explorer. Please ensure that your Java path is set correctly on the OS.");
+            NewJFrame.jTextArea1.append("\nTrying to start another Cloud Explorer.");
+              NewJFrame.jTextArea1.append("\nPlease ensure that your Java path is set correctly on the OS.");
             String path = NewJFrame.class
                     .getProtectionDomain().getCodeSource().getLocation().getPath();
             Process pb = Runtime.getRuntime().exec("java -jar " + path);
