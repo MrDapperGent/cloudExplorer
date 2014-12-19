@@ -2720,7 +2720,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         try {
             String java_home = System.getProperty("java.home");
             String path = NewJFrame.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-            System.out.print(java_home + File.separator + "bin/java -jar " + path);
             Process pb = Runtime.getRuntime().exec(java_home + File.separator + "bin/java -jar " + path);
             InputStream in = pb.getInputStream();
             InputStream err = pb.getErrorStream();
