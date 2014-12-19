@@ -225,6 +225,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jLabel10 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem23 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -1153,6 +1154,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenuBar1.setBorder(null);
 
         jMenu1.setText("File");
+
+        jMenuItem23.setText("New Window");
+        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem23ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem23);
 
         jMenuItem4.setText("Exit");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -2707,6 +2716,20 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         addBucket.startc();
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
+    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
+        try {
+            String java_home = System.getProperty("java.home");
+            String path = NewJFrame.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+            System.out.print(java_home + File.separator + "bin/java -jar " + path);
+            Process pb = Runtime.getRuntime().exec(java_home + File.separator + "bin/java -jar " + path);
+            InputStream in = pb.getInputStream();
+            InputStream err = pb.getErrorStream();
+        } catch (Exception pb) {
+            NewJFrame.jTextArea1.append("\nError:" + pb.getMessage());
+            calibrateTextArea();
+        }
+    }//GEN-LAST:event_jMenuItem23ActionPerformed
+
     void var() {
         try {
             cred.setAccess_key(jTextField1.getText());
@@ -2790,6 +2813,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
+    private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
