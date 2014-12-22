@@ -211,9 +211,11 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             
             ImageIcon uploadButton = new ImageIcon(
                     this.getClass().getResource("uploadbutton.png"));
+            ImageIcon abortButton = new ImageIcon(
+                    this.getClass().getResource("abort.png"));
             this.jButton1.setIcon(uploadButton);
-            this.jButton15.setIcon(uploadButton);
-            this.jButton16.setIcon(uploadButton);
+            this.jButton15.setIcon(abortButton);
+            this.jButton16.setIcon(abortButton);
             this.jButton1.setText("Upload");
             
             ImageIcon saveEditButton = new ImageIcon(
