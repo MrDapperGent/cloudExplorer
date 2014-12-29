@@ -59,7 +59,7 @@ Starting background sync from the Command Line (Useful for running as a backgrou
 
 Create your config file from the GUI.
 <br>
-$ java -jar -Xms100m -Xmx500m CloudExplorer.jar daemon
+	$ java -jar -Xms100m -Xmx500m CloudExplorer.jar daemon
 
 <br>
 [Run Cloud Explorer from Docker]
