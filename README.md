@@ -40,19 +40,19 @@ Background Sync allows Cloud Explorer to sync a directory in the background to S
 <br>
 From the GUI: 
 <br>
-Click on "Background Syncing"
+	Click on "Background Syncing"
 <br>
-Click Configure
+	Click Configure
 <br>
-Click on a destination Directory
+	Click on a destination Directory
 <br>
-Click Save.
+	Click Save.
 <br>
-Click on "Background Syncing"
+	Click on "Background Syncing"
 <br>
-Click "Run".
+	Click "Run".
 <br>
-Syncing will occur every 5 minutes.
+	Syncing will occur every 5 minutes.
 
 <br>
 Starting background sync from the Command Line (Useful for running as a background process):
