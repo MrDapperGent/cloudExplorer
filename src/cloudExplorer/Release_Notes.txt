@@ -13,6 +13,7 @@ When deleting a version of a file, the bucket is refreshed to show the changes.
 Console window is disabled by default and can be turned on or off.
 Console window will automatically appear upon important events.
 Text "Buckets" in Object Explorer has been replaced with a icon.
+Sync buttons are regular buttons rather than Toggle Buttons.
 
 New Features: 
 
