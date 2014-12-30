@@ -116,10 +116,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             UIManager.put("ScrollBar.thumbDarkShadow", new ColorUIResource(Color.white));
             UIManager.put("ScrollBar.highlight", new ColorUIResource(Color.white));
             UIManager.put("ScrollBar.trackHighlight", new ColorUIResource(Color.white));
-
             UIManager.getLookAndFeelDefaults().put("Panel.background", Color.white);
             UIManager.getLookAndFeelDefaults().put("Panel.foreground", Color.white);
-
             this.setIconImage(new ImageIcon(getClass()
                     .getResource("cloud.jpg")).getImage());
             this.jTextField3.setText("https://s3.amazonaws.com");
@@ -212,12 +210,12 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jCheckBox2 = new javax.swing.JCheckBox();
         jPanel4 = new javax.swing.JPanel();
         jFileChooser2 = new javax.swing.JFileChooser();
-        jToggleButton3 = new javax.swing.JToggleButton();
-        jToggleButton4 = new javax.swing.JToggleButton();
         jButton16 = new javax.swing.JButton();
         jRadioButton1 = new javax.swing.JRadioButton();
         jCheckBox3 = new javax.swing.JCheckBox();
         jCheckBox6 = new javax.swing.JCheckBox();
+        jButton14 = new javax.swing.JButton();
+        jButton21 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
@@ -1001,33 +999,12 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
 
-        jToggleButton3.setBackground(java.awt.SystemColor.text);
-        jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/tab-sync2.png"))); // NOI18N
-        jToggleButton3.setText("Sync to S3");
-        jToggleButton3.setBorder(null);
-        jToggleButton3.setFocusable(false);
-        jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton3ActionPerformed(evt);
-            }
-        });
-
-        jToggleButton4.setBackground(java.awt.SystemColor.text);
-        jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/tab-sync2.png"))); // NOI18N
-        jToggleButton4.setText("Sync from S3");
-        jToggleButton4.setBorder(null);
-        jToggleButton4.setFocusable(false);
-        jToggleButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton4ActionPerformed(evt);
-            }
-        });
-
         jButton16.setBackground(java.awt.SystemColor.text);
         jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/abort.png"))); // NOI18N
         jButton16.setText("   Abort");
         jButton16.setActionCommand("Abort");
         jButton16.setBorder(null);
+        jButton16.setFocusPainted(false);
         jButton16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton16ActionPerformed(evt);
@@ -1048,21 +1025,45 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
 
+        jButton14.setBackground(java.awt.SystemColor.text);
+        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/tab-sync2.png"))); // NOI18N
+        jButton14.setText("To S3");
+        jButton14.setBorder(null);
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+
+        jButton21.setBackground(java.awt.SystemColor.text);
+        jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/tab-sync2.png"))); // NOI18N
+        jButton21.setText("From S3");
+        jButton21.setBorder(null);
+        jButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton21ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jToggleButton3)
-                    .addComponent(jToggleButton4)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jCheckBox3)
                             .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jCheckBox6)
-                            .addComponent(jButton16))))
+                            .addComponent(jButton16)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(0, 0, 0)
+                        .addComponent(jButton14))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(0, 0, 0)
+                        .addComponent(jButton21)))
                 .addGap(25, 25, 25)
                 .addComponent(jFileChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 658, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -1072,10 +1073,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
+                        .addComponent(jButton14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton21)
+                        .addGap(23, 23, 23)
                         .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21)
                         .addComponent(jRadioButton1)
@@ -1910,10 +1911,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         calibrateTextArea();
     }//GEN-LAST:event_jButton11ActionPerformed
 
-
-    private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
+    void syncToS3() {
         if (active_bucket > 0) {
             //syncing_to_S3 = true;
+            jPanel4.repaint();
             SyncToS3.running = true;
             jPanel9.setVisible(true);
             jTextArea1.setText("\n\nStarted Sync.");
@@ -1938,7 +1939,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
                     syncToS3 = new SyncToS3(jFileChooser2.getSelectedFile(), cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), objectarray, rrs, encrypt);
                     syncToS3.startc(jFileChooser2.getSelectedFile(), cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), objectarray, rrs, encrypt);
-                    jToggleButton4.setFocusable(false);
                     objectarray = null;
                 }
             } else {
@@ -1949,7 +1949,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         } else {
             jTextArea1.append("\nError: No bucket selected.");
         }
-    }//GEN-LAST:event_jToggleButton3ActionPerformed
+    }
 
     private void jFileChooser2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser2ActionPerformed
 
@@ -2100,8 +2100,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFileChooser1ActionPerformed
-
-    private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
+    void syncFromS3() {
         if (active_bucket > 0) {
             objectarray = null;
             reloadObjects();
@@ -2129,7 +2128,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
                         syncFromS3 = new SyncFromS3(objectarray, ObjectsConverted, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), Destination);
                         syncFromS3.startc(objectarray, ObjectsConverted, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), Destination);
-                        jToggleButton4.setFocusable(false);
                     }
 
                 } else {
@@ -2141,7 +2139,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 calibrateTextArea();
             }
             calibrateTextArea();
-    }//GEN-LAST:event_jToggleButton4ActionPerformed
+        }
     }
     private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
         // TODO add your handling code here:
@@ -2495,13 +2493,11 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         if (SyncToS3.running) {
             Abort abortToS3 = new Abort("To");
             abortToS3.run();
-            jToggleButton3.setFocusable(false);
         }
 
         if (SyncFromS3.running) {
             Abort abortFromS3 = new Abort("From");
             abortFromS3.run();
-            jToggleButton4.setFocusable(false);
         }
     }//GEN-LAST:event_jButton16ActionPerformed
 
@@ -2773,6 +2769,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         }
     }//GEN-LAST:event_jMenuItem23ActionPerformed
 
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        syncToS3();
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+        syncFromS3();
+    }//GEN-LAST:event_jButton21ActionPerformed
+
     void var() {
         try {
             cred.setAccess_key(jTextField1.getText());
@@ -2799,6 +2803,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JButton jButton11;
     public static javax.swing.JButton jButton12;
     public static javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     public static javax.swing.JButton jButton17;
@@ -2806,6 +2811,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     public static javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
+    private javax.swing.JButton jButton21;
     public static javax.swing.JButton jButton3;
     public static javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -2902,8 +2908,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    public static javax.swing.JToggleButton jToggleButton3;
-    public static javax.swing.JToggleButton jToggleButton4;
     private java.awt.Panel panel1;
     private java.awt.ScrollPane scrollPane1;
     // End of variables declaration//GEN-END:variables
