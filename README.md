@@ -68,7 +68,7 @@ Create your config file from the GUI.
 This will allow you to run Cloud Explorer 4.2 from a Docker container using my public repository.
 
 1. docker pull rusher81572/cloudexplorer
-2. docker run -d cloudExplorer /opt/start.sh
+2. docker run -d --net=host rusher81572/cloudexplorer /opt/start.sh
 
 To connect to the container, you can use a VNC client.
 
@@ -83,7 +83,7 @@ The default password is 123456.
 If you want to use the Cloud Explorer CLI instead of the GUI, please run the container as shown below:
 
 
-	1. docker run -it cloudExplorer /bin/bash
+	1. docker run -it --net=host cloudExplorer /bin/bash
 	
 		(You should be in the container now)
 
