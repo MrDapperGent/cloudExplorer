@@ -74,11 +74,11 @@ public class Delete implements Runnable {
             }
             calibrate();
         } catch (AmazonServiceException ase) {
-            mainFrame.jTextArea1.append("Error Message:    " + ase.getMessage());
-            mainFrame.jTextArea1.append("HTTP Status Code: " + ase.getStatusCode());
-            mainFrame.jTextArea1.append("AWS Error Code:   " + ase.getErrorCode());
-            mainFrame.jTextArea1.append("Error Type:       " + ase.getErrorType());
-            mainFrame.jTextArea1.append("Request ID:       " + ase.getRequestId());
+            mainFrame.jTextArea1.append("\nError Message:    " + ase.getMessage());
+            mainFrame.jTextArea1.append("\nHTTP Status Code: " + ase.getStatusCode());
+            mainFrame.jTextArea1.append("\nAWS Error Code:   " + ase.getErrorCode());
+            mainFrame.jTextArea1.append("\nError Type:       " + ase.getErrorType());
+            mainFrame.jTextArea1.append("\nRequest ID:       " + ase.getRequestId());
             calibrate();
         } catch (Exception get) {
         }
