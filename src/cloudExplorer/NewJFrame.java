@@ -636,7 +636,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jScrollPane2.setViewportView(jPanel5);
 
-        jLabel1.setText("Bucket");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/bucket.png"))); // NOI18N
 
         jScrollPane7.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jScrollPane7.setPreferredSize(new java.awt.Dimension(650, 314));
@@ -1005,6 +1005,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/tab-sync2.png"))); // NOI18N
         jToggleButton3.setText("Sync to S3");
         jToggleButton3.setBorder(null);
+        jToggleButton3.setFocusable(false);
         jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton3ActionPerformed(evt);
@@ -1015,6 +1016,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/tab-sync2.png"))); // NOI18N
         jToggleButton4.setText("Sync from S3");
         jToggleButton4.setBorder(null);
+        jToggleButton4.setFocusable(false);
         jToggleButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton4ActionPerformed(evt);
@@ -1033,7 +1035,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jRadioButton1.setBackground(java.awt.SystemColor.text);
-        jRadioButton1.setText("Overwrite Existing");
+        jRadioButton1.setText("Overwrite");
 
         jCheckBox3.setBackground(java.awt.SystemColor.text);
         jCheckBox3.setText("RRS");
@@ -1913,7 +1915,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         if (active_bucket > 0) {
             //syncing_to_S3 = true;
             SyncToS3.running = true;
-            jTextArea1.setText("\nStarted Sync.");
+            jPanel9.setVisible(true);
+            jTextArea1.setText("\n\nStarted Sync.");
             calibrateTextArea();
             reloadObjects();
 
@@ -1935,6 +1938,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
                     syncToS3 = new SyncToS3(jFileChooser2.getSelectedFile(), cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), objectarray, rrs, encrypt);
                     syncToS3.startc(jFileChooser2.getSelectedFile(), cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), objectarray, rrs, encrypt);
+                    jToggleButton4.setFocusable(false);
                     objectarray = null;
                 }
             } else {
@@ -2103,7 +2107,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             reloadObjects();
             SyncFromS3.running = true;
             if (objectarray.length > 1) {
-                jTextArea1.setText("\nStarted Sync.");
+                jPanel9.setVisible(true);
+                jTextArea1.setText("\n\nStarted Sync.");
                 calibrateTextArea();
 
                 if (bucket_item[active_bucket].isSelected()) {
@@ -2124,6 +2129,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
                         syncFromS3 = new SyncFromS3(objectarray, ObjectsConverted, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), Destination);
                         syncFromS3.startc(objectarray, ObjectsConverted, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), Destination);
+                        jToggleButton4.setFocusable(false);
                     }
 
                 } else {
@@ -2489,11 +2495,13 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         if (SyncToS3.running) {
             Abort abortToS3 = new Abort("To");
             abortToS3.run();
+            jToggleButton3.setFocusable(false);
         }
 
         if (SyncFromS3.running) {
             Abort abortFromS3 = new Abort("From");
             abortFromS3.run();
+            jToggleButton4.setFocusable(false);
         }
     }//GEN-LAST:event_jButton16ActionPerformed
 
@@ -2753,7 +2761,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         try {
             jPanel9.setVisible(true);
             NewJFrame.jTextArea1.append("\nTrying to start another Cloud Explorer.");
-              NewJFrame.jTextArea1.append("\nPlease ensure that your Java path is set correctly on the OS.");
+            NewJFrame.jTextArea1.append("\nPlease ensure that your Java path is set correctly on the OS.");
             String path = NewJFrame.class
                     .getProtectionDomain().getCodeSource().getLocation().getPath();
             Process pb = Runtime.getRuntime().exec("java -jar " + path);
@@ -2894,8 +2902,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JToggleButton jToggleButton3;
-    private javax.swing.JToggleButton jToggleButton4;
+    public static javax.swing.JToggleButton jToggleButton3;
+    public static javax.swing.JToggleButton jToggleButton4;
     private java.awt.Panel panel1;
     private java.awt.ScrollPane scrollPane1;
     // End of variables declaration//GEN-END:variables
