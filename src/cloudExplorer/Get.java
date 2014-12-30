@@ -26,6 +26,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import static cloudExplorer.NewJFrame.jTextArea1;
+import com.amazonaws.AmazonServiceException;
 import com.amazonaws.ClientConfiguration;
 
 public class Get implements Runnable {
@@ -102,15 +103,15 @@ public class Get implements Runnable {
                 }
             }
 
+        } catch (AmazonServiceException ase) {
+            mainFrame.jTextArea1.append("Error Message:    " + ase.getMessage());
+            mainFrame.jTextArea1.append("HTTP Status Code: " + ase.getStatusCode());
+            mainFrame.jTextArea1.append("AWS Error Code:   " + ase.getErrorCode());
+            mainFrame.jTextArea1.append("Error Type:       " + ase.getErrorType());
+            mainFrame.jTextArea1.append("Request ID:       " + ase.getRequestId());
+            calibrate();
         } catch (Exception get) {
-            if (debug) {
-                System.out.print("\n\n\n" + get.getMessage() + "\n\n\n");
-            }
-            //mainFrame.jTextArea1.append("\n\nAn error has occurred in GET.");
-            //mainFrame.jTextArea1.append("\n\nError Message: " + get.getMessage());
-            //message = message + "\n" + get.getMessage();
         }
-
         calibrate();
     }
 

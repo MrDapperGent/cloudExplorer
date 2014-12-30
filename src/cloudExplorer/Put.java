@@ -27,8 +27,12 @@ import com.amazonaws.services.s3.transfer.Upload;
 import java.io.File;
 import javax.activation.MimetypesFileTypeMap;
 import static cloudExplorer.NewJFrame.jTextArea1;
+import com.amazonaws.AmazonClientException;
+import com.amazonaws.AmazonServiceException;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.services.s3.model.StorageClass;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Put implements Runnable {
 
@@ -108,11 +112,14 @@ public class Put implements Runnable {
                     mainFrame.jTextArea1.append("\nUploaded object: " + ObjectKey + " in " + diff / 1000 + " second(s).");
                 }
             }
-        } catch (Exception manager) {
-            if (debug) {
-                System.out.print("\n\n" + manager.getMessage() + "\n\n");
-                System.exit(-1);
-            }
+        } catch (AmazonServiceException ase) {
+            mainFrame.jTextArea1.append("Error Message:    " + ase.getMessage());
+            mainFrame.jTextArea1.append("HTTP Status Code: " + ase.getStatusCode());
+            mainFrame.jTextArea1.append("AWS Error Code:   " + ase.getErrorCode());
+            mainFrame.jTextArea1.append("Error Type:       " + ase.getErrorType());
+            mainFrame.jTextArea1.append("Request ID:       " + ase.getRequestId());
+            calibrate();
+        } catch (Exception put) {
         }
 
         calibrate();
