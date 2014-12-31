@@ -114,14 +114,14 @@ public class Put implements Runnable {
             }
         } catch (AmazonServiceException ase) {
             if (NewJFrame.gui) {
-                mainFrame.jTextArea1.append("\nError Message:    " + ase.getMessage());
+                mainFrame.jTextArea1.append("\n\nError Message:    " + ase.getMessage());
                 mainFrame.jTextArea1.append("\nHTTP Status Code: " + ase.getStatusCode());
                 mainFrame.jTextArea1.append("\nAWS Error Code:   " + ase.getErrorCode());
                 mainFrame.jTextArea1.append("\nError Type:       " + ase.getErrorType());
                 mainFrame.jTextArea1.append("\nRequest ID:       " + ase.getRequestId());
                 calibrate();
             } else {
-                System.out.print("\nError Message:    " + ase.getMessage());
+                System.out.print("\n\nError Message:    " + ase.getMessage());
                 System.out.print("\nHTTP Status Code: " + ase.getStatusCode());
                 System.out.print("\nAWS Error Code:   " + ase.getErrorCode());
                 System.out.print("\nError Type:       " + ase.getErrorType());
