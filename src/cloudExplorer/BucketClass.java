@@ -16,6 +16,8 @@
  */
 package cloudExplorer;
 
+import static cloudExplorer.NewJFrame.jTextArea1;
+import com.amazonaws.AmazonServiceException;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
@@ -117,11 +119,20 @@ public class BucketClass {
             }
 
             message = ("\nAttempting to create the bucket. Please view the Bucket list window for an update.");
-        } catch (Exception makeBucket) {
-            if (terminal) {
-                System.out.print("\n\n\n" + makeBucket.getMessage() + "\n\n\n");
+        } catch (AmazonServiceException ase) {
+            if (NewJFrame.gui) {
+                mainFrame.jTextArea1.append("\n\nError Message:    " + ase.getMessage());
+                mainFrame.jTextArea1.append("\nHTTP Status Code: " + ase.getStatusCode());
+                mainFrame.jTextArea1.append("\nAWS Error Code:   " + ase.getErrorCode());
+                mainFrame.jTextArea1.append("\nError Type:       " + ase.getErrorType());
+                mainFrame.jTextArea1.append("\nRequest ID:       " + ase.getRequestId());
+                calibrate();
             } else {
-                mainFrame.jTextArea1.append("\n" + makeBucket.getMessage() + "\n");
+                System.out.print("\n\nError Message:    " + ase.getMessage());
+                System.out.print("\nHTTP Status Code: " + ase.getStatusCode());
+                System.out.print("\nAWS Error Code:   " + ase.getErrorCode());
+                System.out.print("\nError Type:       " + ase.getErrorType());
+                System.out.print("\nRequest ID:       " + ase.getRequestId());
             }
         }
         if (message == null) {
@@ -129,6 +140,13 @@ public class BucketClass {
         }
         return message;
 
+    }
+
+    public void calibrate() {
+        try {
+            jTextArea1.setCaretPosition(jTextArea1.getLineStartOffset(jTextArea1.getLineCount() - 1));
+        } catch (Exception e) {
+        }
     }
 
     String listBuckets(String access_key, String secret_key, String endpoint) {
@@ -148,20 +166,36 @@ public class BucketClass {
                 bucketlist = bucketlist + " " + bucket.getName();
             }
 
-        } catch (Exception listBucket) {
-            if (terminal) {
-                System.out.print("\n\n\n" + listBucket.getMessage() + "\n\n\n");
+        } catch (AmazonServiceException ase) {
+            if (NewJFrame.gui) {
+                NewJFrame.jTextArea1.append("\n\nError Message:    " + ase.getMessage());
+                NewJFrame.jTextArea1.append("\nHTTP Status Code: " + ase.getStatusCode());
+                NewJFrame.jTextArea1.append("\nAWS Error Code:   " + ase.getErrorCode());
+                NewJFrame.jTextArea1.append("\nError Type:       " + ase.getErrorType());
+                NewJFrame.jTextArea1.append("\nRequest ID:       " + ase.getRequestId());
+                calibrate();
             } else {
-                mainFrame.jTextArea1.append("\n" + listBucket.getMessage());
-            }
-            if (listBucket.getMessage().contains("peer not authenticated")) {
-                mainFrame.jTextArea1.append("\nError: This program does not support non-trusted SSL certificates.");
+                System.out.print("\n\nError Message:    " + ase.getMessage());
+                System.out.print("\nHTTP Status Code: " + ase.getStatusCode());
+                System.out.print("\nAWS Error Code:   " + ase.getErrorCode());
+                System.out.print("\nError Type:       " + ase.getErrorType());
+                System.out.print("\nRequest ID:       " + ase.getRequestId());
             }
 
+        } catch (Exception lsbuckets) {
+
+            if (lsbuckets.getMessage().contains("peer not authenticated") || lsbuckets.getMessage().contains("hostname in certificate didn't match")) {
+                if (NewJFrame.gui) {
+                    NewJFrame.jTextArea1.append("\nError: This program does not support non-trusted SSL certificates\n\nor your SSL certificates are incorrect.");
+                } else {
+                    System.out.print("\n\nError: This program does not support non-trusted SSL certificates\n\nor your SSL certificates are not correctly installed.");
+                }
+            }
         }
         String parse = null;
 
-        if (bucketlist != null) {
+        if (bucketlist
+                != null) {
             parse = bucketlist.replace("null", "");
 
         } else {
@@ -171,7 +205,8 @@ public class BucketClass {
         return parse;
     }
 
-    String listBucketContents(String access_key, String secret_key, String bucket, String endpoint) {
+    String listBucketContents(String access_key, String secret_key, String bucket, String endpoint
+    ) {
         objectlist = null;
 
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
@@ -205,7 +240,8 @@ public class BucketClass {
         return parse;
     }
 
-    String getObjectInfo(String key, String access_key, String secret_key, String bucket, String endpoint, String process) {
+    String getObjectInfo(String key, String access_key, String secret_key, String bucket, String endpoint, String process
+    ) {
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration().withSignerOverride("S3SignerType"));
@@ -247,7 +283,8 @@ public class BucketClass {
         return objectlist;
     }
 
-    String deleteBucket(String access_key, String secret_key, String bucket, String endpoint, String region) {
+    String deleteBucket(String access_key, String secret_key, String bucket, String endpoint, String region
+    ) {
         String message = null;
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,

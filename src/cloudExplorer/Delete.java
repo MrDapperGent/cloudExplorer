@@ -89,7 +89,7 @@ public class Delete implements Runnable {
                 System.out.print("\nError Type:       " + ase.getErrorType());
                 System.out.print("\nRequest ID:       " + ase.getRequestId());
             }
-        } catch (Exception get) {
+        } catch (Exception delete) {
         }
     }
 
