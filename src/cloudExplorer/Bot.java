@@ -199,8 +199,8 @@ public class Bot implements Runnable {
         final JLabel blank = new JLabel(" ");
         ircarea = new JTextArea("\nConnecting to server......");
         irc_input_text = new JTextField("");
-        irc_send_button = new JButton("Save to bucket");
-        irc_close_button = new JButton("Close");
+        irc_send_button = new JButton("        Save to bucket");
+        irc_close_button = new JButton("    Close");
         irc_scrollpane = new JScrollPane(ircarea);
 
         irc_send_button.setBackground(Color.white);
@@ -282,6 +282,7 @@ public class Bot implements Runnable {
     void save() {
         ircarea.append("\n\nStopped recording at: " + date());
         calibrateTextArea();
+        mainFrame.jPanel9.setVisible(true);
         writer(ircarea.getText(), temp_file);
         put = new Put(temp_file, access_key, secret_key, bucket, endpoint, "IRC Transcript-" + date() + ".txt", false, false);
         put.startc(temp_file, access_key, secret_key, bucket, endpoint, "IRC Transcript-" + date() + ".txt", false, false);
