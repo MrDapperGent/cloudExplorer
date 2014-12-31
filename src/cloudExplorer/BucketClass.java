@@ -194,8 +194,7 @@ public class BucketClass {
         }
         String parse = null;
 
-        if (bucketlist
-                != null) {
+        if (bucketlist != null) {
             parse = bucketlist.replace("null", "");
 
         } else {
