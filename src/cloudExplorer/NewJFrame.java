@@ -92,9 +92,11 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     ShowVersions showVersions;
     ImageViewer imageviewer;
     Thread getThread;
+    public static Boolean gui = false;
 
     public NewJFrame() {
         try {
+            NewJFrame.gui = true;
             deleting.setEnabled(true);
             this.setTitle(version + " -  No bucket selected.");
             initComponents();

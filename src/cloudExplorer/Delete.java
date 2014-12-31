@@ -23,6 +23,7 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.DeleteVersionRequest;
 import static cloudExplorer.NewJFrame.jTextArea1;
+import static cloudExplorer.Put.debug;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.ClientConfiguration;
 
@@ -74,12 +75,20 @@ public class Delete implements Runnable {
             }
             calibrate();
         } catch (AmazonServiceException ase) {
-            mainFrame.jTextArea1.append("\nError Message:    " + ase.getMessage());
-            mainFrame.jTextArea1.append("\nHTTP Status Code: " + ase.getStatusCode());
-            mainFrame.jTextArea1.append("\nAWS Error Code:   " + ase.getErrorCode());
-            mainFrame.jTextArea1.append("\nError Type:       " + ase.getErrorType());
-            mainFrame.jTextArea1.append("\nRequest ID:       " + ase.getRequestId());
-            calibrate();
+            if (NewJFrame.gui) {
+                mainFrame.jTextArea1.append("\nError Message:    " + ase.getMessage());
+                mainFrame.jTextArea1.append("\nHTTP Status Code: " + ase.getStatusCode());
+                mainFrame.jTextArea1.append("\nAWS Error Code:   " + ase.getErrorCode());
+                mainFrame.jTextArea1.append("\nError Type:       " + ase.getErrorType());
+                mainFrame.jTextArea1.append("\nRequest ID:       " + ase.getRequestId());
+                calibrate();
+            } else {
+                System.out.print("\nError Message:    " + ase.getMessage());
+                System.out.print("\nHTTP Status Code: " + ase.getStatusCode());
+                System.out.print("\nAWS Error Code:   " + ase.getErrorCode());
+                System.out.print("\nError Type:       " + ase.getErrorType());
+                System.out.print("\nRequest ID:       " + ase.getRequestId());
+            }
         } catch (Exception get) {
         }
     }
