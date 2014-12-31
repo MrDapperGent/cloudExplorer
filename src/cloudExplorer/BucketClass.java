@@ -168,11 +168,11 @@ public class BucketClass {
 
         } catch (AmazonServiceException ase) {
             if (NewJFrame.gui) {
-                NewJFrame.jTextArea1.append("\n\nError Message:    " + ase.getMessage());
-                NewJFrame.jTextArea1.append("\nHTTP Status Code: " + ase.getStatusCode());
-                NewJFrame.jTextArea1.append("\nAWS Error Code:   " + ase.getErrorCode());
-                NewJFrame.jTextArea1.append("\nError Type:       " + ase.getErrorType());
-                NewJFrame.jTextArea1.append("\nRequest ID:       " + ase.getRequestId());
+                mainFrame.jTextArea1.append("\n\nError Message:    " + ase.getMessage());
+                mainFrame.jTextArea1.append("\nHTTP Status Code: " + ase.getStatusCode());
+                mainFrame.jTextArea1.append("\nAWS Error Code:   " + ase.getErrorCode());
+                mainFrame.jTextArea1.append("\nError Type:       " + ase.getErrorType());
+                mainFrame.jTextArea1.append("\nRequest ID:       " + ase.getRequestId());
                 calibrate();
             } else {
                 System.out.print("\n\nError Message:    " + ase.getMessage());
@@ -186,7 +186,7 @@ public class BucketClass {
 
             if (lsbuckets.getMessage().contains("peer not authenticated") || lsbuckets.getMessage().contains("hostname in certificate didn't match")) {
                 if (NewJFrame.gui) {
-                    NewJFrame.jTextArea1.append("\nError: This program does not support non-trusted SSL certificates\n\nor your SSL certificates are incorrect.");
+                    mainFrame.jTextArea1.append("\nError: This program does not support non-trusted SSL certificates\n\nor your SSL certificates are incorrect.");
                 } else {
                     System.out.print("\n\nError: This program does not support non-trusted SSL certificates\n\nor your SSL certificates are not correctly installed.");
                 }
