@@ -837,9 +837,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addComponent(jButton18)
                         .addGap(10, 10, 10)
                         .addComponent(jButton19))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0))
         );
         jPanel1Layout.setVerticalGroup(
@@ -1002,7 +1000,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jButton16.setBackground(java.awt.SystemColor.text);
         jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/abort.png"))); // NOI18N
-        jButton16.setText("   Abort");
+        jButton16.setText("    Abort");
+        jButton16.setToolTipText("");
         jButton16.setActionCommand("Abort");
         jButton16.setBorder(null);
         jButton16.setFocusPainted(false);
