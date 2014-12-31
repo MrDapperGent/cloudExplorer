@@ -93,7 +93,7 @@ public class BucketACL implements Runnable {
                 public void actionPerformed(ActionEvent e) {
                     if (enable_versioning.isSelected()) {
                         jTextArea1.append(mainFrame.bucket.controlVersioning(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.cred.getRegion(), true));
-                        mainFrame.miniReload();
+                        mainFrame.reloadBuckets();
                         mainFrame.jPanel15.setVisible(false);
                         enable_versioning.setSelected(false);
                         refresh();
