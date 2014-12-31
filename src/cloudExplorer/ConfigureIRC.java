@@ -16,7 +16,6 @@
  */
 package cloudExplorer;
 
-import static cloudExplorer.NewJFrame.jPanel9;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
