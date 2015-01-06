@@ -10,8 +10,7 @@
  * details.
  *
  * You should have received a copy of the GNU General Public License along with
- * this program. If not, see <http://www.gnu.org/licenses/>.package
- * cloudExplorer
+ * this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
 package cloudExplorer;
@@ -26,7 +25,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import static cloudExplorer.NewJFrame.jTextArea1;
-import static cloudExplorer.Put.debug;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.ClientConfiguration;
 

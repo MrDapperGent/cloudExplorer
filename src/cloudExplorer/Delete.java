@@ -10,8 +10,7 @@
  * details.
  *
  * You should have received a copy of the GNU General Public License along with
- * this program. If not, see <http://www.gnu.org/licenses/>.package
- * cloudExplorer
+ * this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
 package cloudExplorer;
@@ -23,7 +22,6 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.DeleteVersionRequest;
 import static cloudExplorer.NewJFrame.jTextArea1;
-import static cloudExplorer.Put.debug;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.ClientConfiguration;
 

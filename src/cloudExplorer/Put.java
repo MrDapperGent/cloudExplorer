@@ -10,10 +10,10 @@
  * details.
  *
  * You should have received a copy of the GNU General Public License along with
- * this program. If not, see <http://www.gnu.org/licenses/>.package
- * cloudExplorer
+ * this program. If not, see <http://www.gnu.org/licenses/>
  *
  */
+
 package cloudExplorer;
 
 import com.amazonaws.auth.AWSCredentials;
@@ -27,12 +27,9 @@ import com.amazonaws.services.s3.transfer.Upload;
 import java.io.File;
 import javax.activation.MimetypesFileTypeMap;
 import static cloudExplorer.NewJFrame.jTextArea1;
-import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.services.s3.model.StorageClass;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Put implements Runnable {
 
