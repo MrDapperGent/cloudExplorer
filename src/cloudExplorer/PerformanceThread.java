@@ -68,6 +68,7 @@ public class PerformanceThread implements Runnable {
     double[] y_iops;
     Get get;
     JLabel label;
+    String[] getTempArray;
 
     public void performance_logger(double time, double rate, String what) {
         try {
@@ -155,6 +156,7 @@ public class PerformanceThread implements Runnable {
 
                     int counter = 0;
                     int display_counter = 0;
+                    getTempArray = new String[(int) op_count];
 
                     for (int z = 0; z != op_count; z++) {
                         ExecutorService executor = Executors.newFixedThreadPool((int) num_threads);
@@ -165,7 +167,8 @@ public class PerformanceThread implements Runnable {
                                 Runnable put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false);
                                 executor.execute(put);
                             } else {
-                                Runnable get = new Get("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + i, null);
+                                Runnable get = new Get("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + +i + "_" + z, null);
+                                getTempArray[i] = temp_file + i + "_" + z;
                                 executor.execute(get);
                             }
                         }
@@ -225,13 +228,15 @@ public class PerformanceThread implements Runnable {
                         }
 
                         if (!operation) {
-                            for (int i = 0; i != op_count; i++) {
-                                File del = new File(temp_file + i);
-                                if (del.exists()) {
-                                    del.delete();
+
+                            for (String what : getTempArray) {
+                                if (what != null) {
+                                    File del = new File(what);
+                                    if (del.exists()) {
+                                        del.delete();
+                                    }
                                 }
                             }
-
                         }
 
                         counter++;
