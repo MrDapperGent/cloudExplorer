@@ -157,7 +157,7 @@ public class PerformanceThread implements Runnable {
                     int display_counter = 0;
 
                     for (int z = 0; z != op_count; z++) {
-                        ExecutorService executor = Executors.newFixedThreadPool((int) num_threads - 1);
+                        ExecutorService executor = Executors.newFixedThreadPool((int) num_threads);
                         long t1 = System.currentTimeMillis();
 
                         for (int i = 0; i != num_threads; i++) {
