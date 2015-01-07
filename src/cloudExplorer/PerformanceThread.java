@@ -156,7 +156,7 @@ public class PerformanceThread implements Runnable {
 
                     int counter = 0;
                     int display_counter = 0;
-                    getTempArray = new String[(int) op_count];
+                    getTempArray = new String[(int) op_count * (int) num_threads];
 
                     for (int z = 0; z != op_count; z++) {
                         ExecutorService executor = Executors.newFixedThreadPool((int) num_threads);
@@ -245,6 +245,7 @@ public class PerformanceThread implements Runnable {
                     }
 
                 } catch (Exception ex) {
+                    System.out.print("\nException:" + ex.getMessage() + ex.getLocalizedMessage() + "\nThreads test: " + (int) num_threads);
                 }
 
             } else {
