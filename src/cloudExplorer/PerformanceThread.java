@@ -253,7 +253,7 @@ public class PerformanceThread implements Runnable {
                 calibrate();
             }
 
-            NewJFrame.jTextArea1.append("\nResults saved in CSV format to: " + "\n" + throughput_log + "\n" + latency_log + "\n" + ops_log);
+            NewJFrame.jTextArea1.append("\n\nResults saved in CSV format to: " + "\n" + throughput_log + "\n" + latency_log + "\n" + ops_log);
             calibrate();
             NewJFrame.perf = false;
 
