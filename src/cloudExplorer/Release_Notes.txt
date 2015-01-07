@@ -3,6 +3,7 @@ Version 5.0
 Bug Fixes: 
 
 Performance testing - threads are actually threads now.
+Performance testing - temp files are now deleted when running a download test.
 
 Improvements: 
 
