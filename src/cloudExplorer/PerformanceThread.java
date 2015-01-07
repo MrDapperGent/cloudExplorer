@@ -212,10 +212,7 @@ public class PerformanceThread implements Runnable {
                         x_iops[counter] = counter;
 
                         if (graphdata) {
-                            //  if (display_counter == 2) {
-                            //      display_counter = 0;
                             graph();
-                            //  }
                         } else {
                             if (op_count <= 9 || z <= 9) {
                                 display(rate, iops);
@@ -226,6 +223,17 @@ public class PerformanceThread implements Runnable {
                                 display_counter = 0;
                             }
                         }
+
+                        if (!operation) {
+                            for (int i = 0; i != op_count; i++) {
+                                File del = new File(temp_file + i);
+                                if (del.exists()) {
+                                    del.delete();
+                                }
+                            }
+
+                        }
+
                         counter++;
                         display_counter++;
                         calibrate();
