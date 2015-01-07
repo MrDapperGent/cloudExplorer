@@ -1,6 +1,8 @@
 Version 5.0
 
-Bug Fixes: <none>
+Bug Fixes: 
+
+Performance testing - threads are actually threads now.
 
 Improvements: 
 

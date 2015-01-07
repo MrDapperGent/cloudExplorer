@@ -66,6 +66,8 @@ public class PerformanceThread implements Runnable {
     double[] y_iops;
     Get get;
     JLabel label;
+    Thread aput;
+    Thread aget;
 
     public void performance_logger(double time, double rate, String what) {
         try {
@@ -159,12 +161,18 @@ public class PerformanceThread implements Runnable {
 
                         for (int i = 0; i != num_threads; i++) {
                             if (operation) {
-                                put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false);
-                                put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false);
+                                aput = new Thread(new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false));
+                                aput.start();
                             } else {
-                                get = new Get("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + i, null);
-                                get.startc("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + i, null);
+                                aget = new Thread(new Get("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + i, null));
+                                aget.start();
                             }
+                        }
+
+                        if (operation) {
+                            aput.join();
+                        } else {
+                            aget.join();
                         }
 
                         double t2 = System.currentTimeMillis();
