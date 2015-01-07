@@ -33,6 +33,8 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -66,8 +68,6 @@ public class PerformanceThread implements Runnable {
     double[] y_iops;
     Get get;
     JLabel label;
-    Thread aput;
-    Thread aget;
 
     public void performance_logger(double time, double rate, String what) {
         try {
@@ -157,22 +157,21 @@ public class PerformanceThread implements Runnable {
                     int display_counter = 0;
 
                     for (int z = 0; z != op_count; z++) {
+                        ExecutorService executor = Executors.newFixedThreadPool((int) num_threads - 1);
                         long t1 = System.currentTimeMillis();
 
                         for (int i = 0; i != num_threads; i++) {
                             if (operation) {
-                                aput = new Thread(new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false));
-                                aput.start();
+                                Runnable put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false);
+                                executor.execute(put);
                             } else {
-                                aget = new Thread(new Get("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + i, null));
-                                aget.start();
+                                Runnable get = new Get("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + i, null);
+                                executor.execute(get);
                             }
                         }
+                        executor.shutdown();
 
-                        if (operation) {
-                            aput.join();
-                        } else {
-                            aget.join();
+                        while (!executor.isTerminated()) {
                         }
 
                         double t2 = System.currentTimeMillis();
