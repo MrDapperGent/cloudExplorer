@@ -246,6 +246,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenu9 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem20 = new javax.swing.JMenuItem();
+        jMenuItem24 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
@@ -1284,6 +1285,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenu9.add(jMenuItem20);
 
         jMenu6.add(jMenu9);
+
+        jMenuItem24.setText("Delete temp files");
+        jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem24ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem24);
 
         jMenuBar1.add(jMenu6);
 
@@ -2747,6 +2756,28 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         syncFromS3();
     }//GEN-LAST:event_jButton21ActionPerformed
 
+    private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
+        cleanup();
+    }//GEN-LAST:event_jMenuItem24ActionPerformed
+    void cleanup() {
+        try {
+            jPanel9.setVisible(true);
+            NewJFrame.jTextArea1.append("\n\nScanning for stale tmp files and will delete if found.....");
+            calibrateTextArea();
+            File location = new File(Home);
+            File dir = new File(Home);
+            File[] list = dir.listFiles();
+            for (File file_found : list) {
+                if (file_found.getName().toString().contains("object.tmp") || file_found.getName().toString().contains("screenshot.s3")) {
+                    File del = new File(file_found.getAbsolutePath());
+                    del.delete();
+                    NewJFrame.jTextArea1.append("\nDeleting temp file: " + file_found.getName());
+                }
+            }
+        } catch (Exception cleanup) {
+        }
+    }
+
     void var() {
         try {
             cred.setAccess_key(jTextField1.getText());
@@ -2833,6 +2864,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem23;
+    private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
