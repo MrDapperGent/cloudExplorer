@@ -36,6 +36,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JRadioButton;
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
 import javax.swing.UIManager;
@@ -132,6 +133,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             this.jScrollPane1.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
             this.jCheckBox1.setSelected(true);
             this.jPanel9.setVisible(false);
+            JPopupMenu.setDefaultLightWeightPopupEnabled(false);
             File config = new File(config_file);
             if (config.exists()) {
                 this.jButton9.doClick();
@@ -150,7 +152,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jPanel9 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jPanel8 = new javax.swing.JPanel();
         panel1 = new java.awt.Panel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
@@ -223,7 +224,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jButton11 = new javax.swing.JButton();
         jTextField6 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem23 = new javax.swing.JMenuItem();
@@ -292,19 +292,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-        );
-
-        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 457, Short.MAX_VALUE)
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 56, Short.MAX_VALUE)
         );
 
         panel1.setBackground(java.awt.Color.white);
@@ -1157,10 +1144,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addGap(0, 0, 0))
         );
 
-        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/cloudExplorerLogo.png"))); // NOI18N
-        jLabel10.setOpaque(true);
-
         jMenuBar1.setBorder(null);
 
         jMenu1.setText("File");
@@ -1382,20 +1365,12 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel10))
                     .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
                 .addGap(0, 0, 0)
                 .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -2823,7 +2798,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     public javax.swing.JFileChooser jFileChooser1;
     public static javax.swing.JFileChooser jFileChooser2;
     public static javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -2881,7 +2855,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     public static javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     public static javax.swing.JPanel jPanel9;
     public static javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
