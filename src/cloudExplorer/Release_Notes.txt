@@ -18,6 +18,7 @@ Console window will automatically appear upon important events.
 Text "Buckets" in Object Explorer has been replaced with a icon.
 Sync buttons are no longer Toggle Buttons.
 Better debug messages for PUT, DELETE, and GET.
+Buckets are reloaded after bucket migration.
 
 New Features: 
 
