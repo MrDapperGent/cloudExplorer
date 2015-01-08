@@ -2776,6 +2776,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         } catch (Exception cleanup) {
         }
+        NewJFrame.jTextArea1.append("\nScan complete");
+        calibrateTextArea();
     }
 
     void var() {
