@@ -15,7 +15,7 @@
  */
 package cloudExplorer;
 
-public class S3 {
+public class CloudExplorer {
 
     public static void helpargs() {
         System.out.print("\n[Cloud Explorer - CLI arguments]\n"
