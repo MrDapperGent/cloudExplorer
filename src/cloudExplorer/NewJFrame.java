@@ -2769,7 +2769,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             File dir = new File(Home);
             File[] list = dir.listFiles();
             for (File file_found : list) {
-                if (file_found.getName().toString().contains("object.tmp") || file_found.getName().toString().contains("screenshot.s3") || file_found.getName().toString().contains("ops_results.csv") || file_found.getName().toString().contains("throughput_results.csv") || file_found.getName().toString().contains("latency_results.csv")) {
+                if (file_found.getName().toString().contains("object.tmp") || file_found.getName().toString().contains("screenshot.s3") || file_found.getName().toString().contains("ops_results.csv") || file_found.getName().toString().contains("throughput_results.csv") || file_found.getName().toString().contains("latency_results.csv") || file_found.getName().toString().contains("compress.tmp")) {
                     File del = new File(file_found.getAbsolutePath());
                     del.delete();
                     NewJFrame.jTextArea1.append("\nDeleting temp file: " + file_found.getName());
