@@ -15,8 +15,6 @@
  */
 package cloudExplorer;
 
-import static cloudExplorer.NewJFrame.jPanel9;
-import static cloudExplorer.NewJFrame.jTextArea1;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -25,14 +23,9 @@ import java.net.URLConnection;
 public class Update implements Runnable {
 
     NewJFrame mainFrame;
-    public static String response = null;
-    public static String region = null;
-    public static String dest_bucket = null;
-    BucketMigration migrate;
 
     public Update(NewJFrame Frame) {
         mainFrame = Frame;
-
     }
 
     public void run() {
