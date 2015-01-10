@@ -29,7 +29,7 @@ Support for sharing bucket access with a canonical ID.
 "File -> New Window" - Run another instance of Cloud Explorer!
 S3 Accounts can now have a unique name rather than using the endpoint.
 "Tools -> Delete temp files" - This will cleanup any temp files in your home directory.
-"Help -> Check for Updates" 
+"Help -> Check for updates" 
 
 Features:
 
