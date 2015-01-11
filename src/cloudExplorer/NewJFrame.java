@@ -48,8 +48,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     String major = "99";
     String minor = "0";
-    String release_version = this.major + "." + this.minor;
-    String version = "Cloud Explorer " + this.release_version;
+    String release_version = major + "." + minor;
+    String version = "Cloud Explorer " + release_version;
     public boolean consoleToggle = false;
     public boolean selectToggle = false;
     public static JRadioButton deleting = new JRadioButton("foo");
