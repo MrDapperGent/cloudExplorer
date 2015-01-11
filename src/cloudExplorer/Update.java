@@ -38,9 +38,11 @@ public class Update
 
     public void run() {
         String new_version = null;
+        String alert_message = null;
         String update_location = null;
         double newver = 0.0D;
         double currentversion = Double.parseDouble(this.mainFrame.release_version);
+        Boolean alert = false;
 
         NewJFrame.jPanel9.setVisible(true);
         try {
@@ -62,16 +64,24 @@ public class Update
                     update_location = inputLine.replace("loc=", "");
                 }
                 if (inputLine.contains("update=")) {
-                    this.updateURL = inputLine.replace("update=", "");
+                    updateURL = inputLine.replace("update=", "");
+                }
+                if (inputLine.contains("alert=")) {
+                    alert_message = inputLine.replace("alert=", "");
+                    alert = true;
                 }
             }
             in.close();
             NewJFrame.jTextArea1.append("\nLatest version is: " + new_version);
             NewJFrame.jTextArea1.append("\nRelease URL: " + update_location);
-            if (newver > currentversion) {
-                update();
+            if (!alert) {
+                if (newver > currentversion) {
+                    update();
+                } else {
+                    NewJFrame.jTextArea1.append("\nNo update available.");
+                }
             } else {
-                NewJFrame.jTextArea1.append("\nNo update available.");
+                NewJFrame.jTextArea1.append("\n" + alert_message);
             }
             calibrate();
         } catch (Exception url) {
