@@ -6,13 +6,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.channels.Channels;
-import java.nio.channels.FileChannel;
 import java.nio.channels.ReadableByteChannel;
-import java.security.CodeSource;
-import java.security.ProtectionDomain;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
 public class Update
         implements Runnable {
