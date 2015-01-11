@@ -1,60 +1,87 @@
-/**
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program. If not, see <http://www.gnu.org/licenses/>.
- *
- */
 package cloudExplorer;
 
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.channels.Channels;
+import java.nio.channels.FileChannel;
+import java.nio.channels.ReadableByteChannel;
+import java.security.CodeSource;
+import java.security.ProtectionDomain;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
-public class Update implements Runnable {
+public class Update
+        implements Runnable {
 
     NewJFrame mainFrame;
+    String updateURL = null;
 
     public Update(NewJFrame Frame) {
-        mainFrame = Frame;
+        this.mainFrame = Frame;
+    }
+
+    public void update() {
+        try {
+            String path = NewJFrame.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+            NewJFrame.jTextArea1.append("\nDownloading updated version........");
+            URL download = new URL(this.updateURL);
+            ReadableByteChannel rbc = Channels.newChannel(download.openStream());
+            FileOutputStream fos = new FileOutputStream(path);
+            fos.getChannel().transferFrom(rbc, 0L, 9223372036854775807L);
+        } catch (Exception update) {
+            NewJFrame.jTextArea1.append("\nError: " + update.getMessage());
+            calibrate();
+        }
+        NewJFrame.jTextArea1.append("\nDownload complete. The new version will now launch.");
+        NewJFrame.jTextArea1.append("\nIf the new version does not launch automatically, please restart Cloud Explorer.");
+        calibrate();
+        NewJFrame.jMenuItem23.doClick();
     }
 
     public void run() {
         String new_version = null;
         String update_location = null;
-        mainFrame.jPanel9.setVisible(true);
+        double newver = 0.0D;
+        double currentversion = Double.parseDouble(this.mainFrame.release_version);
+
+        NewJFrame.jPanel9.setVisible(true);
         try {
-            mainFrame.jTextArea1.append("\nChecking for updates......");
-            mainFrame.jTextArea1.append("\nVersion running: " + mainFrame.version);
+            NewJFrame.jTextArea1.append("\nChecking for update......");
+            NewJFrame.jTextArea1.append("\nInstalled Version: " + this.mainFrame.release_version);
             calibrate();
-            URL update = new URL("https://linux-toys.com/versions.html");
+            URL update = new URL("https://linux-toys.com/" + this.mainFrame.major + "/versions.html");
             URLConnection yc = update.openConnection();
-            BufferedReader in = new BufferedReader(new InputStreamReader(
-                    yc.getInputStream()));
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(yc
+                    .getInputStream()));
             String inputLine;
             while ((inputLine = in.readLine()) != null) {
                 if (inputLine.contains("vers=")) {
                     new_version = inputLine.replace("vers=", "");
+                    newver = Double.parseDouble(new_version);
                 }
                 if (inputLine.contains("loc=")) {
                     update_location = inputLine.replace("loc=", "");
                 }
+                if (inputLine.contains("update=")) {
+                    this.updateURL = inputLine.replace("update=", "");
+                }
             }
             in.close();
-            mainFrame.jTextArea1.append("\nLatest version is: " + new_version);
-            mainFrame.jTextArea1.append("\nDownload URL: " + update_location);
+            NewJFrame.jTextArea1.append("\nLatest version is: " + new_version);
+            NewJFrame.jTextArea1.append("\nRelease URL: " + update_location);
+            if (newver > currentversion) {
+                update();
+            } else {
+                NewJFrame.jTextArea1.append("\nNo update available.");
+            }
             calibrate();
         } catch (Exception url) {
-            mainFrame.jTextArea1.append("\nError: " + url.getMessage());
+            NewJFrame.jTextArea1.append("\nError: " + url.getMessage());
             calibrate();
         }
     }
@@ -67,6 +94,6 @@ public class Update implements Runnable {
     }
 
     void startc() {
-        (new Thread(new Update(mainFrame))).start();
+        new Thread(new Update(this.mainFrame)).start();
     }
 }
