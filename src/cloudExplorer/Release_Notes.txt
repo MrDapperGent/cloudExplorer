@@ -1,34 +1,18 @@
 Version 5.0
 
-Bug Fixes:
-Performance testing - threads are actually threads now.
-Performance testing - temp files are now deleted when running a download test.
-Main program title renamed from S3 to CloudExplorer.
+Bug Fixes: <none>
 
-Improvements:
-Added "Refresh Bucket" button. Functions just like the search button. Added it for ease of use.
-Search button and text field are now located under the bucket list.
-Minor GUI alignment fixes.
-More compact GUI; ideal for smaller screens.
-Versioning - Improved delete.
-When deleting a version of a file, the bucket is refreshed to show the changes.
-Console window is disabled by default and can be turned on or off.
-Console window will automatically appear upon important events.
-Text "Buckets" in Object Explorer has been replaced with a icon.
-Sync buttons are no longer Toggle Buttons.
-Better debug messages for PUT, DELETE, and GET.
-Buckets are reloaded after bucket migration.
+Improvements: 
 
-New Features:
-Improved GUI.
-Support for accessing a shared bucket.
-Support for sharing bucket access with a canonical ID.
-"File -> New Window" - Run another instance of Cloud Explorer!
-S3 Accounts can now have a unique name rather than using the endpoint.
-"Tools -> Delete temp files" - This will cleanup any temp files in your home directory.
-"Help -> Check for updates". This is a self-updating feature for minor updates.
+Checks for updates every time Cloud Explorer is ran.
+
+New Features: 
+
+Update check upon launch.
+
 
 Features:
+
 1. Tier buckets to and from Amazon Glacier.
 2. Sync files to and from S3 storage.
 3. Stream music.
@@ -48,29 +32,44 @@ Features:
 17. Share buckets with the Canonical ID of a user on the same S3 provider.
 
 Command-line Options:
+
 java -jar CloudExplorer.jar put filename bucket
 java -jar CloudExplorer.jar get filename bucket destination
-java -jar CloudExplorer.jar delete filename bucket
+java -jar CloudExplorer.jar delete filename bucket 
+
 #List bucket contents
 java -jar CloudExplorer.jar ls bucket
+
 #List buckets
 java -jar CloudExplorer.jar listbuckets
+
 #Delete a bucket
 java -jar CloudExplorer.jar rmbucket bucket
+
 #Create a bucket
 java -jar CloudExplorer.jar makebucket bucket
+
 #Sync to S3
 java -jar CloudExplorer.jar synctos3 location bucket
+
 #Sync from S3
 java -jar CloudExplorer.jar syncfroms3 destination bucket
+
 #Performance Test - PUT
 java -jar CloudExplorer.jar uploadtest bucket size threads operations
+
 #Performance Test - GET
 java -jar CloudExplorer.jar downloadtest bucket size threads operations
-#Search for files
+
+#Search for files 
 java -jar CloudExplorer.jar search bucket what
+
+
 *Please note that Cloud Explorer will use the first account listed in the config file*
+
+
 IRC Options:
+
 URL bot: This bot will show a description of links posted in the channel.
 !starturlbot
 !stopurlbot
