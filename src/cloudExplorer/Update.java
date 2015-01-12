@@ -13,9 +13,11 @@ public class Update
 
     NewJFrame mainFrame;
     String updateURL = null;
+    Boolean check = false;
 
-    public Update(NewJFrame Frame) {
-        this.mainFrame = Frame;
+    public Update(NewJFrame Frame, Boolean Acheck) {
+        mainFrame = Frame;
+        check = Acheck;
     }
 
     public void update() {
@@ -72,16 +74,21 @@ public class Update
                 }
             }
             in.close();
+
             NewJFrame.jTextArea1.append("\nLatest version is: " + new_version);
-            NewJFrame.jTextArea1.append("\nRelease URL: " + update_location);
-            if (!alert) {
-                if (newver > currentversion) {
-                    update();
+            if (!check) {
+                NewJFrame.jTextArea1.append("\nRelease URL: " + update_location);
+            }
+            if (!check) {
+                if (!alert) {
+                    if (newver > currentversion) {
+                        update();
+                    } else {
+                        NewJFrame.jTextArea1.append("\nNo update available.");
+                    }
                 } else {
-                    NewJFrame.jTextArea1.append("\nNo update available.");
+                    NewJFrame.jTextArea1.append("\n" + alert_message);
                 }
-            } else {
-                NewJFrame.jTextArea1.append("\n" + alert_message);
             }
             calibrate();
         } catch (Exception url) {
@@ -97,7 +104,7 @@ public class Update
         }
     }
 
-    void startc() {
-        new Thread(new Update(this.mainFrame)).start();
+    void startc(Boolean Acheck) {
+        new Thread(new Update(mainFrame, Acheck)).start();
     }
 }

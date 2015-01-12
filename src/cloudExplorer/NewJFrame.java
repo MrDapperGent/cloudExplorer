@@ -47,7 +47,7 @@ import javax.swing.plaf.ColorUIResource;
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     String major = "5";
-    String minor = "0";
+    String minor = "01";
     String release_version = major + "." + minor;
     String version = "Cloud Explorer " + release_version;
     public boolean consoleToggle = false;
@@ -139,6 +139,11 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             this.jCheckBox1.setSelected(true);
             this.jPanel9.setVisible(false);
             JPopupMenu.setDefaultLightWeightPopupEnabled(false);
+
+            Thread foo = new Thread(new Update(this, true));
+            foo.start();
+            foo.join();
+            
             File config = new File(config_file);
             if (config.exists()) {
                 this.jButton9.doClick();
@@ -2776,8 +2781,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     }//GEN-LAST:event_jMenuItem24ActionPerformed
 
     private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
-        Update update = new Update(this);
-        update.startc();
+        Update update = new Update(this, false);
+        update.startc(false);
     }//GEN-LAST:event_jMenuItem25ActionPerformed
     void cleanup() {
         try {
