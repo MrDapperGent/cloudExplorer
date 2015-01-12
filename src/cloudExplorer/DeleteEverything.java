@@ -30,6 +30,7 @@ public class DeleteEverything implements Runnable {
         showVersions = new ShowVersions(null, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame);
         showVersions.Delete = true;
         showVersions.run();
+        mainFrame.reloadBuckets();
     }
 
     public void startc(NewJFrame Frame) {
