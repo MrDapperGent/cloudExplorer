@@ -5,6 +5,7 @@ Bug Fixes:
 Performance testing - threads are actually threads now.
 Performance testing - temp files are now deleted when running a download test.
 Main program title renamed from S3 to CloudExplorer.
+After choosing "Delete every object and version", buckets are reloaded.
 
 Improvements: 
 
