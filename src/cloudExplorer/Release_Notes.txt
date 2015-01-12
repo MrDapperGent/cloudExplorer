@@ -1,35 +1,15 @@
-Version 5.0
+Version 5.01
 
-Bug Fixes: 
-
-Performance testing - threads are actually threads now.
-Performance testing - temp files are now deleted when running a download test.
-Main program title renamed from S3 to CloudExplorer.
+Bug Fixes: <none>
 
 Improvements: 
 
-Added "Refresh Bucket" button. Functions just like the search button. Added it for ease of use.
-Search button and text field are now located under the bucket list.
-Minor GUI alignment fixes.
-More compact GUI; ideal for smaller screens.
-Versioning - Improved delete.
-When deleting a version of a file, the bucket is refreshed to show the changes.
-Console window is disabled by default and can be turned on or off.
-Console window will automatically appear upon important events.
-Text "Buckets" in Object Explorer has been replaced with a icon.
-Sync buttons are no longer Toggle Buttons.
-Better debug messages for PUT, DELETE, and GET.
-Buckets are reloaded after bucket migration.
+Checks for updates every time Cloud Explorer is ran.
 
 New Features: 
 
-Improved GUI.
-Support for accessing a shared bucket.
-Support for sharing bucket access with a canonical ID.
-"File -> New Window" - Run another instance of Cloud Explorer!
-S3 Accounts can now have a unique name rather than using the endpoint.
-"Tools -> Delete temp files" - This will cleanup any temp files in your home directory.
-"Help -> Check for updates". This is a self-updating feature for minor updates.
+Update check upon launch.
+
 
 Features:
 
