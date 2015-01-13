@@ -36,6 +36,8 @@ public class Versioning {
 
     void getVersions(String key, String access_key, String secret_key, String bucket, String endpoint) {
         String results = null;
+        Boolean check_finished = false;
+
         try {
             mainFrame.jTextArea1.append("\nPlease wait, loading versions.");
             mainFrame.calibrateTextArea();
@@ -53,6 +55,12 @@ public class Versioning {
 
             List<S3VersionSummary> summary = vListing.getVersionSummaries();
 
+            if (summary.size() == 0) {
+                check_finished = true;
+            } else {
+                check_finished = false;
+            }
+
             for (S3VersionSummary object : summary) {
                 if (!Versioning.delete) {
                     mainFrame.versioning_date.add(object.getLastModified().toString());
@@ -69,7 +77,11 @@ public class Versioning {
                     del.startc(delVer, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.versioning_id.get(i));
                     i++;
                 }
+                if (!check_finished) {
+                    getVersions(key, access_key, secret_key, bucket, endpoint);
+                }
             }
+
             if (Versioning.delete) {
                 mainFrame.jTextArea1.append("\nCompleted deleting every object. Please observe this window for any tasks that are still running.");
             } else {

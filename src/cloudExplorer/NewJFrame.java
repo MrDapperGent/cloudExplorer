@@ -143,7 +143,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             Thread foo = new Thread(new Update(this, true));
             foo.start();
             foo.join();
-            
+
             File config = new File(config_file);
             if (config.exists()) {
                 this.jButton9.doClick();
@@ -1878,7 +1878,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             calibrateTextArea();
         }
 
-
     }//GEN-LAST:event_jMenuItem6ActionPerformed
     void deleteFle(String what) {
         try {
@@ -2714,7 +2713,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         } else {
             jTextArea1.append("\nError: No bucket has been selected\n");
         }
-
 
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
