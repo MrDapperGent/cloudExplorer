@@ -85,7 +85,7 @@ public class Versioning {
             if (Versioning.delete) {
                 mainFrame.jTextArea1.append("\nCompleted deleting every object. Please observe this window for any tasks that are still running.");
             } else {
-                mainFrame.jTextArea1.append("\nDone gathering Versions.");
+                mainFrame.jTextArea1.append("\nDone gathering Versions. Displaying the first 1000 files found.");
             }
             mainFrame.calibrateTextArea();
         } catch (Exception getVersions) {
