@@ -25,6 +25,11 @@ java -jar -Xms100m -Xmx500m ./CloudExplorer.jar
 
 http://youtu.be/54v3rIUh0h8
 
+[Upgrading]
+
+Starting with v5.0, minor releases will no longer be published on Github. To upgrade, please use the updater located in the application. Everytime Cloud Explorer is ran, it will check for the latest version. To apply the update, click "Help -> Check for updates"
+
+
 [How to migrate data between S3 accounts]
 
 Load the destination account and click "Set as migration Account" under Settings.
