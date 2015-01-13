@@ -5,8 +5,8 @@ A copy of the GNU GPL is located in `LICENSE.txt`.
 Cloud Explorer is a simple, free, and open-source S3 client made by me. It works on Windows, Linux, and Mac. Cloud Explorer provides extras that are not found elsewhere in other S3 browsers like search for objects, performance testing, music player, transition to Amazon Glacier, Amazon RRS, migrate buckets between S3 accounts, compress files piror to upload,take screen shots to S3, simple text editor, IRC client, share buckets with users, access shared buckets, and view images. Users can easily sync folders to their S3 account and upload and download files to their computer.
 
 
-![Graph](https://www.linux-toys.com/performance4.png)
-![Objects](https://www.linux-toys.com/objects4.png)
+![Graph](https://www.linux-toys.com/performance5.png)
+![Objects](https://www.linux-toys.com/objects5.png)
 
 [How to run the program]
 
