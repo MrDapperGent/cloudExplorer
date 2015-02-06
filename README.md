@@ -8,7 +8,7 @@ Cloud Explorer is a simple, free, and open-source S3 client made by me. It works
 ![Graph](https://www.linux-toys.com/performance5.png)
 ![Objects](https://www.linux-toys.com/objects5.png)
 
-[How to run the program]
+# How to run the program
 
 To run the application, most users should be able to run the program by double clicking on the CloudExplorer.jar file. If not, there are two scripts included to assist:
 
@@ -29,12 +29,12 @@ https://www.youtube.com/watch?v=O1HVDYywZRY
 
 http://youtu.be/54v3rIUh0h8
 
-[Upgrading]
+# Upgrading
 
 Starting with v5.0, minor releases will no longer be published on Github. To upgrade, please use the updater located in the application. Everytime Cloud Explorer is ran, it will check for the latest version. To apply the update, click "Help -> Check for updates"
 
 
-[How to migrate data between S3 accounts]
+# How to migrate data between S3 accounts
 
 Load the destination account and click "Set as migration Account" under Settings.
 Create the destination bucket on the destination account.
@@ -44,7 +44,7 @@ Type in the destination bucket name and click "Start Bucket Migration".
 Wait for transfers to complete.
 
 
-[Background Sync]
+# Background Sync
 
 Background Sync allows Cloud Explorer to sync a directory in the background to S3 every 5 minutes. Sync will only upload files that do not exist on S3 and no files will be deleted. 
 <br>
@@ -73,7 +73,7 @@ Create your config file from the GUI.
 	$ java -jar -Xms100m -Xmx500m CloudExplorer.jar daemon
 
 <br>
-[Run Cloud Explorer from Docker]
+# Run Cloud Explorer from Docker
 <br>
 <br>
 This will allow you to run Cloud Explorer 4.2 from a Docker container using my public repository.
