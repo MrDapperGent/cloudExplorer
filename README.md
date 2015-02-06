@@ -23,6 +23,8 @@ java -jar -Xms100m -Xmx500m ./CloudExplorer.jar
 
 [Video demonstraton]
 
+https://www.youtube.com/watch?v=O1HVDYywZRY
+
 [How to compile from source]
 
 http://youtu.be/54v3rIUh0h8
