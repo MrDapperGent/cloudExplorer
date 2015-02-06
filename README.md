@@ -1,9 +1,12 @@
+# License
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 A copy of the GNU GPL is located in `LICENSE.txt`.
 
+# Description 
 Cloud Explorer is a simple, free, and open-source S3 client made by me. It works on Windows, Linux, and Mac. Cloud Explorer provides extras that are not found elsewhere in other S3 browsers like search for objects, performance testing, music player, transition to Amazon Glacier, Amazon RRS, migrate buckets between S3 accounts, compress files piror to upload,take screen shots to S3, simple text editor, IRC client, share buckets with users, access shared buckets, and view images. Users can easily sync folders to their S3 account and upload and download files to their computer.
 
+# Screenshots 
 
 ![Graph](https://www.linux-toys.com/performance5.png)
 ![Objects](https://www.linux-toys.com/objects5.png)
@@ -21,11 +24,11 @@ For any OS, you can start the program with the Java command:
 
 java -jar -Xms100m -Xmx500m ./CloudExplorer.jar
 
-[Video demonstraton]
+# Video demonstraton
 
 https://www.youtube.com/watch?v=O1HVDYywZRY
 
-[How to compile from source]
+# How to compile from source
 
 http://youtu.be/54v3rIUh0h8
 
