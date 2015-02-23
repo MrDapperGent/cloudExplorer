@@ -34,10 +34,9 @@ public class ImageViewer implements Runnable {
         try {
 
             String temp_file = (mainFrame.Home + File.separator + "object.tmp");
-
             JLabel image = null;
             ImageIcon photo = null;
-            JScrollBar bar = new JScrollBar(JScrollBar.VERTICAL);
+            
             for (int i = 1; i != mainFrame.previous_objectarray_length; i++) {
                 if (mainFrame.object_item[i].isSelected()) {
                     String new_object_name = mainFrame.convertObject(mainFrame.object_item[i].getText(), "download");
