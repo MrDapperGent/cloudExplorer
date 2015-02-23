@@ -2544,6 +2544,15 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         if (active_bucket > 0) {
             imageviewer = new ImageViewer(this);
+            jButton1.setEnabled(false);
+            jButton3.setEnabled(false);
+            jButton4.setEnabled(false);
+            jButton7.setEnabled(false);
+            jButton12.setEnabled(false);
+            jButton13.setEnabled(false);
+            jButton17.setEnabled(false);
+            jButton18.setEnabled(false);
+            jButton19.setEnabled(false);
             imageviewer.startc();
             jPanel9.setVisible(true);
         } else {
