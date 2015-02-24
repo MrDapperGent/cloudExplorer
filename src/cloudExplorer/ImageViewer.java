@@ -18,25 +18,24 @@ package cloudExplorer;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JScrollBar;
 import static cloudExplorer.NewJFrame.jTextArea1;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
 
 public class ImageViewer implements Runnable {
 
     NewJFrame mainFrame;
+    JLabel label;
 
     public ImageViewer(NewJFrame Frame) {
         mainFrame = Frame;
-
     }
 
     public void run() {
         try {
 
             String temp_file = (mainFrame.Home + File.separator + "object.tmp");
-            JLabel image = null;
-            ImageIcon photo = null;
-            
+
             for (int i = 1; i != mainFrame.previous_objectarray_length; i++) {
                 if (mainFrame.object_item[i].isSelected()) {
                     String new_object_name = mainFrame.convertObject(mainFrame.object_item[i].getText(), "download");
@@ -44,10 +43,13 @@ public class ImageViewer implements Runnable {
                     mainFrame.calibrateTextArea();
                     mainFrame.get = new Get(mainFrame.object_item[i].getText(), mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), temp_file, null);
                     mainFrame.get.run();
-                    photo = new ImageIcon(temp_file);
-                    image = new JLabel(photo);
+                    BufferedImage imagee = ImageIO.read(new File(temp_file));
+                    label = new JLabel(new ImageIcon(imagee));
+                    label.revalidate();
+                    label.validate();
+                    label.repaint();
                     mainFrame.jPanel11.removeAll();
-                    mainFrame.jPanel11.add(image);
+                    mainFrame.jPanel11.add(label);
                     mainFrame.jPanel11.repaint();
                     mainFrame.jPanel11.revalidate();
                     mainFrame.jPanel11.validate();

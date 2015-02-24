@@ -2,7 +2,7 @@ Version 5.1
 
 Bug Fixes:
 
-<none>
+Fixed a bug when viewing pictures after switching buckets or pictures.
 
 Improvements: 
 
