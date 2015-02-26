@@ -1,12 +1,12 @@
-Version 5.1
+Version 5.11
 
 Bug Fixes:
 
-Fixed a bug when viewing pictures after switching buckets or pictures.
+Fixed bug where you can start multiple performance tests.
 
 Improvements: 
 
-Displaying images are done inside the explorer window.
+"Start" button removed after running performance tests.
 
 
 New Features: 

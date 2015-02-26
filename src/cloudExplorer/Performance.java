@@ -27,22 +27,22 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class Performance implements Runnable {
-
+    
     NewJFrame mainFrame;
     Put put;
     Performance putperformance;
     Boolean operation = true;
     PerformanceThread performancethread;
-
+    
     public Performance(NewJFrame Frame, Boolean Aoperation) {
         mainFrame = Frame;
         operation = Aoperation;
-
+        
     }
-
+    
     public void run() {
         try {
-
+            
             final JButton startPerformanceTest = new JButton("Start Test");
             final JButton abortPerformanceTest = new JButton("Close / Abort");
             final JButton close = new JButton("Close");
@@ -68,26 +68,27 @@ public class Performance implements Runnable {
             abortPerformanceTest.setForeground(Color.blue);
             abortPerformanceTest.setBorder(null);
             startPerformanceTest.setBorder(null);
-
+            
             close.setBackground(Color.white);
             close.setBorder(null);
             close.setForeground(Color.blue);
-
+            
             close.setIcon(mainFrame.genericEngine);
             abortPerformanceTest.setIcon(mainFrame.genericEngine);
             startPerformanceTest.setIcon(mainFrame.genericEngine);
-
+            
             mainFrame.jPanel15.setVisible(false);
-
+            
             startPerformanceTest.addActionListener(new ActionListener() {
-
+                
                 public void actionPerformed(ActionEvent e) {
+                    startPerformanceTest.setVisible(false);
                     Boolean graphData = false;
-
+                    
                     NewJFrame.jPanel11.removeAll();
                     NewJFrame.jPanel11.revalidate();
                     NewJFrame.jPanel11.repaint();
-
+                    
                     if (graph.isSelected()) {
                         graphData = true;
                     }
@@ -102,9 +103,9 @@ public class Performance implements Runnable {
                     performancethread.startc(threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation, graphData);
                 }
             });
-
+            
             abortPerformanceTest.addActionListener(new ActionListener() {
-
+                
                 public void actionPerformed(ActionEvent e) {
                     try {
                         performancethread.stop();
@@ -117,9 +118,9 @@ public class Performance implements Runnable {
                     mainFrame.jButton6.doClick();
                 }
             });
-
+            
             close.addActionListener(new ActionListener() {
-
+                
                 public void actionPerformed(ActionEvent e) {
                     mainFrame.jPanel14.removeAll();
                     mainFrame.jPanel14.repaint();
@@ -128,7 +129,7 @@ public class Performance implements Runnable {
                     mainFrame.miniReload();
                 }
             });
-
+            
             mainFrame.jPanel14.removeAll();
             mainFrame.jPanel14.setLayout(new BoxLayout(mainFrame.jPanel14, BoxLayout.Y_AXIS));
             mainFrame.jPanel14.add(fileSize);
@@ -147,21 +148,21 @@ public class Performance implements Runnable {
             mainFrame.jPanel14.repaint();
             mainFrame.jPanel14.revalidate();
             mainFrame.jPanel14.validate();
-
+            
         } catch (Exception mp3player) {
             jTextArea1.append("\n" + mp3player.getMessage());
         }
         mainFrame.calibrateTextArea();
-
+        
     }
-
+    
     public void calibrate() {
         try {
             jTextArea1.setCaretPosition(jTextArea1.getLineStartOffset(jTextArea1.getLineCount() - 1));
         } catch (Exception e) {
         }
     }
-
+    
     void startc(NewJFrame mainFrame, boolean Aoperation) {
         (new Thread(new Performance(mainFrame, Aoperation))).start();
     }
