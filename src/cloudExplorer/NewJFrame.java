@@ -47,7 +47,7 @@ import javax.swing.plaf.ColorUIResource;
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     String major = "5";
-    String minor = "11";
+    String minor = "12";
     String release_version = major + "." + minor;
     String version = "Cloud Explorer " + release_version;
     public boolean consoleToggle = false;
@@ -635,6 +635,11 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jScrollPane2.setViewportView(jPanel5);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/bucket.png"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         jScrollPane7.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jScrollPane7.setPreferredSize(new java.awt.Dimension(650, 314));
@@ -2791,6 +2796,17 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         Update update = new Update(this, false);
         update.startc(false);
     }//GEN-LAST:event_jMenuItem25ActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        if ((jTextField1.getText().length() > 1 || jTextField2.getText().length() > 1)) {
+            var();
+            MakeBucket makebucket = new MakeBucket(this);
+            makebucket.startc();
+        } else {
+            jTextArea1.append("\nError: Configuration not loaded\n");
+        }
+        calibrateTextArea();
+    }//GEN-LAST:event_jLabel1MouseClicked
     void cleanup() {
         try {
             jPanel9.setVisible(true);
