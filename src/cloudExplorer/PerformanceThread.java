@@ -37,6 +37,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 
 public class PerformanceThread implements Runnable {
@@ -69,6 +70,7 @@ public class PerformanceThread implements Runnable {
     Get get;
     JLabel label;
     String[] getTempArray;
+    JButton performance;
 
     public void performance_logger(double time, double rate, String what) {
         try {
@@ -87,7 +89,7 @@ public class PerformanceThread implements Runnable {
         }
     }
 
-    PerformanceThread(int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation, Boolean Agraphdata) {
+    PerformanceThread(JButton Aperformance, int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation, Boolean Agraphdata) {
         threadcount = Athreadcount;
         getValue = AgetValue;
         getOperationCount = AgetOperationCount;
@@ -97,6 +99,7 @@ public class PerformanceThread implements Runnable {
         endpoint = Aendpoint;
         operation = Aoperation;
         graphdata = Agraphdata;
+        performance = Aperformance;
     }
 
     public void run() {
@@ -261,6 +264,7 @@ public class PerformanceThread implements Runnable {
             NewJFrame.jTextArea1.append("\nError: Thread and Count values must be greater than 0. Object Size value must be 1024 or greater.");
             calibrate();
         }
+        performance.setVisible(true);
     }
 
     void display(double throughput, double iops
@@ -352,9 +356,9 @@ public class PerformanceThread implements Runnable {
         calibrate();
     }
 
-    void startc(int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation, Boolean Agraphdata
+    void startc(JButton Aperformance, int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation, Boolean Agraphdata
     ) {
-        performancethread = new Thread(new PerformanceThread(Athreadcount, AgetValue, AgetOperationCount, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aoperation, Agraphdata));
+        performancethread = new Thread(new PerformanceThread(Aperformance, Athreadcount, AgetValue, AgetOperationCount, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aoperation, Agraphdata));
         performancethread.start();
 
     }

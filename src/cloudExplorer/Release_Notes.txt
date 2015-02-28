@@ -1,4 +1,4 @@
-Version 5.12
+Version 5.13
 
 Bug Fixes:
 
@@ -6,12 +6,11 @@ Bug Fixes:
 
 Improvements: 
 
-<none>
-
+Start button for performance test will appear when test is complete.
 
 New Features: 
 
-Clicking the bucket icon will show the "create bucket display".
+<none?
 
 
 Features:
