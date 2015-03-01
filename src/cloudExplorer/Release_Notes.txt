@@ -8,7 +8,7 @@ Performance Testing:
     1. User's can choose what graphs to display.
     2. Graphs are larger.
     3. Graphs are auto-scaled.
-    4. Graphs no longer reset after 100 plots.
+    4. Plots on the graph are shown for the entire test and no longer reset after 100 plots.
 
 New Features: <none>
 
