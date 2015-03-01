@@ -28,14 +28,20 @@ import static java.awt.Color.BLUE;
 import static java.awt.Color.GREEN;
 import static java.awt.Color.WHITE;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -69,7 +75,7 @@ public class PerformanceThread implements Runnable {
     double[] x_iops;
     double[] y_iops;
     Get get;
-    JLabel label;
+    JLabel label_throughput;
     String[] getTempArray;
     JButton performance;
     public static Boolean throughput_graph = false;
@@ -279,6 +285,9 @@ public class PerformanceThread implements Runnable {
 
             if (!mixed) {
                 NewJFrame.jTextArea1.append("\n\nResults saved in CSV format to: " + "\n" + throughput_log + "\n" + latency_log + "\n" + ops_log);
+                if (num_graphs > 0) {
+                    NewJFrame.jTextArea1.append("\n\nGraphs saved in PNG format to: " + Home);
+                }
             }
             calibrate();
             NewJFrame.perf = false;
@@ -336,7 +345,8 @@ public class PerformanceThread implements Runnable {
             xyLineChart_iops.setTitle(type_operation + " OP/s");
             xyLineChart_iops.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
             xyLineChart_iops.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "OP/s")));
-            JLabel label_iops = new JLabel(new ImageIcon(ImageIO.read(new URL(xyLineChart_iops.toURLString()))));
+            ImageIcon ops_icon = new ImageIcon(ImageIO.read(new URL(xyLineChart_iops.toURLString())));
+            JLabel label_ops = new JLabel(ops_icon);
 
             //Configures the latency graph
             Data xdata_latency = DataUtil.scale(x_latency);
@@ -348,7 +358,8 @@ public class PerformanceThread implements Runnable {
             xyLineChart_latency.setTitle(type_operation + " Latency");
             xyLineChart_latency.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
             xyLineChart_latency.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Seconds")));
-            JLabel label_latency = new JLabel(new ImageIcon(ImageIO.read(new URL(xyLineChart_latency.toURLString()))));
+            ImageIcon latency_icon = new ImageIcon(ImageIO.read(new URL(xyLineChart_latency.toURLString())));
+            JLabel label_latency = new JLabel(latency_icon);
 
             //Configures the throughput graph
             Data xdata = DataUtil.scale(x);
@@ -361,20 +372,42 @@ public class PerformanceThread implements Runnable {
             xyLineChart.setTitle(type_operation + " Throughput");
             xyLineChart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
             xyLineChart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "MB/s")));
-            label = new JLabel(new ImageIcon(ImageIO.read(new URL(xyLineChart.toURLString()))));
+            ImageIcon throughput_icon = (new ImageIcon(ImageIO.read(new URL(xyLineChart.toURLString()))));
+            label_throughput = new JLabel(throughput_icon);
 
             //Configures the panel
             NewJFrame.jPanel11.removeAll();
             GridLayout layout = new GridLayout(0, 3);
             NewJFrame.jPanel11.setLayout(layout);
             if (throughput_graph) {
-                NewJFrame.jPanel11.add(label);
+                NewJFrame.jPanel11.add(label_throughput);
+                try {
+                    Image image_throughput = throughput_icon.getImage();
+                    BufferedImage buffered_throughput_icon = (BufferedImage) image_throughput;
+                    File outputfile = new File(Home + File.separator + "GRAPH-throughput.png");
+                    ImageIO.write(buffered_throughput_icon, "png", outputfile);
+                } catch (Exception ex) {
+                }
             }
             if (ops_graph) {
-                NewJFrame.jPanel11.add(label_iops);
+                NewJFrame.jPanel11.add(label_ops);
+                try {
+                    Image image_ops = ops_icon.getImage();
+                    BufferedImage buffered_ops_icon = (BufferedImage) image_ops;
+                    File outputfile = new File(Home + File.separator + "GRAPH-ops.png");
+                    ImageIO.write(buffered_ops_icon, "png", outputfile);
+                } catch (Exception ex) {
+                }
             }
             if (latency_graph) {
                 NewJFrame.jPanel11.add(label_latency);
+                try {
+                    Image image_latency = latency_icon.getImage();
+                    BufferedImage buffered_latency_icon = (BufferedImage) image_latency;
+                    File outputfile = new File(Home + File.separator + "GRAPH-latency.png");
+                    ImageIO.write(buffered_latency_icon, "png", outputfile);
+                } catch (Exception ex) {
+                }
             }
             NewJFrame.jPanel11.revalidate();
             NewJFrame.jPanel11.repaint();

@@ -8,6 +8,7 @@ New Features:
 
 Performance Testing:
     1. Mixed traffic support.
+    2. Graphs are saved to the home directory.
 
 Features:
 
