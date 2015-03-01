@@ -27,7 +27,6 @@ import com.googlecode.charts4j.XYLineChart;
 import static java.awt.Color.BLUE;
 import static java.awt.Color.GREEN;
 import static java.awt.Color.WHITE;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -77,6 +76,7 @@ public class PerformanceThread implements Runnable {
     public static Boolean ops_graph = false;
     public static Boolean latency_graph = false;
     int num_graphs = 0;
+    public static Boolean mixed = false;
 
     public void performance_logger(double time, double rate, String what) {
         try {
@@ -95,7 +95,7 @@ public class PerformanceThread implements Runnable {
         }
     }
 
-    PerformanceThread(JButton Aperformance, int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation, Boolean Agraphdata, Boolean Athroughput_graph, Boolean Alatency_graph, Boolean Aops_graph, int Anum_graphs) {
+    PerformanceThread(JButton Aperformance, int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation, Boolean Agraphdata, Boolean Athroughput_graph, Boolean Alatency_graph, Boolean Aops_graph, int Anum_graphs, Boolean Amixed) {
         threadcount = Athreadcount;
         getValue = AgetValue;
         getOperationCount = AgetOperationCount;
@@ -110,6 +110,7 @@ public class PerformanceThread implements Runnable {
         latency_graph = Alatency_graph;
         throughput_graph = Athroughput_graph;
         num_graphs = Anum_graphs;
+        mixed = Amixed;
     }
 
     public void run() {
@@ -155,7 +156,7 @@ public class PerformanceThread implements Runnable {
                     String upload = tempFile.getAbsolutePath();
                     calibrate();
 
-                    if (!operation) {
+                    if (!operation || mixed) {
                         put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
                         put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
                     }
@@ -172,6 +173,15 @@ public class PerformanceThread implements Runnable {
                     getTempArray = new String[(int) op_count * (int) num_threads];
 
                     for (int z = 0; z != op_count; z++) {
+
+                        if (mixed) {
+                            if (operation) {
+                                operation = false;
+                            } else {
+                                operation = true;
+                            }
+                        }
+
                         ExecutorService executor = Executors.newFixedThreadPool((int) num_threads);
                         long t1 = System.currentTimeMillis();
 
@@ -207,9 +217,12 @@ public class PerformanceThread implements Runnable {
                         } else {
                             NewJFrame.jTextArea1.append("\nGET : " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s. OPS/s: " + iops);
                         }
-                        performance_logger(counter, rate, throughput_log);
-                        performance_logger(counter, iops, ops_log);
-                        performance_logger(counter, total_time, latency_log);
+
+                        if (!mixed) {
+                            performance_logger(counter, rate, throughput_log);
+                            performance_logger(counter, iops, ops_log);
+                            performance_logger(counter, total_time, latency_log);
+                        }
                         /**
                          * if (counter == 100) { counter = 0; x = new
                          * double[op_count]; y = new double[op_count]; x_latency
@@ -264,7 +277,9 @@ public class PerformanceThread implements Runnable {
                 calibrate();
             }
 
-            NewJFrame.jTextArea1.append("\n\nResults saved in CSV format to: " + "\n" + throughput_log + "\n" + latency_log + "\n" + ops_log);
+            if (!mixed) {
+                NewJFrame.jTextArea1.append("\n\nResults saved in CSV format to: " + "\n" + throughput_log + "\n" + latency_log + "\n" + ops_log);
+            }
             calibrate();
             NewJFrame.perf = false;
 
@@ -375,9 +390,9 @@ public class PerformanceThread implements Runnable {
         calibrate();
     }
 
-    void startc(JButton Aperformance, int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation, Boolean Agraphdata, Boolean Athroughput_graph, Boolean Alatency_graph, Boolean Aops_graph, int Anum_graohs
+    void startc(JButton Aperformance, int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation, Boolean Agraphdata, Boolean Athroughput_graph, Boolean Alatency_graph, Boolean Aops_graph, int Anum_graohs, Boolean Amixed
     ) {
-        performancethread = new Thread(new PerformanceThread(Aperformance, Athreadcount, AgetValue, AgetOperationCount, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aoperation, Agraphdata, Athroughput_graph, Alatency_graph, Aops_graph, Anum_graohs));
+        performancethread = new Thread(new PerformanceThread(Aperformance, Athreadcount, AgetValue, AgetOperationCount, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aoperation, Agraphdata, Athroughput_graph, Alatency_graph, Aops_graph, Anum_graohs, Amixed));
         performancethread.start();
 
     }

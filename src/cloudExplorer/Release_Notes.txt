@@ -1,17 +1,13 @@
-Version 5.14
+Version 5.15
 
 Bug Fixes: <none>
 
-Improvements: 
+Improvements: <none>
+
+New Features: 
 
 Performance Testing:
-    1. User's can choose what graphs to display.
-    2. Graphs are larger.
-    3. Graphs are auto-scaled.
-    4. Plots on the graph are shown for the entire test and no longer reset after 100 plots.
-
-New Features: <none>
-
+    1. Mixed traffic support.
 
 Features:
 

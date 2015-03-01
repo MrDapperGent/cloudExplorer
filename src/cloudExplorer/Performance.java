@@ -27,7 +27,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class Performance implements Runnable {
-
+    
     NewJFrame mainFrame;
     Put put;
     Performance putperformance;
@@ -39,6 +39,7 @@ public class Performance implements Runnable {
     final JLabel fileSize = new JLabel("Object Size in KB: ");
     final JLabel threadCount = new JLabel("Thread Count:");
     final JLabel operationCount = new JLabel("Operation Count:");
+    final JCheckBox mixed_traffic = new JCheckBox("Mixed Traffic");
     final JCheckBox latency_graph = new JCheckBox("Graph Latency ");
     final JCheckBox ops_graph = new JCheckBox("Graph OP/s ");
     final JCheckBox throughput_graph = new JCheckBox("Graph Throughput");
@@ -52,16 +53,17 @@ public class Performance implements Runnable {
     Boolean graph_throughput = false;
     Boolean graph_ops = false;
     int num_graphs = 0;
-
+    Boolean mixed = false;
+    
     public Performance(NewJFrame Frame, Boolean Aoperation) {
         mainFrame = Frame;
         operation = Aoperation;
-
+        
     }
-
+    
     public void run() {
         try {
-
+            
             getFileSize.setMaximumSize(new Dimension(220, 20));
             getTheadCount.setMaximumSize(new Dimension(220, 20));
             getOperationCount.setMaximumSize(new Dimension(220, 20));
@@ -73,6 +75,10 @@ public class Performance implements Runnable {
             ops_graph.setForeground(Color.blue);
             ops_graph.setSelected(false);
             ops_graph.setBorder(null);
+            mixed_traffic.setBackground(Color.white);
+            mixed_traffic.setForeground(Color.blue);
+            mixed_traffic.setSelected(false);
+            mixed_traffic.setBorder(null);
             throughput_graph.setBackground(Color.white);
             throughput_graph.setForeground(Color.blue);
             throughput_graph.setSelected(false);
@@ -83,36 +89,40 @@ public class Performance implements Runnable {
             abortPerformanceTest.setForeground(Color.blue);
             abortPerformanceTest.setBorder(null);
             startPerformanceTest.setBorder(null);
-
+            
             close.setBackground(Color.white);
             close.setBorder(null);
             close.setForeground(Color.blue);
-
+            
             close.setIcon(mainFrame.genericEngine);
             abortPerformanceTest.setIcon(mainFrame.genericEngine);
             startPerformanceTest.setIcon(mainFrame.genericEngine);
-
+            
             mainFrame.jPanel15.setVisible(false);
-
+            
             startPerformanceTest.addActionListener(new ActionListener() {
-
+                
                 public void actionPerformed(ActionEvent e) {
                     startPerformanceTest.setVisible(false);
                     Boolean graphData = false;
-
+                    
                     NewJFrame.jPanel11.removeAll();
                     NewJFrame.jPanel11.revalidate();
                     NewJFrame.jPanel11.repaint();
-
+                    
                     num_graphs = 0;
-
+                    
+                    if (mixed_traffic.isSelected()) {
+                        mixed = true;
+                    }
+                    
                     if (latency_graph.isSelected() || throughput_graph.isSelected() || ops_graph.isSelected()) {
                         graphData = true;
-
+                        
                         if (latency_graph.isSelected()) {
                             graph_latency = true;
                             num_graphs++;
-
+                            
                         }
                         if (throughput_graph.isSelected()) {
                             graph_throughput = true;
@@ -130,17 +140,33 @@ public class Performance implements Runnable {
                     int threadcount = Integer.parseInt(getTheadCount.getText());
                     String getValue = getFileSize.getText();
                     String operationCount = getOperationCount.getText();
-                    performancethread = new PerformanceThread(startPerformanceTest, threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation, graphData, graph_throughput, graph_latency, graph_ops, num_graphs);
-                    performancethread.startc(startPerformanceTest, threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation, graphData, graph_throughput, graph_latency, graph_ops, num_graphs);
+                    performancethread = new PerformanceThread(startPerformanceTest, threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation, graphData, graph_throughput, graph_latency, graph_ops, num_graphs, mixed);
+                    performancethread.startc(startPerformanceTest, threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation, graphData, graph_throughput, graph_latency, graph_ops, num_graphs, mixed);
                     graph_ops = false;
                     graph_throughput = false;
                     graph_latency = false;
                     num_graphs = 0;
                 }
             });
-
+            
+            mixed_traffic.addActionListener(new ActionListener() {
+                
+                public void actionPerformed(ActionEvent e) {
+                    latency_graph.setSelected(false);
+                    ops_graph.setSelected(false);
+                    throughput_graph.setSelected(false);
+                    ops_graph.setVisible(false);
+                    latency_graph.setVisible(false);
+                    throughput_graph.setVisible(false);
+                    graph_ops = false;
+                    graph_throughput = false;
+                    graph_latency = false;
+                    num_graphs = 0;
+                }
+            });
+            
             abortPerformanceTest.addActionListener(new ActionListener() {
-
+                
                 public void actionPerformed(ActionEvent e) {
                     try {
                         performancethread.stop();
@@ -157,9 +183,9 @@ public class Performance implements Runnable {
                     mainFrame.jButton6.doClick();
                 }
             });
-
+            
             close.addActionListener(new ActionListener() {
-
+                
                 public void actionPerformed(ActionEvent e) {
                     mainFrame.jPanel14.removeAll();
                     mainFrame.jPanel14.repaint();
@@ -168,7 +194,7 @@ public class Performance implements Runnable {
                     mainFrame.miniReload();
                 }
             });
-
+            
             mainFrame.jPanel14.removeAll();
             mainFrame.jPanel14.setLayout(new BoxLayout(mainFrame.jPanel14, BoxLayout.Y_AXIS));
             mainFrame.jPanel14.add(fileSize);
@@ -178,6 +204,7 @@ public class Performance implements Runnable {
             mainFrame.jPanel14.add(operationCount);
             mainFrame.jPanel14.add(getOperationCount);
             mainFrame.jPanel14.add(blank2);
+            mainFrame.jPanel14.add(mixed_traffic);
             mainFrame.jPanel14.add(throughput_graph);
             mainFrame.jPanel14.add(ops_graph);
             mainFrame.jPanel14.add(latency_graph);
@@ -189,21 +216,21 @@ public class Performance implements Runnable {
             mainFrame.jPanel14.repaint();
             mainFrame.jPanel14.revalidate();
             mainFrame.jPanel14.validate();
-
+            
         } catch (Exception mp3player) {
             jTextArea1.append("\n" + mp3player.getMessage());
         }
         mainFrame.calibrateTextArea();
-
+        
     }
-
+    
     public void calibrate() {
         try {
             jTextArea1.setCaretPosition(jTextArea1.getLineStartOffset(jTextArea1.getLineCount() - 1));
         } catch (Exception e) {
         }
     }
-
+    
     void startc(NewJFrame mainFrame, boolean Aoperation) {
         (new Thread(new Performance(mainFrame, Aoperation))).start();
     }
