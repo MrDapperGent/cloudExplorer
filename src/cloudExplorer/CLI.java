@@ -15,7 +15,6 @@
  */
 package cloudExplorer;
 
-import static cloudExplorer.PerformanceThread.mixed;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -555,16 +554,19 @@ public class CLI {
                     int display_counter = 0;
 
                     for (int z = 0; z != op_count; z++) {
+
+                        if (mixed_mode) {
+                            if (performance_operation) {
+                                performance_operation = false;
+                            } else {
+                                performance_operation = true;
+                            }
+                        }
+
                         long t1 = System.currentTimeMillis();
 
                         for (int i = 0; i != num_threads; i++) {
-                            if (mixed_mode) {
-                                if (performance_operation) {
-                                    performance_operation = false;
-                                } else {
-                                    performance_operation = true;
-                                }
-                            }
+
                             if (performance_operation) {
                                 put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false);
                                 put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false);
@@ -626,7 +628,7 @@ public class CLI {
             if (!mixed_mode) {
                 System.out.print("\n\n\nResults saved in CSV format to: " + "\n" + throughput_log + "\n" + latency_log + "\n" + ops_log + "\n\n\n");
             }
-            
+
             NewJFrame.perf = false;
 
         } else {

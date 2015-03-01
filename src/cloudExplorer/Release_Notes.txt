@@ -6,10 +6,9 @@ Improvements:
 
     CLI:
         Added mixed mode to help for perf testing.
+        Mixed mode says the correct operation being ran.
 
 New Features:  <none>
-
-
 
 Features:
 
