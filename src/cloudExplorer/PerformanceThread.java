@@ -341,6 +341,7 @@ public class PerformanceThread implements Runnable {
             xyLineChart_iops.setTitle(type_operation + " OP/s");
             xyLineChart_iops.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
             xyLineChart_iops.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "OP/s")));
+            xyLineChart_iops.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, x_iops.length));
             ImageIcon ops_icon = new ImageIcon(ImageIO.read(new URL(xyLineChart_iops.toURLString())));
             JLabel label_ops = new JLabel(ops_icon);
 
@@ -352,6 +353,7 @@ public class PerformanceThread implements Runnable {
             XYLineChart xyLineChart_latency = GCharts.newXYLineChart(plot_latency);
             xyLineChart_latency.setSize(600, 300);
             xyLineChart_latency.setTitle(type_operation + " Latency");
+            xyLineChart_latency.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, x_latency.length));
             xyLineChart_latency.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
             xyLineChart_latency.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Seconds")));
             ImageIcon latency_icon = new ImageIcon(ImageIO.read(new URL(xyLineChart_latency.toURLString())));
@@ -367,7 +369,8 @@ public class PerformanceThread implements Runnable {
             xyLineChart.setSize(600, 300);
             xyLineChart.setTitle(type_operation + " Throughput");
             xyLineChart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
-            xyLineChart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "MB/s")));
+            xyLineChart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", "MB/s")));
+            xyLineChart.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, x.length));
             ImageIcon throughput_icon = (new ImageIcon(ImageIO.read(new URL(xyLineChart.toURLString()))));
             label_throughput = new JLabel(throughput_icon);
 
@@ -409,7 +412,6 @@ public class PerformanceThread implements Runnable {
             NewJFrame.jPanel11.repaint();
             System.gc();
         } catch (Exception graph) {
-            NewJFrame.jTextArea1.append("\nError: " + graph.getMessage());
         }
     }
 
