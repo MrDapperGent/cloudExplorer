@@ -39,13 +39,19 @@ public class Performance implements Runnable {
     final JLabel fileSize = new JLabel("Object Size in KB: ");
     final JLabel threadCount = new JLabel("Thread Count:");
     final JLabel operationCount = new JLabel("Operation Count:");
-    final JCheckBox graph = new JCheckBox("Graph");
+    final JCheckBox latency_graph = new JCheckBox("Graph Latency ");
+    final JCheckBox ops_graph = new JCheckBox("Graph OP/s ");
+    final JCheckBox throughput_graph = new JCheckBox("Graph Throughput");
     final JLabel blank = new JLabel(" ");
     final JLabel blank2 = new JLabel(" ");
     final JTextField getFileSize = new JTextField("1024");
     final JTextField getTheadCount = new JTextField("5");
     final JTextField getOperationCount = new JTextField("5");
     Performance performance;
+    Boolean graph_latency = false;
+    Boolean graph_throughput = false;
+    Boolean graph_ops = false;
+    int num_graphs = 0;
 
     public Performance(NewJFrame Frame, Boolean Aoperation) {
         mainFrame = Frame;
@@ -59,10 +65,18 @@ public class Performance implements Runnable {
             getFileSize.setMaximumSize(new Dimension(220, 20));
             getTheadCount.setMaximumSize(new Dimension(220, 20));
             getOperationCount.setMaximumSize(new Dimension(220, 20));
-            graph.setBackground(Color.white);
-            graph.setForeground(Color.blue);
-            graph.setSelected(false);
-            graph.setBorder(null);
+            latency_graph.setBackground(Color.white);
+            latency_graph.setForeground(Color.blue);
+            latency_graph.setSelected(false);
+            latency_graph.setBorder(null);
+            ops_graph.setBackground(Color.white);
+            ops_graph.setForeground(Color.blue);
+            ops_graph.setSelected(false);
+            ops_graph.setBorder(null);
+            throughput_graph.setBackground(Color.white);
+            throughput_graph.setForeground(Color.blue);
+            throughput_graph.setSelected(false);
+            throughput_graph.setBorder(null);
             startPerformanceTest.setBackground(Color.white);
             startPerformanceTest.setForeground(Color.blue);
             abortPerformanceTest.setBackground(Color.white);
@@ -90,8 +104,24 @@ public class Performance implements Runnable {
                     NewJFrame.jPanel11.revalidate();
                     NewJFrame.jPanel11.repaint();
 
-                    if (graph.isSelected()) {
+                    num_graphs = 0;
+
+                    if (latency_graph.isSelected() || throughput_graph.isSelected() || ops_graph.isSelected()) {
                         graphData = true;
+
+                        if (latency_graph.isSelected()) {
+                            graph_latency = true;
+                            num_graphs++;
+
+                        }
+                        if (throughput_graph.isSelected()) {
+                            graph_throughput = true;
+                            num_graphs++;
+                        }
+                        if (ops_graph.isSelected()) {
+                            graph_ops = true;
+                            num_graphs++;
+                        }
                     }
                     mainFrame.perf = true;
                     mainFrame.jPanel9.setVisible(true);
@@ -100,8 +130,12 @@ public class Performance implements Runnable {
                     int threadcount = Integer.parseInt(getTheadCount.getText());
                     String getValue = getFileSize.getText();
                     String operationCount = getOperationCount.getText();
-                    performancethread = new PerformanceThread(startPerformanceTest, threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation, graphData);
-                    performancethread.startc(startPerformanceTest, threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation, graphData);
+                    performancethread = new PerformanceThread(startPerformanceTest, threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation, graphData, graph_throughput, graph_latency, graph_ops, num_graphs);
+                    performancethread.startc(startPerformanceTest, threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation, graphData, graph_throughput, graph_latency, graph_ops, num_graphs);
+                    graph_ops = false;
+                    graph_throughput = false;
+                    graph_latency = false;
+                    num_graphs = 0;
                 }
             });
 
@@ -116,6 +150,10 @@ public class Performance implements Runnable {
                     mainFrame.jPanel14.repaint();
                     mainFrame.jPanel14.revalidate();
                     mainFrame.jPanel14.validate();
+                    graph_ops = false;
+                    graph_throughput = false;
+                    graph_latency = false;
+                    num_graphs = 0;
                     mainFrame.jButton6.doClick();
                 }
             });
@@ -140,7 +178,9 @@ public class Performance implements Runnable {
             mainFrame.jPanel14.add(operationCount);
             mainFrame.jPanel14.add(getOperationCount);
             mainFrame.jPanel14.add(blank2);
-            mainFrame.jPanel14.add(graph);
+            mainFrame.jPanel14.add(throughput_graph);
+            mainFrame.jPanel14.add(ops_graph);
+            mainFrame.jPanel14.add(latency_graph);
             mainFrame.jPanel14.add(blank);
             mainFrame.jPanel14.add(startPerformanceTest);
             mainFrame.jPanel14.add(abortPerformanceTest);

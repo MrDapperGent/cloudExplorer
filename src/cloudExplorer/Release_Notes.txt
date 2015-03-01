@@ -1,16 +1,16 @@
-Version 5.13
+Version 5.14
 
-Bug Fixes:
-
-<none>
+Bug Fixes: <none>
 
 Improvements: 
 
-Start button for performance test will appear when test is complete.
+Performance Testing:
+    1. User's can choose what graphs to display.
+    2. Graphs are larger.
+    3. Graphs are auto-scaled.
+    4. Graphs no longer reset after 100 plots.
 
-New Features: 
-
-<none>
+New Features: <none>
 
 
 Features:

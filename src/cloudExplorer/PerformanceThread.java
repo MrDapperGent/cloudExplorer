@@ -19,6 +19,7 @@ import static cloudExplorer.NewJFrame.jTextArea1;
 import com.googlecode.charts4j.AxisLabelsFactory;
 import com.googlecode.charts4j.Color;
 import com.googlecode.charts4j.Data;
+import com.googlecode.charts4j.DataUtil;
 import com.googlecode.charts4j.GCharts;
 import com.googlecode.charts4j.Plot;
 import com.googlecode.charts4j.Plots;
@@ -26,6 +27,7 @@ import com.googlecode.charts4j.XYLineChart;
 import static java.awt.Color.BLUE;
 import static java.awt.Color.GREEN;
 import static java.awt.Color.WHITE;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -71,6 +73,10 @@ public class PerformanceThread implements Runnable {
     JLabel label;
     String[] getTempArray;
     JButton performance;
+    public static Boolean throughput_graph = false;
+    public static Boolean ops_graph = false;
+    public static Boolean latency_graph = false;
+    int num_graphs = 0;
 
     public void performance_logger(double time, double rate, String what) {
         try {
@@ -89,7 +95,7 @@ public class PerformanceThread implements Runnable {
         }
     }
 
-    PerformanceThread(JButton Aperformance, int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation, Boolean Agraphdata) {
+    PerformanceThread(JButton Aperformance, int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation, Boolean Agraphdata, Boolean Athroughput_graph, Boolean Alatency_graph, Boolean Aops_graph, int Anum_graphs) {
         threadcount = Athreadcount;
         getValue = AgetValue;
         getOperationCount = AgetOperationCount;
@@ -100,6 +106,10 @@ public class PerformanceThread implements Runnable {
         operation = Aoperation;
         graphdata = Agraphdata;
         performance = Aperformance;
+        ops_graph = Aops_graph;
+        latency_graph = Alatency_graph;
+        throughput_graph = Athroughput_graph;
+        num_graphs = Anum_graphs;
     }
 
     public void run() {
@@ -200,16 +210,14 @@ public class PerformanceThread implements Runnable {
                         performance_logger(counter, rate, throughput_log);
                         performance_logger(counter, iops, ops_log);
                         performance_logger(counter, total_time, latency_log);
-
-                        if (counter == 100) {
-                            counter = 0;
-                            x = new double[op_count];
-                            y = new double[op_count];
-                            x_latency = new double[op_count];
-                            y_latency = new double[op_count];
-                            x_iops = new double[op_count];
-                            y_iops = new double[op_count];
-                        }
+                        /**
+                         * if (counter == 100) { counter = 0; x = new
+                         * double[op_count]; y = new double[op_count]; x_latency
+                         * = new double[op_count]; y_latency = new
+                         * double[op_count]; x_iops = new double[op_count];
+                         * y_iops = new double[op_count]; }
+                         *
+                         */
                         y[counter] = (Double) rate;
                         x[counter] = counter;
                         y_latency[counter] = total_time;
@@ -265,6 +273,10 @@ public class PerformanceThread implements Runnable {
             calibrate();
         }
         performance.setVisible(true);
+        throughput_graph = false;
+        ops_graph = false;
+        latency_graph = false;
+        num_graphs = 0;
     }
 
     void display(double throughput, double iops
@@ -293,7 +305,6 @@ public class PerformanceThread implements Runnable {
     }
 
     void graph() {
-
         try {
             if (!operation) {
                 type_operation = "GET";
@@ -301,36 +312,37 @@ public class PerformanceThread implements Runnable {
                 type_operation = "PUT";
             }
             //Configures the IO graph
-            Data xdata_iops = new Data(x_iops);
-            Data ydata_iops = new Data(y_iops);
+            Data xdata_iops = DataUtil.scale(x_iops);
+            Data ydata_iops = DataUtil.scale(y_iops);
             Plot plot_iops = Plots.newXYLine(xdata_iops, ydata_iops);
             plot_iops.setColor(Color.GREEN);
             XYLineChart xyLineChart_iops = GCharts.newXYLineChart(plot_iops);
-            xyLineChart_iops.setSize(375, 300);
+            xyLineChart_iops.setSize(600, 300);
             xyLineChart_iops.setTitle(type_operation + " OP/s");
             xyLineChart_iops.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
             xyLineChart_iops.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "OP/s")));
             JLabel label_iops = new JLabel(new ImageIcon(ImageIO.read(new URL(xyLineChart_iops.toURLString()))));
 
             //Configures the latency graph
-            Data xdata_latency = new Data(x_latency);
-            Data ydata_latency = new Data(y_latency);
+            Data xdata_latency = DataUtil.scale(x_latency);
+            Data ydata_latency = DataUtil.scale(y_latency);
             Plot plot_latency = Plots.newXYLine(xdata_latency, ydata_latency);
             plot_latency.setColor(Color.RED);
             XYLineChart xyLineChart_latency = GCharts.newXYLineChart(plot_latency);
-            xyLineChart_latency.setSize(375, 300);
+            xyLineChart_latency.setSize(600, 300);
             xyLineChart_latency.setTitle(type_operation + " Latency");
             xyLineChart_latency.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
             xyLineChart_latency.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Seconds")));
             JLabel label_latency = new JLabel(new ImageIcon(ImageIO.read(new URL(xyLineChart_latency.toURLString()))));
 
-            //Configures the operations graph
-            Data xdata = new Data(x);
-            Data ydata = new Data(y);
+            //Configures the throughput graph
+            Data xdata = DataUtil.scale(x);
+            Data ydata = DataUtil.scale(y);
+
             Plot plot = Plots.newXYLine(xdata, ydata);
             plot.setColor(Color.BLUE);
             XYLineChart xyLineChart = GCharts.newXYLineChart(plot);
-            xyLineChart.setSize(375, 300);
+            xyLineChart.setSize(600, 300);
             xyLineChart.setTitle(type_operation + " Throughput");
             xyLineChart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
             xyLineChart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "MB/s")));
@@ -340,13 +352,20 @@ public class PerformanceThread implements Runnable {
             NewJFrame.jPanel11.removeAll();
             GridLayout layout = new GridLayout(0, 3);
             NewJFrame.jPanel11.setLayout(layout);
-            NewJFrame.jPanel11.add(label);
-            NewJFrame.jPanel11.add(label_iops);
-            NewJFrame.jPanel11.add(label_latency);
+            if (throughput_graph) {
+                NewJFrame.jPanel11.add(label);
+            }
+            if (ops_graph) {
+                NewJFrame.jPanel11.add(label_iops);
+            }
+            if (latency_graph) {
+                NewJFrame.jPanel11.add(label_latency);
+            }
             NewJFrame.jPanel11.revalidate();
             NewJFrame.jPanel11.repaint();
             System.gc();
         } catch (Exception graph) {
+            NewJFrame.jTextArea1.append("\nError: " + graph.getMessage());
         }
     }
 
@@ -356,9 +375,9 @@ public class PerformanceThread implements Runnable {
         calibrate();
     }
 
-    void startc(JButton Aperformance, int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation, Boolean Agraphdata
+    void startc(JButton Aperformance, int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation, Boolean Agraphdata, Boolean Athroughput_graph, Boolean Alatency_graph, Boolean Aops_graph, int Anum_graohs
     ) {
-        performancethread = new Thread(new PerformanceThread(Aperformance, Athreadcount, AgetValue, AgetOperationCount, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aoperation, Agraphdata));
+        performancethread = new Thread(new PerformanceThread(Aperformance, Athreadcount, AgetValue, AgetOperationCount, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aoperation, Agraphdata, Athroughput_graph, Alatency_graph, Aops_graph, Anum_graohs));
         performancethread.start();
 
     }
