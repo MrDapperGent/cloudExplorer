@@ -1,16 +1,15 @@
-Version 5.15
+Version 5.16
 
 Bug Fixes: <none>
 
-Improvements: <none>
+Improvements: 
 
-New Features: 
+    CLI:
+        Added mixed mode to help for perf testing.
 
-Performance Testing:
-    1. Mixed traffic support.
-    2. Graphs are saved to the home directory.
-    3. Added Axis label to X axis.
-    4. CLI support for mixed mode.
+New Features:  <none>
+
+
 
 Features:
 

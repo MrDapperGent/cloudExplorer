@@ -28,8 +28,8 @@ public class CloudExplorer {
                 + "\nmakebucket what"
                 + "\nsynctos3 location bucket"
                 + "\nsyncfroms3 destination bucket"
-                + "\nuploadtest bucket size threads operations"
-                + "\ndownloadtest bucket size threads operations"
+                + "\nuploadtest bucket size threads operations [mixed]"
+                + "\ndownloadtest bucket size threads operations [mixed]"
                 + "\nsearch bucket what"
                 + "\n\n\n");
     }
