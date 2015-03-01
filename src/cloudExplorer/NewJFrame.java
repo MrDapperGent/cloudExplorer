@@ -635,6 +635,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jScrollPane2.setViewportView(jPanel5);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/bucket.png"))); // NOI18N
+        jLabel1.setToolTipText("Create a bucket");
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);

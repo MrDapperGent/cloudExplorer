@@ -4,9 +4,14 @@ Bug Fixes: <none>
 
 Improvements: 
 
+    Explorer:
+        Bucket icon has ToolTip that says "Create a bucket".
+
     CLI:
         Added mixed mode to help for perf testing.
         Mixed mode says the correct operation being ran.
+
+    
 
 New Features:  <none>
 
