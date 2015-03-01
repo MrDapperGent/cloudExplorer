@@ -15,6 +15,7 @@
  */
 package cloudExplorer;
 
+import static cloudExplorer.PerformanceThread.mixed;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -64,6 +65,7 @@ public class CLI {
     int threadcount;
     String getValue;
     Boolean performance_operation = true;
+    public static Boolean mixed_mode = false;
 
     void messageParser(String message) {
         System.out.print(message);
@@ -115,7 +117,7 @@ public class CLI {
         return remove_symbol;
     }
 
-    void start(String arg0, String arg1, String arg2, String arg3, String arg4) {
+    void start(String arg0, String arg1, String arg2, String arg3, String arg4, String arg5) {
         operation = arg0;
         Put.terminal = true;
         Get.terminal = true;
@@ -176,6 +178,11 @@ public class CLI {
                             getValue = arg2;
                             threadcount = Integer.parseInt(arg3);
                             getOperationCount = arg4;
+                            if (arg5 != null) {
+                                if (arg5.contains("mixed")) {
+                                    mixed_mode = true;
+                                }
+                            }
                             performance();
                         }
 
@@ -532,7 +539,7 @@ public class CLI {
                 try {
                     String upload = tempFile.getAbsolutePath();
 
-                    if (!performance_operation) {
+                    if (!performance_operation || mixed_mode) {
                         put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
                         put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
                     }
@@ -551,6 +558,13 @@ public class CLI {
                         long t1 = System.currentTimeMillis();
 
                         for (int i = 0; i != num_threads; i++) {
+                            if (mixed_mode) {
+                                if (performance_operation) {
+                                    performance_operation = false;
+                                } else {
+                                    performance_operation = true;
+                                }
+                            }
                             if (performance_operation) {
                                 put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false);
                                 put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false);
@@ -577,9 +591,11 @@ public class CLI {
                         } else {
                             System.out.print("\nGET Operation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s. OPS/s: " + iops);
                         }
-                        performance_logger(counter, rate, throughput_log);
-                        performance_logger(counter, iops, ops_log);
-                        performance_logger(counter, total_time, latency_log);
+                        if (!mixed_mode) {
+                            performance_logger(counter, rate, throughput_log);
+                            performance_logger(counter, iops, ops_log);
+                            performance_logger(counter, total_time, latency_log);
+                        }
 
                         if (counter == 100) {
                             counter = 0;
@@ -607,7 +623,10 @@ public class CLI {
                 System.out.print("\n Please specifiy more than 0 threads.");
             }
 
-            System.out.print("\n\n\nResults saved in CSV format to: " + "\n" + throughput_log + "\n" + latency_log + "\n" + ops_log + "\n\n\n");
+            if (!mixed_mode) {
+                System.out.print("\n\n\nResults saved in CSV format to: " + "\n" + throughput_log + "\n" + latency_log + "\n" + ops_log + "\n\n\n");
+            }
+            
             NewJFrame.perf = false;
 
         } else {

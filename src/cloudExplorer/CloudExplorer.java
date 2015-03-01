@@ -36,7 +36,7 @@ public class CloudExplorer {
 
     public static void main(String[] args) {
         int stop = 0;
-     
+
         if (args.length > 0) {
             if (args[0].contains("daemon")) {
                 Daemon daemon = new Daemon();
@@ -45,7 +45,7 @@ public class CloudExplorer {
                 stop = 1;
             } else if (args[0].contains("listbuckets")) {
                 CLI cli = new CLI();
-                cli.start(args[0], null, null, null, null);
+                cli.start(args[0], null, null, null, null, null);
                 stop = 1;
             }
 
@@ -58,16 +58,19 @@ public class CloudExplorer {
                     } else {
                         CLI cli = new CLI();
                         if (args.length < 3) {
-                            cli.start(args[0], args[1], null, null, null);
+                            cli.start(args[0], args[1], null, null, null, null);
                         }
                         if (args.length == 3) {
-                            cli.start(args[0], args[1], args[2], null, null);
+                            cli.start(args[0], args[1], args[2], null, null, null);
                         }
-                         if (args.length == 4) {
-                            cli.start(args[0], args[1], args[2], args[3], null);
+                        if (args.length == 4) {
+                            cli.start(args[0], args[1], args[2], args[3], null, null);
                         }
                         if (args.length == 5) {
-                            cli.start(args[0], args[1], args[2], args[3], args[4]);
+                            cli.start(args[0], args[1], args[2], args[3], args[4], null);
+                        }
+                        if (args.length == 6) {
+                            cli.start(args[0], args[1], args[2], args[3], args[4], args[5]);
                         }
                     }
 
