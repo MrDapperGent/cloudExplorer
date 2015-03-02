@@ -71,7 +71,7 @@ Create your config file from the GUI.
 # Run Cloud Explorer from Docker
 <br>
 <br>
-This will allow you to run Cloud Explorer 4.2 from a Docker container using my public repository.
+This will allow you to run Cloud Explorer 5.17 from a Docker container using my public repository.
 
 1. docker pull rusher81572/cloudexplorer
 2. docker run -d --net=host rusher81572/cloudexplorer /opt/start.sh
@@ -94,7 +94,7 @@ If you want to use the Cloud Explorer CLI instead of the GUI, please run the con
 		(You should be in the container now)
 
 
-	2. java -jar /cloudExplorer-4.2/CloudExplorer.jar help
+	2. java -jar /cloudExplorer-5.17/CloudExplorer.jar help
 
 
 	** Please note that you will need to use the GUI to create the s3.config file before using the CLI **
