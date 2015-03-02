@@ -1,18 +1,11 @@
-Version 5.16
+Version 5.17
 
-Bug Fixes: <none>
+Bug Fixes: 
 
-Improvements: 
+       Performance Testing:
+                       Removed extra 0 labels.
 
-    Explorer:
-        Bucket icon has ToolTip that says "Create a bucket".
-
-    CLI:
-        Added mixed mode to help for perf testing.
-        Mixed mode says the correct operation being ran.
-
-    Performance:
-        Added Y axis label.  
+Improvements: <none> 
 
 New Features:  <none>
 

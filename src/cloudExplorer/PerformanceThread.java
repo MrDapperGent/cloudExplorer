@@ -342,8 +342,8 @@ public class PerformanceThread implements Runnable {
             XYLineChart xyLineChart_iops = GCharts.newXYLineChart(plot_iops);
             xyLineChart_iops.setSize(600, 300);
             xyLineChart_iops.setTitle(type_operation + " OP/s");
-            xyLineChart_iops.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
-            xyLineChart_iops.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "OP/s")));
+            xyLineChart_iops.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", "Operations")));
+            xyLineChart_iops.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", "OP/s")));
             xyLineChart_iops.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, x_iops.length + 1));
             xyLineChart_iops.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, y_iops[1] * 4));
             ImageIcon ops_icon = new ImageIcon(ImageIO.read(new URL(xyLineChart_iops.toURLString())));
@@ -359,8 +359,8 @@ public class PerformanceThread implements Runnable {
             xyLineChart_latency.setTitle(type_operation + " Latency");
             xyLineChart_latency.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, x_latency.length + 1));
             xyLineChart_latency.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, y_latency[1] * 4));
-            xyLineChart_latency.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
-            xyLineChart_latency.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Seconds")));
+            xyLineChart_latency.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", "Operations")));
+            xyLineChart_latency.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", "Seconds")));
             ImageIcon latency_icon = new ImageIcon(ImageIO.read(new URL(xyLineChart_latency.toURLString())));
             JLabel label_latency = new JLabel(latency_icon);
 
@@ -372,7 +372,7 @@ public class PerformanceThread implements Runnable {
             XYLineChart xyLineChart = GCharts.newXYLineChart(plot);
             xyLineChart.setSize(600, 300);
             xyLineChart.setTitle(type_operation + " Throughput");
-            xyLineChart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
+            xyLineChart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", "Operations")));
             xyLineChart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", "MB/s")));
             xyLineChart.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, x.length + 1));
             xyLineChart.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, y[1] * 4));
