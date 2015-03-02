@@ -344,7 +344,7 @@ public class PerformanceThread implements Runnable {
             xyLineChart_iops.setTitle(type_operation + " OP/s");
             xyLineChart_iops.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
             xyLineChart_iops.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "OP/s")));
-            xyLineChart_iops.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, x_iops.length));
+            xyLineChart_iops.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, x_iops.length + 1));
             xyLineChart_iops.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, y_iops[1] * 2));
             ImageIcon ops_icon = new ImageIcon(ImageIO.read(new URL(xyLineChart_iops.toURLString())));
             JLabel label_ops = new JLabel(ops_icon);
@@ -357,7 +357,7 @@ public class PerformanceThread implements Runnable {
             XYLineChart xyLineChart_latency = GCharts.newXYLineChart(plot_latency);
             xyLineChart_latency.setSize(600, 300);
             xyLineChart_latency.setTitle(type_operation + " Latency");
-            xyLineChart_latency.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, x_latency.length));
+            xyLineChart_latency.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, x_latency.length + 1));
             xyLineChart_latency.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, y_latency[1] * 2));
             xyLineChart_latency.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
             xyLineChart_latency.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Seconds")));
@@ -374,7 +374,7 @@ public class PerformanceThread implements Runnable {
             xyLineChart.setTitle(type_operation + " Throughput");
             xyLineChart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("0", "Operations")));
             xyLineChart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", "MB/s")));
-            xyLineChart.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, x.length));
+            xyLineChart.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, x.length + 1));
             xyLineChart.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, y[1] * 2));
             ImageIcon throughput_icon = (new ImageIcon(ImageIO.read(new URL(xyLineChart.toURLString()))));
             label_throughput = new JLabel(throughput_icon);
@@ -417,7 +417,6 @@ public class PerformanceThread implements Runnable {
             NewJFrame.jPanel11.repaint();
             System.gc();
         } catch (Exception graph) {
-            System.out.print("\nERror:" + graph.getMessage());
         }
     }
 

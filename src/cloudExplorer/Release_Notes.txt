@@ -11,7 +11,8 @@ Improvements:
         Added mixed mode to help for perf testing.
         Mixed mode says the correct operation being ran.
 
-    
+    Performance:
+        Added Y axis label.  
 
 New Features:  <none>
 
