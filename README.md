@@ -39,12 +39,12 @@ Starting with v5.0, minor releases will no longer be published on Github. To upg
 
 # How to migrate data between S3 accounts
 
-Load the destination account and click "Set as migration Account" under Settings.
-Create the destination bucket on the destination account.
-Load the origin S3 account and select the bucket to transfer to the new S3 account.
-Under the "Tools" menu, select "Migrate bucket to another S3 account".
-Type in the destination bucket name and click "Start Bucket Migration".
-Wait for transfers to complete.
+* Load the destination account and click "Set as migration Account" under Settings.
+* Create the destination bucket on the destination account.
+* Load the origin S3 account and select the bucket to transfer to the new S3 account.
+* Under the "Tools" menu, select "Migrate bucket to another S3 account".
+* Type in the destination bucket name and click "Start Bucket Migration".
+* Wait for transfers to complete.
 
 
 # Background Sync
