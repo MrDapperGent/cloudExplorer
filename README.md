@@ -53,29 +53,20 @@ Background Sync allows Cloud Explorer to sync a directory in the background to S
 <br>
 <br>
 From the GUI: 
-<br>
-	Click on "Background Syncing"
-<br>
-	Click Configure
-<br>
-	Click on a destination Directory
-<br>
-	Click Save.
-<br>
-	Click on "Background Syncing"
-<br>
-	Click "Run".
-<br>
-	Syncing will occur every 5 minutes.
+* Click on "Background Syncing"
+* Click Configure
+* Click Save.
+* Click on "Background Syncing"
+* Click "Run".
+* Syncing will occur every 5 minutes.
 
-<br>
 Starting background sync from the Command Line (Useful for running as a background process):
 
 Create your config file from the GUI.
-<br>
+```
 	$ java -jar -Xms100m -Xmx500m CloudExplorer.jar daemon
+```
 
-<br>
 # Run Cloud Explorer from Docker
 <br>
 <br>
