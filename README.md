@@ -4,7 +4,7 @@ This program is free software: you can redistribute it and/or modify it under th
 A copy of the GNU GPL is located in `LICENSE.txt`.
 
 # Description 
-Cloud Explorer is a simple, free, and open-source S3 client made by me. It works on Windows, Linux, and Mac. 
+Cloud Explorer is a simple, free, and open-source S3 client. It works on Windows, Linux, and Mac. 
 
 # Features
 
