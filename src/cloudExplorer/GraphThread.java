@@ -127,9 +127,6 @@ public class GraphThread implements Runnable {
                     String[] cut = parse[YwhatToGraph].split(":");
                     parse[YwhatToGraph] = cut[0];
                 }
-                if (x_sort.size() == stop_graphing) {
-                    break;
-                }
 
                 if (delimiter_conter == inter) {
                     x_sort.add(Double.parseDouble(parse[XwhatToGraph]));
@@ -154,47 +151,51 @@ public class GraphThread implements Runnable {
     public void graph() {
         // mainFrame.jTextArea1.append("\nGraphing......");
         // calibrateTextArea();
-
+        System.out.print("\nHere");
         try {
-            Data xdata = DataUtil.scaleWithinRange(x_sort.get(0), x_sort.get(x_sort.size() - 1), x_sort);
-            Data ydata = DataUtil.scaleWithinRange(y_sort.get(0), y_sort.get(y_sort.size() - 1), y_sort);
-            Plot plot = Plots.newXYLine(xdata, ydata);
-            plot.setColor(com.googlecode.charts4j.Color.BLUE);
+            // System.out.print("\nDebug 1 " + x_sort.get(x_sort.size() - 1) + " " + y_sort.get(y_sort.size() - 1));
+            if (x_sort.get(0) < x_sort.get(x_sort.size() - 1) || y_sort.get(0) < y_sort.get(y_sort.size() - 1)) {
+                Data xdata = DataUtil.scaleWithinRange(x_sort.get(0), x_sort.get(x_sort.size() - 1), x_sort);
+                Data ydata = DataUtil.scaleWithinRange(y_sort.get(0), y_sort.get(y_sort.size() - 1), y_sort);
+                Plot plot = Plots.newXYLine(xdata, ydata);
+                plot.setColor(com.googlecode.charts4j.Color.BLUE);
 
-            if (line) {
-                XYLineChart xyLineChart = GCharts.newXYLineChart(plot);
-                xyLineChart.setSize(Integer.parseInt(x_graphsize_field), Integer.parseInt(y_graphsize_field));
-                xyLineChart.setTitle(graph_name_field);
-                xyLineChart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", x_name_field)));
-                xyLineChart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", y_name_field)));
-                xyLineChart.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(x_sort.get(0), x_sort.size() - 1));
-                xyLineChart.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(y_sort.get(0), y_sort.size() - 1));
-                throughput_icon = (new ImageIcon(ImageIO.read(new URL(xyLineChart.toURLString()))));
-            } else {
-                ScatterPlot Scatteredplot = GCharts.newScatterPlot(plot);
-                Scatteredplot.setSize(Integer.parseInt(x_graphsize_field), Integer.parseInt(y_graphsize_field));
-                Scatteredplot.setTitle(graph_name_field);
-                Scatteredplot.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", x_name_field)));
-                Scatteredplot.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", y_name_field)));
-                Scatteredplot.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(x_sort.get(0), x_sort.size() - 1));
-                Scatteredplot.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(y_sort.get(0), y_sort.size() - 1));
-                throughput_icon = (new ImageIcon(ImageIO.read(new URL(Scatteredplot.toURLString()))));
+                if (line) {
+                    XYLineChart xyLineChart = GCharts.newXYLineChart(plot);
+                    xyLineChart.setSize(Integer.parseInt(x_graphsize_field), Integer.parseInt(y_graphsize_field));
+                    xyLineChart.setTitle(graph_name_field);
+                    xyLineChart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", x_name_field)));
+                    xyLineChart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", y_name_field)));
+                    xyLineChart.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(x_sort.get(0), x_sort.size() - 1));
+                    xyLineChart.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(y_sort.get(0), y_sort.size() - 1));
+                    throughput_icon = (new ImageIcon(ImageIO.read(new URL(xyLineChart.toURLString()))));
+                } else {
+                    ScatterPlot Scatteredplot = GCharts.newScatterPlot(plot);
+                    Scatteredplot.setSize(Integer.parseInt(x_graphsize_field), Integer.parseInt(y_graphsize_field));
+                    Scatteredplot.setTitle(graph_name_field);
+                    Scatteredplot.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", x_name_field)));
+                    Scatteredplot.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", y_name_field)));
+                    Scatteredplot.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(x_sort.get(0), x_sort.size() - 1));
+                    Scatteredplot.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(y_sort.get(0), y_sort.size() - 1));
+                    throughput_icon = (new ImageIcon(ImageIO.read(new URL(Scatteredplot.toURLString()))));
+                }
+
+                label_throughput = new JLabel(throughput_icon);
+
+                //Configures the panel
+                NewJFrame.jPanel11.removeAll();
+                GridLayout layout = new GridLayout(0, 3);
+                NewJFrame.jPanel11.setLayout(layout);
+
+                NewJFrame.jPanel11.add(label_throughput);
+
+                NewJFrame.jPanel11.revalidate();
+                NewJFrame.jPanel11.repaint();
+                System.gc();
             }
 
-            label_throughput = new JLabel(throughput_icon);
-
-            //Configures the panel
-            NewJFrame.jPanel11.removeAll();
-            GridLayout layout = new GridLayout(0, 3);
-            NewJFrame.jPanel11.setLayout(layout);
-
-            NewJFrame.jPanel11.add(label_throughput);
-
-            NewJFrame.jPanel11.revalidate();
-            NewJFrame.jPanel11.repaint();
-            System.gc();
         } catch (Exception graph) {
-            // mainFrame.jTextArea1.append("\nError: " + graph.getMessage());
+            mainFrame.jTextArea1.append("\nError: " + graph.getMessage());
             calibrateTextArea();
             proceed = false;
         }
