@@ -21,6 +21,7 @@ import com.googlecode.charts4j.DataUtil;
 import com.googlecode.charts4j.GCharts;
 import com.googlecode.charts4j.Plot;
 import com.googlecode.charts4j.Plots;
+import com.googlecode.charts4j.ScatterPlot;
 import com.googlecode.charts4j.XYLineChart;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -38,6 +39,7 @@ import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -48,7 +50,6 @@ public class Graph implements Runnable {
     String Home = System.getProperty("user.home");
     String[] object = new String[1];
     String temp_file = (Home + File.separator + "object.tmp");
-    File config = new File(Home + File.separator + ".cloudExplorerIRC");
     String what = null;
     Put put;
     double[] x;
@@ -70,7 +71,9 @@ public class Graph implements Runnable {
     final JLabel blank6 = new JLabel(" ");
     final JLabel blank7 = new JLabel(" ");
     final JLabel blank8 = new JLabel(" ");
+    final JLabel blank9 = new JLabel(" ");
     final JLabel y_name = new JLabel("Y-axis name:");
+    final JCheckBox line_checkbox = new JCheckBox("Line Graph");
     final JTextField x_whattograph_field = new JTextField("0");
     final JTextField y_whattograph_field = new JTextField("1");
     final JTextField graph_name_field = new JTextField("New Graph");
@@ -81,6 +84,7 @@ public class Graph implements Runnable {
     File check_temp = new File(temp_file);
     boolean first_pass = true;
     boolean proceed = true;
+    boolean line = true;
 
     public Graph(NewJFrame Frame, String Awhat) {
         mainFrame = Frame;
@@ -100,18 +104,32 @@ public class Graph implements Runnable {
         mainFrame.jTextArea1.append("\nGraphing......");
         calibrateTextArea();
         try {
-            Data xdata = DataUtil.scaleWithinRange(0, x.length, x);
+            Data xdata = DataUtil.scaleWithinRange(0, x[1] * 4, x);
             Data ydata = DataUtil.scaleWithinRange(0, y[1] * 4, y);
             Plot plot = Plots.newXYLine(xdata, ydata);
             plot.setColor(com.googlecode.charts4j.Color.BLUE);
-            XYLineChart xyLineChart = GCharts.newXYLineChart(plot);
-            xyLineChart.setSize(Integer.parseInt(x_graphsize_field.getText()), Integer.parseInt(y_graphsize_field.getText()));
-            xyLineChart.setTitle(graph_name_field.getText());
-            xyLineChart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", x_name_field.getText())));
-            xyLineChart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", y_name_field.getText())));
-            xyLineChart.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, x.length + 1));
-            xyLineChart.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, y[1] * 4));
-            ImageIcon throughput_icon = (new ImageIcon(ImageIO.read(new URL(xyLineChart.toURLString()))));
+            ImageIcon throughput_icon;
+
+            if (line) {
+                XYLineChart xyLineChart = GCharts.newXYLineChart(plot);
+                xyLineChart.setSize(Integer.parseInt(x_graphsize_field.getText()), Integer.parseInt(y_graphsize_field.getText()));
+                xyLineChart.setTitle(graph_name_field.getText());
+                xyLineChart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", x_name_field.getText())));
+                xyLineChart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", y_name_field.getText())));
+                xyLineChart.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, x[1] * 4));
+                xyLineChart.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, y[1] * 4));
+                throughput_icon = (new ImageIcon(ImageIO.read(new URL(xyLineChart.toURLString()))));
+            } else {
+                ScatterPlot Scatteredplot = GCharts.newScatterPlot(plot);
+                Scatteredplot.setSize(Integer.parseInt(x_graphsize_field.getText()), Integer.parseInt(y_graphsize_field.getText()));
+                Scatteredplot.setTitle(graph_name_field.getText());
+                Scatteredplot.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", x_name_field.getText())));
+                Scatteredplot.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", y_name_field.getText())));
+                Scatteredplot.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, x[1] * 4));
+                Scatteredplot.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, y[1] * 4));
+                throughput_icon = (new ImageIcon(ImageIO.read(new URL(Scatteredplot.toURLString()))));
+            }
+
             JLabel label_throughput = new JLabel(throughput_icon);
 
             //Configures the panel
@@ -154,6 +172,14 @@ public class Graph implements Runnable {
                     int XwhatToGraph = Integer.parseInt(x_whattograph_field.getText());
                     int YwhatToGraph = Integer.parseInt(y_whattograph_field.getText());
                     String[] parse = read.split(",");
+                    if (parse[XwhatToGraph].contains(":")) {
+                        String[] cut = parse[XwhatToGraph].split(":");
+                        parse[XwhatToGraph] = cut[0];
+                    }
+                    if (parse[YwhatToGraph].contains(":")) {
+                        String[] cut = parse[YwhatToGraph].split(":");
+                        parse[YwhatToGraph] = cut[0];
+                    }
                     x[i] = Double.parseDouble(parse[XwhatToGraph]);
                     y[i] = Double.parseDouble(parse[YwhatToGraph]);
                 }
@@ -199,6 +225,10 @@ public class Graph implements Runnable {
         y_whattograph.setForeground(Color.blue);
         y_whattograph.setBorder(null);
 
+        line_checkbox.setBackground(Color.white);
+        line_checkbox.setForeground(Color.blue);
+        line_checkbox.setBorder(null);
+
         x_whattograph.setBackground(Color.white);
         x_whattograph.setForeground(Color.blue);
         x_whattograph.setBorder(null);
@@ -243,6 +273,8 @@ public class Graph implements Runnable {
         mainFrame.jPanel11.setLayout(new BoxLayout(mainFrame.jPanel11, BoxLayout.Y_AXIS));
         mainFrame.jPanel11.add(graph_name);
         mainFrame.jPanel11.add(graph_name_field);
+        mainFrame.jPanel11.add(blank9);
+        mainFrame.jPanel11.add(line_checkbox);
         mainFrame.jPanel11.add(blank6);
         mainFrame.jPanel11.add(graph_size_x);
         mainFrame.jPanel11.add(x_graphsize_field);
@@ -260,6 +292,7 @@ public class Graph implements Runnable {
         mainFrame.jPanel11.add(x_whattograph_field);
         mainFrame.jPanel11.add(y_whattograph);
         mainFrame.jPanel11.add(y_whattograph_field);
+        mainFrame.jPanel14.add(blank8);
         mainFrame.jPanel11.add(blank3);
         mainFrame.jPanel14.add(intro_label);
         mainFrame.jPanel14.add(blank7);
@@ -287,6 +320,11 @@ public class Graph implements Runnable {
 
                         process_data();
                         if (proceed) {
+                            if (line_checkbox.isSelected()) {
+                                line = true;
+                            } else {
+                                line = false;
+                            }
                             graph();
                         }
                         if (proceed) {
