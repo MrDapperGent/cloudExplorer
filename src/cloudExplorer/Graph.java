@@ -125,7 +125,7 @@ public class Graph implements Runnable {
                 File outputfile = new File(Home + File.separator + "GRAPH-" + graph_name_field.getText() + ".png");
                 ImageIO.write(buffered_throughput_icon, "png", outputfile);
                 if (outputfile.exists()) {
-                    mainFrame.jTextArea1.append("\nSaved graph to: " + Home + File.separator + "GRAPH-" + graph_name_field.getText());
+                    mainFrame.jTextArea1.append("\nSaved graph to: " + Home + File.separator + "GRAPH-" + graph_name_field.getText() + ".png");
                     calibrateTextArea();
                 }
             } catch (Exception ex) {
@@ -251,8 +251,7 @@ public class Graph implements Runnable {
         mainFrame.jPanel11.add(y_whattograph_field);
         mainFrame.jPanel11.add(blank3);
         mainFrame.jPanel14.add(intro_label);
-        mainFrame.jPanel11.add(blank7);
-        mainFrame.jPanel11.add(blank8);
+        mainFrame.jPanel14.add(blank7);
         mainFrame.jPanel14.add(close);
         mainFrame.jPanel14.add(save);
         mainFrame.jPanel11.repaint();
