@@ -174,7 +174,7 @@ public class Graph implements Runnable {
     }
 
     void save() {
-        File complete_graph = new File("GRAPH-" + graph_name_field.getText() + ".png");
+        File complete_graph = new File(Home + File.separator + "GRAPH-" + graph_name_field.getText() + ".png");
         mainFrame.jTextArea1.append("\nUploading to bucket.......");
         calibrateTextArea();
         put = new Put(complete_graph.getAbsolutePath(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), complete_graph.getName(), false, false);
