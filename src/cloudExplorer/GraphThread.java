@@ -118,6 +118,7 @@ public class GraphThread implements Runnable {
                     }
                     x[i] = Double.parseDouble(parse[XwhatToGraph]);
                     y[i] = Double.parseDouble(parse[YwhatToGraph]);
+                    graph();
                 }
                 i++;
             }
@@ -131,7 +132,6 @@ public class GraphThread implements Runnable {
             }
             bfrr.close();
         } catch (Exception tempFile) {
-            System.out.print("\nDebug 0:" + tempFile.getMessage());
             proceed = false;
             mainFrame.jTextArea1.append("\nError importing data. Please ensure the fields are correct.");
             calibrateTextArea();
@@ -210,8 +210,7 @@ public class GraphThread implements Runnable {
 
         if (check_temp.exists()) {
             process_data();
-            graph();
-
+   
         }
     }
 
