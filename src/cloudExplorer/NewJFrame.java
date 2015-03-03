@@ -2835,7 +2835,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     jButton18.setEnabled(false);
                     jButton19.setEnabled(false);
                     Thread graph = new Thread(new Graph(this, object_item[h].getText()));
-                    graph.run();
+                    graph.start();
                     break;
                 }
             }
