@@ -2825,6 +2825,15 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 if (object_item[h].isSelected()) {
                     jPanel9.setVisible(true);
                     jPanel15.setVisible(false);
+                    jButton1.setEnabled(false);
+                    jButton3.setEnabled(false);
+                    jButton4.setEnabled(false);
+                    jButton7.setEnabled(false);
+                    jButton12.setEnabled(false);
+                    jButton13.setEnabled(false);
+                    jButton17.setEnabled(false);
+                    jButton18.setEnabled(false);
+                    jButton19.setEnabled(false);
                     Thread graph = new Thread(new Graph(this, object_item[h].getText()));
                     graph.run();
                     break;
