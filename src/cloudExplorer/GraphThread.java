@@ -125,6 +125,8 @@ public class GraphThread implements Runnable {
                 }
                 x_sort.add(Double.parseDouble(parse[XwhatToGraph]));
                 y_sort.add(Double.parseDouble(parse[YwhatToGraph]));
+                postsort();
+                graph();
 
                 i++;
             }
@@ -134,13 +136,12 @@ public class GraphThread implements Runnable {
             mainFrame.jTextArea1.append("\nError importing data. Please ensure the fields are correct.");
             calibrateTextArea();
         }
-        postsort();
-        graph();
+
     }
 
     public void graph() {
-        mainFrame.jTextArea1.append("\nGraphing......");
-        calibrateTextArea();
+       // mainFrame.jTextArea1.append("\nGraphing......");
+       // calibrateTextArea();
 
         try {
             Data xdata = DataUtil.scaleWithinRange(x_sort.get(0), x_sort.get(x_sort.size() - 1), x_sort);
@@ -183,8 +184,8 @@ public class GraphThread implements Runnable {
                 File outputfile = new File(Home + File.separator + "GRAPH-" + graph_name_field + ".png");
                 ImageIO.write(buffered_throughput_icon, "png", outputfile);
                 if (outputfile.exists()) {
-                    mainFrame.jTextArea1.append("\nSaved graph to: " + Home + File.separator + "GRAPH-" + graph_name_field + ".png");
-                    calibrateTextArea();
+                //    mainFrame.jTextArea1.append("\nSaved graph to: " + Home + File.separator + "GRAPH-" + graph_name_field + ".png");
+                //    calibrateTextArea();
                 }
             } catch (Exception ex) {
 
