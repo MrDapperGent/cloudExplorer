@@ -55,6 +55,7 @@ public class Graph implements Runnable {
     final JButton save = new JButton("Graph");
 
     final JButton close = new JButton("Close");
+    final JLabel intro_label = new JLabel("Graphing controls:");
     final JLabel graph_name = new JLabel("Name:");
     final JLabel x_name = new JLabel("X-axis name:");
     final JLabel x_whattograph = new JLabel("X column # in CSV:");
@@ -67,6 +68,7 @@ public class Graph implements Runnable {
     final JLabel blank4 = new JLabel(" ");
     final JLabel blank5 = new JLabel(" ");
     final JLabel blank6 = new JLabel(" ");
+    final JLabel blank7 = new JLabel(" ");
     final JLabel y_name = new JLabel("Y-axis name:");
     final JTextField x_whattograph_field = new JTextField("0");
     final JTextField y_whattograph_field = new JTextField("1");
@@ -195,6 +197,10 @@ public class Graph implements Runnable {
         graph_size_x.setForeground(Color.blue);
         graph_size_x.setBorder(null);
 
+        intro_label.setBackground(Color.white);
+        intro_label.setForeground(Color.blue);
+        intro_label.setBorder(null);
+
         graph_size_y.setBackground(Color.white);
         graph_size_y.setForeground(Color.blue);
         graph_size_y.setBorder(null);
@@ -241,6 +247,8 @@ public class Graph implements Runnable {
         mainFrame.jPanel11.add(y_whattograph);
         mainFrame.jPanel11.add(y_whattograph_field);
         mainFrame.jPanel11.add(blank3);
+        mainFrame.jPanel11.add(intro_label);
+        mainFrame.jPanel11.add(blank7);
         mainFrame.jPanel14.add(close);
         mainFrame.jPanel14.add(save);
         mainFrame.jPanel11.repaint();
