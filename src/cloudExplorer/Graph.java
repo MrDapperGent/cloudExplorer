@@ -56,8 +56,8 @@ public class Graph implements Runnable {
     String what = null;
     double[] x;
     double[] y;
-    final JButton save = new JButton("Save");
-    final JButton graph = new JButton("              Graph");
+    final JButton save = new JButton("Graph");
+
     final JButton close = new JButton("Close");
     final JLabel graph_name = new JLabel("Name:");
     final JLabel x_name = new JLabel("X-axis name:");
@@ -100,13 +100,14 @@ public class Graph implements Runnable {
         mainFrame.jTextArea1.append("\nGraphing......");
         calibrateTextArea();
         try {
-
+            System.out.print("\nXlength=" + x.length);
+            System.out.print("\nylength=" + y.length);
             Data xdata = DataUtil.scaleWithinRange(0, x.length, x);
             Data ydata = DataUtil.scaleWithinRange(0, y[1] * 4, y);
             Plot plot = Plots.newXYLine(xdata, ydata);
             plot.setColor(com.googlecode.charts4j.Color.BLUE);
             XYLineChart xyLineChart = GCharts.newXYLineChart(plot);
-            xyLineChart.setSize(600, 300);
+            xyLineChart.setSize(Integer.parseInt(x_graphsize_field.getText()), Integer.parseInt(y_graphsize_field.getText()));
             xyLineChart.setTitle(graph_name_field.getText());
             xyLineChart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", x_name_field.getText())));
             xyLineChart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", y_name_field.getText())));
@@ -153,16 +154,12 @@ public class Graph implements Runnable {
                     String[] parse = read.split(",");
                     x[i] = Double.parseDouble(parse[XwhatToGraph]);
                     y[i] = Double.parseDouble(parse[YwhatToGraph]);
-
-                } else {
-
-                    x = new double[i];
-                    y = new double[i];
-                    first_pass = false;
                 }
                 i++;
             }
             if (first_pass) {
+                x = new double[i];
+                y = new double[i];
                 first_pass = false;
                 process_data();
             } else {
@@ -221,10 +218,6 @@ public class Graph implements Runnable {
         close.setBorder(null);
         close.setForeground(Color.blue);
 
-        graph.setBackground(Color.white);
-        graph.setBorder(null);
-        graph.setForeground(Color.blue);
-
         close.setMaximumSize(new Dimension(150, 15));
         save.setMaximumSize(new Dimension(150, 15));
 
@@ -253,7 +246,6 @@ public class Graph implements Runnable {
         mainFrame.jPanel11.add(blank3);
         mainFrame.jPanel11.add(close);
         mainFrame.jPanel11.add(save);
-        mainFrame.jPanel11.add(graph);
 
         mainFrame.jPanel11.repaint();
         mainFrame.jPanel11.revalidate();
@@ -307,6 +299,7 @@ public class Graph implements Runnable {
     }
 
     public void run() {
+        first_pass = true;
 
         File check_what = new File(what);
 
