@@ -121,6 +121,10 @@ public class Graph implements Runnable {
                 BufferedImage buffered_throughput_icon = (BufferedImage) image_throughput;
                 File outputfile = new File(Home + File.separator + "GRAPH-" + graph_name_field.getText() + ".png");
                 ImageIO.write(buffered_throughput_icon, "png", outputfile);
+                if (outputfile.exists()) {
+                    mainFrame.jTextArea1.append("\nSaved graph to: " + Home + File.separator + "GRAPH-" + graph_name_field.getText());
+                    calibrateTextArea();
+                }
             } catch (Exception ex) {
             }
 
