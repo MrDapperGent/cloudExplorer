@@ -60,8 +60,8 @@ public class GraphThread implements Runnable {
     Boolean first_pass = true;
     Boolean proceed = true;
     boolean line = true;
-    ArrayList<Double> x_sort = new ArrayList<Double>();
-    ArrayList<Double> y_sort = new ArrayList<Double>();
+    ArrayList<Double> x_sort;
+    ArrayList<Double> y_sort;
 
     public GraphThread(NewJFrame Frame, String Awhat, String Agraph_name_field, String xx_whattograph_field, String yy_whattograph_field, String xx_name_field, String yy_name_field, String xx_graphsize_field, String yy_graphsize_field, Boolean ALine) {
         mainFrame = Frame;
@@ -107,8 +107,8 @@ public class GraphThread implements Runnable {
 
         Collections.sort(x_sort);
         Collections.sort(y_sort);
-        System.out.print("\nx=" + x_sort.get(0) + "," + x_sort.get(x_sort.size() - 1));
-        System.out.print("\nx=" + y_sort.get(0) + "," + y_sort.get(y_sort.size() - 1));
+        System.out.print("\nx-min =" + x_sort.get(0) + ",x-max = " + x_sort.get(x_sort.size() - 1));
+        System.out.print("\ny-min =" + y_sort.get(0) + ",y-max = " + y_sort.get(y_sort.size() - 1));
     }
 
     void process_data() {
@@ -135,6 +135,7 @@ public class GraphThread implements Runnable {
                     }
                     x[i] = Double.parseDouble(parse[XwhatToGraph]);
                     y[i] = Double.parseDouble(parse[YwhatToGraph]);
+
                 }
                 i++;
             }
@@ -146,6 +147,7 @@ public class GraphThread implements Runnable {
             } else {
                 first_pass = true;
                 sort();
+                graph();
             }
             bfrr.close();
         } catch (Exception tempFile) {
@@ -161,8 +163,8 @@ public class GraphThread implements Runnable {
         calibrateTextArea();
 
         try {
-            Data xdata = DataUtil.scaleWithinRange(x_sort.get(0), x_sort.get(x_sort.size() - 1), x);
-            Data ydata = DataUtil.scaleWithinRange(x_sort.get(0), y_sort.get(y_sort.size() - 1), y);
+            Data xdata = DataUtil.scaleWithinRange(x_sort.get(0), x_sort.get(x_sort.size() - 1), x_sort);
+            Data ydata = DataUtil.scaleWithinRange(y_sort.get(0), y_sort.get(y_sort.size() - 1), y_sort);
             Plot plot = Plots.newXYLine(xdata, ydata);
             plot.setColor(com.googlecode.charts4j.Color.BLUE);
             ImageIcon throughput_icon;
@@ -174,7 +176,7 @@ public class GraphThread implements Runnable {
                 xyLineChart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", x_name_field)));
                 xyLineChart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", y_name_field)));
                 xyLineChart.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(x_sort.get(0), x_sort.size() - 1));
-                xyLineChart.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(x_sort.get(0), y_sort.size() - 1));
+                xyLineChart.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(y_sort.get(0), y_sort.size() - 1));
                 throughput_icon = (new ImageIcon(ImageIO.read(new URL(xyLineChart.toURLString()))));
             } else {
                 ScatterPlot Scatteredplot = GCharts.newScatterPlot(plot);
@@ -183,7 +185,7 @@ public class GraphThread implements Runnable {
                 Scatteredplot.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", x_name_field)));
                 Scatteredplot.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", y_name_field)));
                 Scatteredplot.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(x_sort.get(0), x_sort.size() - 1));
-                Scatteredplot.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(x_sort.get(0), y_sort.size() - 1));
+                Scatteredplot.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(y_sort.get(0), y_sort.size() - 1));
                 throughput_icon = (new ImageIcon(ImageIO.read(new URL(Scatteredplot.toURLString()))));
             }
 
@@ -221,6 +223,9 @@ public class GraphThread implements Runnable {
     public void run() {
         File check_what = new File(what);
 
+        x_sort = new ArrayList<Double>();
+        y_sort = new ArrayList<Double>();
+
         if (check_temp.exists()) {
             check_temp.delete();
         }
@@ -229,10 +234,6 @@ public class GraphThread implements Runnable {
 
         if (check_temp.exists()) {
             process_data();
-            // if (proceed) {
-            graph();
-            //   }
-
         }
     }
 
