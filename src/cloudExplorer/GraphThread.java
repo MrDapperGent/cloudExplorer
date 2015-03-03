@@ -115,9 +115,6 @@ public class GraphThread implements Runnable {
                     }
                     x[i] = Double.parseDouble(parse[XwhatToGraph]);
                     y[i] = Double.parseDouble(parse[YwhatToGraph]);
-                    if (proceed) {
-                        graph();
-                    }
                 }
                 i++;
             }
@@ -193,7 +190,8 @@ public class GraphThread implements Runnable {
             NewJFrame.jPanel11.repaint();
             System.gc();
         } catch (Exception graph) {
-            System.out.print("\nDebug 1:" + graph.getMessage());
+            mainFrame.jTextArea1.append("\nError: " + graph.getMessage());
+            calibrateTextArea();
             proceed = false;
         }
     }
@@ -209,6 +207,9 @@ public class GraphThread implements Runnable {
 
         if (check_temp.exists()) {
             process_data();
+            // if (proceed) {
+            graph();
+            //   }
 
         }
     }
