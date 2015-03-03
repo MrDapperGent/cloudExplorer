@@ -30,7 +30,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -58,6 +60,8 @@ public class GraphThread implements Runnable {
     Boolean first_pass = true;
     Boolean proceed = true;
     boolean line = true;
+    ArrayList<Double> x_sort = new ArrayList<Double>();
+    ArrayList<Double> y_sort = new ArrayList<Double>();
 
     public GraphThread(NewJFrame Frame, String Awhat, String Agraph_name_field, String xx_whattograph_field, String yy_whattograph_field, String xx_name_field, String yy_name_field, String xx_graphsize_field, String yy_graphsize_field, Boolean ALine) {
         mainFrame = Frame;
@@ -89,6 +93,22 @@ public class GraphThread implements Runnable {
         File tempFile = new File(temp_file);
         Get get = new Get(what, mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), temp_file, null);
         get.run();
+    }
+
+    void sort() {
+
+        for (int i = 0; i != x.length; i++) {
+            x_sort.add(x[i]);
+        }
+
+        for (int i = 0; i != y.length; i++) {
+            y_sort.add(y[i]);
+        }
+
+        Collections.sort(x_sort);
+        Collections.sort(y_sort);
+        System.out.print("\nx=" + x_sort.get(0) + "," + x_sort.get(x_sort.size() - 1));
+        System.out.print("\nx=" + y_sort.get(0) + "," + y_sort.get(y_sort.size() - 1));
     }
 
     void process_data() {
@@ -125,6 +145,7 @@ public class GraphThread implements Runnable {
                 process_data();
             } else {
                 first_pass = true;
+                sort();
             }
             bfrr.close();
         } catch (Exception tempFile) {
@@ -138,9 +159,10 @@ public class GraphThread implements Runnable {
     public void graph() {
         mainFrame.jTextArea1.append("\nGraphing......");
         calibrateTextArea();
+
         try {
-            Data xdata = DataUtil.scaleWithinRange(0, x[1] * 4, x);
-            Data ydata = DataUtil.scaleWithinRange(0, y[1] * 4, y);
+            Data xdata = DataUtil.scaleWithinRange(x_sort.get(0), x_sort.get(x_sort.size() - 1), x);
+            Data ydata = DataUtil.scaleWithinRange(x_sort.get(0), y_sort.get(y_sort.size() - 1), y);
             Plot plot = Plots.newXYLine(xdata, ydata);
             plot.setColor(com.googlecode.charts4j.Color.BLUE);
             ImageIcon throughput_icon;
@@ -151,8 +173,8 @@ public class GraphThread implements Runnable {
                 xyLineChart.setTitle(graph_name_field);
                 xyLineChart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", x_name_field)));
                 xyLineChart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", y_name_field)));
-                xyLineChart.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, x[1] * 4));
-                xyLineChart.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, y[1] * 4));
+                xyLineChart.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(x_sort.get(0), x_sort.size() - 1));
+                xyLineChart.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(x_sort.get(0), y_sort.size() - 1));
                 throughput_icon = (new ImageIcon(ImageIO.read(new URL(xyLineChart.toURLString()))));
             } else {
                 ScatterPlot Scatteredplot = GCharts.newScatterPlot(plot);
@@ -160,8 +182,8 @@ public class GraphThread implements Runnable {
                 Scatteredplot.setTitle(graph_name_field);
                 Scatteredplot.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", x_name_field)));
                 Scatteredplot.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", y_name_field)));
-                Scatteredplot.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, x[1] * 4));
-                Scatteredplot.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, y[1] * 4));
+                Scatteredplot.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(x_sort.get(0), x_sort.size() - 1));
+                Scatteredplot.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(x_sort.get(0), y_sort.size() - 1));
                 throughput_icon = (new ImageIcon(ImageIO.read(new URL(Scatteredplot.toURLString()))));
             }
 
