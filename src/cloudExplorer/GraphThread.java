@@ -131,7 +131,6 @@ public class GraphThread implements Runnable {
                 if (delimiter_conter == inter) {
                     x_sort.add(Double.parseDouble(parse[XwhatToGraph]));
                     y_sort.add(Double.parseDouble(parse[YwhatToGraph]));
-                    System.out.print("\n" + Double.parseDouble(parse[XwhatToGraph]) + " " + Double.parseDouble(parse[YwhatToGraph]));
                     postsort();
                     graph();
                     delimiter_conter = 0;
@@ -151,10 +150,9 @@ public class GraphThread implements Runnable {
     public void graph() {
         // mainFrame.jTextArea1.append("\nGraphing......");
         // calibrateTextArea();
-        System.out.print("\nHere");
         try {
-            // System.out.print("\nDebug 1 " + x_sort.get(x_sort.size() - 1) + " " + y_sort.get(y_sort.size() - 1));
-            if (x_sort.get(0) < x_sort.get(x_sort.size() - 1) || y_sort.get(0) < y_sort.get(y_sort.size() - 1)) {
+            if (x_sort.get(0) >= x_sort.get(x_sort.size() - 1) || y_sort.get(0) >= y_sort.get(y_sort.size() - 1) || x_sort.size() > stop_graphing) {
+            } else {
                 Data xdata = DataUtil.scaleWithinRange(x_sort.get(0), x_sort.get(x_sort.size() - 1), x_sort);
                 Data ydata = DataUtil.scaleWithinRange(y_sort.get(0), y_sort.get(y_sort.size() - 1), y_sort);
                 Plot plot = Plots.newXYLine(xdata, ydata);
