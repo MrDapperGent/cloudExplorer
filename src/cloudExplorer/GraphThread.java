@@ -105,7 +105,7 @@ public class GraphThread implements Runnable {
     }
 
     void process_data() {
-        mainFrame.jTextArea1.append("\nProcessing every " + inter + " line from data file......");
+        mainFrame.jTextArea1.append("\nProcessing every " + inter + " line(s) from the data file......");
         calibrateTextArea();
         int delimiter_conter = 1;
 
