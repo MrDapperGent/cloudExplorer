@@ -166,6 +166,8 @@ public class Graph implements Runnable {
             }
             bfrr.close();
         } catch (Exception tempFile) {
+            mainFrame.jTextArea1.append("\nError importing data. Please ensure the fields are correct.");
+            calibrateTextArea();
         }
 
     }
@@ -247,7 +249,7 @@ public class Graph implements Runnable {
         mainFrame.jPanel11.add(y_whattograph);
         mainFrame.jPanel11.add(y_whattograph_field);
         mainFrame.jPanel11.add(blank3);
-        mainFrame.jPanel11.add(intro_label);
+        mainFrame.jPanel14.add(intro_label);
         mainFrame.jPanel11.add(blank7);
         mainFrame.jPanel14.add(close);
         mainFrame.jPanel14.add(save);
