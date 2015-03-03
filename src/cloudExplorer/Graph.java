@@ -69,6 +69,7 @@ public class Graph implements Runnable {
     final JLabel blank5 = new JLabel(" ");
     final JLabel blank6 = new JLabel(" ");
     final JLabel blank7 = new JLabel(" ");
+    final JLabel blank8 = new JLabel(" ");
     final JLabel y_name = new JLabel("Y-axis name:");
     final JTextField x_whattograph_field = new JTextField("0");
     final JTextField y_whattograph_field = new JTextField("1");
@@ -251,6 +252,7 @@ public class Graph implements Runnable {
         mainFrame.jPanel11.add(blank3);
         mainFrame.jPanel14.add(intro_label);
         mainFrame.jPanel11.add(blank7);
+        mainFrame.jPanel11.add(blank8);
         mainFrame.jPanel14.add(close);
         mainFrame.jPanel14.add(save);
         mainFrame.jPanel11.repaint();
