@@ -80,6 +80,7 @@ public class Graph implements Runnable {
     final JTextField x_graphsize_field = new JTextField("600");
     final JTextField y_graphsize_field = new JTextField("300");
     File check_temp = new File(temp_file);
+    boolean first_pass = true;
 
     public Graph(NewJFrame Frame, String Awhat) {
         mainFrame = Frame;
@@ -139,29 +140,38 @@ public class Graph implements Runnable {
     void process_data() {
         mainFrame.jTextArea1.append("\nProcessing data......");
         calibrateTextArea();
+
         try {
             FileReader frr = new FileReader(temp_file);
             BufferedReader bfrr = new BufferedReader(frr);
             String read = null;
             int i = 0;
             while ((read = bfrr.readLine()) != null) {
+                if (!first_pass) {
+                    int XwhatToGraph = Integer.parseInt(x_whattograph_field.getText());
+                    int YwhatToGraph = Integer.parseInt(y_whattograph_field.getText());
+                    String[] parse = read.split(",");
+                    x[i] = Double.parseDouble(parse[XwhatToGraph]);
+                    y[i] = Double.parseDouble(parse[YwhatToGraph]);
 
-                String[] parse = read.split(",");
-                System.out.print("\nDebug:" + parse[0] + " " + parse[1]);
-                int XwhatToGraph = Integer.parseInt(x_whattograph_field.getText());
-                int YwhatToGraph = Integer.parseInt(y_whattograph_field.getText());
-                x[i] = Double.parseDouble(parse[XwhatToGraph]);
-                y[i] = Double.parseDouble(parse[YwhatToGraph]);
+                } else {
+
+                    x = new double[i];
+                    y = new double[i];
+                    first_pass = false;
+                }
                 i++;
+            }
+            if (first_pass) {
+                first_pass = false;
+                process_data();
+            } else {
+                first_pass = true;
             }
             bfrr.close();
         } catch (Exception tempFile) {
         }
-        
-        for(int z=0;z != x.length;z++){
-            System.out.print("\nDebug Numbers:" + x[z] + " " + y[z]);
-        }
-        
+
     }
 
     public void configure_display() {
