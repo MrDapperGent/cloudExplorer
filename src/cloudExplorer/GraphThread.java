@@ -95,16 +95,7 @@ public class GraphThread implements Runnable {
         get.run();
     }
 
-    void sort() {
-
-        for (int i = 0; i != x.length; i++) {
-            x_sort.add(x[i]);
-        }
-
-        for (int i = 0; i != y.length; i++) {
-            y_sort.add(y[i]);
-        }
-
+    void postsort() {
         Collections.sort(x_sort);
         Collections.sort(y_sort);
         System.out.print("\nx-min =" + x_sort.get(0) + ",x-max = " + x_sort.get(x_sort.size() - 1));
@@ -121,33 +112,21 @@ public class GraphThread implements Runnable {
             String read = null;
             int i = 0;
             while ((read = bfrr.readLine()) != null) {
-                if (!first_pass) {
-                    int XwhatToGraph = Integer.parseInt(x_whattograph_field);
-                    int YwhatToGraph = Integer.parseInt(y_whattograph_field);
-                    String[] parse = read.split(",");
-                    if (parse[XwhatToGraph].contains(":")) {
-                        String[] cut = parse[XwhatToGraph].split(":");
-                        parse[XwhatToGraph] = cut[0];
-                    }
-                    if (parse[YwhatToGraph].contains(":")) {
-                        String[] cut = parse[YwhatToGraph].split(":");
-                        parse[YwhatToGraph] = cut[0];
-                    }
-                    x[i] = Double.parseDouble(parse[XwhatToGraph]);
-                    y[i] = Double.parseDouble(parse[YwhatToGraph]);
-
+                int XwhatToGraph = Integer.parseInt(x_whattograph_field);
+                int YwhatToGraph = Integer.parseInt(y_whattograph_field);
+                String[] parse = read.split(",");
+                if (parse[XwhatToGraph].contains(":")) {
+                    String[] cut = parse[XwhatToGraph].split(":");
+                    parse[XwhatToGraph] = cut[0];
                 }
+                if (parse[YwhatToGraph].contains(":")) {
+                    String[] cut = parse[YwhatToGraph].split(":");
+                    parse[YwhatToGraph] = cut[0];
+                }
+                x_sort.add(Double.parseDouble(parse[XwhatToGraph]));
+                y_sort.add(Double.parseDouble(parse[YwhatToGraph]));
+
                 i++;
-            }
-            if (first_pass) {
-                x = new double[i];
-                y = new double[i];
-                first_pass = false;
-                process_data();
-            } else {
-                first_pass = true;
-                sort();
-                graph();
             }
             bfrr.close();
         } catch (Exception tempFile) {
@@ -155,7 +134,8 @@ public class GraphThread implements Runnable {
             mainFrame.jTextArea1.append("\nError importing data. Please ensure the fields are correct.");
             calibrateTextArea();
         }
-
+        postsort();
+        graph();
     }
 
     public void graph() {
