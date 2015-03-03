@@ -80,6 +80,7 @@ public class Graph implements Runnable {
     final JTextField y_graphsize_field = new JTextField("300");
     File check_temp = new File(temp_file);
     boolean first_pass = true;
+    boolean proceed = true;
 
     public Graph(NewJFrame Frame, String Awhat) {
         mainFrame = Frame;
@@ -135,6 +136,7 @@ public class Graph implements Runnable {
             NewJFrame.jPanel11.repaint();
             System.gc();
         } catch (Exception graph) {
+            proceed = false;
         }
     }
 
@@ -167,6 +169,7 @@ public class Graph implements Runnable {
             }
             bfrr.close();
         } catch (Exception tempFile) {
+            proceed = false;
             mainFrame.jTextArea1.append("\nError importing data. Please ensure the fields are correct.");
             calibrateTextArea();
         }
@@ -271,6 +274,8 @@ public class Graph implements Runnable {
         save.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
+                proceed = true;
+
                 if ((x_whattograph_field.getText() == null || y_whattograph_field.getText() == null || graph_name_field.getText() == null) || x_name_field.getText() == null || y_name_field.getText() == null || x_graphsize_field.getText() == null || y_graphsize_field.getText() == null) {
                     mainFrame.jTextArea1.append("\nError, please fill out all of the fields.");
                     calibrateTextArea();
@@ -279,9 +284,14 @@ public class Graph implements Runnable {
                     get_csv();
 
                     if (check_temp.exists()) {
+
                         process_data();
-                        graph();
-                        save();
+                        if (proceed) {
+                            graph();
+                        }
+                        if (proceed) {
+                            save();
+                        }
 
                     } else {
                         mainFrame.jTextArea1.append("\nError downloading file.");
