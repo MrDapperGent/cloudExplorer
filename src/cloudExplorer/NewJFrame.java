@@ -2823,7 +2823,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         if (active_bucket > 0) {
             for (int h = 1; h != objectarray.length; h++) {
                 if (object_item[h].isSelected()) {
-                    Thread graph = new Thread(new Graph(this, object_item[h].toString()));
+                   // Thread graph = new Thread(new Graph(this, object_item[h].toString()));
+                      Thread graph = new Thread(new Graph(this, "/Users/philliptribble/foo.csv"));
                     graph.run();
                     break;
                 }

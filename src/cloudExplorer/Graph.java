@@ -216,6 +216,11 @@ public class Graph implements Runnable {
         mainFrame.jPanel11.validate();
 
         mainFrame.jPanel11.add(blank2);
+        
+        //Download Data
+        //Read Data
+        //Graph
+        //Save
 
         save.addActionListener(new ActionListener() {
 
