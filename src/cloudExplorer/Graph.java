@@ -50,10 +50,10 @@ public class Graph implements Runnable {
     String temp_file = (Home + File.separator + "object.tmp");
     File config = new File(Home + File.separator + ".cloudExplorerIRC");
     String what = null;
+    Put put;
     double[] x;
     double[] y;
     final JButton save = new JButton("Graph");
-
     final JButton close = new JButton("Close");
     final JLabel intro_label = new JLabel("Graphing controls:");
     final JLabel graph_name = new JLabel("Name:");
@@ -173,6 +173,13 @@ public class Graph implements Runnable {
 
     }
 
+    void save() {
+        mainFrame.jTextArea1.append("\nUploading to bucket.......");
+        calibrateTextArea();
+        put = new Put(temp_file, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), "GRAPH-" + graph_name_field.getText() + ".png", false, false);
+        put.startc(temp_file, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), "GRAPH-" + graph_name_field.getText() + ".png", false, false);
+    }
+
     public void configure_display() {
         x_whattograph_field.setMaximumSize(new Dimension(250, 20));
         y_whattograph_field.setMaximumSize(new Dimension(250, 20));
@@ -273,6 +280,7 @@ public class Graph implements Runnable {
                     if (check_temp.exists()) {
                         process_data();
                         graph();
+                        save();
 
                     } else {
                         mainFrame.jTextArea1.append("\nError downloading file.");
