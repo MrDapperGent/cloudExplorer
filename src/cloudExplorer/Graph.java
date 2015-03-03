@@ -15,10 +15,6 @@
  */
 package cloudExplorer;
 
-import static cloudExplorer.NewJFrame.jTextArea1;
-import static cloudExplorer.PerformanceThread.latency_graph;
-import static cloudExplorer.PerformanceThread.ops_graph;
-import static cloudExplorer.PerformanceThread.throughput_graph;
 import com.googlecode.charts4j.AxisLabelsFactory;
 import com.googlecode.charts4j.Data;
 import com.googlecode.charts4j.DataUtil;
