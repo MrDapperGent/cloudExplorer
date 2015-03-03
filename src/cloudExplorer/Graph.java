@@ -15,29 +15,12 @@
  */
 package cloudExplorer;
 
-import com.googlecode.charts4j.AxisLabelsFactory;
-import com.googlecode.charts4j.Data;
-import com.googlecode.charts4j.DataUtil;
-import com.googlecode.charts4j.GCharts;
-import com.googlecode.charts4j.Plot;
-import com.googlecode.charts4j.Plots;
-import com.googlecode.charts4j.ScatterPlot;
-import com.googlecode.charts4j.XYLineChart;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.net.URL;
-import java.util.Arrays;
-import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -85,6 +68,7 @@ public class Graph implements Runnable {
     boolean first_pass = true;
     boolean proceed = true;
     boolean line = true;
+    Thread gt;
 
     public Graph(NewJFrame Frame, String Awhat) {
         mainFrame = Frame;
@@ -98,116 +82,6 @@ public class Graph implements Runnable {
         } catch (Exception e) {
 
         }
-    }
-
-    public void graph() {
-        mainFrame.jTextArea1.append("\nGraphing......");
-        calibrateTextArea();
-        try {
-            Data xdata = DataUtil.scaleWithinRange(0, x[1] * 4, x);
-            Data ydata = DataUtil.scaleWithinRange(0, y[1] * 4, y);
-            Plot plot = Plots.newXYLine(xdata, ydata);
-            plot.setColor(com.googlecode.charts4j.Color.BLUE);
-            ImageIcon throughput_icon;
-
-            if (line) {
-                XYLineChart xyLineChart = GCharts.newXYLineChart(plot);
-                xyLineChart.setSize(Integer.parseInt(x_graphsize_field.getText()), Integer.parseInt(y_graphsize_field.getText()));
-                xyLineChart.setTitle(graph_name_field.getText());
-                xyLineChart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", x_name_field.getText())));
-                xyLineChart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", y_name_field.getText())));
-                xyLineChart.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, x[1] * 4));
-                xyLineChart.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, y[1] * 4));
-                throughput_icon = (new ImageIcon(ImageIO.read(new URL(xyLineChart.toURLString()))));
-            } else {
-                ScatterPlot Scatteredplot = GCharts.newScatterPlot(plot);
-                Scatteredplot.setSize(Integer.parseInt(x_graphsize_field.getText()), Integer.parseInt(y_graphsize_field.getText()));
-                Scatteredplot.setTitle(graph_name_field.getText());
-                Scatteredplot.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", x_name_field.getText())));
-                Scatteredplot.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", y_name_field.getText())));
-                Scatteredplot.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, x[1] * 4));
-                Scatteredplot.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, y[1] * 4));
-                throughput_icon = (new ImageIcon(ImageIO.read(new URL(Scatteredplot.toURLString()))));
-            }
-
-            JLabel label_throughput = new JLabel(throughput_icon);
-
-            //Configures the panel
-            NewJFrame.jPanel11.removeAll();
-            GridLayout layout = new GridLayout(0, 3);
-            NewJFrame.jPanel11.setLayout(layout);
-
-            NewJFrame.jPanel11.add(label_throughput);
-            try {
-                Image image_throughput = throughput_icon.getImage();
-                BufferedImage buffered_throughput_icon = (BufferedImage) image_throughput;
-                File outputfile = new File(Home + File.separator + "GRAPH-" + graph_name_field.getText() + ".png");
-                ImageIO.write(buffered_throughput_icon, "png", outputfile);
-                if (outputfile.exists()) {
-                    mainFrame.jTextArea1.append("\nSaved graph to: " + Home + File.separator + "GRAPH-" + graph_name_field.getText() + ".png");
-                    calibrateTextArea();
-                }
-            } catch (Exception ex) {
-            }
-
-            NewJFrame.jPanel11.revalidate();
-            NewJFrame.jPanel11.repaint();
-            System.gc();
-        } catch (Exception graph) {
-            proceed = false;
-        }
-    }
-
-    void process_data() {
-        mainFrame.jTextArea1.append("\nProcessing data......");
-        calibrateTextArea();
-
-        try {
-            FileReader frr = new FileReader(temp_file);
-            BufferedReader bfrr = new BufferedReader(frr);
-            String read = null;
-            int i = 0;
-            while ((read = bfrr.readLine()) != null) {
-                if (!first_pass) {
-                    int XwhatToGraph = Integer.parseInt(x_whattograph_field.getText());
-                    int YwhatToGraph = Integer.parseInt(y_whattograph_field.getText());
-                    String[] parse = read.split(",");
-                    if (parse[XwhatToGraph].contains(":")) {
-                        String[] cut = parse[XwhatToGraph].split(":");
-                        parse[XwhatToGraph] = cut[0];
-                    }
-                    if (parse[YwhatToGraph].contains(":")) {
-                        String[] cut = parse[YwhatToGraph].split(":");
-                        parse[YwhatToGraph] = cut[0];
-                    }
-                    x[i] = Double.parseDouble(parse[XwhatToGraph]);
-                    y[i] = Double.parseDouble(parse[YwhatToGraph]);
-                }
-                i++;
-            }
-            if (first_pass) {
-                x = new double[i];
-                y = new double[i];
-                first_pass = false;
-                process_data();
-            } else {
-                first_pass = true;
-            }
-            bfrr.close();
-        } catch (Exception tempFile) {
-            proceed = false;
-            mainFrame.jTextArea1.append("\nError importing data. Please ensure the fields are correct.");
-            calibrateTextArea();
-        }
-
-    }
-
-    void save() {
-        File complete_graph = new File(Home + File.separator + "GRAPH-" + graph_name_field.getText() + ".png");
-        mainFrame.jTextArea1.append("\nUploading to bucket.......");
-        calibrateTextArea();
-        put = new Put(complete_graph.getAbsolutePath(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), complete_graph.getName(), false, false);
-        put.startc(complete_graph.getAbsolutePath(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), complete_graph.getName(), false, false);
     }
 
     public void configure_display() {
@@ -307,34 +181,13 @@ public class Graph implements Runnable {
         save.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                proceed = true;
 
                 if ((x_whattograph_field.getText() == null || y_whattograph_field.getText() == null || graph_name_field.getText() == null) || x_name_field.getText() == null || y_name_field.getText() == null || x_graphsize_field.getText() == null || y_graphsize_field.getText() == null) {
                     mainFrame.jTextArea1.append("\nError, please fill out all of the fields.");
                     calibrateTextArea();
                 } else {
-
-                    get_csv();
-
-                    if (check_temp.exists()) {
-
-                        process_data();
-                        if (proceed) {
-                            if (line_checkbox.isSelected()) {
-                                line = true;
-                            } else {
-                                line = false;
-                            }
-                            graph();
-                        }
-                        if (proceed) {
-                            save();
-                        }
-
-                    } else {
-                        mainFrame.jTextArea1.append("\nError downloading file.");
-                        calibrateTextArea();
-                    }
+                    gt = new Thread(new GraphThread(mainFrame, what, graph_name_field.getText(), x_whattograph_field.getText(), y_whattograph_field.getText(), x_name_field.getText(), y_name_field.getText(), x_graphsize_field.getText(), y_graphsize_field.getText(), x, y));;
+                    gt.start();
                 }
             }
 
@@ -343,6 +196,7 @@ public class Graph implements Runnable {
         close.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
+                gt.stop();
                 mainFrame.jPanel11.removeAll();
                 mainFrame.jPanel11.repaint();
                 mainFrame.jPanel11.revalidate();
@@ -351,15 +205,6 @@ public class Graph implements Runnable {
             }
         });
 
-    }
-
-    public void get_csv() {
-
-        mainFrame.jTextArea1.append("\nDownloading data......");
-        calibrateTextArea();
-        File tempFile = new File(temp_file);
-        Get get = new Get(what, mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), temp_file, null);
-        get.run();
     }
 
     public void run() {
