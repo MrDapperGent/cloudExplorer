@@ -256,6 +256,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenu9 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem20 = new javax.swing.JMenuItem();
+        jMenuItem26 = new javax.swing.JMenuItem();
         jMenuItem24 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -1302,6 +1303,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenu9.add(jMenuItem20);
 
         jMenu6.add(jMenu9);
+
+        jMenuItem26.setText("Graph");
+        jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem26ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem26);
 
         jMenuItem24.setText("Delete temp files");
         jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
@@ -2808,6 +2817,25 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         }
         calibrateTextArea();
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
+
+        if (active_bucket > 0) {
+            for (int h = 1; h != objectarray.length; h++) {
+                if (object_item[h].isSelected()) {
+                    Thread graph = new Thread(new Graph(this, object_item[h].toString()));
+                    graph.run();
+                    break;
+                }
+            }
+
+        } else {
+            jTextArea1.append("\nError: No bucket has been selected");
+            calibrateTextArea();
+        }
+
+
+    }//GEN-LAST:event_jMenuItem26ActionPerformed
     void cleanup() {
         try {
             jPanel9.setVisible(true);
@@ -2917,6 +2945,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     public static javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem25;
+    private javax.swing.JMenuItem jMenuItem26;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
