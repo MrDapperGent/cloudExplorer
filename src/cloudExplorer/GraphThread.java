@@ -72,8 +72,8 @@ public class GraphThread implements Runnable {
         x_name_field = xx_name_field;
         y_name_field = yy_name_field;
         x_graphsize_field = xx_graphsize_field;
-        y_graphsize_field = y_graphsize_field;
-       
+        y_graphsize_field = yy_graphsize_field;
+
     }
 
     void calibrateTextArea() {
@@ -118,7 +118,6 @@ public class GraphThread implements Runnable {
                     }
                     x[i] = Double.parseDouble(parse[XwhatToGraph]);
                     y[i] = Double.parseDouble(parse[YwhatToGraph]);
-                    System.out.print("\nDebug x=" + x[i] + " y=" + y[i]);
                 }
                 i++;
             }
@@ -206,10 +205,10 @@ public class GraphThread implements Runnable {
         if (check_temp.exists()) {
             check_temp.delete();
         }
-        
+
         get_csv();
-        
-        if (check_temp.exists()) {           
+
+        if (check_temp.exists()) {
             process_data();
             graph();
 
@@ -218,7 +217,7 @@ public class GraphThread implements Runnable {
 
     void startc(NewJFrame Frame, String Awhat, String Agraph_name_field, String xx_whattograph_field, String yy_whattograph_field, String xx_name_field, String yy_name_field, String xx_graphsize_field, String yy_graphsize_field, Boolean ALine) {
         {
-            (new Thread(new GraphThread(Frame, Awhat, Agraph_name_field, xx_whattograph_field, yy_whattograph_field, xx_name_field, yy_name_field, xx_graphsize_field, yy_graphsize_field,ALine))).start();
+            (new Thread(new GraphThread(Frame, Awhat, Agraph_name_field, xx_whattograph_field, yy_whattograph_field, xx_name_field, yy_name_field, xx_graphsize_field, yy_graphsize_field, ALine))).start();
         }
     }
 }

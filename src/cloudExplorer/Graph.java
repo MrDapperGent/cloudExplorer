@@ -183,7 +183,12 @@ public class Graph implements Runnable {
                     mainFrame.jTextArea1.append("\nError, please fill out all of the fields.");
                     calibrateTextArea();
                 } else {
-                    gt = new Thread(new GraphThread(mainFrame, what, graph_name_field.getText(), x_whattograph_field.getText(), y_whattograph_field.getText(), x_name_field.getText(), y_name_field.getText(), x_graphsize_field.getText(), y_graphsize_field.getText(),line));;
+                    if (line_checkbox.isSelected()) {
+                        line = true;
+                    } else {
+                        line = false;
+                    }
+                    gt = new Thread(new GraphThread(mainFrame, what, graph_name_field.getText(), x_whattograph_field.getText(), y_whattograph_field.getText(), x_name_field.getText(), y_name_field.getText(), x_graphsize_field.getText(), y_graphsize_field.getText(), line));;
                     gt.start();
                 }
             }
