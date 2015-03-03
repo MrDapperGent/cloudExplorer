@@ -62,9 +62,10 @@ public class GraphThread implements Runnable {
     Boolean proceed = true;
     boolean line = true;
 
-    public GraphThread(NewJFrame Frame, String Awhat, String Agraph_name_field, String xx_whattograph_field, String yy_whattograph_field, String xx_name_field, String yy_name_field, String xx_graphsize_field, String yy_graphsize_field, double[] xx, double[] yy) {
+    public GraphThread(NewJFrame Frame, String Awhat, String Agraph_name_field, String xx_whattograph_field, String yy_whattograph_field, String xx_name_field, String yy_name_field, String xx_graphsize_field, String yy_graphsize_field, Boolean ALine) {
         mainFrame = Frame;
         what = Awhat;
+        line = ALine;
         graph_name_field = Agraph_name_field;
         x_whattograph_field = xx_whattograph_field;
         y_whattograph_field = yy_whattograph_field;
@@ -72,9 +73,7 @@ public class GraphThread implements Runnable {
         y_name_field = yy_name_field;
         x_graphsize_field = xx_graphsize_field;
         y_graphsize_field = y_graphsize_field;
-        x = xx;
-        y = yy;
-
+       
     }
 
     void calibrateTextArea() {
@@ -119,6 +118,7 @@ public class GraphThread implements Runnable {
                     }
                     x[i] = Double.parseDouble(parse[XwhatToGraph]);
                     y[i] = Double.parseDouble(parse[YwhatToGraph]);
+                    System.out.print("\nDebug x=" + x[i] + " y=" + y[i]);
                 }
                 i++;
             }
@@ -216,9 +216,9 @@ public class GraphThread implements Runnable {
         }
     }
 
-    void startc(NewJFrame Frame, String Awhat, String Agraph_name_field, String xx_whattograph_field, String yy_whattograph_field, String xx_name_field, String yy_name_field, String xx_graphsize_field, String yy_graphsize_field, double[] xx, double[] yy) {
+    void startc(NewJFrame Frame, String Awhat, String Agraph_name_field, String xx_whattograph_field, String yy_whattograph_field, String xx_name_field, String yy_name_field, String xx_graphsize_field, String yy_graphsize_field, Boolean ALine) {
         {
-            (new Thread(new GraphThread(Frame, Awhat, Agraph_name_field, xx_whattograph_field, yy_whattograph_field, xx_name_field, yy_name_field, xx_graphsize_field, yy_graphsize_field, xx, yy))).start();
+            (new Thread(new GraphThread(Frame, Awhat, Agraph_name_field, xx_whattograph_field, yy_whattograph_field, xx_name_field, yy_name_field, xx_graphsize_field, yy_graphsize_field,ALine))).start();
         }
     }
 }

@@ -34,9 +34,6 @@ public class Graph implements Runnable {
     String[] object = new String[1];
     String temp_file = (Home + File.separator + "object.tmp");
     String what = null;
-    Put put;
-    double[] x;
-    double[] y;
     final JButton save = new JButton("Graph");
     final JButton close = new JButton("Close");
     final JLabel intro_label = new JLabel("Graphing controls:");
@@ -186,7 +183,7 @@ public class Graph implements Runnable {
                     mainFrame.jTextArea1.append("\nError, please fill out all of the fields.");
                     calibrateTextArea();
                 } else {
-                    gt = new Thread(new GraphThread(mainFrame, what, graph_name_field.getText(), x_whattograph_field.getText(), y_whattograph_field.getText(), x_name_field.getText(), y_name_field.getText(), x_graphsize_field.getText(), y_graphsize_field.getText(), x, y));;
+                    gt = new Thread(new GraphThread(mainFrame, what, graph_name_field.getText(), x_whattograph_field.getText(), y_whattograph_field.getText(), x_name_field.getText(), y_name_field.getText(), x_graphsize_field.getText(), y_graphsize_field.getText(),line));;
                     gt.start();
                 }
             }
