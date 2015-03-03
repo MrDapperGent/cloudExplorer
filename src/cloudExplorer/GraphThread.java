@@ -62,8 +62,12 @@ public class GraphThread implements Runnable {
     boolean line = true;
     ArrayList<Double> x_sort;
     ArrayList<Double> y_sort;
+    ImageIcon throughput_icon;
+    JLabel label_throughput;
+    int inter;
+    int stop_graphing = 475;
 
-    public GraphThread(NewJFrame Frame, String Awhat, String Agraph_name_field, String xx_whattograph_field, String yy_whattograph_field, String xx_name_field, String yy_name_field, String xx_graphsize_field, String yy_graphsize_field, Boolean ALine) {
+    public GraphThread(NewJFrame Frame, String Awhat, String Agraph_name_field, String xx_whattograph_field, String yy_whattograph_field, String xx_name_field, String yy_name_field, String xx_graphsize_field, String yy_graphsize_field, Boolean ALine, int Ainter) {
         mainFrame = Frame;
         what = Awhat;
         line = ALine;
@@ -74,7 +78,7 @@ public class GraphThread implements Runnable {
         y_name_field = yy_name_field;
         x_graphsize_field = xx_graphsize_field;
         y_graphsize_field = yy_graphsize_field;
-
+        inter = Ainter;
     }
 
     void calibrateTextArea() {
@@ -98,13 +102,12 @@ public class GraphThread implements Runnable {
     void postsort() {
         Collections.sort(x_sort);
         Collections.sort(y_sort);
-        System.out.print("\nx-min =" + x_sort.get(0) + ",x-max = " + x_sort.get(x_sort.size() - 1));
-        System.out.print("\ny-min =" + y_sort.get(0) + ",y-max = " + y_sort.get(y_sort.size() - 1));
     }
 
     void process_data() {
-        mainFrame.jTextArea1.append("\nProcessing data......");
+        mainFrame.jTextArea1.append("\nProcessing every " + inter + " line from data file......");
         calibrateTextArea();
+        int delimiter_conter = 1;
 
         try {
             FileReader frr = new FileReader(temp_file);
@@ -115,6 +118,7 @@ public class GraphThread implements Runnable {
                 int XwhatToGraph = Integer.parseInt(x_whattograph_field);
                 int YwhatToGraph = Integer.parseInt(y_whattograph_field);
                 String[] parse = read.split(",");
+
                 if (parse[XwhatToGraph].contains(":")) {
                     String[] cut = parse[XwhatToGraph].split(":");
                     parse[XwhatToGraph] = cut[0];
@@ -123,32 +127,39 @@ public class GraphThread implements Runnable {
                     String[] cut = parse[YwhatToGraph].split(":");
                     parse[YwhatToGraph] = cut[0];
                 }
-                x_sort.add(Double.parseDouble(parse[XwhatToGraph]));
-                y_sort.add(Double.parseDouble(parse[YwhatToGraph]));
-                postsort();
-                graph();
+                if (x_sort.size() == stop_graphing) {
+                    break;
+                }
 
+                if (delimiter_conter == inter) {
+                    x_sort.add(Double.parseDouble(parse[XwhatToGraph]));
+                    y_sort.add(Double.parseDouble(parse[YwhatToGraph]));
+                    System.out.print("\n" + Double.parseDouble(parse[XwhatToGraph]) + " " + Double.parseDouble(parse[YwhatToGraph]));
+                    postsort();
+                    graph();
+                    delimiter_conter = 0;
+                }
+                delimiter_conter++;
                 i++;
             }
             bfrr.close();
         } catch (Exception tempFile) {
             proceed = false;
-            mainFrame.jTextArea1.append("\nError importing data. Please ensure the fields are correct.");
+            //mainFrame.jTextArea1.append("\nError importing data. Please ensure the fields are correct.");
             calibrateTextArea();
         }
 
     }
 
     public void graph() {
-       // mainFrame.jTextArea1.append("\nGraphing......");
-       // calibrateTextArea();
+        // mainFrame.jTextArea1.append("\nGraphing......");
+        // calibrateTextArea();
 
         try {
             Data xdata = DataUtil.scaleWithinRange(x_sort.get(0), x_sort.get(x_sort.size() - 1), x_sort);
             Data ydata = DataUtil.scaleWithinRange(y_sort.get(0), y_sort.get(y_sort.size() - 1), y_sort);
             Plot plot = Plots.newXYLine(xdata, ydata);
             plot.setColor(com.googlecode.charts4j.Color.BLUE);
-            ImageIcon throughput_icon;
 
             if (line) {
                 XYLineChart xyLineChart = GCharts.newXYLineChart(plot);
@@ -170,7 +181,7 @@ public class GraphThread implements Runnable {
                 throughput_icon = (new ImageIcon(ImageIO.read(new URL(Scatteredplot.toURLString()))));
             }
 
-            JLabel label_throughput = new JLabel(throughput_icon);
+            label_throughput = new JLabel(throughput_icon);
 
             //Configures the panel
             NewJFrame.jPanel11.removeAll();
@@ -178,26 +189,29 @@ public class GraphThread implements Runnable {
             NewJFrame.jPanel11.setLayout(layout);
 
             NewJFrame.jPanel11.add(label_throughput);
-            try {
-                Image image_throughput = throughput_icon.getImage();
-                BufferedImage buffered_throughput_icon = (BufferedImage) image_throughput;
-                File outputfile = new File(Home + File.separator + "GRAPH-" + graph_name_field + ".png");
-                ImageIO.write(buffered_throughput_icon, "png", outputfile);
-                if (outputfile.exists()) {
-                //    mainFrame.jTextArea1.append("\nSaved graph to: " + Home + File.separator + "GRAPH-" + graph_name_field + ".png");
-                //    calibrateTextArea();
-                }
-            } catch (Exception ex) {
-
-            }
 
             NewJFrame.jPanel11.revalidate();
             NewJFrame.jPanel11.repaint();
             System.gc();
         } catch (Exception graph) {
-            mainFrame.jTextArea1.append("\nError: " + graph.getMessage());
+            // mainFrame.jTextArea1.append("\nError: " + graph.getMessage());
             calibrateTextArea();
             proceed = false;
+        }
+    }
+
+    void write_graph() {
+        try {
+            Image image_throughput = throughput_icon.getImage();
+            BufferedImage buffered_throughput_icon = (BufferedImage) image_throughput;
+            File outputfile = new File(Home + File.separator + "GRAPH-" + graph_name_field + ".png");
+            ImageIO.write(buffered_throughput_icon, "png", outputfile);
+            if (outputfile.exists()) {
+                mainFrame.jTextArea1.append("\nSaved graph to: " + Home + File.separator + "GRAPH-" + graph_name_field + ".png");
+                calibrateTextArea();
+            }
+        } catch (Exception ex) {
+
         }
     }
 
@@ -215,12 +229,13 @@ public class GraphThread implements Runnable {
 
         if (check_temp.exists()) {
             process_data();
+            write_graph();
         }
     }
 
-    void startc(NewJFrame Frame, String Awhat, String Agraph_name_field, String xx_whattograph_field, String yy_whattograph_field, String xx_name_field, String yy_name_field, String xx_graphsize_field, String yy_graphsize_field, Boolean ALine) {
+    void startc(NewJFrame Frame, String Awhat, String Agraph_name_field, String xx_whattograph_field, String yy_whattograph_field, String xx_name_field, String yy_name_field, String xx_graphsize_field, String yy_graphsize_field, Boolean ALine, int Ainter) {
         {
-            (new Thread(new GraphThread(Frame, Awhat, Agraph_name_field, xx_whattograph_field, yy_whattograph_field, xx_name_field, yy_name_field, xx_graphsize_field, yy_graphsize_field, ALine))).start();
+            (new Thread(new GraphThread(Frame, Awhat, Agraph_name_field, xx_whattograph_field, yy_whattograph_field, xx_name_field, yy_name_field, xx_graphsize_field, yy_graphsize_field, ALine, Ainter))).start();
         }
     }
 }

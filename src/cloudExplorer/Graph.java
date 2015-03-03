@@ -43,6 +43,7 @@ public class Graph implements Runnable {
     final JLabel y_whattograph = new JLabel("Y column # in CSV:");
     final JLabel graph_size_x = new JLabel("Horizontal Graph Size: ");
     final JLabel graph_size_y = new JLabel("Vertical Graph Size:");
+    final JLabel interations = new JLabel("Plot every # of lines:");
     final JLabel blank = new JLabel(" ");
     final JLabel blank2 = new JLabel(" ");
     final JLabel blank3 = new JLabel(" ");
@@ -52,6 +53,10 @@ public class Graph implements Runnable {
     final JLabel blank7 = new JLabel(" ");
     final JLabel blank8 = new JLabel(" ");
     final JLabel blank9 = new JLabel(" ");
+    final JLabel blank10 = new JLabel(" ");
+    final JLabel blank11 = new JLabel(" ");
+    final JLabel blank12 = new JLabel(" ");
+    final JLabel blank13 = new JLabel(" ");
     final JLabel y_name = new JLabel("Y-axis name:");
     final JCheckBox line_checkbox = new JCheckBox("Line Graph");
     final JTextField x_whattograph_field = new JTextField("0");
@@ -60,12 +65,14 @@ public class Graph implements Runnable {
     final JTextField x_name_field = new JTextField("X");
     final JTextField y_name_field = new JTextField("Y");
     final JTextField x_graphsize_field = new JTextField("600");
+    final JTextField interations_field = new JTextField("1");
     final JTextField y_graphsize_field = new JTextField("300");
     File check_temp = new File(temp_file);
     boolean first_pass = true;
     boolean proceed = true;
     boolean line = true;
     Thread gt;
+    int inter;
 
     public Graph(NewJFrame Frame, String Awhat) {
         mainFrame = Frame;
@@ -85,6 +92,9 @@ public class Graph implements Runnable {
         x_whattograph_field.setMaximumSize(new Dimension(250, 20));
         y_whattograph_field.setMaximumSize(new Dimension(250, 20));
 
+        interations_field.setMaximumSize(new Dimension(250, 20));
+        interations_field.setMaximumSize(new Dimension(250, 20));
+
         y_graphsize_field.setMaximumSize(new Dimension(250, 20));
         x_graphsize_field.setMaximumSize(new Dimension(250, 20));
 
@@ -99,6 +109,10 @@ public class Graph implements Runnable {
         line_checkbox.setBackground(Color.white);
         line_checkbox.setForeground(Color.blue);
         line_checkbox.setBorder(null);
+
+        interations.setBackground(Color.white);
+        interations.setForeground(Color.blue);
+        interations.setBorder(null);
 
         x_whattograph.setBackground(Color.white);
         x_whattograph.setForeground(Color.blue);
@@ -147,11 +161,13 @@ public class Graph implements Runnable {
         mainFrame.jPanel11.add(blank9);
         mainFrame.jPanel11.add(line_checkbox);
         mainFrame.jPanel11.add(blank6);
+        mainFrame.jPanel11.add(blank12);
         mainFrame.jPanel11.add(graph_size_x);
         mainFrame.jPanel11.add(x_graphsize_field);
         mainFrame.jPanel11.add(graph_size_y);
         mainFrame.jPanel11.add(y_graphsize_field);
         mainFrame.jPanel11.add(blank);
+        mainFrame.jPanel11.add(blank13);
         mainFrame.jPanel11.add(y_name);
         mainFrame.jPanel11.add(y_name_field);
         mainFrame.jPanel11.add(blank2);
@@ -163,12 +179,16 @@ public class Graph implements Runnable {
         mainFrame.jPanel11.add(x_whattograph_field);
         mainFrame.jPanel11.add(y_whattograph);
         mainFrame.jPanel11.add(y_whattograph_field);
+        mainFrame.jPanel11.add(blank10);
+        mainFrame.jPanel11.add(blank11);
+        mainFrame.jPanel11.add(interations);
+        mainFrame.jPanel11.add(interations_field);
         mainFrame.jPanel14.add(blank8);
         mainFrame.jPanel11.add(blank3);
         mainFrame.jPanel14.add(intro_label);
         mainFrame.jPanel14.add(blank7);
-        mainFrame.jPanel14.add(close);
         mainFrame.jPanel14.add(save);
+        mainFrame.jPanel14.add(close);
         mainFrame.jPanel11.repaint();
         mainFrame.jPanel11.revalidate();
         mainFrame.jPanel11.validate();
@@ -188,8 +208,11 @@ public class Graph implements Runnable {
                     } else {
                         line = false;
                     }
-                    gt = new Thread(new GraphThread(mainFrame, what, graph_name_field.getText(), x_whattograph_field.getText(), y_whattograph_field.getText(), x_name_field.getText(), y_name_field.getText(), x_graphsize_field.getText(), y_graphsize_field.getText(), line));;
+
+                    inter = Integer.parseInt(interations_field.getText());
+                    gt = new Thread(new GraphThread(mainFrame, what, graph_name_field.getText(), x_whattograph_field.getText(), y_whattograph_field.getText(), x_name_field.getText(), y_name_field.getText(), x_graphsize_field.getText(), y_graphsize_field.getText(), line, inter));;
                     gt.start();
+
                 }
             }
 

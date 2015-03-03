@@ -1,6 +1,9 @@
 Version 5.2
 
-Bug Fixes: <>
+Bug Fixes:
+
+    Editor:
+        Buckets are reloaded after saving a file.
 
 Improvements: <none> 
 

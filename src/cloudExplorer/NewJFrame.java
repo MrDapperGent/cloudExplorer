@@ -1918,6 +1918,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jTextArea1.append("\nSaved Object\n");
             objectarray = null;
             bucket_item[active_bucket].setSelected(true);
+            reloadBuckets();
         } else {
             jTextArea1.append("\nError: no bucket selected.");
         }
