@@ -46,7 +46,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class Graph implements Runnable {
-    
+
     Thread getThread;
     NewJFrame mainFrame;
     String Home = System.getProperty("user.home");
@@ -57,7 +57,7 @@ public class Graph implements Runnable {
     double[] x;
     double[] y;
     final JButton save = new JButton("Graph");
-    
+
     final JButton close = new JButton("Close");
     final JLabel graph_name = new JLabel("Name:");
     final JLabel x_name = new JLabel("X-axis name:");
@@ -81,21 +81,21 @@ public class Graph implements Runnable {
     final JTextField y_graphsize_field = new JTextField("300");
     File check_temp = new File(temp_file);
     boolean first_pass = true;
-    
+
     public Graph(NewJFrame Frame, String Awhat) {
         mainFrame = Frame;
         what = Awhat;
     }
-    
+
     void calibrateTextArea() {
         NewJFrame.jTextArea1.append("\n");
         try {
             NewJFrame.jTextArea1.setCaretPosition(NewJFrame.jTextArea1.getLineStartOffset(NewJFrame.jTextArea1.getLineCount() - 1));
         } catch (Exception e) {
-            
+
         }
     }
-    
+
     public void graph() {
         mainFrame.jTextArea1.append("\nGraphing......");
         calibrateTextArea();
@@ -118,7 +118,7 @@ public class Graph implements Runnable {
             NewJFrame.jPanel11.removeAll();
             GridLayout layout = new GridLayout(0, 3);
             NewJFrame.jPanel11.setLayout(layout);
-            
+
             NewJFrame.jPanel11.add(label_throughput);
             try {
                 Image image_throughput = throughput_icon.getImage();
@@ -127,18 +127,18 @@ public class Graph implements Runnable {
                 ImageIO.write(buffered_throughput_icon, "png", outputfile);
             } catch (Exception ex) {
             }
-            
+
             NewJFrame.jPanel11.revalidate();
             NewJFrame.jPanel11.repaint();
             System.gc();
         } catch (Exception graph) {
         }
     }
-    
+
     void process_data() {
         mainFrame.jTextArea1.append("\nProcessing data......");
         calibrateTextArea();
-        
+
         try {
             FileReader frr = new FileReader(temp_file);
             BufferedReader bfrr = new BufferedReader(frr);
@@ -165,59 +165,59 @@ public class Graph implements Runnable {
             bfrr.close();
         } catch (Exception tempFile) {
         }
-        
+
     }
-    
+
     public void configure_display() {
         x_whattograph_field.setMaximumSize(new Dimension(250, 20));
         y_whattograph_field.setMaximumSize(new Dimension(250, 20));
-        
+
         y_graphsize_field.setMaximumSize(new Dimension(250, 20));
         x_graphsize_field.setMaximumSize(new Dimension(250, 20));
-        
+
         graph_name_field.setMaximumSize(new Dimension(250, 20));
         x_name_field.setMaximumSize(new Dimension(250, 20));
         y_name_field.setMaximumSize(new Dimension(250, 20));
-        
+
         y_whattograph.setBackground(Color.white);
         y_whattograph.setForeground(Color.blue);
         y_whattograph.setBorder(null);
-        
+
         x_whattograph.setBackground(Color.white);
         x_whattograph.setForeground(Color.blue);
         x_whattograph.setBorder(null);
-        
+
         graph_name.setBackground(Color.white);
         graph_name.setForeground(Color.blue);
         graph_name.setBorder(null);
-        
+
         graph_size_x.setBackground(Color.white);
         graph_size_x.setForeground(Color.blue);
         graph_size_x.setBorder(null);
-        
+
         graph_size_y.setBackground(Color.white);
         graph_size_y.setForeground(Color.blue);
         graph_size_y.setBorder(null);
-        
+
         y_name.setBackground(Color.white);
         y_name.setForeground(Color.blue);
         y_name.setBorder(null);
-        
+
         x_name.setBackground(Color.white);
         x_name.setForeground(Color.blue);
         x_name.setBorder(null);
-        
+
         save.setBackground(Color.white);
         save.setForeground(Color.blue);
         save.setBorder(null);
-        
+
         close.setBackground(Color.white);
         close.setBorder(null);
         close.setForeground(Color.blue);
-        
+
         close.setMaximumSize(new Dimension(150, 15));
         save.setMaximumSize(new Dimension(150, 15));
-        
+
         mainFrame.jPanel11.removeAll();
         mainFrame.jPanel14.removeAll();
         mainFrame.jPanel11.setLayout(new BoxLayout(mainFrame.jPanel11, BoxLayout.Y_AXIS));
@@ -243,39 +243,37 @@ public class Graph implements Runnable {
         mainFrame.jPanel11.add(blank3);
         mainFrame.jPanel14.add(close);
         mainFrame.jPanel14.add(save);
-        
         mainFrame.jPanel11.repaint();
         mainFrame.jPanel11.revalidate();
         mainFrame.jPanel11.validate();
-        
+
         mainFrame.jPanel11.add(blank2);
-        
+
         save.addActionListener(new ActionListener() {
-            
+
             public void actionPerformed(ActionEvent e) {
                 if ((x_whattograph_field.getText() == null || y_whattograph_field.getText() == null || graph_name_field.getText() == null) || x_name_field.getText() == null || y_name_field.getText() == null || x_graphsize_field.getText() == null || y_graphsize_field.getText() == null) {
                     mainFrame.jTextArea1.append("\nError, please fill out all of the fields.");
                     calibrateTextArea();
                 } else {
-                   
-                   
+
                     get_csv();
-                    
+
                     if (check_temp.exists()) {
                         process_data();
                         graph();
-                        
+
                     } else {
                         mainFrame.jTextArea1.append("\nError downloading file.");
                         calibrateTextArea();
                     }
                 }
             }
-            
+
         });
-        
+
         close.addActionListener(new ActionListener() {
-            
+
             public void actionPerformed(ActionEvent e) {
                 mainFrame.jPanel11.removeAll();
                 mainFrame.jPanel11.repaint();
@@ -284,29 +282,29 @@ public class Graph implements Runnable {
                 mainFrame.jButton6.doClick();
             }
         });
-        
+
     }
-    
+
     public void get_csv() {
-        
+
         mainFrame.jTextArea1.append("\nDownloading data......");
         calibrateTextArea();
         File tempFile = new File(temp_file);
         Get get = new Get(what, mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), temp_file, null);
         get.run();
     }
-    
+
     public void run() {
         first_pass = true;
-        
+
         File check_what = new File(what);
-        
+
         if (check_temp.exists()) {
             check_temp.delete();
         }
         configure_display();
     }
-    
+
     void startc(String Awhat
     ) {
         (new Thread(new Graph(mainFrame, Awhat))).start();

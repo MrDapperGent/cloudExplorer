@@ -1,13 +1,12 @@
-Version 5.17
+Version 5.2
 
-Bug Fixes: 
-
-       Performance Testing:
-                       Removed extra 0 labels.
+Bug Fixes: <>
 
 Improvements: <none> 
 
-New Features:  <none>
+New Features: 
+
+    Graph CSV files from S3 and save the graph to a bucket.
 
 Features:
 
@@ -28,6 +27,7 @@ Features:
 15. IRC client that allows you to save chat sessions to S3.
 16. Access shared buckets on the same S3 provider.
 17. Share buckets with the Canonical ID of a user on the same S3 provider.
+18. Graph CSV files and save them to a bucket.
 
 Command-line Options:
 
