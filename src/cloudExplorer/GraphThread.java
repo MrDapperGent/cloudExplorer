@@ -33,10 +33,7 @@ import java.net.URL;
 import java.util.Arrays;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 
 public class GraphThread implements Runnable {
 
@@ -118,7 +115,9 @@ public class GraphThread implements Runnable {
                     }
                     x[i] = Double.parseDouble(parse[XwhatToGraph]);
                     y[i] = Double.parseDouble(parse[YwhatToGraph]);
-                    graph();
+                    if (proceed) {
+                        graph();
+                    }
                 }
                 i++;
             }
@@ -210,7 +209,7 @@ public class GraphThread implements Runnable {
 
         if (check_temp.exists()) {
             process_data();
-   
+
         }
     }
 
