@@ -255,7 +255,6 @@ public class GraphThread implements Runnable {
         if (check_temp.exists()) {
             process_data();
             write_graph();
-            Graph.save.setVisible(true);
         }
     }
 
