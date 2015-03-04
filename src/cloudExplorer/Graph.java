@@ -61,6 +61,9 @@ public class Graph implements Runnable {
     final JLabel blank13 = new JLabel(" ");
     final JLabel blank14 = new JLabel(" ");
     final JLabel blank15 = new JLabel(" ");
+    final JLabel blank16 = new JLabel(" ");
+    final JLabel blank17 = new JLabel(" ");
+    final JLabel blank18 = new JLabel(" ");
     final JLabel y_name = new JLabel("Y-axis name:");
     final JCheckBox line_checkbox = new JCheckBox("Line Graph");
     final JTextField x_whattograph_field = new JTextField("0");
@@ -71,6 +74,9 @@ public class Graph implements Runnable {
     final JTextField x_graphsize_field = new JTextField("600");
     final JTextField interations_field = new JTextField("1");
     final JTextField y_graphsize_field = new JTextField("300");
+    final JTextField delimiter_field = new JTextField(",");
+    final JLabel delimiter_label = new JLabel("Delimiter:");
+
     File check_temp = new File(temp_file);
     boolean first_pass = true;
     boolean proceed = true;
@@ -101,6 +107,10 @@ public class Graph implements Runnable {
 
         y_graphsize_field.setMaximumSize(new Dimension(250, 20));
         x_graphsize_field.setMaximumSize(new Dimension(250, 20));
+
+        delimiter_field.setMaximumSize(new Dimension(250, 20));
+        delimiter_field.setMaximumSize(new Dimension(250, 20));
+        delimiter_field.setMaximumSize(new Dimension(250, 20));
 
         graph_name_field.setMaximumSize(new Dimension(250, 20));
         x_name_field.setMaximumSize(new Dimension(250, 20));
@@ -133,6 +143,10 @@ public class Graph implements Runnable {
         graph_name.setBackground(Color.white);
         graph_name.setForeground(Color.blue);
         graph_name.setBorder(null);
+
+        delimiter_label.setBackground(Color.white);
+        delimiter_label.setForeground(Color.blue);
+        delimiter_label.setBorder(null);
 
         graph_size_x.setBackground(Color.white);
         graph_size_x.setForeground(Color.blue);
@@ -168,10 +182,12 @@ public class Graph implements Runnable {
         mainFrame.jPanel11.removeAll();
         mainFrame.jPanel14.removeAll();
         mainFrame.jPanel11.setLayout(new BoxLayout(mainFrame.jPanel11, BoxLayout.Y_AXIS));
+
         mainFrame.jPanel11.add(intro_label_main);
         mainFrame.jPanel11.add(intro_label_main_two);
         mainFrame.jPanel11.add(blank15);
         mainFrame.jPanel11.add(blank11);
+        mainFrame.jPanel11.add(blank18);
         mainFrame.jPanel11.add(graph_name);
         mainFrame.jPanel11.add(graph_name_field);
         mainFrame.jPanel11.add(blank9);
@@ -195,6 +211,10 @@ public class Graph implements Runnable {
         mainFrame.jPanel11.add(x_whattograph_field);
         mainFrame.jPanel11.add(y_whattograph);
         mainFrame.jPanel11.add(y_whattograph_field);
+        mainFrame.jPanel11.add(blank15);
+        mainFrame.jPanel11.add(blank16);
+        mainFrame.jPanel11.add(delimiter_label);
+        mainFrame.jPanel11.add(delimiter_field);
         mainFrame.jPanel11.add(blank14);
         mainFrame.jPanel11.add(blank10);
         mainFrame.jPanel11.add(interations);
@@ -227,7 +247,7 @@ public class Graph implements Runnable {
                     }
 
                     inter = Integer.parseInt(interations_field.getText());
-                    gt = new Thread(new GraphThread(mainFrame, what, graph_name_field.getText(), x_whattograph_field.getText(), y_whattograph_field.getText(), x_name_field.getText(), y_name_field.getText(), x_graphsize_field.getText(), y_graphsize_field.getText(), line, inter));;
+                    gt = new Thread(new GraphThread(mainFrame, what, graph_name_field.getText(), x_whattograph_field.getText(), y_whattograph_field.getText(), x_name_field.getText(), y_name_field.getText(), x_graphsize_field.getText(), y_graphsize_field.getText(), line, inter, delimiter_field.getText()));;
                     gt.start();
 
                 }

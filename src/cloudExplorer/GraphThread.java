@@ -64,8 +64,9 @@ public class GraphThread implements Runnable {
     JLabel label_throughput;
     int inter;
     int stop_graphing = 475;
+    String delimiter = ",";
 
-    public GraphThread(NewJFrame Frame, String Awhat, String Agraph_name_field, String xx_whattograph_field, String yy_whattograph_field, String xx_name_field, String yy_name_field, String xx_graphsize_field, String yy_graphsize_field, Boolean ALine, int Ainter) {
+    public GraphThread(NewJFrame Frame, String Awhat, String Agraph_name_field, String xx_whattograph_field, String yy_whattograph_field, String xx_name_field, String yy_name_field, String xx_graphsize_field, String yy_graphsize_field, Boolean ALine, int Ainter, String Adelimiter) {
         mainFrame = Frame;
         what = Awhat;
         line = ALine;
@@ -77,6 +78,7 @@ public class GraphThread implements Runnable {
         x_graphsize_field = xx_graphsize_field;
         y_graphsize_field = yy_graphsize_field;
         inter = Ainter;
+        delimiter = Adelimiter;
     }
 
     void calibrateTextArea() {
@@ -114,18 +116,18 @@ public class GraphThread implements Runnable {
             int i = 0;
 
             while ((read = bfrr.readLine()) != null) {
-                if (read.contains(",")) {
+                if (read.contains(delimiter)) {
 
-                    String[] parse = read.split(",");
-                    String[] original = read.split(",");
+                    String[] parse = read.split(delimiter);
+                    String[] original = read.split(delimiter);
 
                     if (original[Integer.parseInt(x_whattograph_field)].contains(":")) {
                         String[] cut = parse[0].split(":");
                         parse[0] = cut[0];
                         parse[1] = original[Integer.parseInt(y_whattograph_field)];
                     } else {
-                         parse[1] = original[Integer.parseInt(x_whattograph_field)];
-                        
+                        parse[1] = original[Integer.parseInt(x_whattograph_field)];
+
                     }
 
                     if (original[Integer.parseInt(y_whattograph_field)].contains(":")) {
@@ -250,9 +252,9 @@ public class GraphThread implements Runnable {
         }
     }
 
-    void startc(NewJFrame Frame, String Awhat, String Agraph_name_field, String xx_whattograph_field, String yy_whattograph_field, String xx_name_field, String yy_name_field, String xx_graphsize_field, String yy_graphsize_field, Boolean ALine, int Ainter) {
+    void startc(NewJFrame Frame, String Awhat, String Agraph_name_field, String xx_whattograph_field, String yy_whattograph_field, String xx_name_field, String yy_name_field, String xx_graphsize_field, String yy_graphsize_field, Boolean ALine, int Ainter, String Adelimiter) {
         {
-            (new Thread(new GraphThread(Frame, Awhat, Agraph_name_field, xx_whattograph_field, yy_whattograph_field, xx_name_field, yy_name_field, xx_graphsize_field, yy_graphsize_field, ALine, Ainter))).start();
+            (new Thread(new GraphThread(Frame, Awhat, Agraph_name_field, xx_whattograph_field, yy_whattograph_field, xx_name_field, yy_name_field, xx_graphsize_field, yy_graphsize_field, ALine, Ainter, Adelimiter))).start();
         }
     }
 }
