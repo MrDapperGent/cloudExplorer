@@ -113,33 +113,35 @@ public class GraphThread implements Runnable {
             String read = null;
             int i = 0;
             while ((read = bfrr.readLine()) != null) {
-                String[] parse = read.split(",");
-                if (parse[0].contains(":")) {
-                    String[] cut = parse[0].split(":");
-                    parse[0] = cut[0];
-                }
+                if (read.contains(",")) {
+                    String[] parse = read.split(",");
+                    if (parse[0].contains(":")) {
+                        String[] cut = parse[0].split(":");
+                        parse[0] = cut[0];
+                    }
 
-                if (parse[1].contains(":")) {
-                    String[] cut = parse[1].split(":");
-                    parse[1] = cut[1];
+                    if (parse[1].contains(":")) {
+                        String[] cut = parse[1].split(":");
+                        parse[1] = cut[1];
 
-                }
+                    }
 
-                if (x_sort.size() >= stop_graphing) {
-                    postsort();
-                    graph();
-                    break;
-                }
-                if (delimiter_conter == inter) {
-                    x_sort.add(Double.parseDouble(parse[0]));
-                    y_sort.add(Double.parseDouble(parse[1]));
-                    delimiter_conter = 0;
-                    postsort();
-                    graph();
-                }
+                    if (x_sort.size() >= stop_graphing) {
+                        postsort();
+                        graph();
+                        break;
+                    }
+                    if (delimiter_conter == inter) {
+                        x_sort.add(Double.parseDouble(parse[0]));
+                        y_sort.add(Double.parseDouble(parse[1]));
+                        delimiter_conter = 0;
+                        postsort();
+                        graph();
+                    }
 
-                delimiter_conter++;
-                i++;
+                    delimiter_conter++;
+                    i++;
+                }
             }
             bfrr.close();
         } catch (Exception tempFile) {
