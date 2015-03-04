@@ -11,7 +11,7 @@ Improvements: <none>
 New Features: 
 
     "Tools -> Graph" allows you to Graph CSV files to store in a bucket or computer.
-    Text editor can substitute text.
+     Text editor can substitute and replace text.
 
 Features:
 
