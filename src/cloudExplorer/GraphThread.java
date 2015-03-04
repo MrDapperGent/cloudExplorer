@@ -127,9 +127,8 @@ public class GraphThread implements Runnable {
 
                 }
 
-                 if (x_sort.size() >= stop_graphing) {
-                    System.out.print("\nReached");
-                     postsort();
+                if (x_sort.size() >= stop_graphing) {
+                    postsort();
                     graph();
                     break;
                 }
@@ -141,7 +140,6 @@ public class GraphThread implements Runnable {
                     graph();
                 }
 
-               
                 delimiter_conter++;
                 i++;
             }
@@ -158,7 +156,7 @@ public class GraphThread implements Runnable {
         // mainFrame.jTextArea1.append("\nGraphing......");
         // calibrateTextArea();
         try {
-            if (x_sort.get(0) >= x_sort.get(x_sort.size() - 1) || y_sort.get(0) >= y_sort.get(y_sort.size() - 1) ) {
+            if (x_sort.get(0) >= x_sort.get(x_sort.size() - 1) || y_sort.get(0) >= y_sort.get(y_sort.size() - 1)) {
             } else {
                 // System.out.print("\nDebug: " + x_sort.get(0) + " " + x_sort.get(x_sort.size() - 1));
                 // System.out.print("\nDebug: " + y_sort.get(0) + " " + y_sort.get(y_sort.size() - 1));
