@@ -34,7 +34,7 @@ public class Graph implements Runnable {
     String[] object = new String[1];
     String temp_file = (Home + File.separator + "object.tmp");
     String what = null;
-    final JButton save = new JButton("Graph");
+    public static final JButton save = new JButton("Graph");
     final JButton close = new JButton("Close");
     final JLabel intro_label_main = new JLabel("Upon clicking the graph button on the bottom left, the selected CSV file will be");
     final JLabel intro_label_main_two = new JLabel("processed and saved to your bucket and computer. There is a limitation of 475 plots.");
@@ -247,6 +247,7 @@ public class Graph implements Runnable {
                     }
 
                     inter = Integer.parseInt(interations_field.getText());
+                    save.setVisible(false);
                     gt = new Thread(new GraphThread(mainFrame, what, graph_name_field.getText(), x_whattograph_field.getText(), y_whattograph_field.getText(), x_name_field.getText(), y_name_field.getText(), x_graphsize_field.getText(), y_graphsize_field.getText(), line, inter, delimiter_field.getText()));;
                     gt.start();
 
