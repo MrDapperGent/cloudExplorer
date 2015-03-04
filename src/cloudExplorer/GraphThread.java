@@ -115,25 +115,24 @@ public class GraphThread implements Runnable {
             String read = null;
             int i = 0;
             while ((read = bfrr.readLine()) != null) {
-                int XwhatToGraph = Integer.parseInt(x_whattograph_field);
-                int YwhatToGraph = Integer.parseInt(y_whattograph_field);
                 String[] parse = read.split(",");
-
-                if (parse[XwhatToGraph].contains(":")) {
-                    String[] cut = parse[XwhatToGraph].split(":");
-                    parse[XwhatToGraph] = cut[0];
-                }
-                if (parse[YwhatToGraph].contains(":")) {
-                    String[] cut = parse[YwhatToGraph].split(":");
-                    parse[YwhatToGraph] = cut[0];
+                if (parse[0].contains(":")) {
+                    String[] cut = parse[0].split(":");
+                    parse[0] = cut[0];
                 }
 
+                if (parse[1].contains(":")) {
+                    String[] cut = parse[1].split(":");
+                    parse[1] = cut[1];
+
+                }
                 if (delimiter_conter == inter) {
-                    x_sort.add(Double.parseDouble(parse[XwhatToGraph]));
-                    y_sort.add(Double.parseDouble(parse[YwhatToGraph]));
+                    System.out.print("\nGraphinh");
+                    x_sort.add(Double.parseDouble(parse[0]));
+                    y_sort.add(Double.parseDouble(parse[1]));
+                    delimiter_conter = 0;
                     postsort();
                     graph();
-                    delimiter_conter = 0;
                 }
                 delimiter_conter++;
                 i++;
@@ -153,6 +152,8 @@ public class GraphThread implements Runnable {
         try {
             if (x_sort.get(0) >= x_sort.get(x_sort.size() - 1) || y_sort.get(0) >= y_sort.get(y_sort.size() - 1) || x_sort.size() > stop_graphing) {
             } else {
+                // System.out.print("\nDebug: " + x_sort.get(0) + " " + x_sort.get(x_sort.size() - 1));
+                // System.out.print("\nDebug: " + y_sort.get(0) + " " + y_sort.get(y_sort.size() - 1));
                 Data xdata = DataUtil.scaleWithinRange(x_sort.get(0), x_sort.get(x_sort.size() - 1), x_sort);
                 Data ydata = DataUtil.scaleWithinRange(y_sort.get(0), y_sort.get(y_sort.size() - 1), y_sort);
                 Plot plot = Plots.newXYLine(xdata, ydata);
@@ -164,8 +165,8 @@ public class GraphThread implements Runnable {
                     xyLineChart.setTitle(graph_name_field);
                     xyLineChart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", x_name_field)));
                     xyLineChart.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", y_name_field)));
-                    xyLineChart.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(x_sort.get(0), x_sort.size() - 1));
-                    xyLineChart.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(y_sort.get(0), y_sort.size() - 1));
+                    xyLineChart.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(x_sort.get(0), x_sort.get(x_sort.size() - 1)));
+                    xyLineChart.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(y_sort.get(0), y_sort.get(y_sort.size() - 1)));
                     throughput_icon = (new ImageIcon(ImageIO.read(new URL(xyLineChart.toURLString()))));
                 } else {
                     ScatterPlot Scatteredplot = GCharts.newScatterPlot(plot);
@@ -173,8 +174,8 @@ public class GraphThread implements Runnable {
                     Scatteredplot.setTitle(graph_name_field);
                     Scatteredplot.addXAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", x_name_field)));
                     Scatteredplot.addYAxisLabels(AxisLabelsFactory.newAxisLabels(Arrays.asList("", y_name_field)));
-                    Scatteredplot.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(x_sort.get(0), x_sort.size() - 1));
-                    Scatteredplot.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(y_sort.get(0), y_sort.size() - 1));
+                    Scatteredplot.addXAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(x_sort.get(0), x_sort.get(x_sort.size() - 1)));
+                    Scatteredplot.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(y_sort.get(0), y_sort.get(y_sort.size() - 1)));
                     throughput_icon = (new ImageIcon(ImageIO.read(new URL(Scatteredplot.toURLString()))));
                 }
 
