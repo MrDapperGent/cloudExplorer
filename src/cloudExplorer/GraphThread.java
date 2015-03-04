@@ -46,10 +46,8 @@ public class GraphThread implements Runnable {
     String temp_file = (Home + File.separator + "object.tmp");
     String what = null;
     Put put;
-    double[] x;
-    double[] y;
-    String x_whattograph_field;
-    String y_whattograph_field;
+    //String x_whattograph_field;
+    //String y_whattograph_field;
     String graph_name_field;
     String x_name_field;
     String y_name_field;
