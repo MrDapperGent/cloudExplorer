@@ -126,13 +126,18 @@ public class GraphThread implements Runnable {
                     parse[1] = cut[1];
 
                 }
+
                 if (delimiter_conter == inter) {
-                    System.out.print("\nGraphinh");
                     x_sort.add(Double.parseDouble(parse[0]));
                     y_sort.add(Double.parseDouble(parse[1]));
                     delimiter_conter = 0;
                     postsort();
                     graph();
+                }
+
+                if (i >= stop_graphing) {
+                    System.out.print("\nReached");
+                    break;
                 }
                 delimiter_conter++;
                 i++;

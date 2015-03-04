@@ -175,12 +175,12 @@ public class Graph implements Runnable {
         mainFrame.jPanel11.add(x_name_field);
         mainFrame.jPanel11.add(blank4);
         mainFrame.jPanel11.add(blank5);
-        mainFrame.jPanel11.add(x_whattograph);
-        mainFrame.jPanel11.add(x_whattograph_field);
-        mainFrame.jPanel11.add(y_whattograph);
-        mainFrame.jPanel11.add(y_whattograph_field);
-        mainFrame.jPanel11.add(blank10);
-        mainFrame.jPanel11.add(blank11);
+        //mainFrame.jPanel11.add(x_whattograph);
+        //mainFrame.jPanel11.add(x_whattograph_field);
+        //mainFrame.jPanel11.add(y_whattograph);
+        //mainFrame.jPanel11.add(y_whattograph_field);
+        //mainFrame.jPanel11.add(blank10);
+        //mainFrame.jPanel11.add(blank11);
         mainFrame.jPanel11.add(interations);
         mainFrame.jPanel11.add(interations_field);
         mainFrame.jPanel14.add(blank8);
@@ -221,7 +221,11 @@ public class Graph implements Runnable {
         close.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                gt.stop();
+                try {
+                    gt.stop();
+                } catch (Exception stopping) {
+
+                }
                 mainFrame.jPanel11.removeAll();
                 mainFrame.jPanel11.repaint();
                 mainFrame.jPanel11.revalidate();
