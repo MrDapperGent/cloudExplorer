@@ -36,8 +36,8 @@ public class Graph implements Runnable {
     String what = null;
     final JButton save = new JButton("Graph");
     final JButton close = new JButton("Close");
-    final JLabel intro_label_main = new JLabel("Upon clicking the graph button on the bottom left, the selected CSV file will be processed and");
-    final JLabel intro_label_main_two = new JLabel("saved to your bucket and computer. There is a limitation of 475 plots.");
+    final JLabel intro_label_main = new JLabel("Upon clicking the graph button on the bottom left, the selected CSV file will be");
+    final JLabel intro_label_main_two = new JLabel("processed and saved to your bucket and computer. There is a limitation of 475 plots.");
     final JLabel intro_label = new JLabel("Graphing controls:");
     final JLabel graph_name = new JLabel("Name:");
     final JLabel x_name = new JLabel("X-axis name:");
