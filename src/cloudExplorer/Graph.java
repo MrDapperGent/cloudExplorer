@@ -27,7 +27,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class Graph implements Runnable {
-
+    
     Thread getThread;
     NewJFrame mainFrame;
     String Home = System.getProperty("user.home");
@@ -76,113 +76,113 @@ public class Graph implements Runnable {
     final JTextField y_graphsize_field = new JTextField("300");
     final JTextField delimiter_field = new JTextField(",");
     final JLabel delimiter_label = new JLabel("Delimiter:");
-
+    
     File check_temp = new File(temp_file);
     boolean first_pass = true;
     boolean proceed = true;
     boolean line = true;
     Thread gt;
     int inter;
-
+    
     public Graph(NewJFrame Frame, String Awhat) {
         mainFrame = Frame;
         what = Awhat;
     }
-
+    
     void calibrateTextArea() {
         NewJFrame.jTextArea1.append("\n");
         try {
             NewJFrame.jTextArea1.setCaretPosition(NewJFrame.jTextArea1.getLineStartOffset(NewJFrame.jTextArea1.getLineCount() - 1));
         } catch (Exception e) {
-
+            
         }
     }
-
+    
     public void configure_display() {
         x_whattograph_field.setMaximumSize(new Dimension(250, 20));
         y_whattograph_field.setMaximumSize(new Dimension(250, 20));
-
+        
         interations_field.setMaximumSize(new Dimension(250, 20));
         interations_field.setMaximumSize(new Dimension(250, 20));
-
+        
         y_graphsize_field.setMaximumSize(new Dimension(250, 20));
         x_graphsize_field.setMaximumSize(new Dimension(250, 20));
-
+        
         delimiter_field.setMaximumSize(new Dimension(250, 20));
         delimiter_field.setMaximumSize(new Dimension(250, 20));
         delimiter_field.setMaximumSize(new Dimension(250, 20));
-
+        
         graph_name_field.setMaximumSize(new Dimension(250, 20));
         x_name_field.setMaximumSize(new Dimension(250, 20));
         y_name_field.setMaximumSize(new Dimension(250, 20));
-
+        
         y_whattograph.setBackground(Color.white);
         y_whattograph.setForeground(Color.blue);
         y_whattograph.setBorder(null);
-
+        
         intro_label_main.setBackground(Color.white);
         intro_label_main.setForeground(Color.blue);
         intro_label_main.setBorder(null);
-
+        
         intro_label_main_two.setBackground(Color.white);
         intro_label_main_two.setForeground(Color.blue);
         intro_label_main_two.setBorder(null);
-
+        
         line_checkbox.setBackground(Color.white);
         line_checkbox.setForeground(Color.blue);
         line_checkbox.setBorder(null);
-
+        
         interations.setBackground(Color.white);
         interations.setForeground(Color.blue);
         interations.setBorder(null);
-
+        
         x_whattograph.setBackground(Color.white);
         x_whattograph.setForeground(Color.blue);
         x_whattograph.setBorder(null);
-
+        
         graph_name.setBackground(Color.white);
         graph_name.setForeground(Color.blue);
         graph_name.setBorder(null);
-
+        
         delimiter_label.setBackground(Color.white);
         delimiter_label.setForeground(Color.blue);
         delimiter_label.setBorder(null);
-
+        
         graph_size_x.setBackground(Color.white);
         graph_size_x.setForeground(Color.blue);
         graph_size_x.setBorder(null);
-
+        
         intro_label.setBackground(Color.white);
         intro_label.setForeground(Color.blue);
         intro_label.setBorder(null);
-
+        
         graph_size_y.setBackground(Color.white);
         graph_size_y.setForeground(Color.blue);
         graph_size_y.setBorder(null);
-
+        
         y_name.setBackground(Color.white);
         y_name.setForeground(Color.blue);
         y_name.setBorder(null);
-
+        
         x_name.setBackground(Color.white);
         x_name.setForeground(Color.blue);
         x_name.setBorder(null);
-
+        
         save.setBackground(Color.white);
         save.setForeground(Color.blue);
         save.setBorder(null);
-
+        
         close.setBackground(Color.white);
         close.setBorder(null);
         close.setForeground(Color.blue);
-
+        
         close.setMaximumSize(new Dimension(150, 15));
         save.setMaximumSize(new Dimension(150, 15));
-
+        
         mainFrame.jPanel11.removeAll();
         mainFrame.jPanel14.removeAll();
         mainFrame.jPanel11.setLayout(new BoxLayout(mainFrame.jPanel11, BoxLayout.Y_AXIS));
-
+        
         mainFrame.jPanel11.add(intro_label_main);
         mainFrame.jPanel11.add(intro_label_main_two);
         mainFrame.jPanel11.add(blank15);
@@ -226,16 +226,17 @@ public class Graph implements Runnable {
         mainFrame.jPanel14.add(save);
         mainFrame.jPanel14.add(blank11);
         mainFrame.jPanel14.add(close);
+        save.setVisible(true);
         mainFrame.jPanel11.repaint();
         mainFrame.jPanel11.revalidate();
         mainFrame.jPanel11.validate();
-
+        
         mainFrame.jPanel11.add(blank2);
-
+        
         save.addActionListener(new ActionListener() {
-
+            
             public void actionPerformed(ActionEvent e) {
-
+                
                 if ((x_whattograph_field.getText() == null || y_whattograph_field.getText() == null || graph_name_field.getText() == null) || x_name_field.getText() == null || y_name_field.getText() == null || x_graphsize_field.getText() == null || y_graphsize_field.getText() == null) {
                     mainFrame.jTextArea1.append("\nError, please fill out all of the fields.");
                     calibrateTextArea();
@@ -245,24 +246,24 @@ public class Graph implements Runnable {
                     } else {
                         line = false;
                     }
-
+                    
                     inter = Integer.parseInt(interations_field.getText());
                     save.setVisible(false);
                     gt = new Thread(new GraphThread(mainFrame, what, graph_name_field.getText(), x_whattograph_field.getText(), y_whattograph_field.getText(), x_name_field.getText(), y_name_field.getText(), x_graphsize_field.getText(), y_graphsize_field.getText(), line, inter, delimiter_field.getText()));;
                     gt.start();
-
+                    
                 }
             }
-
+            
         });
-
+        
         close.addActionListener(new ActionListener() {
-
+            
             public void actionPerformed(ActionEvent e) {
                 try {
                     gt.stop();
                 } catch (Exception stopping) {
-
+                    
                 }
                 mainFrame.jPanel11.removeAll();
                 mainFrame.jPanel11.repaint();
@@ -271,20 +272,20 @@ public class Graph implements Runnable {
                 mainFrame.reloadBuckets();
             }
         });
-
+        
     }
-
+    
     public void run() {
         first_pass = true;
-
+        
         File check_what = new File(what);
-
+        
         if (check_temp.exists()) {
             check_temp.delete();
         }
         configure_display();
     }
-
+    
     void startc(String Awhat
     ) {
         (new Thread(new Graph(mainFrame, Awhat))).start();
