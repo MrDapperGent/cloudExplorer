@@ -1126,9 +1126,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jLabel10.setText("With:");
 
-        jTextField8.setText("jTextField8");
+        jTextField8.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jTextField9.setText("jTextField9");
+        jTextField9.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jButton22.setBackground(java.awt.SystemColor.text);
         jButton22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/engine.png"))); // NOI18N
@@ -2907,12 +2907,13 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
         try {
-            if (active_bucket > 0 && jTextArea2.getText() != null) {
+            if (active_bucket > 0 && jTextArea2.getText() != null && jTextField6.getText() != null && jTextField9.getText() != null && jTextField8.getText() != null) {
                 before = jTextArea2.getText();
                 String after = before.replace(jTextField8.getText(), jTextField9.getText());
                 jTextArea2.setText(after);
+                jTextArea2.setCaretPosition(0);
             } else {
-                jTextArea1.append("\nError: No bucket has been selected or Text field is empty.");
+                jTextArea1.append("\nError: No bucket has been selected or a Text field is empty.");
                 calibrateTextArea();
             }
         } catch (Exception replace_text) {
@@ -2924,6 +2925,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         try {
             if (before != null) {
                 jTextArea2.setText(before);
+                jTextArea2.setCaretPosition(0);
             }
         } catch (Exception undo_replace) {
         }
