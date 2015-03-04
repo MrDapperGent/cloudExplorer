@@ -2926,6 +2926,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             if (before != null) {
                 jTextArea2.setText(before);
                 jTextArea2.setCaretPosition(0);
+                before = null;
             }
         } catch (Exception undo_replace) {
         }
