@@ -9,7 +9,7 @@ Improvements: <none>
 
 New Features: 
 
-    Graph CSV files from S3 and save the graph to a bucket.
+    "Tools -> Graph" allows you to Graph CSV files to store in a bucket or computer.
 
 Features:
 
