@@ -59,6 +59,7 @@ public class Graph implements Runnable {
     final JLabel blank11 = new JLabel(" ");
     final JLabel blank12 = new JLabel(" ");
     final JLabel blank13 = new JLabel(" ");
+    final JLabel blank14 = new JLabel(" ");
     final JLabel blank15 = new JLabel(" ");
     final JLabel y_name = new JLabel("Y-axis name:");
     final JCheckBox line_checkbox = new JCheckBox("Line Graph");
@@ -190,12 +191,12 @@ public class Graph implements Runnable {
         mainFrame.jPanel11.add(x_name_field);
         mainFrame.jPanel11.add(blank4);
         mainFrame.jPanel11.add(blank5);
-        //mainFrame.jPanel11.add(x_whattograph);
-        //mainFrame.jPanel11.add(x_whattograph_field);
-        //mainFrame.jPanel11.add(y_whattograph);
-        //mainFrame.jPanel11.add(y_whattograph_field);
-        //mainFrame.jPanel11.add(blank10);
-
+        mainFrame.jPanel11.add(x_whattograph);
+        mainFrame.jPanel11.add(x_whattograph_field);
+        mainFrame.jPanel11.add(y_whattograph);
+        mainFrame.jPanel11.add(y_whattograph_field);
+        mainFrame.jPanel11.add(blank14);
+        mainFrame.jPanel11.add(blank10);
         mainFrame.jPanel11.add(interations);
         mainFrame.jPanel11.add(interations_field);
         mainFrame.jPanel14.add(blank8);

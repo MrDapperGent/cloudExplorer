@@ -112,19 +112,25 @@ public class GraphThread implements Runnable {
             BufferedReader bfrr = new BufferedReader(frr);
             String read = null;
             int i = 0;
+
             while ((read = bfrr.readLine()) != null) {
                 if (read.contains(",")) {
+
                     String[] parse = read.split(",");
-                    if (parse[0].contains(":")) {
+                    String[] original = read.split(",");
+
+                    if (original[Integer.parseInt(x_whattograph_field)].contains(":")) {
                         String[] cut = parse[0].split(":");
                         parse[0] = cut[0];
+                        parse[1] = original[Integer.parseInt(y_whattograph_field)];
                     }
 
-                    if (parse[1].contains(":")) {
-                        String[] cut = parse[1].split(":");
-                        parse[1] = cut[1];
-
+                    if (original[Integer.parseInt(y_whattograph_field)].contains(":")) {
+                        String[] cut = original[Integer.parseInt(y_whattograph_field)].split(":");
+                        parse[1] = cut[0];
                     }
+
+                    System.out.print("\n" + parse[0] + " " + parse[1]);
 
                     if (x_sort.size() >= stop_graphing) {
                         postsort();
