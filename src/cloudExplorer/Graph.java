@@ -213,10 +213,10 @@ public class Graph implements Runnable {
         mainFrame.jPanel11.add(y_whattograph_field);
         mainFrame.jPanel11.add(blank15);
         mainFrame.jPanel11.add(blank16);
-        mainFrame.jPanel11.add(delimiter_label);
-        mainFrame.jPanel11.add(delimiter_field);
-        mainFrame.jPanel11.add(blank14);
-        mainFrame.jPanel11.add(blank10);
+        //mainFrame.jPanel11.add(delimiter_label);
+        //mainFrame.jPanel11.add(delimiter_field);
+        //mainFrame.jPanel11.add(blank14);
+        //mainFrame.jPanel11.add(blank10);
         mainFrame.jPanel11.add(interations);
         mainFrame.jPanel11.add(interations_field);
         mainFrame.jPanel14.add(blank8);
