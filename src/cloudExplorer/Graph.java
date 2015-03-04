@@ -36,6 +36,8 @@ public class Graph implements Runnable {
     String what = null;
     final JButton save = new JButton("Graph");
     final JButton close = new JButton("Close");
+    final JLabel intro_label_main = new JLabel("Upon clicking the graph button on the bottom left, the selected CSV file will be processed and");
+    final JLabel intro_label_main_two = new JLabel("saved to your bucket and computer. There is a limitation of 475 plots.");
     final JLabel intro_label = new JLabel("Graphing controls:");
     final JLabel graph_name = new JLabel("Name:");
     final JLabel x_name = new JLabel("X-axis name:");
@@ -57,6 +59,7 @@ public class Graph implements Runnable {
     final JLabel blank11 = new JLabel(" ");
     final JLabel blank12 = new JLabel(" ");
     final JLabel blank13 = new JLabel(" ");
+    final JLabel blank15 = new JLabel(" ");
     final JLabel y_name = new JLabel("Y-axis name:");
     final JCheckBox line_checkbox = new JCheckBox("Line Graph");
     final JTextField x_whattograph_field = new JTextField("0");
@@ -105,6 +108,14 @@ public class Graph implements Runnable {
         y_whattograph.setBackground(Color.white);
         y_whattograph.setForeground(Color.blue);
         y_whattograph.setBorder(null);
+
+        intro_label_main.setBackground(Color.white);
+        intro_label_main.setForeground(Color.blue);
+        intro_label_main.setBorder(null);
+
+        intro_label_main_two.setBackground(Color.white);
+        intro_label_main_two.setForeground(Color.blue);
+        intro_label_main_two.setBorder(null);
 
         line_checkbox.setBackground(Color.white);
         line_checkbox.setForeground(Color.blue);
@@ -156,6 +167,10 @@ public class Graph implements Runnable {
         mainFrame.jPanel11.removeAll();
         mainFrame.jPanel14.removeAll();
         mainFrame.jPanel11.setLayout(new BoxLayout(mainFrame.jPanel11, BoxLayout.Y_AXIS));
+        mainFrame.jPanel11.add(intro_label_main);
+        mainFrame.jPanel11.add(intro_label_main_two);
+        mainFrame.jPanel11.add(blank15);
+        mainFrame.jPanel11.add(blank11);
         mainFrame.jPanel11.add(graph_name);
         mainFrame.jPanel11.add(graph_name_field);
         mainFrame.jPanel11.add(blank9);
@@ -180,7 +195,7 @@ public class Graph implements Runnable {
         //mainFrame.jPanel11.add(y_whattograph);
         //mainFrame.jPanel11.add(y_whattograph_field);
         //mainFrame.jPanel11.add(blank10);
-      
+
         mainFrame.jPanel11.add(interations);
         mainFrame.jPanel11.add(interations_field);
         mainFrame.jPanel14.add(blank8);
