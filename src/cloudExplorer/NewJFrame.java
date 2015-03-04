@@ -2907,7 +2907,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
         try {
-            if (active_bucket > 0 && jTextArea2.getText() != null && jTextField6.getText() != null && jTextField9.getText().length() >= 1 && jTextField8.getText().length() >= 1) {
+            if (active_bucket > 0 && jTextArea2.getText() != null && jTextField6.getText() != null && jTextField9.getText() != null && jTextField8.getText().length() >= 1) {
                 before = jTextArea2.getText();
                 String after = before.replace(jTextField8.getText(), jTextField9.getText());
                 jTextArea2.setText(after);
