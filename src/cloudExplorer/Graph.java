@@ -180,7 +180,7 @@ public class Graph implements Runnable {
         //mainFrame.jPanel11.add(y_whattograph);
         //mainFrame.jPanel11.add(y_whattograph_field);
         //mainFrame.jPanel11.add(blank10);
-        //mainFrame.jPanel11.add(blank11);
+      
         mainFrame.jPanel11.add(interations);
         mainFrame.jPanel11.add(interations_field);
         mainFrame.jPanel14.add(blank8);
@@ -188,6 +188,7 @@ public class Graph implements Runnable {
         mainFrame.jPanel14.add(intro_label);
         mainFrame.jPanel14.add(blank7);
         mainFrame.jPanel14.add(save);
+        mainFrame.jPanel14.add(blank11);
         mainFrame.jPanel14.add(close);
         mainFrame.jPanel11.repaint();
         mainFrame.jPanel11.revalidate();
