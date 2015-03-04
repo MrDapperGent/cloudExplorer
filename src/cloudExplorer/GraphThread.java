@@ -126,9 +126,8 @@ public class GraphThread implements Runnable {
                         parse[0] = cut[0];
                         if (parse[0].contains("/")) {
                             parse[0] = cut[1];
-                        } else {
-                            parse[1] = original[Integer.parseInt(x_whattograph_field)];
                         }
+                        parse[1] = original[Integer.parseInt(x_whattograph_field)];
                     } else {
                         parse[0] = original[Integer.parseInt(x_whattograph_field)];
 
@@ -145,8 +144,7 @@ public class GraphThread implements Runnable {
                         parse[1] = original[Integer.parseInt(y_whattograph_field)];
                     }
 
-                    System.out.print("\n" + parse[0] + " " + parse[1]);
-
+                    // System.out.print("\n" + parse[0] + " " + parse[1]);
                     if (x_sort.size() >= stop_graphing) {
                         postsort();
                         graph();
