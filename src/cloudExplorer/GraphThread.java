@@ -123,11 +123,16 @@ public class GraphThread implements Runnable {
                         String[] cut = parse[0].split(":");
                         parse[0] = cut[0];
                         parse[1] = original[Integer.parseInt(y_whattograph_field)];
+                    } else {
+                         parse[1] = original[Integer.parseInt(x_whattograph_field)];
+                        
                     }
 
                     if (original[Integer.parseInt(y_whattograph_field)].contains(":")) {
                         String[] cut = original[Integer.parseInt(y_whattograph_field)].split(":");
                         parse[1] = cut[0];
+                    } else {
+                        parse[1] = original[Integer.parseInt(y_whattograph_field)];
                     }
 
                     System.out.print("\n" + parse[0] + " " + parse[1]);
