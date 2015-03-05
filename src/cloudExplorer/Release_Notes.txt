@@ -60,10 +60,10 @@ java -jar CloudExplorer.jar synctos3 location bucket
 java -jar CloudExplorer.jar syncfroms3 destination bucket
 
 #Performance Test - PUT
-java -jar CloudExplorer.jar uploadtest bucket size threads operations
+java -jar CloudExplorer.jar uploadtest bucket size threads operations [mixed]
 
 #Performance Test - GET
-java -jar CloudExplorer.jar downloadtest bucket size threads operations
+java -jar CloudExplorer.jar downloadtest bucket size threads operations [mixed]
 
 #Search for files 
 java -jar CloudExplorer.jar search bucket what
