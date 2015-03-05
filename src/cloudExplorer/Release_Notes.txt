@@ -4,9 +4,10 @@ Bug Fixes:
 
     Editor and Upload a file:
 
-        Buckets are reloaded operation is finished.            
+        Buckets are reloaded when operation is finished.            
 
 Improvements: <none> 
+
 
 New Features: 
 
