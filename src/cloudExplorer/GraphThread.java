@@ -66,8 +66,9 @@ public class GraphThread implements Runnable {
     int stop_graphing = 475;
     String delimiter = ",";
     boolean stop = false;
+    boolean debug = false;
 
-    public GraphThread(NewJFrame Frame, String Awhat, String Agraph_name_field, String xx_whattograph_field, String yy_whattograph_field, String xx_name_field, String yy_name_field, String xx_graphsize_field, String yy_graphsize_field, Boolean ALine, int Ainter, String Adelimiter) {
+    public GraphThread(NewJFrame Frame, String Awhat, String Agraph_name_field, String xx_whattograph_field, String yy_whattograph_field, String xx_name_field, String yy_name_field, String xx_graphsize_field, String yy_graphsize_field, Boolean ALine, int Ainter, String Adelimiter, Boolean Adebug) {
         mainFrame = Frame;
         what = Awhat;
         line = ALine;
@@ -80,6 +81,7 @@ public class GraphThread implements Runnable {
         y_graphsize_field = yy_graphsize_field;
         inter = Ainter;
         delimiter = Adelimiter;
+        debug = Adebug;
     }
 
     void calibrateTextArea() {
@@ -147,7 +149,11 @@ public class GraphThread implements Runnable {
                         parse[1] = original[Integer.parseInt(y_whattograph_field)];
                     }
 
-                    // System.out.print("\n" + parse[0] + " " + parse[1]);
+                    if (debug) {
+                        mainFrame.jTextArea1.append("\n" + parse[0] + " " + parse[1]);
+                        calibrateTextArea();
+                    }
+
                     if (x_sort.size() >= stop_graphing) {
                         postsort();
                         graph();
@@ -168,21 +174,24 @@ public class GraphThread implements Runnable {
             bfrr.close();
         } catch (Exception tempFile) {
             proceed = false;
-//System.out.print("\nError"  + tempFile.getMessage());            
-//mainFrame.jTextArea1.append("\nError importing data. Please ensure the fields are correct.");
+            if (debug) {
+                mainFrame.jTextArea1.append("\nError " + tempFile.getMessage());
+                mainFrame.jTextArea1.append("\nError importing data. Please ensure the fields are correct.");
+            }
             calibrateTextArea();
         }
 
     }
 
     public void graph() {
-        // mainFrame.jTextArea1.append("\nGraphing......");
-        // calibrateTextArea();
         try {
             if (x_sort.get(0) >= x_sort.get(x_sort.size() - 1) || y_sort.get(0) >= y_sort.get(y_sort.size() - 1)) {
             } else {
-                // System.out.print("\nDebug: " + x_sort.get(0) + " " + x_sort.get(x_sort.size() - 1));
-                // System.out.print("\nDebug: " + y_sort.get(0) + " " + y_sort.get(y_sort.size() - 1));
+                if (debug) {
+                    mainFrame.jTextArea1.append("\nDebug: X-min range=" + x_sort.get(0) + " X-max range=" + x_sort.get(x_sort.size() - 1));
+                    mainFrame.jTextArea1.append("\nDebug: Y-min range=" + y_sort.get(0) + " Y-max range=" + y_sort.get(y_sort.size() - 1));
+                    calibrateTextArea();
+                }
                 Data xdata = DataUtil.scaleWithinRange(x_sort.get(0), x_sort.get(x_sort.size() - 1), x_sort);
                 Data ydata = DataUtil.scaleWithinRange(y_sort.get(0), y_sort.get(y_sort.size() - 1), y_sort);
                 Plot plot = Plots.newXYLine(xdata, ydata);
@@ -223,8 +232,10 @@ public class GraphThread implements Runnable {
             }
 
         } catch (Exception graph) {
-            mainFrame.jTextArea1.append("\nError: " + graph.getMessage());
-            calibrateTextArea();
+            if (debug) {
+                mainFrame.jTextArea1.append("\nError: " + graph.getMessage());
+                calibrateTextArea();
+            }
             proceed = false;
         }
     }
@@ -262,9 +273,9 @@ public class GraphThread implements Runnable {
         }
     }
 
-    void startc(NewJFrame Frame, String Awhat, String Agraph_name_field, String xx_whattograph_field, String yy_whattograph_field, String xx_name_field, String yy_name_field, String xx_graphsize_field, String yy_graphsize_field, Boolean ALine, int Ainter, String Adelimiter) {
+    void startc(NewJFrame Frame, String Awhat, String Agraph_name_field, String xx_whattograph_field, String yy_whattograph_field, String xx_name_field, String yy_name_field, String xx_graphsize_field, String yy_graphsize_field, Boolean ALine, int Ainter, String Adelimiter, boolean Adebug) {
         {
-            (new Thread(new GraphThread(Frame, Awhat, Agraph_name_field, xx_whattograph_field, yy_whattograph_field, xx_name_field, yy_name_field, xx_graphsize_field, yy_graphsize_field, ALine, Ainter, Adelimiter))).start();
+            (new Thread(new GraphThread(Frame, Awhat, Agraph_name_field, xx_whattograph_field, yy_whattograph_field, xx_name_field, yy_name_field, xx_graphsize_field, yy_graphsize_field, ALine, Ainter, Adelimiter, Adebug))).start();
         }
     }
 }
