@@ -65,6 +65,7 @@ public class GraphThread implements Runnable {
     int inter;
     int stop_graphing = 475;
     String delimiter = ",";
+    boolean stop = false;
 
     public GraphThread(NewJFrame Frame, String Awhat, String Agraph_name_field, String xx_whattograph_field, String yy_whattograph_field, String xx_name_field, String yy_name_field, String xx_graphsize_field, String yy_graphsize_field, Boolean ALine, int Ainter, String Adelimiter) {
         mainFrame = Frame;
@@ -125,7 +126,9 @@ public class GraphThread implements Runnable {
                         String[] cut = parse[0].split(":");
                         parse[0] = cut[0];
                         if (parse[0].contains("/")) {
-                            parse[0] = cut[1];
+                            parse[0] = cut[2];
+                            //  System.out.print("\nDebug:" +  parse[0]);
+                            // System.out.print("\nDebug:" +  cut[2]);
                         }
                         parse[1] = original[Integer.parseInt(x_whattograph_field)];
                     } else {
@@ -165,7 +168,8 @@ public class GraphThread implements Runnable {
             bfrr.close();
         } catch (Exception tempFile) {
             proceed = false;
-            //mainFrame.jTextArea1.append("\nError importing data. Please ensure the fields are correct.");
+//System.out.print("\nError"  + tempFile.getMessage());            
+//mainFrame.jTextArea1.append("\nError importing data. Please ensure the fields are correct.");
             calibrateTextArea();
         }
 
