@@ -140,7 +140,7 @@ public class GraphThread implements Runnable {
                              * System.out.print("\nDebug: cut1=" + cut[1]); //30
                              * System.out.print("\nDebug: cut2=" + cut[2]);
                              * ///48
-                            *
+                             *
                              */
                         }
                         parse[1] = original[Integer.parseInt(x_whattograph_field)];
@@ -283,6 +283,17 @@ public class GraphThread implements Runnable {
         if (check_temp.exists()) {
             process_data();
             write_graph();
+            save();
+        }
+    }
+
+    void save() {
+        File complete_graph = new File(Home + File.separator + "GRAPH-" + graph_name_field + ".png");
+        if (complete_graph.exists()) {
+            mainFrame.jTextArea1.append("\nUploading to bucket.......");
+            calibrateTextArea();
+            put = new Put(complete_graph.getAbsolutePath(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), complete_graph.getName(), false, false);
+            put.startc(complete_graph.getAbsolutePath(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), complete_graph.getName(), false, false);
         }
     }
 
