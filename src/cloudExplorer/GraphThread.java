@@ -132,12 +132,16 @@ public class GraphThread implements Runnable {
                         if (parse[0].contains("/")) {
                             String[] remove_date = cut[0].split(" ");
                             parse[0] = remove_date[1];
-                            
-                            System.out.print("\nDebug: remove_date_1=" + remove_date[1]);   //48
-                            System.out.print("\nDebug: 0=" + parse[0]);   //48
-                            System.out.print("\nDebug: cut0=" + cut[0]); //2015/03/03 23
-                            System.out.print("\nDebug: cut1=" + cut[1]);  //30
-                            System.out.print("\nDebug: cut2=" + cut[2]);  ///48
+                            /**
+                             * System.out.print("\n\nDebug: remove_date_1=" +
+                             * remove_date[1]); //48 System.out.print("\nDebug:
+                             * 0=" + parse[0]); //48 System.out.print("\nDebug:
+                             * cut0=" + cut[0]); //2015/03/03 23
+                             * System.out.print("\nDebug: cut1=" + cut[1]); //30
+                             * System.out.print("\nDebug: cut2=" + cut[2]);
+                             * ///48
+                            *
+                             */
                         }
                         parse[1] = original[Integer.parseInt(x_whattograph_field)];
                     } else {
