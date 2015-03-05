@@ -272,8 +272,8 @@ public class Graph implements Runnable {
                         save.setVisible(false);
                     }
                     GraphThread.stop = false;
-                    Runnable shit = new GraphThread(mainFrame, what, graph_name_field.getText(), x_whattograph_field.getText(), y_whattograph_field.getText(), x_name_field.getText(), y_name_field.getText(), x_graphsize_field.getText(), y_graphsize_field.getText(), line, inter, delimiter_field.getText(), debug);
-                    executor.execute(shit);
+                    Runnable start_graph = new GraphThread(mainFrame, what, graph_name_field.getText(), x_whattograph_field.getText(), y_whattograph_field.getText(), x_name_field.getText(), y_name_field.getText(), x_graphsize_field.getText(), y_graphsize_field.getText(), line, inter, delimiter_field.getText(), debug);
+                    executor.execute(start_graph);
 
                 }
             }
