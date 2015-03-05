@@ -20,6 +20,8 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -87,6 +89,7 @@ public class Graph implements Runnable {
     Boolean debug = false;
     Thread gt;
     int inter;
+    ExecutorService executor = Executors.newFixedThreadPool((int) 1);
 
     public Graph(NewJFrame Frame, String Awhat) {
         mainFrame = Frame;
@@ -268,9 +271,9 @@ public class Graph implements Runnable {
                     if (!debug) {
                         save.setVisible(false);
                     }
-
-                    gt = new Thread(new GraphThread(mainFrame, what, graph_name_field.getText(), x_whattograph_field.getText(), y_whattograph_field.getText(), x_name_field.getText(), y_name_field.getText(), x_graphsize_field.getText(), y_graphsize_field.getText(), line, inter, delimiter_field.getText(), debug));;
-                    gt.start();
+                    GraphThread.stop = false;
+                    Runnable shit = new GraphThread(mainFrame, what, graph_name_field.getText(), x_whattograph_field.getText(), y_whattograph_field.getText(), x_name_field.getText(), y_name_field.getText(), x_graphsize_field.getText(), y_graphsize_field.getText(), line, inter, delimiter_field.getText(), debug);
+                    executor.execute(shit);
 
                 }
             }
@@ -281,10 +284,14 @@ public class Graph implements Runnable {
 
             public void actionPerformed(ActionEvent e) {
                 try {
-                    gt.stop();
-                } catch (Exception stopping) {
+                    GraphThread.stop = true;
+                    executor.shutdownNow();
 
+                } catch (Exception stopping) {
+                    mainFrame.jTextArea1.append("\nError " + stopping.getMessage());
+                    calibrateTextArea();
                 }
+
                 mainFrame.jPanel11.removeAll();
                 mainFrame.jPanel11.repaint();
                 mainFrame.jPanel11.revalidate();

@@ -33,6 +33,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -65,7 +67,7 @@ public class GraphThread implements Runnable {
     int inter;
     int stop_graphing = 475;
     String delimiter = ",";
-    boolean stop = false;
+    public static boolean stop = false;
     boolean debug = false;
 
     public GraphThread(NewJFrame Frame, String Awhat, String Agraph_name_field, String xx_whattograph_field, String yy_whattograph_field, String xx_name_field, String yy_name_field, String xx_graphsize_field, String yy_graphsize_field, Boolean ALine, int Ainter, String Adelimiter, Boolean Adebug) {
@@ -154,7 +156,7 @@ public class GraphThread implements Runnable {
                         calibrateTextArea();
                     }
 
-                    if (x_sort.size() >= stop_graphing) {
+                    if (x_sort.size() >= stop_graphing || GraphThread.stop) {
                         postsort();
                         graph();
                         break;
@@ -171,6 +173,7 @@ public class GraphThread implements Runnable {
                     i++;
                 }
             }
+
             bfrr.close();
         } catch (Exception tempFile) {
             proceed = false;
