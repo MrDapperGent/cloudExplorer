@@ -33,6 +33,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -65,8 +67,10 @@ public class GraphThread implements Runnable {
     int inter;
     int stop_graphing = 475;
     String delimiter = ",";
+    public static boolean stop = false;
+    boolean debug = false;
 
-    public GraphThread(NewJFrame Frame, String Awhat, String Agraph_name_field, String xx_whattograph_field, String yy_whattograph_field, String xx_name_field, String yy_name_field, String xx_graphsize_field, String yy_graphsize_field, Boolean ALine, int Ainter, String Adelimiter) {
+    public GraphThread(NewJFrame Frame, String Awhat, String Agraph_name_field, String xx_whattograph_field, String yy_whattograph_field, String xx_name_field, String yy_name_field, String xx_graphsize_field, String yy_graphsize_field, Boolean ALine, int Ainter, String Adelimiter, Boolean Adebug) {
         mainFrame = Frame;
         what = Awhat;
         line = ALine;
@@ -79,6 +83,7 @@ public class GraphThread implements Runnable {
         y_graphsize_field = yy_graphsize_field;
         inter = Ainter;
         delimiter = Adelimiter;
+        debug = Adebug;
     }
 
     void calibrateTextArea() {
@@ -125,7 +130,18 @@ public class GraphThread implements Runnable {
                         String[] cut = parse[0].split(":");
                         parse[0] = cut[0];
                         if (parse[0].contains("/")) {
-                            parse[0] = cut[1];
+                            String[] remove_date = cut[0].split(" ");
+                            parse[0] = remove_date[1];
+                            /**
+                             * System.out.print("\n\nDebug: remove_date_1=" +
+                             * remove_date[1]); //48 System.out.print("\nDebug:
+                             * 0=" + parse[0]); //48 System.out.print("\nDebug:
+                             * cut0=" + cut[0]); //2015/03/03 23
+                             * System.out.print("\nDebug: cut1=" + cut[1]); //30
+                             * System.out.print("\nDebug: cut2=" + cut[2]);
+                             * ///48
+                             *
+                             */
                         }
                         parse[1] = original[Integer.parseInt(x_whattograph_field)];
                     } else {
@@ -137,15 +153,20 @@ public class GraphThread implements Runnable {
                         String[] cut = original[Integer.parseInt(y_whattograph_field)].split(":");
                         parse[1] = cut[0];
                         if (cut[0].contains("/")) {
-                            parse[1] = cut[1];
+                            String[] remove_date = cut[0].split(" ");
+                            parse[1] = remove_date[1];
                         }
 
                     } else {
                         parse[1] = original[Integer.parseInt(y_whattograph_field)];
                     }
 
-                    // System.out.print("\n" + parse[0] + " " + parse[1]);
-                    if (x_sort.size() >= stop_graphing) {
+                    if (debug) {
+                        mainFrame.jTextArea1.append("\n" + parse[0] + " " + parse[1]);
+                        calibrateTextArea();
+                    }
+
+                    if (x_sort.size() >= stop_graphing || GraphThread.stop) {
                         postsort();
                         graph();
                         break;
@@ -162,23 +183,28 @@ public class GraphThread implements Runnable {
                     i++;
                 }
             }
+
             bfrr.close();
         } catch (Exception tempFile) {
             proceed = false;
-            //mainFrame.jTextArea1.append("\nError importing data. Please ensure the fields are correct.");
+            if (debug) {
+                mainFrame.jTextArea1.append("\nError " + tempFile.getMessage());
+                mainFrame.jTextArea1.append("\nError importing data. Please ensure the fields are correct.");
+            }
             calibrateTextArea();
         }
 
     }
 
     public void graph() {
-        // mainFrame.jTextArea1.append("\nGraphing......");
-        // calibrateTextArea();
         try {
             if (x_sort.get(0) >= x_sort.get(x_sort.size() - 1) || y_sort.get(0) >= y_sort.get(y_sort.size() - 1)) {
             } else {
-                // System.out.print("\nDebug: " + x_sort.get(0) + " " + x_sort.get(x_sort.size() - 1));
-                // System.out.print("\nDebug: " + y_sort.get(0) + " " + y_sort.get(y_sort.size() - 1));
+                if (debug) {
+                    mainFrame.jTextArea1.append("\nDebug: X-min range=" + x_sort.get(0) + " X-max range=" + x_sort.get(x_sort.size() - 1));
+                    mainFrame.jTextArea1.append("\nDebug: Y-min range=" + y_sort.get(0) + " Y-max range=" + y_sort.get(y_sort.size() - 1));
+                    calibrateTextArea();
+                }
                 Data xdata = DataUtil.scaleWithinRange(x_sort.get(0), x_sort.get(x_sort.size() - 1), x_sort);
                 Data ydata = DataUtil.scaleWithinRange(y_sort.get(0), y_sort.get(y_sort.size() - 1), y_sort);
                 Plot plot = Plots.newXYLine(xdata, ydata);
@@ -219,8 +245,10 @@ public class GraphThread implements Runnable {
             }
 
         } catch (Exception graph) {
-            mainFrame.jTextArea1.append("\nError: " + graph.getMessage());
-            calibrateTextArea();
+            if (debug) {
+                mainFrame.jTextArea1.append("\nError: " + graph.getMessage());
+                calibrateTextArea();
+            }
             proceed = false;
         }
     }
@@ -255,12 +283,23 @@ public class GraphThread implements Runnable {
         if (check_temp.exists()) {
             process_data();
             write_graph();
+            save();
         }
     }
 
-    void startc(NewJFrame Frame, String Awhat, String Agraph_name_field, String xx_whattograph_field, String yy_whattograph_field, String xx_name_field, String yy_name_field, String xx_graphsize_field, String yy_graphsize_field, Boolean ALine, int Ainter, String Adelimiter) {
+    void save() {
+        File complete_graph = new File(Home + File.separator + "GRAPH-" + graph_name_field + ".png");
+        if (complete_graph.exists()) {
+            mainFrame.jTextArea1.append("\nUploading to bucket.......");
+            calibrateTextArea();
+            put = new Put(complete_graph.getAbsolutePath(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), complete_graph.getName(), false, false);
+            put.startc(complete_graph.getAbsolutePath(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), complete_graph.getName(), false, false);
+        }
+    }
+
+    void startc(NewJFrame Frame, String Awhat, String Agraph_name_field, String xx_whattograph_field, String yy_whattograph_field, String xx_name_field, String yy_name_field, String xx_graphsize_field, String yy_graphsize_field, Boolean ALine, int Ainter, String Adelimiter, boolean Adebug) {
         {
-            (new Thread(new GraphThread(Frame, Awhat, Agraph_name_field, xx_whattograph_field, yy_whattograph_field, xx_name_field, yy_name_field, xx_graphsize_field, yy_graphsize_field, ALine, Ainter, Adelimiter))).start();
+            (new Thread(new GraphThread(Frame, Awhat, Agraph_name_field, xx_whattograph_field, yy_whattograph_field, xx_name_field, yy_name_field, xx_graphsize_field, yy_graphsize_field, ALine, Ainter, Adelimiter, Adebug))).start();
         }
     }
 }
