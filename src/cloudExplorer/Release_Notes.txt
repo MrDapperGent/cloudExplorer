@@ -6,10 +6,15 @@ Improvements: <none>
 
 New Features: 
 
+    GUI:
+                Window can be resized.
+
     Credentials:
                 Upgraded to AWS SDK 1.9.23
                 AWS v4 signing is the only signing method supported.
                 If You need v2 signing, please use Cloud Explorer 5.x
+
+    
         
 Features:
 
