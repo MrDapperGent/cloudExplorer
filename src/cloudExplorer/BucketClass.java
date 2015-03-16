@@ -42,7 +42,7 @@ public class BucketClass {
         boolean result = false;
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
-                new ClientConfiguration().withSignerOverride("S3SignerType"));
+                new ClientConfiguration());
         s3Client.setEndpoint(endpoint);
         try {
             message = s3Client.getBucketVersioningConfiguration(bucket).getStatus().toString();
@@ -62,7 +62,7 @@ public class BucketClass {
         boolean result = false;
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
-                new ClientConfiguration().withSignerOverride("S3SignerType"));
+                new ClientConfiguration());
         s3Client.setEndpoint(endpoint);
         try {
             message = s3Client.getBucketLifecycleConfiguration(bucket).getRules().toString();
@@ -82,7 +82,7 @@ public class BucketClass {
         String message = null;
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
-                new ClientConfiguration().withSignerOverride("S3SignerType"));
+                new ClientConfiguration());
         s3Client.setEndpoint(endpoint);
         try {
             SetBucketVersioningConfigurationRequest request;
@@ -107,7 +107,7 @@ public class BucketClass {
         String message = null;
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
-                new ClientConfiguration().withSignerOverride("S3SignerType"));
+                new ClientConfiguration());
         s3Client.setEndpoint(endpoint);
         try {
             if (endpoint.contains("amazon")) {
@@ -152,7 +152,7 @@ public class BucketClass {
 
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
-                new ClientConfiguration().withSignerOverride("S3SignerType"));
+                new ClientConfiguration());
         s3Client.setEndpoint(endpoint);
         String[] array = new String[10];
 
@@ -209,7 +209,7 @@ public class BucketClass {
 
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
-                new ClientConfiguration().withSignerOverride("S3SignerType"));
+                new ClientConfiguration());
         s3Client.setEndpoint(endpoint);
 
         try {
@@ -242,7 +242,7 @@ public class BucketClass {
     ) {
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
-                new ClientConfiguration().withSignerOverride("S3SignerType"));
+                new ClientConfiguration());
         s3Client.setEndpoint(endpoint);
         objectlist = null;
 
@@ -286,7 +286,7 @@ public class BucketClass {
         String message = null;
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
-                new ClientConfiguration().withSignerOverride("S3SignerType"));
+                new ClientConfiguration());
         s3Client.setEndpoint(endpoint);
         message = ("\nDeleting bucket: " + bucket);
         try {

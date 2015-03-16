@@ -43,7 +43,7 @@ public class Versioning {
             mainFrame.calibrateTextArea();
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
             AmazonS3 s3Client = new AmazonS3Client(credentials,
-                    new ClientConfiguration().withSignerOverride("S3SignerType"));
+                    new ClientConfiguration());
             s3Client.setEndpoint(endpoint);
 
             VersionListing vListing;
@@ -93,7 +93,7 @@ public class Versioning {
         }
         if (Versioning.delete) {
             Versioning.delete = false;
-            mainFrame.reloadObjects();
+            mainFrame.reloadObjects(false);
         }
 
     }

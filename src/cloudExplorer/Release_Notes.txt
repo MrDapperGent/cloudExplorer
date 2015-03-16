@@ -1,19 +1,31 @@
-Version 5.2
+Version 6
 
-Bug Fixes:
+Bug Fixes: 
 
-    Editor and Upload a file:
+    Music Player, IRC,Migrate bucket, Add External Bucket,and Bucket Life Cycle:
+               
+                          Buckets are reloaded when complete.
 
-        Buckets are reloaded when operation is finished.            
+    Fixed bug when trying to launch a new instance of Cloud Explorer.
+    
 
 Improvements: <none> 
 
 
 New Features: 
 
-    "Tools -> Graph" allows you to Graph CSV files to store in a bucket or computer.
-     Text editor can substitute and replace text.
 
+    Credentials:
+                Upgraded to AWS SDK 1.9.23
+                AWS v4 signing is the only signing method supported.
+                If You need v2 signing, please use Cloud Explorer 5.x
+
+    Explorer:
+
+                Top level folders are now displayed first. When selecting a 
+                folder, the files will be displayed on the screen.
+    
+        
 Features:
 
 1. Tier buckets to and from Amazon Glacier.
@@ -60,10 +72,10 @@ java -jar CloudExplorer.jar synctos3 location bucket
 java -jar CloudExplorer.jar syncfroms3 destination bucket
 
 #Performance Test - PUT
-java -jar CloudExplorer.jar uploadtest bucket size threads operations [mixed]
+java -jar CloudExplorer.jar uploadtest bucket size threads operations
 
 #Performance Test - GET
-java -jar CloudExplorer.jar downloadtest bucket size threads operations [mixed]
+java -jar CloudExplorer.jar downloadtest bucket size threads operations
 
 #Search for files 
 java -jar CloudExplorer.jar search bucket what

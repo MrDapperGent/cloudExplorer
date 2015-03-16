@@ -37,27 +37,28 @@ public class ImageViewer implements Runnable {
             String temp_file = (mainFrame.Home + File.separator + "object.tmp");
 
             for (int i = 1; i != mainFrame.previous_objectarray_length; i++) {
-                if (mainFrame.object_item[i].isSelected()) {
-                    String new_object_name = mainFrame.convertObject(mainFrame.object_item[i].getText(), "download");
-                    jTextArea1.setText("\n\nPlease wait, the image is loading.");
-                    mainFrame.calibrateTextArea();
-                    mainFrame.get = new Get(mainFrame.object_item[i].getText(), mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), temp_file, null);
-                    mainFrame.get.run();
-                    BufferedImage imagee = ImageIO.read(new File(temp_file));
-                    label = new JLabel(new ImageIcon(imagee));
-                    label.revalidate();
-                    label.validate();
-                    label.repaint();
-                    mainFrame.jPanel11.removeAll();
-                    mainFrame.jPanel11.add(label);
-                    mainFrame.jPanel11.repaint();
-                    mainFrame.jPanel11.revalidate();
-                    mainFrame.jPanel11.validate();
-                    mainFrame.deleteFle(temp_file);
-                    mainFrame.object_item[i].setSelected(false);
-                    break;
+                if (mainFrame.object_item[i] != null) {
+                    if (mainFrame.object_item[i].isSelected()) {
+                        String new_object_name = mainFrame.convertObject(mainFrame.object_item[i].getText(), "download");
+                        jTextArea1.setText("\n\nPlease wait, the image is loading.");
+                        mainFrame.calibrateTextArea();
+                        mainFrame.get = new Get(mainFrame.object_item[i].getText(), mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), temp_file, null);
+                        mainFrame.get.run();
+                        BufferedImage imagee = ImageIO.read(new File(temp_file));
+                        label = new JLabel(new ImageIcon(imagee));
+                        label.revalidate();
+                        label.validate();
+                        label.repaint();
+                        mainFrame.jPanel11.removeAll();
+                        mainFrame.jPanel11.add(label);
+                        mainFrame.jPanel11.repaint();
+                        mainFrame.jPanel11.revalidate();
+                        mainFrame.jPanel11.validate();
+                        mainFrame.deleteFle(temp_file);
+                        mainFrame.object_item[i].setSelected(false);
+                        break;
+                    }
                 }
-
             }
 
             mainFrame.dialog.setVisible(false);

@@ -108,7 +108,7 @@ public class MakeDestinationBucket implements Runnable {
                     mainFrame.jPanel14.repaint();
                     mainFrame.jPanel14.revalidate();
                     mainFrame.jPanel14.validate();
-                    mainFrame.miniReload();
+                    mainFrame.reloadBuckets();
                 }
             });
 

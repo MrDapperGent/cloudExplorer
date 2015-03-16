@@ -42,6 +42,7 @@ public class ReloadObjects implements Runnable {
         mainFrame.objectarray = objectlist.split("@@");
         mainFrame.previous_objectarray_length = mainFrame.objectarray.length;
         objectlist = null;
+        mainFrame.folder_view = true;
     }
 
     public void startc(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint) {
