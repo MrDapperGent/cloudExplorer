@@ -2598,10 +2598,12 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     String[] delArray = new String[previous_objectarray_length];
 
                     for (int i = 1; i != previous_objectarray_length; i++) {
-                        if (object_item[i].isSelected()) {
-                            delArray[i] = object_item[i].getText();
+                        if (object_item[i] != null) {
+                            if (object_item[i].isSelected()) {
+                                delArray[i] = object_item[i].getText();
+                            }
+                            delcounter++;
                         }
-                        delcounter++;
                     }
                     Thread delThread = new Thread(new DeleteThread(this, delArray, null, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), null));
                     deleting.addItemListener(this);
