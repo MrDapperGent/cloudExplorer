@@ -32,7 +32,7 @@ public class SyncFromS3 implements Runnable {
     Get get;
     Thread syncFromS3;
 
-    SyncFromS3(String[] Aobjectarray, String[] AObjectsConverted, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String Adestination) {
+    SyncFromS3(NewJFrame AmainFrame, String[] Aobjectarray, String[] AObjectsConverted, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String Adestination) {
         objectarray = Aobjectarray;
         ObjectsConverted = AObjectsConverted;
         access_key = Aaccess_key;
@@ -40,6 +40,7 @@ public class SyncFromS3 implements Runnable {
         bucket = Abucket;
         endpoint = Aendpoint;
         destination = Adestination;
+        mainFrame = AmainFrame;
     }
 
     public void calibrate() {
@@ -125,14 +126,15 @@ public class SyncFromS3 implements Runnable {
         } catch (Exception SyncLocal) {
             mainFrame.jTextArea1.append("\n" + SyncLocal.getMessage());
         }
+        mainFrame.reloadBuckets();
         mainFrame.jTextArea1.append("\nSync operation finished running. Please observe this window for any transfers that may still be running.");
         calibrate();
     }
 
-    void startc(String[] Aobjectarray, String[] AObjectsConverted, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String Adestination) {
+    void startc(NewJFrame AmainFrame, String[] Aobjectarray, String[] AObjectsConverted, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String Adestination) {
 
         if (SyncFromS3.running) {
-            syncFromS3 = new Thread(new SyncFromS3(Aobjectarray, AObjectsConverted, Aaccess_key, Asecret_key, Abucket, Aendpoint, Adestination));
+            syncFromS3 = new Thread(new SyncFromS3(AmainFrame, Aobjectarray, AObjectsConverted, Aaccess_key, Asecret_key, Abucket, Aendpoint, Adestination));
             syncFromS3.start();
         }
     }

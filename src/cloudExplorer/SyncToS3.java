@@ -39,7 +39,7 @@ public class SyncToS3 implements Runnable {
     Boolean rrs = false;
     Boolean encrypt = false;
 
-    SyncToS3(File Alocation, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobjectarray, Boolean Arrs, Boolean Aencrypt) {
+    SyncToS3(NewJFrame AmainFrame, File Alocation, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobjectarray, Boolean Arrs, Boolean Aencrypt) {
         objectarray = Aobjectarray;
         location = Alocation;
         access_key = Aaccess_key;
@@ -48,6 +48,7 @@ public class SyncToS3 implements Runnable {
         endpoint = Aendpoint;
         rrs = Arrs;
         encrypt = Aencrypt;
+        mainFrame = AmainFrame;
     }
 
     public void calibrate() {
@@ -94,6 +95,7 @@ public class SyncToS3 implements Runnable {
                 found = 0;
             }
         }
+        mainFrame.reloadBuckets();
         mainFrame.jTextArea1.append("\nSync operation finished running. Please observe this window for any transfers that may still be running.");
         calibrate();
     }
@@ -131,10 +133,10 @@ public class SyncToS3 implements Runnable {
         return what;
     }
 
-    void startc(File location, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobjectarray, Boolean Arrs, Boolean Aencrypt
+    void startc(NewJFrame AmainFrame, File location, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobjectarray, Boolean Arrs, Boolean Aencrypt
     ) {
         if (SyncToS3.running) {
-            syncToS3 = new Thread(new SyncToS3(location, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aobjectarray, Arrs, Aencrypt));
+            syncToS3 = new Thread(new SyncToS3(AmainFrame, location, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aobjectarray, Arrs, Aencrypt));
             syncToS3.start();
 
         }
