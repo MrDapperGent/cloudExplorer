@@ -1713,7 +1713,7 @@
                 </Container>
                 <Component class="javax.swing.JLabel" name="jLabel11">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Sync To Folders:"/>
+                    <Property name="text" type="java.lang.String" value="Upload To Folder:"/>
                   </Properties>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane8">

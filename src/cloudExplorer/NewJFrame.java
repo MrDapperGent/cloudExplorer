@@ -981,7 +981,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jLabel11.setText("Sync To Folders:");
+        jLabel11.setText("Upload To Folder:");
 
         jScrollPane8.setViewportView(jList2);
 
