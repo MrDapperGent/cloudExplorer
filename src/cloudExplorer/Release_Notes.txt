@@ -9,7 +9,7 @@ Bug Fixes:
     2. Fixed bug when trying to launch a new instance of Cloud Explorer.
 
 
-    3. Buckets are reloaded when aborting a sync.
+    3. Buckets are reloaded when starting or aborting a sync.
     
 
 Improvements: <none> 
