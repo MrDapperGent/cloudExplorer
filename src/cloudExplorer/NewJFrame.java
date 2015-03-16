@@ -1995,7 +1995,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         object_item[h] = new JRadioButton();
                         object_item[h].setText(cut[0]);
                         object_item[h].setBackground(Color.white);
-                        object_item[h].setForeground(Color.MAGENTA);
+                        object_item[h].setForeground(Color.gray);
                         object_item[h].addActionListener(new ActionListener() {
 
                             public void actionPerformed(ActionEvent e) {
