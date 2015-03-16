@@ -7,6 +7,9 @@ Bug Fixes:
                           Buckets are reloaded when complete.
 
     2. Fixed bug when trying to launch a new instance of Cloud Explorer.
+
+
+    3. Buckets are reloaded when aborting a sync.
     
 
 Improvements: <none> 
