@@ -1,31 +1,17 @@
 Version 6
 
-Bug Fixes: 
-
-    Music Player, IRC,Migrate bucket, Add External Bucket,and Bucket Life Cycle:
-               
-                          Buckets are reloaded when complete.
-
-    Fixed bug when trying to launch a new instance of Cloud Explorer.
-    
+Bug Fixes: <none> 
 
 Improvements: <none> 
 
 
 New Features: 
 
-
     Credentials:
                 Upgraded to AWS SDK 1.9.23
                 AWS v4 signing is the only signing method supported.
                 If You need v2 signing, please use Cloud Explorer 5.x
 
-    Explorer:
-
-                Top level folders are now displayed first. When selecting a 
-                folder, the files will be displayed on the screen.
-    
-        
 Features:
 
 1. Tier buckets to and from Amazon Glacier.
