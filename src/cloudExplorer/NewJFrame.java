@@ -2685,7 +2685,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        try {
+       try {
             if (versionDownload) {
                 for (int i = 0; i != versioning_id.size(); i++) {
                     if (object_item[i].isVisible()) {
@@ -2701,14 +2701,19 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             } else {
 
                 for (int i = 1; i != previous_objectarray_length; i++) {
-                    if (object_item[i].isVisible()) {
+                    if (object_item[i] != null) {
+                        if (object_item[i].isVisible()) {
+                            if (object_item[i].getText().contains("\\") || object_item[i].getText().contains("/")) {
 
-                        if (object_item[i].isSelected()) {
-                            object_item[i].setSelected(false);
-                            jButton13.setText("Select");
-                        } else {
-                            object_item[i].setSelected(true);
-                            jButton13.setText("Deselect");
+                            } else {
+                                if (object_item[i].isSelected()) {
+                                    object_item[i].setSelected(false);
+                                    jButton13.setText("Select");
+                                } else {
+                                    object_item[i].setSelected(true);
+                                    jButton13.setText("Deselect");
+                                }
+                            }
                         }
                     }
                 }
