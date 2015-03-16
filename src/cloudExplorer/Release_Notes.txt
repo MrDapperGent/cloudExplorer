@@ -14,6 +14,10 @@ New Features:
                 AWS v4 signing is the only signing method supported.
                 If You need v2 signing, please use Cloud Explorer 5.x
 
+    Explorer:
+
+                Top level folders are now displayed first. When selecting a 
+                folder, the files will be displayed on the screen.
     
         
 Features:
