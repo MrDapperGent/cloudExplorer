@@ -232,6 +232,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jCheckBox6 = new javax.swing.JCheckBox();
         jButton14 = new javax.swing.JButton();
         jButton21 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jList3 = new javax.swing.JList();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
@@ -1072,6 +1075,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
 
+        jLabel12.setText("Folders:");
+
+        jScrollPane9.setViewportView(jList3);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -1086,7 +1093,12 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                             .addComponent(jCheckBox6)
                             .addComponent(jButton16)))
                     .addComponent(jButton14)
-                    .addComponent(jButton21))
+                    .addComponent(jButton21)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(16, 16, 16)
                 .addComponent(jFileChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
                 .addContainerGap())
@@ -1106,8 +1118,13 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addGap(14, 14, 14)
                         .addComponent(jCheckBox3)
                         .addGap(18, 18, 18)
-                        .addComponent(jCheckBox6))
-                    .addComponent(jFileChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE))
+                        .addComponent(jCheckBox6)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jFileChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -2052,6 +2069,17 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     }
 
                     jList2.setModel(new javax.swing.AbstractListModel() {
+
+                        public int getSize() {
+                            return folders.length;
+                        }
+
+                        public Object getElementAt(int i) {
+                            return folders[i];
+                        }
+                    });
+                    
+                      jList3.setModel(new javax.swing.AbstractListModel() {
 
                         public int getSize() {
                             return folders.length;
@@ -3223,6 +3251,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     public static javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -3232,6 +3261,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList jList2;
+    public static javax.swing.JList jList3;
     public static javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
@@ -3296,6 +3326,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     public static javax.swing.JTabbedPane jTabbedPane1;
     public static javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;

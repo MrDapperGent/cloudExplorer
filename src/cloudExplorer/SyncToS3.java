@@ -79,6 +79,15 @@ public class SyncToS3 implements Runnable {
             if (found == 0) {
                 String object = makeDirectory(file_found.getAbsolutePath().toString());
                 if (SyncToS3.running) {
+                    int index = mainFrame.jList3.getSelectedIndex(); //get selected index
+
+                    try {
+                        if (index != -1) {
+                            object = mainFrame.jList3.getSelectedValue().toString() + object;
+                        }
+                    } catch (Exception indaex) {
+
+                    }
                     put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object, rrs, encrypt);
                     put.run();
                 }
