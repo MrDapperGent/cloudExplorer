@@ -49,6 +49,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     String minor = "3";
     String release_version = major + "." + minor;
     String version = "Cloud Explorer " + release_version;
+    String[] folders = new String[1];
+    String[] folders2 = folders;
+    ArrayList<String> list = new ArrayList<String>();
     public boolean consoleToggle = false;
     public boolean selectToggle = false;
     public static JRadioButton deleting = new JRadioButton("foo");
@@ -1980,7 +1983,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     }
 
     void drawFolders() {
-        String[] folders = new String[objectarray.length];
+        folders = new String[objectarray.length];
         boolean draw_folder = true;
         String add_folder = null;
         String[] cut = new String[1000];
@@ -2068,25 +2071,37 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         folders[h] = null;
                     }
 
+                    try {
+                        list = new ArrayList<String>();
+                        for (int p = 0; p != folders.length; p++) {
+                            if (folders[p] != null) {
+                                list.add(folders[p]);
+                            }
+                        }
+
+                        folders2 = list.toArray(new String[list.size()]);
+                    } catch (Exception list) {
+                    }
+
                     jList2.setModel(new javax.swing.AbstractListModel() {
 
                         public int getSize() {
-                            return folders.length;
+                            return folders2.length;
                         }
 
                         public Object getElementAt(int i) {
-                            return folders[i];
+                            return folders2[i];
                         }
                     });
-                    
-                      jList3.setModel(new javax.swing.AbstractListModel() {
+
+                    jList3.setModel(new javax.swing.AbstractListModel() {
 
                         public int getSize() {
-                            return folders.length;
+                            return folders2.length;
                         }
 
                         public Object getElementAt(int i) {
-                            return folders[i];
+                            return folders2[i];
                         }
                     });
 
@@ -2389,7 +2404,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             if (jCheckBox5.isSelected()) {
                 encrypt = true;
             }
-            
+
             int index = jList2.getSelectedIndex(); //get selected index
 
             if (index != -1) {
