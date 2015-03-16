@@ -3,15 +3,14 @@ Version 6
 Bug Fixes: 
 
     Music Player, Add External Bucket,and Bucket Life Cycle:
-                Buckets are reloaded when complete.
+               
+                          Buckets are reloaded when complete.
 
     
 Improvements: <none> 
 
 New Features: 
 
-    GUI:
-                Window can be resized.
 
     Credentials:
                 Upgraded to AWS SDK 1.9.23
