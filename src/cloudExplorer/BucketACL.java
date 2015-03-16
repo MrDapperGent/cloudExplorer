@@ -103,7 +103,7 @@ public class BucketACL implements Runnable {
             refresh_bucket.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     jTextArea1.append("\nRefreshing Bucket....");
-                    mainFrame.folder_reloadBuckets();
+                    mainFrame.search_folder_view();
                 }
             });
 
