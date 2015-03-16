@@ -23,6 +23,11 @@ New Features:
 
                 You can choose a top-level folder to upload a file to.
 
+    3. Sync:
+            
+                You can choose a top-level folder to sync to.
+     
+
 Features:
 
 1. Tier buckets to and from Amazon Glacier.
