@@ -16,7 +16,6 @@
 package cloudExplorer;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,14 +31,11 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 import javax.swing.BoxLayout;
-import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JRadioButton;
@@ -226,8 +222,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jCheckBox4 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
         jLabel11 = new javax.swing.JLabel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList();
         jPanel4 = new javax.swing.JPanel();
         jFileChooser2 = new javax.swing.JFileChooser();
         jButton16 = new javax.swing.JButton();
@@ -309,14 +305,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addGap(240, 240, 240)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(179, 179, 179))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -855,7 +851,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addComponent(jButton18)
                         .addGap(10, 10, 10)
                         .addComponent(jButton19))
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 756, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
         jPanel1Layout.setVerticalGroup(
@@ -881,7 +877,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
                         .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -978,9 +974,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jLabel11.setText("Folder:");
+        jLabel11.setText("Folders:");
 
-        jScrollPane6.setViewportView(jList1);
+        jScrollPane8.setViewportView(jList2);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -993,9 +989,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(38, 38, 38)
-                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 735, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(26, 26, 26)
+                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 669, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -1006,11 +1002,11 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
+                        .addGap(39, 39, 39)
                         .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(46, 46, 46))
         );
 
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/tab-upload.png")), jPanel2); // NOI18N
@@ -1092,7 +1088,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     .addComponent(jButton14)
                     .addComponent(jButton21))
                 .addGap(16, 16, 16)
-                .addComponent(jFileChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 767, Short.MAX_VALUE)
+                .addComponent(jFileChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -1191,7 +1187,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                             .addComponent(jButton23)
                             .addComponent(jButton22))))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 763, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 671, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -2009,7 +2005,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                             }
                         }
                     }
-                    
+
                     for (int i = 0; i != folders.length; i++) {
                         if (folders[i] != null && objectarray[h] != null) {
                             if (objectarray[h].contains(folders[i])) {
@@ -2055,7 +2051,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         folders[h] = null;
                     }
 
-                    jList1.setModel(new javax.swing.AbstractListModel() {
+                    jList2.setModel(new javax.swing.AbstractListModel() {
 
                         public int getSize() {
                             return folders.length;
@@ -2080,8 +2076,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         }
     }
 
-    void reloadObjects(boolean drawFolders
-    ) {
+    void reloadObjects(boolean drawFolders) {
 
         if ((jTextField1.getText().length() > 1 || jTextField2.getText().length() > 1)) {
             var();
@@ -2366,15 +2361,15 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             if (jCheckBox5.isSelected()) {
                 encrypt = true;
             }
-
-            int index = jList1.getSelectedIndex(); //get selected index
+            
+            int index = jList2.getSelectedIndex(); //get selected index
 
             if (index != -1) {
-                new_object_name = jList1.getSelectedValue().toString() + new_object_name;
+                new_object_name = jList2.getSelectedValue().toString() + new_object_name;
             }
+
             put = new Put(upload, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), new_object_name, rrs, encrypt);
             put.startc(upload, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), new_object_name, rrs, encrypt);
-
             jPanel9.setVisible(true);
             reloadBuckets();
         } else {
@@ -2754,19 +2749,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             } else {
 
                 for (int i = 1; i != previous_objectarray_length; i++) {
-                    if (object_item[i] != null) {
-                        if (object_item[i].isVisible()) {
-                            if (object_item[i].getText().contains("\\") || object_item[i].getText().contains("/")) {
+                    if (object_item[i].isVisible()) {
 
-                            } else {
-                                if (object_item[i].isSelected()) {
-                                    object_item[i].setSelected(false);
-                                    jButton13.setText("Select");
-                                } else {
-                                    object_item[i].setSelected(true);
-                                    jButton13.setText("Deselect");
-                                }
-                            }
+                        if (object_item[i].isSelected()) {
+                            object_item[i].setSelected(false);
+                            jButton13.setText("Select");
+                        } else {
+                            object_item[i].setSelected(true);
+                            jButton13.setText("Deselect");
                         }
                     }
                 }
@@ -3241,7 +3231,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList jList1;
+    private javax.swing.JList jList2;
     public static javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
@@ -3304,8 +3294,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     public static javax.swing.JTabbedPane jTabbedPane1;
     public static javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;

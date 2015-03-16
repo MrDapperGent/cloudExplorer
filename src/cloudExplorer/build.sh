@@ -1,5 +1,5 @@
 #!/bin/bash
-BUILD_NAME="cloudExplorer-6.0"
+BUILD_NAME="cloudExplorer-5.3"
 SRC="$HOME/cloudExplorer"
 JAR="CloudExplorer.jar"
 JARLOC="$HOME/NetBeansProjects/CloudExplorer"

@@ -58,7 +58,7 @@ public class Delete implements Runnable {
     public void run() {
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
-                new ClientConfiguration());
+                new ClientConfiguration().withSignerOverride("S3SignerType"));
         s3Client.setEndpoint(endpoint);
 
         try {
