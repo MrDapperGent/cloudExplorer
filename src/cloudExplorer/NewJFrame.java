@@ -49,8 +49,8 @@ import javax.swing.plaf.ColorUIResource;
 
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
-    String major = "6";
-    String minor = "0";
+    String major = "5";
+    String minor = "3";
     String release_version = major + "." + minor;
     String version = "Cloud Explorer " + release_version;
     public boolean consoleToggle = false;
@@ -855,7 +855,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addComponent(jButton18)
                         .addGap(10, 10, 10)
                         .addComponent(jButton19))
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE))
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 756, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
         jPanel1Layout.setVerticalGroup(
@@ -980,11 +980,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jLabel11.setText("Folder:");
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane6.setViewportView(jList1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -999,13 +994,13 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
                             .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(46, 46, 46)
-                .addComponent(jFileChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
+                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 735, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jFileChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+            .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(3, 3, 3)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1095,7 +1090,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     .addComponent(jButton14)
                     .addComponent(jButton21))
                 .addGap(16, 16, 16)
-                .addComponent(jFileChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
+                .addComponent(jFileChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 767, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -1194,7 +1189,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                             .addComponent(jButton23)
                             .addComponent(jButton22))))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 671, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 763, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -2003,11 +1998,20 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         cut[0] = cut[0] + separator;
                     }
 
+                    int bn = 0;
                     for (int i = 0; i != folders.length; i++) {
                         if (folders[i] != null && objectarray[h] != null) {
                             if (objectarray[h].contains(folders[i])) {
                                 draw_folder = false;
-
+                                bn++;
+                            }
+                        }
+                    }
+                    
+                    for (int i = 0; i != folders.length; i++) {
+                        if (folders[i] != null && objectarray[h] != null) {
+                            if (objectarray[h].contains(folders[i])) {
+                                bn++;
                             }
                         }
                     }
@@ -2042,7 +2046,12 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                             }
                         });
                     }
+
                     folders[h] = cut[0];
+
+                    if (bn > 1) {
+                        folders[h] = null;
+                    }
 
                     jList1.setModel(new javax.swing.AbstractListModel() {
 
@@ -2069,7 +2078,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         }
     }
 
-    void reloadObjects(boolean drawFolders) {
+    void reloadObjects(boolean drawFolders
+    ) {
 
         if ((jTextField1.getText().length() > 1 || jTextField2.getText().length() > 1)) {
             var();
@@ -2357,7 +2367,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
             int index = jList1.getSelectedIndex(); //get selected index
 
-            System.out.print("\nDebug " + index);
             if (index != -1) {
                 new_object_name = jList1.getSelectedValue().toString() + new_object_name;
             }
