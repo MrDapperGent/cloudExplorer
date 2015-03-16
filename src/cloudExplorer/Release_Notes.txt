@@ -1,13 +1,28 @@
-Version 6.0
+Version 5.3
 
-Bug Fixes: <none>
+Bug Fixes: 
+
+    1. Music Player, IRC, Migrate bucket, Add External Bucket, and Bucket Life Cycle:
+               
+                          Buckets are reloaded when complete.
+
+    2. Fixed bug when trying to launch a new instance of Cloud Explorer.
+    
 
 Improvements: <none> 
 
 
-New Features: <none>
+New Features: 
+
+    1. Explorer:
+
+                Top-level folders are now displayed first. When selecting a 
+                folder, the files will be displayed on the screen.
     
-        
+    2. Upload:
+
+                You can choose a top-level folder to upload a file to.
+
 Features:
 
 1. Tier buckets to and from Amazon Glacier.
