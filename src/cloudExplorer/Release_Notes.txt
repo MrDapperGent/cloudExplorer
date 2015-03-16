@@ -18,6 +18,8 @@ New Features:
 
                 Top-level folders are now displayed first. When selecting a 
                 folder, the files will be displayed on the screen.
+                
+                You can create virtual folders from the Objects menu.
     
     2. Upload:
 
