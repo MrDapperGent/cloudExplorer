@@ -1697,7 +1697,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                search_folder_view();
+                    search_folder_view();
                 }
             });
 
