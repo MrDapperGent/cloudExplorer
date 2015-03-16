@@ -285,7 +285,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setResizable(false);
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -303,14 +302,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addGap(240, 240, 240)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -849,7 +848,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addComponent(jButton18)
                         .addGap(10, 10, 10)
                         .addComponent(jButton19))
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
         jPanel1Layout.setVerticalGroup(
@@ -874,10 +873,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
-                        .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, 0))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         scrollPane1.add(jPanel1);
@@ -979,19 +977,19 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72)
-                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 637, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(76, 76, 76)
+                .addComponent(jFileChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 669, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFileChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 61, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
 
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/tab-upload.png")), jPanel2); // NOI18N
@@ -1073,7 +1071,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     .addComponent(jButton14)
                     .addComponent(jButton21))
                 .addGap(16, 16, 16)
-                .addComponent(jFileChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 658, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jFileChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -1092,7 +1090,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addComponent(jCheckBox3)
                         .addGap(18, 18, 18)
                         .addComponent(jCheckBox6))
-                    .addComponent(jFileChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jFileChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -1172,14 +1170,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                             .addComponent(jButton23)
                             .addComponent(jButton22))))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 644, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 671, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1209,14 +1207,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane1)
                 .addGap(0, 0, 0))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -1466,16 +1464,16 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -1541,6 +1539,74 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         versionDownload = false;
         jButton13.setText("Select All");
     }
+
+    void folder_reloadBuckets() {
+        if (active_bucket > 0) {
+            NewJFrame.perf = false;
+            if (consoleToggle) {
+                jPanel9.setVisible(true);
+            } else {
+                jPanel9.setVisible(false);
+            }
+            showPanel();
+            jPanel15.setVisible(true);
+            jButton3.setEnabled(true);
+            jButton1.setEnabled(true);
+            jButton4.setEnabled(true);
+            jButton7.setEnabled(true);
+            jButton12.setEnabled(true);
+            jButton13.setEnabled(true);
+            jPanel14.removeAll();
+            jPanel14.repaint();
+            jPanel14.revalidate();
+            jPanel14.validate();
+            jButton1.setEnabled(true);
+            jButton17.setEnabled(true);
+            jButton18.setEnabled(true);
+            jButton19.setEnabled(true);
+
+            reloadObjects(true);
+
+            versionDownload = false;
+            BucketACL bucketACL = new BucketACL(this);
+            bucketACL.startc();
+            jButton13.setText("Select All");
+
+            try {
+                int found = 0;
+
+                jTabbedPane1.setSelectedIndex(1);
+
+                int display_counter = objectarray.length;
+
+                for (int i = 1; i != display_counter; i++) {
+                    if (object_item[i] != null) {
+                        if (object_item[i].getText().toLowerCase().contains(jTextField10.getText().toLowerCase())) {
+                            jPanel11.add(object_item[i]);
+                            object_item[i].setVisible(true);
+                            found++;
+                        } else {
+                            object_item[i].setVisible(false);
+                        }
+                    }
+                }
+
+                if (found == 0) {
+                    jTextArea1.append("\n\nNo objects found for search.");
+                } else {
+                    int display = objectarray.length - 1;
+                    jTextArea1.append("\n\nLoaded objects. Total number of objects in this bucket: " + display);
+                }
+                jTextField10.setText("");
+            } catch (Exception searchBar) {
+
+            }
+        } else {
+            jTextArea1.append("\nError: No bucket has been selected\n");
+        }
+
+        calibrateTextArea();
+    }
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         if (active_bucket > 0) {
             NewJFrame.perf = false;
@@ -1566,11 +1632,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jButton18.setEnabled(true);
             jButton19.setEnabled(true);
 
-            if (folder_view) {
-                reloadObjects(true);
-            } else {
-                reloadObjects(false);
-            }
+            reloadObjects(false);
 
             versionDownload = false;
             BucketACL bucketACL = new BucketACL(this);
@@ -1634,7 +1696,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    jButton6.doClick();
+                    folder_reloadBuckets();
                 }
             });
 
@@ -1658,7 +1720,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                                     calibrateTextArea();
                                     java.awt.EventQueue.invokeLater(new Runnable() {
                                         public void run() {
-                                            jButton6.doClick();
+                                            folder_reloadBuckets();
                                         }
                                     });
                                 }
@@ -1906,15 +1968,15 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     } else {
                         separator = unix;
                     }
-                    
+
                     if (objectarray[h].substring(0, 1).contains(win) || objectarray[h].substring(0, 1).contains(unix)) {
                         cut = objectarray[h].split(separator);
                         cut[0] = cut[1];
                         cut[0] = separator + cut[0] + separator;
-                    
+
                     } else {
 
-                         cut = objectarray[h].split(Pattern.quote(separator));
+                        cut = objectarray[h].split(Pattern.quote(separator));
                         cut[0] = cut[0] + separator;
                     }
 
@@ -1946,7 +2008,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                                                 jTextField10.setText(object_item[i].getText());
                                                 object_item[i].setSelected(false);
                                                 folder_view = false;
-                                                NewJFrame.jButton6.doClick();
+                                                folder_reloadBuckets();
 
                                             }
 
@@ -2073,7 +2135,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jTextArea1.append("\nSaved Object\n");
             objectarray = null;
             bucket_item[active_bucket].setSelected(true);
-            reloadBuckets();
+            folder_reloadBuckets();
         } else {
             jTextArea1.append("\nError: no bucket selected.");
         }
@@ -2260,7 +2322,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             put = new Put(upload, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), new_object_name, rrs, encrypt);
             put.startc(upload, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), new_object_name, rrs, encrypt);
             jPanel9.setVisible(true);
-            reloadBuckets();
+            folder_reloadBuckets();
         } else {
             jTextArea1.append("\nError: No bucket selected.");
         }
