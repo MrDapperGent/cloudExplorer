@@ -2,10 +2,10 @@ Version 6
 
 Bug Fixes: 
 
-    Music Player:
-                Buckets are reloaded when stopping a song.
-                
+    Music Player and Bucket Life Cycle:
+                Buckets are reloaded when complete.
 
+    
 Improvements: <none> 
 
 New Features: 
