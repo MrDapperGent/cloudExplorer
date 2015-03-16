@@ -2,7 +2,7 @@ Version 6
 
 Bug Fixes: 
 
-    Music Player, Add External Bucket,and Bucket Life Cycle:
+    Music Player, Migrate bucket, Add External Bucket,and Bucket Life Cycle:
                
                           Buckets are reloaded when complete.
 
