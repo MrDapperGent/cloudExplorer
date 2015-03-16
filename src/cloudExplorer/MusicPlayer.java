@@ -96,7 +96,7 @@ public class MusicPlayer implements Runnable {
                 public void actionPerformed(ActionEvent e) {
                     mp3.stop();
                     mainFrame.jButton17.setEnabled(true);
-                    mainFrame.miniReload();
+                    mainFrame.reloadBuckets();
                 }
             });
             replayMusic.addActionListener(new ActionListener() {

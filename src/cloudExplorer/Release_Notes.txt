@@ -1,6 +1,10 @@
 Version 6
 
-Bug Fixes: <none>     
+Bug Fixes: 
+
+    Music Player:
+                Buckets are reloaded when stopping a song.
+                
 
 Improvements: <none> 
 
