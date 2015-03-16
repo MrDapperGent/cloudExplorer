@@ -88,22 +88,24 @@ public class ObjectACL implements Runnable {
                 public void actionPerformed(ActionEvent e) {
                     try {
                         for (int i = 1; i != mainFrame.previous_objectarray_length; i++) {
-                            if (mainFrame.object_item[i].isSelected()) {
-                                object_acl_change = mainFrame.object_item[i].getText();
-                                if (public_box.isSelected()) {
-                                    mainFrame.objectacl.setACLpublic(object_acl_change, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getEndpoint(), mainFrame.cred.getBucket());
-                                    jTextArea1.append("\nPublic set for object: " + object_acl_change + "\n");
-                                }
+                            if (mainFrame.object_item[i] != null) {
+                                if (mainFrame.object_item[i].isSelected()) {
+                                    object_acl_change = mainFrame.object_item[i].getText();
+                                    if (public_box.isSelected()) {
+                                        mainFrame.objectacl.setACLpublic(object_acl_change, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getEndpoint(), mainFrame.cred.getBucket());
+                                        jTextArea1.append("\nPublic set for object: " + object_acl_change + "\n");
+                                    }
 
-                                if (url_box.isSelected()) {
-                                    String url = mainFrame.objectacl.setACLurl(object_acl_change, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getEndpoint(), mainFrame.cred.getBucket());
-                                    url = url.replace("Pre-Signed URL = ", "");
-                                    jTextArea1.append("\n" + url);
-                                    mainFrame.calibrateTextArea();
-                                }
-                                if (private_box.isSelected()) {
-                                    mainFrame.objectacl.setACLprivate(object_acl_change, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getEndpoint(), mainFrame.cred.getBucket());
-                                    jTextArea1.append("\nPrivate access set for object: " + object_acl_change + "\n");
+                                    if (url_box.isSelected()) {
+                                        String url = mainFrame.objectacl.setACLurl(object_acl_change, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getEndpoint(), mainFrame.cred.getBucket());
+                                        url = url.replace("Pre-Signed URL = ", "");
+                                        jTextArea1.append("\n" + url);
+                                        mainFrame.calibrateTextArea();
+                                    }
+                                    if (private_box.isSelected()) {
+                                        mainFrame.objectacl.setACLprivate(object_acl_change, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getEndpoint(), mainFrame.cred.getBucket());
+                                        jTextArea1.append("\nPrivate access set for object: " + object_acl_change + "\n");
+                                    }
                                 }
                             }
                         }
