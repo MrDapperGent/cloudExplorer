@@ -1,23 +1,11 @@
-Version 5.3
+Version 6.0
 
-Bug Fixes: 
-
-    1. Music Player, IRC, Migrate bucket, Add External Bucket, and Bucket Life Cycle:
-               
-                          Buckets are reloaded when complete.
-
-    2. Fixed bug when trying to launch a new instance of Cloud Explorer.
-    
+Bug Fixes: <none>
 
 Improvements: <none> 
 
 
-New Features: 
-
-    1. Explorer:
-
-                Top level folders are now displayed first. When selecting a 
-                folder, the files will be displayed on the screen.
+New Features: <none>
     
         
 Features:
