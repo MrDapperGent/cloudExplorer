@@ -6,6 +6,7 @@ Bug Fixes:
                
                           Buckets are reloaded when complete.
 
+    Fixed bug when trying to launch a new instance of Cloud Explorer.
     
 Improvements: <none> 
 

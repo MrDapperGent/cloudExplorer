@@ -3005,7 +3005,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             NewJFrame.jTextArea1.append("\nPlease ensure that your Java path is set correctly on the OS.");
             String path = NewJFrame.class
                     .getProtectionDomain().getCodeSource().getLocation().getPath();
-            Process pb = Runtime.getRuntime().exec("java -jar -Xms100m -Xmx500m" + path);
+            Process pb = Runtime.getRuntime().exec("java -jar -Xms100m -Xmx500m " + path);
             InputStream in = pb.getInputStream();
             InputStream err = pb.getErrorStream();
         } catch (Exception pb) {
