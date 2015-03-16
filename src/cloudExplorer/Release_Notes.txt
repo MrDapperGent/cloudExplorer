@@ -8,7 +8,9 @@ Bug Fixes:
 
     Fixed bug when trying to launch a new instance of Cloud Explorer.
     
+
 Improvements: <none> 
+
 
 New Features: 
 
