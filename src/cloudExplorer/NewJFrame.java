@@ -2827,15 +2827,20 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
 
-        if (SyncToS3.running) {
-            Abort abortToS3 = new Abort("To");
-            abortToS3.run();
-        }
+        try {
+            if (SyncToS3.running) {
+                Abort abortToS3 = new Abort("To");
+                abortToS3.run();
+            }
 
-        if (SyncFromS3.running) {
-            Abort abortFromS3 = new Abort("From");
-            abortFromS3.run();
+            if (SyncFromS3.running) {
+                Abort abortFromS3 = new Abort("From");
+                abortFromS3.run();
+            }
+        } catch (Exception abo) {
+
         }
+        reloadBuckets();
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
@@ -3202,12 +3207,13 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     private void jMenuItem27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem27ActionPerformed
         if (active_bucket > 0) {
-          
+            CreateFolder fol = new CreateFolder(this);
+            fol.startc();
             jPanel9.setVisible(true);
         } else {
             jTextArea1.append("\nError: No bucket has been selected");
         }
-                       
+
     }//GEN-LAST:event_jMenuItem27ActionPerformed
     void cleanup() {
         try {
@@ -3253,7 +3259,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
+    public static javax.swing.JButton jButton11;
     public static javax.swing.JButton jButton12;
     public static javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
@@ -3364,14 +3370,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JScrollPane jScrollPane9;
     public static javax.swing.JTabbedPane jTabbedPane1;
     public static javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
+    public static javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;
     public static javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
     public static javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    public static javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
