@@ -83,7 +83,9 @@ public class SyncFromS3 implements Runnable {
     public void run() {
         try {
             File[] foo = new File[objectarray.length];
+            int index = mainFrame.jList3.getSelectedIndex(); //get selected index
             for (int i = 1; i != objectarray.length; i++) {
+
                 if (objectarray[i] != null) {
                     foo[i] = new File(destination + File.separator + objectarray[i]);
 
@@ -91,12 +93,29 @@ public class SyncFromS3 implements Runnable {
                         //mainFrame.jTextArea1.append("\n" + objectarray[i] + " already exists on this machine.");
                         calibrate();
                     } else {
+                        if (index > -1) {
+                            if (objectarray[i].contains(mainFrame.jList3.getSelectedValue().toString())) {
+                                makeDirectory(destination + File.separator + objectarray[i]);
+                                String object = makeDirectory(objectarray[i]);
+                            }
+                        } else {
+                            makeDirectory(destination + File.separator + objectarray[i]);
+                            String object = makeDirectory(objectarray[i]);
+                        }
 
-                        makeDirectory(destination + File.separator + objectarray[i]);
-                        String object = makeDirectory(objectarray[i]);
                         if (SyncFromS3.running) {
-                            get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + object, null);
-                            get.run();
+
+                            if (index == -1) {
+                                String object = makeDirectory(objectarray[i]);
+                                get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + objectarray[i], null);
+                                get.run();
+                            } else {
+                                if (objectarray[i].contains(mainFrame.jList3.getSelectedValue().toString())) {
+                                    String object = makeDirectory(objectarray[i]);
+                                    get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + object, null);
+                                    get.run();
+                                }
+                            }
                         }
                     }
 

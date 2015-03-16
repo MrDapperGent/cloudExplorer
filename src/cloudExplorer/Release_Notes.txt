@@ -31,6 +31,7 @@ New Features:
     3. Sync:
             
                 You can choose a top-level folder to sync to.
+                You can choose a top-level folder to sync from.
      
 
 Features:
