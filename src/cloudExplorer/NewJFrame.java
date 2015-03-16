@@ -2650,13 +2650,15 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 }
             } else {
                 for (int i = 1; i != previous_objectarray_length; i++) {
-                    if (object_item[i].isSelected()) {
-                        String new_object_name = convertObject(object_item[i].getText(), "download");
-                        get = new Get(object_item[i].getText(), cred.access_key, cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), temp_file, null);
-                        get.run();
-                        objectToedit = object_item[i].getText();
-                        object_item[i].setSelected(false);
-                        break;
+                    if (object_item[i] != null) {
+                        if (object_item[i].isSelected()) {
+                            String new_object_name = convertObject(object_item[i].getText(), "download");
+                            get = new Get(object_item[i].getText(), cred.access_key, cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), temp_file, null);
+                            get.run();
+                            objectToedit = object_item[i].getText();
+                            object_item[i].setSelected(false);
+                            break;
+                        }
                     }
                 }
             }

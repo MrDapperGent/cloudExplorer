@@ -110,26 +110,28 @@ public class MusicPlayer implements Runnable {
 
             int count = 0;
             for (int h = 1; h != mainFrame.previous_objectarray_length; h++) {
-                if (mainFrame.object_item[h].isSelected()) {
-                    if (mainFrame.object_item[h].getText().contains(".mp3")) {
-                        String url = mainFrame.objectacl.setACLurl(mainFrame.object_item[h].getText(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getEndpoint(), mainFrame.cred.getBucket());
-                        url = url.replace("Pre-Signed URL = ", "");
-                        music_url = (new URL(url));
-                        mp3.addToPlayList(music_url);
-                        count++;
-                    }
-                    if (count == 1) {
-                        mainFrame.jPanel14.removeAll();
-                        mainFrame.jPanel14.setLayout(new BoxLayout(mainFrame.jPanel14, BoxLayout.Y_AXIS));
-                        mainFrame.jPanel14.add(replayMusic);
-                        mainFrame.jPanel14.add(forwardMusic);
-                        mainFrame.jPanel14.add(backwardMusic);
-                        mainFrame.jPanel14.add(stopMusic);
-                        mainFrame.jPanel14.repaint();
-                        mainFrame.jPanel14.revalidate();
-                        mainFrame.jPanel14.validate();
-                        mainFrame.jButton17.setEnabled(false);
-                        mp3.play();
+                if (mainFrame.object_item[h] != null) {
+                    if (mainFrame.object_item[h].isSelected()) {
+                        if (mainFrame.object_item[h].getText().contains(".mp3")) {
+                            String url = mainFrame.objectacl.setACLurl(mainFrame.object_item[h].getText(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getEndpoint(), mainFrame.cred.getBucket());
+                            url = url.replace("Pre-Signed URL = ", "");
+                            music_url = (new URL(url));
+                            mp3.addToPlayList(music_url);
+                            count++;
+                        }
+                        if (count == 1) {
+                            mainFrame.jPanel14.removeAll();
+                            mainFrame.jPanel14.setLayout(new BoxLayout(mainFrame.jPanel14, BoxLayout.Y_AXIS));
+                            mainFrame.jPanel14.add(replayMusic);
+                            mainFrame.jPanel14.add(forwardMusic);
+                            mainFrame.jPanel14.add(backwardMusic);
+                            mainFrame.jPanel14.add(stopMusic);
+                            mainFrame.jPanel14.repaint();
+                            mainFrame.jPanel14.revalidate();
+                            mainFrame.jPanel14.validate();
+                            mainFrame.jButton17.setEnabled(false);
+                            mp3.play();
+                        }
                     }
                 }
             }
