@@ -29,6 +29,7 @@ import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -97,6 +98,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     Thread getThread;
     public static Boolean gui = false;
     String before = null;
+    boolean folder_view = true;
 
     public NewJFrame() {
         try {
@@ -1563,7 +1565,13 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jButton17.setEnabled(true);
             jButton18.setEnabled(true);
             jButton19.setEnabled(true);
-            reloadObjects();
+
+            if (folder_view) {
+                reloadObjects(true);
+            } else {
+                reloadObjects(false);
+            }
+
             versionDownload = false;
             BucketACL bucketACL = new BucketACL(this);
             bucketACL.startc();
@@ -1854,6 +1862,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             bucketarray = null;
             ReloadBuckets buckets = new ReloadBuckets(cred.getAccess_key(), cred.getSecret_key(), cred.getEndpoint(), this);
             buckets.run();
+            folder_view = true;
             active_bucket = 0;
         } else {
             jTextArea1.append("\nError: Configuration not loaded\n");
@@ -1875,7 +1884,94 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jPanel11.setLayout(new BoxLayout(jPanel11, BoxLayout.PAGE_AXIS));
     }
 
-    void reloadObjects() {
+    void drawFolders() {
+        String[] folders = new String[objectarray.length];
+        boolean draw_folder = true;
+        String add_folder = null;
+        String[] cut = new String[1000];
+        jPanel11.setLayout(new BoxLayout(jPanel11, BoxLayout.PAGE_AXIS));
+        jPanel14.removeAll();
+        object_item = new JRadioButton[objectarray.length];
+        String unix = "/";
+        String win = "\\";
+        String separator = null;
+
+        try {
+            for (int h = 1; h != objectarray.length; h++) {
+                draw_folder = true;
+
+                if (objectarray[h].contains(unix) || objectarray[h].contains(win)) {
+                    if (objectarray[h].contains(win)) {
+                        separator = win;
+                    } else {
+                        separator = unix;
+                    }
+                    
+                    if (objectarray[h].substring(0, 1).contains(win) || objectarray[h].substring(0, 1).contains(unix)) {
+                        cut = objectarray[h].split(separator);
+                        cut[0] = cut[1];
+                        cut[0] = separator + cut[0] + separator;
+                    
+                    } else {
+
+                         cut = objectarray[h].split(Pattern.quote(separator));
+                        cut[0] = cut[0] + separator;
+                    }
+
+                    for (int i = 0; i != folders.length; i++) {
+                        if (folders[i] != null && objectarray[h] != null) {
+                            if (objectarray[h].contains(folders[i])) {
+                                draw_folder = false;
+
+                            }
+                        }
+                    }
+
+                    if (draw_folder) {
+                        jPanel11.setLayout(new BoxLayout(jPanel11, BoxLayout.Y_AXIS));
+                        object_item[h] = new JRadioButton();
+                        object_item[h].setText(cut[0]);
+                        object_item[h].setBackground(Color.white);
+                        object_item[h].setForeground(Color.MAGENTA);
+                        object_item[h].addActionListener(new ActionListener() {
+
+                            public void actionPerformed(ActionEvent e) {
+
+                                calibrateTextArea();
+                                try {
+                                    for (int i = 0; i != objectarray.length; i++) {
+                                        if (object_item[i] != null) {
+
+                                            if (object_item[i].isSelected()) {
+                                                jTextField10.setText(object_item[i].getText());
+                                                object_item[i].setSelected(false);
+                                                folder_view = false;
+                                                NewJFrame.jButton6.doClick();
+
+                                            }
+
+                                        }
+                                    }
+                                } catch (Exception writeConfig) {
+                                }
+                            }
+                        });
+                    }
+                    folders[h] = cut[0];
+                } else {
+                    jPanel11.setLayout(new BoxLayout(jPanel11, BoxLayout.Y_AXIS));
+                    object_item[h] = new JRadioButton();
+                    object_item[h].setText(objectarray[h]);
+                    object_item[h].setBackground(Color.white);
+                    object_item[h].setForeground(Color.blue);
+                }
+            }
+            jPanel11.setLayout(new BoxLayout(jPanel11, BoxLayout.PAGE_AXIS));
+        } catch (Exception draw) {
+        }
+    }
+
+    void reloadObjects(boolean drawFolders) {
 
         if ((jTextField1.getText().length() > 1 || jTextField2.getText().length() > 1)) {
             var();
@@ -1897,7 +1993,11 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 while (object_thread_status) {
                 }
 
-                redrawObjects();
+                if (drawFolders) {
+                    drawFolders();
+                } else {
+                    redrawObjects();
+                }
 
             } catch (Exception listing) {
             }
@@ -1988,7 +2088,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jPanel9.setVisible(true);
             jTextArea1.setText("\n\nStarted Sync.");
             calibrateTextArea();
-            reloadObjects();
+            reloadObjects(false);
 
             if (bucket_item[active_bucket].isSelected()) {
                 if (jFileChooser2.getSelectedFile() == null) {
@@ -2173,7 +2273,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     void syncFromS3() {
         if (active_bucket > 0) {
             objectarray = null;
-            reloadObjects();
+            reloadObjects(false);
             SyncFromS3.running = true;
             if (objectarray.length > 1) {
                 jPanel9.setVisible(true);
@@ -2901,7 +3001,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jTextArea1.append("\nError: No bucket has been selected");
             calibrateTextArea();
         }
-
 
     }//GEN-LAST:event_jMenuItem26ActionPerformed
 
