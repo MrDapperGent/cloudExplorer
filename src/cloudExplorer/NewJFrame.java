@@ -3044,21 +3044,23 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         if (active_bucket > 0) {
             for (int h = 1; h != objectarray.length; h++) {
-                if (object_item[h].isSelected()) {
-                    jPanel9.setVisible(true);
-                    jPanel15.setVisible(false);
-                    jButton1.setEnabled(false);
-                    jButton3.setEnabled(false);
-                    jButton4.setEnabled(false);
-                    jButton7.setEnabled(false);
-                    jButton12.setEnabled(false);
-                    jButton13.setEnabled(false);
-                    jButton17.setEnabled(false);
-                    jButton18.setEnabled(false);
-                    jButton19.setEnabled(false);
-                    Thread graph = new Thread(new Graph(this, object_item[h].getText()));
-                    graph.start();
-                    break;
+                if (object_item[h] != null) {
+                    if (object_item[h].isSelected()) {
+                        jPanel9.setVisible(true);
+                        jPanel15.setVisible(false);
+                        jButton1.setEnabled(false);
+                        jButton3.setEnabled(false);
+                        jButton4.setEnabled(false);
+                        jButton7.setEnabled(false);
+                        jButton12.setEnabled(false);
+                        jButton13.setEnabled(false);
+                        jButton17.setEnabled(false);
+                        jButton18.setEnabled(false);
+                        jButton19.setEnabled(false);
+                        Thread graph = new Thread(new Graph(this, object_item[h].getText()));
+                        graph.start();
+                        break;
+                    }
                 }
             }
 
