@@ -80,6 +80,7 @@ public class ObjectACL implements Runnable {
                     mainFrame.jPanel14.repaint();
                     mainFrame.jPanel14.revalidate();
                     mainFrame.jPanel14.validate();
+                    mainFrame.miniReload();
                 }
             });
 
@@ -113,7 +114,6 @@ public class ObjectACL implements Runnable {
                         jTextArea1.append("\n" + ObjectACL.getMessage() + "\n");
                     }
 
-                    mainFrame.miniReload();
                     mainFrame.jPanel9.setVisible(true);
                     mainFrame.jPanel15.setVisible(false);
                     mainFrame.reloadBuckets();

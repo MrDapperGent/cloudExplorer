@@ -1585,6 +1585,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jButton19.setEnabled(true);
         versionDownload = false;
         jButton13.setText("Select All");
+        bucket_item[active_bucket].setSelected(false);
     }
 
     void search_folder_view() {
