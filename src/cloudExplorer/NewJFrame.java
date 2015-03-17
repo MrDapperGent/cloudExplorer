@@ -295,6 +295,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
