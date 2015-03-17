@@ -2,7 +2,7 @@ Version 5.3
 
 Bug Fixes: 
 
-    1. Music Player, IRC, Migrate bucket, Add External Bucket, and Bucket Life Cycle:
+    1. Music Player, IRC, Migrate bucket, Make Bucket, Add External Bucket, and Bucket Life Cycle:
                
                           Buckets are reloaded when complete.
 
