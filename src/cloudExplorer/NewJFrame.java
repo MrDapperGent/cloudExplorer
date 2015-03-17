@@ -1679,7 +1679,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jButton19.setEnabled(true);
 
             reloadObjects(false);
-
+            folder_view = false;
             versionDownload = false;
             BucketACL bucketACL = new BucketACL(this);
             bucketACL.startc();
@@ -2802,15 +2802,32 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             } else {
 
                 for (int i = 1; i != previous_objectarray_length; i++) {
-                    if (object_item[i].isVisible()) {
+                    if (object_item[i] != null) {
+                        if (object_item[i].isVisible()) {
+                            if (folder_view) {
+                                if (object_item[i].getText().contains("/") || object_item[i].getText().contains("\\")) {
+                                } else {
+                                    if (object_item[i].isSelected()) {
+                                        object_item[i].setSelected(false);
+                                        jButton13.setText("Select");
+                                    } else {
+                                        object_item[i].setSelected(true);
+                                        jButton13.setText("Deselect");
+                                    }
+                                }
+                            } else {
 
-                        if (object_item[i].isSelected()) {
-                            object_item[i].setSelected(false);
-                            jButton13.setText("Select");
-                        } else {
-                            object_item[i].setSelected(true);
-                            jButton13.setText("Deselect");
+                                if (object_item[i].isSelected()) {
+                                    object_item[i].setSelected(false);
+                                    jButton13.setText("Select");
+                                } else {
+                                    object_item[i].setSelected(true);
+                                    jButton13.setText("Deselect");
+
+                                }
+                            }
                         }
+
                     }
                 }
             }
