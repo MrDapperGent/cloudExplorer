@@ -27,7 +27,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class Performance implements Runnable {
-    
+
     NewJFrame mainFrame;
     Put put;
     Performance putperformance;
@@ -54,16 +54,16 @@ public class Performance implements Runnable {
     Boolean graph_ops = false;
     int num_graphs = 0;
     Boolean mixed = false;
-    
+
     public Performance(NewJFrame Frame, Boolean Aoperation) {
         mainFrame = Frame;
         operation = Aoperation;
-        
+
     }
-    
+
     public void run() {
         try {
-            
+
             getFileSize.setMaximumSize(new Dimension(220, 20));
             getTheadCount.setMaximumSize(new Dimension(220, 20));
             getOperationCount.setMaximumSize(new Dimension(220, 20));
@@ -89,40 +89,40 @@ public class Performance implements Runnable {
             abortPerformanceTest.setForeground(Color.blue);
             abortPerformanceTest.setBorder(null);
             startPerformanceTest.setBorder(null);
-            
+
             close.setBackground(Color.white);
             close.setBorder(null);
             close.setForeground(Color.blue);
-            
+
             close.setIcon(mainFrame.genericEngine);
             abortPerformanceTest.setIcon(mainFrame.genericEngine);
             startPerformanceTest.setIcon(mainFrame.genericEngine);
-            
+
             mainFrame.jPanel15.setVisible(false);
-            
+
             startPerformanceTest.addActionListener(new ActionListener() {
-                
+
                 public void actionPerformed(ActionEvent e) {
                     startPerformanceTest.setVisible(false);
                     Boolean graphData = false;
-                    
+
                     NewJFrame.jPanel11.removeAll();
                     NewJFrame.jPanel11.revalidate();
                     NewJFrame.jPanel11.repaint();
-                    
+
                     num_graphs = 0;
-                    
+
                     if (mixed_traffic.isSelected()) {
                         mixed = true;
                     }
-                    
+
                     if (latency_graph.isSelected() || throughput_graph.isSelected() || ops_graph.isSelected()) {
                         graphData = true;
-                        
+
                         if (latency_graph.isSelected()) {
                             graph_latency = true;
                             num_graphs++;
-                            
+
                         }
                         if (throughput_graph.isSelected()) {
                             graph_throughput = true;
@@ -148,9 +148,9 @@ public class Performance implements Runnable {
                     num_graphs = 0;
                 }
             });
-            
+
             mixed_traffic.addActionListener(new ActionListener() {
-                
+
                 public void actionPerformed(ActionEvent e) {
                     latency_graph.setSelected(false);
                     ops_graph.setSelected(false);
@@ -164,9 +164,9 @@ public class Performance implements Runnable {
                     num_graphs = 0;
                 }
             });
-            
+
             abortPerformanceTest.addActionListener(new ActionListener() {
-                
+
                 public void actionPerformed(ActionEvent e) {
                     try {
                         performancethread.stop();
@@ -180,21 +180,10 @@ public class Performance implements Runnable {
                     graph_throughput = false;
                     graph_latency = false;
                     num_graphs = 0;
-                    mainFrame.jButton6.doClick();
+                    mainFrame.reloadBuckets();
                 }
             });
-            
-            close.addActionListener(new ActionListener() {
-                
-                public void actionPerformed(ActionEvent e) {
-                    mainFrame.jPanel14.removeAll();
-                    mainFrame.jPanel14.repaint();
-                    mainFrame.jPanel14.revalidate();
-                    mainFrame.jPanel14.validate();
-                    mainFrame.miniReload();
-                }
-            });
-            
+
             mainFrame.jPanel14.removeAll();
             mainFrame.jPanel14.setLayout(new BoxLayout(mainFrame.jPanel14, BoxLayout.Y_AXIS));
             mainFrame.jPanel14.add(fileSize);
@@ -211,26 +200,24 @@ public class Performance implements Runnable {
             mainFrame.jPanel14.add(blank);
             mainFrame.jPanel14.add(startPerformanceTest);
             mainFrame.jPanel14.add(abortPerformanceTest);
-
-            // mainFrame.jPanel14.add(close);
             mainFrame.jPanel14.repaint();
             mainFrame.jPanel14.revalidate();
             mainFrame.jPanel14.validate();
-            
+
         } catch (Exception mp3player) {
             jTextArea1.append("\n" + mp3player.getMessage());
         }
         mainFrame.calibrateTextArea();
-        
+
     }
-    
+
     public void calibrate() {
         try {
             jTextArea1.setCaretPosition(jTextArea1.getLineStartOffset(jTextArea1.getLineCount() - 1));
         } catch (Exception e) {
         }
     }
-    
+
     void startc(NewJFrame mainFrame, boolean Aoperation) {
         (new Thread(new Performance(mainFrame, Aoperation))).start();
     }
