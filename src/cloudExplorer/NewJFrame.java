@@ -278,6 +278,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenu7 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuItem28 = new javax.swing.JMenuItem();
         jMenu11 = new javax.swing.JMenu();
         jMenuItem21 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -1442,6 +1443,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu7.add(jMenuItem11);
 
+        jMenuItem28.setText("Mixed - 50/50");
+        jMenuItem28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem28ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem28);
+
         jMenuBar1.add(jMenu7);
 
         jMenu11.setText("Console");
@@ -1564,7 +1573,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         }
         return out_file;
     }
-
 
     void search_folder_view() {
         if (active_bucket > 0) {
@@ -2991,8 +2999,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             calibrateTextArea();
             NewJFrame.perf = true;
             hidePanel();
-            Performance performanceTest = new Performance(this, true);
-            performanceTest.startc(this, true);
+            Performance performanceTest = new Performance(this, true, false);
+            performanceTest.startc(this, true, false);
             jTextArea1.append("\nPerformance test module has started. Please observe for any errors.");
             calibrateTextArea();
         } else {
@@ -3007,8 +3015,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             calibrateTextArea();
             NewJFrame.perf = true;
             hidePanel();
-            Performance performanceTest = new Performance(this, false);
-            performanceTest.startc(this, false);
+            Performance performanceTest = new Performance(this, false, false);
+            performanceTest.startc(this, false, false);
             jTextArea1.append("\nPerformance test module has started. Please observe for any errors.");
             calibrateTextArea();
         } else {
@@ -3212,6 +3220,22 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         }
 
     }//GEN-LAST:event_jMenuItem27ActionPerformed
+
+    private void jMenuItem28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem28ActionPerformed
+        if (active_bucket > 0) {
+            jTabbedPane1.setSelectedIndex(1);
+            jTextArea1.append("\nPlease wait, loading Performance test module.");
+            calibrateTextArea();
+            NewJFrame.perf = true;
+            hidePanel();
+            Performance performanceTest = new Performance(this, true, true);
+            performanceTest.startc(this, true, true);
+            jTextArea1.append("\nPerformance test module has started. Please observe for any errors.");
+            calibrateTextArea();
+        } else {
+            jTextArea1.append("\nError: No bucket has been selected");
+        }
+    }//GEN-LAST:event_jMenuItem28ActionPerformed
     void cleanup() {
         try {
             jPanel9.setVisible(true);
@@ -3331,6 +3355,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem26;
     private javax.swing.JMenuItem jMenuItem27;
+    private javax.swing.JMenuItem jMenuItem28;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

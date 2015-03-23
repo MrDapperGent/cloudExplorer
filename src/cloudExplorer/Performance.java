@@ -39,7 +39,6 @@ public class Performance implements Runnable {
     final JLabel fileSize = new JLabel("Object Size in KB: ");
     final JLabel threadCount = new JLabel("Thread Count:");
     final JLabel operationCount = new JLabel("Operation Count:");
-    final JCheckBox mixed_traffic = new JCheckBox("Mixed Traffic");
     final JCheckBox latency_graph = new JCheckBox("Graph Latency ");
     final JCheckBox ops_graph = new JCheckBox("Graph OP/s ");
     final JCheckBox overwrite_put = new JCheckBox("Overwrite PUTS");
@@ -56,11 +55,12 @@ public class Performance implements Runnable {
     int num_graphs = 0;
     Boolean mixed = false;
     Boolean overwrite = false;
+    Boolean mixed_traffic = false;
 
-    public Performance(NewJFrame Frame, Boolean Aoperation) {
+    public Performance(NewJFrame Frame, Boolean Aoperation, Boolean Amixed) {
         mainFrame = Frame;
         operation = Aoperation;
-
+        mixed_traffic = Amixed;
     }
 
     public void run() {
@@ -77,10 +77,6 @@ public class Performance implements Runnable {
             ops_graph.setForeground(Color.blue);
             ops_graph.setSelected(false);
             ops_graph.setBorder(null);
-            mixed_traffic.setBackground(Color.white);
-            mixed_traffic.setForeground(Color.blue);
-            mixed_traffic.setSelected(false);
-            mixed_traffic.setBorder(null);
             throughput_graph.setBackground(Color.white);
             throughput_graph.setForeground(Color.blue);
             throughput_graph.setSelected(false);
@@ -120,10 +116,6 @@ public class Performance implements Runnable {
 
                     num_graphs = 0;
 
-                    if (mixed_traffic.isSelected()) {
-                        mixed = true;
-                    }
-
                     if (overwrite_put.isSelected()) {
                         overwrite = true;
                     } else {
@@ -153,24 +145,8 @@ public class Performance implements Runnable {
                     int threadcount = Integer.parseInt(getTheadCount.getText());
                     String getValue = getFileSize.getText();
                     String operationCount = getOperationCount.getText();
-                    performancethread = new PerformanceThread(startPerformanceTest, threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation, graphData, graph_throughput, graph_latency, graph_ops, num_graphs, mixed, overwrite);
-                    performancethread.startc(startPerformanceTest, threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation, graphData, graph_throughput, graph_latency, graph_ops, num_graphs, mixed, overwrite);
-                    graph_ops = false;
-                    graph_throughput = false;
-                    graph_latency = false;
-                    num_graphs = 0;
-                }
-            });
-
-            mixed_traffic.addActionListener(new ActionListener() {
-
-                public void actionPerformed(ActionEvent e) {
-                    latency_graph.setSelected(false);
-                    ops_graph.setSelected(false);
-                    throughput_graph.setSelected(false);
-                    ops_graph.setVisible(false);
-                    latency_graph.setVisible(false);
-                    throughput_graph.setVisible(false);
+                    performancethread = new PerformanceThread(startPerformanceTest, threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation, graphData, graph_throughput, graph_latency, graph_ops, num_graphs, mixed_traffic, overwrite);
+                    performancethread.startc(startPerformanceTest, threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation, graphData, graph_throughput, graph_latency, graph_ops, num_graphs, mixed_traffic, overwrite);
                     graph_ops = false;
                     graph_throughput = false;
                     graph_latency = false;
@@ -206,7 +182,6 @@ public class Performance implements Runnable {
             mainFrame.jPanel14.add(operationCount);
             mainFrame.jPanel14.add(getOperationCount);
             mainFrame.jPanel14.add(blank2);
-            mainFrame.jPanel14.add(mixed_traffic);
             mainFrame.jPanel14.add(throughput_graph);
             mainFrame.jPanel14.add(ops_graph);
             mainFrame.jPanel14.add(latency_graph);
@@ -232,7 +207,7 @@ public class Performance implements Runnable {
         }
     }
 
-    void startc(NewJFrame mainFrame, boolean Aoperation) {
-        (new Thread(new Performance(mainFrame, Aoperation))).start();
+    void startc(NewJFrame mainFrame, boolean Aoperation, boolean Amixed) {
+        (new Thread(new Performance(mainFrame, Aoperation, Amixed))).start();
     }
 }
