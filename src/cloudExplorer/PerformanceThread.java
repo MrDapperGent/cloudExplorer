@@ -247,7 +247,7 @@ public class PerformanceThread implements Runnable {
                         y_iops[counter] = iops;
                         x_iops[counter] = counter;
 
-                        if (graphdata) {
+                        if (graphdata && !mixed) {
                             graph();
                         } else {
                             if (op_count <= 9 || z <= 9) {

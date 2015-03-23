@@ -182,10 +182,14 @@ public class Performance implements Runnable {
             mainFrame.jPanel14.add(operationCount);
             mainFrame.jPanel14.add(getOperationCount);
             mainFrame.jPanel14.add(blank2);
-            mainFrame.jPanel14.add(throughput_graph);
-            mainFrame.jPanel14.add(ops_graph);
-            mainFrame.jPanel14.add(latency_graph);
-            mainFrame.jPanel14.add(overwrite_put);
+            if (!mixed_traffic) {
+                mainFrame.jPanel14.add(throughput_graph);
+                mainFrame.jPanel14.add(ops_graph);
+                mainFrame.jPanel14.add(latency_graph);
+            }
+            if (operation) {
+                mainFrame.jPanel14.add(overwrite_put);
+            }
             mainFrame.jPanel14.add(blank);
             mainFrame.jPanel14.add(startPerformanceTest);
             mainFrame.jPanel14.add(abortPerformanceTest);

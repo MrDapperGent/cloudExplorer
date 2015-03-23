@@ -13,7 +13,7 @@ New Features:
 
                 Added "OverWrite PUTS" checkbox. This will overwrite existing uploads rather than adding for capacity.
                 "Mixed traffic" checkbox moved to the performance drop down menu as "Mixed-50/50"
-
+                
 Features:
 
 1. Tier buckets to and from Amazon Glacier.
