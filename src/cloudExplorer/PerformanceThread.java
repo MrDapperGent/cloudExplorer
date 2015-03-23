@@ -79,6 +79,7 @@ public class PerformanceThread implements Runnable {
     public static Boolean latency_graph = false;
     int num_graphs = 0;
     public static Boolean mixed = false;
+    Boolean overwrite = false;
 
     public void performance_logger(double time, double rate, String what) {
         try {
@@ -97,7 +98,7 @@ public class PerformanceThread implements Runnable {
         }
     }
 
-    PerformanceThread(JButton Aperformance, int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation, Boolean Agraphdata, Boolean Athroughput_graph, Boolean Alatency_graph, Boolean Aops_graph, int Anum_graphs, Boolean Amixed) {
+    PerformanceThread(JButton Aperformance, int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation, Boolean Agraphdata, Boolean Athroughput_graph, Boolean Alatency_graph, Boolean Aops_graph, int Anum_graphs, Boolean Amixed, Boolean Aoverwrite) {
         threadcount = Athreadcount;
         getValue = AgetValue;
         getOperationCount = AgetOperationCount;
@@ -113,6 +114,7 @@ public class PerformanceThread implements Runnable {
         throughput_graph = Athroughput_graph;
         num_graphs = Anum_graphs;
         mixed = Amixed;
+        overwrite = Aoverwrite;
     }
 
     public void run() {
@@ -189,8 +191,13 @@ public class PerformanceThread implements Runnable {
 
                         for (int i = 0; i != num_threads; i++) {
                             if (operation) {
-                                Runnable put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false);
-                                executor.execute(put);
+                                if (overwrite) {
+                                    Runnable put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_PUT-" + i, false, false);
+                                    executor.execute(put);
+                                } else {
+                                    Runnable put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false);
+                                    executor.execute(put);
+                                }
                             } else {
                                 Runnable get = new Get("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + +i + "_" + z, null);
                                 getTempArray[i] = temp_file + i + "_" + z;
@@ -423,9 +430,9 @@ public class PerformanceThread implements Runnable {
         calibrate();
     }
 
-    void startc(JButton Aperformance, int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation, Boolean Agraphdata, Boolean Athroughput_graph, Boolean Alatency_graph, Boolean Aops_graph, int Anum_graohs, Boolean Amixed
+    void startc(JButton Aperformance, int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation, Boolean Agraphdata, Boolean Athroughput_graph, Boolean Alatency_graph, Boolean Aops_graph, int Anum_graohs, Boolean Amixed, Boolean Aoverwrite
     ) {
-        performancethread = new Thread(new PerformanceThread(Aperformance, Athreadcount, AgetValue, AgetOperationCount, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aoperation, Agraphdata, Athroughput_graph, Alatency_graph, Aops_graph, Anum_graohs, Amixed));
+        performancethread = new Thread(new PerformanceThread(Aperformance, Athreadcount, AgetValue, AgetOperationCount, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aoperation, Agraphdata, Athroughput_graph, Alatency_graph, Aops_graph, Anum_graohs, Amixed, Aoverwrite));
         performancethread.start();
 
     }

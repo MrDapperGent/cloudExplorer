@@ -1,38 +1,17 @@
-Version 5.3
+Version 5.31
 
-Bug Fixes: 
+Bug Fixes: <none>
 
-    1. Music Player, IRC, Migrate bucket, Make Bucket, Add External Bucket, and Bucket Life Cycle:
-               
-                          Buckets are reloaded when complete.
+   
 
-    2. Fixed bug when trying to launch a new instance of Cloud Explorer.
-
-
-    3. Buckets are reloaded when starting or aborting a sync.
-    
-
-Improvements: <none> 
+Improvements: <none>
 
 
 New Features: 
 
-    1. Explorer:
+    1. Performance Testing
 
-                Top-level folders are now displayed first. When selecting a 
-                folder, the files will be displayed on the screen.
-                
-                You can create virtual folders from the Objects menu.
-    
-    2. Upload:
-
-                You can choose a top-level folder to upload a file to.
-
-    3. Sync:
-            
-                You can choose a top-level folder to sync to.
-                You can choose a top-level folder to sync from.
-     
+                Added "OverWrite PUTS" checkbox. This will overwrite existing uploads rather than adding for capacity.
 
 Features:
 
