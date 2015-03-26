@@ -1,19 +1,17 @@
-Version 5.31
+Version 5.32
 
-Bug Fixes: <none>
+Bug Fixes: 
+            AddExternalBucket:
 
-   
+            Adding a shared bucket is now functional.
+
 
 Improvements: <none>
 
 
-New Features: 
+New Features: <none>
 
-    1. Performance Testing
-
-                Added "OverWrite PUTS" checkbox. This will overwrite existing uploads rather than adding for capacity.
-                "Mixed traffic" checkbox moved to the performance drop down menu as "Mixed-50/50"
-                
+  
 Features:
 
 1. Tier buckets to and from Amazon Glacier.
