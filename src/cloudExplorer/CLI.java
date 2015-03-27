@@ -283,6 +283,8 @@ public class CLI {
 
             if (found == 0) {
                 String object = makeDirectory(file_found.getAbsolutePath().toString());
+                String[] cut = object.split(file_found.getName());
+                object = object.replace(cut[0], "");
                 put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object, false, false);
                 put.run();
                 found = 0;

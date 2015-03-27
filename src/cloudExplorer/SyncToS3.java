@@ -38,6 +38,7 @@ public class SyncToS3 implements Runnable {
     Put put;
     Boolean rrs = false;
     Boolean encrypt = false;
+    String Home = System.getProperty("user.home");
 
     SyncToS3(NewJFrame AmainFrame, File Alocation, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobjectarray, Boolean Arrs, Boolean Aencrypt) {
         objectarray = Aobjectarray;
@@ -78,7 +79,12 @@ public class SyncToS3 implements Runnable {
             }
 
             if (found == 0) {
+
                 String object = makeDirectory(file_found.getAbsolutePath().toString());
+                String[] cut = object.split(file_found.getName());
+                object = object.replace(cut[0], "");
+             
+
                 if (SyncToS3.running) {
                     int index = mainFrame.jList3.getSelectedIndex(); //get selected index
 
