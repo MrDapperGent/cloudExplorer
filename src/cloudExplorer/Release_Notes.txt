@@ -6,7 +6,7 @@ Improvements:
     
              SyncToS3:
 
-                      Full file paths are no longer used since it makes more send to sync to a folder in S3 now.
+                      Full file paths are no longer used since it makes more sense to sync to a folder.
 
 New Features: 
 
