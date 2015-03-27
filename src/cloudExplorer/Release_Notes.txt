@@ -1,4 +1,4 @@
-Version 5.32
+Version 5.33
 
 Bug Fixes: 
            "New Window" now works on Windows.
