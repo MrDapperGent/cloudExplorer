@@ -8,8 +8,12 @@ Improvements:
 
                       Full file paths are no longer used since it makes more send to sync to a folder in S3 now.
 
+New Features: 
 
-New Features: <none>
+             CLI:
+
+                        SyncToS3 supports destination folder.
+                        SyncFromS3 supports syncing from a folder. 
 
   
 Features:

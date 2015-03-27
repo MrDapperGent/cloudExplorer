@@ -191,11 +191,11 @@ public class CLI {
                             if (check_destination.exists()) {
 
                                 if (operation.contains("syncfroms3")) {
-                                    syncFromS3();
+                                    syncFromS3(arg3);
                                 }
 
                                 if (operation.contains("synctos3")) {
-                                    syncToS3();
+                                    syncToS3(arg3);
                                 }
                             } else {
                                 System.out.print("\n\n\nError: origin/destination directory not found.\n\n\n");
@@ -267,9 +267,15 @@ public class CLI {
         return what;
     }
 
-    void syncToS3() {
-        System.out.print("\n\nStarting sync from: " + destination + " to bucket: " + bucket + "\n");
+    void syncToS3(String folder) {
+        if (folder != null) {
+            System.out.print("\n\nStarting sync from: " + destination + " to bucket: " + bucket + " in folder: " + folder + " \n");
+        } else {
+            System.out.print("\n\nStarting sync from: " + destination + " to bucket: " + bucket + "\n");
+        }
+
         File dir = new File(destination);
+
         reloadObjects();
         String[] extensions = new String[]{" "};
         List<File> files = (List<File>) FileUtils.listFiles(dir, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE);
@@ -285,12 +291,17 @@ public class CLI {
                 String object = makeDirectory(file_found.getAbsolutePath().toString());
                 String[] cut = object.split(file_found.getName());
                 object = object.replace(cut[0], "");
+                if (folder != null) {
+                    object = folder + File.separator + object;
+                }
                 put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object, false, false);
                 put.run();
                 found = 0;
             }
         }
-        System.out.print("\nSync operation complete.\n\n\n");
+
+        System.out.print(
+                "\nSync operation complete.\n\n\n");
     }
 
     void reloadObjects() {
@@ -306,10 +317,13 @@ public class CLI {
         }
     }
 
-    void syncFromS3() {
+    void syncFromS3(String folder) {
         try {
-
-            System.out.print("\n\nStarting sync from bucket: " + bucket + " to destination: " + destination + ".\n");
+            if (folder != null) {
+                System.out.print("\n\nStarting sync from Folder: " + folder + " on bucket: " + bucket + " to destination: " + destination + ".\n");
+            } else {
+                System.out.print("\n\nStarting sync from bucket: " + bucket + " to destination: " + destination + ".\n");
+            }
             reloadObjects();
             File[] fromS3File = new File[object_array.length];
             for (int i = 1; i != object_array.length; i++) {
@@ -317,10 +331,19 @@ public class CLI {
                 fromS3File[i] = new File(destination + new_object_name);
                 if (fromS3File[i].exists()) {
                 } else {
-                    makeDirectory(destination + File.separator + object_array[i]);
-                    String object = makeDirectory(object_array[i]);
-                    get = new Get(object_array[i], access_key, secret_key, bucket, endpoint, destination + File.separator + object, null);
-                    get.run();
+                    if (folder != null) {
+                        if (object_array[i].contains(folder)) {
+                            makeDirectory(destination + File.separator + object_array[i]);
+                            String object = makeDirectory(object_array[i]);
+                            get = new Get(object_array[i], access_key, secret_key, bucket, endpoint, destination + File.separator + object, null);
+                            get.run();
+                        }
+                    } else {
+                        makeDirectory(destination + File.separator + object_array[i]);
+                        String object = makeDirectory(object_array[i]);
+                        get = new Get(object_array[i], access_key, secret_key, bucket, endpoint, destination + File.separator + object, null);
+                        get.run();
+                    }
                 }
             }
         } catch (Exception SyncLocal) {
