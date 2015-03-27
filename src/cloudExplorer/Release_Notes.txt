@@ -1,10 +1,7 @@
 Version 5.32
 
 Bug Fixes: 
-            AddExternalBucket:
-
-            Adding a shared bucket is now functional.
-
+           "New Window" now works on Windows.
 
 Improvements: <none>
 

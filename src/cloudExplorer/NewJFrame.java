@@ -46,7 +46,7 @@ import javax.swing.plaf.ColorUIResource;
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     String major = "5";
-    String minor = "32";
+    String minor = "33";
     String release_version = major + "." + minor;
     String version = "Cloud Explorer " + release_version;
     String[] folders = new String[1];
@@ -3115,7 +3115,16 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             NewJFrame.jTextArea1.append("\nPlease ensure that your Java path is set correctly on the OS.");
             String path = NewJFrame.class
                     .getProtectionDomain().getCodeSource().getLocation().getPath();
-            Process pb = Runtime.getRuntime().exec("java -jar -Xms100m -Xmx500m " + path);
+
+            Process pb = null;
+            if (path.contains("/C:")) {
+                path = path.replace("/C:", "C:");
+                path = path.replace("/", File.separator);
+                pb = Runtime.getRuntime().exec("java -jar -Xms100m -Xmx500m " + path);
+            } else {
+                pb = Runtime.getRuntime().exec("java -jar -Xms100m -Xmx500m " + path);
+            }
+
             InputStream in = pb.getInputStream();
             InputStream err = pb.getErrorStream();
         } catch (Exception pb) {
