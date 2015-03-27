@@ -1,9 +1,12 @@
-Version 5.33
+Version 5.4
 
-Bug Fixes: 
-           "New Window" now works on Windows.
+Bug Fixes: <none>
 
-Improvements: <none>
+Improvements: 
+    
+             SyncToS3:
+
+                      Full file paths are no longer used since it makes more send to sync to a folder in S3 now.
 
 
 New Features: <none>
