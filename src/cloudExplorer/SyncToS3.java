@@ -82,8 +82,17 @@ public class SyncToS3 implements Runnable {
 
                 String object = makeDirectory(file_found.getAbsolutePath().toString());
                 String[] cut = object.split(file_found.getName());
+                String[] cut2 = null;
                 object = object.replace(cut[0], "");
-             
+                String win = "\\";
+                String lin = "/";
+                if (cut[0].contains(win)) {
+                    cut2 = cut[0].split(win);
+                    object = cut2[cut2.length - 1] + win + object;
+                } else {
+                    cut2 = cut[0].split(lin);
+                    object = cut2[cut2.length - 1] + lin + object;
+                }
 
                 if (SyncToS3.running) {
                     int index = mainFrame.jList3.getSelectedIndex(); //get selected index
