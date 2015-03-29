@@ -1992,6 +1992,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         String unix = "/";
         String win = "\\";
         String separator = null;
+        boolean begin = false;
 
         try {
             for (int h = 1; h != objectarray.length; h++) {
@@ -2008,17 +2009,26 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         cut = objectarray[h].split(separator);
                         cut[0] = cut[1];
                         cut[0] = separator + cut[0] + separator;
+                        begin = true;
 
                     } else {
 
                         cut = objectarray[h].split(Pattern.quote(separator));
                         cut[0] = cut[0] + separator;
+                        begin = false;
                     }
 
                     int bn = 0;
                     for (int i = 0; i != folders.length; i++) {
                         if (folders[i] != null && objectarray[h] != null) {
-                            if (objectarray[h].contains(folders[i])) {
+                            String[] she = objectarray[h].split(separator);
+                            if (begin) {
+                                she[0] = separator + she[1] + separator;
+                            } else {
+                                she[0] = she[0] + separator;
+                            }
+
+                            if (she[0].contains(folders[i])) {
                                 draw_folder = false;
                                 bn++;
                             }
