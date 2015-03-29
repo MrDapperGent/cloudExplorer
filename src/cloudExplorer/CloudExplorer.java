@@ -31,6 +31,8 @@ public class CloudExplorer {
                 + "\nuploadtest bucket size threads operations [mixed]"
                 + "\ndownloadtest bucket size threads operations [mixed]"
                 + "\nsearch bucket what"
+                + "\ncreatefolder bucket what"
+                + "\ndeleteall bucket"
                 + "\n\n\n");
     }
 

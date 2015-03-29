@@ -81,6 +81,40 @@ public class CLI {
 
     }
 
+    void deleteAll(String bucket) {
+        System.out.print("\n\nDeleting all files in bucket: " + bucket);
+        reloadObjects();
+        for (int y = 1; y != object_array.length; y++) {
+            if (object_array[y] != null) {
+                arg1 = object_array[y];
+                deleteFromS3();
+            }
+        }
+        System.out.print("\n\nDelete everything operation complete.\n\n");
+    }
+
+    void createFolder(String folder
+    ) {
+        try {
+            if (folder != null) {
+                FileWriter frr = new FileWriter(temp_file, true);
+                BufferedWriter bfrr = new BufferedWriter(frr);
+                bfrr.write("This is a place holder file to simulate a folder for Cloud Explorer only. This file can be deleted.");
+                bfrr.close();
+                File temp = new File(temp_file);
+                if (temp.exists()) {
+                    System.out.print("\n\nAttempting to create folder: " + folder);
+                    put = new Put(temp.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, folder + File.separator, false, false);
+                    Put.terminal = true;
+                    put.run();
+                    System.out.print("\nCreate folder operation complete\n\n");
+                }
+
+            }
+        } catch (Exception createFolder) {
+        }
+    }
+
     void loadS3credentials() {
         try {
             for (String what : saved_s3_configs) {
@@ -98,7 +132,8 @@ public class CLI {
         }
     }
 
-    String loadConfig(String what) {
+    String loadConfig(String what
+    ) {
         String data = null;
 
         try {
@@ -116,11 +151,12 @@ public class CLI {
         return remove_symbol;
     }
 
-    void start(String arg0, String arg1, String arg2, String arg3, String arg4, String arg5) {
+    void start(String arg0, String arg1, String arg2, String arg3, String arg4, String arg5
+    ) {
         operation = arg0;
         Put.terminal = true;
         Get.terminal = true;
-        if (operation.contains("listbuckets") || operation.contains("makebucket") || operation.contains("rmbucket") || operation.contains("ls")) {
+        if (operation.contains("listbuckets") || operation.contains("makebucket") || operation.contains("rmbucket") || operation.contains("ls") || operation.contains("createfolder") || operation.contains("deleteall")) {
             saved_s3_configs = loadConfig(this.s3_config_file).toString().split(" ");
             loadS3credentials();
             mainmenu();
@@ -128,6 +164,12 @@ public class CLI {
 
             if (operation.contains("ls")) {
                 ls(0);
+            }
+            if (operation.contains("deleteall")) {
+                deleteAll(arg1);
+            }
+            if (operation.contains("createfolder")) {
+                createFolder(arg2);
             }
             if (operation.contains("listbuckets")) {
                 listBuckets();
@@ -150,7 +192,7 @@ public class CLI {
 
             put_file = new File(arg1);
             get_file = arg1;
-            delete_file = arg1;
+
             destination = arg1;
             mainmenu();
 
@@ -234,7 +276,8 @@ public class CLI {
         }
     }
 
-    String makeDirectory(String what) {
+    String makeDirectory(String what
+    ) {
 
         if (what.substring(0, 2).contains(":")) {
             what = what.substring(3, what.length());
@@ -267,7 +310,8 @@ public class CLI {
         return what;
     }
 
-    void syncToS3(String folder) {
+    void syncToS3(String folder
+    ) {
         if (folder != null) {
             System.out.print("\n\nStarting sync from: " + destination + " to bucket: " + bucket + " in folder: " + folder + " \n");
         } else {
@@ -317,7 +361,8 @@ public class CLI {
         }
     }
 
-    void syncFromS3(String folder) {
+    void syncFromS3(String folder
+    ) {
         try {
             if (folder != null) {
                 System.out.print("\n\nStarting sync from Folder: " + folder + " on bucket: " + bucket + " to destination: " + destination + ".\n");
@@ -386,7 +431,8 @@ public class CLI {
         }
     }
 
-    String convertObject(String what, String operation) {
+    String convertObject(String what, String operation
+    ) {
 
         if (what.contains("/")) {
             what = what.replace("/", File.separator);
@@ -485,6 +531,7 @@ public class CLI {
 
     void deleteFromS3() {
         try {
+            delete_file = arg1;
             System.out.print("\n\nDeleting: " + delete_file + "........");
             delete = new Delete(delete_file, access_key, secret_key, bucket, endpoint, null);
             Delete.debug = true;
@@ -496,7 +543,8 @@ public class CLI {
         }
     }
 
-    void putTOs3(File dir) {
+    void putTOs3(File dir
+    ) {
         try {
             NewJFrame.perf = true;
             System.out.print("\n\nUploading: " + put_file.getAbsolutePath().toString() + "........");

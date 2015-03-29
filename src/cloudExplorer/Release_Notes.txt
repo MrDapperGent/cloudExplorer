@@ -1,6 +1,9 @@
 Version 5.4
 
-Bug Fixes: <none>
+Bug Fixes: 
+            SyncToS3 and SyncFrom S3:
+
+                When last folder is deleted, it no longer appears in folder listing window.
 
 Improvements: 
     
@@ -13,7 +16,8 @@ New Features:
              CLI:
 
                         SyncToS3 supports destination folder.
-                        SyncFromS3 supports syncing from a folder. 
+                        SyncFromS3 supports syncing from a folder.                        
+                        New Argument: createfolder and deleteall.
 
   
 Features:
@@ -56,10 +60,10 @@ java -jar CloudExplorer.jar rmbucket bucket
 java -jar CloudExplorer.jar makebucket bucket
 
 #Sync to S3
-java -jar CloudExplorer.jar synctos3 location bucket
+java -jar CloudExplorer.jar synctos3 location bucket [folder]
 
 #Sync from S3
-java -jar CloudExplorer.jar syncfroms3 destination bucket
+java -jar CloudExplorer.jar syncfroms3 destination bucket [folder]
 
 #Performance Test - PUT
 java -jar CloudExplorer.jar uploadtest bucket size threads operations
@@ -69,6 +73,12 @@ java -jar CloudExplorer.jar downloadtest bucket size threads operations
 
 #Search for files 
 java -jar CloudExplorer.jar search bucket what
+
+#Create a folder
+java -jar CloudExplorer.jar createfolder bucket name
+
+#Delete everything
+java -jar CloudExplorer.jar deleteall bucket
 
 
 *Please note that Cloud Explorer will use the first account listed in the config file*

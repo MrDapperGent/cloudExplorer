@@ -1981,6 +1981,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     void drawFolders() {
         folders = new String[objectarray.length];
+        folders2 = new String[objectarray.length];
+        list = null;
         boolean draw_folder = true;
         String add_folder = null;
         String[] cut = new String[1000];
