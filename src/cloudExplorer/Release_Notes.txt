@@ -2,12 +2,8 @@ Version 5.41
 
 Bug Fixes: <none> 
           
-Improvements: 
+Improvements: <none>
     
-             Buckets:
-
-                      You can now click on the bucket name instead of only the radio button.
-
 New Features: <none>
   
 Features:
