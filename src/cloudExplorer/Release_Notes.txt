@@ -1,24 +1,14 @@
-Version 5.4
+Version 5.41
 
-Bug Fixes: 
-            SyncToS3 and SyncFrom S3:
-
-                When last folder is deleted, it no longer appears in folder listing window.
-
+Bug Fixes: <none> 
+          
 Improvements: 
     
-             SyncToS3:
+             Buckets:
 
-                      Full file paths are no longer used since it makes more sense to sync to a folder.
+                      You can now click on the bucket name instead of only the radio button.
 
-New Features: 
-
-             CLI:
-
-                        SyncToS3 supports destination folder.
-                        SyncFromS3 supports syncing from a folder.                        
-                        New Argument: createfolder and deleteall.
-
+New Features: <none>
   
 Features:
 
