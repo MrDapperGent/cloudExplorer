@@ -51,7 +51,7 @@ public class Update
             NewJFrame.jTextArea1.append("\nChecking for update......");
             NewJFrame.jTextArea1.append("\nInstalled Version: " + this.mainFrame.release_version);
             calibrate();
-            URL update = new URL("https://linux-toys.com/" + this.mainFrame.major + "/versions.html");
+            URL update = new URL("https://www.linux-toys.com/" + this.mainFrame.major + "/versions.html");
             URLConnection yc = update.openConnection();
 
             BufferedReader in = new BufferedReader(new InputStreamReader(yc
