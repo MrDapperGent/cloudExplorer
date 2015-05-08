@@ -1,6 +1,8 @@
 Version 5.41
 
-Bug Fixes: <none> 
+Bug Fixes: 
+           GUI:
+               When folders are listed, buttons that do nothing are disabled to avoid confusion. 
           
 Improvements: <none>
     

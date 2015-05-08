@@ -2004,6 +2004,15 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     } else {
                         separator = unix;
                     }
+                    
+                    jButton3.setEnabled(false);
+                    jButton7.setEnabled(false);
+                    jButton4.setEnabled(false);
+                    jButton12.setEnabled(false);
+                    jButton13.setEnabled(false);
+                    jButton17.setEnabled(false);
+                    jButton19.setEnabled(false);
+                    jButton18.setEnabled(false);
 
                     if (objectarray[h].substring(0, 1).contains(win) || objectarray[h].substring(0, 1).contains(unix)) {
                         cut = objectarray[h].split(separator);
