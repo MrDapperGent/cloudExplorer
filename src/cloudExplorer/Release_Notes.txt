@@ -1,11 +1,6 @@
 Version 5.41
 
-Bug Fixes: 
-           GUI:
-               When folders are listed, buttons that do nothing are disabled to avoid confusion. 
-
-           Updater: 
-                Added www. to update URL for proper resolution in some cases.
+Bug Fixes: <none> 
           
 Improvements: <none>
     
