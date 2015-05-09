@@ -23,6 +23,7 @@ Cloud Explorer is a open-source S3 client. It works on Windows, Linux, and Mac. 
 * View images
 * Sync folders
 * Graph CSV files and save them to a bucket.
+* Record audio messages and save them to a bucket.
 
 # Screenshots 
 
