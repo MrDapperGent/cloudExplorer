@@ -44,7 +44,7 @@ public class SoundRecorder implements Runnable {
     public void run() {
         try {
             final JButton soundThread = new JButton("Record Sound");
-            final JButton close = new JButton("Close");
+            final JButton close = new JButton("Stop / Close");
             final JLabel blank = new JLabel(" ");
             final JLabel blank2 = new JLabel(" ");
             final JLabel blank3 = new JLabel(" ");
