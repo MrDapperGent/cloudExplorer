@@ -39,7 +39,6 @@ public class SoundRecorder implements Runnable {
 
     public SoundRecorder(NewJFrame Frame) {
         mainFrame = Frame;
-
     }
 
     public void run() {

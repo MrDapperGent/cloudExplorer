@@ -39,7 +39,6 @@ public class SoundRecorderThread implements Runnable {
         bucket = Abucket;
         endpoint = Aendpoint;
         mainFrame = AmainFrame;
-
     }
 
     AudioFormat getAudioFormat() {
