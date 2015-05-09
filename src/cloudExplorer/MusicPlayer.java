@@ -20,7 +20,11 @@ import jaco.mp3.player.MP3Player;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.net.URL;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -28,10 +32,12 @@ import javax.swing.JButton;
 public class MusicPlayer implements Runnable {
 
     NewJFrame mainFrame;
+    AudioInputStream audioIn;
+    Clip clip;
+    Boolean wav = false;
 
     public MusicPlayer(NewJFrame Frame) {
         mainFrame = Frame;
-
     }
 
     public void run() {
@@ -94,7 +100,11 @@ public class MusicPlayer implements Runnable {
             stopMusic.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
-                    mp3.stop();
+                    if (wav) {
+                        clip.stop();
+                    } else {
+                        mp3.stop();
+                    }
                     mainFrame.jButton17.setEnabled(true);
                     mainFrame.reloadBuckets();
                 }
@@ -117,27 +127,48 @@ public class MusicPlayer implements Runnable {
                             url = url.replace("Pre-Signed URL = ", "");
                             music_url = (new URL(url));
                             mp3.addToPlayList(music_url);
+                            wav = false;
                             count++;
                         }
+
+                        if (mainFrame.object_item[h].getText().contains(".wav")) {
+                            wav = true;
+                            File temp_file = new File(mainFrame.temp_file);
+                            NewJFrame.jTextArea1.append("\nDownloading file to play.");
+                            mainFrame.jPanel9.setVisible(true);
+                            Get get = new Get(mainFrame.object_item[h].getText(), mainFrame.cred.access_key, mainFrame.cred.secret_key, mainFrame.cred.bucket, mainFrame.cred.getEndpoint(), mainFrame.temp_file, null);
+                            get.run();
+                            audioIn = AudioSystem.getAudioInputStream(temp_file);
+                            clip = AudioSystem.getClip();
+                            clip.open(audioIn);
+                            clip.start();
+                            count++;
+                        }
+
                         if (count == 1) {
                             mainFrame.jPanel14.removeAll();
                             mainFrame.jPanel14.setLayout(new BoxLayout(mainFrame.jPanel14, BoxLayout.Y_AXIS));
                             mainFrame.jPanel14.add(replayMusic);
-                            mainFrame.jPanel14.add(forwardMusic);
-                            mainFrame.jPanel14.add(backwardMusic);
+                            if (!wav) {
+                                mainFrame.jPanel14.add(forwardMusic);
+                                mainFrame.jPanel14.add(backwardMusic);
+                            }
                             mainFrame.jPanel14.add(stopMusic);
                             mainFrame.jPanel14.repaint();
                             mainFrame.jPanel14.revalidate();
                             mainFrame.jPanel14.validate();
                             mainFrame.jButton17.setEnabled(false);
-                            mp3.play();
+                            if (wav) {
+                            } else {
+                                mp3.play();
+                            }
                         }
                     }
                 }
             }
 
         } catch (Exception mp3player) {
-            jTextArea1.append("\n" + mp3player.getMessage());
+            NewJFrame.jTextArea1.append("\n" + mp3player.getMessage());
         }
         mainFrame.calibrateTextArea();
 

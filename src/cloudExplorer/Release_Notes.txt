@@ -1,10 +1,16 @@
-Version 5.41
+Version 5.5
 
 Bug Fixes: <none> 
           
-Improvements: <none>
+Improvements: 
+
+            Music Player:
+                          Plays WAV files.
     
-New Features: <none>
+New Features: 
+                
+             Audio recorder.
+
   
 Features:
 
@@ -26,6 +32,7 @@ Features:
 16. Access shared buckets on the same S3 provider.
 17. Share buckets with the Canonical ID of a user on the same S3 provider.
 18. Graph CSV files and save them to a bucket.
+19. Record audio messages and save them to a bucket.
 
 Command-line Options:
 

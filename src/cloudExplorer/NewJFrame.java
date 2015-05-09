@@ -46,7 +46,7 @@ import javax.swing.plaf.ColorUIResource;
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     String major = "5";
-    String minor = "41";
+    String minor = "5";
     String release_version = major + "." + minor;
     String version = "Cloud Explorer " + release_version;
     String[] folders = new String[1];
@@ -270,6 +270,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem29 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem20 = new javax.swing.JMenuItem();
@@ -1386,6 +1387,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenu10.add(jMenuItem14);
 
         jMenu6.add(jMenu10);
+
+        jMenuItem29.setText("Record Audio");
+        jMenuItem29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem29ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem29);
 
         jMenu9.setText("IRC");
 
@@ -3257,6 +3266,18 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jTextArea1.append("\nError: No bucket has been selected");
         }
     }//GEN-LAST:event_jMenuItem28ActionPerformed
+
+    private void jMenuItem29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem29ActionPerformed
+        if ((jTextField1.getText().length() > 1 || jTextField2.getText().length() > 1)) {
+            jPanel9.setVisible(true);
+            SoundRecorder recorder = new SoundRecorder(this);
+            recorder.startc();
+        } else {
+            jTextArea1.append("\nError: Configuration not loaded\n");
+        }
+        calibrateTextArea();
+
+    }//GEN-LAST:event_jMenuItem29ActionPerformed
     void cleanup() {
         try {
             jPanel9.setVisible(true);
@@ -3377,6 +3398,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenuItem jMenuItem26;
     private javax.swing.JMenuItem jMenuItem27;
     private javax.swing.JMenuItem jMenuItem28;
+    private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
