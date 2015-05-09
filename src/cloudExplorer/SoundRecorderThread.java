@@ -34,7 +34,7 @@ public class SoundRecorderThread implements Runnable {
     public String bucket = null;
     public static String Home = System.getProperty("user.home");
     public static String temp_file = (Home + File.separator + "object.tmp");
-    
+
     public SoundRecorderThread(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, NewJFrame AmainFrame) {
         access_key = Aaccess_key;
         secret_key = Asecret_key;
