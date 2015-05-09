@@ -83,10 +83,9 @@ public class SoundRecorder implements Runnable {
                     }
 
                     if (temp.exists()) {
-                        Thread put = new Thread(new Put(mainFrame.temp_file, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), audioName.getText(), false, false));
                         NewJFrame.jTextArea1.append("\nRecording has finished. Uploading file.");
                         mainFrame.calibrateTextArea();
-                        put.start();
+                        (new Thread(new Put(mainFrame.temp_file, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), audioName.getText(), false, false))).start();
                     }
                     mainFrame.jPanel14.removeAll();
                     mainFrame.jPanel14.repaint();
