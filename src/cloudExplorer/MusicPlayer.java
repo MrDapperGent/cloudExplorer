@@ -29,29 +29,28 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class MusicPlayer implements Runnable {
-    
+
     NewJFrame mainFrame;
     AudioInputStream audioIn;
     Clip clip;
     Boolean wav = false;
-    
+
     public MusicPlayer(NewJFrame Frame) {
         mainFrame = Frame;
     }
-    
+
     public void run() {
         try {
-            
+
             URL music_url = null;
-            
+
             final MP3Player mp3 = new MP3Player();
-            
-            final JButton stopMusic = new JButton("Stop Music");
+
+            final JButton stopMusic = new JButton("Stop / Close");
             final JButton replayMusic = new JButton("Play/Replay");
             final JButton forwardMusic = new JButton("Forward");
             final JButton backwardMusic = new JButton("Backward");
-            final JButton closeMusic = new JButton("Close");
-            
+
             stopMusic.setBackground(Color.white);
             stopMusic.setForeground(Color.blue);
             stopMusic.setBorder(null);
@@ -64,40 +63,40 @@ public class MusicPlayer implements Runnable {
             forwardMusic.setBackground(Color.white);
             forwardMusic.setBorder(null);
             forwardMusic.setForeground(Color.blue);
-            
+
             ImageIcon play = new ImageIcon(
                     getClass().getResource("play.png"));
             replayMusic.setIcon(play);
-            
+
             ImageIcon stop = new ImageIcon(
                     getClass().getResource("abort.png"));
             stopMusic.setIcon(stop);
-            
+
             ImageIcon forward = new ImageIcon(
                     getClass().getResource("forward.png"));
             forwardMusic.setIcon(forward);
-            
+
             ImageIcon rewind = new ImageIcon(
                     getClass().getResource("rewind.png"));
             backwardMusic.setIcon(rewind);
-            
+
             mainFrame.jPanel15.setVisible(false);
             forwardMusic.addActionListener(new ActionListener() {
-                
+
                 public void actionPerformed(ActionEvent e) {
                     mp3.skipForward();
                 }
             });
-            
+
             backwardMusic.addActionListener(new ActionListener() {
-                
+
                 public void actionPerformed(ActionEvent e) {
                     mp3.skipBackward();
                 }
             });
-            
+
             stopMusic.addActionListener(new ActionListener() {
-                
+
                 public void actionPerformed(ActionEvent e) {
                     if (wav) {
                         clip.stop();
@@ -109,14 +108,14 @@ public class MusicPlayer implements Runnable {
                 }
             });
             replayMusic.addActionListener(new ActionListener() {
-                
+
                 public void actionPerformed(ActionEvent e) {
                     mp3.stop();
                     mp3.play();
                     mainFrame.jButton17.setEnabled(false);
                 }
             });
-            
+
             int count = 0;
             for (int h = 1; h != mainFrame.previous_objectarray_length; h++) {
                 if (mainFrame.object_item[h] != null) {
@@ -129,7 +128,7 @@ public class MusicPlayer implements Runnable {
                             wav = false;
                             count++;
                         }
-                        
+
                         if (mainFrame.object_item[h].getText().contains(".wav")) {
                             wav = true;
                             File temp_file = new File(mainFrame.temp_file);
@@ -143,7 +142,7 @@ public class MusicPlayer implements Runnable {
                             clip.start();
                             count++;
                         }
-                        
+
                         if (count == 1) {
                             mainFrame.jPanel14.removeAll();
                             mainFrame.jPanel14.setLayout(new BoxLayout(mainFrame.jPanel14, BoxLayout.Y_AXIS));
@@ -158,7 +157,6 @@ public class MusicPlayer implements Runnable {
                             mainFrame.jPanel14.validate();
                             mainFrame.jButton17.setEnabled(false);
                             if (wav) {
-                                stopMusic.setText("Stop / Close");
                             } else {
                                 mp3.play();
                             }
@@ -166,14 +164,14 @@ public class MusicPlayer implements Runnable {
                     }
                 }
             }
-            
+
         } catch (Exception mp3player) {
             NewJFrame.jTextArea1.append("\n" + mp3player.getMessage());
         }
         mainFrame.calibrateTextArea();
-        
+
     }
-    
+
     void startc() {
         (new Thread(new MusicPlayer(mainFrame))).start();
     }

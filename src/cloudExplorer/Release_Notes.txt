@@ -6,6 +6,7 @@ Improvements:
 
             Music Player:
                           Plays WAV files.
+                          Stop button renamed to "Stop /Close" for clarity.
     
 New Features: 
                 
