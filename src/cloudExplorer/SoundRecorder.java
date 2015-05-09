@@ -36,9 +36,11 @@ public class SoundRecorder implements Runnable {
     Thread soundRecordThread;
     Random rand = new Random(System.currentTimeMillis());
     int random = rand.nextInt(256);
+    File temp;
 
     public SoundRecorder(NewJFrame Frame) {
         mainFrame = Frame;
+        temp = new File(mainFrame.temp_file);
     }
 
     public void run() {
@@ -56,11 +58,14 @@ public class SoundRecorder implements Runnable {
             close.setBorder(null);
             close.setForeground(Color.blue);
             audioName.setMaximumSize(new Dimension(325, 20));
-
             soundThread.setIcon(mainFrame.genericEngine);
             close.setIcon(mainFrame.genericEngine);
-
             jPanel15.setVisible(false);
+
+            if (temp.exists()) {
+                temp.delete();
+            }
+
             soundThread.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
@@ -72,8 +77,11 @@ public class SoundRecorder implements Runnable {
             close.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
-                    soundRecordThread.stop();
-                    File temp = new File(mainFrame.temp_file);
+                    try {
+                        soundRecordThread.stop();
+                    } catch (Exception stopThread) {
+                    }
+
                     if (temp.exists()) {
                         Thread put = new Thread(new Put(mainFrame.temp_file, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), audioName.getText(), false, false));
                         NewJFrame.jTextArea1.append("\nRecording has finished. Uploading file.");
@@ -104,7 +112,6 @@ public class SoundRecorder implements Runnable {
             jTextArea1.append("\n" + recordmessage.getMessage());
         }
         mainFrame.calibrateTextArea();
-
     }
 
     void startc() {
