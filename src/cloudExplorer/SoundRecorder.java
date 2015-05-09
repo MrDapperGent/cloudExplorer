@@ -49,7 +49,7 @@ public class SoundRecorder implements Runnable {
             final JButton close = new JButton("Stop / Close");
             final JLabel blank = new JLabel(" ");
             final JLabel name = new JLabel("Recording name:");
-            final JTextField audioName = new JTextField("AudioRecording-" + random + ".wav");
+            final JTextField audioName = new JTextField("AudioRecording-" + random);
             soundThread.setBackground(Color.white);
             soundThread.setForeground(Color.blue);
             soundThread.setBorder(null);
@@ -88,7 +88,7 @@ public class SoundRecorder implements Runnable {
                     if (temp.exists()) {
                         NewJFrame.jTextArea1.append("\nRecording has finished. Uploading file.");
                         mainFrame.calibrateTextArea();
-                        (new Thread(new Put(mainFrame.temp_file, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), audioName.getText(), false, false))).start();
+                        (new Thread(new Put(mainFrame.temp_file, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), audioName.getText() + ".wav", false, false))).start();
                     }
                     mainFrame.jPanel14.removeAll();
                     mainFrame.jPanel14.repaint();
