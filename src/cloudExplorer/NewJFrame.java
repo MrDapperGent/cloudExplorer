@@ -3268,15 +3268,15 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     }//GEN-LAST:event_jMenuItem28ActionPerformed
 
     private void jMenuItem29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem29ActionPerformed
-        if ((jTextField1.getText().length() > 1 || jTextField2.getText().length() > 1)) {
+
+        if (active_bucket > 0) {
             jPanel9.setVisible(true);
             SoundRecorder recorder = new SoundRecorder(this);
             recorder.startc();
         } else {
-            jTextArea1.append("\nError: Configuration not loaded\n");
+            jTextArea1.append("\nError: No bucket has been selected\n");
         }
         calibrateTextArea();
-
     }//GEN-LAST:event_jMenuItem29ActionPerformed
     void cleanup() {
         try {

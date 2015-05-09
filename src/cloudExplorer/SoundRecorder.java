@@ -57,7 +57,7 @@ public class SoundRecorder implements Runnable {
             close.setBackground(Color.white);
             close.setBorder(null);
             close.setForeground(Color.blue);
-            audioName.setMaximumSize(new Dimension(300, 20));
+            audioName.setMaximumSize(new Dimension(325, 20));
 
             soundThread.setIcon(mainFrame.genericEngine);
             close.setIcon(mainFrame.genericEngine);
