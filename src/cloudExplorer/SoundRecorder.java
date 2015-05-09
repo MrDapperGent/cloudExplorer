@@ -48,16 +48,19 @@ public class SoundRecorder implements Runnable {
             final JButton soundThread = new JButton("Record Sound");
             final JButton close = new JButton("Stop / Close");
             final JLabel blank = new JLabel(" ");
-            final JLabel blank2 = new JLabel(" ");
-            final JLabel blank3 = new JLabel(" ");
+            final JLabel name = new JLabel("Recording name:");
             final JTextField audioName = new JTextField("AudioRecording-" + random + ".wav");
             soundThread.setBackground(Color.white);
             soundThread.setForeground(Color.blue);
             soundThread.setBorder(null);
+            name.setBackground(Color.white);
+            name.setForeground(Color.blue);
+            name.setBorder(null);
             close.setBackground(Color.white);
             close.setBorder(null);
             close.setForeground(Color.blue);
-            audioName.setMaximumSize(new Dimension(325, 20));
+            name.setMaximumSize(new Dimension(200, 20));
+            audioName.setMaximumSize(new Dimension(300, 20));
             soundThread.setIcon(mainFrame.genericEngine);
             close.setIcon(mainFrame.genericEngine);
             jPanel15.setVisible(false);
@@ -97,11 +100,10 @@ public class SoundRecorder implements Runnable {
 
             mainFrame.jPanel14.removeAll();
             mainFrame.jPanel14.setLayout(new BoxLayout(mainFrame.jPanel14, BoxLayout.Y_AXIS));
-            mainFrame.jPanel14.add(blank3);
+            mainFrame.jPanel14.add(name);
             mainFrame.jPanel14.add(audioName);
             mainFrame.jPanel14.add(blank);
             mainFrame.jPanel14.add(soundThread);
-            mainFrame.jPanel14.add(blank2);
             mainFrame.jPanel14.add(close);
             mainFrame.jPanel14.repaint();
             mainFrame.jPanel14.revalidate();
