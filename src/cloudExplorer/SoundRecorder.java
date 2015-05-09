@@ -46,8 +46,9 @@ public class SoundRecorder implements Runnable {
     public void run() {
         try {
             final JButton soundThread = new JButton("Record Sound");
-            final JButton close = new JButton("Stop / Close");
+            final JButton save = new JButton("Stop and Save");
             final JLabel blank = new JLabel(" ");
+            final JButton close = new JButton("Close");
             final JLabel name = new JLabel("Recording name:");
             final JTextField audioName = new JTextField("AudioRecording-" + random);
             soundThread.setBackground(Color.white);
@@ -56,12 +57,16 @@ public class SoundRecorder implements Runnable {
             name.setBackground(Color.white);
             name.setForeground(Color.blue);
             name.setBorder(null);
+            save.setBackground(Color.white);
+            save.setForeground(Color.blue);
+            save.setBorder(null);
             close.setBackground(Color.white);
             close.setBorder(null);
             close.setForeground(Color.blue);
             name.setMaximumSize(new Dimension(200, 20));
             audioName.setMaximumSize(new Dimension(300, 20));
             soundThread.setIcon(mainFrame.genericEngine);
+            save.setIcon(mainFrame.genericEngine);
             close.setIcon(mainFrame.genericEngine);
             jPanel15.setVisible(false);
 
@@ -84,17 +89,27 @@ public class SoundRecorder implements Runnable {
                         soundRecordThread.stop();
                     } catch (Exception stopThread) {
                     }
+                    mainFrame.jPanel14.removeAll();
+                    mainFrame.jPanel14.repaint();
+                    mainFrame.jPanel14.revalidate();
+                    mainFrame.jPanel14.validate();
+                    mainFrame.reloadBuckets();
+                }
+            });
+
+            save.addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        soundRecordThread.stop();
+                    } catch (Exception stopThread) {
+                    }
 
                     if (temp.exists()) {
                         NewJFrame.jTextArea1.append("\nRecording has finished. Uploading file.");
                         mainFrame.calibrateTextArea();
                         (new Thread(new Put(mainFrame.temp_file, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), audioName.getText() + ".wav", false, false))).start();
                     }
-                    mainFrame.jPanel14.removeAll();
-                    mainFrame.jPanel14.repaint();
-                    mainFrame.jPanel14.revalidate();
-                    mainFrame.jPanel14.validate();
-                    mainFrame.reloadBuckets();
                 }
             });
 
@@ -104,6 +119,7 @@ public class SoundRecorder implements Runnable {
             mainFrame.jPanel14.add(audioName);
             mainFrame.jPanel14.add(blank);
             mainFrame.jPanel14.add(soundThread);
+            mainFrame.jPanel14.add(save);
             mainFrame.jPanel14.add(close);
             mainFrame.jPanel14.repaint();
             mainFrame.jPanel14.revalidate();
