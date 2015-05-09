@@ -13,7 +13,6 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
 package cloudExplorer;
 
 public class HostChecker implements Runnable {

@@ -13,7 +13,6 @@
  * this program. If not, see <http://www.gnu.org/licenses/>
  *
  */
-
 package cloudExplorer;
 
 import com.amazonaws.auth.AWSCredentials;

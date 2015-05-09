@@ -13,7 +13,6 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
 package cloudExplorer;
 
 import com.amazonaws.AmazonServiceException;
@@ -38,12 +37,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class Acl {
-    
+
     NewJFrame mainFrame;
-    
+
     void setAccess(String id, int what, String access_key, String secret_key, String endpoint, String bucket) {
         try {
-            
+
             Collection<Grant> grantCollection = new ArrayList<Grant>();
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
             AmazonS3 s3Client = new AmazonS3Client(credentials,
@@ -52,32 +51,32 @@ public class Acl {
             AccessControlList bucketAcl = s3Client.getBucketAcl(bucket);
             Grant grant = null;
             if (what == 0) {
-                
+
                 grant = new Grant(
                         new CanonicalGrantee(id),
                         Permission.Read);
                 grantCollection.add(grant);
             }
-            
+
             if (what == 1) {
                 grant = new Grant(
                         new CanonicalGrantee(id),
                         Permission.FullControl);
                 grantCollection.add(grant);
             }
-            
+
             if (what == 3) {
                 bucketAcl.getGrants().clear();
             }
-            
+
             bucketAcl.getGrants().addAll(grantCollection);
             s3Client.setBucketAcl(bucket, bucketAcl);
-            
+
         } catch (AmazonServiceException ase) {
             NewJFrame.jTextArea1.append("\n\nError: " + ase.getErrorMessage());
         }
     }
-    
+
     void setACLpublic(String object, String access_key, String secret_key, String endpoint, String bucket) {
         try {
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
@@ -89,7 +88,7 @@ public class Acl {
             mainFrame.jTextArea1.append("\nException occurred in ACL");
         }
     }
-    
+
     void setACLprivate(String object, String access_key, String secret_key, String endpoint, String bucket) {
         try {
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
@@ -101,7 +100,7 @@ public class Acl {
             mainFrame.jTextArea1.append("\nException occurred in setACLprivate");
         }
     }
-    
+
     String viewACL(String object, String access_key, String secret_key, String endpoint, String bucket) {
         String message = null;
         try {
@@ -113,10 +112,10 @@ public class Acl {
         } catch (Exception viewACL) {
             mainFrame.jTextArea1.append("\nException occurred in viewACL");
         }
-        
+
         return object + ":     " + message;
     }
-    
+
     void setBUCKETwebsite(String object, String access_key, String secret_key, String endpoint, String bucket) {
         try {
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
@@ -130,7 +129,7 @@ public class Acl {
             mainFrame.jTextArea1.append("\nException occurred in ACL");
         }
     }
-    
+
     void removeBUCKETwebsite(String object, String access_key, String secret_key, String endpoint, String bucket) {
         try {
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
@@ -142,7 +141,7 @@ public class Acl {
             mainFrame.jTextArea1.append("\nException occurred in ACL");
         }
     }
-    
+
     String setACLurl(String object, String access_key, String secret_key, String endpoint, String bucket) {
         String URL = null;
         try {

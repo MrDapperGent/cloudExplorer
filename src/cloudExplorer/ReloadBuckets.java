@@ -25,6 +25,7 @@ public class ReloadBuckets implements Runnable {
     String endpoint = null;
     String secret_key = null;
     String bucketlist = null;
+
     public String bucketlist() {
         return bucketlist;
     }

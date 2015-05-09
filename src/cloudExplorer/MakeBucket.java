@@ -64,7 +64,7 @@ public class MakeBucket implements Runnable {
             createBucket.setIcon(mainFrame.genericEngine);
             close.setIcon(mainFrame.genericEngine);
 
-             jPanel15.setVisible(false);
+            jPanel15.setVisible(false);
             createBucket.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {

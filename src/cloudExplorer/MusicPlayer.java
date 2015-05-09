@@ -120,7 +120,7 @@ public class MusicPlayer implements Runnable {
             for (int h = 1; h != mainFrame.previous_objectarray_length; h++) {
                 if (mainFrame.object_item[h] != null) {
                     if (mainFrame.object_item[h].isSelected()) {
-                        if (mainFrame.object_item[h].getText().contains(".mp3")) {
+                        if (mainFrame.object_item[h].getText().toLowerCase().contains(".mp3")) {
                             String url = mainFrame.objectacl.setACLurl(mainFrame.object_item[h].getText(), mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getEndpoint(), mainFrame.cred.getBucket());
                             url = url.replace("Pre-Signed URL = ", "");
                             music_url = (new URL(url));
@@ -129,7 +129,7 @@ public class MusicPlayer implements Runnable {
                             count++;
                         }
 
-                        if (mainFrame.object_item[h].getText().contains(".wav")) {
+                        if (mainFrame.object_item[h].getText().toLowerCase().contains(".wav")) {
                             wav = true;
                             File temp_file = new File(mainFrame.temp_file);
                             NewJFrame.jTextArea1.append("\nDownloading file to play.");
