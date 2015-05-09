@@ -7,7 +7,7 @@ Improvements:
             Music Player:
                           Plays WAV files.
                           Stop button renamed to "Stop /Close" for clarity.
-    
+                          No longer case sensitive for MP3 file extension.
 New Features: 
                 
              Audio recorder.
