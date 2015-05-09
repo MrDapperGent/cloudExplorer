@@ -15,10 +15,8 @@
  */
 package cloudExplorer;
 
-import static cloudExplorer.NewJFrame.jTextArea1;
 import javax.sound.sampled.*;
 import java.io.*;
-import java.util.Random;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.TargetDataLine;
 

@@ -17,7 +17,6 @@ package cloudExplorer;
 
 import static cloudExplorer.NewJFrame.jPanel15;
 import static cloudExplorer.NewJFrame.jTextArea1;
-import static cloudExplorer.NewJFrame.jTextField6;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
