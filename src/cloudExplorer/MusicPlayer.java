@@ -15,7 +15,6 @@
  */
 package cloudExplorer;
 
-import static cloudExplorer.NewJFrame.jTextArea1;
 import jaco.mp3.player.MP3Player;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
