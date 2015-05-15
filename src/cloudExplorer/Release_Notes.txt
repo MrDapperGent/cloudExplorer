@@ -1,18 +1,18 @@
 Version 5.5
 
-Bug Fixes: SyncToS3 and CLI:
+Bug Fixes: 
+          SyncToS3 and CLI:
 
-           Prevent duplicating synced content when it exists in the 
-           bucket when a file is in a folder.
+                       Prevent duplicating synced content when it exists in the 
+                       bucket when a file is in a folder.
           
 Improvements: 
-
             Music Player:
                           Plays WAV files.
                           Stop button renamed to "Stop /Close" for clarity.
                           No longer case sensitive for MP3 file extension.
-New Features: 
-                
+
+New Features:                
              Audio recorder.
 
   
