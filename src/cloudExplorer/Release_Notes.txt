@@ -3,20 +3,21 @@ Version 5.5
 Bug Fixes: 
           1. Syncing GUI and CLI:
 
-                              Prevent duplicated transfers of synced files in 
-                              folders.
+                                 Prevent duplicated transfers of synced files in 
+                                 folders.
 
           2. Syncing from CLI:
-                           Syncing from S3 saves to appropriate directory level.                            
+                             Syncing from S3 saves to appropriate directory 
+                             level.                            
           
 Improvements: 
             1. Music Player:
-                          Plays WAV files.
-                          Stop button renamed to "Stop /Close" for clarity.
-                          No longer case sensitive for MP3 file extension.
+                           Plays WAV files.
+                           Stop button renamed to "Stop /Close" for clarity.
+                           No longer case sensitive for MP3 file extension.
 
             2. Syncing GUI and CLI:
-                                 Overwrite removed since it is no longer needed.
+                                  Overwrite button removed.
 
 New Features:                
              1.Audio recorder.
