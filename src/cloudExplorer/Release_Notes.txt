@@ -3,8 +3,12 @@ Version 5.5
 Bug Fixes: 
           Syncing GUI and CLI:
 
-                       Prevent duplicating synced content when it exists in the 
-                       bucket when a file is in a folder.
+                              Prevent duplicated transfers of synced files in 
+                              folders.
+
+          Syncing from CLI:
+                           Syncing from S3 saves to appropriate directory level.
+                               
           
 Improvements: 
             Music Player:
