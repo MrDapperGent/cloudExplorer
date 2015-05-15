@@ -329,7 +329,7 @@ public class CLI {
             } else {
                 if (remote.after(local)) {
                     recopy = true;
-                    System.out.print("\nTrue\nRemote:" + remote.toString() + "\nLocal:" + local.toString() );
+                    System.out.print("\nTrue\nRemote:" + remote.toString() + "\nLocal:" + local.toString());
                 }
             }
         } catch (Exception modifiedChecker) {
@@ -415,12 +415,11 @@ public class CLI {
             for (int i = 1; i != object_array.length; i++) {
                 int found = 0;
                 String new_object_name = convertObject(object_array[i], "download");
-                fromS3File[i] = new File(destination + new_object_name);
-                System.out.print("\nDestination: " + destination + " \nfromS3File: " + fromS3File[i] + "\n" + object_array[i]);
+                fromS3File[i] = new File(destination + File.separator + object_array[i]);
                 if (fromS3File[i].exists()) {
                     if (!modified_check(object_array[i], fromS3File[i].getAbsolutePath(), false)) {
                         found++;
-                    }
+                     }
                 }
                 if (found == 0) {
                     if (folder != null) {
