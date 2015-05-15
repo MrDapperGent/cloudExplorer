@@ -1,6 +1,6 @@
 Version 5.5
 
-Bug Fixes: SyncToS3:
+Bug Fixes: SyncToS3 and CLI:
 
            Prevent duplicating synced content when it exists in the 
            bucket when a file is in a folder.
