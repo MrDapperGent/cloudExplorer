@@ -1103,8 +1103,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jCheckBox3)
                             .addComponent(jCheckBox6))))
-                .addGap(30, 30, 30)
-                .addComponent(jFileChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
+                .addComponent(jFileChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 669, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
