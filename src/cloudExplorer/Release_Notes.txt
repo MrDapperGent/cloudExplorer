@@ -14,7 +14,7 @@ Improvements:
 
 New Features:                
              1.Audio recorder.
-             2. SyncToS3/SyncFromS3 GUI and CLI:
+             2. SyncToS3 GUI and CLI:
                                     Timestamps are compared and the outdated 
                                     file is overwritten.
   
