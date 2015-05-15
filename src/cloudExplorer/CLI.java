@@ -329,7 +329,6 @@ public class CLI {
             } else {
                 if (remote.after(local)) {
                     recopy = true;
-                    System.out.print("\nTrue\nRemote:" + remote.toString() + "\nLocal:" + local.toString());
                 }
             }
         } catch (Exception modifiedChecker) {
@@ -419,7 +418,7 @@ public class CLI {
                 if (fromS3File[i].exists()) {
                     if (!modified_check(object_array[i], fromS3File[i].getAbsolutePath(), false)) {
                         found++;
-                     }
+                    }
                 }
                 if (found == 0) {
                     if (folder != null) {
