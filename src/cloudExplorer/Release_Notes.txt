@@ -19,7 +19,7 @@ New Features:
              1.Audio recorder.
              2. Sync GUI and CLI:
                                     Timestamps are compared and the outdated 
-                                    file is overwritten.
+                                    files are overwritten.
   
 Features:
 
