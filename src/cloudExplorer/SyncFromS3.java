@@ -17,6 +17,8 @@ package cloudExplorer;
 
 import java.io.File;
 import static cloudExplorer.NewJFrame.jTextArea1;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class SyncFromS3 implements Runnable {
 
@@ -81,6 +83,24 @@ public class SyncFromS3 implements Runnable {
         return what;
     }
 
+    boolean modified_check(String remoteFile, String localFile) {
+        boolean recopy = false;
+        long milli;
+        try {
+            File check_localFile = new File(localFile);
+            SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+            Date remote = sdf.parse(mainFrame.bucket.getObjectInfo(remoteFile, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), "objectdate"));
+            milli = check_localFile.lastModified();
+            Date local = new Date(milli);
+
+            if (remote.after(local)) {
+                recopy = true;
+            }
+        } catch (Exception modifiedChecker) {
+        }
+        return recopy;
+    }
+
     public void run() {
         try {
             File[] foo = new File[objectarray.length];
@@ -88,12 +108,18 @@ public class SyncFromS3 implements Runnable {
             for (int i = 1; i != objectarray.length; i++) {
 
                 if (objectarray[i] != null) {
+                    int found = 0;
                     foo[i] = new File(destination + File.separator + objectarray[i]);
 
-                    if (foo[i].exists() && !mainFrame.jRadioButton1.isSelected()) {
-                        //mainFrame.jTextArea1.append("\n" + objectarray[i] + " already exists on this machine.");
+                    if (foo[i].exists()) {
+                        if (!modified_check(objectarray[i], foo[i].getAbsolutePath())) {
+                            calibrate();
+                            found++;
+                        }
                         calibrate();
-                    } else {
+                    }
+                    if (found == 0) {
+
                         if (index > -1) {
                             if (objectarray[i].contains(mainFrame.jList3.getSelectedValue().toString())) {
                                 makeDirectory(destination + File.separator + objectarray[i]);
@@ -117,9 +143,9 @@ public class SyncFromS3 implements Runnable {
                                     get.run();
                                 }
                             }
+                            found = 0;
                         }
                     }
-
                 }
             }
 

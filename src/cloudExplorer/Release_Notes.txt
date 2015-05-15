@@ -1,7 +1,7 @@
 Version 5.5
 
 Bug Fixes: 
-          SyncToS3 GUI and CLI:
+          Syncing GUI and CLI:
 
                        Prevent duplicating synced content when it exists in the 
                        bucket when a file is in a folder.
@@ -12,9 +12,12 @@ Improvements:
                           Stop button renamed to "Stop /Close" for clarity.
                           No longer case sensitive for MP3 file extension.
 
+            Syncing GUI and CLI:
+                                 Overwrite removed since it is no longer needed.
+
 New Features:                
              1.Audio recorder.
-             2. SyncToS3 GUI and CLI:
+             2. Sync GUI and CLI:
                                     Timestamps are compared and the outdated 
                                     file is overwritten.
   

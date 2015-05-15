@@ -312,7 +312,7 @@ public class CLI {
         return what;
     }
 
-    boolean modified_check(String remoteFile, String localFile) {
+    boolean modified_check(String remoteFile, String localFile, Boolean tos3) {
         boolean recopy = false;
         long milli;
         try {
@@ -322,8 +322,15 @@ public class CLI {
             milli = check_localFile.lastModified();
             Date local = new Date(milli);
 
-            if (local.after(remote)) {
-                recopy = true;
+            if (tos3) {
+                if (local.after(remote)) {
+                    recopy = true;
+                }
+            } else {
+                if (remote.after(local)) {
+                    recopy = true;
+                    System.out.print("\nTrue\nRemote:" + remote.toString() + "\nLocal:" + local.toString() );
+                }
             }
         } catch (Exception modifiedChecker) {
         }
@@ -362,7 +369,7 @@ public class CLI {
             int found = 0;
             for (int y = 1; y != object_array.length; y++) {
                 if (object_array[y].contains(object)) {
-                    if (!modified_check(object_array[y], file_found.getAbsolutePath())) {
+                    if (!modified_check(object_array[y], file_found.getAbsolutePath(), true)) {
                         found++;
                     }
                 }
@@ -396,8 +403,7 @@ public class CLI {
         }
     }
 
-    void syncFromS3(String folder
-    ) {
+    void syncFromS3(String folder) {
         try {
             if (folder != null) {
                 System.out.print("\n\nStarting sync from Folder: " + folder + " on bucket: " + bucket + " to destination: " + destination + ".\n");
@@ -407,10 +413,16 @@ public class CLI {
             reloadObjects();
             File[] fromS3File = new File[object_array.length];
             for (int i = 1; i != object_array.length; i++) {
+                int found = 0;
                 String new_object_name = convertObject(object_array[i], "download");
                 fromS3File[i] = new File(destination + new_object_name);
+                System.out.print("\nDestination: " + destination + " \nfromS3File: " + fromS3File[i] + "\n" + object_array[i]);
                 if (fromS3File[i].exists()) {
-                } else {
+                    if (!modified_check(object_array[i], fromS3File[i].getAbsolutePath(), false)) {
+                        found++;
+                    }
+                }
+                if (found == 0) {
                     if (folder != null) {
                         if (object_array[i].contains(folder)) {
                             makeDirectory(destination + File.separator + object_array[i]);
@@ -424,6 +436,7 @@ public class CLI {
                         get = new Get(object_array[i], access_key, secret_key, bucket, endpoint, destination + File.separator + object, null);
                         get.run();
                     }
+                    found = 0;
                 }
             }
         } catch (Exception SyncLocal) {

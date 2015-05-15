@@ -97,16 +97,12 @@ public class SyncToS3 implements Runnable {
                 cut2 = cut[0].split(lin);
                 object = cut2[cut2.length - 1] + lin + object;
             }
-            if (mainFrame.jRadioButton1.isSelected()) {
 
-            } else {
-
-                for (int y = 1; y != objectarray.length; y++) {
-                    if (objectarray[y].contains(object)) {
-                        if (!modified_check(objectarray[y], file_found.getAbsolutePath())) {
-                            calibrate();
-                            found++;
-                        }
+            for (int y = 1; y != objectarray.length; y++) {
+                if (objectarray[y].contains(object)) {
+                    if (!modified_check(objectarray[y], file_found.getAbsolutePath())) {
+                        calibrate();
+                        found++;
                     }
                 }
             }
