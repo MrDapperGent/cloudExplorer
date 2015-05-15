@@ -64,13 +64,25 @@ public class SyncToS3 implements Runnable {
         List<File> files = (List<File>) FileUtils.listFiles(location, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE);
         for (File file_found : files) {
             int found = 0;
-
+            String object = makeDirectory(file_found.getAbsolutePath().toString());
+            String[] cut = object.split(file_found.getName());
+            String[] cut2 = null;
+            object = object.replace(cut[0], "");
+            String win = "\\";
+            String lin = "/";
+            if (cut[0].contains(win)) {
+                cut2 = cut[0].split(win);
+                object = cut2[cut2.length - 1] + win + object;
+            } else {
+                cut2 = cut[0].split(lin);
+                object = cut2[cut2.length - 1] + lin + object;
+            }
             if (mainFrame.jRadioButton1.isSelected()) {
 
             } else {
 
                 for (int y = 1; y != objectarray.length; y++) {
-                    if (objectarray[y].contains(makeDirectory(file_found.getAbsolutePath().toString()))) {
+                    if (objectarray[y].contains(object)) {
                         //mainFrame.jTextArea1.append("\nObject already exists on S3: " + file_found);
                         calibrate();
                         found++;
@@ -79,20 +91,6 @@ public class SyncToS3 implements Runnable {
             }
 
             if (found == 0) {
-
-                String object = makeDirectory(file_found.getAbsolutePath().toString());
-                String[] cut = object.split(file_found.getName());
-                String[] cut2 = null;
-                object = object.replace(cut[0], "");
-                String win = "\\";
-                String lin = "/";
-                if (cut[0].contains(win)) {
-                    cut2 = cut[0].split(win);
-                    object = cut2[cut2.length - 1] + win + object;
-                } else {
-                    cut2 = cut[0].split(lin);
-                    object = cut2[cut2.length - 1] + lin + object;
-                }
 
                 if (SyncToS3.running) {
                     int index = mainFrame.jList3.getSelectedIndex(); //get selected index
