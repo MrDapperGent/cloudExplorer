@@ -21,6 +21,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
@@ -310,6 +312,24 @@ public class CLI {
         return what;
     }
 
+    boolean modified_check(String remoteFile, String localFile) {
+        boolean recopy = false;
+        long milli;
+        try {
+            File check_localFile = new File(localFile);
+            SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+            Date remote = sdf.parse(bucketObject.getObjectInfo(remoteFile, access_key, secret_key, bucket, endpoint, "objectdate"));
+            milli = check_localFile.lastModified();
+            Date local = new Date(milli);
+
+            if (local.after(remote)) {
+                recopy = true;
+            }
+        } catch (Exception modifiedChecker) {
+        }
+        return recopy;
+    }
+
     void syncToS3(String folder
     ) {
         if (folder != null) {
@@ -342,7 +362,9 @@ public class CLI {
             int found = 0;
             for (int y = 1; y != object_array.length; y++) {
                 if (object_array[y].contains(object)) {
-                    found++;
+                    if (!modified_check(object_array[y], file_found.getAbsolutePath())) {
+                        found++;
+                    }
                 }
             }
 

@@ -1,7 +1,7 @@
 Version 5.5
 
 Bug Fixes: 
-          SyncToS3 and CLI:
+          SyncToS3 GUI and CLI:
 
                        Prevent duplicating synced content when it exists in the 
                        bucket when a file is in a folder.
@@ -13,8 +13,10 @@ Improvements:
                           No longer case sensitive for MP3 file extension.
 
 New Features:                
-             Audio recorder.
-
+             1.Audio recorder.
+             2. SyncToS3/SyncFromS3 GUI and CLI:
+                                    Timestamps are compared and the outdated 
+                                    file is overwritten.
   
 Features:
 

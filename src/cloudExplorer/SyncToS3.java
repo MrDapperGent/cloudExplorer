@@ -20,6 +20,8 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 import static cloudExplorer.NewJFrame.jTextArea1;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class SyncToS3 implements Runnable {
 
@@ -59,6 +61,24 @@ public class SyncToS3 implements Runnable {
         }
     }
 
+    boolean modified_check(String remoteFile, String localFile) {
+        boolean recopy = false;
+        long milli;
+        try {
+            File check_localFile = new File(localFile);
+            SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+            Date remote = sdf.parse(mainFrame.bucket.getObjectInfo(remoteFile, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), "objectdate"));
+            milli = check_localFile.lastModified();
+            Date local = new Date(milli);
+
+            if (local.after(remote)) {
+                recopy = true;
+            }
+        } catch (Exception modifiedChecker) {
+        }
+        return recopy;
+    }
+
     public void run() {
         String[] extensions = new String[]{" "};
         List<File> files = (List<File>) FileUtils.listFiles(location, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE);
@@ -83,9 +103,10 @@ public class SyncToS3 implements Runnable {
 
                 for (int y = 1; y != objectarray.length; y++) {
                     if (objectarray[y].contains(object)) {
-                        //mainFrame.jTextArea1.append("\nObject already exists on S3: " + file_found);
-                        calibrate();
-                        found++;
+                        if (!modified_check(objectarray[y], file_found.getAbsolutePath())) {
+                            calibrate();
+                            found++;
+                        }
                     }
                 }
             }
