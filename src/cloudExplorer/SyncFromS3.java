@@ -137,7 +137,7 @@ public class SyncFromS3 implements Runnable {
                             String transcoded_object = null;
                             if (index == -1) {
                                 String[] cutit = null;
-                                if (objectarray[i].contains(win) || (objectarray[i].contains(win))) {
+                                if (objectarray[i].contains(win) || (objectarray[i].contains(lin))) {
                                     if (objectarray[i].contains(win)) {
                                         cutit = objectarray[i].split(win);
                                         transcoded_object = cutit[1];
