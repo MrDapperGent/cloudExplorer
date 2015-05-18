@@ -134,40 +134,44 @@ public class SyncFromS3 implements Runnable {
                         }
 
                         if (SyncFromS3.running) {
-                            String transcoded_object = null;
-                            if (index == -1) {
-                                String[] cutit = null;
-                                if (objectarray[i].contains(win) || (objectarray[i].contains(lin))) {
-                                    if (objectarray[i].contains(win)) {
-                                        cutit = objectarray[i].split(win);
-                                        transcoded_object = cutit[1];
-                                    } else {
-                                        cutit = objectarray[i].split(lin);
-                                        transcoded_object = cutit[1];
-                                    }
-                                    String object = makeDirectory(destination + File.separator + cutit[0]);
-                                    get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + cutit[0] + File.separator + transcoded_object, null);
-                                    get.run();
-                                } else {
-                                    get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + objectarray[i], null);
-                                    get.run();
-                                }
-                            } else {
-                                if (objectarray[i].contains(mainFrame.jList3.getSelectedValue().toString())) {
+                            try {
+                                String transcoded_object = null;
+                                if (index == -1) {
                                     String[] cutit = null;
-                                    if (objectarray[i].contains(win)) {
-                                        cutit = objectarray[i].split(win);
-                                        transcoded_object = cutit[1];
+                                    if (objectarray[i].contains(win) || (objectarray[i].contains(lin))) {
+                                        if (objectarray[i].contains(win)) {
+                                            cutit = objectarray[i].split(win);
+                                            transcoded_object = cutit[1];
+                                        } else {
+                                            cutit = objectarray[i].split(lin);
+                                            transcoded_object = cutit[1];
+                                        }
+                                        String object = makeDirectory(destination + File.separator + cutit[0]);
+                                        get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + cutit[0] + File.separator + transcoded_object, null);
+                                        get.run();
                                     } else {
-                                        cutit = objectarray[i].split(lin);
-                                        transcoded_object = cutit[1];
+                                        get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + objectarray[i], null);
+                                        get.run();
                                     }
-                                    String object = makeDirectory(destination + File.separator + cutit[0]);
-                                    get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + cutit[0] + File.separator + transcoded_object, null);
-                                    get.run();
+                                } else {
+                                    if (objectarray[i].contains(mainFrame.jList3.getSelectedValue().toString())) {
+                                        String[] cutit = null;
+                                        if (objectarray[i].contains(win)) {
+                                            cutit = objectarray[i].split(win);
+                                            transcoded_object = cutit[1];
+                                        } else {
+                                            cutit = objectarray[i].split(lin);
+                                            transcoded_object = cutit[1];
+                                        }
+                                        String object = makeDirectory(destination + File.separator + cutit[0]);
+                                        get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + cutit[0] + File.separator + transcoded_object, null);
+                                        get.run();
+                                    }
                                 }
+                                found = 0;
+                            } catch (Exception fo) {
+
                             }
-                            found = 0;
                         }
                     }
                 }
