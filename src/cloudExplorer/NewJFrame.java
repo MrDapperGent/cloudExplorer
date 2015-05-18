@@ -1186,6 +1186,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
 
+        jPanel8.setBackground(java.awt.SystemColor.text);
+
         jLabel13.setText("Folders:");
 
         jScrollPane10.setViewportView(jList4);
