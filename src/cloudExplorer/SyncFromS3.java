@@ -33,6 +33,8 @@ public class SyncFromS3 implements Runnable {
     public static Boolean running = false;
     Get get;
     Thread syncFromS3;
+    String win = "\\";
+    String lin = "/";
 
     SyncFromS3(NewJFrame AmainFrame, String[] Aobjectarray, String[] AObjectsConverted, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String Adestination) {
         objectarray = Aobjectarray;
@@ -81,6 +83,7 @@ public class SyncFromS3 implements Runnable {
         File dir = new File(File.separator + what.substring(0, another_counter));
         dir.mkdirs();
         return what;
+
     }
 
     boolean modified_check(String remoteFile, String localFile) {
@@ -131,15 +134,36 @@ public class SyncFromS3 implements Runnable {
                         }
 
                         if (SyncFromS3.running) {
-
+                            String transcoded_object = null;
                             if (index == -1) {
-                                String object = makeDirectory(objectarray[i]);
-                                get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + objectarray[i], null);
-                                get.run();
+                                String[] cutit = null;
+                                if (objectarray[i].contains(win) || (objectarray[i].contains(win))) {
+                                    if (objectarray[i].contains(win)) {
+                                        cutit = objectarray[i].split(win);
+                                        transcoded_object = cutit[1];
+                                    } else {
+                                        cutit = objectarray[i].split(lin);
+                                        transcoded_object = cutit[1];
+                                    }
+                                    String object = makeDirectory(destination + File.separator + cutit[0]);
+                                    get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + cutit[0] + File.separator + transcoded_object, null);
+                                    get.run();
+                                } else {
+                                    get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + objectarray[i], null);
+                                    get.run();
+                                }
                             } else {
                                 if (objectarray[i].contains(mainFrame.jList3.getSelectedValue().toString())) {
-                                    String object = makeDirectory(objectarray[i]);
-                                    get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + object, null);
+                                    String[] cutit = null;
+                                    if (objectarray[i].contains(win)) {
+                                        cutit = objectarray[i].split(win);
+                                        transcoded_object = cutit[1];
+                                    } else {
+                                        cutit = objectarray[i].split(lin);
+                                        transcoded_object = cutit[1];
+                                    }
+                                    String object = makeDirectory(destination + File.separator + cutit[0]);
+                                    get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + cutit[0] + File.separator + transcoded_object, null);
                                     get.run();
                                 }
                             }
@@ -152,8 +176,11 @@ public class SyncFromS3 implements Runnable {
         } catch (Exception SyncLocal) {
             mainFrame.jTextArea1.append("\n" + SyncLocal.getMessage());
         }
+
         mainFrame.reloadBuckets();
-        mainFrame.jTextArea1.append("\nSync operation finished running. Please observe this window for any transfers that may still be running.");
+
+        mainFrame.jTextArea1.append(
+                "\nSync operation finished running. Please observe this window for any transfers that may still be running.");
         calibrate();
     }
 

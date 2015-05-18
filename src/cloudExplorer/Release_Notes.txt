@@ -3,9 +3,11 @@ Version 5.5
 Bug Fixes: 
           1. Syncing GUI and CLI:
 
-                                 Prevent duplicated transfers of synced files in 
-                                 folders.
-
+                                 A. Prevent duplicated transfers of synced files 
+                                    in folders.
+                                 B. When syncing to local machine, items go in 
+                                    correct folder.
+                                  
           2. Syncing from CLI:
                              Syncing from S3 saves to appropriate directory 
                              level.                            

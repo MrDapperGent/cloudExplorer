@@ -41,6 +41,8 @@ public class SyncToS3 implements Runnable {
     Boolean rrs = false;
     Boolean encrypt = false;
     String Home = System.getProperty("user.home");
+    String win = "\\";
+    String lin = "/";
 
     SyncToS3(NewJFrame AmainFrame, File Alocation, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobjectarray, Boolean Arrs, Boolean Aencrypt) {
         objectarray = Aobjectarray;
@@ -88,8 +90,6 @@ public class SyncToS3 implements Runnable {
             String[] cut = object.split(file_found.getName());
             String[] cut2 = null;
             object = object.replace(cut[0], "");
-            String win = "\\";
-            String lin = "/";
             if (cut[0].contains(win)) {
                 cut2 = cut[0].split(win);
                 object = cut2[cut2.length - 1] + win + object;
