@@ -428,7 +428,7 @@ public class CLI {
                         try {
                             String[] cutit = null;
                             String transcoded_object = null;
-                        
+
                             if (object_array[i].contains(win) || (object_array[i].contains(lin))) {
 
                                 if (object_array[i].contains(win)) {
@@ -439,7 +439,7 @@ public class CLI {
                                     transcoded_object = cutit[1];
                                 }
                             }
-                            
+
                             if (folder != null) {
                                 if (object_array[i].contains(folder)) {
                                     File dir = new File(destination + File.separator + cutit[0]);
@@ -454,7 +454,6 @@ public class CLI {
                                     get = new Get(object_array[i], access_key, secret_key, bucket, endpoint, destination + File.separator + cutit[0] + File.separator + cutit[1], null);
                                     get.run();
                                 } else {
-                                    System.out.print("\nHere:" + object_array[i]);
                                     get = new Get(object_array[i], access_key, secret_key, bucket, endpoint, destination + File.separator + object_array[i], null);
                                     get.run();
                                 }
