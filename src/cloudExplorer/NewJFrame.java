@@ -2143,8 +2143,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                             return folders2[i];
                         }
                     });
-                    
-                      jList4.setModel(new javax.swing.AbstractListModel() {
+
+                    jList4.setModel(new javax.swing.AbstractListModel() {
 
                         public int getSize() {
                             return folders2.length;
@@ -2266,8 +2266,15 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jPanel9.setVisible(true);
             temp_file = (Home + File.separator + "object.tmp");
             editorSync(jTextField6.getText());
-            put = new Put(temp_file, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), jTextField6.getText(), false, false);
-            put.startc(temp_file, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), jTextField6.getText(), false, false);
+            int index = jList4.getSelectedIndex(); //get selected index
+
+            if (index != -1) {
+                put = new Put(temp_file, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), jList4.getSelectedValue().toString() + jTextField6.getText(), false, false);
+                put.startc(temp_file, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), jList4.getSelectedValue().toString() + jTextField6.getText(), false, false);
+            } else {
+                put = new Put(temp_file, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), jTextField6.getText(), false, false);
+                put.startc(temp_file, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), jTextField6.getText(), false, false);
+            }
             jTextArea1.append("\nSaved Object\n");
             objectarray = null;
             bucket_item[active_bucket].setSelected(true);
