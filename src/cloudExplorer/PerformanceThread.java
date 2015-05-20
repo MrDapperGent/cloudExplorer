@@ -254,9 +254,7 @@ public class PerformanceThread implements Runnable {
                                     }
                                 }
                             } else {
-                                System.out.print("\nfoo=" + temp_file + +i + "_" + z);
                                 if (!folder_enabled) {
-
                                     Runnable get = new Get("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + +i + "_" + z, null);
                                     getTempArray[i] = temp_file + i + "_" + z;
                                     executor.execute(get);
