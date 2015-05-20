@@ -148,8 +148,6 @@ public class PerformanceThread implements Runnable {
                 another_counter = y;
             }
         }
-        File dir = new File(Home + File.separator + what.substring(0, another_counter));
-        dir.mkdirs();
         return Home + File.separator + what.substring(0, another_counter);
     }
 
@@ -171,7 +169,6 @@ public class PerformanceThread implements Runnable {
         if (mixed || !operation) {
             if (folder_enabled) {
                 convertedFolder = makeDirectory(folder);
-                temp_file = convertedFolder + File.separator + "object.tmp";
             }
         }
 
@@ -263,7 +260,7 @@ public class PerformanceThread implements Runnable {
                                     }
                                 }
                             } else {
-                       System.out.print("\nfoo=" + temp_file + +i + "_" + z);
+                                System.out.print("\nfoo=" + temp_file + +i + "_" + z);
                                 if (!folder_enabled) {
                                     Runnable get = new Get("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + +i + "_" + z, null);
                                 } else {
