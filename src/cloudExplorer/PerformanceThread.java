@@ -82,8 +82,7 @@ public class PerformanceThread implements Runnable {
     Boolean overwrite = false;
     String folder = null;
     Boolean folder_enabled = false;
-    String convertedFolder = null;
-
+   
     public void performance_logger(double time, double rate, String what) {
         try {
             FileWriter frr = new FileWriter(what, true);
@@ -166,12 +165,7 @@ public class PerformanceThread implements Runnable {
         } else {
             folder_enabled = true;
         }
-        if (mixed || !operation) {
-            if (folder_enabled) {
-                convertedFolder = makeDirectory(folder);
-            }
-        }
-
+     
         File tempFile = new File(temp_file);
         if (tempFile.exists()) {
             tempFile.delete();
@@ -238,7 +232,7 @@ public class PerformanceThread implements Runnable {
 
                         ExecutorService executor = Executors.newFixedThreadPool((int) num_threads);
                         long t1 = System.currentTimeMillis();
-                        System.out.print("\nDebug: Folder : " + folder + "\nUpload=" + upload + "\nConvertedFolder=" + convertedFolder);
+                        System.out.print("\nDebug: Folder : " + folder + "\nUpload=" + upload);
                         for (int i = 0; i != num_threads; i++) {
                             if (operation) {
                                 if (overwrite) {
