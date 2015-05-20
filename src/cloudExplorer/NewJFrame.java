@@ -46,7 +46,7 @@ import javax.swing.plaf.ColorUIResource;
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     String major = "5";
-    String minor = "5";
+    String minor = "6";
     String release_version = major + "." + minor;
     String version = "Cloud Explorer " + release_version;
     String[] folders = new String[1];
@@ -3403,7 +3403,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList jList2;
+    public static javax.swing.JList jList2;
     public static javax.swing.JList jList3;
     public static javax.swing.JList jList4;
     public static javax.swing.JMenu jMenu1;

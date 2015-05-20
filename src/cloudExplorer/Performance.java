@@ -24,6 +24,9 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 public class Performance implements Runnable {
@@ -33,6 +36,10 @@ public class Performance implements Runnable {
     Performance putperformance;
     Boolean operation = true;
     PerformanceThread performancethread;
+    JList jlist_perf = mainFrame.jList2;
+    JScrollPane pane_perf = new JScrollPane();
+    JPanel jlist_panel = new JPanel();
+    JLabel jlist_label = new JLabel("Destination Folder:");
     final JButton startPerformanceTest = new JButton("Start Test");
     final JButton abortPerformanceTest = new JButton("Close / Abort");
     final JButton close = new JButton("Close");
@@ -45,6 +52,7 @@ public class Performance implements Runnable {
     final JCheckBox throughput_graph = new JCheckBox("Graph Throughput");
     final JLabel blank = new JLabel(" ");
     final JLabel blank2 = new JLabel(" ");
+    final JLabel blank3 = new JLabel(" ");
     final JTextField getFileSize = new JTextField("1024");
     final JTextField getTheadCount = new JTextField("5");
     final JTextField getOperationCount = new JTextField("5");
@@ -104,6 +112,17 @@ public class Performance implements Runnable {
 
             mainFrame.jPanel15.setVisible(false);
 
+            jlist_perf.setModel(new javax.swing.AbstractListModel() {
+
+                public int getSize() {
+                    return mainFrame.folders2.length;
+                }
+
+                public Object getElementAt(int i) {
+                    return mainFrame.folders2[i];
+                }
+            });
+            pane_perf = new JScrollPane(jlist_perf);
             startPerformanceTest.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
@@ -145,8 +164,16 @@ public class Performance implements Runnable {
                     int threadcount = Integer.parseInt(getTheadCount.getText());
                     String getValue = getFileSize.getText();
                     String operationCount = getOperationCount.getText();
-                    performancethread = new PerformanceThread(startPerformanceTest, threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation, graphData, graph_throughput, graph_latency, graph_ops, num_graphs, mixed_traffic, overwrite);
-                    performancethread.startc(startPerformanceTest, threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation, graphData, graph_throughput, graph_latency, graph_ops, num_graphs, mixed_traffic, overwrite);
+                    int index = jlist_perf.getSelectedIndex(); //get selected index
+                    String folder = null;
+                    try {
+                        if (index != -1) {
+                            folder = jlist_perf.getSelectedValue().toString();
+                        }
+                    } catch (Exception indaex) {
+                    }
+                    performancethread = new PerformanceThread(startPerformanceTest, threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation, graphData, graph_throughput, graph_latency, graph_ops, num_graphs, mixed_traffic, overwrite, folder);
+                    performancethread.startc(startPerformanceTest, threadcount, getValue, operationCount, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), operation, graphData, graph_throughput, graph_latency, graph_ops, num_graphs, mixed_traffic, overwrite, folder);
                     graph_ops = false;
                     graph_throughput = false;
                     graph_latency = false;
@@ -182,6 +209,11 @@ public class Performance implements Runnable {
             mainFrame.jPanel14.add(operationCount);
             mainFrame.jPanel14.add(getOperationCount);
             mainFrame.jPanel14.add(blank2);
+            pane_perf.setPreferredSize(new Dimension(75, 50));
+            jlist_perf.setPreferredSize(new Dimension(75, 50));
+            mainFrame.jPanel14.add(jlist_label);
+            mainFrame.jPanel14.add(pane_perf);
+            mainFrame.jPanel14.add(blank3);
             if (!mixed_traffic) {
                 mainFrame.jPanel14.add(throughput_graph);
                 mainFrame.jPanel14.add(ops_graph);

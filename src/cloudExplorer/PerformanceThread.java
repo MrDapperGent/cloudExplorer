@@ -80,6 +80,9 @@ public class PerformanceThread implements Runnable {
     int num_graphs = 0;
     public static Boolean mixed = false;
     Boolean overwrite = false;
+    String folder = null;
+    Boolean folder_enabled = false;
+    String convertedFolder = null;
 
     public void performance_logger(double time, double rate, String what) {
         try {
@@ -98,7 +101,7 @@ public class PerformanceThread implements Runnable {
         }
     }
 
-    PerformanceThread(JButton Aperformance, int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation, Boolean Agraphdata, Boolean Athroughput_graph, Boolean Alatency_graph, Boolean Aops_graph, int Anum_graphs, Boolean Amixed, Boolean Aoverwrite) {
+    PerformanceThread(JButton Aperformance, int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation, Boolean Agraphdata, Boolean Athroughput_graph, Boolean Alatency_graph, Boolean Aops_graph, int Anum_graphs, Boolean Amixed, Boolean Aoverwrite, String Afolder) {
         threadcount = Athreadcount;
         getValue = AgetValue;
         getOperationCount = AgetOperationCount;
@@ -115,11 +118,43 @@ public class PerformanceThread implements Runnable {
         num_graphs = Anum_graphs;
         mixed = Amixed;
         overwrite = Aoverwrite;
+        folder = Afolder;
+    }
+
+    public String makeDirectory(String what) {
+
+        if (what.substring(0, 2).contains(":")) {
+            what = what.substring(3, what.length());
+        }
+
+        if (what.substring(0, 1).contains("/")) {
+            what = what.substring(1, what.length());
+        }
+
+        if (what.contains("/")) {
+            what = what.replace("/", File.separator);
+        }
+
+        if (what.contains("\\")) {
+            what = what.replace("\\", File.separator);
+        }
+
+        int slash_counter = 0;
+        int another_counter = 0;
+
+        for (int y = 0; y != what.length(); y++) {
+            if (what.substring(y, y + 1).contains(File.separator)) {
+                slash_counter++;
+                another_counter = y;
+            }
+        }
+        File dir = new File(Home + File.separator + what.substring(0, another_counter));
+        dir.mkdirs();
+        return Home + File.separator + what.substring(0, another_counter);
     }
 
     public void run() {
 
-        File tempFile = new File(temp_file);
         File throughputfile = new File(throughput_log);
         File opsfile = new File(ops_log);
         File latencyfile = new File(latency_log);
@@ -128,6 +163,19 @@ public class PerformanceThread implements Runnable {
         int file_size = Integer.parseInt(getValue);
         float num_threads = threadcount;
 
+        if (folder == null || folder.contains("null")) {
+            folder_enabled = false;
+        } else {
+            folder_enabled = true;
+        }
+        if (mixed || !operation) {
+            if (folder_enabled) {
+                convertedFolder = makeDirectory(folder);
+                temp_file = convertedFolder + File.separator + "object.tmp";
+            }
+        }
+
+        File tempFile = new File(temp_file);
         if (tempFile.exists()) {
             tempFile.delete();
         }
@@ -153,7 +201,7 @@ public class PerformanceThread implements Runnable {
                 s.close();
             } catch (Exception add) {
             }
-
+            System.out.print("\n" + tempFile);
             if (tempFile.exists()) {
 
                 try {
@@ -161,8 +209,13 @@ public class PerformanceThread implements Runnable {
                     calibrate();
 
                     if (!operation || mixed) {
-                        put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
-                        put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
+                        if (!folder_enabled) {
+                            put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
+                            put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
+                        } else {
+                            put = new Put(upload, access_key, secret_key, bucket, endpoint, folder + "performance_test_data", false, false);
+                            put.startc(upload, access_key, secret_key, bucket, endpoint, folder + "performance_test_data", false, false);
+                        }
                     }
 
                     x = new double[op_count];
@@ -188,18 +241,35 @@ public class PerformanceThread implements Runnable {
 
                         ExecutorService executor = Executors.newFixedThreadPool((int) num_threads);
                         long t1 = System.currentTimeMillis();
-
+                        System.out.print("\nDebug: Folder : " + folder + "\nUpload=" + upload + "\nConvertedFolder=" + convertedFolder);
                         for (int i = 0; i != num_threads; i++) {
                             if (operation) {
                                 if (overwrite) {
-                                    Runnable put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_PUT-" + i, false, false);
-                                    executor.execute(put);
+                                    if (!folder_enabled) {
+                                        Runnable put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_PUT-" + i, false, false);
+                                        executor.execute(put);
+                                    } else {
+                                        Runnable put = new Put(upload, access_key, secret_key, bucket, endpoint, folder + "performance_test_data_PUT-" + i, false, false);
+                                        executor.execute(put);
+                                    }
+
                                 } else {
-                                    Runnable put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false);
-                                    executor.execute(put);
+                                    if (!folder_enabled) {
+                                        Runnable put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false);
+                                        executor.execute(put);
+                                    } else {
+                                        Runnable put = new Put(upload, access_key, secret_key, bucket, endpoint, folder + "performance_test_data_" + i + "_" + z, false, false);
+                                        executor.execute(put);
+                                    }
                                 }
                             } else {
-                                Runnable get = new Get("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + +i + "_" + z, null);
+                       System.out.print("\nfoo=" + temp_file + +i + "_" + z);
+                                if (!folder_enabled) {
+                                    Runnable get = new Get("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + +i + "_" + z, null);
+                                } else {
+                                    Runnable get = new Get(folder + "performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + +i + "_" + z, null);
+                                }
+
                                 getTempArray[i] = temp_file + i + "_" + z;
                                 executor.execute(get);
                             }
@@ -430,9 +500,9 @@ public class PerformanceThread implements Runnable {
         calibrate();
     }
 
-    void startc(JButton Aperformance, int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation, Boolean Agraphdata, Boolean Athroughput_graph, Boolean Alatency_graph, Boolean Aops_graph, int Anum_graohs, Boolean Amixed, Boolean Aoverwrite
+    void startc(JButton Aperformance, int Athreadcount, String AgetValue, String AgetOperationCount, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, Boolean Aoperation, Boolean Agraphdata, Boolean Athroughput_graph, Boolean Alatency_graph, Boolean Aops_graph, int Anum_graohs, Boolean Amixed, Boolean Aoverwrite, String Afolder
     ) {
-        performancethread = new Thread(new PerformanceThread(Aperformance, Athreadcount, AgetValue, AgetOperationCount, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aoperation, Agraphdata, Athroughput_graph, Alatency_graph, Aops_graph, Anum_graohs, Amixed, Aoverwrite));
+        performancethread = new Thread(new PerformanceThread(Aperformance, Athreadcount, AgetValue, AgetOperationCount, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aoperation, Agraphdata, Athroughput_graph, Alatency_graph, Aops_graph, Anum_graohs, Amixed, Aoverwrite, Afolder));
         performancethread.start();
 
     }
