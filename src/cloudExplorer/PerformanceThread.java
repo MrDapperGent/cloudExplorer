@@ -82,7 +82,7 @@ public class PerformanceThread implements Runnable {
     Boolean overwrite = false;
     String folder = null;
     Boolean folder_enabled = false;
-   
+
     public void performance_logger(double time, double rate, String what) {
         try {
             FileWriter frr = new FileWriter(what, true);
@@ -165,7 +165,7 @@ public class PerformanceThread implements Runnable {
         } else {
             folder_enabled = true;
         }
-     
+
         File tempFile = new File(temp_file);
         if (tempFile.exists()) {
             tempFile.delete();
@@ -256,13 +256,15 @@ public class PerformanceThread implements Runnable {
                             } else {
                                 System.out.print("\nfoo=" + temp_file + +i + "_" + z);
                                 if (!folder_enabled) {
+
                                     Runnable get = new Get("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + +i + "_" + z, null);
+                                    getTempArray[i] = temp_file + i + "_" + z;
+                                    executor.execute(get);
                                 } else {
                                     Runnable get = new Get(folder + "performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + +i + "_" + z, null);
+                                    getTempArray[i] = temp_file + i + "_" + z;
+                                    executor.execute(get);
                                 }
-
-                                getTempArray[i] = temp_file + i + "_" + z;
-                                executor.execute(get);
                             }
                         }
                         executor.shutdown();
