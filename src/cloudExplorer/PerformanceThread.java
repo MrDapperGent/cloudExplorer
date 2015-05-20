@@ -232,7 +232,6 @@ public class PerformanceThread implements Runnable {
 
                         ExecutorService executor = Executors.newFixedThreadPool((int) num_threads);
                         long t1 = System.currentTimeMillis();
-                        System.out.print("\nDebug: Folder : " + folder + "\nUpload=" + upload);
                         for (int i = 0; i != num_threads; i++) {
                             if (operation) {
                                 if (overwrite) {
