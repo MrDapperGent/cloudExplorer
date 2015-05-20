@@ -7,8 +7,7 @@ Improvements: <none>
                                
          
 New Features:                
-            1. Performance Testing
-                           Folders support.
+            1. Performance Testing - Folders support.
   
 Features:
 
