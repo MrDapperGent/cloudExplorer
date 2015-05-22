@@ -17,8 +17,11 @@ package cloudExplorer;
 
 import java.io.File;
 import static cloudExplorer.NewJFrame.jTextArea1;
+import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Pattern;
+import org.apache.commons.codec.digest.DigestUtils;
 
 public class SyncFromS3 implements Runnable {
 
@@ -89,15 +92,25 @@ public class SyncFromS3 implements Runnable {
     boolean modified_check(String remoteFile, String localFile) {
         boolean recopy = false;
         long milli;
+        String local_md5String = null;
+        String remote_md5String = null;
+        FileInputStream fis = null;
+
         try {
             File check_localFile = new File(localFile);
             SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+            fis = new FileInputStream(localFile);
+            local_md5String = DigestUtils.md5Hex(fis);
+            remote_md5String = mainFrame.bucket.getObjectInfo(remoteFile, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), "checkmd5");
             Date remote = sdf.parse(mainFrame.bucket.getObjectInfo(remoteFile, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), "objectdate"));
             milli = check_localFile.lastModified();
             Date local = new Date(milli);
 
-            if (remote.after(local)) {
-                recopy = true;
+            if (local_md5String.contains(remote_md5String)) {
+            } else {
+                if (remote.after(local)) {
+                    recopy = true;
+                }
             }
         } catch (Exception modifiedChecker) {
         }
@@ -140,7 +153,7 @@ public class SyncFromS3 implements Runnable {
                                     String[] cutit = null;
                                     if (objectarray[i].contains(win) || (objectarray[i].contains(lin))) {
                                         if (objectarray[i].contains(win)) {
-                                            cutit = objectarray[i].split(win);
+                                            cutit = objectarray[i].split(Pattern.quote(win));
                                             transcoded_object = cutit[1];
                                         } else {
                                             cutit = objectarray[i].split(lin);
@@ -157,7 +170,7 @@ public class SyncFromS3 implements Runnable {
                                     if (objectarray[i].contains(mainFrame.jList3.getSelectedValue().toString())) {
                                         String[] cutit = null;
                                         if (objectarray[i].contains(win)) {
-                                            cutit = objectarray[i].split(win);
+                                            cutit = objectarray[i].split(Pattern.quote(win));
                                             transcoded_object = cutit[1];
                                         } else {
                                             cutit = objectarray[i].split(lin);

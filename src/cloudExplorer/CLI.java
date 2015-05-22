@@ -18,12 +18,15 @@ package cloudExplorer;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 
@@ -317,20 +320,34 @@ public class CLI {
     boolean modified_check(String remoteFile, String localFile, Boolean tos3) {
         boolean recopy = false;
         long milli;
+        FileInputStream fis = null;
+        String local_md5String = null;
+        String remote_md5String = null;
+
         try {
             File check_localFile = new File(localFile);
             SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
             Date remote = sdf.parse(bucketObject.getObjectInfo(remoteFile, access_key, secret_key, bucket, endpoint, "objectdate"));
             milli = check_localFile.lastModified();
             Date local = new Date(milli);
+            local_md5String = DigestUtils.md5Hex(fis);
+            remote_md5String = bucketObject.getObjectInfo(remoteFile, access_key, secret_key, bucket, endpoint, "checkmd5");
 
             if (tos3) {
-                if (local.after(remote)) {
-                    recopy = true;
+                if (local_md5String.contains(remote_md5String)) {
+                    System.out.print("\nHere 1");
+                } else {
+                    if (local.after(remote)) {
+                        recopy = true;
+                    }
                 }
             } else {
-                if (remote.after(local)) {
-                    recopy = true;
+                if (local_md5String.contains(remote_md5String)) {
+                    System.out.print("\nHere 2");
+                } else {
+                    if (remote.after(local)) {
+                        recopy = true;
+                    }
                 }
             }
         } catch (Exception modifiedChecker) {
@@ -356,11 +373,8 @@ public class CLI {
             String[] cut = object.split(file_found.getName());
             String[] cut2 = null;
             object = object.replace(cut[0], "");
-            String win = "\\";
-            String lin = "/";
-
             if (cut[0].contains(win)) {
-                cut2 = cut[0].split(win);
+                cut2 = cut[0].split(Pattern.quote(win));
                 object = cut2[cut2.length - 1] + win + object;
             } else {
                 cut2 = cut[0].split(lin);
@@ -370,6 +384,7 @@ public class CLI {
             int found = 0;
             for (int y = 1; y != object_array.length; y++) {
                 if (object_array[y].contains(object)) {
+                     System.out.print("\nFound " + object);
                     if (!modified_check(object_array[y], file_found.getAbsolutePath(), true)) {
                         found++;
                     }
@@ -419,6 +434,7 @@ public class CLI {
                     String new_object_name = convertObject(object_array[i], "download");
                     fromS3File[i] = new File(destination + File.separator + object_array[i]);
                     if (fromS3File[i].exists()) {
+                         System.out.print("\nFound " + new_object_name);
                         if (!modified_check(object_array[i], fromS3File[i].getAbsolutePath(), false)) {
                             found++;
                         }
@@ -432,7 +448,7 @@ public class CLI {
                             if (object_array[i].contains(win) || (object_array[i].contains(lin))) {
 
                                 if (object_array[i].contains(win)) {
-                                    cutit = object_array[i].split(win);
+                                    cutit = object_array[i].split(Pattern.quote(win));
                                     transcoded_object = cutit[1];
                                 } else {
                                     cutit = object_array[i].split(lin);

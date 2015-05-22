@@ -20,8 +20,20 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 import static cloudExplorer.NewJFrame.jTextArea1;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.security.DigestInputStream;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.regex.Pattern;
+import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.codec.digest.DigestUtils;
 
 public class SyncToS3 implements Runnable {
 
@@ -66,15 +78,25 @@ public class SyncToS3 implements Runnable {
     boolean modified_check(String remoteFile, String localFile) {
         boolean recopy = false;
         long milli;
+        FileInputStream fis = null;
+        String local_md5String = null;
+        String remote_md5String = null;
         try {
             File check_localFile = new File(localFile);
             SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+            fis = new FileInputStream(localFile);
+            local_md5String = DigestUtils.md5Hex(fis);
+            remote_md5String = mainFrame.bucket.getObjectInfo(remoteFile, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), "checkmd5");
             Date remote = sdf.parse(mainFrame.bucket.getObjectInfo(remoteFile, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), "objectdate"));
             milli = check_localFile.lastModified();
             Date local = new Date(milli);
+            System.out.print("\nDebug\nL " + local_md5String + "\n" + remote_md5String);
 
-            if (local.after(remote)) {
-                recopy = true;
+            if (local_md5String.contains(remote_md5String)) {
+            } else {
+                if (local.after(remote)) {
+                    recopy = true;
+                }
             }
         } catch (Exception modifiedChecker) {
         }
@@ -82,6 +104,7 @@ public class SyncToS3 implements Runnable {
     }
 
     public void run() {
+
         String[] extensions = new String[]{" "};
         List<File> files = (List<File>) FileUtils.listFiles(location, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE);
         for (File file_found : files) {
@@ -91,7 +114,7 @@ public class SyncToS3 implements Runnable {
             String[] cut2 = null;
             object = object.replace(cut[0], "");
             if (cut[0].contains(win)) {
-                cut2 = cut[0].split(win);
+                cut2 = cut[0].split(Pattern.quote(win));
                 object = cut2[cut2.length - 1] + win + object;
             } else {
                 cut2 = cut[0].split(lin);
@@ -144,8 +167,8 @@ public class SyncToS3 implements Runnable {
             what = what.replace("/", File.separator);
         }
 
-        if (what.contains("\\")) {
-            what = what.replace("\\", File.separator);
+        if (what.contains(win)) {
+            what = what.replace(win, File.separator);
         }
 
         int slash_counter = 0;

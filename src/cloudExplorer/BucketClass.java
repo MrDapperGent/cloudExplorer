@@ -255,7 +255,12 @@ public class BucketClass {
                 objectListing = s3Client.listObjects(listObjectsRequest);
 
                 for (S3ObjectSummary objectSummary : objectListing.getObjectSummaries()) {
-
+                    if (process.contains("checkmd5")) {
+                        if (objectSummary.getKey().contains(key)) {
+                            objectlist = objectSummary.getETag();
+                            break;
+                        }
+                    }
                     if (process.contains("objectsize")) {
                         if (objectSummary.getKey().contains(key)) {
                             objectlist = String.valueOf(objectSummary.getSize());
