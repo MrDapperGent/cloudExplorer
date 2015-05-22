@@ -90,8 +90,7 @@ public class SyncToS3 implements Runnable {
             Date remote = sdf.parse(mainFrame.bucket.getObjectInfo(remoteFile, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), "objectdate"));
             milli = check_localFile.lastModified();
             Date local = new Date(milli);
-            System.out.print("\nDebug\nL " + local_md5String + "\n" + remote_md5String);
-
+            
             if (local_md5String.contains(remote_md5String)) {
             } else {
                 if (local.after(remote)) {
