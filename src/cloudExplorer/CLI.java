@@ -330,28 +330,26 @@ public class CLI {
             Date remote = sdf.parse(bucketObject.getObjectInfo(remoteFile, access_key, secret_key, bucket, endpoint, "objectdate"));
             milli = check_localFile.lastModified();
             Date local = new Date(milli);
+            fis = new FileInputStream(localFile);
             local_md5String = DigestUtils.md5Hex(fis);
             remote_md5String = bucketObject.getObjectInfo(remoteFile, access_key, secret_key, bucket, endpoint, "checkmd5");
-
             if (tos3) {
                 if (local_md5String.contains(remote_md5String)) {
-                    System.out.print("\nHere 1");
-                } else {
+                  } else {
                     if (local.after(remote)) {
                         recopy = true;
                     }
                 }
             } else {
                 if (local_md5String.contains(remote_md5String)) {
-                    System.out.print("\nHere 2");
-                } else {
+                 } else {
                     if (remote.after(local)) {
                         recopy = true;
                     }
                 }
             }
         } catch (Exception modifiedChecker) {
-        }
+               }
         return recopy;
     }
 
@@ -384,7 +382,6 @@ public class CLI {
             int found = 0;
             for (int y = 1; y != object_array.length; y++) {
                 if (object_array[y].contains(object)) {
-                     System.out.print("\nFound " + object);
                     if (!modified_check(object_array[y], file_found.getAbsolutePath(), true)) {
                         found++;
                     }
@@ -434,7 +431,6 @@ public class CLI {
                     String new_object_name = convertObject(object_array[i], "download");
                     fromS3File[i] = new File(destination + File.separator + object_array[i]);
                     if (fromS3File[i].exists()) {
-                         System.out.print("\nFound " + new_object_name);
                         if (!modified_check(object_array[i], fromS3File[i].getAbsolutePath(), false)) {
                             found++;
                         }
