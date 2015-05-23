@@ -1,10 +1,13 @@
-Version 5.7
+Version 5.6
 
-Bug Fixes: <none>       
-          
-Improvements: <none>
-                                     
-New Features:   <none>             
+Bug Fixes: 
+           1. Emergency Sync fix for Windows users.
+               
+Improvements: <none>                         
+         
+New Features:                
+            1. Performance Testing - Folders support.
+            2. Syncing compares MD5 sum to determine if object is different.         
           
 Features:
 
