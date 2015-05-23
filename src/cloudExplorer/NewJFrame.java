@@ -46,7 +46,7 @@ import javax.swing.plaf.ColorUIResource;
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     String major = "5";
-    String minor = "6";
+    String minor = "7";
     String release_version = major + "." + minor;
     String version = "Cloud Explorer " + release_version;
     String[] folders = new String[1];
@@ -144,9 +144,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             this.jPanel9.setVisible(false);
             JPopupMenu.setDefaultLightWeightPopupEnabled(false);
 
-            Thread foo = new Thread(new Update(this, true));
-            foo.start();
-            foo.join();
+            Thread UpdateThread = new Thread(new Update(this, true));
+            UpdateThread.start();
+            UpdateThread.join();
 
             File config = new File(config_file);
             if (config.exists()) {
