@@ -107,7 +107,7 @@ public class SyncToS3 implements Runnable {
                 cut2 = cut[0].split(Pattern.quote(win));
                 object = cut2[cut2.length - 1] + win + object;
             } else {
-                cut2 = cut[0].split(lin);
+                cut2 = cut[0].split(Pattern.quote(lin));
                 object = cut2[cut2.length - 1] + lin + object;
             }
 

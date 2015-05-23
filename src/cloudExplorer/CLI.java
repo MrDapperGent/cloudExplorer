@@ -335,21 +335,21 @@ public class CLI {
             remote_md5String = bucketObject.getObjectInfo(remoteFile, access_key, secret_key, bucket, endpoint, "checkmd5");
             if (tos3) {
                 if (local_md5String.contains(remote_md5String)) {
-                  } else {
+                } else {
                     if (local.after(remote)) {
                         recopy = true;
                     }
                 }
             } else {
                 if (local_md5String.contains(remote_md5String)) {
-                 } else {
+                } else {
                     if (remote.after(local)) {
                         recopy = true;
                     }
                 }
             }
         } catch (Exception modifiedChecker) {
-               }
+        }
         return recopy;
     }
 
@@ -375,7 +375,7 @@ public class CLI {
                 cut2 = cut[0].split(Pattern.quote(win));
                 object = cut2[cut2.length - 1] + win + object;
             } else {
-                cut2 = cut[0].split(lin);
+                cut2 = cut[0].split(Pattern.quote(lin));
                 object = cut2[cut2.length - 1] + lin + object;
             }
 
@@ -447,7 +447,7 @@ public class CLI {
                                     cutit = object_array[i].split(Pattern.quote(win));
                                     transcoded_object = cutit[1];
                                 } else {
-                                    cutit = object_array[i].split(lin);
+                                    cutit = object_array[i].split(Pattern.quote(lin));
                                     transcoded_object = cutit[1];
                                 }
                             }

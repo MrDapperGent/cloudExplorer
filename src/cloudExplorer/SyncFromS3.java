@@ -156,7 +156,7 @@ public class SyncFromS3 implements Runnable {
                                             cutit = objectarray[i].split(Pattern.quote(win));
                                             transcoded_object = cutit[1];
                                         } else {
-                                            cutit = objectarray[i].split(lin);
+                                            cutit = objectarray[i].split(Pattern.quote(lin));
                                             transcoded_object = cutit[1];
                                         }
                                         String object = makeDirectory(destination + File.separator + cutit[0]);

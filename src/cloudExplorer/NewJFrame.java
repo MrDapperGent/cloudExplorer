@@ -46,7 +46,7 @@ import javax.swing.plaf.ColorUIResource;
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     String major = "5";
-    String minor = "7";
+    String minor = "6";
     String release_version = major + "." + minor;
     String version = "Cloud Explorer " + release_version;
     String[] folders = new String[1];
@@ -2036,7 +2036,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     }
 
                     if (objectarray[h].substring(0, 1).contains(win) || objectarray[h].substring(0, 1).contains(unix)) {
-                        cut = objectarray[h].split(separator);
+                        cut = objectarray[h].split(Pattern.quote(separator));
                         cut[0] = cut[1];
                         cut[0] = separator + cut[0] + separator;
                         begin = true;
@@ -2051,7 +2051,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     int bn = 0;
                     for (int i = 0; i != folders.length; i++) {
                         if (folders[i] != null && objectarray[h] != null) {
-                            String[] she = objectarray[h].split(separator);
+                            String[] she = objectarray[h].split(Pattern.quote(separator));
                             if (begin) {
                                 she[0] = separator + she[1] + separator;
                             } else {
