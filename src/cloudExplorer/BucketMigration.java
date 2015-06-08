@@ -25,6 +25,7 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.Bucket;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.Base64;
 
 public class BucketMigration implements Runnable {
 
@@ -78,7 +79,12 @@ public class BucketMigration implements Runnable {
             String read = null;
 
             while ((read = bfr.readLine()) != null) {
-                data = data + read;
+                if (read.contains("=")) {
+                    byte[] str = Base64.getDecoder().decode(read);
+                    data = data + new String(str, "utf-8");
+                } else {
+                    data = data + read;
+                }
             }
         } catch (Exception loadConfig) {
         }

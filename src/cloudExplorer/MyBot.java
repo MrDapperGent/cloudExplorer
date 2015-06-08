@@ -146,7 +146,7 @@ public class MyBot extends PircBot {
         }
     }
 
-    public void onMessage(String channel, String sender, String login, String hostname, String message) {
+    public void onMessage(final String channel, final String sender, String login, String hostname, final String message) {
         Bot.ircarea.append("\n" + sender + ": " + message);
 
         if (message.contains("!starturlbot")) {

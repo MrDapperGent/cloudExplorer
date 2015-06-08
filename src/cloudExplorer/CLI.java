@@ -23,6 +23,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -149,7 +150,12 @@ public class CLI {
             String read = null;
 
             while ((read = bfr.readLine()) != null) {
-                data = data + read;
+                if (read.contains("=")) {
+                    byte[] str = Base64.getDecoder().decode(read);
+                    data = data + new String(str, "utf-8");
+                } else {
+                    data = data + read;
+                }
             }
         } catch (Exception loadConfig) {
         }
@@ -158,7 +164,7 @@ public class CLI {
         return remove_symbol;
     }
 
-    void start(String arg0, String arg1, String arg2, String arg3, String arg4, String arg5
+    void start(String arg0, final String arg1, final String arg2, final String arg3, final String arg4, final String arg5
     ) {
         operation = arg0;
         Put.terminal = true;

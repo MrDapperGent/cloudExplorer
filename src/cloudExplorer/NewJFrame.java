@@ -29,6 +29,7 @@ import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.regex.Pattern;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -46,7 +47,7 @@ import javax.swing.plaf.ColorUIResource;
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     String major = "5";
-    String minor = "6";
+    String minor = "7";
     String release_version = major + "." + minor;
     String version = "Cloud Explorer " + release_version;
     String[] folders = new String[1];
@@ -1850,7 +1851,13 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             while ((read = bfr.readLine()) != null) {
                 if (read != null) {
                     if (read.length() > 1) {
-                        account_array[h] = read;
+                        if (read.contains("=")) {
+                            byte[] str = Base64.getDecoder().decode(read);
+                            data = data + new String(str, "utf-8");
+                            account_array[h] = new String(str, "utf-8");
+                        } else {
+                            account_array[h] = read;
+                        }
                         content_counter++;
                     }
                 }
