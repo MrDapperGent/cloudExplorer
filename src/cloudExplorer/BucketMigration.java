@@ -57,6 +57,7 @@ public class BucketMigration implements Runnable {
     Boolean deleteOrigin = false;
     Boolean snapshot = false;
     BucketClass bucketObject = new BucketClass();
+    Boolean restoreSnapshot = false;
 
     public void calibrate() {
         try {
@@ -65,15 +66,15 @@ public class BucketMigration implements Runnable {
         }
     }
 
-    BucketMigration(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, NewJFrame AmainFrame, String Anew_bucket, Boolean AdeleteOrigin, Boolean Asnapshot) {
+    BucketMigration(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, NewJFrame AmainFrame, Boolean AdeleteOrigin, Boolean Asnapshot, Boolean ArestoreSnapshot) {
         access_key = Aaccess_key;
         secret_key = Asecret_key;
         bucket = Abucket;
         endpoint = Aendpoint;
         mainFrame = AmainFrame;
-        new_bucket = Anew_bucket;
         deleteOrigin = AdeleteOrigin;
         snapshot = Asnapshot;
+        restoreSnapshot = ArestoreSnapshot;
     }
 
     String loadMigrationConfig() {
@@ -134,10 +135,17 @@ public class BucketMigration implements Runnable {
                 if (destinationBucketlist.contains("Snapshot-" + bucket + "-" + date + File.separator + mainFrame.objectarray[i])) {
                     if (snapshot) {
                         if (modified_check(mainFrame.objectarray[i], mainFrame.objectarray[i], true)) {
-                            get = new Get(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, temp_file, null);
-                            get.run();
-                            put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + File.separator + mainFrame.objectarray[i], false, false);
-                            put.run();
+                            if (!restoreSnapshot) {
+                                get = new Get(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, temp_file, null);
+                                get.run();
+                                put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + File.separator + mainFrame.objectarray[i], false, false);
+                                put.run();
+                            } else {
+                                get = new Get(mainFrame.objectarray[i], new_access_key, new_secret_key, new_bucket, new_endpoint, temp_file, null);
+                                get.run();
+                                put = new Put(temp_file, access_key, secret_key, bucket, endpoint, mainFrame.objectarray[i], false, false);
+                                put.run();
+                            }
                         }
                     } else if (deleteOrigin) {
                         del = new Delete(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, null);
@@ -152,7 +160,6 @@ public class BucketMigration implements Runnable {
                     get.run();
                     if (snapshot) {
                         put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + File.separator + mainFrame.objectarray[i], false, false);
-
                     } else {
                         put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, mainFrame.objectarray[i], false, false);
                     }
@@ -192,6 +199,7 @@ public class BucketMigration implements Runnable {
                     new_secret_key = account_array[1];
                     new_endpoint = account_array[2] + ":" + account_array[3];
                     new_region = account_array[4];
+                    new_bucket = account_array[5];
                 }
             }
 
@@ -263,8 +271,8 @@ public class BucketMigration implements Runnable {
 
     }
 
-    void startc(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, NewJFrame AmainFrame, String Anew_bucket, Boolean AdeleteOrigin, Boolean Asnapshot) {
-        bucketMigration = new Thread(new BucketMigration(Aaccess_key, Asecret_key, Abucket, Aendpoint, AmainFrame, Anew_bucket, AdeleteOrigin, Asnapshot));
+    void startc(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, NewJFrame AmainFrame, Boolean AdeleteOrigin, Boolean Asnapshot, Boolean ArestoreSnapshot) {
+        bucketMigration = new Thread(new BucketMigration(Aaccess_key, Asecret_key, Abucket, Aendpoint, AmainFrame, AdeleteOrigin, Asnapshot, ArestoreSnapshot));
         bucketMigration.start();
     }
 

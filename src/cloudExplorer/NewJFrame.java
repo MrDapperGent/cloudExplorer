@@ -52,6 +52,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     String version = "Cloud Explorer " + release_version;
     String[] folders = new String[1];
     String[] folders2 = folders;
+    String[] folders3 = folders;
     ArrayList<String> list = new ArrayList<String>();
     public boolean consoleToggle = false;
     public boolean selectToggle = false;
@@ -190,7 +191,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jPanel16 = new javax.swing.JPanel();
         jButton9 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel9 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
@@ -274,6 +274,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
         jMenuItem30 = new javax.swing.JMenuItem();
+        jMenuItem31 = new javax.swing.JMenuItem();
+        jMenuItem32 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem29 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
@@ -482,16 +484,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
 
-        jButton20.setBackground(java.awt.SystemColor.text);
-        jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/engine.png"))); // NOI18N
-        jButton20.setText("Set migration/snapshot account");
-        jButton20.setBorder(null);
-        jButton20.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton20ActionPerformed(evt);
-            }
-        });
-
         jCheckBox1.setBackground(java.awt.SystemColor.text);
         jCheckBox1.setForeground(java.awt.Color.blue);
         jCheckBox1.setText("Auto-load buckets");
@@ -508,8 +500,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton9)
-                    .addComponent(jButton2)
-                    .addComponent(jButton20))
+                    .addComponent(jButton2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -522,9 +513,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addComponent(jButton9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton20)
-                .addGap(0, 0, 0)
+                .addGap(23, 23, 23)
                 .addComponent(jCheckBox1)
                 .addContainerGap())
         );
@@ -1408,6 +1397,22 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
         jMenu10.add(jMenuItem30);
+
+        jMenuItem31.setText("Restore Snapshot");
+        jMenuItem31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem31ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem31);
+
+        jMenuItem32.setText("Set as Migration/Snapshot Account and Bucket");
+        jMenuItem32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem32ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem32);
 
         jMenuItem14.setText("Screen shot to S3");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
@@ -3041,24 +3046,13 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
         if (active_bucket > 0) {
             jTabbedPane1.setSelectedIndex(1);
-            MakeDestinationBucket makeDestbucket = new MakeDestinationBucket(this, false);
-            makeDestbucket.startc(false);
+            MakeDestinationBucket makeDestbucket = new MakeDestinationBucket(this, false, false);
+            makeDestbucket.startc(false, false);
             jPanel9.setVisible(true);
         } else {
             jTextArea1.append("\nError: No bucket has been selected");
         }
     }//GEN-LAST:event_jMenuItem17ActionPerformed
-
-    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        if (active_account > 0) {
-            jPanel9.setVisible(true);
-            String save = cred.writeMigrateConfig(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jTextField5.getText());
-            jTextArea1.append(save);
-            calibrateTextArea();
-        } else {
-            jTextArea1.append("\nError: No account has been selected.");
-        }
-    }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
@@ -3337,13 +3331,41 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
         if (active_bucket > 0) {
             jTabbedPane1.setSelectedIndex(1);
-            MakeDestinationBucket makeDestbucket = new MakeDestinationBucket(this, true);
-            makeDestbucket.startc(true);
+            MakeDestinationBucket makeDestbucket = new MakeDestinationBucket(this, true, false);
+            makeDestbucket.startc(true, false);
             jPanel9.setVisible(true);
         } else {
             jTextArea1.append("\nError: No bucket has been selected");
         }
     }//GEN-LAST:event_jMenuItem30ActionPerformed
+
+    private void jMenuItem31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem31ActionPerformed
+        if (active_bucket > 0) {
+            jTabbedPane1.setSelectedIndex(1);
+            MakeDestinationBucket makeDestbucket = new MakeDestinationBucket(this, true, true);
+            makeDestbucket.startc(true, true);
+            jPanel9.setVisible(true);
+        } else {
+            jTextArea1.append("\nError: No bucket has been selected");
+        }
+    }//GEN-LAST:event_jMenuItem31ActionPerformed
+
+    private void jMenuItem32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem32ActionPerformed
+        if (active_account > 0) {
+            if (active_bucket > 0) {
+                jPanel9.setVisible(true);
+                String save = cred.writeMigrateConfig(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jTextField5.getText(), bucketarray[active_bucket]);
+                jTextArea1.append(save);
+                calibrateTextArea();
+            } else {
+                jTextArea1.append("\nError: No bucket has been selected");
+            }
+        } else {
+            jTextArea1.append("\nError: No account has been selected.");
+        }
+
+
+    }//GEN-LAST:event_jMenuItem32ActionPerformed
     void cleanup() {
         try {
             jPanel9.setVisible(true);
@@ -3398,7 +3420,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     public static javax.swing.JButton jButton18;
     public static javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton23;
@@ -3469,6 +3490,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem30;
+    private javax.swing.JMenuItem jMenuItem31;
+    private javax.swing.JMenuItem jMenuItem32;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;

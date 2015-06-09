@@ -109,12 +109,12 @@ public class Credentials {
         return "\nSaved Config";
     }
 
-    String writeMigrateConfig(String access_key, String secret_key, String host, String port, String region) {
+    String writeMigrateConfig(String access_key, String secret_key, String host, String port, String region, String bucket) {
         try {
             config_file = (Home + File.separator + "s3Migrate.config");
             FileWriter fr = new FileWriter(config_file);
             BufferedWriter bfr = new BufferedWriter(fr);
-            String str = (access_key + "@" + secret_key + "@" + host + "@" + port + "@" + region);
+            String str = (access_key + "@" + secret_key + "@" + host + "@" + port + "@" + region + "@" + bucket);
             String str2 = Base64.getEncoder().encodeToString(str.getBytes("utf-8"));
             bfr.write(str2);
             bfr.close();
