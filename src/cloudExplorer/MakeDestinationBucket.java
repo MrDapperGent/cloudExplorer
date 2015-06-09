@@ -33,10 +33,11 @@ public class MakeDestinationBucket implements Runnable {
     public static String region = null;
     public static String dest_bucket = null;
     BucketMigration migrate;
+    Boolean snapshot = false;
 
-    public MakeDestinationBucket(NewJFrame Frame) {
+    public MakeDestinationBucket(NewJFrame Frame, Boolean Asnapshot) {
         mainFrame = Frame;
-
+        snapshot = Asnapshot;
     }
 
     public void run() {
@@ -65,7 +66,6 @@ public class MakeDestinationBucket implements Runnable {
             close.setBackground(Color.white);
             close.setBorder(null);
             close.setForeground(Color.blue);
-
             close.setIcon(mainFrame.genericEngine);
             abortMigration.setIcon(mainFrame.genericEngine);
             startMigration.setIcon(mainFrame.genericEngine);
@@ -83,11 +83,15 @@ public class MakeDestinationBucket implements Runnable {
                         ReloadObjects object = new ReloadObjects(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), mainFrame);
                         object.run();
                         if (deleteOrigin.isSelected()) {
-                            migrate = new BucketMigration(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, bucketName.getText(), true);
-                            migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, bucketName.getText(), true);
+                            migrate = new BucketMigration(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, bucketName.getText(), true,false);
+                            migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, bucketName.getText(), true,false);
+                        } else if (snapshot) {
+                              migrate = new BucketMigration(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, bucketName.getText(), false,true);
+                            migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, bucketName.getText(), false,true);
+                      
                         } else {
-                            migrate = new BucketMigration(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, bucketName.getText(), false);
-                            migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, bucketName.getText(), false);
+                            migrate = new BucketMigration(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, bucketName.getText(), false,false);
+                            migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, bucketName.getText(), false,false);
                         }
                     }
                     //close.doClick();
@@ -116,8 +120,13 @@ public class MakeDestinationBucket implements Runnable {
             mainFrame.jPanel14.setLayout(new BoxLayout(mainFrame.jPanel14, BoxLayout.Y_AXIS));
             mainFrame.jPanel14.add(name);
             mainFrame.jPanel14.add(bucketName);
+
             mainFrame.jPanel14.add(blank3);
-            mainFrame.jPanel14.add(deleteOrigin);
+            if (snapshot) {
+                startMigration.setText("Create Snapshot");
+            } else {
+                mainFrame.jPanel14.add(deleteOrigin);
+            }
             mainFrame.jPanel14.add(blank);
             mainFrame.jPanel14.add(startMigration);
             mainFrame.jPanel14.add(abortMigration);
@@ -140,7 +149,7 @@ public class MakeDestinationBucket implements Runnable {
         }
     }
 
-    void startc() {
-        (new Thread(new MakeDestinationBucket(mainFrame))).start();
+    void startc(boolean Asnapshot) {
+        (new Thread(new MakeDestinationBucket(mainFrame, Asnapshot))).start();
     }
 }

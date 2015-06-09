@@ -24,8 +24,12 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.Bucket;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileReader;
+import java.text.SimpleDateFormat;
 import java.util.Base64;
+import java.util.Date;
+import org.apache.commons.codec.digest.DigestUtils;
 
 public class BucketMigration implements Runnable {
 
@@ -52,6 +56,8 @@ public class BucketMigration implements Runnable {
     Put put;
     Delete del;
     Boolean deleteOrigin = false;
+    Boolean snapshot = false;
+    BucketClass bucketObject = new BucketClass();
 
     public void calibrate() {
         try {
@@ -60,7 +66,7 @@ public class BucketMigration implements Runnable {
         }
     }
 
-    BucketMigration(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, NewJFrame AmainFrame, String Anew_bucket, Boolean AdeleteOrigin) {
+    BucketMigration(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, NewJFrame AmainFrame, String Anew_bucket, Boolean AdeleteOrigin, Boolean Asnapshot) {
         access_key = Aaccess_key;
         secret_key = Asecret_key;
         bucket = Abucket;
@@ -68,6 +74,7 @@ public class BucketMigration implements Runnable {
         mainFrame = AmainFrame;
         new_bucket = Anew_bucket;
         deleteOrigin = AdeleteOrigin;
+        snapshot = Asnapshot;
     }
 
     String loadMigrationConfig() {
@@ -93,17 +100,53 @@ public class BucketMigration implements Runnable {
 
     }
 
+    String date() {
+        Date date = new Date();
+        return date.toString();
+    }
+
+    boolean modified_check(String remoteFile, String localFile, Boolean tos3) {
+        boolean recopy = false;
+        long milli;
+        FileInputStream fis = null;
+
+        try {
+            File check_localFile = new File(localFile);
+            SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+            Date remote = sdf.parse(bucketObject.getObjectInfo(remoteFile, access_key, secret_key, bucket, endpoint, "objectdate"));
+            milli = check_localFile.lastModified();
+            Date local = new Date(milli);
+            Date local_md5String = sdf.parse(bucketObject.getObjectInfo(remoteFile, access_key, secret_key, bucket, endpoint, "objectdate"));
+            Date remote_md5String = sdf.parse(bucketObject.getObjectInfo(remoteFile, new_access_key, new_secret_key, new_bucket, new_endpoint, "objectdate"));
+
+            if (local.after(remote)) {
+                recopy = true;
+            }
+        } catch (Exception modifiedChecker) {
+        }
+        return recopy;
+    }
+
     public void migrate() {
 
         for (int i = 1; i != mainFrame.objectarray.length; i++) {
             if (mainFrame.objectarray[i] != null) {
                 if (destinationBucketlist.contains(mainFrame.objectarray[i])) {
-                    if (deleteOrigin) {
+                    if (snapshot) {
+                        if (modified_check(mainFrame.objectarray[i], mainFrame.objectarray[i], true)) {
+                            get = new Get(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, temp_file, null);
+                            get.run();
+                            put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, mainFrame.objectarray[i], false, false);
+                            put.run();
+                        }
+                    } else if (deleteOrigin) {
                         del = new Delete(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, null);
                         del.run();
+                    } else {
+                        mainFrame.jTextArea1.append("\nSkipping: " + mainFrame.objectarray[i] + " because it exists on the destination bucket already.");
+                        calibrate();
                     }
-                    mainFrame.jTextArea1.append("\nSkipping: " + mainFrame.objectarray[i] + " because it exists on the destination bucket already.");
-                    calibrate();
+
                 } else {
                     get = new Get(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, temp_file, null);
                     get.run();
@@ -121,8 +164,11 @@ public class BucketMigration implements Runnable {
                 }
             }
         }
-        jTextArea1.append("\nBucket migration complete.");
+
+        jTextArea1.append(
+                "\nBucket migration complete.");
         mainFrame.reloadBuckets();
+
         calibrate();
 
     }
@@ -209,8 +255,8 @@ public class BucketMigration implements Runnable {
 
     }
 
-    void startc(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, NewJFrame AmainFrame, String Anew_bucket, Boolean AdeleteOrigin) {
-        bucketMigration = new Thread(new BucketMigration(Aaccess_key, Asecret_key, Abucket, Aendpoint, AmainFrame, Anew_bucket, AdeleteOrigin));
+    void startc(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, NewJFrame AmainFrame, String Anew_bucket, Boolean AdeleteOrigin, Boolean Asnapshot) {
+        bucketMigration = new Thread(new BucketMigration(Aaccess_key, Asecret_key, Abucket, Aendpoint, AmainFrame, Anew_bucket, AdeleteOrigin, Asnapshot));
         bucketMigration.start();
     }
 

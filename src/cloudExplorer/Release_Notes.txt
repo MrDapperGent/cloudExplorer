@@ -5,7 +5,8 @@ Bug Fixes: <none>
 Improvements: 
             1. Credentials are saved in base64.
          
-New Features: <none>       
+New Features: 
+            2. Bucket snapshots.
           
 Features:
 
@@ -28,6 +29,7 @@ Features:
 17. Share buckets with the Canonical ID of a user on the same S3 provider.
 18. Graph CSV files and save them to a bucket.
 19. Record audio messages and save them to a bucket.
+20. Bucket snapshots.
 
 Command-line Options:
 

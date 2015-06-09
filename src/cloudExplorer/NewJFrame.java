@@ -273,6 +273,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenu10 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
+        jMenuItem30 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem29 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
@@ -483,7 +484,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jButton20.setBackground(java.awt.SystemColor.text);
         jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/engine.png"))); // NOI18N
-        jButton20.setText("Set migration account");
+        jButton20.setText("Set migration/snapshot account");
         jButton20.setBorder(null);
         jButton20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1399,6 +1400,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
         jMenu10.add(jMenuItem17);
+
+        jMenuItem30.setText("Bucket Snapshot");
+        jMenuItem30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem30ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem30);
 
         jMenuItem14.setText("Screen shot to S3");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
@@ -3032,8 +3041,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
         if (active_bucket > 0) {
             jTabbedPane1.setSelectedIndex(1);
-            MakeDestinationBucket makeDestbucket = new MakeDestinationBucket(this);
-            makeDestbucket.startc();
+            MakeDestinationBucket makeDestbucket = new MakeDestinationBucket(this, false);
+            makeDestbucket.startc(false);
             jPanel9.setVisible(true);
         } else {
             jTextArea1.append("\nError: No bucket has been selected");
@@ -3324,6 +3333,17 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         }
         calibrateTextArea();
     }//GEN-LAST:event_jMenuItem29ActionPerformed
+
+    private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
+        if (active_bucket > 0) {
+            jTabbedPane1.setSelectedIndex(1);
+            MakeDestinationBucket makeDestbucket = new MakeDestinationBucket(this, true);
+            makeDestbucket.startc(true);
+            jPanel9.setVisible(true);
+        } else {
+            jTextArea1.append("\nError: No bucket has been selected");
+        }
+    }//GEN-LAST:event_jMenuItem30ActionPerformed
     void cleanup() {
         try {
             jPanel9.setVisible(true);
@@ -3448,6 +3468,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenuItem jMenuItem28;
     private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem30;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
