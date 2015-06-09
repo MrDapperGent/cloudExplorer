@@ -48,6 +48,7 @@ public class BucketMigration implements Runnable {
     String new_region = null;
     Thread bucketMigration;
     String destinationBucketlist = null;
+    String[] restoreArray = null;
     String Home = System.getProperty("user.home");
     String temp_file = (Home + File.separator + "object.tmp");
     String config_file = (Home + File.separator + "s3Migrate.config");
@@ -58,6 +59,8 @@ public class BucketMigration implements Runnable {
     Boolean snapshot = false;
     BucketClass bucketObject = new BucketClass();
     Boolean restoreSnapshot = false;
+    String active_folder = null;
+    String objectlist = null;
 
     public void calibrate() {
         try {
@@ -66,7 +69,7 @@ public class BucketMigration implements Runnable {
         }
     }
 
-    BucketMigration(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, NewJFrame AmainFrame, Boolean AdeleteOrigin, Boolean Asnapshot, Boolean ArestoreSnapshot) {
+    BucketMigration(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, NewJFrame AmainFrame, Boolean AdeleteOrigin, Boolean Asnapshot, Boolean ArestoreSnapshot, String Aactive_folder) {
         access_key = Aaccess_key;
         secret_key = Asecret_key;
         bucket = Abucket;
@@ -75,6 +78,7 @@ public class BucketMigration implements Runnable {
         deleteOrigin = AdeleteOrigin;
         snapshot = Asnapshot;
         restoreSnapshot = ArestoreSnapshot;
+        active_folder = Aactive_folder;
     }
 
     String loadMigrationConfig() {
@@ -128,6 +132,35 @@ public class BucketMigration implements Runnable {
         return recopy;
     }
 
+    public void snapBack() {
+        for (int i = 1; i != restoreArray.length; i++) {
+
+            if (restoreArray[i] != null) {
+                System.out.print("\nListing Debug:" + restoreArray[i]);
+                String original_name = restoreArray[i].replaceAll(active_folder, "");
+                System.out.print("\nDebug 1:" + original_name);
+                if (objectlist.contains(original_name)) {
+                    if (modified_check(restoreArray[i], original_name, true)) {
+                        System.out.print("\nDebug 2");
+                        get = new Get(restoreArray[i], new_access_key, new_secret_key, new_bucket, new_endpoint, temp_file, null);
+                        get.run();
+                        put = new Put(temp_file, access_key, secret_key, bucket, endpoint, original_name, false, false);
+                        put.run();
+                    }
+                } else {
+                    System.out.print("\nDebug 3");
+                    get = new Get(restoreArray[i], new_access_key, new_secret_key, new_bucket, new_endpoint, temp_file, null);
+                    get.run();
+                    put = new Put(temp_file, access_key, secret_key, bucket, endpoint, original_name, false, false);
+                    put.run();
+                }
+
+            }
+        }
+        jTextArea1.append("\nSnapshot restore operation complete.");
+        calibrate();
+    }
+
     public void migrate() {
         String date = date();
         for (int i = 1; i != mainFrame.objectarray.length; i++) {
@@ -135,17 +168,11 @@ public class BucketMigration implements Runnable {
                 if (destinationBucketlist.contains("Snapshot-" + bucket + "-" + date + File.separator + mainFrame.objectarray[i])) {
                     if (snapshot) {
                         if (modified_check(mainFrame.objectarray[i], mainFrame.objectarray[i], true)) {
-                            if (!restoreSnapshot) {
-                                get = new Get(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, temp_file, null);
-                                get.run();
-                                put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + File.separator + mainFrame.objectarray[i], false, false);
-                                put.run();
-                            } else {
-                                get = new Get(mainFrame.objectarray[i], new_access_key, new_secret_key, new_bucket, new_endpoint, temp_file, null);
-                                get.run();
-                                put = new Put(temp_file, access_key, secret_key, bucket, endpoint, mainFrame.objectarray[i], false, false);
-                                put.run();
-                            }
+                            get = new Get(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, temp_file, null);
+                            get.run();
+                            put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + File.separator + mainFrame.objectarray[i], false, false);
+                            put.run();
+
                         }
                     } else if (deleteOrigin) {
                         del = new Delete(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, null);
@@ -213,17 +240,13 @@ public class BucketMigration implements Runnable {
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration().withSignerOverride("S3SignerType"));
         s3Client.setEndpoint(endpoint);
-
         String[] array = new String[10];
-
         String bucketlist = null;
 
         try {
-
             for (Bucket bucket : s3Client.listBuckets()) {
                 bucketlist = bucketlist + " " + bucket.getName();
             }
-
         } catch (Exception listBucket) {
             mainFrame.jTextArea1.append("\n\nAn error has occurred in listBucket.");
             mainFrame.jTextArea1.append("\n\nError Message:    " + listBucket.getMessage());
@@ -247,7 +270,11 @@ public class BucketMigration implements Runnable {
 
     void scanDestination() {
         BucketClass bucketObject = new BucketClass();
-        destinationBucketlist = bucketObject.listBucketContents(new_access_key, new_secret_key, new_bucket, new_endpoint);
+        destinationBucketlist = bucketObject.listBucketContents(new_access_key, new_secret_key, new_bucket, new_endpoint, active_folder);
+        if (restoreSnapshot) {
+            restoreArray = destinationBucketlist.split("@@");
+            objectlist = bucketObject.listBucketContents(access_key, secret_key, bucket, endpoint, null);
+        }
         System.gc();
     }
 
@@ -255,13 +282,20 @@ public class BucketMigration implements Runnable {
         File config = new File(config_file);
         if (config.exists()) {
             loadDestinationAccount();
-            checkBucket();
-            if (bucketlist.contains(new_bucket)) {
+            if (!restoreSnapshot) {
+                checkBucket();
+            }
+            if (restoreSnapshot) {
                 scanDestination();
-                migrate();
+                snapBack();
             } else {
-                jTextArea1.append("\nError: Destination S3 account does not have the bucket: " + new_bucket + ".");
-                calibrate();
+                if (bucketlist.contains(new_bucket)) {
+                    scanDestination();
+                    migrate();
+                } else {
+                    jTextArea1.append("\nError: Destination S3 account does not have the bucket: " + new_bucket + ".");
+                    calibrate();
+                }
             }
 
         } else {
@@ -271,8 +305,8 @@ public class BucketMigration implements Runnable {
 
     }
 
-    void startc(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, NewJFrame AmainFrame, Boolean AdeleteOrigin, Boolean Asnapshot, Boolean ArestoreSnapshot) {
-        bucketMigration = new Thread(new BucketMigration(Aaccess_key, Asecret_key, Abucket, Aendpoint, AmainFrame, AdeleteOrigin, Asnapshot, ArestoreSnapshot));
+    void startc(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, NewJFrame AmainFrame, Boolean AdeleteOrigin, Boolean Asnapshot, Boolean ArestoreSnapshot, String Aactive_folder) {
+        bucketMigration = new Thread(new BucketMigration(Aaccess_key, Asecret_key, Abucket, Aendpoint, AmainFrame, AdeleteOrigin, Asnapshot, ArestoreSnapshot, Aactive_folder));
         bucketMigration.start();
     }
 

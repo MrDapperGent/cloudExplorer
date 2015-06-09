@@ -37,8 +37,7 @@ public class ReloadObjects implements Runnable {
     }
 
     public void run() {
-
-        objectlist = bucketObject.listBucketContents(access_key, secret_key, bucket, endpoint);
+        objectlist = bucketObject.listBucketContents(access_key, secret_key, bucket, endpoint, null);
         mainFrame.objectarray = objectlist.split("@@");
         mainFrame.previous_objectarray_length = mainFrame.objectarray.length;
         objectlist = null;

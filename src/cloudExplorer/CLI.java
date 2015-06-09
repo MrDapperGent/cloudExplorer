@@ -412,7 +412,7 @@ public class CLI {
     void reloadObjects() {
         try {
             if (bucket != null) {
-                String objectlist = bucketObject.listBucketContents(access_key, secret_key, bucket, endpoint);
+                String objectlist = bucketObject.listBucketContents(access_key, secret_key, bucket, endpoint, null);
                 object_array = objectlist.split("@@");
             } else {
                 System.out.print("\n\n\nError, no bucket specified.\n\n\n");
@@ -497,7 +497,7 @@ public class CLI {
             } else {
                 System.out.print("\n\nSearching for \"" + get_file + "\" in bucket \"" + bucket + "\"........\n\n");
             }
-            String objectlist = bucketObject.listBucketContents(access_key, secret_key, bucket, endpoint);
+            String objectlist = bucketObject.listBucketContents(access_key, secret_key, bucket, endpoint, null);
             object_array = objectlist.split("@@");
 
             for (String obj : object_array) {

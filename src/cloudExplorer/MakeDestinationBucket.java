@@ -21,16 +21,9 @@ import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 import static cloudExplorer.NewJFrame.jTextArea1;
-import java.awt.Dimension;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.util.Base64;
 import javax.swing.JCheckBox;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
 
 public class MakeDestinationBucket implements Runnable {
 
@@ -43,11 +36,13 @@ public class MakeDestinationBucket implements Runnable {
     Boolean restoreSnapshot = false;
     String Home = System.getProperty("user.home");
     String config_file = (Home + File.separator + "s3Migrate.config");
+    String active_folder = null;
 
-    public MakeDestinationBucket(NewJFrame Frame, Boolean Asnapshot, Boolean ArestoreSnapshot) {
+    public MakeDestinationBucket(NewJFrame Frame, Boolean Asnapshot, Boolean ArestoreSnapshot, String Aactive_folder) {
         mainFrame = Frame;
         snapshot = Asnapshot;
         restoreSnapshot = ArestoreSnapshot;
+        active_folder = Aactive_folder;
     }
 
     public void run() {
@@ -89,19 +84,19 @@ public class MakeDestinationBucket implements Runnable {
                     ReloadObjects object = new ReloadObjects(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), mainFrame);
                     object.run();
                     if (deleteOrigin.isSelected()) {
-                        migrate = new BucketMigration(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, true, false, false);
-                        migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, true, false, false);
+                        migrate = new BucketMigration(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, true, false, false, null);
+                        migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, true, false, false, null);
                     } else if (snapshot) {
                         if (!restoreSnapshot) {
-                            migrate = new BucketMigration(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, false, true, false);
-                            migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, false, true, false);
+                            migrate = new BucketMigration(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, false, true, false, null);
+                            migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, false, true, false, null);
                         } else {
-                            migrate = new BucketMigration(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, false, true, true);
-                            migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, false, true, true);
+                            migrate = new BucketMigration(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, false, true, true, active_folder);
+                            migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, false, true, true, active_folder);
                         }
                     } else {
-                        migrate = new BucketMigration(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, false, false, false);
-                        migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, false, false, false);
+                        migrate = new BucketMigration(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, false, false, false, null);
+                        migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, false, false, false, null);
                     }
                 }
             });
@@ -161,7 +156,7 @@ public class MakeDestinationBucket implements Runnable {
         }
     }
 
-    void startc(boolean Asnapshot, boolean ArestoreSnapshot) {
-        (new Thread(new MakeDestinationBucket(mainFrame, Asnapshot, restoreSnapshot))).start();
+    void startc(boolean Asnapshot, boolean ArestoreSnapshot, String Aactive_folder) {
+        (new Thread(new MakeDestinationBucket(mainFrame, Asnapshot, restoreSnapshot, Aactive_folder))).start();
     }
 }

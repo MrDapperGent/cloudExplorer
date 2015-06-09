@@ -104,6 +104,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     public static Boolean gui = false;
     String before = null;
     boolean folder_view = true;
+    public static String active_folder = null;
+    public static String snap_folder = null;
 
     public NewJFrame() {
         try {
@@ -276,6 +278,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenuItem30 = new javax.swing.JMenuItem();
         jMenuItem31 = new javax.swing.JMenuItem();
         jMenuItem32 = new javax.swing.JMenuItem();
+        jMenuItem33 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem29 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
@@ -1414,6 +1417,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu10.add(jMenuItem32);
 
+        jMenuItem33.setText("Set current folder to restore snapshot from");
+        jMenuItem33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem33ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem33);
+
         jMenuItem14.setText("Screen shot to S3");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1709,7 +1720,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jButton17.setEnabled(true);
             jButton18.setEnabled(true);
             jButton19.setEnabled(true);
-
             reloadObjects(false);
             folder_view = false;
             versionDownload = false;
@@ -2108,8 +2118,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                                 try {
                                     for (int i = 0; i != objectarray.length; i++) {
                                         if (object_item[i] != null) {
-
                                             if (object_item[i].isSelected()) {
+                                                active_folder = object_item[i].getText();
                                                 jTextField10.setText(object_item[i].getText());
                                                 object_item[i].setSelected(false);
                                                 folder_view = false;
@@ -3046,8 +3056,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
         if (active_bucket > 0) {
             jTabbedPane1.setSelectedIndex(1);
-            MakeDestinationBucket makeDestbucket = new MakeDestinationBucket(this, false, false);
-            makeDestbucket.startc(false, false);
+            MakeDestinationBucket makeDestbucket = new MakeDestinationBucket(this, false, false, null);
+            makeDestbucket.startc(false, false, null);
             jPanel9.setVisible(true);
         } else {
             jTextArea1.append("\nError: No bucket has been selected");
@@ -3331,8 +3341,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
         if (active_bucket > 0) {
             jTabbedPane1.setSelectedIndex(1);
-            MakeDestinationBucket makeDestbucket = new MakeDestinationBucket(this, true, false);
-            makeDestbucket.startc(true, false);
+            MakeDestinationBucket makeDestbucket = new MakeDestinationBucket(this, true, false, null);
+            makeDestbucket.startc(true, false, null);
             jPanel9.setVisible(true);
         } else {
             jTextArea1.append("\nError: No bucket has been selected");
@@ -3341,10 +3351,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     private void jMenuItem31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem31ActionPerformed
         if (active_bucket > 0) {
-            jTabbedPane1.setSelectedIndex(1);
-            MakeDestinationBucket makeDestbucket = new MakeDestinationBucket(this, true, true);
-            makeDestbucket.startc(true, true);
-            jPanel9.setVisible(true);
+            if (snap_folder != null) {
+                jTabbedPane1.setSelectedIndex(1);
+                MakeDestinationBucket makeDestbucket = new MakeDestinationBucket(this, true, true, snap_folder);
+                makeDestbucket.startc(true, true, snap_folder);
+                jPanel9.setVisible(true);
+            } else {
+                jTextArea1.append("\nError: No folder has been selected.");
+            }
         } else {
             jTextArea1.append("\nError: No bucket has been selected");
         }
@@ -3363,9 +3377,26 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         } else {
             jTextArea1.append("\nError: No account has been selected.");
         }
-
-
     }//GEN-LAST:event_jMenuItem32ActionPerformed
+
+    private void jMenuItem33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem33ActionPerformed
+        if (active_account > 0) {
+            if (active_bucket > 0) {
+                if (active_folder != null) {
+                    jPanel9.setVisible(true);
+                    snap_folder = active_folder;
+                    jTextArea1.append("\nSet " + snap_folder + " as the snapshot origin folder.");
+                    calibrateTextArea();
+                } else {
+                    jTextArea1.append("\nError: No folder has been selected");
+                }
+            } else {
+                jTextArea1.append("\nError: No bucket has been selected");
+            }
+        } else {
+            jTextArea1.append("\nError: No account has been selected.");
+        }
+    }//GEN-LAST:event_jMenuItem33ActionPerformed
     void cleanup() {
         try {
             jPanel9.setVisible(true);
@@ -3492,6 +3523,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenuItem jMenuItem30;
     private javax.swing.JMenuItem jMenuItem31;
     private javax.swing.JMenuItem jMenuItem32;
+    private javax.swing.JMenuItem jMenuItem33;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
