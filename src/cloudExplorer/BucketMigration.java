@@ -29,7 +29,6 @@ import java.io.FileReader;
 import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.Date;
-import org.apache.commons.codec.digest.DigestUtils;
 
 public class BucketMigration implements Runnable {
 
@@ -102,7 +101,8 @@ public class BucketMigration implements Runnable {
 
     String date() {
         Date date = new Date();
-        return date.toString();
+        SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        return dt.format(date);
     }
 
     boolean modified_check(String remoteFile, String localFile, Boolean tos3) {
@@ -170,8 +170,11 @@ public class BucketMigration implements Runnable {
             }
         }
 
-        jTextArea1.append(
-                "\nBucket migration complete.");
+        if (snapshot) {
+            jTextArea1.append("\nBucket snapshot complete.");
+        } else {
+            jTextArea1.append("\nBucket migration complete.");
+        }
         mainFrame.reloadBuckets();
 
         calibrate();
