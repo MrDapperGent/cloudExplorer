@@ -60,14 +60,22 @@ Starting with v5.0, minor releases will no longer be published on Github. To upg
 
 # How to migrate data between S3 accounts
 
-* Load the destination account and click "Set as migration Account" under Settings.
+* Load the destination account and click "Set as migration Account/snapshot account" under Settings.
 * Create the destination bucket on the destination account.
 * Load the origin S3 account and select the bucket to transfer to the new S3 account.
 * Under the "Tools" menu, select "Migrate bucket to another S3 account".
 * Type in the destination bucket name and click "Start Bucket Migration".
 * Wait for transfers to complete.
 
+# How to create a bucket snapshot
 
+* Load the destination account and click "Set as migration Account/snapshot account" under Settings.
+* Create the destination bucket on the destination account.
+* Load the origin S3 account and select the bucket to transfer to the new S3 account.
+* Under the "Tools" menu, select "Bucket Snapshot".
+* Type in the destination bucket name and click "Create Snapshot".
+* Wait for transfers to complete.
+* 
 # Background Sync
 
 Background Sync allows Cloud Explorer to sync a directory in the background to S3 every 5 minutes. Sync will only upload files that do not exist on S3 and no files will be deleted. 
