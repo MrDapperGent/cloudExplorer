@@ -75,7 +75,7 @@ Starting with v5.0, minor releases will no longer be published on Github. To upg
 * Under the "Tools" menu, select "Bucket Snapshot".
 * Type in the destination bucket name and click "Create Snapshot".
 * Wait for transfers to complete.
-* 
+
 # Background Sync
 
 Background Sync allows Cloud Explorer to sync a directory in the background to S3 every 5 minutes. Sync will only upload files that do not exist on S3 and no files will be deleted. 
