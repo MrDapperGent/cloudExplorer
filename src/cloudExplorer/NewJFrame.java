@@ -3052,8 +3052,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
         if (active_bucket > 0) {
             jTabbedPane1.setSelectedIndex(1);
-            MakeDestinationBucket makeDestbucket = new MakeDestinationBucket(this, false, false, null);
-            makeDestbucket.startc(false, false, null);
+            MakeDestinationBucket makeDestbucket = new MakeDestinationBucket(this);
+            makeDestbucket.startc();
             jPanel9.setVisible(true);
         } else {
             jTextArea1.append("\nError: No bucket has been selected");
@@ -3337,7 +3337,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
         if (active_bucket > 0) {
             jTabbedPane1.setSelectedIndex(1);
-            Snapshot snapshot = new Snapshot(this,active_folder);
+            Snapshot snapshot = new Snapshot(this, active_folder);
             snapshot.startc(true, active_folder);
             jPanel9.setVisible(true);
         } else {
