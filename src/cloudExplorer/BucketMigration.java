@@ -60,6 +60,9 @@ public class BucketMigration implements Runnable {
     Boolean restoreSnapshot = false;
     String active_folder = null;
     String objectlist = null;
+    String win = "\\";
+    String lin = "/";
+    String sep = null;
 
     public void calibrate() {
         try {
@@ -119,7 +122,6 @@ public class BucketMigration implements Runnable {
             Date snapFileDate = sdf.parse(mainFrame.bucket.getObjectInfo(snapFile, new_access_key, new_secret_key, new_bucket, new_endpoint, "objectdate"));
             origFile_md5String = mainFrame.bucket.getObjectInfo(origFile, access_key, secret_key, bucket, endpoint, "checkmd5");
             Date origFileDate = sdf.parse(mainFrame.bucket.getObjectInfo(origFile, access_key, secret_key, bucket, endpoint, "objectdate"));
-            //System.out.print("\nDebug: " + snapFile_md5String + " " + origFile_md5String + " " + snapFileDate.toString() + " " + origFileDate.toString());
             if (snapFile_md5String.contains(origFile_md5String) || snapFile_md5String.contains(origFile_md5String)) {
             } else {
                 if ((origFileDate.after(snapFileDate) || snapFileDate.after(origFileDate))) {
@@ -127,7 +129,7 @@ public class BucketMigration implements Runnable {
                 }
             }
         } catch (Exception modifiedChecker) {
-              }
+        }
         return recopy;
     }
 
@@ -139,7 +141,7 @@ public class BucketMigration implements Runnable {
                     String original_name = restoreArray[i].replaceAll(active_folder, "");
                     if (objectlist.contains(original_name)) {
                         if (modified_check(restoreArray[i], original_name)) {
-                             get = new Get(restoreArray[i], new_access_key, new_secret_key, new_bucket, new_endpoint, temp_file, null);
+                            get = new Get(restoreArray[i], new_access_key, new_secret_key, new_bucket, new_endpoint, temp_file, null);
                             get.run();
                             put = new Put(temp_file, access_key, secret_key, bucket, endpoint, original_name, false, false);
                             put.run();
@@ -161,12 +163,17 @@ public class BucketMigration implements Runnable {
         String date = date();
         for (int i = 1; i != mainFrame.objectarray.length; i++) {
             if (mainFrame.objectarray[i] != null) {
-                if (destinationBucketlist.contains("Snapshot-" + bucket + "-" + date + File.separator + mainFrame.objectarray[i])) {
+                if (mainFrame.objectarray[i].contains(win)) {
+                    sep = win;
+                } else {
+                    sep = lin;
+                }
+                if (destinationBucketlist.contains("Snapshot-" + bucket + "-" + date + sep + mainFrame.objectarray[i])) {
                     if (snapshot) {
                         if (modified_check(mainFrame.objectarray[i], mainFrame.objectarray[i])) {
                             get = new Get(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, temp_file, null);
                             get.run();
-                            put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + File.separator + mainFrame.objectarray[i], false, false);
+                            put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + sep + mainFrame.objectarray[i], false, false);
                             put.run();
                         }
                     } else if (deleteOrigin) {
@@ -181,7 +188,7 @@ public class BucketMigration implements Runnable {
                     get = new Get(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, temp_file, null);
                     get.run();
                     if (snapshot) {
-                        put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + File.separator + mainFrame.objectarray[i], false, false);
+                        put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + sep + mainFrame.objectarray[i], false, false);
                     } else {
                         put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, mainFrame.objectarray[i], false, false);
                     }
