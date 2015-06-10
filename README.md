@@ -60,14 +60,14 @@ Starting with v5.0, minor releases will no longer be published on Github. To upg
 
 # How to migrate data between S3 accounts
 * Load the destination account and create or select a bucket to migrate to.
-* From the menu "Snapshots and Migration", click "Set as Migration/Snapshot Account and Bucket".
+* From the menu "Snapshots and Migration", click "Set Migration/Snapshot Account and Bucket".
 * Switch to the origin account and select the bucket to migrate.
-* Under the "Snapshots and Migration", select "Migrate bucket to another S3 account".
+* Under the "Snapshots and Migration", select "Migrate Bucket to Another S3 Account".
 * Click Start Migration
 
 # How to create a bucket snapshot
 * Load the destination account and create or select a bucket to store the snapshot.
-* From the menu "Snapshots and Migration", click "Set as Migration/Snapshot Account and Bucket".
+* From the menu "Snapshots and Migration", click "Set Migration/Snapshot Account and Bucket".
 * Switch to the origin account and select the bucket to snap.
 * Under the "Snapshots and Migration", select "Create or Restore a Bucket Snapshot".
 * Click Create Snapshot
