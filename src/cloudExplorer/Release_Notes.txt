@@ -4,7 +4,7 @@ Bug Fixes: <none>
                
 Improvements: 
             1. Credentials are saved in base64.
-            2. Snapshots and Migration are now located under the new Menu 
+            2. Snapshots and Migration are now located under the new menu 
                 "Snapshots and Migration".
  
 New Features: 
