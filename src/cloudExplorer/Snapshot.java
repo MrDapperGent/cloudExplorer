@@ -31,8 +31,6 @@ public class Snapshot implements Runnable {
     public static String region = null;
     public static String dest_bucket = null;
     BucketMigration migrate;
-    Boolean snapshot = false;
-    Boolean restoreSnapshot = false;
     String Home = System.getProperty("user.home");
     String config_file = (Home + File.separator + "s3Migrate.config");
     String active_folder = null;
@@ -140,7 +138,7 @@ public class Snapshot implements Runnable {
         }
     }
 
-    void startc(boolean Asnapshot, String Aactive_folder) {
+    void startc(String Aactive_folder) {
         (new Thread(new Snapshot(mainFrame, Aactive_folder))).start();
     }
 }

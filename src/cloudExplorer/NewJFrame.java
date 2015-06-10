@@ -3338,7 +3338,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         if (active_bucket > 0) {
             jTabbedPane1.setSelectedIndex(1);
             Snapshot snapshot = new Snapshot(this, active_folder);
-            snapshot.startc(true, active_folder);
+            snapshot.startc(active_folder);
             jPanel9.setVisible(true);
         } else {
             jTextArea1.append("\nError: No bucket has been selected");
