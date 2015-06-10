@@ -23,7 +23,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import static cloudExplorer.NewJFrame.jTextArea1;
 import java.io.File;
-import javax.swing.JCheckBox;
 
 public class Snapshot implements Runnable {
 
@@ -45,8 +44,8 @@ public class Snapshot implements Runnable {
 
     public void run() {
         try {
-            final JButton createSnapshot = new JButton("Create  Snapshot");
-            final JButton restoreSnapshot = new JButton("Restore  Snapshot");
+            final JButton createSnapshot = new JButton("Create Snapshot");
+            final JButton restoreSnapshot = new JButton("Restore Snapshot");
             final JButton abortMigration = new JButton("Abort");
             final JButton close = new JButton("Close");
             final JLabel blank = new JLabel(" ");
