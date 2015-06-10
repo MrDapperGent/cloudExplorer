@@ -4,11 +4,12 @@ Bug Fixes: <none>
                
 Improvements: 
             1. Credentials are saved in base64.
-            2. Easier to set a migration/snapshot account, choose the option from 
-               the "Tools-S3" menu after selecting a bucket.
+            2. Snapshots and Migration are now located under the new Menu 
+                "Snapshots and Migration".
+ 
 New Features: 
             1. Create Bucket snapshots.
-            2. Restore Bucker snapshots.
+            2. Restore Bucket snapshots.
           
 Features:
 
