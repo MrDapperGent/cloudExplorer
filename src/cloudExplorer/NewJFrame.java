@@ -297,6 +297,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem25 = new javax.swing.JMenuItem();
         jMenuItem18 = new javax.swing.JMenuItem();
+        jMenuItem31 = new javax.swing.JMenuItem();
         jMenuItem19 = new javax.swing.JMenuItem();
 
         jMenuItem5.setText("jMenuItem5");
@@ -1550,6 +1551,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
         jMenu8.add(jMenuItem18);
+
+        jMenuItem31.setText("Snapshots");
+        jMenuItem31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem31ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem31);
 
         jMenuItem19.setText("Background Sync");
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
@@ -3378,6 +3387,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jTextArea1.append("\nError: No account has been selected.");
         }
     }//GEN-LAST:event_jMenuItem33ActionPerformed
+
+    private void jMenuItem31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem31ActionPerformed
+        helpMenu("snapshots.txt");
+    }//GEN-LAST:event_jMenuItem31ActionPerformed
     void cleanup() {
         try {
             jPanel9.setVisible(true);
@@ -3503,6 +3516,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem30;
+    private javax.swing.JMenuItem jMenuItem31;
     private javax.swing.JMenuItem jMenuItem32;
     private javax.swing.JMenuItem jMenuItem33;
     private javax.swing.JMenuItem jMenuItem4;

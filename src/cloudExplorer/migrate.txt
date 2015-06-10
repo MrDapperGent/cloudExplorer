@@ -1,9 +1,8 @@
 How to migrate data between S3 accounts:
 
-1. Load the destination account and click "Set as migration Account" under Settings.
-2. Create the destination bucket on the destination account.
-3. Load the origin S3 account and select the bucket to transfer to the new S3 account.
-4. Under the "Tools" menu, select "S3" and then "Migrate bucket to another S3 account".
-5. Type in the destination bucket name and click "Start Bucket Migration".
-6. Wait for transfers to complete.
+1. Load the destination account and create or select a bucket to migrate to.
+2. From the menu "Snapshots and Migration", click "Set as Migration/Snapshot Account and Bucket".
+3. Switch to the origin account and select the bucket to migrate.
+4. Under the "Snapshots and Migration", select "Migrate bucket to another S3 account".
+5. Click Start Migration
 
