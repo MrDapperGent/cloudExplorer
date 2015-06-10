@@ -24,7 +24,6 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.Bucket;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.text.SimpleDateFormat;
 import java.util.Base64;
@@ -110,25 +109,25 @@ public class BucketMigration implements Runnable {
         return dt.format(date);
     }
 
-    boolean modified_check(String remoteFile, String localFile, Boolean tos3) {
+    boolean modified_check(String snapFile, String origFile) {
         boolean recopy = false;
-        long milli;
-        FileInputStream fis = null;
-
+        String snapFile_md5String = null;
+        String origFile_md5String = null;
         try {
-            File check_localFile = new File(localFile);
             SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
-            Date remote = sdf.parse(bucketObject.getObjectInfo(remoteFile, access_key, secret_key, bucket, endpoint, "objectdate"));
-            milli = check_localFile.lastModified();
-            Date local = new Date(milli);
-            Date local_md5String = sdf.parse(bucketObject.getObjectInfo(remoteFile, access_key, secret_key, bucket, endpoint, "objectdate"));
-            Date remote_md5String = sdf.parse(bucketObject.getObjectInfo(remoteFile, new_access_key, new_secret_key, new_bucket, new_endpoint, "objectdate"));
-
-            if (local.after(remote)) {
-                recopy = true;
+            snapFile_md5String = mainFrame.bucket.getObjectInfo(snapFile, new_access_key, new_secret_key, new_bucket, new_endpoint, "checkmd5");
+            Date snapFileDate = sdf.parse(mainFrame.bucket.getObjectInfo(snapFile, new_access_key, new_secret_key, new_bucket, new_endpoint, "objectdate"));
+            origFile_md5String = mainFrame.bucket.getObjectInfo(origFile, access_key, secret_key, bucket, endpoint, "checkmd5");
+            Date origFileDate = sdf.parse(mainFrame.bucket.getObjectInfo(origFile, access_key, secret_key, bucket, endpoint, "objectdate"));
+            //System.out.print("\nDebug: " + snapFile_md5String + " " + origFile_md5String + " " + snapFileDate.toString() + " " + origFileDate.toString());
+            if (snapFile_md5String.contains(origFile_md5String) || snapFile_md5String.contains(origFile_md5String)) {
+            } else {
+                if ((origFileDate.after(snapFileDate) || snapFileDate.after(origFileDate))) {
+                    recopy = true;
+                }
             }
         } catch (Exception modifiedChecker) {
-        }
+              }
         return recopy;
     }
 
@@ -136,25 +135,22 @@ public class BucketMigration implements Runnable {
         for (int i = 1; i != restoreArray.length; i++) {
 
             if (restoreArray[i] != null) {
-                System.out.print("\nListing Debug:" + restoreArray[i]);
-                String original_name = restoreArray[i].replaceAll(active_folder, "");
-                System.out.print("\nDebug 1:" + original_name);
-                if (objectlist.contains(original_name)) {
-                    if (modified_check(restoreArray[i], original_name, true)) {
-                        System.out.print("\nDebug 2");
+                if (restoreArray[i].contains(active_folder)) {
+                    String original_name = restoreArray[i].replaceAll(active_folder, "");
+                    if (objectlist.contains(original_name)) {
+                        if (modified_check(restoreArray[i], original_name)) {
+                             get = new Get(restoreArray[i], new_access_key, new_secret_key, new_bucket, new_endpoint, temp_file, null);
+                            get.run();
+                            put = new Put(temp_file, access_key, secret_key, bucket, endpoint, original_name, false, false);
+                            put.run();
+                        }
+                    } else {
                         get = new Get(restoreArray[i], new_access_key, new_secret_key, new_bucket, new_endpoint, temp_file, null);
                         get.run();
                         put = new Put(temp_file, access_key, secret_key, bucket, endpoint, original_name, false, false);
                         put.run();
                     }
-                } else {
-                    System.out.print("\nDebug 3");
-                    get = new Get(restoreArray[i], new_access_key, new_secret_key, new_bucket, new_endpoint, temp_file, null);
-                    get.run();
-                    put = new Put(temp_file, access_key, secret_key, bucket, endpoint, original_name, false, false);
-                    put.run();
                 }
-
             }
         }
         jTextArea1.append("\nSnapshot restore operation complete.");
@@ -167,12 +163,11 @@ public class BucketMigration implements Runnable {
             if (mainFrame.objectarray[i] != null) {
                 if (destinationBucketlist.contains("Snapshot-" + bucket + "-" + date + File.separator + mainFrame.objectarray[i])) {
                     if (snapshot) {
-                        if (modified_check(mainFrame.objectarray[i], mainFrame.objectarray[i], true)) {
+                        if (modified_check(mainFrame.objectarray[i], mainFrame.objectarray[i])) {
                             get = new Get(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, temp_file, null);
                             get.run();
                             put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + File.separator + mainFrame.objectarray[i], false, false);
                             put.run();
-
                         }
                     } else if (deleteOrigin) {
                         del = new Delete(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, null);
@@ -270,7 +265,7 @@ public class BucketMigration implements Runnable {
 
     void scanDestination() {
         BucketClass bucketObject = new BucketClass();
-        destinationBucketlist = bucketObject.listBucketContents(new_access_key, new_secret_key, new_bucket, new_endpoint, active_folder);
+        destinationBucketlist = bucketObject.listBucketContents(new_access_key, new_secret_key, new_bucket, new_endpoint, null);
         if (restoreSnapshot) {
             restoreArray = destinationBucketlist.split("@@");
             objectlist = bucketObject.listBucketContents(access_key, secret_key, bucket, endpoint, null);
