@@ -257,7 +257,7 @@ public class Daemon {
 
     void reloadObjects() {
         try {
-            String objectlist = Bucket.listBucketContents(access_key, secret_key, bucket, endpoint,null);
+            String objectlist = Bucket.listBucketContents(access_key, secret_key, bucket, endpoint);
             objectarray = objectlist.split("@@");
         } catch (Exception reloadObjects) {
         }

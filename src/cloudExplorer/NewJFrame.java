@@ -276,10 +276,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenuItem33 = new javax.swing.JMenuItem();
         jMenuItem30 = new javax.swing.JMenuItem();
         jMenuItem31 = new javax.swing.JMenuItem();
+        jMenuItem17 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenu10 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem17 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem29 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
@@ -1408,6 +1408,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu12.add(jMenuItem31);
 
+        jMenuItem17.setText("Migrate bucket to another S3 account.");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
+        jMenu12.add(jMenuItem17);
+
         jMenuBar1.add(jMenu12);
 
         jMenu6.setText("Tools");
@@ -1421,14 +1429,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
         jMenu10.add(jMenuItem8);
-
-        jMenuItem17.setText("Migrate bucket to another S3 account.");
-        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem17ActionPerformed(evt);
-            }
-        });
-        jMenu10.add(jMenuItem17);
 
         jMenuItem14.setText("Screen shot to S3");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {

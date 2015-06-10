@@ -265,10 +265,10 @@ public class BucketMigration implements Runnable {
 
     void scanDestination() {
         BucketClass bucketObject = new BucketClass();
-        destinationBucketlist = bucketObject.listBucketContents(new_access_key, new_secret_key, new_bucket, new_endpoint, null);
+        destinationBucketlist = bucketObject.listBucketContents(new_access_key, new_secret_key, new_bucket, new_endpoint);
         if (restoreSnapshot) {
             restoreArray = destinationBucketlist.split("@@");
-            objectlist = bucketObject.listBucketContents(access_key, secret_key, bucket, endpoint, null);
+            objectlist = bucketObject.listBucketContents(access_key, secret_key, bucket, endpoint);
         }
         System.gc();
     }
