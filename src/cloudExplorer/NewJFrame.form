@@ -150,7 +150,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem32">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Set as Migration/Snapshot Account and Bucket"/>
+                <Property name="text" type="java.lang.String" value="Set Migration/Snapshot Account and Bucket"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem32ActionPerformed"/>
@@ -158,7 +158,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem33">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Set current folder to restore snapshot from"/>
+                <Property name="text" type="java.lang.String" value="Set Current Folder to Restore Snapshot From"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem33ActionPerformed"/>
@@ -166,7 +166,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem30">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Create or restore a Bucket Snapshot"/>
+                <Property name="text" type="java.lang.String" value="Create or Restore a Bucket Snapshot"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem30ActionPerformed"/>
@@ -174,7 +174,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem17">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Migrate bucket to another S3 account."/>
+                <Property name="text" type="java.lang.String" value="Migrate Bucket to Another S3 Account."/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem17ActionPerformed"/>
@@ -251,7 +251,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem24">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Delete temp files"/>
+                <Property name="text" type="java.lang.String" value="Delete Temp Files"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem24ActionPerformed"/>

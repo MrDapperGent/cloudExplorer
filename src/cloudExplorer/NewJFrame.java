@@ -1376,7 +1376,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jMenu12.setText("Snapshots and Migration");
 
-        jMenuItem32.setText("Set as Migration/Snapshot Account and Bucket");
+        jMenuItem32.setText("Set Migration/Snapshot Account and Bucket");
         jMenuItem32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem32ActionPerformed(evt);
@@ -1384,7 +1384,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu12.add(jMenuItem32);
 
-        jMenuItem33.setText("Set current folder to restore snapshot from");
+        jMenuItem33.setText("Set Current Folder to Restore Snapshot From");
         jMenuItem33.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem33ActionPerformed(evt);
@@ -1392,7 +1392,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu12.add(jMenuItem33);
 
-        jMenuItem30.setText("Create or restore a Bucket Snapshot");
+        jMenuItem30.setText("Create or Restore a Bucket Snapshot");
         jMenuItem30.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem30ActionPerformed(evt);
@@ -1400,7 +1400,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu12.add(jMenuItem30);
 
-        jMenuItem17.setText("Migrate bucket to another S3 account.");
+        jMenuItem17.setText("Migrate Bucket to Another S3 Account.");
         jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem17ActionPerformed(evt);
@@ -1468,7 +1468,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu6.add(jMenuItem26);
 
-        jMenuItem24.setText("Delete temp files");
+        jMenuItem24.setText("Delete Temp Files");
         jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem24ActionPerformed(evt);

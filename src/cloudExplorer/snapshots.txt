@@ -1,7 +1,7 @@
 How to create a bucket snapshot
 
 1. Load the destination account and create or select a bucket to store the snapshot.
-2. From the menu "Snapshots and Migration", click "Set as Migration/Snapshot Account and Bucket".
+2. From the menu "Snapshots and Migration", click "Set Migration/Snapshot Account and Bucket".
 3. Switch to the origin account and select the bucket to snap.
 4. Under the "Snapshots and Migration", select "Create or Restore a Bucket Snapshot".
 5. Click Create Snapshot.
@@ -9,7 +9,7 @@ How to create a bucket snapshot
 How to restore a bucket snapshot
 
 1. Load the destination account, select the snapshot bucket, and click on a snapshot folder.
-2. From the menu "Snapshots and Migration", click "Set current folder to restore snapshot from".
+2. From the menu "Snapshots and Migration", click "Set Current Folder to Restore Snapshot from".
 3. Switch to the origin account and select the bucket to restore to.
 4. Under the "Snapshots and Migration", select "Create or Restore a Bucket Snapshot".
 5. Click Restore Snapshot.
