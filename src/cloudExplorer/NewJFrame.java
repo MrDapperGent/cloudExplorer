@@ -275,7 +275,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenuItem32 = new javax.swing.JMenuItem();
         jMenuItem33 = new javax.swing.JMenuItem();
         jMenuItem30 = new javax.swing.JMenuItem();
-        jMenuItem31 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenu10 = new javax.swing.JMenu();
@@ -1374,7 +1373,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jMenuBar1.add(jMenu5);
 
-        jMenu12.setText("Snapshots");
+        jMenu12.setText("Snapshots and Migration");
 
         jMenuItem32.setText("Set as Migration/Snapshot Account and Bucket");
         jMenuItem32.addActionListener(new java.awt.event.ActionListener() {
@@ -1392,21 +1391,13 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu12.add(jMenuItem33);
 
-        jMenuItem30.setText("Create Bucket Snapshot");
+        jMenuItem30.setText("Create or restore a Bucket Snapshot");
         jMenuItem30.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem30ActionPerformed(evt);
             }
         });
         jMenu12.add(jMenuItem30);
-
-        jMenuItem31.setText("Restore Snapshot");
-        jMenuItem31.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem31ActionPerformed(evt);
-            }
-        });
-        jMenu12.add(jMenuItem31);
 
         jMenuItem17.setText("Migrate bucket to another S3 account.");
         jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
@@ -3346,28 +3337,13 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
         if (active_bucket > 0) {
             jTabbedPane1.setSelectedIndex(1);
-            MakeDestinationBucket makeDestbucket = new MakeDestinationBucket(this, true, false, null);
-            makeDestbucket.startc(true, false, null);
+            Snapshot snapshot = new Snapshot(this,active_folder);
+            snapshot.startc(true, active_folder);
             jPanel9.setVisible(true);
         } else {
             jTextArea1.append("\nError: No bucket has been selected");
         }
     }//GEN-LAST:event_jMenuItem30ActionPerformed
-
-    private void jMenuItem31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem31ActionPerformed
-        if (active_bucket > 0) {
-            if (snap_folder != null) {
-                jTabbedPane1.setSelectedIndex(1);
-                MakeDestinationBucket makeDestbucket = new MakeDestinationBucket(this, true, true, snap_folder);
-                makeDestbucket.startc(true, true, snap_folder);
-                jPanel9.setVisible(true);
-            } else {
-                jTextArea1.append("\nError: No folder has been selected.");
-            }
-        } else {
-            jTextArea1.append("\nError: No bucket has been selected");
-        }
-    }//GEN-LAST:event_jMenuItem31ActionPerformed
 
     private void jMenuItem32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem32ActionPerformed
         if (active_account > 0) {
@@ -3527,7 +3503,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem30;
-    private javax.swing.JMenuItem jMenuItem31;
     private javax.swing.JMenuItem jMenuItem32;
     private javax.swing.JMenuItem jMenuItem33;
     private javax.swing.JMenuItem jMenuItem4;
