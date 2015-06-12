@@ -23,7 +23,6 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.text.SimpleDateFormat;
-import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -150,11 +149,9 @@ public class CLI {
             String read = null;
 
             while ((read = bfr.readLine()) != null) {
-                if (read.contains("=")) {
-                    byte[] str = Base64.getDecoder().decode(read);
-                    data = data + new String(str, "utf-8");
-                } else {
+              if (read.contains("@")) {
                     data = data + read;
+                    break;
                 }
             }
         } catch (Exception loadConfig) {

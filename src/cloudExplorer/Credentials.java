@@ -18,7 +18,6 @@ package cloudExplorer;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.util.Base64;
 
 public class Credentials {
 
@@ -96,6 +95,10 @@ public class Credentials {
             FileWriter fr = new FileWriter(config_file, true);
             BufferedWriter bfr = new BufferedWriter(fr);
             String str = null;
+            System.out.print("\nDebug: " + region);
+            if (region.length() < 1) {
+                System.out.print("\nRegion < 1");
+            }
             if (region.length() < 1) {
                 region = "defaultAWS";
             }
@@ -104,8 +107,7 @@ public class Credentials {
             } else {
                 str = ("\n" + access_key + "@" + secret_key + "@" + host + "@" + port + "@" + region + "@" + name);
             }
-            String str2 = Base64.getEncoder().encodeToString(str.getBytes("utf-8"));
-            bfr.write("\n" + str2);
+            bfr.write(str);
             bfr.close();
         } catch (Exception writeConfig) {
         }
@@ -118,8 +120,7 @@ public class Credentials {
             FileWriter fr = new FileWriter(config_file);
             BufferedWriter bfr = new BufferedWriter(fr);
             String str = (access_key + "@" + secret_key + "@" + host + "@" + port + "@" + region + "@" + bucket);
-            String str2 = Base64.getEncoder().encodeToString(str.getBytes("utf-8"));
-            bfr.write(str2);
+            bfr.write(str);
             bfr.close();
         } catch (Exception writeConfig) {
         }

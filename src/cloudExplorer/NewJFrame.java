@@ -29,7 +29,6 @@ import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.regex.Pattern;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -1881,11 +1880,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             while ((read = bfr.readLine()) != null) {
                 if (read != null) {
                     if (read.length() > 1) {
-                        if (read.contains("=")) {
-                            byte[] str = Base64.getDecoder().decode(read);
-                            data = data + new String(str, "utf-8");
-                            account_array[h] = new String(str, "utf-8");
-                        } else {
+                       if (read.contains("@")) {
                             account_array[h] = read;
                         }
                         content_counter++;
