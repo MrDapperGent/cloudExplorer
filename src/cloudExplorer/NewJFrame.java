@@ -1783,7 +1783,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     }
 
     public void itemStateChanged(ItemEvent event) {
-
         if (deleting.isSelected()) {
             deleting.removeItemListener(this);
 
@@ -1826,7 +1825,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         }
 
         try {
-            for (int h = 1; h != account_array.length; h++) {
+            for (int h = 0; h != account_array.length; h++) {
                 if (account_item[h] != null) {
                     if (account_item[h].isSelected()) {
                         if (h != active_account) {
@@ -1848,10 +1847,12 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     public void changeAccountRadioButtons() {
         try {
-            for (int c = 1; c != account_array.length; c++) {
-                if (c == active_account) {
-                } else {
-                    account_item[c].setSelected(false);
+            for (int c = 0; c != account_array.length; c++) {
+                if (account_array[c] != null) {
+                    if (c == active_account) {
+                    } else {
+                        account_item[c].setSelected(false);
+                    }
                 }
             }
         } catch (Exception clear_old_radio) {
@@ -1913,27 +1914,23 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     account_item[h].setForeground(Color.blue);
                     jPanel21.add(account_item[h]);
                     jPanel21.revalidate();
-                    validate();
+                    //validate();
                 }
             }
+
+            jPanel21.setLayout(new BoxLayout(jPanel21, BoxLayout.Y_AXIS));
+            jPanel21.repaint();
+            jPanel21.revalidate();
+            jPanel21.validate();
+
+            if (content_counter == 0) {
+                jTextArea1.append("\nError: No saved configurations found.\n");
+                account_counter = 0;
+            }
+            int z = 0;
+            calibrateTextArea();
         } catch (Exception draw) {
         }
-
-        jPanel21.setLayout(
-                new BoxLayout(jPanel21, BoxLayout.Y_AXIS));
-        jPanel21.repaint();
-
-        jPanel21.revalidate();
-
-        jPanel21.validate();
-
-        if (content_counter
-                == 0) {
-            jTextArea1.append("\nError: No saved configurations found.\n");
-            account_counter = 0;
-        }
-
-        calibrateTextArea();
     }
 
     void showPanel() {

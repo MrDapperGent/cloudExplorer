@@ -1,6 +1,10 @@
 Version 5.7
 
-Bug Fixes: <none>
+Bug Fixes: 
+            1. Fixed a bug when switching accounts.
+            2. If no region is specified, it will default to "defaultAWS" to 
+               avoid a null pointer exception. To resolve the issue, delete and 
+               add your account back.
                
 Improvements: 
             1. Credentials are saved in base64.

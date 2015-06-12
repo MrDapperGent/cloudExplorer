@@ -96,13 +96,16 @@ public class Credentials {
             FileWriter fr = new FileWriter(config_file, true);
             BufferedWriter bfr = new BufferedWriter(fr);
             String str = null;
+            if (region.length() < 1) {
+                region = "defaultAWS";
+            }
             if (name == null) {
                 str = ("\n" + access_key + "@" + secret_key + "@" + host + "@" + port + "@" + region);
             } else {
                 str = ("\n" + access_key + "@" + secret_key + "@" + host + "@" + port + "@" + region + "@" + name);
             }
             String str2 = Base64.getEncoder().encodeToString(str.getBytes("utf-8"));
-            bfr.write("\n" +str2);
+            bfr.write("\n" + str2);
             bfr.close();
         } catch (Exception writeConfig) {
         }
