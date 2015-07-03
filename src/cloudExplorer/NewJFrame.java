@@ -890,10 +890,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(1, 1, 1)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton13)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
                         .addComponent(jButton4)
-                        .addComponent(jButton13)
                         .addComponent(jButton12)
                         .addComponent(jButton7)
                         .addComponent(jButton17)
@@ -939,7 +939,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jPanel10.setBackground(java.awt.SystemColor.text);
 
         jButton5.setBackground(java.awt.SystemColor.text);
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/uploadbutton.png"))); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-svn-commit-icon.png"))); // NOI18N
         jButton5.setText("Upload");
         jButton5.setBorder(null);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -949,7 +949,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton15.setBackground(java.awt.SystemColor.text);
-        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/abort.png"))); // NOI18N
+        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-process-stop-icon.png"))); // NOI18N
         jButton15.setText("Abort");
         jButton15.setBorder(null);
         jButton15.addActionListener(new java.awt.event.ActionListener() {
@@ -978,32 +978,28 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBox4)
-                            .addComponent(jCheckBox5)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jCheckBox4)
+                        .addComponent(jCheckBox5)
+                        .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addComponent(jButton5)))
+                            .addComponent(jButton5)
+                            .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton15)
+                .addGap(18, 18, 18)
                 .addComponent(jCheckBox2)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jCheckBox4)
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
                 .addComponent(jCheckBox5)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -1033,7 +1029,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(9, 9, 9)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
