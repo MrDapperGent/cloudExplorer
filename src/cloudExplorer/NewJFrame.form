@@ -429,7 +429,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="250" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="280" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="663" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -490,7 +490,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTabbedPane1" pref="933" max="32767" attributes="0"/>
+                  <Component id="jTabbedPane1" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -528,13 +528,14 @@
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Accounts"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="">
                     <Property name="tabTitle" type="java.lang.String" value=""/>
                     <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/cloudExplorer/tab-settings.png"/>
+                      <Image iconType="3" name="/cloudExplorer/Actions-document-decrypt-icon.png"/>
                     </Property>
                   </JTabbedPaneConstraints>
                 </Constraint>
@@ -567,7 +568,7 @@
                                   <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jPanel16" min="-2" max="-2" attributes="0"/>
@@ -1027,7 +1028,7 @@
                   <JTabbedPaneConstraints tabName="">
                     <Property name="tabTitle" type="java.lang.String" value=""/>
                     <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/cloudExplorer/tab-explorer.png"/>
+                      <Image iconType="3" name="/cloudExplorer/Search-icon.png"/>
                     </Property>
                   </JTabbedPaneConstraints>
                 </Constraint>
@@ -1111,10 +1112,13 @@
                                       <Component id="jPanel15" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Component id="jPanel14" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jScrollPane7" min="-2" pref="305" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jScrollPane7" pref="319" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace min="6" pref="19" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1578,7 +1582,7 @@
                   <JTabbedPaneConstraints tabName="">
                     <Property name="tabTitle" type="java.lang.String" value=""/>
                     <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/cloudExplorer/tab-upload.png"/>
+                      <Image iconType="3" name="/cloudExplorer/Actions-go-up-icon.png"/>
                     </Property>
                   </JTabbedPaneConstraints>
                 </Constraint>
@@ -1801,7 +1805,7 @@
                   <JTabbedPaneConstraints tabName="">
                     <Property name="tabTitle" type="java.lang.String" value=""/>
                     <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/cloudExplorer/tab-sync2.png"/>
+                      <Image iconType="3" name="/cloudExplorer/sign-sync-icon.png"/>
                     </Property>
                   </JTabbedPaneConstraints>
                 </Constraint>
@@ -2000,7 +2004,7 @@
                   <JTabbedPaneConstraints tabName="">
                     <Property name="tabTitle" type="java.lang.String" value=""/>
                     <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/cloudExplorer/tab-editor.png"/>
+                      <Image iconType="3" name="/cloudExplorer/Actions-document-edit-icon.png"/>
                     </Property>
                   </JTabbedPaneConstraints>
                 </Constraint>
