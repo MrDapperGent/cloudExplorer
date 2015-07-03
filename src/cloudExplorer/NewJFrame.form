@@ -603,7 +603,7 @@
                               <Component id="jButton8" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jButton10" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="16" pref="30" max="32767" attributes="0"/>
+                          <EmptySpace min="16" pref="34" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
@@ -669,13 +669,6 @@
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="jPanel17">
-                  <Properties>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder/>
-                      </Border>
-                    </Property>
-                  </Properties>
 
                   <Layout>
                     <DimensionLayout dim="0">
@@ -897,9 +890,7 @@
                 <Container class="javax.swing.JScrollPane" name="jScrollPane27">
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder/>
-                      </Border>
+                      <Border info="null"/>
                     </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[494, 331]"/>

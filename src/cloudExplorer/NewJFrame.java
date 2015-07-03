@@ -380,8 +380,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addGap(0, 0, 0))
         );
 
-        jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
         jLabel3.setText("Access Key");
 
         jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -504,7 +502,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jLabel15.setText("Saved Accounts");
 
-        jScrollPane27.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jScrollPane27.setBorder(null);
         jScrollPane27.setPreferredSize(new java.awt.Dimension(494, 331));
 
         jPanel21.setBackground(java.awt.SystemColor.text);
@@ -619,7 +617,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton8)
                     .addComponent(jButton10))
-                .addGap(16, 30, Short.MAX_VALUE))
+                .addGap(16, 34, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane27, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
