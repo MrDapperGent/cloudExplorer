@@ -1054,7 +1054,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jButton16.setBackground(java.awt.SystemColor.text);
         jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-process-stop-icon.png"))); // NOI18N
-        jButton16.setText("  Abort");
+        jButton16.setText(" Abort");
         jButton16.setToolTipText("");
         jButton16.setActionCommand("Abort");
         jButton16.setBorder(null);
