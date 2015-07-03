@@ -629,7 +629,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-document-decrypt-icon.png")), jPanel3); // NOI18N
+        jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-document-decrypt-icon.png")), jPanel3, "Accounts"); // NOI18N
 
         scrollPane1.setBackground(java.awt.SystemColor.text);
 
