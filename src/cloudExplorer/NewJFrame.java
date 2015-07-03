@@ -624,7 +624,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton2))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(jCheckBox1)
                 .addContainerGap())
         );
@@ -911,7 +911,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(7, 7, 7))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
                         .addContainerGap())))
         );
 
@@ -1053,8 +1053,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton16.setBackground(java.awt.SystemColor.text);
-        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/abort.png"))); // NOI18N
-        jButton16.setText("    Abort");
+        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-process-stop-icon.png"))); // NOI18N
+        jButton16.setText("  Abort");
         jButton16.setToolTipText("");
         jButton16.setActionCommand("Abort");
         jButton16.setBorder(null);
@@ -1067,6 +1067,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jCheckBox3.setBackground(java.awt.SystemColor.text);
         jCheckBox3.setText("RRS");
+        jCheckBox3.setBorder(null);
 
         jCheckBox6.setBackground(java.awt.SystemColor.text);
         jCheckBox6.setText("Encrypt\n");
@@ -1077,7 +1078,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton14.setBackground(java.awt.SystemColor.text);
-        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/tab-sync2.png"))); // NOI18N
+        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/sync-icon.png"))); // NOI18N
         jButton14.setText("To S3");
         jButton14.setBorder(null);
         jButton14.addActionListener(new java.awt.event.ActionListener() {
@@ -1087,7 +1088,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton21.setBackground(java.awt.SystemColor.text);
-        jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/tab-sync2.png"))); // NOI18N
+        jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/sync-icon.png"))); // NOI18N
         jButton21.setText("From S3");
         jButton21.setBorder(null);
         jButton21.addActionListener(new java.awt.event.ActionListener() {
@@ -1106,21 +1107,16 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckBox6)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(jButton16))
-                    .addComponent(jButton14)
-                    .addComponent(jButton21)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(3, 3, 3)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12)
-                            .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jCheckBox3)
-                            .addComponent(jCheckBox6))))
+                            .addComponent(jButton16))))
                 .addGap(26, 26, 26)
                 .addComponent(jFileChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 669, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -1131,18 +1127,18 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jButton14)
-                        .addGap(0, 0, 0)
-                        .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jCheckBox3)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jCheckBox6)
                         .addGap(29, 29, 29)
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE))
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
                     .addComponent(jFileChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
