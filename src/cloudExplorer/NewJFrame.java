@@ -2886,10 +2886,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     if (object_item[i].isVisible()) {
                         if (object_item[i].isSelected()) {
                             object_item[i].setSelected(false);
-                            jButton13.setText("Select");
+                            jButton13.setToolTipText("Select");
                         } else {
                             object_item[i].setSelected(true);
-                            jButton13.setText("Deselect");
+                            jButton13.setToolTipText("Deselect");
                         }
                     }
                 }
