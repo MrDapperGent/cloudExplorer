@@ -2,7 +2,7 @@ Guide to the Toolbar Buttons on the Explorer tab.
 
 The numbering goes from left to right.
 
-1. Download.
+1. Download selected file.
 2. Switch to Upload tab.
 3. Delete file.
 4. File properties.
