@@ -340,6 +340,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jTabbedPane1.setBackground(java.awt.SystemColor.text);
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        jTabbedPane1.setToolTipText("");
         jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jTabbedPane1StateChanged(evt);
@@ -651,7 +652,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jScrollPane2.setViewportView(jPanel5);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/bucket.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Empty-Bucket-icon.png"))); // NOI18N
         jLabel1.setToolTipText("Create a bucket");
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -663,7 +664,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jScrollPane7.setPreferredSize(new java.awt.Dimension(650, 314));
 
         jPanel11.setBackground(javax.swing.UIManager.getDefaults().getColor("text"));
-        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -695,8 +695,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         );
 
         jButton3.setBackground(java.awt.SystemColor.text);
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/download.png"))); // NOI18N
-        jButton3.setText("Get");
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-svn-update-icon.png"))); // NOI18N
+        jButton3.setToolTipText("Download");
         jButton3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -705,8 +705,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton4.setBackground(java.awt.SystemColor.text);
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/delete.png"))); // NOI18N
-        jButton4.setText("Del");
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-trash-empty-icon.png"))); // NOI18N
+        jButton4.setToolTipText("Delete");
         jButton4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -715,8 +715,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton7.setBackground(java.awt.SystemColor.text);
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/properties.png"))); // NOI18N
-        jButton7.setText("Info");
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-system-search-icon.png"))); // NOI18N
         jButton7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -725,8 +724,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton12.setBackground(java.awt.SystemColor.text);
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/edit2.png"))); // NOI18N
-        jButton12.setText("Edit");
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Apps-scribus-icon.png"))); // NOI18N
+        jButton12.setToolTipText("Edit");
         jButton12.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -735,8 +734,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton13.setBackground(java.awt.SystemColor.text);
-        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/select.png"))); // NOI18N
-        jButton13.setText("Select");
+        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Status-media-playlist-repeat-icon.png"))); // NOI18N
+        jButton13.setToolTipText("Select All");
         jButton13.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -745,9 +744,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton1.setBackground(java.awt.SystemColor.text);
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/uploadbutton.png"))); // NOI18N
-        jButton1.setText("Upload");
-        jButton1.setToolTipText("");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-svn-commit-icon.png"))); // NOI18N
+        jButton1.setToolTipText("Upload");
         jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -756,8 +754,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton17.setBackground(java.awt.SystemColor.text);
-        jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/play.png"))); // NOI18N
-        jButton17.setText("Play");
+        jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-media-playback-start-icon.png"))); // NOI18N
+        jButton17.setToolTipText("Play");
         jButton17.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -766,9 +764,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton18.setBackground(java.awt.SystemColor.text);
-        jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/versions.png"))); // NOI18N
-        jButton18.setText("Versions");
-        jButton18.setToolTipText("");
+        jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Apps-preferences-desktop-filetype-association-icon.png"))); // NOI18N
+        jButton18.setToolTipText("Versions");
         jButton18.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -777,9 +774,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton19.setBackground(java.awt.SystemColor.text);
-        jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/viewimage.png"))); // NOI18N
-        jButton19.setText("View");
-        jButton19.setToolTipText("");
+        jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Apps-digikam-icon.png"))); // NOI18N
+        jButton19.setToolTipText("View Image");
         jButton19.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -798,7 +794,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton6.setBackground(java.awt.SystemColor.text);
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/search-button.png"))); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-page-zoom-icon.png"))); // NOI18N
+        jButton6.setToolTipText("Search");
         jButton6.setBorder(null);
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -839,44 +836,45 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)
                         .addGap(10, 10, 10)
-                        .addComponent(jButton4)
-                        .addGap(10, 10, 10)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton7)
                         .addGap(10, 10, 10)
-                        .addComponent(jButton12)
-                        .addGap(10, 10, 10)
-                        .addComponent(jButton13)
-                        .addGap(10, 10, 10)
-                        .addComponent(jButton17)
-                        .addGap(10, 10, 10)
-                        .addComponent(jButton18)
-                        .addGap(10, 10, 10)
-                        .addComponent(jButton19))
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0))
+                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton19)
+                        .addGap(93, 93, 93))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(1, 1, 1)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(jButton4)
+                        .addComponent(jButton13)
+                        .addComponent(jButton12)
+                        .addComponent(jButton7)
+                        .addComponent(jButton17)
+                        .addComponent(jButton18)
+                        .addComponent(jButton19)
+                        .addComponent(jButton3))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
