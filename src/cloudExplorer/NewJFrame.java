@@ -296,6 +296,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem34 = new javax.swing.JMenuItem();
         jMenuItem25 = new javax.swing.JMenuItem();
         jMenuItem18 = new javax.swing.JMenuItem();
         jMenuItem31 = new javax.swing.JMenuItem();
@@ -1553,6 +1554,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
         jMenu8.add(jMenuItem12);
+
+        jMenuItem34.setText("ToolBar");
+        jMenuItem34.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem34ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem34);
 
         jMenuItem25.setText("Check for updates");
         jMenuItem25.addActionListener(new java.awt.event.ActionListener() {
@@ -3406,6 +3415,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField7ActionPerformed
+
+    private void jMenuItem34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem34ActionPerformed
+       helpMenu("Toolbar.txt");
+    }//GEN-LAST:event_jMenuItem34ActionPerformed
     void cleanup() {
         try {
             jPanel9.setVisible(true);
@@ -3536,6 +3549,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenuItem jMenuItem31;
     private javax.swing.JMenuItem jMenuItem32;
     private javax.swing.JMenuItem jMenuItem33;
+    private javax.swing.JMenuItem jMenuItem34;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
