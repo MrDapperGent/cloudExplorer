@@ -1157,7 +1157,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jScrollPane4.setViewportView(jTextArea2);
 
         jButton11.setBackground(java.awt.SystemColor.text);
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/uploadbutton.png"))); // NOI18N
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-svn-commit-icon.png"))); // NOI18N
         jButton11.setText("Save");
         jButton11.setBorder(null);
         jButton11.addActionListener(new java.awt.event.ActionListener() {
@@ -1261,7 +1261,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton11)
-                        .addGap(17, 17, 17)
+                        .addGap(6, 6, 6)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
