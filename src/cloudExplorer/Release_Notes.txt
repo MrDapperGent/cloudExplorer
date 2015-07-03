@@ -1,4 +1,4 @@
-Version 5.7
+Version 6.0
 
 Bug Fixes: 
             1. Fixed a bug when switching accounts.
@@ -9,6 +9,7 @@ Bug Fixes:
 Improvements: 
             1. Snapshots and Migration are now located under the new menu 
                 "Snapshots and Migration".
+            2. New Icons for GUI.
  
 New Features: 
             1. Create Bucket snapshots.

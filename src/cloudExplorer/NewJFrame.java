@@ -45,8 +45,8 @@ import javax.swing.plaf.ColorUIResource;
 
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
-    String major = "5";
-    String minor = "7";
+    String major = "6";
+    String minor = "0";
     String release_version = major + "." + minor;
     String version = "Cloud Explorer " + release_version;
     String[] folders = new String[1];
@@ -741,6 +741,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jButton7.setBackground(java.awt.SystemColor.text);
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-system-search-icon.png"))); // NOI18N
+        jButton7.setToolTipText("Properties");
         jButton7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
