@@ -4,13 +4,13 @@ The numbering goes from left to right.
 
 1. Download selected file.
 2. Switch to Upload tab.
-3. Delete file.
-4. File properties.
-5. Edit a file.
+3. Delete selected file(s).
+4. Properties of selected file.
+5. Edit selected file.
 6. Select/Deselect all.
-7. Play a music file.
-8. View file versions.
-9. View image.
+7. Play selected music file(s).
+8. View versions of selected file.
+9. View selected image.
 
 
 
