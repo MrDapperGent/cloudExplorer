@@ -1682,7 +1682,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             versionDownload = false;
             BucketACL bucketACL = new BucketACL(this);
             bucketACL.startc();
-            jButton13.setText("Select All");
+            jButton13.setToolTipText("Select All");
 
             try {
                 int found = 0;
@@ -1748,7 +1748,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             versionDownload = false;
             BucketACL bucketACL = new BucketACL(this);
             bucketACL.startc();
-            jButton13.setText("Select All");
+            jButton13.setToolTipText("Select All");
 
             try {
                 int found = 0;
@@ -1899,7 +1899,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             while ((read = bfr.readLine()) != null) {
                 if (read != null) {
                     if (read.length() > 1) {
-                       if (read.contains("@")) {
+                        if (read.contains("@")) {
                             account_array[h] = read;
                         }
                         content_counter++;
@@ -2903,10 +2903,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                                 } else {
                                     if (object_item[i].isSelected()) {
                                         object_item[i].setSelected(false);
-                                        jButton13.setText("Select");
+                                        jButton13.setToolTipText("Select");
                                     } else {
                                         object_item[i].setSelected(true);
-                                        jButton13.setText("Deselect");
+                                        jButton13.setToolTipText("Deselect");
                                     }
                                 }
                             } else {
