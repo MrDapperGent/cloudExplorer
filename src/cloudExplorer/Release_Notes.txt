@@ -10,6 +10,7 @@ Improvements:
             1. Snapshots and Migration are now located under the new menu 
                 "Snapshots and Migration".
             2. New Icons for GUI.
+            3. Maximize Window.
  
 New Features: 
             1. Create Bucket snapshots.
