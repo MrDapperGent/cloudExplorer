@@ -998,9 +998,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addComponent(jButton15)
                 .addGap(18, 18, 18)
                 .addComponent(jCheckBox2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(6, 6, 6)
                 .addComponent(jCheckBox4)
-                .addGap(12, 12, 12)
+                .addGap(6, 6, 6)
                 .addComponent(jCheckBox5)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
