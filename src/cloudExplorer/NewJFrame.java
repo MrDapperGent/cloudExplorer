@@ -451,7 +451,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addComponent(jTextField5))
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addComponent(jLabel9)
-                        .addGap(52, 52, 52)
+                        .addGap(53, 53, 53)
                         .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addComponent(jLabel6)
