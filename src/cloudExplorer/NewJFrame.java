@@ -2985,6 +2985,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         jTextArea1.append("\nMusic player has been started. Please observe for any errors.");
                         calibrateTextArea();
                         jPanel9.setVisible(true);
+                        break;
                     }
                 }
             }
@@ -3040,6 +3041,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         jButton19.setEnabled(false);
                         imageviewer.startc();
                         jPanel9.setVisible(true);
+                        break;
                     }
                 }
             }
