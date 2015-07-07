@@ -65,19 +65,19 @@ public class MusicPlayer implements Runnable {
             forwardMusic.setForeground(Color.blue);
 
             ImageIcon play = new ImageIcon(
-                    getClass().getResource("play.png"));
+                    getClass().getResource("Actions-media-playback-start-icon.png"));
             replayMusic.setIcon(play);
 
             ImageIcon stop = new ImageIcon(
-                    getClass().getResource("abort.png"));
+                    getClass().getResource("Actions-process-stop-icon.png"));
             stopMusic.setIcon(stop);
 
             ImageIcon forward = new ImageIcon(
-                    getClass().getResource("forward.png"));
+                    getClass().getResource("Actions-media-seek-forward-icon.png"));
             forwardMusic.setIcon(forward);
 
             ImageIcon rewind = new ImageIcon(
-                    getClass().getResource("rewind.png"));
+                    getClass().getResource("Actions-media-seek-backward-icon.png"));
             backwardMusic.setIcon(rewind);
 
             mainFrame.jPanel15.setVisible(false);
