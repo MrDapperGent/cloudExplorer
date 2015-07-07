@@ -3017,18 +3017,25 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         if (active_bucket > 0) {
-            imageviewer = new ImageViewer(this);
-            jButton1.setEnabled(false);
-            jButton3.setEnabled(false);
-            jButton4.setEnabled(false);
-            jButton7.setEnabled(false);
-            jButton12.setEnabled(false);
-            jButton13.setEnabled(false);
-            jButton17.setEnabled(false);
-            jButton18.setEnabled(false);
-            jButton19.setEnabled(false);
-            imageviewer.startc();
-            jPanel9.setVisible(true);
+            for (int i = 1; i != previous_objectarray_length; i++) {
+                if (object_item[i] != null) {
+                    if (object_item[i].isSelected()) {
+                        imageviewer = new ImageViewer(this);
+                        jButton1.setEnabled(false);
+                        jButton3.setEnabled(false);
+                        jButton4.setEnabled(false);
+                        jButton7.setEnabled(false);
+                        jButton12.setEnabled(false);
+                        jButton13.setEnabled(false);
+                        jButton17.setEnabled(false);
+                        jButton18.setEnabled(false);
+                        jButton19.setEnabled(false);
+                        imageviewer.startc();
+                        jPanel9.setVisible(true);
+                    }
+                }
+            }
+
         } else {
             jTextArea1.append("\nError: No bucket has been selected");
         }
@@ -3426,7 +3433,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     }//GEN-LAST:event_jTextField7ActionPerformed
 
     private void jMenuItem34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem34ActionPerformed
-       helpMenu("Toolbar.txt");
+        helpMenu("Toolbar.txt");
     }//GEN-LAST:event_jMenuItem34ActionPerformed
     void cleanup() {
         try {
