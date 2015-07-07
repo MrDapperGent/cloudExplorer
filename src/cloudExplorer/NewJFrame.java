@@ -2975,12 +2975,20 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         if (active_bucket > 0) {
-            jTextArea1.append("\nPlease wait, loading MP3 player.");
-            calibrateTextArea();
-            MusicPlayer musicplayer = new MusicPlayer(this);
-            musicplayer.startc();
-            jTextArea1.append("\nMusic player has been started. Please observe for any errors.");
-            calibrateTextArea();
+            for (int i = 1; i != previous_objectarray_length; i++) {
+                if (object_item[i] != null) {
+                    if (object_item[i].isSelected()) {
+                        MusicPlayer musicplayer = new MusicPlayer(this);
+                        jTextArea1.append("\nPlease wait, loading MP3 player.");
+                        calibrateTextArea();
+                        musicplayer.startc();
+                        jTextArea1.append("\nMusic player has been started. Please observe for any errors.");
+                        calibrateTextArea();
+                        jPanel9.setVisible(true);
+                    }
+                }
+            }
+
         } else {
             jTextArea1.append("\nError: No bucket has been selected");
         }
