@@ -2007,7 +2007,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jPanel5.repaint();
         showPanel();
         jPanel5.setLayout(new BoxLayout(jPanel5, BoxLayout.PAGE_AXIS));
-
+        active_bucket = -1;
         bucket_item = new JRadioButton[bucketarray.length];
 
         if (bucketarray != null) {
@@ -2345,7 +2345,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jTextArea1.append("\nSaved Object\n");
             objectarray = null;
             bucket_item[active_bucket].setSelected(true);
-            reloadBuckets();
+            //reloadBuckets();
         } else {
             jTextArea1.append("\nError: no bucket selected.");
         }

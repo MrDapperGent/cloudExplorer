@@ -95,7 +95,7 @@ public class ConfigureObjectTransition implements Runnable {
                         jTextArea1.append("\n" + Transition.getMessage() + "\n");
                     }
 
-                    mainFrame.reloadBuckets();
+                    mainFrame.drawBuckets();
                     mainFrame.calibrateTextArea();
                     mainFrame.jPanel14.removeAll();
                     mainFrame.jPanel14.repaint();

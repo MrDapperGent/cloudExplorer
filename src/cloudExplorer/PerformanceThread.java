@@ -192,7 +192,7 @@ public class PerformanceThread implements Runnable {
                 s.close();
             } catch (Exception add) {
             }
-           
+
             if (tempFile.exists()) {
 
                 try {

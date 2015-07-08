@@ -30,7 +30,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 public class Performance implements Runnable {
-    
+
     NewJFrame mainFrame;
     Put put;
     Performance putperformance;
@@ -66,16 +66,16 @@ public class Performance implements Runnable {
     Boolean mixed = false;
     Boolean overwrite = false;
     Boolean mixed_traffic = false;
-    
+
     public Performance(NewJFrame Frame, Boolean Aoperation, Boolean Amixed) {
         mainFrame = Frame;
         operation = Aoperation;
         mixed_traffic = Amixed;
     }
-    
+
     public void run() {
         try {
-            
+
             getFileSize.setMaximumSize(new Dimension(220, 20));
             getTheadCount.setMaximumSize(new Dimension(220, 20));
             getOperationCount.setMaximumSize(new Dimension(220, 20));
@@ -96,47 +96,47 @@ public class Performance implements Runnable {
             overwrite_put.setForeground(Color.blue);
             overwrite_put.setSelected(false);
             overwrite_put.setBorder(null);
-            
+
             startPerformanceTest.setBackground(Color.white);
             startPerformanceTest.setForeground(Color.blue);
             abortPerformanceTest.setBackground(Color.white);
             abortPerformanceTest.setForeground(Color.blue);
             abortPerformanceTest.setBorder(null);
             startPerformanceTest.setBorder(null);
-            
+
             close.setBackground(Color.white);
             close.setBorder(null);
             close.setForeground(Color.blue);
-            
+
             close.setIcon(mainFrame.genericEngine);
             abortPerformanceTest.setIcon(mainFrame.genericEngine);
             startPerformanceTest.setIcon(mainFrame.genericEngine);
-            
+
             mainFrame.jPanel15.setVisible(false);
-            
+
             jlist_perf.setModel(new javax.swing.AbstractListModel() {
-                
+
                 public int getSize() {
                     return mainFrame.folders2.length;
                 }
-                
+
                 public Object getElementAt(int i) {
                     return mainFrame.folders2[i];
                 }
             });
             pane_perf = new JScrollPane(jlist_perf);
             startPerformanceTest.addActionListener(new ActionListener() {
-                
+
                 public void actionPerformed(ActionEvent e) {
                     startPerformanceTest.setVisible(false);
                     Boolean graphData = false;
-                    
+
                     NewJFrame.jPanel11.removeAll();
                     NewJFrame.jPanel11.revalidate();
                     NewJFrame.jPanel11.repaint();
-                    
+
                     num_graphs = 0;
-                    
+
                     if (overwrite_put.isSelected()) {
                         overwrite = true;
                     } else {
@@ -144,11 +144,11 @@ public class Performance implements Runnable {
                     }
                     if (latency_graph.isSelected() || throughput_graph.isSelected() || ops_graph.isSelected()) {
                         graphData = true;
-                        
+
                         if (latency_graph.isSelected()) {
                             graph_latency = true;
                             num_graphs++;
-                            
+
                         }
                         if (throughput_graph.isSelected()) {
                             graph_throughput = true;
@@ -182,9 +182,9 @@ public class Performance implements Runnable {
                     num_graphs = 0;
                 }
             });
-            
+
             abortPerformanceTest.addActionListener(new ActionListener() {
-                
+
                 public void actionPerformed(ActionEvent e) {
                     try {
                         performancethread.stop();
@@ -198,10 +198,10 @@ public class Performance implements Runnable {
                     graph_throughput = false;
                     graph_latency = false;
                     num_graphs = 0;
-                    mainFrame.reloadBuckets();
+                    mainFrame.drawBuckets();
                 }
             });
-            
+
             mainFrame.jPanel14.removeAll();
             mainFrame.jPanel14.setLayout(new BoxLayout(mainFrame.jPanel14, BoxLayout.Y_AXIS));
             mainFrame.jPanel14.add(title);
@@ -232,21 +232,21 @@ public class Performance implements Runnable {
             mainFrame.jPanel14.repaint();
             mainFrame.jPanel14.revalidate();
             mainFrame.jPanel14.validate();
-            
+
         } catch (Exception mp3player) {
             jTextArea1.append("\n" + mp3player.getMessage());
         }
         mainFrame.calibrateTextArea();
-        
+
     }
-    
+
     public void calibrate() {
         try {
             jTextArea1.setCaretPosition(jTextArea1.getLineStartOffset(jTextArea1.getLineCount() - 1));
         } catch (Exception e) {
         }
     }
-    
+
     void startc(NewJFrame mainFrame, boolean Aoperation, boolean Amixed) {
         (new Thread(new Performance(mainFrame, Aoperation, Amixed))).start();
     }

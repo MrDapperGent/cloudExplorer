@@ -189,7 +189,7 @@ public class ConfigureIRC implements Runnable {
                 } else {
                     NewJFrame.jTextArea1.append("\nError, please fill out all the fields.");
                 }
-                mainFrame.reloadBuckets();
+                mainFrame.drawBuckets();
             }
 
         });
@@ -201,8 +201,7 @@ public class ConfigureIRC implements Runnable {
                 mainFrame.jPanel11.repaint();
                 mainFrame.jPanel11.revalidate();
                 mainFrame.jPanel11.validate();
-                mainFrame.reloadBuckets();
-
+                mainFrame.drawBuckets();
             }
         });
 

@@ -16,8 +16,18 @@ Improvements:
                 "Snapshots and Migration".
             2. New Icons for GUI.
             3. Maximize Window.
-            4. For improved GUI responsiveness, buckets are not automatically 
-               reloaded after starting an upload 
+            4. For improved GUI responsiveness, the following actions no longer 
+               reloads the buckets:
+                    - Uploading a file
+                    - Stopping a perf test
+                    - Stopping the music player
+                    - Saving a file with the editor
+                    - Recording an audio message
+                    - Configuring IRC 
+                    - Applying object ACL's
+                    - Creating folders
+                    - Setting bucket lifecycle rules
+                    - Closing the snapshots function
 
 New Features: 
             1. Create Bucket snapshots.
