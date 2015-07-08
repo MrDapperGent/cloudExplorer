@@ -211,7 +211,7 @@ public class BucketMigration implements Runnable {
         } else {
             jTextArea1.append("\nBucket migration complete.");
         }
-        mainFrame.reloadBuckets();
+        mainFrame.drawBuckets();
 
         calibrate();
 

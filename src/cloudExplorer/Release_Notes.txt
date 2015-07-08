@@ -28,6 +28,7 @@ Improvements:
                     - Creating folders
                     - Setting bucket lifecycle rules
                     - Closing the snapshots function
+                    - Migrating buckets
 
 New Features: 
             1. Create Bucket snapshots.
