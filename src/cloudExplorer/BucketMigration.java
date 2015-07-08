@@ -26,7 +26,6 @@ import com.amazonaws.services.s3.model.Bucket;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.text.SimpleDateFormat;
-import java.util.Base64;
 import java.util.Date;
 
 public class BucketMigration implements Runnable {
@@ -92,11 +91,10 @@ public class BucketMigration implements Runnable {
             String read = null;
 
             while ((read = bfr.readLine()) != null) {
-                if (read.contains("=")) {
-                    byte[] str = Base64.getDecoder().decode(read);
-                    data = data + new String(str, "utf-8");
-                } else {
-                    data = data + read;
+                if (read.length() > 1) {
+                    if (read.contains("@")) {
+                        data = data + read;
+                    }
                 }
             }
         } catch (Exception loadConfig) {
