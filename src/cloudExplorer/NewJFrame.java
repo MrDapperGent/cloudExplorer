@@ -68,7 +68,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     String[] syncarray = null;
     String[] account_array = new String[1];
     String[] simple_account_array = null;
-    int active_account = 0;
+    int active_account = -1;
     int total_accounts = 0;
     JRadioButton bucket_item[] = null;
     public JRadioButton object_item[];
@@ -2469,7 +2469,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         } else {
             reloadAccounts();
-            if (active_account > 0) {
+            if (active_account >= 0) {
                 if (NewJFrame.jCheckBox1.isSelected()) {
                     HostChecker hostchecker = new HostChecker(jTextField3.getText(), this);
                     hostchecker.startc();
