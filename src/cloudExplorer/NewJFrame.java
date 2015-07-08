@@ -1029,8 +1029,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
-                .addGap(34, 34, 34)
-                .addComponent(jFileChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 837, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addComponent(jFileChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 829, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1128,8 +1129,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                             .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jCheckBox3)
                             .addComponent(jButton16))))
-                .addGap(32, 32, 32)
-                .addComponent(jFileChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 836, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addComponent(jFileChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 826, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
