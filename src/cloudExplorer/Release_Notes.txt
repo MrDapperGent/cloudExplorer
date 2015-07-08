@@ -16,7 +16,9 @@ Improvements:
                 "Snapshots and Migration".
             2. New Icons for GUI.
             3. Maximize Window.
- 
+            4. For improved GUI responsiveness, buckets are not automatically 
+               reloaded after an upload 
+
 New Features: 
             1. Create Bucket snapshots.
             2. Restore Bucket snapshots.

@@ -2536,7 +2536,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             put = new Put(upload, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), new_object_name, rrs, encrypt);
             put.startc(upload, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), new_object_name, rrs, encrypt);
             jPanel9.setVisible(true);
-            reloadBuckets();
+            //reloadBuckets();
         } else {
             jTextArea1.append("\nError: No bucket selected.");
         }
