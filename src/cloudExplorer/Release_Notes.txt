@@ -17,7 +17,7 @@ Improvements:
             2. New Icons for GUI.
             3. Maximize Window.
             4. For improved GUI responsiveness, buckets are not automatically 
-               reloaded after an upload 
+               reloaded after starting an upload 
 
 New Features: 
             1. Create Bucket snapshots.
