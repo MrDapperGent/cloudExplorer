@@ -98,7 +98,6 @@ public class MakeBucket implements Runnable {
             mainFrame.jPanel14.add(regionName);
             mainFrame.jPanel14.add(blank);
             mainFrame.jPanel14.add(createBucket);
-            mainFrame.jPanel14.add(blank2);
             mainFrame.jPanel14.add(close);
             mainFrame.jPanel14.repaint();
             mainFrame.jPanel14.revalidate();
