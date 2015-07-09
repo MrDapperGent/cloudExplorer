@@ -68,6 +68,7 @@ public class CreateFolder implements Runnable {
                     mainFrame.jButton11.doClick();
                     mainFrame.jTextField6.setText("");
                     mainFrame.jTextArea2.setText("");
+                    close.doClick();
                 }
             });
 
@@ -87,9 +88,9 @@ public class CreateFolder implements Runnable {
             mainFrame.jPanel14.add(name);
             mainFrame.jPanel14.add(folderName);
             mainFrame.jPanel14.add(blank3);
-            mainFrame.jPanel14.add(blank);
+           // mainFrame.jPanel14.add(blank);
             mainFrame.jPanel14.add(createFolder);
-            mainFrame.jPanel14.add(blank2);
+            //mainFrame.jPanel14.add(blank2);
             mainFrame.jPanel14.add(close);
             mainFrame.jPanel14.repaint();
             mainFrame.jPanel14.revalidate();
