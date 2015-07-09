@@ -44,13 +44,10 @@ public class MakeDestinationBucket implements Runnable {
         try {
             final JButton startMigration = new JButton("Start Migration");
             final JButton abortMigration = new JButton("Abort");
-            final JCheckBox deleteOrigin = new JCheckBox("Delete Origin");
             final JButton close = new JButton("Close");
             final JLabel blank = new JLabel(" ");
             final JLabel blank2 = new JLabel(" ");
             final JLabel blank3 = new JLabel(" ");
-            deleteOrigin.setBackground(Color.white);
-            deleteOrigin.setForeground(Color.blue);
             startMigration.setBackground(Color.white);
             startMigration.setForeground(Color.blue);
             abortMigration.setBackground(Color.white);
@@ -73,13 +70,9 @@ public class MakeDestinationBucket implements Runnable {
                     calibrate();
                     ReloadObjects object = new ReloadObjects(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), mainFrame);
                     object.run();
-                    if (deleteOrigin.isSelected()) {
-                        migrate = new BucketMigration(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, true, false, false, null);
-                        migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, true, false, false, null);
-                    } else {
-                        migrate = new BucketMigration(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, false, false, false, null);
-                        migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, false, false, false, null);
-                    }
+                    migrate = new BucketMigration(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, false, false, null);
+                    migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, false, false, null);
+
                 }
             });
 
@@ -103,8 +96,6 @@ public class MakeDestinationBucket implements Runnable {
 
             mainFrame.jPanel14.removeAll();
             mainFrame.jPanel14.setLayout(new BoxLayout(mainFrame.jPanel14, BoxLayout.Y_AXIS));
-            mainFrame.jPanel14.add(blank3);
-            mainFrame.jPanel14.add(deleteOrigin);
             mainFrame.jPanel14.add(blank);
             mainFrame.jPanel14.add(startMigration);
             mainFrame.jPanel14.add(abortMigration);

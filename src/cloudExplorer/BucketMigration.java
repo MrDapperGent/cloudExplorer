@@ -53,7 +53,6 @@ public class BucketMigration implements Runnable {
     Get get;
     Put put;
     Delete del;
-    Boolean deleteOrigin = false;
     Boolean snapshot = false;
     BucketClass bucketObject = new BucketClass();
     Boolean restoreSnapshot = false;
@@ -70,13 +69,12 @@ public class BucketMigration implements Runnable {
         }
     }
 
-    BucketMigration(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, NewJFrame AmainFrame, Boolean AdeleteOrigin, Boolean Asnapshot, Boolean ArestoreSnapshot, String Aactive_folder) {
+    BucketMigration(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, NewJFrame AmainFrame, Boolean Asnapshot, Boolean ArestoreSnapshot, String Aactive_folder) {
         access_key = Aaccess_key;
         secret_key = Asecret_key;
         bucket = Abucket;
         endpoint = Aendpoint;
         mainFrame = AmainFrame;
-        deleteOrigin = AdeleteOrigin;
         snapshot = Asnapshot;
         restoreSnapshot = ArestoreSnapshot;
         active_folder = Aactive_folder;
@@ -166,29 +164,29 @@ public class BucketMigration implements Runnable {
                 } else {
                     sep = lin;
                 }
-                if (destinationBucketlist.contains("Snapshot-" + bucket + "-" + date + sep + mainFrame.objectarray[i]) || destinationBucketlist.contains(mainFrame.objectarray[i])) {
-                    if (snapshot) {
-                        if (modified_check(mainFrame.objectarray[i], mainFrame.objectarray[i])) {
+
+                String search = null;
+                if (snapshot) {
+                    search = "Snapshot-" + bucket + "-" + date + sep + mainFrame.objectarray[i];
+                } else {
+                    search = mainFrame.objectarray[i];
+                }
+
+                if (destinationBucketlist.contains(search)) {
+
+                    if (modified_check(search, mainFrame.objectarray[i])) {
+                        if (snapshot) {
                             get = new Get(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, temp_file, null);
                             get.run();
                             put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + sep + mainFrame.objectarray[i], false, false);
                             put.run();
-                        }
-                    } else if (deleteOrigin) {
-                        del = new Delete(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, null);
-                        del.run();
-                    } else {
-                        if (modified_check(mainFrame.objectarray[i], mainFrame.objectarray[i])) {
+                        } else {
                             get = new Get(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, temp_file, null);
                             get.run();
                             put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, mainFrame.objectarray[i], false, false);
                             put.run();
-                        } else {
-                            mainFrame.jTextArea1.append("\nSkipping: " + mainFrame.objectarray[i] + " because it exists on the destination bucket already.");
-                            calibrate();
                         }
                     }
-
                 } else {
                     get = new Get(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, temp_file, null);
                     get.run();
@@ -198,15 +196,6 @@ public class BucketMigration implements Runnable {
                         put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, mainFrame.objectarray[i], false, false);
                     }
                     put.run();
-
-                    if (deleteOrigin) {
-                        scanDestination();
-                        if (destinationBucketlist.contains(mainFrame.objectarray[i])) {
-                            del = new Delete(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, null);
-                            del.run();
-                        }
-                    }
-
                 }
             }
         }
@@ -216,6 +205,7 @@ public class BucketMigration implements Runnable {
         } else {
             jTextArea1.append("\nBucket migration complete.");
         }
+
         mainFrame.drawBuckets();
 
         calibrate();
@@ -312,8 +302,8 @@ public class BucketMigration implements Runnable {
 
     }
 
-    void startc(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, NewJFrame AmainFrame, Boolean AdeleteOrigin, Boolean Asnapshot, Boolean ArestoreSnapshot, String Aactive_folder) {
-        bucketMigration = new Thread(new BucketMigration(Aaccess_key, Asecret_key, Abucket, Aendpoint, AmainFrame, AdeleteOrigin, Asnapshot, ArestoreSnapshot, Aactive_folder));
+    void startc(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, NewJFrame AmainFrame, Boolean Asnapshot, Boolean ArestoreSnapshot, String Aactive_folder) {
+        bucketMigration = new Thread(new BucketMigration(Aaccess_key, Asecret_key, Abucket, Aendpoint, AmainFrame, Asnapshot, ArestoreSnapshot, Aactive_folder));
         bucketMigration.start();
     }
 
