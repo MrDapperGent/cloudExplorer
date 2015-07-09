@@ -194,6 +194,8 @@ public class SyncFromS3 implements Runnable {
             mainFrame.jTextArea1.append("\n" + SyncLocal.getMessage());
         }
 
+        mainFrame.drawBuckets();
+
         mainFrame.jTextArea1.append(
                 "\nSync operation finished running. Please observe this window for any transfers that may still be running.");
         calibrate();

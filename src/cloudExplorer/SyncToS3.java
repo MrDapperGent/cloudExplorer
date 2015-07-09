@@ -81,7 +81,7 @@ public class SyncToS3 implements Runnable {
             Date remote = sdf.parse(mainFrame.bucket.getObjectInfo(remoteFile, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), "objectdate"));
             milli = check_localFile.lastModified();
             Date local = new Date(milli);
-            
+
             if (local_md5String.contains(remote_md5String)) {
             } else {
                 if (local.after(remote)) {
@@ -138,7 +138,7 @@ public class SyncToS3 implements Runnable {
                 found = 0;
             }
         }
-      
+        mainFrame.drawBuckets();
         mainFrame.jTextArea1.append("\nSync operation finished running. Please observe this window for any transfers that may still be running.");
         calibrate();
     }
