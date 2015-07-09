@@ -138,7 +138,7 @@ public class SyncToS3 implements Runnable {
                 found = 0;
             }
         }
-        mainFrame.reloadBuckets();
+        //mainFrame.reloadBuckets();
         mainFrame.jTextArea1.append("\nSync operation finished running. Please observe this window for any transfers that may still be running.");
         calibrate();
     }
