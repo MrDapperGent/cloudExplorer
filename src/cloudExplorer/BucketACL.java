@@ -179,7 +179,7 @@ public class BucketACL implements Runnable {
                                 change.setAccess(canon_field.getText(), operation, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getEndpoint(), mainFrame.cred.getBucket());
                                 mainFrame.jTextArea1.append("\nSent request to modify ACL. Please obeserve this window for any errors.");
                             }
-                            mainFrame.reloadBuckets();
+                            mainFrame.drawBuckets();
                             refresh();
                         }
                     });
