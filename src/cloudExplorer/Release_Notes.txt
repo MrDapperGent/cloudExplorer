@@ -10,7 +10,8 @@ Bug Fixes:
             4. If no music is selected when the play button is pressed, nothing
                happens.
             5. Support for line spaces in s3.config
-               
+            6. Versioning display fix.
+
 Improvements: 
             1. Snapshots and Migration are now located under the new menu 
                 "Snapshots and Migration".

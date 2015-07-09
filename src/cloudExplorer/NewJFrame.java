@@ -3006,17 +3006,22 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jButton18.setEnabled(false);
             jButton19.setEnabled(false);
             jPanel9.setVisible(true);
-
-            for (int i = 1; i != objectarray.length; i++) {
-                if (object_item[i].isSelected()) {
-                    countSelected = true;
-                    showVersions = new ShowVersions(object_item[i].getText(), cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), this);
-                    showVersions.startc(object_item[i].getText(), cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), this);;
-                    break;
+            try {
+                for (int i = 1; i != objectarray.length; i++) {
+                    if (object_item[i].isSelected()) {
+                        countSelected = true;
+                        showVersions = new ShowVersions(object_item[i].getText(), cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), this);
+                        showVersions.startc(object_item[i].getText(), cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), this);;
+                        break;
+                    }
                 }
+            } catch (Exception versioning) {
             }
-
             if (!countSelected) {
+                jTextArea1.append("\nPleae wait. Reloading Objects to show all versions");
+                calibrateTextArea();
+                jButton6.doClick();
+                jPanel9.setVisible(true);
                 showVersions = new ShowVersions(null, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), this);
                 showVersions.startc(null, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), this);
             }
