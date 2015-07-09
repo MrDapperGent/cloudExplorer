@@ -116,7 +116,7 @@ public class ObjectACL implements Runnable {
 
                     mainFrame.jPanel9.setVisible(true);
                     mainFrame.jPanel15.setVisible(false);
-                    mainFrame.reloadBuckets();
+                    mainFrame.drawBuckets();
                 }
             });
 

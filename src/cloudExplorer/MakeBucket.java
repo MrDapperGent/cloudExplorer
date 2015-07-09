@@ -85,7 +85,7 @@ public class MakeBucket implements Runnable {
                     mainFrame.jPanel14.repaint();
                     mainFrame.jPanel14.revalidate();
                     mainFrame.jPanel14.validate();
-                    mainFrame.reloadBuckets();
+                    mainFrame.drawBuckets();
                 }
             });
 

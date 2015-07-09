@@ -296,7 +296,7 @@ public class Graph implements Runnable {
                 mainFrame.jPanel11.repaint();
                 mainFrame.jPanel11.revalidate();
                 mainFrame.jPanel11.validate();
-                mainFrame.reloadBuckets();
+                mainFrame.drawBuckets();
             }
         });
 
