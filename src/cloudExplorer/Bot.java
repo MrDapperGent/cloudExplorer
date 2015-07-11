@@ -28,6 +28,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -46,7 +47,8 @@ public class Bot implements Runnable {
     int port;
     Put put;
     String password = null;
-
+    ImageIcon genericEngine = new ImageIcon(
+            this.getClass().getResource("engine.png"));
     public static JTextArea ircarea;
     public static JButton irc_send_button;
     public static JButton irc_close_button;
@@ -198,21 +200,23 @@ public class Bot implements Runnable {
         final JLabel blank = new JLabel(" ");
         ircarea = new JTextArea("\nConnecting to server......");
         irc_input_text = new JTextField("");
-        irc_send_button = new JButton("        Save to bucket");
-        irc_close_button = new JButton("    Close");
+        irc_send_button = new JButton("Save to bucket");
+        irc_close_button = new JButton("Close");
         irc_scrollpane = new JScrollPane(ircarea);
 
         irc_send_button.setBackground(Color.white);
         irc_send_button.setForeground(Color.GREEN);
+        irc_send_button.setIcon(genericEngine);
         irc_send_button.setBorder(null);
 
         irc_close_button.setBackground(Color.white);
         irc_close_button.setForeground(Color.GREEN);
+        irc_close_button.setIcon(genericEngine);
         irc_close_button.setBorder(null);
 
         ircarea.setMaximumSize(new Dimension(1300, 500));
-        irc_send_button.setMaximumSize(new Dimension(150, 15));
-        irc_close_button.setMaximumSize(new Dimension(150, 15));
+        irc_send_button.setMaximumSize(new Dimension(150, 20));
+        irc_close_button.setMaximumSize(new Dimension(150, 20));
         irc_input_text.setMaximumSize(new Dimension(1400, 20));
         irc_scrollpane.setMaximumSize(new Dimension(1500, 500));
 
