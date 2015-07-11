@@ -75,10 +75,16 @@ public class Performance implements Runnable {
 
     public void run() {
         try {
-
+            jlist_label.setForeground(Color.GRAY);
+            fileSize.setForeground(Color.GRAY);
+            threadCount.setForeground(Color.GRAY);
+            operationCount.setForeground(Color.GRAY);
             getFileSize.setMaximumSize(new Dimension(220, 20));
+            getFileSize.setForeground(Color.GRAY);
             getTheadCount.setMaximumSize(new Dimension(220, 20));
+            getTheadCount.setForeground(Color.GRAY);
             getOperationCount.setMaximumSize(new Dimension(220, 20));
+            getOperationCount.setForeground(Color.GRAY);
             latency_graph.setBackground(Color.white);
             latency_graph.setForeground(Color.GRAY);
             latency_graph.setSelected(false);
