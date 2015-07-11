@@ -126,7 +126,8 @@ public class BucketACL implements Runnable {
 
                     canon_button.setBackground(Color.white);
                     canon_button.setBorder(null);
-                    canon_button.setForeground(Color.GRAY);
+                    canon_button.setForeground(Color.GREEN);
+                    canon_button.setIcon(mainFrame.genericEngine);
 
                     ro.setBackground(Color.white);
                     ro.setBorder(null);
