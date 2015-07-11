@@ -24,6 +24,7 @@ import com.googlecode.charts4j.GCharts;
 import com.googlecode.charts4j.Plot;
 import com.googlecode.charts4j.Plots;
 import com.googlecode.charts4j.XYLineChart;
+import static java.awt.Color.BLUE;
 import static java.awt.Color.GREEN;
 import static java.awt.Color.WHITE;
 import java.awt.GridLayout;
@@ -374,7 +375,7 @@ public class PerformanceThread implements Runnable {
         }
 
         JLabel throughputIcon = new JLabel("\n             Average " + type_operation + " Throughput \n\n" + Double.toString(throughput) + " MB/s");
-        throughputIcon.setForeground(GREEN);
+        throughputIcon.setForeground(BLUE);
         throughputIcon.setBackground(WHITE);
         JLabel iopsIcon = new JLabel("\n                                         " + type_operation + " OP/s \n\n" + Double.toString(iops));
         iopsIcon.setForeground(GREEN);
