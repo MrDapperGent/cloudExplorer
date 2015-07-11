@@ -54,13 +54,13 @@ public class ConfigureObjectTransition implements Runnable {
             days.setForeground(Color.GREEN);
 
             glacier.setBackground(Color.white);
-            glacier.setForeground(Color.GREEN);
+            glacier.setForeground(Color.GRAY);
 
             label.setBackground(Color.white);
-            label.setForeground(Color.GREEN);
+            label.setForeground(Color.GRAY);
 
             prefix.setBackground(Color.white);
-            prefix.setForeground(Color.GREEN);
+            prefix.setForeground(Color.GRAY);
 
             commitTransition.setBackground(Color.white);
             commitTransition.setBorder(null);
