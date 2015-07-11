@@ -47,25 +47,25 @@ public class ObjectACL implements Runnable {
             final JButton acl = new JButton("Commit");
             final JButton close = new JButton("Close");
 
-            public_box.setBackground(Color.white);
-            public_box.setForeground(Color.blue);
+            public_box.setBackground(Color.WHITE);
+            public_box.setForeground(Color.GRAY);
             public_box.setBorder(null);
 
             url_box.setBackground(Color.white);
             url_box.setBorder(null);
-            url_box.setForeground(Color.blue);
+            url_box.setForeground(Color.GRAY);
 
             private_box.setBackground(Color.white);
             private_box.setBorder(null);
-            private_box.setForeground(Color.blue);
+            private_box.setForeground(Color.GRAY);
 
             acl.setBackground(Color.white);
             acl.setBorder(null);
-            acl.setForeground(Color.blue);
+            acl.setForeground(Color.GREEN);
 
             close.setBackground(Color.white);
             close.setBorder(null);
-            close.setForeground(Color.blue);
+            close.setForeground(Color.GREEN);
 
             close.setIcon(mainFrame.genericEngine);
 

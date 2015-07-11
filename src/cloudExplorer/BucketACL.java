@@ -62,31 +62,31 @@ public class BucketACL implements Runnable {
 
             refresh_bucket.setBackground(Color.white);
             refresh_bucket.setBorder(null);
-            refresh_bucket.setForeground(Color.blue);
+            refresh_bucket.setForeground(Color.GRAY);
 
             share_button.setBackground(Color.white);
             share_button.setBorder(null);
-            share_button.setForeground(Color.blue);
+            share_button.setForeground(Color.GRAY);
 
             static_website.setBackground(Color.white);
             static_website.setBorder(null);
-            static_website.setForeground(Color.blue);
+            static_website.setForeground(Color.GRAY);
 
             enable_versioning.setBackground(Color.white);
             enable_versioning.setBorder(null);
-            enable_versioning.setForeground(Color.blue);
+            enable_versioning.setForeground(Color.GRAY);
 
             suspend_versioning.setBackground(Color.white);
             suspend_versioning.setBorder(null);
-            suspend_versioning.setForeground(Color.blue);
+            suspend_versioning.setForeground(Color.GRAY);
 
             disable_website.setBackground(Color.white);
             disable_website.setBorder(null);
-            disable_website.setForeground(Color.blue);
+            disable_website.setForeground(Color.GRAY);
 
             delete_bucket.setBackground(Color.white);
             delete_bucket.setBorder(null);
-            delete_bucket.setForeground(Color.blue);
+            delete_bucket.setForeground(Color.GRAY);
 
             enable_versioning.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -122,23 +122,23 @@ public class BucketACL implements Runnable {
 
                     canon_label.setBackground(Color.white);
                     canon_label.setBorder(null);
-                    canon_label.setForeground(Color.blue);
+                    canon_label.setForeground(Color.GRAY);
 
                     canon_button.setBackground(Color.white);
                     canon_button.setBorder(null);
-                    canon_button.setForeground(Color.blue);
+                    canon_button.setForeground(Color.GRAY);
 
                     ro.setBackground(Color.white);
                     ro.setBorder(null);
-                    ro.setForeground(Color.blue);
+                    ro.setForeground(Color.GRAY);
 
                     full.setBackground(Color.white);
                     full.setBorder(null);
-                    full.setForeground(Color.blue);
+                    full.setForeground(Color.GRAY);
 
                     remove.setBackground(Color.white);
                     remove.setBorder(null);
-                    remove.setForeground(Color.blue);
+                    remove.setForeground(Color.GRAY);
 
                     mainFrame.jPanel14.add(canon_label);
                     mainFrame.jPanel14.add(canon_field);

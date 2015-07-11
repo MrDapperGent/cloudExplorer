@@ -52,17 +52,17 @@ public class MusicPlayer implements Runnable {
             final JButton backwardMusic = new JButton("Backward");
 
             stopMusic.setBackground(Color.white);
-            stopMusic.setForeground(Color.blue);
+            stopMusic.setForeground(Color.GREEN);
             stopMusic.setBorder(null);
             replayMusic.setBackground(Color.white);
             replayMusic.setBorder(null);
-            replayMusic.setForeground(Color.blue);
+            replayMusic.setForeground(Color.GREEN);
             backwardMusic.setBackground(Color.white);
             backwardMusic.setBorder(null);
-            backwardMusic.setForeground(Color.blue);
+            backwardMusic.setForeground(Color.GREEN);
             forwardMusic.setBackground(Color.white);
             forwardMusic.setBorder(null);
-            forwardMusic.setForeground(Color.blue);
+            forwardMusic.setForeground(Color.GREEN);
 
             ImageIcon play = new ImageIcon(
                     getClass().getResource("Actions-media-playback-start-icon.png"));

@@ -50,16 +50,16 @@ public class MakeBucket implements Runnable {
             final JLabel region_name = new JLabel("Region Name:");
             bucketName.setMaximumSize(new Dimension(200, 20));
             regionName.setMaximumSize(new Dimension(200, 20));
-            name.setBackground(Color.white);
-            name.setForeground(Color.blue);
-            region_name.setBackground(Color.white);
-            region_name.setForeground(Color.blue);
+            name.setBackground(Color.WHITE);
+            name.setForeground(Color.GRAY);
+            region_name.setBackground(Color.WHITE);
+            region_name.setForeground(Color.GRAY);
             createBucket.setBackground(Color.white);
-            createBucket.setForeground(Color.blue);
+            createBucket.setForeground(Color.GREEN);
             createBucket.setBorder(null);
             close.setBackground(Color.white);
             close.setBorder(null);
-            close.setForeground(Color.blue);
+            close.setForeground(Color.GREEN);
 
             createBucket.setIcon(mainFrame.genericEngine);
             close.setIcon(mainFrame.genericEngine);

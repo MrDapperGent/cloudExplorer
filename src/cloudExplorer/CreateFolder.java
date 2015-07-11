@@ -48,13 +48,13 @@ public class CreateFolder implements Runnable {
             final JLabel name = new JLabel("Folder Name:");
             folderName.setMaximumSize(new Dimension(200, 20));
             name.setBackground(Color.white);
-            name.setForeground(Color.blue);
+            name.setForeground(Color.GRAY);
             createFolder.setBackground(Color.white);
-            createFolder.setForeground(Color.blue);
+            createFolder.setForeground(Color.GREEN);
             createFolder.setBorder(null);
             close.setBackground(Color.white);
             close.setBorder(null);
-            close.setForeground(Color.blue);
+            close.setForeground(Color.GREEN);
 
             createFolder.setIcon(mainFrame.genericEngine);
             close.setIcon(mainFrame.genericEngine);

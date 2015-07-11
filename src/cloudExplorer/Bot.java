@@ -203,11 +203,11 @@ public class Bot implements Runnable {
         irc_scrollpane = new JScrollPane(ircarea);
 
         irc_send_button.setBackground(Color.white);
-        irc_send_button.setForeground(Color.blue);
+        irc_send_button.setForeground(Color.GREEN);
         irc_send_button.setBorder(null);
 
         irc_close_button.setBackground(Color.white);
-        irc_close_button.setForeground(Color.blue);
+        irc_close_button.setForeground(Color.GREEN);
         irc_close_button.setBorder(null);
 
         ircarea.setMaximumSize(new Dimension(1300, 500));

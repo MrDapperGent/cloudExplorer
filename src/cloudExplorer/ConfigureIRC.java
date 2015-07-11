@@ -67,36 +67,36 @@ public class ConfigureIRC implements Runnable {
         final JButton close = new JButton("Close");
 
         server_label.setBackground(Color.white);
-        server_label.setForeground(Color.blue);
+        server_label.setForeground(Color.GRAY);
         server_label.setBorder(null);
 
         password_label.setBackground(Color.white);
-        password_label.setForeground(Color.blue);
+        password_label.setForeground(Color.GRAY);
         password_label.setBorder(null);
 
         port_label.setBackground(Color.white);
-        port_label.setForeground(Color.blue);
+        port_label.setForeground(Color.GRAY);
         port_label.setBorder(null);
 
         info.setBackground(Color.white);
-        info.setForeground(Color.blue);
+        info.setForeground(Color.GRAY);
         info.setBorder(null);
 
         nick_label.setBackground(Color.white);
-        nick_label.setForeground(Color.blue);
+        nick_label.setForeground(Color.GRAY);
         nick_label.setBorder(null);
 
         room_label.setBackground(Color.white);
-        room_label.setForeground(Color.blue);
+        room_label.setForeground(Color.GRAY);
         room_label.setBorder(null);
 
         save.setBackground(Color.white);
-        save.setForeground(Color.blue);
+        save.setForeground(Color.GREEN);
         save.setBorder(null);
 
         close.setBackground(Color.white);
         close.setBorder(null);
-        close.setForeground(Color.blue);
+        close.setForeground(Color.GREEN);
 
         close.setMaximumSize(new Dimension(150, 15));
         save.setMaximumSize(new Dimension(150, 15));

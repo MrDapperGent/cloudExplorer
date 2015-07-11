@@ -80,40 +80,40 @@ public class Performance implements Runnable {
             getTheadCount.setMaximumSize(new Dimension(220, 20));
             getOperationCount.setMaximumSize(new Dimension(220, 20));
             latency_graph.setBackground(Color.white);
-            latency_graph.setForeground(Color.blue);
+            latency_graph.setForeground(Color.GRAY);
             latency_graph.setSelected(false);
             latency_graph.setBorder(null);
             ops_graph.setBackground(Color.white);
-            ops_graph.setForeground(Color.blue);
+            ops_graph.setForeground(Color.GRAY);
             ops_graph.setSelected(false);
             ops_graph.setBorder(null);
             throughput_graph.setBackground(Color.white);
-            throughput_graph.setForeground(Color.blue);
+            throughput_graph.setForeground(Color.GRAY);
             throughput_graph.setSelected(false);
             throughput_graph.setBorder(null);
             title.setForeground(Color.RED);
             overwrite_put.setBackground(Color.white);
-            overwrite_put.setForeground(Color.blue);
+            overwrite_put.setForeground(Color.GRAY);
             overwrite_put.setSelected(false);
             overwrite_put.setBorder(null);
 
             startPerformanceTest.setBackground(Color.white);
-            startPerformanceTest.setForeground(Color.blue);
+            startPerformanceTest.setForeground(Color.GREEN);
             abortPerformanceTest.setBackground(Color.white);
-            abortPerformanceTest.setForeground(Color.blue);
+            abortPerformanceTest.setForeground(Color.GREEN);
             abortPerformanceTest.setBorder(null);
             startPerformanceTest.setBorder(null);
 
             close.setBackground(Color.white);
             close.setBorder(null);
-            close.setForeground(Color.blue);
+            close.setForeground(Color.GREEN);
 
             close.setIcon(mainFrame.genericEngine);
             abortPerformanceTest.setIcon(mainFrame.genericEngine);
             startPerformanceTest.setIcon(mainFrame.genericEngine);
 
             mainFrame.jPanel15.setVisible(false);
-
+            jlist_perf.setForeground(Color.GRAY);
             jlist_perf.setModel(new javax.swing.AbstractListModel() {
 
                 public int getSize() {

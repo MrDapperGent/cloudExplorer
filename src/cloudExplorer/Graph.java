@@ -124,68 +124,68 @@ public class Graph implements Runnable {
         y_name_field.setMaximumSize(new Dimension(250, 20));
 
         y_whattograph.setBackground(Color.white);
-        y_whattograph.setForeground(Color.blue);
+        y_whattograph.setForeground(Color.GREEN);
         y_whattograph.setBorder(null);
 
         intro_label_main.setBackground(Color.white);
-        intro_label_main.setForeground(Color.blue);
+        intro_label_main.setForeground(Color.GREEN);
         intro_label_main.setBorder(null);
 
         intro_label_main_two.setBackground(Color.white);
-        intro_label_main_two.setForeground(Color.blue);
+        intro_label_main_two.setForeground(Color.GREEN);
         intro_label_main_two.setBorder(null);
 
         line_checkbox.setBackground(Color.white);
-        line_checkbox.setForeground(Color.blue);
+        line_checkbox.setForeground(Color.GREEN);
         line_checkbox.setBorder(null);
 
         debug_checkbox.setBackground(Color.white);
-        debug_checkbox.setForeground(Color.blue);
+        debug_checkbox.setForeground(Color.GREEN);
         debug_checkbox.setBorder(null);
 
         interations.setBackground(Color.white);
-        interations.setForeground(Color.blue);
+        interations.setForeground(Color.GREEN);
         interations.setBorder(null);
 
         x_whattograph.setBackground(Color.white);
-        x_whattograph.setForeground(Color.blue);
+        x_whattograph.setForeground(Color.GREEN);
         x_whattograph.setBorder(null);
 
         graph_name.setBackground(Color.white);
-        graph_name.setForeground(Color.blue);
+        graph_name.setForeground(Color.GREEN);
         graph_name.setBorder(null);
 
         delimiter_label.setBackground(Color.white);
-        delimiter_label.setForeground(Color.blue);
+        delimiter_label.setForeground(Color.GREEN);
         delimiter_label.setBorder(null);
 
         graph_size_x.setBackground(Color.white);
-        graph_size_x.setForeground(Color.blue);
+        graph_size_x.setForeground(Color.GREEN);
         graph_size_x.setBorder(null);
 
         intro_label.setBackground(Color.white);
-        intro_label.setForeground(Color.blue);
+        intro_label.setForeground(Color.GREEN);
         intro_label.setBorder(null);
 
         graph_size_y.setBackground(Color.white);
-        graph_size_y.setForeground(Color.blue);
+        graph_size_y.setForeground(Color.GREEN);
         graph_size_y.setBorder(null);
 
         y_name.setBackground(Color.white);
-        y_name.setForeground(Color.blue);
+        y_name.setForeground(Color.GREEN);
         y_name.setBorder(null);
 
         x_name.setBackground(Color.white);
-        x_name.setForeground(Color.blue);
+        x_name.setForeground(Color.GREEN);
         x_name.setBorder(null);
 
         save.setBackground(Color.white);
-        save.setForeground(Color.blue);
+        save.setForeground(Color.GREEN);
         save.setBorder(null);
 
         close.setBackground(Color.white);
         close.setBorder(null);
-        close.setForeground(Color.blue);
+        close.setForeground(Color.GREEN);
 
         close.setMaximumSize(new Dimension(150, 15));
         save.setMaximumSize(new Dimension(150, 15));

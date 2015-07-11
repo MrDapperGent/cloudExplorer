@@ -49,14 +49,14 @@ public class MakeDestinationBucket implements Runnable {
             final JLabel blank2 = new JLabel(" ");
             final JLabel blank3 = new JLabel(" ");
             startMigration.setBackground(Color.white);
-            startMigration.setForeground(Color.blue);
+            startMigration.setForeground(Color.GREEN);
             abortMigration.setBackground(Color.white);
-            abortMigration.setForeground(Color.blue);
+            abortMigration.setForeground(Color.GREEN);
             startMigration.setBorder(null);
             abortMigration.setBorder(null);
             close.setBackground(Color.white);
             close.setBorder(null);
-            close.setForeground(Color.blue);
+            close.setForeground(Color.GREEN);
             close.setIcon(mainFrame.genericEngine);
             abortMigration.setIcon(mainFrame.genericEngine);
             startMigration.setIcon(mainFrame.genericEngine);
