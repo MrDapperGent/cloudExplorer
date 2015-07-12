@@ -1355,6 +1355,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jMenuBar1.setBorder(null);
 
+        jMenu1.setForeground(java.awt.Color.gray);
         jMenu1.setText("File");
 
         jMenuItem23.setText("New Window");
@@ -1375,6 +1376,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu3.setForeground(java.awt.Color.gray);
         jMenu3.setText("Bucket");
 
         jMenuItem1.setText("Create Bucket");
@@ -1404,6 +1406,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jMenuBar1.add(jMenu3);
 
+        jMenu2.setForeground(java.awt.Color.gray);
         jMenu2.setText("Objects");
 
         jMenuItem6.setText("Modify Object ACL");
@@ -1432,6 +1435,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu5.setForeground(java.awt.Color.gray);
         jMenu5.setText("Background Syncing");
 
         jMenuItem15.setText("Run");
@@ -1452,6 +1456,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jMenuBar1.add(jMenu5);
 
+        jMenu12.setForeground(java.awt.Color.gray);
         jMenu12.setText("Snapshots and Migration");
 
         jMenuItem32.setText("Set Migration/Snapshot Account and Bucket");
@@ -1488,6 +1493,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jMenuBar1.add(jMenu12);
 
+        jMenu6.setForeground(java.awt.Color.gray);
         jMenu6.setText("Tools");
 
         jMenu10.setText("S3");
@@ -1556,6 +1562,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jMenuBar1.add(jMenu6);
 
+        jMenu7.setForeground(java.awt.Color.gray);
         jMenu7.setText("Performance");
 
         jMenuItem3.setText("PUT");
@@ -1584,6 +1591,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jMenuBar1.add(jMenu7);
 
+        jMenu11.setForeground(java.awt.Color.gray);
         jMenu11.setText("Console");
 
         jMenuItem21.setText("On");
@@ -1604,6 +1612,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jMenuBar1.add(jMenu11);
 
+        jMenu8.setForeground(java.awt.Color.gray);
         jMenu8.setText("Help");
 
         jMenuItem12.setText("About");
