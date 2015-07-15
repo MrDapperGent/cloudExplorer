@@ -94,7 +94,6 @@ Create your config file from the GUI.
 
 # Run Cloud Explorer from the Docker Hub repository
 <br>
-<br>
 This will allow you to run Cloud Explorer from a Docker container using my public repository.
 ```
  docker pull rusher81572/cloudexplorer
