@@ -104,25 +104,11 @@ To connect to the container, you can use a VNC client.
 ```
 	vncviewer localhost:1
 ```
-After you login VNC, you should see the GUI.
+After you login VNC with the default password of 123456, you should see the GUI.
 
-
-The default password is 123456.
-
-
-If you want to use the Cloud Explorer CLI instead of the GUI, please run the container as shown below:
-
-
-	docker run -it --net=host rusher81572/cloudexplorer /bin/bash
-	
-		(You should be in the container now)
-
-
+If you want to use the Cloud Explorer CLI, start an xterm session in the VNC session and run:
+```
 	java -jar /cloudExplorer-5/CloudExplorer.jar help
-
-
 	** Please note that you will need to use the GUI to create the s3.config file before using the CLI **
-
-	
-
+```
 <br>
