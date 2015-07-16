@@ -105,7 +105,7 @@ If you want to use your existing S3 configuration file, copy s3.config from your
 ```
 ADD s3.config /root/
 ```
-Save the file and repeair the earlier "docker build" and "docker run commands from earlier.
+Save the file and repeair the earlier "docker build" and "docker run" commands from earlier.
 
 To connect to the container, you can use a VNC client.
 ```
