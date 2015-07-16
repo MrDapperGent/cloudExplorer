@@ -92,7 +92,7 @@ Create your config file from the GUI.
 	$ java -jar -Xms100m -Xmx500m CloudExplorer.jar daemon
 ```
 
-# Build Cloud Explorer in Docker
+# Running Cloud Explorer in Docker
 <br>
 This following steps will explain how to run CloudExplorer from a Docker container.
 ```
