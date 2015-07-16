@@ -101,6 +101,12 @@ cd cloudExplorer
 docker build -t cloudexplorer .
 docker run -d --net=host cloudexplorer 
 ```
+If you want to use your existing S3 configuration file, copy s3.config from your home directory into the cloudExplorer directory. Modify DockerFile by adding the following before the CMD line:
+```
+ADD s3.config /root/
+```
+Save the file and repeair the earlier "docker build" and "docker run commands from earlier.
+
 To connect to the container, you can use a VNC client.
 ```
 	vncviewer localhost:1
