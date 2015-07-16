@@ -94,7 +94,7 @@ Create your config file from the GUI.
 
 # Running Cloud Explorer in Docker
 <br>
-This following steps will explain how to run CloudExplorer from a Docker container. This container template will install a CentOS 7 container with the TWM and Xterm.
+This following steps will explain how to run CloudExplorer from a Docker container. The template will install a CentOS 7 container with TWM and Xterm.
 ```
 git clone https://github.com/rusher81572/cloudExplorer.git -b docker
 cd cloudExplorer
