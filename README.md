@@ -98,7 +98,7 @@ This will allow you to run Cloud Explorer from a Docker container.
 ```
 git clone https://github.com/rusher81572/cloudExplorer.git -b docker
 docker build -t cloudexplorer .
-docker run -d --net=host cloudexplorer /opt/start.sh
+docker run -d --net=host cloudexplorer 
 ```
 To connect to the container, you can use a VNC client.
 ```
