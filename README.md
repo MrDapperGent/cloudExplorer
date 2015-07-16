@@ -117,6 +117,6 @@ If you want to use the Cloud Explorer CLI, start a terminal in the VNC session b
 ```
 	java -jar /cloudExplorer/CloudExplorer.jar help
 	
-	** Please note that you will need to use the GUI to create the s3.config file before using the CLI **
+	** Please note that you will need to use the GUI to create the s3.config file before using the CLI if you did not import your existing s3.config file **
 ```
 <br>
