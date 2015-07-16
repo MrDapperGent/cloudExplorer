@@ -94,7 +94,7 @@ Create your config file from the GUI.
 
 # Build Cloud Explorer in Docker
 <br>
-This will allow you to run Cloud Explorer from a Docker container.
+This following steps will explain how to run CloudExplorer from a Docker container.
 ```
 git clone https://github.com/rusher81572/cloudExplorer.git -b docker
 cd cloudExplorer
