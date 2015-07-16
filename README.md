@@ -107,7 +107,7 @@ ADD s3.config /root/
 ```
 Save the file and repeat the "docker build" and "docker run" commands from earlier.
 
-To connect to the container, you can use a VNC client such as vncviewer and connect to display #1.
+To connect to the container, you can use a VNC client such as vncviewer to connect to display #1.
 ```
 	vncviewer localhost:1
 ```
