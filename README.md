@@ -92,16 +92,17 @@ Create your config file from the GUI.
 	$ java -jar -Xms100m -Xmx500m CloudExplorer.jar daemon
 ```
 
-# Run Cloud Explorer from the Docker Hub repository
+# Build Cloud Explorer in Docker
 <br>
-This will allow you to run Cloud Explorer from a Docker container using my public repository.
+This will allow you to run Cloud Explorer from a Docker container.
 ```
- docker pull rusher81572/cloudexplorer
- docker run -d --net=host rusher81572/cloudexplorer /opt/start.sh
+git clone https://github.com/rusher81572/cloudExplorer.git -b docker
+docker build -t cloudexplorer .
+docker run -d --net=host cloudexplorer /opt/start.sh
 ```
 To connect to the container, you can use a VNC client.
 ```
-	vncviewer localhost:3
+	vncviewer localhost:1
 ```
 After you login VNC, you should see the GUI.
 
