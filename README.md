@@ -97,6 +97,7 @@ Create your config file from the GUI.
 This will allow you to run Cloud Explorer from a Docker container.
 ```
 git clone https://github.com/rusher81572/cloudExplorer.git -b docker
+cd cloudExplorer
 docker build -t cloudexplorer .
 docker run -d --net=host cloudexplorer 
 ```
