@@ -106,9 +106,9 @@ To connect to the container, you can use a VNC client.
 ```
 After you login VNC with the default password of 123456, you should see the GUI.
 
-If you want to use the Cloud Explorer CLI, start an xterm session in the VNC session and run:
+If you want to use the Cloud Explorer CLI, start a terminal in the VNC session by right clicking on the desktop and choose "xterm". Finally, run the following command:
 ```
-	java -jar /cloudExplorer-5/CloudExplorer.jar help
+	java -jar /cloudExplorer/CloudExplorer.jar help
 	
 	** Please note that you will need to use the GUI to create the s3.config file before using the CLI **
 ```
