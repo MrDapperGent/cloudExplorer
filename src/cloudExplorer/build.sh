@@ -11,13 +11,10 @@ ZIP="$HOME/$BUILD_NAME.zip"
 BUCKET="cloudexplorer"
 
 rm -rf $HOME/$BUILD_NAME
-mkdir $HOME/$BUILD_NAME
-cd $SRC
-cd $JARLOC
-ant
+ant -f $SRC/build.xml
 rm -f $ZIP
 rm -rf $LOCBUILD/home
-cp -rf $JARLOC/dist/* $LOCBUILD
+cp -rf $JARLOC $LOCBUILD
 cp -f $README $LOCBUILD
 cp -f $WINDOWS $LOCBUILD
 cp -f $LINUX $LOCBUILD
