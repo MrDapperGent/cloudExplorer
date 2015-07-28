@@ -51,7 +51,15 @@ https://www.youtube.com/watch?v=O1HVDYywZRY
 
 # How to compile from source
 
-http://youtu.be/54v3rIUh0h8
+Video demonstration for NetBeans: http://youtu.be/54v3rIUh0h8
+
+* yum -y install git java-1.8-openjdk ant
+
+* git clone https://github.com/rusher81572/cloudExplorer.git
+
+* cd cloudExplorer
+
+* ant
 
 # Upgrading
 
