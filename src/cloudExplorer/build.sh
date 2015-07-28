@@ -22,6 +22,6 @@ chmod +x $LOCBUILD/cloudExplorer
 cd $HOME
 zip -r $ZIP $BUILD_NAME
 cd $LOCBUILD
-java -jar $LOCBUILD/CloudExplorer.jar build $BUILD_NAME.zip $ZIP $BUCKET
+#java -jar $LOCBUILD/CloudExplorer.jar build $BUILD_NAME.zip $ZIP $BUCKET
 echo;echo;echo ;ls $LOCBUILD;echo
 ./cloudExplorer
