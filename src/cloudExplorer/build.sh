@@ -1,27 +1,24 @@
 #!/bin/bash
 BUILD_NAME="cloudExplorer-6.0"
 SRC="$HOME/cloudExplorer"
-JAR="CloudExplorer.jar"
-JARLOC="$SRC/dist"
 README="$SRC/src/cloudExplorer/Release_Notes.txt"
 WINDOWS="$SRC/src/cloudExplorer/cloudExplorer"
 LINUX="$SRC/src/cloudExplorer/cloudExplorer.bat"
-LOCBUILD="$HOME/$BUILD_NAME/"
-ZIP="$HOME/$BUILD_NAME.zip"
-BUCKET="cloudexplorer"
+ZIP="$SRC/$BUILD_NAME.zip"
 
-rm -rf $HOME/$BUILD_NAME
-ant -f $SRC/build.xml
-rm -f $ZIP
-rm -rf $LOCBUILD/home
-cp -rf $JARLOC $LOCBUILD
-cp -f $README $LOCBUILD
-cp -f $WINDOWS $LOCBUILD
-cp -f $LINUX $LOCBUILD
-chmod +x $LOCBUILD/cloudExplorer
-cd $HOME
-zip -r $ZIP $BUILD_NAME
-cd $LOCBUILD
-#java -jar $LOCBUILD/CloudExplorer.jar build $BUILD_NAME.zip $ZIP $BUCKET
-echo;echo;echo ;ls $LOCBUILD;echo
-./cloudExplorer
+cd $SRC
+ant
+rm -rf $SRC/$BUILD_NAME
+cp -rf $SRC/dist $BUILD_NAME
+cp -f $README $SRC/$BUILD_NAME
+cp -f $WINDOWS $SRC/$BUILD_NAME
+cp -f $LINUX $SRC/$BUILD_NAME
+cp -rf $SRC/libs $SRC/$BUILD_NAME/
+rm -f *.zip
+zip --exclude=*.git* -r $ZIP $BUILD_NAME
+java -jar $SRC/$BUILD_NAME/CloudExplorer.jar help
+rm -rf $SRC/$BUILD_NAME
+ant clean
+
+
+
