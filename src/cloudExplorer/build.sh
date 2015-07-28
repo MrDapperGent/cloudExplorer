@@ -13,7 +13,6 @@ BUCKET="cloudexplorer"
 rm -rf $HOME/$BUILD_NAME
 mkdir $HOME/$BUILD_NAME
 cd $SRC
-git pull
 cd $JARLOC
 ant
 rm -f $ZIP
