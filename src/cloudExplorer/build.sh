@@ -2,7 +2,7 @@
 BUILD_NAME="cloudExplorer-6.0"
 SRC="$HOME/cloudExplorer"
 JAR="CloudExplorer.jar"
-JARLOC="$HOME/NetBeansProjects/CloudExplorer"
+JARLOC="$SRC/dist"
 README="$SRC/src/cloudExplorer/Release_Notes.txt"
 WINDOWS="$SRC/src/cloudExplorer/cloudExplorer"
 LINUX="$SRC/src/cloudExplorer/cloudExplorer.bat"
