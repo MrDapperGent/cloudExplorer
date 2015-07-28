@@ -91,14 +91,14 @@ public class ConfigureIRC implements Runnable {
         room_label.setBorder(null);
 
         save.setBackground(Color.white);
-        save.setForeground(Color.GREEN);
+        save.setForeground(Color.BLUE);
         save.setIcon(mainFrame.genericEngine);
         save.setBorder(null);
 
         close.setBackground(Color.white);
         close.setBorder(null);
         close.setIcon(mainFrame.genericEngine);
-        close.setForeground(Color.GREEN);
+        close.setForeground(Color.BLUE);
 
         close.setMaximumSize(new Dimension(150, 15));
         save.setMaximumSize(new Dimension(150, 15));

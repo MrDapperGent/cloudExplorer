@@ -50,11 +50,11 @@ public class CreateFolder implements Runnable {
             name.setBackground(Color.white);
             name.setForeground(Color.GRAY);
             createFolder.setBackground(Color.white);
-            createFolder.setForeground(Color.GREEN);
+            createFolder.setForeground(Color.BLUE);
             createFolder.setBorder(null);
             close.setBackground(Color.white);
             close.setBorder(null);
-            close.setForeground(Color.GREEN);
+            close.setForeground(Color.BLUE);
 
             createFolder.setIcon(mainFrame.genericEngine);
             close.setIcon(mainFrame.genericEngine);

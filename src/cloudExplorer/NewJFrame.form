@@ -1121,7 +1121,7 @@
                       <Color blue="ff" green="ff" id="Text" palette="2" red="ff" type="palette"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="ff" id="green" palette="1" red="0" type="palette"/>
+                      <Color blue="ff" green="0" id="blue" palette="1" red="0" type="palette"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Auto-load buckets"/>
                   </Properties>
@@ -1825,7 +1825,7 @@
                           <Color blue="ff" green="ff" id="Text" palette="2" red="ff" type="palette"/>
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="ff" id="green" palette="1" red="0" type="palette"/>
+                          <Color blue="ff" green="0" id="blue" palette="1" red="0" type="palette"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/cloudExplorer/Actions-svn-commit-icon.png"/>
@@ -1845,7 +1845,7 @@
                           <Color blue="ff" green="ff" id="Text" palette="2" red="ff" type="palette"/>
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="ff" id="green" palette="1" red="0" type="palette"/>
+                          <Color blue="ff" green="0" id="blue" palette="1" red="0" type="palette"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/cloudExplorer/Actions-process-stop-icon.png"/>
@@ -1899,9 +1899,6 @@
                 </Container>
                 <Component class="javax.swing.JLabel" name="jLabel11">
                   <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="ff" id="green" palette="1" red="0" type="palette"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Upload To Folder:"/>
                   </Properties>
                 </Component>
@@ -2030,7 +2027,7 @@
                       <Color blue="ff" green="ff" id="Text" palette="2" red="ff" type="palette"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="ff" id="green" palette="1" red="0" type="palette"/>
+                      <Color blue="ff" green="0" id="blue" palette="1" red="0" type="palette"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/cloudExplorer/Actions-process-stop-icon.png"/>
@@ -2081,7 +2078,7 @@
                       <Color blue="ff" green="ff" id="Text" palette="2" red="ff" type="palette"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="ff" id="green" palette="1" red="0" type="palette"/>
+                      <Color blue="ff" green="0" id="blue" palette="1" red="0" type="palette"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/cloudExplorer/sync-icon.png"/>
@@ -2101,7 +2098,7 @@
                       <Color blue="ff" green="ff" id="Text" palette="2" red="ff" type="palette"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="ff" id="green" palette="1" red="0" type="palette"/>
+                      <Color blue="ff" green="0" id="blue" palette="1" red="0" type="palette"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/cloudExplorer/sync-icon.png"/>
@@ -2117,9 +2114,6 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel12">
                   <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="ff" id="green" palette="1" red="0" type="palette"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Folders:"/>
                   </Properties>
                 </Component>
@@ -2253,7 +2247,7 @@
                       <Color blue="ff" green="ff" id="Text" palette="2" red="ff" type="palette"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="ff" id="green" palette="1" red="0" type="palette"/>
+                      <Color blue="ff" green="0" id="blue" palette="1" red="0" type="palette"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/cloudExplorer/Actions-svn-commit-icon.png"/>
@@ -2342,7 +2336,7 @@
                       <Color blue="ff" green="ff" id="Text" palette="2" red="ff" type="palette"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="ff" id="green" palette="1" red="0" type="palette"/>
+                      <Color blue="ff" green="0" id="blue" palette="1" red="0" type="palette"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/cloudExplorer/engine.png"/>
@@ -2362,7 +2356,7 @@
                       <Color blue="ff" green="ff" id="Text" palette="2" red="ff" type="palette"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="ff" id="green" palette="1" red="0" type="palette"/>
+                      <Color blue="ff" green="0" id="blue" palette="1" red="0" type="palette"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/cloudExplorer/engine.png"/>

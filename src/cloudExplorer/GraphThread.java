@@ -206,7 +206,7 @@ public class GraphThread implements Runnable {
                 Data xdata = DataUtil.scaleWithinRange(x_sort.get(0), x_sort.get(x_sort.size() - 1), x_sort);
                 Data ydata = DataUtil.scaleWithinRange(y_sort.get(0), y_sort.get(y_sort.size() - 1), y_sort);
                 Plot plot = Plots.newXYLine(xdata, ydata);
-                plot.setColor(com.googlecode.charts4j.Color.GREEN);
+                plot.setColor(com.googlecode.charts4j.Color.BLUE);
 
                 if (line) {
                     XYLineChart xyLineChart = GCharts.newXYLineChart(plot);

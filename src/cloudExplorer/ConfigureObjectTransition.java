@@ -51,7 +51,7 @@ public class ConfigureObjectTransition implements Runnable {
             prefix_field.setMaximumSize(new Dimension(300, 20));
 
             days.setBackground(Color.white);
-            days.setForeground(Color.GREEN);
+            days.setForeground(Color.BLUE);
 
             glacier.setBackground(Color.white);
             glacier.setForeground(Color.GRAY);
@@ -64,11 +64,11 @@ public class ConfigureObjectTransition implements Runnable {
 
             commitTransition.setBackground(Color.white);
             commitTransition.setBorder(null);
-            commitTransition.setForeground(Color.GREEN);
+            commitTransition.setForeground(Color.BLUE);
 
             disableRules.setBackground(Color.white);
             disableRules.setBorder(null);
-            disableRules.setForeground(Color.GREEN);
+            disableRules.setForeground(Color.BLUE);
 
             disableRules.setIcon(mainFrame.genericEngine);
             commitTransition.setIcon(mainFrame.genericEngine);

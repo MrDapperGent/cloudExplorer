@@ -61,11 +61,11 @@ public class ObjectACL implements Runnable {
 
             acl.setBackground(Color.white);
             acl.setBorder(null);
-            acl.setForeground(Color.GREEN);
+            acl.setForeground(Color.BLUE);
 
             close.setBackground(Color.white);
             close.setBorder(null);
-            close.setForeground(Color.GREEN);
+            close.setForeground(Color.BLUE);
 
             close.setIcon(mainFrame.genericEngine);
 

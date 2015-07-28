@@ -53,13 +53,13 @@ public class AddExternalBucket implements Runnable {
             name.setBackground(Color.WHITE);
             name.setForeground(Color.GRAY);
             region_name.setBackground(Color.white);
-            region_name.setForeground(Color.GREEN);
+            region_name.setForeground(Color.BLUE);
             createBucket.setBackground(Color.white);
-            createBucket.setForeground(Color.GREEN);
+            createBucket.setForeground(Color.BLUE);
             createBucket.setBorder(null);
             close.setBackground(Color.white);
             close.setBorder(null);
-            close.setForeground(Color.GREEN);
+            close.setForeground(Color.BLUE);
 
             createBucket.setIcon(mainFrame.genericEngine);
             close.setIcon(mainFrame.genericEngine);

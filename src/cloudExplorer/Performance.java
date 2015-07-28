@@ -104,15 +104,15 @@ public class Performance implements Runnable {
             overwrite_put.setBorder(null);
 
             startPerformanceTest.setBackground(Color.white);
-            startPerformanceTest.setForeground(Color.GREEN);
+            startPerformanceTest.setForeground(Color.BLUE);
             abortPerformanceTest.setBackground(Color.white);
-            abortPerformanceTest.setForeground(Color.GREEN);
+            abortPerformanceTest.setForeground(Color.BLUE);
             abortPerformanceTest.setBorder(null);
             startPerformanceTest.setBorder(null);
 
             close.setBackground(Color.white);
             close.setBorder(null);
-            close.setForeground(Color.GREEN);
+            close.setForeground(Color.BLUE);
 
             close.setIcon(mainFrame.genericEngine);
             abortPerformanceTest.setIcon(mainFrame.genericEngine);

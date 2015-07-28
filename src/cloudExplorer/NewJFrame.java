@@ -46,7 +46,7 @@ import javax.swing.plaf.ColorUIResource;
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     String major = "6";
-    String minor = "0";
+    String minor = "01";
     String release_version = major + "." + minor;
     String version = "Cloud Explorer " + release_version;
     String[] folders = new String[1];
@@ -595,7 +595,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jLabel14.setText("Account Information");
 
         jCheckBox1.setBackground(java.awt.SystemColor.text);
-        jCheckBox1.setForeground(java.awt.Color.green);
+        jCheckBox1.setForeground(java.awt.Color.blue);
         jCheckBox1.setText("Auto-load buckets");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -973,7 +973,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jPanel10.setBackground(java.awt.SystemColor.text);
 
         jButton5.setBackground(java.awt.SystemColor.text);
-        jButton5.setForeground(java.awt.Color.green);
+        jButton5.setForeground(java.awt.Color.blue);
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-svn-commit-icon.png"))); // NOI18N
         jButton5.setText("Upload");
         jButton5.setBorder(null);
@@ -984,7 +984,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton15.setBackground(java.awt.SystemColor.text);
-        jButton15.setForeground(java.awt.Color.green);
+        jButton15.setForeground(java.awt.Color.blue);
         jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-process-stop-icon.png"))); // NOI18N
         jButton15.setText("Abort");
         jButton15.setBorder(null);
@@ -1043,7 +1043,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jLabel11.setForeground(java.awt.Color.green);
         jLabel11.setText("Upload To Folder:");
 
         jList2.setForeground(java.awt.Color.gray);
@@ -1095,7 +1094,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton16.setBackground(java.awt.SystemColor.text);
-        jButton16.setForeground(java.awt.Color.green);
+        jButton16.setForeground(java.awt.Color.blue);
         jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-process-stop-icon.png"))); // NOI18N
         jButton16.setText(" Abort");
         jButton16.setToolTipText("");
@@ -1123,7 +1122,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton14.setBackground(java.awt.SystemColor.text);
-        jButton14.setForeground(java.awt.Color.green);
+        jButton14.setForeground(java.awt.Color.blue);
         jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/sync-icon.png"))); // NOI18N
         jButton14.setText("To S3");
         jButton14.setBorder(null);
@@ -1134,7 +1133,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton21.setBackground(java.awt.SystemColor.text);
-        jButton21.setForeground(java.awt.Color.green);
+        jButton21.setForeground(java.awt.Color.blue);
         jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/sync-icon.png"))); // NOI18N
         jButton21.setText("From S3");
         jButton21.setBorder(null);
@@ -1144,7 +1143,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
 
-        jLabel12.setForeground(java.awt.Color.green);
         jLabel12.setText("Folders:");
 
         jScrollPane9.setViewportView(jList3);
@@ -1202,7 +1200,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jScrollPane4.setViewportView(jTextArea2);
 
         jButton11.setBackground(java.awt.SystemColor.text);
-        jButton11.setForeground(java.awt.Color.green);
+        jButton11.setForeground(java.awt.Color.blue);
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-svn-commit-icon.png"))); // NOI18N
         jButton11.setText("Save");
         jButton11.setBorder(null);
@@ -1236,7 +1234,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jTextField9.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jButton22.setBackground(java.awt.SystemColor.text);
-        jButton22.setForeground(java.awt.Color.green);
+        jButton22.setForeground(java.awt.Color.blue);
         jButton22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/engine.png"))); // NOI18N
         jButton22.setText("Replace");
         jButton22.setBorder(null);
@@ -1247,7 +1245,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton23.setBackground(java.awt.SystemColor.text);
-        jButton23.setForeground(java.awt.Color.green);
+        jButton23.setForeground(java.awt.Color.blue);
         jButton23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/engine.png"))); // NOI18N
         jButton23.setText("Undo");
         jButton23.setBorder(null);
@@ -2002,7 +2000,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
                     account_item[h].addItemListener(this);
                     account_item[h].setBackground(Color.white);
-                    account_item[h].setForeground(Color.GREEN);
+                    account_item[h].setForeground(Color.BLUE);
                     jPanel21.add(account_item[h]);
                     jPanel21.revalidate();
                     //validate();
@@ -2128,7 +2126,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             object_item[h] = new JRadioButton();
             object_item[h].setText(objectarray[h]);
             object_item[h].setBackground(Color.white);
-            object_item[h].setForeground(Color.GREEN);
+            object_item[h].setForeground(Color.BLUE);
         }
         jPanel11.setLayout(new BoxLayout(jPanel11, BoxLayout.PAGE_AXIS));
     }
@@ -2284,7 +2282,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     object_item[h] = new JRadioButton();
                     object_item[h].setText(objectarray[h]);
                     object_item[h].setBackground(Color.white);
-                    object_item[h].setForeground(Color.GREEN);
+                    object_item[h].setForeground(Color.BLUE);
                 }
             }
             jPanel11.setLayout(new BoxLayout(jPanel11, BoxLayout.PAGE_AXIS));

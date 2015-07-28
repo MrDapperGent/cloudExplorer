@@ -55,11 +55,11 @@ public class MakeBucket implements Runnable {
             region_name.setBackground(Color.WHITE);
             region_name.setForeground(Color.GRAY);
             createBucket.setBackground(Color.white);
-            createBucket.setForeground(Color.GREEN);
+            createBucket.setForeground(Color.BLUE);
             createBucket.setBorder(null);
             close.setBackground(Color.white);
             close.setBorder(null);
-            close.setForeground(Color.GREEN);
+            close.setForeground(Color.BLUE);
 
             createBucket.setIcon(mainFrame.genericEngine);
             close.setIcon(mainFrame.genericEngine);
