@@ -55,6 +55,8 @@ Video demonstration for NetBeans: http://youtu.be/54v3rIUh0h8
 
 * yum -y install git java-1.8-openjdk java-1.8.0-openjdk-devel ant
 
+* User update-alternatives --config to set Java and Javac to 1.8
+
 * git clone https://github.com/rusher81572/cloudExplorer.git
 
 * cd cloudExplorer
