@@ -460,7 +460,7 @@ public class CLI {
                                     File dir = new File(destination + File.separator + cutit[0]);
                                     dir.mkdirs();
                                     get = new Get(object_array[i], access_key, secret_key, bucket, endpoint, destination + File.separator + cutit[0] + File.separator + transcoded_object, null);
-                                    System.out.print("\nDebug: " + object_array[i] + " " + access_key + " " + secret_key + " " + bucket + " " + endpoint + " " + destination + File.separator + cutit[0] + File.separator + transcoded_object);
+                                    System.out.print("\nDebug: " + destination + File.separator + cutit[0] + File.separator + transcoded_object);
                                     get.run();
                                 }
                             } else {
