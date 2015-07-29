@@ -94,7 +94,7 @@ public class CLI {
         for (int y = 1; y != object_array.length; y++) {
             if (object_array[y] != null) {
                 arg1 = object_array[y];
-                deleteFromS3();
+                deleteFromS3(arg1);
             }
         }
         System.out.print("\n\nDelete everything operation complete.\n\n");
@@ -255,7 +255,7 @@ public class CLI {
                             }
                         }
                         if (operation.contains("delete")) {
-                            deleteFromS3();
+                            deleteFromS3(arg2);
                         }
 
                         if (operation.contains("put")) {
@@ -618,9 +618,9 @@ public class CLI {
         }
     }
 
-    void deleteFromS3() {
+    void deleteFromS3(String what) {
         try {
-            delete_file = arg1;
+            delete_file = what;
             System.out.print("\n\nDeleting: " + delete_file + "........");
             delete = new Delete(delete_file, access_key, secret_key, bucket, endpoint, null);
             Delete.debug = true;

@@ -3,7 +3,7 @@ Version 6.02
 Bug Fixes: 
 
         Fixed bug syncing folders from the CLI.
-           
+        Deleting a file with CLI is functional.
 
 Improvements: 
 
