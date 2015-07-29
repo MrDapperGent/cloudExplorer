@@ -1,10 +1,9 @@
-Version 6.1
+Version 6.02
 
-Bug Fixes: <none>
+Bug Fixes: Fixed bug syncing folders from the CLI.
            
 
-Improvements: 
-            1. Removed hard to read green color from accounts and explorer.
+Improvements: <none>
 
 New Features: <none>
          
