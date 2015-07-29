@@ -3,7 +3,9 @@ Version 6.02
 Bug Fixes: Fixed bug syncing folders from the CLI.
            
 
-Improvements: <none>
+Improvements: 
+
+Changed the green colors back to blue for easier reading.
 
 New Features: <none>
          
