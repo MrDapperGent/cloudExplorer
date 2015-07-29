@@ -454,14 +454,13 @@ public class CLI {
                                     transcoded_object = cutit[1];
                                 }
                             }
-                            System.out.print("\nDebug:" + folder);
-                            
+
                             if (folder != null) {
                                 if (object_array[i].contains(folder)) {
                                     File dir = new File(destination + File.separator + cutit[0]);
                                     dir.mkdirs();
-                                    get = new Get(object_array[i], access_key, secret_key, bucket, endpoint, destination + File.separator + cutit[0] + File.separator + cutit[1], null);
-                                    System.out.print("\nDebug: " + object_array[i] + " " + access_key + " " + secret_key + " " + bucket + " " + endpoint + " " + destination + File.separator + cutit[0] + File.separator + cutit[1]);
+                                    get = new Get(object_array[i], access_key, secret_key, bucket, endpoint, destination + File.separator + cutit[0] + File.separator + transcoded_object, null);
+                                    System.out.print("\nDebug: " + object_array[i] + " " + access_key + " " + secret_key + " " + bucket + " " + endpoint + " " + destination + File.separator + cutit[0] + File.separator + transcoded_object);
                                     get.run();
                                 }
                             } else {
@@ -471,7 +470,6 @@ public class CLI {
                                     get = new Get(object_array[i], access_key, secret_key, bucket, endpoint, destination + File.separator + cutit[0] + File.separator + cutit[1], null);
                                     get.run();
                                 } else {
-                                    System.out.print("\nDebug: Here");
                                     get = new Get(object_array[i], access_key, secret_key, bucket, endpoint, destination + File.separator + object_array[i], null);
                                     get.run();
                                 }
