@@ -458,8 +458,8 @@ public class CLI {
                             if (folder != null) {
                                 if (object_array[i].contains(folder)) {
                                     File dir = new File(destination + File.separator + cutit[0] + File.separator + cutit[1]);
-                                    System.out.print("\nDebug making dir:" + destination + File.separator + cutit[1]);
-                                    System.out.print("\nDebug dest file:" + destination + File.separator + cutit[0] + File.separator + cutit[1]);
+                                    System.out.print("\nDebug making dir:" +destination + File.separator + cutit[0] + File.separator + cutit[1]);
+                                    System.out.print("\nDebug dest file:" + destination + File.separator + cutit[0] + File.separator + cutit[1] + File.separator + cutit[cutit.length]);
                                     dir.mkdirs();
                                     get = new Get(object_array[i], access_key, secret_key, bucket, endpoint, destination + File.separator + cutit[0] + File.separator + cutit[1], null);
                                     get.run();
