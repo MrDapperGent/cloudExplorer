@@ -31,7 +31,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 
 public class CLI {
-
+    
     Delete delete;
     String[] object_array = null;
     String getOperationCount;
@@ -72,22 +72,22 @@ public class CLI {
     public static Boolean mixed_mode = false;
     String win = "\\";
     String lin = "/";
-
+    
     void messageParser(String message) {
         System.out.print(message);
     }
-
+    
     void mainmenu() {
-
+        
         for (int i = 0; i != 20; i++) {
             messageParser("\n");
         }
         messageParser("\n------------------------------------------------");
         messageParser("\n           Cloud Explorer CLI: " + operation);
         messageParser("\n------------------------------------------------");
-
+        
     }
-
+    
     void deleteAll(String bucket) {
         System.out.print("\n\nDeleting all files in bucket: " + bucket);
         reloadObjects();
@@ -99,7 +99,7 @@ public class CLI {
         }
         System.out.print("\n\nDelete everything operation complete.\n\n");
     }
-
+    
     void createFolder(String folder
     ) {
         try {
@@ -116,12 +116,12 @@ public class CLI {
                     put.run();
                     System.out.print("\nCreate folder operation complete\n\n");
                 }
-
+                
             }
         } catch (Exception createFolder) {
         }
     }
-
+    
     void loadS3credentials() {
         try {
             for (String what : saved_s3_configs) {
@@ -130,7 +130,7 @@ public class CLI {
                     System.exit(-1);
                 }
             }
-
+            
             access_key = saved_s3_configs[0];
             secret_key = saved_s3_configs[1];
             endpoint = saved_s3_configs[2] + ":" + saved_s3_configs[3];
@@ -138,16 +138,16 @@ public class CLI {
         } catch (Exception loadS3Credentials) {
         }
     }
-
+    
     String loadConfig(String what
     ) {
         String data = null;
-
+        
         try {
             FileReader fr = new FileReader(what);
             BufferedReader bfr = new BufferedReader(fr);
             String read = null;
-
+            
             while ((read = bfr.readLine()) != null) {
                 if (read.contains("@")) {
                     data = data + read;
@@ -160,7 +160,7 @@ public class CLI {
         String remove_symbol = remove_null.replace("@", " ");
         return remove_symbol;
     }
-
+    
     void start(String arg0, final String arg1, final String arg2, final String arg3, final String arg4, final String arg5
     ) {
         operation = arg0;
@@ -171,7 +171,7 @@ public class CLI {
             loadS3credentials();
             mainmenu();
             bucket = arg1;
-
+            
             if (operation.contains("ls")) {
                 ls(0);
             }
@@ -184,14 +184,14 @@ public class CLI {
             if (operation.contains("listbuckets")) {
                 listBuckets();
             }
-
+            
             if (operation.contains("makebucket")) {
                 makeBucket();
             }
             if (operation.contains("rmbucket")) {
                 rmBucket();
             }
-
+            
         } else {
             if (arg2 == null) {
                 System.out.print("\n\n\nError, no bucket specified.\n\n\n");
@@ -199,23 +199,23 @@ public class CLI {
             } else {
                 bucket = arg2;
             }
-
+            
             put_file = new File(arg1);
             get_file = arg1;
-
+            
             destination = arg1;
             mainmenu();
-
+            
             try {
                 File s3config = new File(s3_config_file);
                 if (s3config.exists()) {
                 } else {
                     messageParser("\nError: Build config file not found.");
                 }
-
+                
                 saved_s3_configs = loadConfig(this.s3_config_file).toString().split(" ");
                 loadS3credentials();
-
+                
                 new Thread(new Runnable() {
                     public void run() {
                         if (operation.contains("downloadtest") || operation.contains("uploadtest")) {
@@ -224,7 +224,7 @@ public class CLI {
                             } else {
                                 performance_operation = true;
                             }
-
+                            
                             bucket = arg1;
                             getValue = arg2;
                             threadcount = Integer.parseInt(arg3);
@@ -236,16 +236,16 @@ public class CLI {
                             }
                             performance();
                         }
-
+                        
                         if (operation.contains("syncfroms3") || operation.contains("synctos3")) {
-
+                            
                             File check_destination = new File(destination);
                             if (check_destination.exists()) {
-
+                                
                                 if (operation.contains("syncfroms3")) {
                                     syncFromS3(arg3);
                                 }
-
+                                
                                 if (operation.contains("synctos3")) {
                                     syncToS3(arg3);
                                 }
@@ -257,7 +257,7 @@ public class CLI {
                         if (operation.contains("delete")) {
                             deleteFromS3();
                         }
-
+                        
                         if (operation.contains("put")) {
                             if (put_file.exists()) {
                                 putTOs3(put_file);
@@ -270,63 +270,63 @@ public class CLI {
                             get_file = arg2;
                             ls(1);
                         }
-
+                        
                         if (operation.contains("get")) {
                             destination = arg3;
                             getFromS3();
                         }
-
+                        
                     }
-
+                    
                 }).start();
-
+                
             } catch (Exception Start) {
             }
-
+            
         }
     }
-
+    
     String makeDirectory(String what
     ) {
-
+        
         if (what.substring(0, 2).contains(":")) {
             what = what.substring(3, what.length());
         }
-
+        
         if (what.substring(0, 1).contains("/")) {
             what = what.substring(1, what.length());
         }
-
+        
         if (what.contains("/")) {
             what = what.replace("/", File.separator);
         }
-
+        
         if (what.contains("\\")) {
             what = what.replace("\\", File.separator);
         }
-
+        
         int slash_counter = 0;
         int another_counter = 0;
-
+        
         for (int y = 0; y != what.length(); y++) {
             if (what.substring(y, y + 1).contains(File.separator)) {
                 slash_counter++;
                 another_counter = y;
             }
         }
-
+        
         File dir = new File(File.separator + what.substring(0, another_counter));
         dir.mkdirs();
         return what;
     }
-
+    
     boolean modified_check(String remoteFile, String localFile, Boolean tos3) {
         boolean recopy = false;
         long milli;
         FileInputStream fis = null;
         String local_md5String = null;
         String remote_md5String = null;
-
+        
         try {
             File check_localFile = new File(localFile);
             SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
@@ -355,7 +355,7 @@ public class CLI {
         }
         return recopy;
     }
-
+    
     void syncToS3(String folder
     ) {
         if (folder != null) {
@@ -363,9 +363,9 @@ public class CLI {
         } else {
             System.out.print("\n\nStarting sync from: " + destination + " to bucket: " + bucket + "\n");
         }
-
+        
         File dir = new File(destination);
-
+        
         reloadObjects();
         String[] extensions = new String[]{" "};
         List<File> files = (List<File>) FileUtils.listFiles(dir, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE);
@@ -381,7 +381,7 @@ public class CLI {
                 cut2 = cut[0].split(Pattern.quote(lin));
                 object = cut2[cut2.length - 1] + lin + object;
             }
-
+            
             int found = 0;
             for (int y = 1; y != object_array.length; y++) {
                 if (object_array[y].contains(object)) {
@@ -390,9 +390,9 @@ public class CLI {
                     }
                 }
             }
-
+            
             if (found == 0) {
-
+                
                 if (folder != null) {
                     object = folder + File.separator + object;
                 }
@@ -401,11 +401,11 @@ public class CLI {
                 found = 0;
             }
         }
-
+        
         System.out.print(
                 "\nSync operation complete.\n\n\n");
     }
-
+    
     void reloadObjects() {
         try {
             if (bucket != null) {
@@ -418,7 +418,7 @@ public class CLI {
             System.out.print("\n\n\nError with loading objects:\n\n\n");
         }
     }
-
+    
     void syncFromS3(String folder) {
         try {
             if (folder != null) {
@@ -439,13 +439,13 @@ public class CLI {
                         }
                     }
                     if (found == 0) {
-
+                        
                         try {
                             String[] cutit = null;
                             String transcoded_object = null;
-
+                            
                             if (object_array[i].contains(win) || (object_array[i].contains(lin))) {
-
+                                
                                 if (object_array[i].contains(win)) {
                                     cutit = object_array[i].split(Pattern.quote(win));
                                     transcoded_object = cutit[1];
@@ -454,14 +454,14 @@ public class CLI {
                                     transcoded_object = cutit[1];
                                 }
                             }
-
+                            
                             if (folder != null) {
                                 if (object_array[i].contains(folder)) {
                                     File dir = new File(destination + File.separator + cutit[0]);
+                                    System.out.print("\nDebug making dir:" + destination + File.separator + cutit[0]);
+                                    System.out.print("\nDebug dest file:" + destination + File.separator + cutit[0] + File.separator + cutit[1]);
                                     dir.mkdirs();
-                                    System.out.print("\nDebug making dir:" + transcoded_object);
-                                    get = new Get(object_array[i], access_key, secret_key, bucket, endpoint, destination + File.separator + cutit[0] + File.separator + transcoded_object + File.separator + cutit[2], null);
-                                    System.out.print("\nDebug: " + destination + File.separator + cutit[0] + File.separator + transcoded_object + File.separator + cutit[2]);
+                                    get = new Get(object_array[i], access_key, secret_key, bucket, endpoint, destination + File.separator + cutit[0] + File.separator + cutit[1], null);
                                     get.run();
                                 }
                             } else {
@@ -485,12 +485,12 @@ public class CLI {
         }
         System.out.print("\nSync operation complete.\n\n\n");
     }
-
+    
     void ls(int op
     ) {
         try {
             int found = 0;
-
+            
             if (op == 0) {
                 System.out.print("\n\nLoading objects for Bucket: " + bucket + "........\n\n");
             } else {
@@ -498,7 +498,7 @@ public class CLI {
             }
             String objectlist = bucketObject.listBucketContents(access_key, secret_key, bucket, endpoint);
             object_array = objectlist.split("@@");
-
+            
             for (String obj : object_array) {
                 if (obj.contains("null")) {
                 } else {
@@ -513,38 +513,38 @@ public class CLI {
                     }
                 }
             }
-
+            
             System.out.print("\n\n\nBucket listing operation Complete. Found: " + found + " file(s).\n\n\n");
-
+            
         } catch (Exception ls) {
             System.out.print("\n\nAn Error has occured while listing the objects or the bucket does not exist.\n\n\n");
             System.exit(-1);
         }
     }
-
+    
     String convertObject(String what, String operation
     ) {
-
+        
         if (what.contains("/")) {
             what = what.replace("/", File.separator);
         }
-
+        
         if (what.contains("\\")) {
             what = what.replace("\\", File.separator);
         }
-
+        
         int count = 0;
         int slash_counter = 0;
         String out_file = null;
         int another_counter = 0;
-
+        
         for (int y = 0; y != what.length(); y++) {
             if (what.substring(y, y + 1).contains(File.separator)) {
                 slash_counter++;
                 another_counter = y;
             }
         }
-
+        
         for (int y = 0; y != what.length(); y++) {
             if (y == another_counter) {
                 if (operation.contains("download")) {
@@ -560,7 +560,7 @@ public class CLI {
         }
         return out_file;
     }
-
+    
     void getFromS3() {
         try {
             NewJFrame.perf = true;
@@ -585,7 +585,7 @@ public class CLI {
             System.exit(-1);
         }
     }
-
+    
     void listBuckets() {
         try {
             System.out.print("\n\n\nListing Buckets:");
@@ -596,7 +596,7 @@ public class CLI {
             System.out.print("\n\n\nAn error has occurred while listing buckets.\n\n\n");
         }
     }
-
+    
     void makeBucket() {
         try {
             BucketClass.terminal = true;
@@ -607,19 +607,19 @@ public class CLI {
             System.out.print("\n\n\nAn error has occurred with making a bucket.\n\n\n");
         }
     }
-
+    
     void rmBucket() {
         try {
             BucketClass.terminal = true;
             System.out.print("\n\n\nDeleting Bucket \"" + bucket + "\".......");
             bucketObject.deleteBucket(access_key, secret_key, bucket, endpoint, region);
             System.out.print("\n\n\nBucket Delete operation Complete\n\n\n");
-
+            
         } catch (Exception deleteBucket) {
             System.out.print("\n\n\nAn error has occurred with deleting a bucket.");
         }
     }
-
+    
     void deleteFromS3() {
         try {
             delete_file = arg1;
@@ -633,7 +633,7 @@ public class CLI {
             System.exit(-1);
         }
     }
-
+    
     void putTOs3(File dir
     ) {
         try {
@@ -648,7 +648,7 @@ public class CLI {
             System.exit(-1);
         }
     }
-
+    
     public void performance_logger(double time, double rate, String what) {
         try {
             FileWriter frr = new FileWriter(what, true);
@@ -658,7 +658,7 @@ public class CLI {
         } catch (Exception perf_logger) {
         }
     }
-
+    
     void performance() {
         System.out.print("\n\nStarting performance test.....\n\n\n");
         NewJFrame.perf = true;
@@ -666,28 +666,28 @@ public class CLI {
         File throughputfile = new File(throughput_log);
         File opsfile = new File(ops_log);
         File latencyfile = new File(latency_log);
-
+        
         int op_count = Integer.parseInt(getOperationCount);
         int file_size = Integer.parseInt(getValue);
         float num_threads = threadcount;
-
+        
         if (tempFile.exists()) {
             tempFile.delete();
         }
-
+        
         if (throughputfile.exists()) {
             throughputfile.delete();
         }
         if (latencyfile.exists()) {
             latencyfile.delete();
         }
-
+        
         if (opsfile.exists()) {
             opsfile.delete();
         }
-
+        
         if (file_size > 0 && num_threads > 0 && op_count > 0) {
-
+            
             try {
                 FileOutputStream s = new FileOutputStream(temp_file);
                 byte[] buf = new byte[file_size * 1024];
@@ -696,29 +696,29 @@ public class CLI {
                 s.close();
             } catch (Exception add) {
             }
-
+            
             if (tempFile.exists()) {
-
+                
                 try {
                     String upload = tempFile.getAbsolutePath();
-
+                    
                     if (!performance_operation || mixed_mode) {
                         put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
                         put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
                     }
-
+                    
                     x = new double[op_count];
                     y = new double[op_count];
                     x_latency = new double[op_count];
                     y_latency = new double[op_count];
                     x_iops = new double[op_count];
                     y_iops = new double[op_count];
-
+                    
                     int counter = 0;
                     int display_counter = 0;
-
+                    
                     for (int z = 0; z != op_count; z++) {
-
+                        
                         if (mixed_mode) {
                             if (performance_operation) {
                                 performance_operation = false;
@@ -726,11 +726,11 @@ public class CLI {
                                 performance_operation = true;
                             }
                         }
-
+                        
                         long t1 = System.currentTimeMillis();
-
+                        
                         for (int i = 0; i != num_threads; i++) {
-
+                            
                             if (performance_operation) {
                                 put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false);
                                 put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false);
@@ -739,19 +739,19 @@ public class CLI {
                                 get.startc("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + i, null);
                             }
                         }
-
+                        
                         double t2 = System.currentTimeMillis();
                         double diff = t2 - t1;
                         double total_time = diff / 1000;
-
+                        
                         double rate = (num_threads * file_size / total_time / 1024);
                         rate = Math.round(rate * 100);
                         rate = rate / 100;
-
+                        
                         double iops = (num_threads / total_time);
                         iops = Math.round(iops * 100);
                         iops = iops / 100;
-
+                        
                         if (performance_operation) {
                             System.out.print("\nPUT Operation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s. OPS/s: " + iops);
                         } else {
@@ -762,7 +762,7 @@ public class CLI {
                             performance_logger(counter, iops, ops_log);
                             performance_logger(counter, total_time, latency_log);
                         }
-
+                        
                         if (counter == 100) {
                             counter = 0;
                             x = new double[op_count];
@@ -781,20 +781,20 @@ public class CLI {
                         counter++;
                         display_counter++;
                     }
-
+                    
                 } catch (Exception ex) {
                 }
-
+                
             } else {
                 System.out.print("\n Please specifiy more than 0 threads.");
             }
-
+            
             if (!mixed_mode) {
                 System.out.print("\n\n\nResults saved in CSV format to: " + "\n" + throughput_log + "\n" + latency_log + "\n" + ops_log + "\n\n\n");
             }
-
+            
             NewJFrame.perf = false;
-
+            
         } else {
             System.out.print("\nError: Thread and Count values must be greater than 0. Object Size value must be 1024 or greater.");
         }
