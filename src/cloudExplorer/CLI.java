@@ -459,8 +459,8 @@ public class CLI {
                                 if (object_array[i].contains(folder)) {
                                     File dir = new File(destination + File.separator + cutit[0]);
                                     dir.mkdirs();
-                                    get = new Get(object_array[i], access_key, secret_key, bucket, endpoint, destination + File.separator + cutit[0] + File.separator + transcoded_object, null);
-                                    System.out.print("\nDebug: " + destination + File.separator + cutit[0] + File.separator + transcoded_object + cutit[2]);
+                                    get = new Get(object_array[i], access_key, secret_key, bucket, endpoint, destination + File.separator + cutit[0] + File.separator + transcoded_object + File.separator + cutit[2], null);
+                                    System.out.print("\nDebug: " + destination + File.separator + cutit[0] + File.separator + transcoded_object + File.separator + cutit[2]);
                                     get.run();
                                 }
                             } else {
