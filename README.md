@@ -63,7 +63,7 @@ Video demonstration for NetBeans: http://youtu.be/54v3rIUh0h8
 
 * ant
 
-* java -cp dist/CloudExplorer.jar:libs/*  cloudExplorer.CloudExplorer
+* java -jar dist/CloudExplorer.jar
 
 # Upgrading
 
