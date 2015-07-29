@@ -255,7 +255,6 @@ public class CLI {
                             }
                         }
                         if (operation.contains("delete")) {
-                            //bucket = arg2;
                             deleteFromS3(arg1);
                         }
 
