@@ -110,6 +110,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             this.setTitle(version + " -  No bucket selected.");
             initComponents();
             setLocationRelativeTo(null);
+            genericEngine = new ImageIcon(this.getClass().getResource("engine.png"));
             UIManager.setLookAndFeel(
                     UIManager.getCrossPlatformLookAndFeelClassName());
             UIManager.put("TabbedPane.selected", Color.white);
