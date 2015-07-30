@@ -77,9 +77,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     String object_acl_change = null;
     String temp_file = (Home + File.separator + "object.tmp");
     String config_file = (Home + File.separator + "s3.config");
-    JFrame dialog = new JFrame();
-    JLabel dialog_label = new JLabel("Please wait for operation to complete. This will close upon completion.");
-    JPanel dialog_panel = new JPanel();
     int account_counter = 0;
     int content_counter = 0;
     int previous_objectarray_length = 0;

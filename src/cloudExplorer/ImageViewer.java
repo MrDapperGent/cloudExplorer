@@ -60,8 +60,6 @@ public class ImageViewer implements Runnable {
                     }
                 }
             }
-
-            mainFrame.dialog.setVisible(false);
         } catch (Exception imageLoading) {
             jTextArea1.append("\n" + imageLoading.getMessage());
         }
