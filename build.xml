@@ -6,7 +6,7 @@
 
         <property name="projectName" value="CloudExplorer" />
         <property name="src.dir" location="src" />
-        <property name="build.dir" location="buld" />
+        <property name="build.dir" location="build" />
         <property name="dist.dir" location="dist" />
         <property name="dist.lib.dir" location="dist/lib" />
         <property name="lib.dir" value="libs" />
@@ -40,6 +40,9 @@
 
         <!-- To work with external libraries, need classpath to compile -->
         <target name="compile" depends="init" description="compile the source ">
+                <copy todir="build/cloudExplorer/">
+                 <fileset file="${src.dir}/cloudExplorer/*.*" />
+                </copy>
                 <javac includeantruntime="false" srcdir="${src.dir}" destdir="${build.dir}" classpathref="classpath" />
         </target>
 
