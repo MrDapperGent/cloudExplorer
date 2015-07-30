@@ -47,7 +47,8 @@ public class Bot implements Runnable {
     int port;
     Put put;
     String password = null;
-    ImageIcon genericEngine;
+    ImageIcon genericEngine = new ImageIcon(
+            this.getClass().getResource("engine.png"));
     public static JTextArea ircarea;
     public static JButton irc_send_button;
     public static JButton irc_close_button;
