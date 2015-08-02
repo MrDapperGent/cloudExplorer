@@ -1,4 +1,4 @@
-Version 6.03
+Version 6.04
 
 Bug Fixes: 
 
@@ -10,6 +10,7 @@ Improvements:
         Changed the green colors back to blue for easier reading.
         "Set Current Folder to Restore Snapshot from" has been renamed to 
         "Set Current Folder as Snapshot Origin".
+        Added text labels back to object explorer.
 
 New Features:
 

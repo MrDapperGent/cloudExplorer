@@ -1,5 +1,5 @@
 #!/bin/bash
-BUILD_NAME="cloudExplorer-6.03"
+BUILD_NAME="cloudExplorer-6.04"
 SRC="$HOME/cloudExplorer"
 README="$SRC/src/cloudExplorer/Release_Notes.txt"
 WINDOWS="$SRC/src/cloudExplorer/cloudExplorer"
