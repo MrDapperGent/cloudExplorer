@@ -766,7 +766,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jButton4.setBackground(java.awt.SystemColor.text);
         jButton4.setForeground(java.awt.Color.gray);
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-trash-empty-icon.png"))); // NOI18N
-        jButton4.setText("Delete");
+        jButton4.setText("Del");
         jButton4.setToolTipText("Delete");
         jButton4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -2970,10 +2970,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     if (object_item[i].isVisible()) {
                         if (object_item[i].isSelected()) {
                             object_item[i].setSelected(false);
-                            jButton13.setToolTipText("Select");
+                            jButton13.setText("Select All");
                         } else {
                             object_item[i].setSelected(true);
-                            jButton13.setToolTipText("Deselect");
+                            jButton13.setText("Deselect All");
                         }
                     }
                 }
@@ -2987,20 +2987,20 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                                 } else {
                                     if (object_item[i].isSelected()) {
                                         object_item[i].setSelected(false);
-                                        jButton13.setToolTipText("Select");
+                                        jButton13.setText("Select All");
                                     } else {
                                         object_item[i].setSelected(true);
-                                        jButton13.setToolTipText("Deselect");
+                                        jButton13.setText("Deselect All");
                                     }
                                 }
                             } else {
 
                                 if (object_item[i].isSelected()) {
                                     object_item[i].setSelected(false);
-                                    jButton13.setToolTipText("Select");
+                                    jButton13.setText("Select");
                                 } else {
                                     object_item[i].setSelected(true);
-                                    jButton13.setToolTipText("Deselect");
+                                    jButton13.setText("Deselect");
 
                                 }
                             }
