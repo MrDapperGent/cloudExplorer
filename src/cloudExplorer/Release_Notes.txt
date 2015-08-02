@@ -12,6 +12,7 @@ Improvements:
         "Set Current Folder to Restore Snapshot from" has been renamed to 
         "Set Current Folder as Snapshot Origin".
         Added text labels back to object explorer.
+        Windows .bat file and Linux shell launcher no longer included.
 
 New Features:
 
