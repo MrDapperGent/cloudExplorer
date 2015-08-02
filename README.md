@@ -33,17 +33,11 @@ Cloud Explorer is a open-source S3 client. It works on Windows, Linux, and Mac. 
 
 # How to run the program
 
-To run the application, most users should be able to run the program by double clicking on the CloudExplorer.jar file. If not, there are two scripts included to assist:
+To run the application, most users should be able to run the program by double clicking on the CloudExplorer.jar file. 
 
-Linux and OS X users can run it as follows:
+If not, you can start the program with the Java command:
 ```
-./cloudExplorer
-```
-Windows users can run Cloud Explorer by double clicking on the cloudExplorer.bat or CloudExplorer.jar file.
-
-For any OS, you can start the program with the Java command:
-```
-java -jar -Xms100m -Xmx500m ./CloudExplorer.jar
+java -jar CloudExplorer.jar
 ```
 # Video demonstraton
 
