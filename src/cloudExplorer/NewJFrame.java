@@ -2055,50 +2055,52 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     }
 
     void drawBuckets() {
-        jPanel5.removeAll();
-        jPanel5.revalidate();
-        jPanel5.repaint();
-        showPanel();
-        jPanel5.setLayout(new BoxLayout(jPanel5, BoxLayout.PAGE_AXIS));
-        active_bucket = -1;
-        bucket_item = new JRadioButton[bucketarray.length];
+        try {
+            jPanel5.removeAll();
+            jPanel5.revalidate();
+            jPanel5.repaint();
+            showPanel();
+            jPanel5.setLayout(new BoxLayout(jPanel5, BoxLayout.PAGE_AXIS));
+            active_bucket = -1;
+            bucket_item = new JRadioButton[bucketarray.length];
 
-        if (bucketarray != null) {
-            for (int h = 1; h != bucketarray.length; h++) {
-                jPanel5.setLayout(new BoxLayout(jPanel5, BoxLayout.Y_AXIS));
-                bucket_item[h] = new JRadioButton();
-                bucket_item[h].setText(bucketarray[h]);
-                bucket_item[h].addItemListener(this);
-                bucket_item[h].setBackground(Color.white);
-                if (bucket.VersioningStatus(cred.getAccess_key(), cred.getSecret_key(), bucketarray[h], cred.getEndpoint(), cred.getRegion(), false)) {
-                    bucket_item[h].setForeground(Color.MAGENTA);
-                } else {
-                    bucket_item[h].setForeground(Color.GRAY);
+            if (bucketarray != null) {
+                for (int h = 1; h != bucketarray.length; h++) {
+                    jPanel5.setLayout(new BoxLayout(jPanel5, BoxLayout.Y_AXIS));
+                    bucket_item[h] = new JRadioButton();
+                    bucket_item[h].setText(bucketarray[h]);
+                    bucket_item[h].addItemListener(this);
+                    bucket_item[h].setBackground(Color.white);
+                    if (bucket.VersioningStatus(cred.getAccess_key(), cred.getSecret_key(), bucketarray[h], cred.getEndpoint(), cred.getRegion(), false)) {
+                        bucket_item[h].setForeground(Color.MAGENTA);
+                    } else {
+                        bucket_item[h].setForeground(Color.GRAY);
+                    }
+                    jPanel5.add(bucket_item[h]);
+                    jPanel5.revalidate();
+                    validate();
                 }
-                jPanel5.add(bucket_item[h]);
-                jPanel5.revalidate();
-                validate();
+
+                objectarray = null;
+                jPanel11.removeAll();
+                JLabel helpmessage = new JLabel("1. Buckets are displayed on the left. Click on a bucket to see your files.");
+                JLabel blank = new JLabel("");
+                JLabel blank2 = new JLabel("");
+                JLabel helpmessage2 = new JLabel("2. You can search buckets by typing text in the search box.");
+                JLabel helpmessage3 = new JLabel("3. Buckets with versioning enabled are displayed in magenta.");
+                helpmessage.setForeground(Color.GRAY);
+                helpmessage2.setForeground(Color.GRAY);
+                helpmessage3.setForeground(Color.GRAY);
+                jPanel11.setLayout(new BoxLayout(jPanel11, BoxLayout.Y_AXIS));
+                jPanel11.add(helpmessage);
+                jPanel11.add(blank);
+                jPanel11.add(helpmessage2);
+                jPanel11.add(blank2);
+                jPanel11.add(helpmessage3);
+                jPanel11.repaint();
             }
-
-            objectarray = null;
-            jPanel11.removeAll();
-            JLabel helpmessage = new JLabel("1. Buckets are displayed on the left. Click on a bucket to see your files.");
-            JLabel blank = new JLabel("");
-            JLabel blank2 = new JLabel("");
-            JLabel helpmessage2 = new JLabel("2. You can search buckets by typing text in the search box.");
-            JLabel helpmessage3 = new JLabel("3. Buckets with versioning enabled are displayed in magenta.");
-            helpmessage.setForeground(Color.GRAY);
-            helpmessage2.setForeground(Color.GRAY);
-            helpmessage3.setForeground(Color.GRAY);
-            jPanel11.setLayout(new BoxLayout(jPanel11, BoxLayout.Y_AXIS));
-            jPanel11.add(helpmessage);
-            jPanel11.add(blank);
-            jPanel11.add(helpmessage2);
-            jPanel11.add(blank2);
-            jPanel11.add(helpmessage3);
-            jPanel11.repaint();
+        } catch (Exception drawBuckets) {
         }
-
     }
 
     void reloadBuckets() {
