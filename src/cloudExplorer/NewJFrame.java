@@ -1903,6 +1903,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                             if (bucket_item[h].isSelected()) {
                                 if (h != active_bucket) {
                                     active_bucket = h;
+                                    jButton13.setText("Select All");
                                     this.setTitle(version + " -  " + bucket_item[h].getText());
                                     cred.setBucket(bucket_item[h].getText());
                                     clear_old_radio_buttons();
