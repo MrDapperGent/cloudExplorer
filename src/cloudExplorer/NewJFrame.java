@@ -752,6 +752,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         );
 
         jButton3.setBackground(java.awt.SystemColor.text);
+        jButton3.setForeground(java.awt.Color.gray);
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-svn-update-icon.png"))); // NOI18N
         jButton3.setText("Get");
         jButton3.setToolTipText("Download");
@@ -763,6 +764,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton4.setBackground(java.awt.SystemColor.text);
+        jButton4.setForeground(java.awt.Color.gray);
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-trash-empty-icon.png"))); // NOI18N
         jButton4.setText("Delete");
         jButton4.setToolTipText("Delete");
@@ -774,6 +776,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton7.setBackground(java.awt.SystemColor.text);
+        jButton7.setForeground(java.awt.Color.gray);
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-system-search-icon.png"))); // NOI18N
         jButton7.setText("Info");
         jButton7.setToolTipText("Properties");
@@ -785,6 +788,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton12.setBackground(java.awt.SystemColor.text);
+        jButton12.setForeground(java.awt.Color.gray);
         jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Apps-scribus-icon.png"))); // NOI18N
         jButton12.setText("Edit");
         jButton12.setToolTipText("Edit");
@@ -796,6 +800,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton13.setBackground(java.awt.SystemColor.text);
+        jButton13.setForeground(java.awt.Color.gray);
         jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Status-media-playlist-repeat-icon.png"))); // NOI18N
         jButton13.setText("Select All");
         jButton13.setToolTipText("Select All");
@@ -807,6 +812,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton1.setBackground(java.awt.SystemColor.text);
+        jButton1.setForeground(java.awt.Color.gray);
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-svn-commit-icon.png"))); // NOI18N
         jButton1.setText("Put");
         jButton1.setToolTipText("Upload");
@@ -818,6 +824,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton17.setBackground(java.awt.SystemColor.text);
+        jButton17.setForeground(java.awt.Color.gray);
         jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-media-playback-start-icon.png"))); // NOI18N
         jButton17.setText("Play");
         jButton17.setToolTipText("Play");
@@ -829,6 +836,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton18.setBackground(java.awt.SystemColor.text);
+        jButton18.setForeground(java.awt.Color.gray);
         jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Apps-preferences-desktop-filetype-association-icon.png"))); // NOI18N
         jButton18.setText("Vers");
         jButton18.setToolTipText("Versions");
@@ -840,6 +848,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton19.setBackground(java.awt.SystemColor.text);
+        jButton19.setForeground(java.awt.Color.gray);
         jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Apps-digikam-icon.png"))); // NOI18N
         jButton19.setText("View");
         jButton19.setToolTipText("View Image");
@@ -935,12 +944,12 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addComponent(jLabel1)
                         .addComponent(jButton4)
                         .addComponent(jButton12)
-                        .addComponent(jButton7)
                         .addComponent(jButton17)
                         .addComponent(jButton18)
                         .addComponent(jButton19)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton13))
+                        .addComponent(jButton3)
+                        .addComponent(jButton13)
+                        .addComponent(jButton7))
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
