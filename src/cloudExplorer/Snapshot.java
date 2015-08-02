@@ -23,6 +23,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import static cloudExplorer.NewJFrame.jTextArea1;
 import java.io.File;
+import javax.swing.JCheckBox;
 
 public class Snapshot implements Runnable {
 
@@ -34,6 +35,7 @@ public class Snapshot implements Runnable {
     String Home = System.getProperty("user.home");
     String config_file = (Home + File.separator + "s3Migrate.config");
     String active_folder = null;
+    public Boolean deltas = false;
 
     public Snapshot(NewJFrame Frame, String Aactive_folder) {
         mainFrame = Frame;
@@ -46,11 +48,15 @@ public class Snapshot implements Runnable {
             final JButton restoreSnapshot = new JButton("Restore Snapshot");
             final JButton abortMigration = new JButton("Abort");
             final JButton close = new JButton("Close");
+            final JCheckBox sync_deltas = new JCheckBox("Sync Only Changes");
             final JLabel blank = new JLabel(" ");
             final JLabel blank2 = new JLabel(" ");
             final JLabel blank3 = new JLabel(" ");
+            final JLabel blank4 = new JLabel(" ");
             restoreSnapshot.setBackground(Color.white);
             restoreSnapshot.setForeground(Color.BLUE);
+            sync_deltas.setBackground(Color.white);
+            sync_deltas.setForeground(Color.BLUE);
             createSnapshot.setBackground(Color.white);
             createSnapshot.setForeground(Color.BLUE);
             abortMigration.setBackground(Color.white);
@@ -71,11 +77,14 @@ public class Snapshot implements Runnable {
             createSnapshot.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
+                    if (sync_deltas.isSelected()) {
+                        deltas = true;
+                    }
                     jTextArea1.setText("\nBucket snapshot has started. Please view this window for any errors.");
                     ReloadObjects object = new ReloadObjects(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), mainFrame);
                     object.run();
-                    migrate = new BucketMigration(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, true, false, null);
-                    migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, true, false, null);
+                    migrate = new BucketMigration(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, true, false, null, deltas);
+                    migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, true, false, null, deltas);
                 }
             });
 
@@ -87,8 +96,8 @@ public class Snapshot implements Runnable {
                     if (active_folder != null) {
                         ReloadObjects object = new ReloadObjects(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), mainFrame);
                         object.run();
-                        migrate = new BucketMigration(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, true, true, active_folder);
-                        migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, true, true, active_folder);
+                        migrate = new BucketMigration(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, true, true, active_folder, deltas);
+                        migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, true, true, active_folder, deltas);
                     } else {
                         jTextArea1.setText("\nError: You did not select an active folder to restore from.");
                         calibrate();
@@ -119,6 +128,8 @@ public class Snapshot implements Runnable {
             mainFrame.jPanel14.add(blank3);
             mainFrame.jPanel14.add(createSnapshot);
             mainFrame.jPanel14.add(restoreSnapshot);
+            mainFrame.jPanel14.add(sync_deltas);
+            mainFrame.jPanel14.add(blank4);
             mainFrame.jPanel14.add(close);
             mainFrame.jPanel14.repaint();
             mainFrame.jPanel14.revalidate();

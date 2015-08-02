@@ -46,7 +46,7 @@ import javax.swing.plaf.ColorUIResource;
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     String major = "6";
-    String minor = "02";
+    String minor = "03";
     String release_version = major + "." + minor;
     String version = "Cloud Explorer " + release_version;
     String[] folders = new String[1];
@@ -1463,7 +1463,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu12.add(jMenuItem32);
 
-        jMenuItem33.setText("Set Current Folder to Restore Snapshot From");
+        jMenuItem33.setText("Set Current Folder as Snapshot Origin");
         jMenuItem33.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem33ActionPerformed(evt);

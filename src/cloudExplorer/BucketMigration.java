@@ -61,6 +61,8 @@ public class BucketMigration implements Runnable {
     String win = "\\";
     String lin = "/";
     String sep = null;
+    Boolean deltas = false;
+    String change_folder = null;
 
     public void calibrate() {
         try {
@@ -69,7 +71,7 @@ public class BucketMigration implements Runnable {
         }
     }
 
-    BucketMigration(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, NewJFrame AmainFrame, Boolean Asnapshot, Boolean ArestoreSnapshot, String Aactive_folder) {
+    BucketMigration(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, NewJFrame AmainFrame, Boolean Asnapshot, Boolean ArestoreSnapshot, String Aactive_folder, Boolean Adeltas) {
         access_key = Aaccess_key;
         secret_key = Asecret_key;
         bucket = Abucket;
@@ -78,6 +80,7 @@ public class BucketMigration implements Runnable {
         snapshot = Asnapshot;
         restoreSnapshot = ArestoreSnapshot;
         active_folder = Aactive_folder;
+        deltas = Adeltas;
     }
 
     String loadMigrationConfig() {
@@ -102,9 +105,9 @@ public class BucketMigration implements Runnable {
 
     }
 
-    String date() {
+    String date(String format) {
         Date date = new Date();
-        SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dt = new SimpleDateFormat(format);
         return dt.format(date);
     }
 
@@ -156,7 +159,7 @@ public class BucketMigration implements Runnable {
     }
 
     public void migrate() {
-        String date = date();
+        String date = date("yyyy-MM-dd");
         for (int i = 1; i != mainFrame.objectarray.length; i++) {
             if (mainFrame.objectarray[i] != null) {
                 if (mainFrame.objectarray[i].contains(win)) {
@@ -172,30 +175,43 @@ public class BucketMigration implements Runnable {
                     search = mainFrame.objectarray[i];
                 }
 
-                if (destinationBucketlist.contains(search)) {
-
-                    if (modified_check(search, mainFrame.objectarray[i])) {
-                        if (snapshot) {
-                            get = new Get(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, temp_file, null);
-                            get.run();
-                            put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + sep + mainFrame.objectarray[i], false, false);
-                            put.run();
-                        } else {
-                            get = new Get(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, temp_file, null);
-                            get.run();
-                            put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, mainFrame.objectarray[i], false, false);
-                            put.run();
-                        }
-                    }
+                if (mainFrame.objectarray[i].contains("Snapshot-Changes-")) {
                 } else {
-                    get = new Get(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, temp_file, null);
-                    get.run();
-                    if (snapshot) {
-                        put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + sep + mainFrame.objectarray[i], false, false);
+                    if (destinationBucketlist.contains(search)) {
+
+                        if (modified_check(search, mainFrame.objectarray[i])) {
+                            if (snapshot) {
+                                get = new Get(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, temp_file, null);
+                                get.run();
+                                if (deltas) {
+                                    change_folder = mainFrame.snap_folder.replace("Snapshot-", "Snapshot-Changes-");
+                                    put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, change_folder + mainFrame.objectarray[i], false, false);
+                                } else {
+                                    put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + sep + mainFrame.objectarray[i], false, false);
+                                }
+                                put.run();
+                            } else {
+                                get = new Get(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, temp_file, null);
+                                get.run();
+                                put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, mainFrame.objectarray[i], false, false);
+                                put.run();
+                            }
+                        }
                     } else {
-                        put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, mainFrame.objectarray[i], false, false);
+                        get = new Get(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, temp_file, null);
+                        get.run();
+                        if (snapshot) {
+                            if (deltas) {
+                                change_folder = mainFrame.snap_folder.replace("Snapshot-", "Snapshot-Changes-");
+                                put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, change_folder + mainFrame.objectarray[i], false, false);
+                            } else {
+                                put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + sep + mainFrame.objectarray[i], false, false);
+                            }
+                        } else {
+                            put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, mainFrame.objectarray[i], false, false);
+                        }
+                        put.run();
                     }
-                    put.run();
                 }
             }
         }
@@ -302,8 +318,8 @@ public class BucketMigration implements Runnable {
 
     }
 
-    void startc(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, NewJFrame AmainFrame, Boolean Asnapshot, Boolean ArestoreSnapshot, String Aactive_folder) {
-        bucketMigration = new Thread(new BucketMigration(Aaccess_key, Asecret_key, Abucket, Aendpoint, AmainFrame, Asnapshot, ArestoreSnapshot, Aactive_folder));
+    void startc(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, NewJFrame AmainFrame, Boolean Asnapshot, Boolean ArestoreSnapshot, String Aactive_folder, Boolean Adeltas) {
+        bucketMigration = new Thread(new BucketMigration(Aaccess_key, Asecret_key, Abucket, Aendpoint, AmainFrame, Asnapshot, ArestoreSnapshot, Aactive_folder, Adeltas));
         bucketMigration.start();
     }
 

@@ -1,4 +1,4 @@
-Version 6.02
+Version 6.03
 
 Bug Fixes: 
 
@@ -8,9 +8,13 @@ Bug Fixes:
 Improvements: 
 
         Changed the green colors back to blue for easier reading.
+        "Set Current Folder to Restore Snapshot from" has been renamed to 
+        "Set Current Folder as Snapshot Origin".
 
-New Features: <none>
-         
+New Features:
+
+        Snapshots have an option to sync changes to a bucket since the existing 
+        snapshot. Only the differences will be uploaded.   
           
 Features:
 
