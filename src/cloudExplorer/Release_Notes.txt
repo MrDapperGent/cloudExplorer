@@ -13,8 +13,7 @@ Improvements:
 
 New Features:
 
-        Snapshots have an option to sync changes to a bucket since the existing 
-        snapshot. Only the differences will be uploaded.   
+        Snapshots can sync changes to a bucket from prior snapshots.
           
 Features:
 
