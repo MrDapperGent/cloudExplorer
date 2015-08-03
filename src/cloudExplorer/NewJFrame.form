@@ -1172,21 +1172,21 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="jButton3" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Component id="jButton4" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Component id="jButton7" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Component id="jButton12" min="-2" pref="74" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Component id="jButton13" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Component id="jButton17" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jButton18" min="-2" pref="94" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                      <Component id="jButton18" min="-2" pref="82" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Component id="jButton19" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jScrollPane7" min="-2" pref="769" max="-2" attributes="0"/>
@@ -1222,7 +1222,7 @@
                                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                                       <Component id="jPanel14" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jScrollPane7" pref="319" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane7" pref="325" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           </Group>
@@ -1416,9 +1416,7 @@
                         <Property name="text" type="java.lang.String" value="Get"/>
                         <Property name="toolTipText" type="java.lang.String" value="Download"/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
-                            <BevelBorder/>
-                          </Border>
+                          <Border info="null"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -1442,9 +1440,7 @@
                         <Property name="text" type="java.lang.String" value="Del"/>
                         <Property name="toolTipText" type="java.lang.String" value="Delete"/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
-                            <BevelBorder/>
-                          </Border>
+                          <Border info="null"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -1468,9 +1464,7 @@
                         <Property name="text" type="java.lang.String" value="Info"/>
                         <Property name="toolTipText" type="java.lang.String" value="Properties"/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
-                            <BevelBorder/>
-                          </Border>
+                          <Border info="null"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -1494,9 +1488,7 @@
                         <Property name="text" type="java.lang.String" value="Edit"/>
                         <Property name="toolTipText" type="java.lang.String" value="Edit"/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
-                            <BevelBorder/>
-                          </Border>
+                          <Border info="null"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -1520,9 +1512,7 @@
                         <Property name="text" type="java.lang.String" value="Select All"/>
                         <Property name="toolTipText" type="java.lang.String" value="Select All"/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
-                            <BevelBorder/>
-                          </Border>
+                          <Border info="null"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -1546,9 +1536,7 @@
                         <Property name="text" type="java.lang.String" value="Put"/>
                         <Property name="toolTipText" type="java.lang.String" value="Upload"/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
-                            <BevelBorder/>
-                          </Border>
+                          <Border info="null"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -1572,9 +1560,7 @@
                         <Property name="text" type="java.lang.String" value="Play"/>
                         <Property name="toolTipText" type="java.lang.String" value="Play"/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
-                            <BevelBorder/>
-                          </Border>
+                          <Border info="null"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -1598,9 +1584,7 @@
                         <Property name="text" type="java.lang.String" value="Vers"/>
                         <Property name="toolTipText" type="java.lang.String" value="Versions"/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
-                            <BevelBorder/>
-                          </Border>
+                          <Border info="null"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -1624,9 +1608,7 @@
                         <Property name="text" type="java.lang.String" value="View"/>
                         <Property name="toolTipText" type="java.lang.String" value="View Image"/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
-                            <BevelBorder/>
-                          </Border>
+                          <Border info="null"/>
                         </Property>
                       </Properties>
                       <Events>
