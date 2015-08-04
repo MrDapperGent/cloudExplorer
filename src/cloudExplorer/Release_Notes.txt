@@ -1,10 +1,11 @@
-Version 6.043
+Version 6.05
 
 Bug Fixes: 
 
         Fixed bug syncing folders from the CLI.
         Deleting a file with CLI is functional.
         Catch exception when aborting a sync and reloading buckets.
+        Obsolete buttons disabled after clicking Versioning.
 
 Improvements: 
 

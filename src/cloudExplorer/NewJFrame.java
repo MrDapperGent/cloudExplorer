@@ -46,7 +46,7 @@ import javax.swing.plaf.ColorUIResource;
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     String major = "6";
-    String minor = "043";
+    String minor = "05";
     String release_version = major + "." + minor;
     String version = "Cloud Explorer " + release_version;
     String[] folders = new String[1];
@@ -3065,11 +3065,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         if (active_bucket > 0) {
             boolean countSelected = false;
-            jButton1.setEnabled(false);
-            jButton7.setEnabled(false);
-            jButton17.setEnabled(false);
-            jButton18.setEnabled(false);
-            jButton19.setEnabled(false);
+
             jPanel9.setVisible(true);
             try {
                 for (int i = 1; i != objectarray.length; i++) {
@@ -3086,6 +3082,11 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 jTextArea1.append("\nPleae wait. Reloading Objects to show all versions");
                 calibrateTextArea();
                 jButton6.doClick();
+                jButton1.setEnabled(false);
+                jButton7.setEnabled(false);
+                jButton17.setEnabled(false);
+                jButton19.setEnabled(false);
+                jButton18.setEnabled(false);
                 jPanel9.setVisible(true);
                 showVersions = new ShowVersions(null, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), this);
                 showVersions.startc(null, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), this);
