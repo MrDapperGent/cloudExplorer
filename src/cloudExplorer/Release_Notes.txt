@@ -2,8 +2,8 @@ Version 7.0
 
 Bug Fixes: 
 
-        Due to a Java and AWS JDK Library, I had to update all the libraries to 
-        restore functionality with AWS.
+        Due to a Java and AWS JDK compatability issue, I had to update all the 
+        libraries and JDK to v1.10.26.
 
 Improvements: 
 
