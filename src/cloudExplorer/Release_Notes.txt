@@ -1,23 +1,17 @@
-Version 6.1
+Version 7.0
 
 Bug Fixes: 
 
-        Fixed bug syncing folders from the CLI.
-        Deleting a file with CLI is functional.
-        Catch exception when aborting a sync and reloading buckets.
-        Obsolete buttons disabled after clicking Versioning.
+        Due to a Java and AWS JDK Library, I had to update all the libraries to 
+        restore functionality with AWS.
 
 Improvements: 
 
-        Changed the green colors back to blue for easier reading.
-        "Set Current Folder to Restore Snapshot from" has been renamed to 
-        "Set Current Folder as Snapshot Origin".
-        Added text labels back to object explorer.
-        Windows .bat file and Linux shell launcher no longer included.
+        NA
 
 New Features:
 
-        Snapshots can sync changes to a bucket from prior snapshots.
+       v4 signature only supported now.
           
 Features:
 
