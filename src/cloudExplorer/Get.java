@@ -82,7 +82,7 @@ public class Get implements Runnable {
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         File file = new File(what);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
-                new ClientConfiguration().withSignerOverride("S3SignerType"));
+                new ClientConfiguration());
         s3Client.setEndpoint(endpoint);
 
         try {
