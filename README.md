@@ -3,6 +3,9 @@ This program is free software: you can redistribute it and/or modify it under th
 
 A copy of the GNU GPL is located in `LICENSE.txt`.
 
+# Important Advisory
+Version 6.x no longer works with Amazon Web Services. v7 is coming out soon to address this issue and will only work with v4 singing. This was related to a problem with Java and the AWS JDK.
+
 # Description 
 Cloud Explorer is a open-source S3 client. It works on Windows, Linux, and Mac.  It has a graphical and command line interface for each supported operating system.
 
