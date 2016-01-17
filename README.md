@@ -31,8 +31,7 @@ Cloud Explorer is a open-source S3 client. It works on Windows, Linux, and Mac. 
 
 # Screenshots 
 
-![Graph](https://www.linux-toys.com/9.png)
-![Objects](https://www.linux-toys.com/10.png)
+![Graph](http://imgur.com/aw5iKZf)
 
 # How to run the program
 
