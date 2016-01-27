@@ -11,7 +11,7 @@ Improvements:
 
 New Features:
 
-       v4 signature only supported now.
+       NA
           
 Features:
 
