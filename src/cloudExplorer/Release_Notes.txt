@@ -1,13 +1,13 @@
-Version 7.0
+Version 7.01
 
 Bug Fixes: 
 
-        Due to a Java and AWS JDK compatability issue, I had to update all the 
-        libraries and JDK to v1.10.26.
+     	NA
 
 Improvements: 
 
-        NA
+       Compiled with the latest Java 
+       Using latest AWS SDK 1.10.49 
 
 New Features:
 

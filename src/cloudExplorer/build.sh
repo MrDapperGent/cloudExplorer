@@ -1,5 +1,5 @@
 #!/bin/bash
-BUILD_NAME="cloudExplorer-7.0"
+BUILD_NAME="cloudExplorer-7.01"
 SRC="$HOME/cloudExplorer"
 ZIP="$SRC/$BUILD_NAME.zip"
 
