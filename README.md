@@ -48,18 +48,21 @@ https://www.youtube.com/watch?v=O1HVDYywZRY
 # How to compile from source
 
 Video demonstration for NetBeans: http://youtu.be/54v3rIUh0h8
-
-* yum -y install git java-1.8-openjdk java-1.8.0-openjdk-devel ant
-
-* Use "update-alternatives --config java " and "update-alternatives --config javac" to set Java aliases to 1.8
-
-* git clone https://github.com/rusher81572/cloudExplorer.git
-
-* cd cloudExplorer
-
-* ant
-
-* java -jar dist/CloudExplorer.jar
+```
+yum -y install git java-1.8-openjdk java-1.8.0-openjdk-devel ant
+```
+Use "update-alternatives" to set Java aliases to 1.8
+```
+update-alternatives --config java 
+update-alternatives --config javac
+```
+Clone this repository and build
+```
+git clone https://github.com/rusher81572/cloudExplorer.git
+cd cloudExplorer
+ant
+java -jar dist/CloudExplorer.jar
+```
 
 # Upgrading
 
