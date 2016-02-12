@@ -56,11 +56,14 @@ Use "update-alternatives" to set Java aliases to 1.8
 update-alternatives --config java 
 update-alternatives --config javac
 ```
-Clone this repository and build
+Clone this repository and run ant to compile the project
 ```
 git clone https://github.com/rusher81572/cloudExplorer.git
 cd cloudExplorer
 ant
+```
+Run Cloud Explorer
+```
 java -jar dist/CloudExplorer.jar
 ```
 
