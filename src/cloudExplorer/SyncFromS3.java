@@ -136,6 +136,9 @@ public class SyncFromS3 implements Runnable {
                     }
                     if (found == 0) {
 
+                        //Create destination directories based on the path in the object name
+                        //
+                        //This condition occurs when selecting a specific folder to sync from GUI
                         if (index > -1) {
                             if (objectarray[i].contains(mainFrame.jList3.getSelectedValue().toString())) {
                                 makeDirectory(destination + File.separator + objectarray[i]);
@@ -149,37 +152,53 @@ public class SyncFromS3 implements Runnable {
                         if (SyncFromS3.running) {
                             try {
                                 String transcoded_object = null;
+                                //If not selecting a specific folder to sync in GUI
                                 if (index == -1) {
-                                    String[] cutit = null;
                                     if (objectarray[i].contains(win) || (objectarray[i].contains(lin))) {
-                                        if (objectarray[i].contains(win)) {
-                                            cutit = objectarray[i].split(Pattern.quote(win));
-                                            transcoded_object = cutit[1];
-                                        } else {
-                                            cutit = objectarray[i].split(Pattern.quote(lin));
-                                            transcoded_object = cutit[1];
+                                        if (objectarray[i].contains(win) && File.separator == win) {
+                                            transcoded_object = objectarray[i];
                                         }
-                                        String object = makeDirectory(destination + File.separator + cutit[0]);
-                                        get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + cutit[0] + File.separator + transcoded_object, null);
+
+                                        if (objectarray[i].contains(lin) && File.separator.contains(lin)) {
+                                            transcoded_object = objectarray[i];
+                                        }
+
+                                        if (objectarray[i].contains(lin) && File.separator.contains(win)) {
+                                            transcoded_object = objectarray[i].replace(lin, win);
+                                        }
+
+                                        if (objectarray[i].contains(win) && File.separator.contains(win)) {
+                                            transcoded_object = objectarray[i].replace(win, lin);
+                                        }
+                                   
+                                        get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + transcoded_object, null);
                                         get.run();
+                                        //The following condition occurs If no file separaters are detected
                                     } else {
                                         get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + objectarray[i], null);
                                         get.run();
                                     }
-                                } else {
-                                    if (objectarray[i].contains(mainFrame.jList3.getSelectedValue().toString())) {
-                                        String[] cutit = null;
-                                        if (objectarray[i].contains(win)) {
-                                            cutit = objectarray[i].split(Pattern.quote(win));
-                                            transcoded_object = cutit[1];
-                                        } else {
-                                            cutit = objectarray[i].split(lin);
-                                            transcoded_object = cutit[1];
+                                } else if (objectarray[i].contains(mainFrame.jList3.getSelectedValue().toString())) {
+                                       if (objectarray[i].contains(win) || (objectarray[i].contains(lin))) {
+                                        if (objectarray[i].contains(win) && File.separator == win) {
+                                            transcoded_object = objectarray[i];
                                         }
-                                        String object = makeDirectory(destination + File.separator + cutit[0]);
-                                        get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + cutit[0] + File.separator + transcoded_object, null);
+
+                                        if (objectarray[i].contains(lin) && File.separator.contains(lin)) {
+                                            transcoded_object = objectarray[i];
+                                        }
+
+                                        if (objectarray[i].contains(lin) && File.separator.contains(win)) {
+                                            transcoded_object = objectarray[i].replace(lin, win);
+                                        }
+
+                                        if (objectarray[i].contains(win) && File.separator.contains(win)) {
+                                            transcoded_object = objectarray[i].replace(win, lin);
+                                        }
+                                   
+                                        get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + transcoded_object, null);
                                         get.run();
-                                    }
+                                       }  
                                 }
                                 found = 0;
                             } catch (Exception fo) {
