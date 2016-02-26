@@ -4,6 +4,8 @@ Bug Fixes:
 
        Sync GUI and CLI - subdirectories uploaded incorrectly. This causes 
                        directories to be in wrong location when syncing locally.
+           
+       Select/Deselect now defaults to Select when performing a search.
 
 Improvements: 
 

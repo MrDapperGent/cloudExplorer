@@ -1831,6 +1831,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             BucketACL bucketACL = new BucketACL(this);
             bucketACL.startc();
             jButton13.setToolTipText("Select All");
+            jButton13.setText("Select All");
 
             try {
                 int found = 0;
