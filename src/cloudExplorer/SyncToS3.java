@@ -23,7 +23,6 @@ import static cloudExplorer.NewJFrame.jTextArea1;
 import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.regex.Pattern;
 import org.apache.commons.codec.digest.DigestUtils;
 
 public class SyncToS3 implements Runnable {
