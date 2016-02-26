@@ -152,54 +152,44 @@ public class SyncFromS3 implements Runnable {
                         if (SyncFromS3.running) {
                             try {
                                 String transcoded_object = null;
-                                //If not selecting a specific folder to sync in GUI
-                                if (index == -1) {
-                                    if (objectarray[i].contains(win) || (objectarray[i].contains(lin))) {
-                                        if (objectarray[i].contains(win) && File.separator == win) {
-                                            transcoded_object = objectarray[i];
-                                        }
+                                if (objectarray[i].contains(win) || (objectarray[i].contains(lin))) {
+                                    if (objectarray[i].contains(win) && File.separator == win) {
+                                        transcoded_object = objectarray[i];
+                                    }
 
-                                        if (objectarray[i].contains(lin) && File.separator.contains(lin)) {
-                                            transcoded_object = objectarray[i];
-                                        }
+                                    if (objectarray[i].contains(lin) && File.separator.contains(lin)) {
+                                        transcoded_object = objectarray[i];
+                                    }
 
-                                        if (objectarray[i].contains(lin) && File.separator.contains(win)) {
-                                            transcoded_object = objectarray[i].replace(lin, win);
-                                        }
+                                    if (objectarray[i].contains(lin) && File.separator.contains(win)) {
+                                        transcoded_object = objectarray[i].replace(lin, win);
+                                    }
 
-                                        if (objectarray[i].contains(win) && File.separator.contains(win)) {
-                                            transcoded_object = objectarray[i].replace(win, lin);
+                                    if (objectarray[i].contains(win) && File.separator.contains(win)) {
+                                        transcoded_object = objectarray[i].replace(win, lin);
+                                    }
+                                    if (index > -1) {
+                                        if (objectarray[i].contains(mainFrame.jList3.getSelectedValue().toString())) {
+                                            get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + transcoded_object, null);
+                                            get.run();
                                         }
-                                   
+                                    } else {
                                         get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + transcoded_object, null);
                                         get.run();
-                                        //The following condition occurs If no file separaters are detected
+                                    }
+                                } else {
+                                    if (index > -1) {
+                                        if (objectarray[i].contains(mainFrame.jList3.getSelectedValue().toString())) {
+                                            get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + objectarray[i], null);
+                                            get.run();
+                                        }
                                     } else {
                                         get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + objectarray[i], null);
                                         get.run();
                                     }
-                                } else if (objectarray[i].contains(mainFrame.jList3.getSelectedValue().toString())) {
-                                       if (objectarray[i].contains(win) || (objectarray[i].contains(lin))) {
-                                        if (objectarray[i].contains(win) && File.separator == win) {
-                                            transcoded_object = objectarray[i];
-                                        }
 
-                                        if (objectarray[i].contains(lin) && File.separator.contains(lin)) {
-                                            transcoded_object = objectarray[i];
-                                        }
-
-                                        if (objectarray[i].contains(lin) && File.separator.contains(win)) {
-                                            transcoded_object = objectarray[i].replace(lin, win);
-                                        }
-
-                                        if (objectarray[i].contains(win) && File.separator.contains(win)) {
-                                            transcoded_object = objectarray[i].replace(win, lin);
-                                        }
-                                   
-                                        get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + transcoded_object, null);
-                                        get.run();
-                                       }  
                                 }
+
                                 found = 0;
                             } catch (Exception fo) {
 
