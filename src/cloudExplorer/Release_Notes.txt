@@ -1,4 +1,4 @@
-Version 7.01
+Version 7.1
 
 Bug Fixes: 
 
@@ -7,7 +7,7 @@ Bug Fixes:
 Improvements: 
 
        Compiled with the latest Java 
-       Using latest AWS SDK 1.10.49 
+       Using latest AWS SDK 1.10.56
 
 New Features:
 
