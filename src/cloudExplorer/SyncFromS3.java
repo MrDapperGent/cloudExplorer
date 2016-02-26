@@ -136,17 +136,14 @@ public class SyncFromS3 implements Runnable {
                     }
                     if (found == 0) {
 
-                        //Create destination directories based on the path in the object name
-                        //
-                        //This condition occurs when selecting a specific folder to sync from GUI
                         if (index > -1) {
                             if (objectarray[i].contains(mainFrame.jList3.getSelectedValue().toString())) {
                                 makeDirectory(destination + File.separator + objectarray[i]);
-                                String object = makeDirectory(objectarray[i]);
+                                makeDirectory(objectarray[i]);
                             }
                         } else {
                             makeDirectory(destination + File.separator + objectarray[i]);
-                            String object = makeDirectory(objectarray[i]);
+                            makeDirectory(objectarray[i]);
                         }
 
                         if (SyncFromS3.running) {
