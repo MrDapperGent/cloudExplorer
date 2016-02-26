@@ -2,7 +2,8 @@ Version 7.1
 
 Bug Fixes: 
 
-     	NA
+       Sync GUI and CLI - subdirectories uploaded incorrectly. This causes 
+                       directories to be in wrong location when syncing locally.
 
 Improvements: 
 
