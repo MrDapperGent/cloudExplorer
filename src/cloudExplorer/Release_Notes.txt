@@ -9,6 +9,8 @@ Improvements:
 
        Compiled with the latest Java 
        Using latest AWS SDK 1.10.56
+       Cleaner sync clode.
+       More stable syncing to and from s3.
 
 New Features:
 
