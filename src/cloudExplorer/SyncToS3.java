@@ -98,8 +98,10 @@ public class SyncToS3 implements Runnable {
         List<File> files = (List<File>) FileUtils.listFiles(location, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE);
         for (File file_found : files) {
             int found = 0;
+            String clean_object_name[] = destination.split(File.separator);
             String object = file_found.getAbsolutePath().toString();
-            object = object.replace(Home, "");
+            object = object.replace(destination, "");
+            object = clean_object_name[clean_object_name.length - 1] + object;
             if (object.substring(0, 0).contains(win)) {
                 object = object.substring(1, object.length());
             } else {

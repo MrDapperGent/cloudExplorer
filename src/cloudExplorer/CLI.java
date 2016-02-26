@@ -370,14 +370,10 @@ public class CLI {
         String[] extensions = new String[]{" "};
         List<File> files = (List<File>) FileUtils.listFiles(dir, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE);
         for (File file_found : files) {
+            String clean_object_name[] = destination.split(File.separator);
             String object = file_found.getAbsolutePath().toString();
-            object = object.replace(Home, "");
-            if (object.substring(0, 0).contains(win)) {
-                object = object.substring(1, object.length());
-            } else {
-                object = object.substring(1, object.length());
-            }
-
+            object = object.replace(destination, "");
+            object = clean_object_name[clean_object_name.length - 1] + object;
             int found = 0;
             for (int y = 1; y != object_array.length; y++) {
                 if (object_array[y].contains(object) && (object_array[y].length() == object.length())) {
