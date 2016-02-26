@@ -107,7 +107,7 @@ public class SyncToS3 implements Runnable {
                 object = object.substring(1, object.length());
             }
             for (int y = 1; y != objectarray.length; y++) {
-                if (objectarray[y].contains(object)) {
+                if (objectarray[y].contains(object) && objectarray[y].length() == object.length()) {
                     if (!modified_check(objectarray[y], file_found.getAbsolutePath())) {
                         calibrate();
                         found++;
