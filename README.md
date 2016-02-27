@@ -45,6 +45,11 @@ java -jar CloudExplorer.jar
 
 https://www.youtube.com/watch?v=O1HVDYywZRY
 
+# 7.x Upgrade Information
+
+The latest release is v7.1. There is no upgrade path to this release from v7.0 and earlier due to a change in the AWS Java API's. Please download the full v7.1 release under releases. 
+
+
 # How to compile from source
 
 Video demonstration for NetBeans: http://youtu.be/54v3rIUh0h8
