@@ -74,7 +74,7 @@ java -jar dist/CloudExplorer.jar
 
 # Upgrading
 
-Starting with v5.0, minor releases will no longer be published on Github. To upgrade, please use the updater located in the application. Everytime Cloud Explorer is ran, it will check for the latest version. To apply the update, click "Help -> Check for updates"
+To upgrade, please use the updater located in the application. Everytime Cloud Explorer is ran, it will check for the latest version. To apply the update, click "Help -> Check for updates". Some upgrades may contain newer API's and will require that you manually download the entire release under "releases" in GitHub.
 
 
 # How to migrate data between S3 accounts
