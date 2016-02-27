@@ -7,7 +7,7 @@ A copy of the GNU GPL is located in `LICENSE.txt`.
 Version 6.x no longer works with Amazon Web Services. v7 resolves the issue and will only work with v4 singing. This was related to a problem with Java and the AWS JDK. In-place upgrading from v6 to v7 is not supported. Please download the complete v7 release.
 
 # Description 
-Cloud Explorer is a open-source S3 client. It works on Windows, Linux, and Mac.  It has a graphical and command line interface for each supported operating system. Updates will be released periodically that contain recent API's and Cloud Explorer compiled with a recent version of Java. If you have a feature suggestion or find a bug, please open an issue.
+Cloud Explorer is a open-source S3 client. It works on Windows, Linux, and Mac.  It has a graphical and command line interface for each supported operating system. If you have a feature suggestion or find a bug, please open an issue.
 
 # Features
 
