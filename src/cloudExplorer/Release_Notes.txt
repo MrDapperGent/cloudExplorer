@@ -2,7 +2,7 @@ Version 7.2
 
 Upgrading:
 
-*** This release can only be upgraded in place from v7.1. ***
+*** Upgrading to this release is only possible from v7.1. ***
 
 Bug Fixes: 
 
