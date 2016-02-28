@@ -54,16 +54,6 @@ public class Daemon {
         }
     }
 
-    /**
-     * void loadS3credentials() { try { for (String what : saved_s3_configs) {
-     * if (what == null) { messageParser("\nError: an S3 config was null"); if
-     * (!gui) { System.exit(-1); } } }
-     *
-     * access_key = saved_s3_configs[0]; secret_key = saved_s3_configs[1];
-     * endpoint = saved_s3_configs[2] + ":" + saved_s3_configs[3]; region =
-     * saved_s3_configs[4]; } catch (Exception loadS3Credentials) { } }
-     *
-     */
     String loadConfig(String what) {
         String data = null;
 
