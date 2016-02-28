@@ -6,18 +6,16 @@ Upgrading:
 
 Bug Fixes: 
 
-           Daemon mode - Background syncing sync folders and subfolders 
-                         properly.
+           Background Syncing - Sync folders and subfolders properly.
 
 Improvements: 
 
-           Daemon mode - Background syncing compares MD5's and date when syncing.
-                       - MD5 hashing and date check on files.
-                       - Reuses CLI sync code. This helps eliminate technical debt
+           Background Syncing - Compares MD5's and date when syncing.
+            - Reuses CLI sync code. This helps eliminate technical debt
 
 New Features:
 
-           Daemon mode- Bidirectional sync.
+           Background Syncing - Bidirectional sync.
           
 Features:
 
