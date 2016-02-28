@@ -443,7 +443,7 @@ public class CLI {
                         try {
                             String transcoded_object = null;
                             if (object_array[i].contains(win) || (object_array[i].contains(lin))) {
-                                if (object_array[i].contains(win) && File.separator == win) {
+                                if (object_array[i].contains(win) && File.separator.contains(win)) {
                                     transcoded_object = object_array[i];
                                 }
 
@@ -455,7 +455,7 @@ public class CLI {
                                     transcoded_object = object_array[i].replace(lin, win);
                                 }
 
-                                if (object_array[i].contains(win) && File.separator.contains(win)) {
+                                if (object_array[i].contains(win) && File.separator.contains(lin)) {
                                     transcoded_object = object_array[i].replace(win, lin);
                                 }
                                 if (folder != null) {
