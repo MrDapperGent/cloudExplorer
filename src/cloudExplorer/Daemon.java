@@ -18,36 +18,20 @@ package cloudExplorer;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.filefilter.TrueFileFilter;
 
 public class Daemon {
 
     NewJFrame mainFrame;
     String Home = System.getProperty("user.home");
-    String OS = System.getProperty("os.name");
-    String temp_file = (Home + File.separator + "object.tmp");
     String sync_config_file = Home + File.separator + "s3config.sync";
     String s3_config_file = Home + File.separator + "s3.config";
-    BucketClass Bucket = new BucketClass();
-    Acl objectacl = new Acl();
-    Get get;
-    Put put;
-    String[] bucketarray = null;
-    String[] locationarray = null;
-    String[] objectarray = null;
-    String[] syncarray = null;
     String[] saved_s3_configs = null;
     String[] saved_directory_to_sync = null;
     File dirToSync = new File("");
-    String secret_key = null;
-    String access_key = null;
-    String endpoint = null;
     String bucket = null;
-    String region = null;
     boolean gui = false;
+    CLI cli = new CLI();
 
     void messageParser(String message) {
         if (gui) {
@@ -70,25 +54,16 @@ public class Daemon {
         }
     }
 
-    void loadS3credentials() {
-        try {
-            for (String what : saved_s3_configs) {
-                if (what == null) {
-                    messageParser("\nError: an S3 config was null");
-                    if (!gui) {
-                        System.exit(-1);
-                    }
-                }
-            }
-
-            access_key = saved_s3_configs[0];
-            secret_key = saved_s3_configs[1];
-            endpoint = saved_s3_configs[2] + ":" + saved_s3_configs[3];
-            region = saved_s3_configs[4];
-        } catch (Exception loadS3Credentials) {
-        }
-    }
-
+    /**
+     * void loadS3credentials() { try { for (String what : saved_s3_configs) {
+     * if (what == null) { messageParser("\nError: an S3 config was null"); if
+     * (!gui) { System.exit(-1); } } }
+     *
+     * access_key = saved_s3_configs[0]; secret_key = saved_s3_configs[1];
+     * endpoint = saved_s3_configs[2] + ":" + saved_s3_configs[3]; region =
+     * saved_s3_configs[4]; } catch (Exception loadS3Credentials) { } }
+     *
+     */
     String loadConfig(String what) {
         String data = null;
 
@@ -134,32 +109,38 @@ public class Daemon {
                 }
             }
 
-            saved_s3_configs = loadConfig(this.s3_config_file).toString().split(" ");
-            loadS3credentials();
-
             saved_directory_to_sync = loadConfig(sync_config_file).toString().split(" ");
             bucket = saved_directory_to_sync[1];
-
             dirToSync = new File(saved_directory_to_sync[0]);
 
             File syncDIR = new File(saved_directory_to_sync[0]);
             if (syncDIR.exists()) {
 
-                messageParser("\n\nDirectory to sync: " + dirToSync.toString() + "  Bucket: " + bucket);
+                cli.saved_s3_configs = cli.loadConfig(cli.s3_config_file).toString().split(" ");
+                cli.bucket = bucket;
+                cli.loadS3credentials();
+                cli.destination = dirToSync.toString();
 
                 new Thread(new Runnable() {
                     public void run() {
                         try {
-                            reloadObjects();
-                            SyncToS3(dirToSync);
-                            //syncFromS3(dirToSync.toString());
+                            String parse_dir[] = dirToSync.toString().split(File.separator);
+                            String final_dir = dirToSync.toString().replace(File.separator + parse_dir[parse_dir.length - 1], "");
+
+                            cli.destination = dirToSync.toString();
+                            cli.syncToS3(null);
+
+                            cli.destination = final_dir;
+                            cli.syncFromS3(null);
+
                             Thread.sleep(TimeUnit.MINUTES.toMillis(5));
                             if (gui) {
                                 mainFrame.jTextArea1.setText("");
                             }
                             run();
 
-                        } catch (InterruptedException e) {
+                        } catch (Exception e) {
+                            System.out.print("\nError:" + e.getMessage());
                         }
                     }
                 }).start();
@@ -168,98 +149,6 @@ public class Daemon {
                 messageParser("\nError: " + syncDIR.toString() + " does not exist");
             }
         } catch (Exception Start) {
-        }
-
-    }
-
-    String makeDirectory(String what) {
-
-        if (what.substring(0, 2).contains(":")) {
-            what = what.substring(3, what.length());
-        }
-
-        if (what.substring(0, 1).contains("/")) {
-            what = what.substring(1, what.length());
-        }
-
-        if (what.contains("/")) {
-            what = what.replace("/", File.separator);
-        }
-
-        if (what.contains("\\")) {
-            what = what.replace("\\", File.separator);
-        }
-
-        int slash_counter = 0;
-        int another_counter = 0;
-
-        for (int y = 0; y != what.length(); y++) {
-            if (what.substring(y, y + 1).contains(File.separator)) {
-                slash_counter++;
-                another_counter = y;
-            }
-        }
-
-        File dir = new File(File.separator + what.substring(0, another_counter));
-        dir.mkdirs();
-        return what;
-    }
-
-    void SyncToS3(File dir) {
-        String[] extensions = new String[]{" "};
-        List<File> files = (List<File>) FileUtils.listFiles(dir, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE);
-        for (File file_found : files) {
-            int found = 0;
-            for (int y = 1; y != objectarray.length; y++) {
-                if (objectarray[y].contains(makeDirectory(file_found.getAbsolutePath().toString()))) {
-                    found++;
-                }
-            }
-
-            if (found == 0) {
-                String object = makeDirectory(file_found.getAbsolutePath().toString());
-                put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object, false, false);
-                put.run();
-                found = 0;
-            }
-        }
-    }
-
-    String convertObject(String what, String operation) {
-
-        if (what.contains("/")) {
-            what = what.replace("/", File.separator);
-        }
-
-        if (what.contains("\\")) {
-            what = what.replace("\\", File.separator);
-        }
-        return what;
-    }
-
-    void syncFromS3(String Destination) {
-        try {
-            File[] fromS3File = new File[objectarray.length];
-            for (int i = 1; i != objectarray.length; i++) {
-                String new_object_name = convertObject(objectarray[i], "download");
-                fromS3File[i] = new File(Destination + new_object_name);
-                if (fromS3File[i].exists()) {
-                } else {
-                    makeDirectory(Destination + File.separator + objectarray[i]);
-                    String object = makeDirectory(objectarray[i]);
-                    get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, Destination + File.separator + object, null);
-                    get.run();
-                }
-            }
-        } catch (Exception SyncLocal) {
-        }
-    }
-
-    void reloadObjects() {
-        try {
-            String objectlist = Bucket.listBucketContents(access_key, secret_key, bucket, endpoint);
-            objectarray = objectlist.split("@@");
-        } catch (Exception reloadObjects) {
         }
     }
 }

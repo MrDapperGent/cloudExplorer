@@ -1,22 +1,23 @@
-Version 7.1
+Version 7.2
+
+Upgrading:
+
+*** This release can only be upgraded in place from v7.1. ***
 
 Bug Fixes: 
 
-       Sync GUI and CLI - subdirectories uploaded incorrectly. This causes 
-                       directories to be in wrong location when syncing locally.
-           
-       Select/Deselect now defaults to Select when performing a search.
+           Daemon mode - Background syncing sync folders and subfolders 
+                         properly.
 
 Improvements: 
 
-       Compiled with the latest Java 
-       Using latest AWS SDK 1.10.56
-       Cleaner sync clode.
-       More stable syncing to and from s3.
+           Daemon mode - Background syncing compares MD5's and date when syncing.
+                       - MD5 hashing and date check on files.
+                       - Reuses CLI sync code. This helps eliminate technical debt
 
 New Features:
 
-       NA
+           Daemon mode- Bidirectional sync.
           
 Features:
 

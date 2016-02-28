@@ -430,7 +430,6 @@ public class CLI {
                             found++;
                         }
                     }
-
                     if (found == 0) {
                         if (folder != null) {
                             if (object_array[i].contains(folder)) {
