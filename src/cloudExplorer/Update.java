@@ -76,20 +76,18 @@ public class Update
             in.close();
 
             NewJFrame.jTextArea1.append("\nLatest version is: " + new_version);
-            if (!check) {
-                NewJFrame.jTextArea1.append("\nRelease URL: " + update_location);
-            }
-            if (!check) {
-                if (!alert) {
-                    if (newver > currentversion) {
-                        update();
-                    } else {
-                        NewJFrame.jTextArea1.append("\nNo update available.");
-                    }
-                } else {
+
+            if (newver > currentversion) {
+                if (alert) {
                     NewJFrame.jTextArea1.append("\n" + alert_message);
                 }
+                if (!check && !alert) {
+                    update();
+                }
+            } else {
+                NewJFrame.jTextArea1.append("\nNo update available.");
             }
+
             calibrate();
         } catch (Exception url) {
             NewJFrame.jTextArea1.append("\nError: " + url.getMessage());

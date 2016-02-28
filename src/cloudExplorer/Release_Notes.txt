@@ -13,6 +13,9 @@ Improvements:
            Background Syncing - Compares MD5's and date when syncing.
             - Reuses CLI sync code. This helps eliminate technical debt
 
+           Updater - Displays upgrade alerts upon launch in the console.
+                   - Improved logic.
+
 New Features:
 
            Background Syncing - Bidirectional sync.
