@@ -149,7 +149,7 @@ public class SyncFromS3 implements Runnable {
                             try {
                                 String transcoded_object = null;
                                 if (objectarray[i].contains(win) || (objectarray[i].contains(lin))) {
-                                    if (objectarray[i].contains(win) && File.separator == win) {
+                                    if (objectarray[i].contains(win) && File.separator.contains(win)) {
                                         transcoded_object = objectarray[i];
                                     }
 
@@ -161,7 +161,7 @@ public class SyncFromS3 implements Runnable {
                                         transcoded_object = objectarray[i].replace(lin, win);
                                     }
 
-                                    if (objectarray[i].contains(win) && File.separator.contains(win)) {
+                                    if (objectarray[i].contains(win) && File.separator.contains(lin)) {
                                         transcoded_object = objectarray[i].replace(win, lin);
                                     }
                                     if (index > -1) {
