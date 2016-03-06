@@ -160,14 +160,26 @@ public class CLI {
         return remove_symbol;
     }
 
+    void loadEnvars() {
+        access_key = System.getenv("ACCESS_KEY");
+        secret_key = System.getenv("SECRET_KEY");
+        endpoint = System.getenv("ENDPOINT");
+        region = System.getenv("REGION");
+    }
+
     void start(String arg0, final String arg1, final String arg2, final String arg3, final String arg4, final String arg5
     ) {
         operation = arg0;
         Put.terminal = true;
         Get.terminal = true;
         if (operation.contains("listbuckets") || operation.contains("makebucket") || operation.contains("rmbucket") || operation.contains("ls") || operation.contains("createfolder") || operation.contains("deleteall")) {
-            saved_s3_configs = loadConfig(this.s3_config_file).toString().split(" ");
-            loadS3credentials();
+            if ((System.getenv("ACCESS_KEY") == null) || System.getenv("SECRET_KEY") == null || System.getenv("ENDPOINT") == null || System.getenv("REGION") == null) {
+                saved_s3_configs = loadConfig(this.s3_config_file).toString().split(" ");
+                loadS3credentials();
+            } else {
+                loadEnvars();
+            }
+
             mainmenu();
             bucket = arg1;
 

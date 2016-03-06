@@ -1,4 +1,4 @@
-Version 7.2
+Version 7.21
 
 Upgrading:
 
@@ -6,20 +6,19 @@ Upgrading:
 
 Bug Fixes: 
 
-           Background Syncing - Sync folders and subfolders properly.
-           Syncing Windows files from S3 to Unix OS fixed.
+         N/A
 
 Improvements: 
 
-           Background Syncing - Compares MD5's and date when syncing.
-            - Reuses CLI sync code. This helps eliminate technical debt
-
-           Updater - Displays upgrade alerts upon launch in the console.
-                   - Improved logic.
+          N/A
 
 New Features:
 
-           Background Syncing - Bidirectional sync.
+           You can store S3 credentials as environment variables for CLI.
+           ACCESS_KEY=""
+           SECRET_KEY=""
+           ENDPOINT="https://s3.amazonaws.com:443"
+           REGION="default"
           
 Features:
 
