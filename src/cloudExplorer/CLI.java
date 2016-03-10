@@ -607,7 +607,8 @@ public class CLI {
         try {
             System.out.print("\n\n\nListing Buckets:");
             BucketClass.terminal = true;
-            System.out.print(bucketObject.listBuckets(access_key, secret_key, endpoint));
+            String bucketlist = bucketObject.listBuckets(access_key, secret_key, endpoint);
+            System.out.print("\n" + bucketlist.replace(" ", "\n"));
             System.out.print("\n\n\nBucket listing operation Complete\n\n\n");
         } catch (Exception listBuckets) {
             System.out.print("\n\n\nAn error has occurred while listing buckets.\n\n\n");

@@ -1,4 +1,4 @@
-Version 7.21
+Version 7.22
 
 Upgrading:
 
@@ -10,7 +10,7 @@ Bug Fixes:
 
 Improvements: 
 
-          N/A
+          CLI - lists each bucket on a new line for easier reading.
 
 New Features:
 
