@@ -1222,9 +1222,9 @@
                                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                                       <Component id="jPanel14" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jScrollPane7" pref="331" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane7" min="-2" pref="325" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1797,14 +1797,9 @@
                               <Component id="jCheckBox5" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jCheckBox2" alignment="0" min="-2" pref="59" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jButton5" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton15" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
-                                  <Component id="jCheckBox7" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jButton5" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton15" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
+                          <Component id="jCheckBox7" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
