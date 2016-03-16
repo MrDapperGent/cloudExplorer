@@ -1,4 +1,4 @@
-Version 7.22
+Version 7.23
 
 Upgrading:
 
@@ -13,6 +13,7 @@ Improvements:
           CLI - lists each bucket on a new line for easier reading.
 
 New Features:
+           New storage tier support for upload and sync: Infrequent access 
 
            You can store S3 credentials as environment variables for CLI.
            ACCESS_KEY=""
