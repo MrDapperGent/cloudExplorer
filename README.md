@@ -15,7 +15,7 @@ Cloud Explorer is a open-source S3 client. It works on Windows, Linux, and Mac. 
 * Performance testing
 * Music player
 * Transition buckets to Amazon Glacier  
-* Amazon RRS
+* Amazon RRS and Infrequently Accessed storage tiers
 * Migrate buckets between S3 accounts
 * Compress files prior to upload
 * Take screen shots to S3
