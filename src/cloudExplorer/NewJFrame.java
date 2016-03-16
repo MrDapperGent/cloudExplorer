@@ -1176,6 +1176,11 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jCheckBox8.setBackground(java.awt.SystemColor.text);
         jCheckBox8.setForeground(java.awt.Color.gray);
         jCheckBox8.setText("Infreq");
+        jCheckBox8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox8ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -1210,13 +1215,13 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(14, 14, 14)
                         .addComponent(jCheckBox3)
                         .addGap(0, 0, 0)
                         .addComponent(jCheckBox6)
-                        .addGap(3, 3, 3)
+                        .addGap(0, 0, 0)
                         .addComponent(jCheckBox8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(10, 10, 10)
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -1382,7 +1387,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -3557,6 +3562,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox7ActionPerformed
+
+    private void jCheckBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox8ActionPerformed
     void cleanup() {
         try {
             jPanel9.setVisible(true);
