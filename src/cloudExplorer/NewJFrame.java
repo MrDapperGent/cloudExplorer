@@ -227,6 +227,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jCheckBox5 = new javax.swing.JCheckBox();
         jCheckBox4 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
+        jCheckBox7 = new javax.swing.JCheckBox();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList();
@@ -240,6 +241,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jLabel12 = new javax.swing.JLabel();
         jScrollPane9 = new javax.swing.JScrollPane();
         jList3 = new javax.swing.JList();
+        jCheckBox8 = new javax.swing.JCheckBox();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
@@ -1026,21 +1028,28 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jCheckBox2.setForeground(java.awt.Color.gray);
         jCheckBox2.setText("RRS");
 
+        jCheckBox7.setBackground(java.awt.SystemColor.text);
+        jCheckBox7.setForeground(java.awt.Color.gray);
+        jCheckBox7.setText("Infreq");
+        jCheckBox7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jCheckBox4)
+                .addComponent(jCheckBox5)
+                .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jCheckBox4)
-                        .addComponent(jCheckBox5)
-                        .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton5)
-                            .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jButton5)
+                    .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckBox7))
                 .addGap(0, 0, 0))
         );
         jPanel10Layout.setVerticalGroup(
@@ -1049,13 +1058,15 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton15)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCheckBox2)
-                .addGap(6, 6, 6)
+                .addGap(0, 0, 0)
+                .addComponent(jCheckBox7)
+                .addGap(0, 0, 0)
                 .addComponent(jCheckBox4)
-                .addGap(6, 6, 6)
+                .addGap(0, 0, 0)
                 .addComponent(jCheckBox5)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 1, Short.MAX_VALUE))
         );
 
         jLabel11.setText("Upload To Folder:");
@@ -1162,6 +1173,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jScrollPane9.setViewportView(jList3);
 
+        jCheckBox8.setBackground(java.awt.SystemColor.text);
+        jCheckBox8.setForeground(java.awt.Color.gray);
+        jCheckBox8.setText("Infreq");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -1176,8 +1191,11 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12)
                             .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBox3)
-                            .addComponent(jButton16))))
+                            .addComponent(jButton16)))
+                    .addComponent(jCheckBox8)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jCheckBox3)))
                 .addGap(36, 36, 36)
                 .addComponent(jFileChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 826, Short.MAX_VALUE)
                 .addContainerGap())
@@ -1194,9 +1212,11 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jCheckBox3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(0, 0, 0)
                         .addComponent(jCheckBox6)
-                        .addGap(23, 23, 23)
+                        .addGap(3, 3, 3)
+                        .addComponent(jCheckBox8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -2402,11 +2422,11 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             int index = jList4.getSelectedIndex(); //get selected index
 
             if (index != -1) {
-                put = new Put(temp_file, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), jList4.getSelectedValue().toString() + jTextField6.getText(), false, false);
-                put.startc(temp_file, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), jList4.getSelectedValue().toString() + jTextField6.getText(), false, false);
+                put = new Put(temp_file, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), jList4.getSelectedValue().toString() + jTextField6.getText(), false, false, false);
+                put.startc(temp_file, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), jList4.getSelectedValue().toString() + jTextField6.getText(), false, false, false);
             } else {
-                put = new Put(temp_file, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), jTextField6.getText(), false, false);
-                put.startc(temp_file, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), jTextField6.getText(), false, false);
+                put = new Put(temp_file, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), jTextField6.getText(), false, false, false);
+                put.startc(temp_file, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), jTextField6.getText(), false, false, false);
             }
             jTextArea1.append("\nSaved Object\n");
             objectarray = null;
@@ -2436,6 +2456,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
                     Boolean rrs = false;
                     Boolean encrypt = false;
+                    Boolean infreq = false;
 
                     if (jCheckBox3.isSelected()) {
                         rrs = true;
@@ -2444,8 +2465,17 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         encrypt = true;
                     }
 
-                    syncToS3 = new SyncToS3(this, jFileChooser2.getSelectedFile(), cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), objectarray, rrs, encrypt);
-                    syncToS3.startc(this, jFileChooser2.getSelectedFile(), cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), objectarray, rrs, encrypt);
+                    if (jCheckBox8.isSelected()) {
+                        infreq = true;
+                    }
+                    if (rrs && infreq) {
+                        jTextArea1.append("\nError: multiple storage options chosen.");
+                        calibrateTextArea();
+                    } else {
+                        syncToS3 = new SyncToS3(this, jFileChooser2.getSelectedFile(), cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), objectarray, rrs, encrypt, infreq);
+                        syncToS3.startc(this, jFileChooser2.getSelectedFile(), cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), objectarray, rrs, encrypt, infreq);
+
+                    }
                     objectarray = null;
                 }
             } else {
@@ -2586,10 +2616,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 }
             }
             Boolean rrs = false;
+            Boolean infreq = false;
             Boolean encrypt = false;
 
             if (jCheckBox2.isSelected()) {
                 rrs = true;
+            }
+            if (jCheckBox7.isSelected()) {
+                infreq = true;
             }
             if (jCheckBox5.isSelected()) {
                 encrypt = true;
@@ -2600,9 +2634,13 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             if (index != -1) {
                 new_object_name = jList2.getSelectedValue().toString() + new_object_name;
             }
-
-            put = new Put(upload, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), new_object_name, rrs, encrypt);
-            put.startc(upload, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), new_object_name, rrs, encrypt);
+            if (rrs && infreq) {
+                jTextArea1.append("\nError: Multiple storage options chosen.");
+                calibrateTextArea();
+            } else {
+                put = new Put(upload, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), new_object_name, rrs, encrypt, infreq);
+                put.startc(upload, cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), new_object_name, rrs, encrypt, infreq);
+            }
             jPanel9.setVisible(true);
             //reloadBuckets();
         } else {
@@ -3515,6 +3553,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField7ActionPerformed
+
+    private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox7ActionPerformed
     void cleanup() {
         try {
             jPanel9.setVisible(true);
@@ -3585,6 +3627,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JCheckBox jCheckBox6;
+    private javax.swing.JCheckBox jCheckBox7;
+    private javax.swing.JCheckBox jCheckBox8;
     public javax.swing.JFileChooser jFileChooser1;
     public static javax.swing.JFileChooser jFileChooser2;
     public static javax.swing.JLabel jLabel1;

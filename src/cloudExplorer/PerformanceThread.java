@@ -200,11 +200,11 @@ public class PerformanceThread implements Runnable {
 
                     if (!operation || mixed) {
                         if (!folder_enabled) {
-                            put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
-                            put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
+                            put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false,false);
+                            put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false,false);
                         } else {
-                            put = new Put(upload, access_key, secret_key, bucket, endpoint, folder + "performance_test_data", false, false);
-                            put.startc(upload, access_key, secret_key, bucket, endpoint, folder + "performance_test_data", false, false);
+                            put = new Put(upload, access_key, secret_key, bucket, endpoint, folder + "performance_test_data", false, false,false);
+                            put.startc(upload, access_key, secret_key, bucket, endpoint, folder + "performance_test_data", false, false,false);
                         }
                     }
 
@@ -235,19 +235,19 @@ public class PerformanceThread implements Runnable {
                             if (operation) {
                                 if (overwrite) {
                                     if (!folder_enabled) {
-                                        Runnable put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_PUT-" + i, false, false);
+                                        Runnable put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_PUT-" + i, false, false,false);
                                         executor.execute(put);
                                     } else {
-                                        Runnable put = new Put(upload, access_key, secret_key, bucket, endpoint, folder + "performance_test_data_PUT-" + i, false, false);
+                                        Runnable put = new Put(upload, access_key, secret_key, bucket, endpoint, folder + "performance_test_data_PUT-" + i, false, false,false);
                                         executor.execute(put);
                                     }
 
                                 } else {
                                     if (!folder_enabled) {
-                                        Runnable put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false);
+                                        Runnable put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false,false);
                                         executor.execute(put);
                                     } else {
-                                        Runnable put = new Put(upload, access_key, secret_key, bucket, endpoint, folder + "performance_test_data_" + i + "_" + z, false, false);
+                                        Runnable put = new Put(upload, access_key, secret_key, bucket, endpoint, folder + "performance_test_data_" + i + "_" + z, false, false,false);
                                         executor.execute(put);
                                     }
                                 }

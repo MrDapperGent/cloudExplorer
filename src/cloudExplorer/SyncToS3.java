@@ -41,12 +41,13 @@ public class SyncToS3 implements Runnable {
     Thread syncToS3;
     Put put;
     Boolean rrs = false;
+    Boolean infreq = false;
     Boolean encrypt = false;
     String Home = System.getProperty("user.home");
     String win = "\\";
     String lin = "/";
 
-    SyncToS3(NewJFrame AmainFrame, File Alocation, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobjectarray, Boolean Arrs, Boolean Aencrypt) {
+    SyncToS3(NewJFrame AmainFrame, File Alocation, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobjectarray, Boolean Arrs, Boolean Aencrypt, Boolean Ainfreq) {
         objectarray = Aobjectarray;
         location = Alocation;
         access_key = Aaccess_key;
@@ -54,6 +55,7 @@ public class SyncToS3 implements Runnable {
         bucket = Abucket;
         endpoint = Aendpoint;
         rrs = Arrs;
+        infreq = Ainfreq;
         encrypt = Aencrypt;
         mainFrame = AmainFrame;
     }
@@ -101,7 +103,7 @@ public class SyncToS3 implements Runnable {
             String object = file_found.getAbsolutePath().toString();
             object = object.replace(location.toString(), "");
             object = clean_object_name[clean_object_name.length - 1] + object;
-        
+
             for (int y = 1; y != objectarray.length; y++) {
                 if (objectarray[y].contains(object) && objectarray[y].length() == object.length()) {
                     if (!modified_check(objectarray[y], file_found.getAbsolutePath())) {
@@ -123,7 +125,7 @@ public class SyncToS3 implements Runnable {
                     } catch (Exception indaex) {
 
                     }
-                    put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object, rrs, encrypt);
+                    put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object, rrs, encrypt, infreq);
                     put.run();
                 }
                 found = 0;
@@ -167,10 +169,10 @@ public class SyncToS3 implements Runnable {
         return what;
     }
 
-    void startc(NewJFrame AmainFrame, File location, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobjectarray, Boolean Arrs, Boolean Aencrypt
+    void startc(NewJFrame AmainFrame, File location, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobjectarray, Boolean Arrs, Boolean Aencrypt, Boolean Ainfreq
     ) {
         if (SyncToS3.running) {
-            syncToS3 = new Thread(new SyncToS3(AmainFrame, location, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aobjectarray, Arrs, Aencrypt));
+            syncToS3 = new Thread(new SyncToS3(AmainFrame, location, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aobjectarray, Arrs, Aencrypt, Ainfreq));
             syncToS3.start();
 
         }

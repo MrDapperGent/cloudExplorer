@@ -110,7 +110,7 @@ public class CLI {
                 File temp = new File(temp_file);
                 if (temp.exists()) {
                     System.out.print("\n\nAttempting to create folder: " + folder);
-                    put = new Put(temp.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, folder + File.separator, false, false);
+                    put = new Put(temp.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, folder + File.separator, false, false,false);
                     Put.terminal = true;
                     put.run();
                     System.out.print("\nCreate folder operation complete\n\n");
@@ -399,7 +399,7 @@ public class CLI {
                 if (folder != null) {
                     object = folder + File.separator + object;
                 }
-                put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object, false, false);
+                put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object, false, false,false);
                 put.run();
                 found = 0;
             }
@@ -658,9 +658,9 @@ public class CLI {
         try {
             NewJFrame.perf = true;
             System.out.print("\n\nUploading: " + put_file.getAbsolutePath().toString() + "........");
-            put = new Put(put_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, put_file.getName(), false, false);
+            put = new Put(put_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, put_file.getName(), false, false,false);
             Put.debug = true;
-            put.startc(put_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, put_file.getName(), false, false);
+            put.startc(put_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, put_file.getName(), false, false,false);
             System.out.print("\n\nPUT operation Complete\n\n\n");
         } catch (Exception send) {
             System.out.print("\n\nAn Error has occured while uploading the file");
@@ -722,8 +722,8 @@ public class CLI {
                     String upload = tempFile.getAbsolutePath();
 
                     if (!performance_operation || mixed_mode) {
-                        put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
-                        put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false);
+                        put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false,false);
+                        put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false,false);
                     }
 
                     x = new double[op_count];
@@ -751,8 +751,8 @@ public class CLI {
                         for (int i = 0; i != num_threads; i++) {
 
                             if (performance_operation) {
-                                put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false);
-                                put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false);
+                                put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false,false);
+                                put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false,false);
                             } else {
                                 get = new Get("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + i, null);
                                 get.startc("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + i, null);

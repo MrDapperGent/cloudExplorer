@@ -142,13 +142,13 @@ public class BucketMigration implements Runnable {
                         if (modified_check(restoreArray[i], original_name)) {
                             get = new Get(restoreArray[i], new_access_key, new_secret_key, new_bucket, new_endpoint, temp_file, null);
                             get.run();
-                            put = new Put(temp_file, access_key, secret_key, bucket, endpoint, original_name, false, false);
+                            put = new Put(temp_file, access_key, secret_key, bucket, endpoint, original_name, false, false,false);
                             put.run();
                         }
                     } else {
                         get = new Get(restoreArray[i], new_access_key, new_secret_key, new_bucket, new_endpoint, temp_file, null);
                         get.run();
-                        put = new Put(temp_file, access_key, secret_key, bucket, endpoint, original_name, false, false);
+                        put = new Put(temp_file, access_key, secret_key, bucket, endpoint, original_name, false, false,false);
                         put.run();
                     }
                 }
@@ -185,15 +185,15 @@ public class BucketMigration implements Runnable {
                                 get.run();
                                 if (deltas) {
                                     change_folder = mainFrame.snap_folder.replace("Snapshot-", "Snapshot-Changes-");
-                                    put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, change_folder + mainFrame.objectarray[i], false, false);
+                                    put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, change_folder + mainFrame.objectarray[i], false, false,false);
                                 } else {
-                                    put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + sep + mainFrame.objectarray[i], false, false);
+                                    put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + sep + mainFrame.objectarray[i], false, false,false);
                                 }
                                 put.run();
                             } else {
                                 get = new Get(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, temp_file, null);
                                 get.run();
-                                put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, mainFrame.objectarray[i], false, false);
+                                put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, mainFrame.objectarray[i], false, false,false);
                                 put.run();
                             }
                         }
@@ -203,12 +203,12 @@ public class BucketMigration implements Runnable {
                         if (snapshot) {
                             if (deltas) {
                                 change_folder = mainFrame.snap_folder.replace("Snapshot-", "Snapshot-Changes-");
-                                put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, change_folder + mainFrame.objectarray[i], false, false);
+                                put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, change_folder + mainFrame.objectarray[i], false, false,false);
                             } else {
-                                put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + sep + mainFrame.objectarray[i], false, false);
+                                put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + sep + mainFrame.objectarray[i], false, false,false);
                             }
                         } else {
-                            put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, mainFrame.objectarray[i], false, false);
+                            put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, mainFrame.objectarray[i], false, false,false);
                         }
                         put.run();
                     }

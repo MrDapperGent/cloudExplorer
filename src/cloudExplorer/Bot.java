@@ -287,8 +287,8 @@ public class Bot implements Runnable {
         calibrateTextArea();
         mainFrame.jPanel9.setVisible(true);
         writer(ircarea.getText(), temp_file);
-        put = new Put(temp_file, access_key, secret_key, bucket, endpoint, "IRC Transcript-" + date() + ".txt", false, false);
-        put.startc(temp_file, access_key, secret_key, bucket, endpoint, "IRC Transcript-" + date() + ".txt", false, false);
+        put = new Put(temp_file, access_key, secret_key, bucket, endpoint, "IRC Transcript-" + date() + ".txt", false, false,false);
+        put.startc(temp_file, access_key, secret_key, bucket, endpoint, "IRC Transcript-" + date() + ".txt", false, false,false);
     }
 
     void start_bot() {

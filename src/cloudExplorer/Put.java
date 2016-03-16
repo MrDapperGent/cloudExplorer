@@ -43,6 +43,7 @@ public class Put implements Runnable {
     String ObjectKey = null;
     String secret_key = null;
     Boolean rrs = false;
+    Boolean infreq = false;
     public static Boolean debug = false;
     Thread put;
     Boolean encrypt = false;
@@ -56,7 +57,7 @@ public class Put implements Runnable {
         }
     }
 
-    Put(String Awhat, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String AObjectKey, Boolean Arrs, Boolean Aencrypt) {
+    Put(String Awhat, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String AObjectKey, Boolean Arrs, Boolean Aencrypt, Boolean Ainfreq) {
         what = Awhat;
         access_key = Aaccess_key;
         secret_key = Asecret_key;
@@ -64,6 +65,7 @@ public class Put implements Runnable {
         endpoint = Aendpoint;
         ObjectKey = AObjectKey;
         rrs = Arrs;
+        infreq = Ainfreq;
         encrypt = Aencrypt;
     }
 
@@ -76,11 +78,15 @@ public class Put implements Runnable {
             TransferManager tx = new TransferManager(s3Client);
             File file = new File(what);
             PutObjectRequest putRequest;
-            if (!rrs) {
-                putRequest = new PutObjectRequest(bucket, ObjectKey, file);
-            } else {
+
+            if (rrs) {
                 putRequest = new PutObjectRequest(bucket, ObjectKey, file).withStorageClass(StorageClass.ReducedRedundancy);
+            } else if (infreq) {
+                putRequest = new PutObjectRequest(bucket, ObjectKey, file).withStorageClass(StorageClass.StandardInfrequentAccess);
+            } else {
+                putRequest = new PutObjectRequest(bucket, ObjectKey, file);
             }
+
             MimetypesFileTypeMap mimeTypesMap = new MimetypesFileTypeMap();
             String mimeType = mimeTypesMap.getContentType(file);
             mimeType = mimeTypesMap.getContentType(file);
@@ -129,9 +135,9 @@ public class Put implements Runnable {
         calibrate();
     }
 
-    void startc(String Awhat, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String AObjectKey, Boolean Arrs, Boolean Aencrypt) {
+    void startc(String Awhat, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String AObjectKey, Boolean Arrs, Boolean Aencrypt, Boolean Ainfreq) {
 
-        put = new Thread(new Put(Awhat, Aaccess_key, Asecret_key, Abucket, Aendpoint, AObjectKey, Arrs, Aencrypt));
+        put = new Thread(new Put(Awhat, Aaccess_key, Asecret_key, Abucket, Aendpoint, AObjectKey, Arrs, Aencrypt, Ainfreq));
         put.start();
         if (NewJFrame.perf) {
             try {
