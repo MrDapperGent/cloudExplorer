@@ -23,6 +23,7 @@ import static cloudExplorer.NewJFrame.jTextArea1;
 import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Pattern;
 import org.apache.commons.codec.digest.DigestUtils;
 
 public class SyncToS3 implements Runnable {
@@ -99,7 +100,7 @@ public class SyncToS3 implements Runnable {
         List<File> files = (List<File>) FileUtils.listFiles(location, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE);
         for (File file_found : files) {
             int found = 0;
-            String clean_object_name[] = location.toString().split(File.separator);
+            String clean_object_name[] = location.toString().split(Pattern.quote(File.separator));
             String object = file_found.getAbsolutePath().toString();
             object = object.replace(location.toString(), "");
             object = clean_object_name[clean_object_name.length - 1] + object;

@@ -25,6 +25,7 @@ import java.io.FileWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
@@ -381,7 +382,7 @@ public class CLI {
         String[] extensions = new String[]{" "};
         List<File> files = (List<File>) FileUtils.listFiles(dir, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE);
         for (File file_found : files) {
-            String clean_object_name[] = destination.split(File.separator);
+            String clean_object_name[] = destination.split(Pattern.quote(File.separator));
             String object = file_found.getAbsolutePath().toString();
             object = object.replace(destination, "");
             object = clean_object_name[clean_object_name.length - 1] + object;

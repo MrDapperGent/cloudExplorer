@@ -1,4 +1,4 @@
-Version 7.23
+Version 7.24
 
 Upgrading:
 
@@ -6,7 +6,7 @@ Upgrading:
 
 Bug Fixes: 
 
-         N/A
+        Sync - Was broken for Windows, now it works.
 
 Improvements: 
 
