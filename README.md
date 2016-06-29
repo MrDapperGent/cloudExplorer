@@ -49,7 +49,7 @@ https://www.youtube.com/watch?v=O1HVDYywZRY
 
 # How to compile from source
 
-Video demonstration for NetBeans: http://youtu.be/54v3rIUh0h8
+If you want to make changes to the GUI, here is a video demonstration on how to compile Cloud Explorer with NetBeans: http://youtu.be/54v3rIUh0h8
 
 ## 1. Install and Configure Java
 ``` 
