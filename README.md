@@ -26,6 +26,11 @@ Cloud Explorer is a open-source S3 client. It works on Windows, Linux, and Mac. 
 * Record audio messages and save them to a bucket
 * Create snapshots of buckets
 
+# System Requirements
+
+* Java 8
+* Amazon S3 credentials
+
 # Screenshots 
 
 ![Graph](http://i.imgur.com/aw5iKZf.png)
@@ -49,21 +54,24 @@ The latest release is v7.3. Please download the full v7.3 release under releases
 # How to compile from source
 
 Video demonstration for NetBeans: http://youtu.be/54v3rIUh0h8
-```
-yum -y install git java-1.8-openjdk java-1.8.0-openjdk-devel ant
+
+## Install and Configure Java
+``` 
+apt-get update
+apt-get -y install git ant openjdk-8-jre-headless
 ```
 Use "update-alternatives" to set Java aliases to 1.8
 ```
 update-alternatives --config java 
 update-alternatives --config javac
 ```
-Clone this repository and run ant to compile the project
+## Clone this repository and run ant to compile the project
 ```
 git clone https://github.com/rusher81572/cloudExplorer.git
 cd cloudExplorer
 ant
 ```
-Run Cloud Explorer
+## Run Cloud Explorer
 ```
 java -jar dist/CloudExplorer.jar
 ```
