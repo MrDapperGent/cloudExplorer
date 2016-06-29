@@ -58,12 +58,7 @@ Video demonstration for NetBeans: http://youtu.be/54v3rIUh0h8
 ## Install and Configure Java
 ``` 
 apt-get update
-apt-get -y install git ant openjdk-8-jre-headless
-```
-Use "update-alternatives" to set Java aliases to 1.8
-```
-update-alternatives --config java 
-update-alternatives --config javac
+apt-get -y install git ant openjdk-8-jdk-headless
 ```
 ## Clone this repository and run ant to compile the project
 ```
@@ -73,6 +68,8 @@ ant
 ```
 ## Run Cloud Explorer
 ```
+Double click on CloudExplorer.jar 
+or....
 java -jar dist/CloudExplorer.jar
 ```
 
