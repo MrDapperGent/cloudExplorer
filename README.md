@@ -4,7 +4,7 @@ This program is free software: you can redistribute it and/or modify it under th
 A copy of the GNU GPL is located in `LICENSE.txt`.
 
 # Important Advisory
-Version 7.1 contains a windows syncing bug. Please upgrade to v7.2 from inside Cloud Explorer or download the full release.
+Version 7.1 contains a windows syncing bug. Please upgrade to v7.3 from inside Cloud Explorer or download the full release.
 
 # Description 
 Cloud Explorer is a open-source S3 client. It works on Windows, Linux, and Mac.  It has a graphical and command line interface for each supported operating system. If you have a feature suggestion or find a bug, please open an issue.
@@ -47,7 +47,7 @@ https://www.youtube.com/watch?v=O1HVDYywZRY
 
 # 7.x Upgrade Information
 
-The latest release is v7.2. There is no upgrade path to this release prior to v7.1 due to a change in the AWS Java API's. Please download the full v7.2 release under releases. 
+The latest release is v7.3. There is no upgrade path to this release prior to v7.1 due to a change in the AWS Java API's. Please download the full v7.3 release under releases. 
 
 
 # How to compile from source
