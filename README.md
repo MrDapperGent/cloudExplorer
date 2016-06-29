@@ -30,6 +30,11 @@ Cloud Explorer is a open-source S3 client. It works on Windows, Linux, and Mac. 
 
 ![Graph](http://i.imgur.com/aw5iKZf.png)
 
+# License
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+A copy of the GNU GPL is located in `LICENSE.txt`.
+
 # How to run the program
 
 To run the application, most users should be able to run the program by double clicking on the CloudExplorer.jar file. 
@@ -67,11 +72,6 @@ java -jar dist/CloudExplorer.jar help
 # Upgrading
 
 To upgrade, please use the updater located in the application. Everytime Cloud Explorer is ran, it will check for the latest version. To apply the update, click "Help -> Check for updates". Some upgrades may contain newer API's and will require that you manually download the entire release under "releases" in GitHub.
-
-# License
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.
-
-A copy of the GNU GPL is located in `LICENSE.txt`.
 
 # How to migrate data between S3 accounts
 * Load the destination account and create or select a bucket to migrate to.
