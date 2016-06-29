@@ -55,22 +55,22 @@ The latest release is v7.3. Please download the full v7.3 release under releases
 
 Video demonstration for NetBeans: http://youtu.be/54v3rIUh0h8
 
-## Install and Configure Java
+## 1. Install and Configure Java
 ``` 
 apt-get update
 apt-get -y install git ant openjdk-8-jdk-headless
 ```
-## Clone this repository and run ant to compile the project
+## 2. Clone this repository and run ant to compile the project
 ```
 git clone https://github.com/rusher81572/cloudExplorer.git
 cd cloudExplorer
 ant
 ```
-## Run Cloud Explorer
+## 3. Run Cloud Explorer
 ```
-Double click on CloudExplorer.jar 
+Double click on dist/CloudExplorer.jar 
 or....
-java -jar dist/CloudExplorer.jar
+java -jar dist/CloudExplorer.jar help
 ```
 
 # Upgrading
