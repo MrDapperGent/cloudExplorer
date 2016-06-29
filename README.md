@@ -47,10 +47,6 @@ java -jar CloudExplorer.jar
 
 https://www.youtube.com/watch?v=O1HVDYywZRY
 
-# 7.x Upgrade Information
-
-The latest release is v7.3. Please download the full v7.3 release under releases. 
-
 # How to compile from source
 
 Video demonstration for NetBeans: http://youtu.be/54v3rIUh0h8
