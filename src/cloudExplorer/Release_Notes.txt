@@ -1,25 +1,16 @@
-Version 7.3
-
-Upgrading:
-
-*** Upgrading to this release is only possible from v7.1. ***
+Version 7.4
 
 Bug Fixes: 
 
-        Sync - Was broken for Windows, now it works.
+       NA
 
 Improvements: 
 
-          CLI - lists each bucket on a new line for easier reading.
+       NA
 
 New Features:
-           New storage tier support for upload and sync: Infrequent access 
-
-           You can store S3 credentials as environment variables for CLI.
-           ACCESS_KEY=""
-           SECRET_KEY=""
-           ENDPOINT="https://s3.amazonaws.com:443"
-           REGION="default"
+         
+       CLI can check for updates and install them with the 'upgrade' flag.
           
 Features:
 
@@ -83,8 +74,8 @@ java -jar CloudExplorer.jar createfolder bucket name
 #Delete everything
 java -jar CloudExplorer.jar deleteall bucket
 
-
-*Please note that Cloud Explorer will use the first account listed in the config file*
+#Check for Cloud Explorer updates
+java -jar CloudExplorer.jar upgrade
 
 
 IRC Options:

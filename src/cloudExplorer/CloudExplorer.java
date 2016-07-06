@@ -33,11 +33,20 @@ public class CloudExplorer {
                 + "\nsearch bucket what"
                 + "\ncreatefolder bucket what"
                 + "\ndeleteall bucket"
+                + "\nupgrade"
                 + "\n\n\n");
     }
 
     public static void main(String[] args) {
         int stop = 0;
+
+        try {
+            Thread UpdateThread = new Thread(new Update(null, true, false));
+            UpdateThread.start();
+            UpdateThread.join();
+            stop = 1;
+        } catch (Exception upgrade) {
+        }
 
         if (args.length > 0) {
             if (args[0].contains("daemon")) {
@@ -49,6 +58,15 @@ public class CloudExplorer {
                 CLI cli = new CLI();
                 cli.start(args[0], null, null, null, null, null);
                 stop = 1;
+
+            } else if (args[0].contains("upgrade")) {
+                try {
+                    Thread UpdateThread = new Thread(new Update(null, false, false));
+                    UpdateThread.start();
+                    UpdateThread.join();
+                    stop = 1;
+                } catch (Exception upgrade) {
+                }
             }
 
             if (stop == 0) {

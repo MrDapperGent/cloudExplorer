@@ -532,7 +532,7 @@ public class CLI {
                 }
             }
 
-            System.out.print("\n\n\nBucket listing operation Complete. Found: " + found + " file(s).\n\n\n");
+            System.out.print("\n\n\nBucket listing operation complete. Found: " + found + " file(s).\n\n\n");
 
         } catch (Exception ls) {
             System.out.print("\n\nAn Error has occured while listing the objects or the bucket does not exist.\n\n\n");

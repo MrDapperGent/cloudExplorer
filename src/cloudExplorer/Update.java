@@ -14,28 +14,49 @@ public class Update
     NewJFrame mainFrame;
     String updateURL = null;
     Boolean check = false;
+    Boolean gui = false;
 
-    public Update(NewJFrame Frame, Boolean Acheck) {
+    public Update(NewJFrame Frame, Boolean Acheck, Boolean Agui) {
         mainFrame = Frame;
         check = Acheck;
+        gui = Agui;
     }
 
     public void update() {
         try {
-            String path = NewJFrame.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-            NewJFrame.jTextArea1.append("\nDownloading updated version........");
+            String path = null;
+            if (gui) {
+                path = NewJFrame.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+            } else {
+                path = CloudExplorer.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+            }
+
+            if (gui) {
+                NewJFrame.jTextArea1.append("\nDownloading updated version........");
+            } else {
+                System.out.print("\n\nDownloading updated version........");
+            }
             URL download = new URL(this.updateURL);
             ReadableByteChannel rbc = Channels.newChannel(download.openStream());
             FileOutputStream fos = new FileOutputStream(path);
             fos.getChannel().transferFrom(rbc, 0L, 9223372036854775807L);
         } catch (Exception update) {
-            NewJFrame.jTextArea1.append("\nError: " + update.getMessage());
-            calibrate();
+            if (gui) {
+                NewJFrame.jTextArea1.append("\nError: " + update.getMessage());
+                calibrate();
+            } else {
+                System.out.print("\nError: " + update.getMessage());
+            }
         }
-        NewJFrame.jTextArea1.append("\nDownload complete. The new version will now launch.");
-        NewJFrame.jTextArea1.append("\nIf the new version does not launch automatically, please restart Cloud Explorer.");
-        calibrate();
-        NewJFrame.jMenuItem23.doClick();
+        if (gui) {
+            NewJFrame.jTextArea1.append("\nDownload complete. The new version will now launch.");
+            NewJFrame.jTextArea1.append("\nIf the new version does not launch automatically, please restart Cloud Explorer.");
+            calibrate();
+            NewJFrame.jMenuItem23.doClick();
+        } else {
+            System.out.print("\nDownload complete. The new version will now launch.");
+            System.out.print("\nIf the new version does not launch automatically, please restart Cloud Explorer.");
+        }
     }
 
     public void run() {
@@ -43,15 +64,22 @@ public class Update
         String alert_message = null;
         String update_location = null;
         double newver = 0.0D;
-        double currentversion = Double.parseDouble(this.mainFrame.release_version);
+        double currentversion = Double.parseDouble(NewJFrame.release_version);
         Boolean alert = false;
-
-        NewJFrame.jPanel9.setVisible(true);
+        if (gui) {
+            NewJFrame.jPanel9.setVisible(true);
+        }
         try {
-            NewJFrame.jTextArea1.append("\nChecking for update......");
-            NewJFrame.jTextArea1.append("\nInstalled Version: " + this.mainFrame.release_version);
-            calibrate();
-            URL update = new URL("https://linux-toys.com/" + this.mainFrame.major + "/versions.html");
+            if (gui) {
+                NewJFrame.jTextArea1.append("\nChecking for update......");
+                NewJFrame.jTextArea1.append("\nInstalled Version: " + NewJFrame.release_version);
+                calibrate();
+            } else {
+                System.out.print("\nChecking for update......");
+                System.out.print("\nInstalled Version: " + NewJFrame.release_version);
+            }
+
+            URL update = new URL("https://linux-toys.com/" + NewJFrame.major + "/versions.html");
             URLConnection yc = update.openConnection();
 
             BufferedReader in = new BufferedReader(new InputStreamReader(yc
@@ -75,34 +103,51 @@ public class Update
             }
             in.close();
 
-            NewJFrame.jTextArea1.append("\nLatest version is: " + new_version);
+            if (gui) {
+                NewJFrame.jTextArea1.append("\nLatest version is: " + new_version);
+            } else {
+                System.out.print("\nLatest version is: " + new_version);
+            }
 
             if (newver > currentversion) {
                 if (alert) {
-                    NewJFrame.jTextArea1.append("\n" + alert_message);
+                    if (gui) {
+                        NewJFrame.jTextArea1.append("\n" + alert_message);
+                    } else {
+                        System.out.print("\n" + alert_message);
+                    }
                 }
                 if (!check && !alert) {
                     update();
                 }
             } else {
-                NewJFrame.jTextArea1.append("\nNo update available.");
+                if (gui) {
+                    NewJFrame.jTextArea1.append("\nNo update available.");
+                    calibrate();
+                } else {
+                    System.out.print("\nNo update available.");
+                }
             }
-
-            calibrate();
         } catch (Exception url) {
-            NewJFrame.jTextArea1.append("\nError: " + url.getMessage());
-            calibrate();
+            if (gui) {
+                NewJFrame.jTextArea1.append("\nError: " + url.getMessage());
+                calibrate();
+            } else {
+                System.out.print("\nError: " + url.getMessage());
+            }
         }
     }
 
     public void calibrate() {
         try {
-            NewJFrame.jTextArea1.setCaretPosition(NewJFrame.jTextArea1.getLineStartOffset(NewJFrame.jTextArea1.getLineCount() - 1));
+            if (gui) {
+                NewJFrame.jTextArea1.setCaretPosition(NewJFrame.jTextArea1.getLineStartOffset(NewJFrame.jTextArea1.getLineCount() - 1));
+            }
         } catch (Exception e) {
         }
     }
 
-    void startc(Boolean Acheck) {
-        new Thread(new Update(mainFrame, Acheck)).start();
+    void startc(Boolean Acheck, Boolean Agui) {
+        new Thread(new Update(mainFrame, Acheck, Agui)).start();
     }
 }
