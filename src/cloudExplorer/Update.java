@@ -125,7 +125,7 @@ public class Update
                     NewJFrame.jTextArea1.append("\nNo update available.");
                     calibrate();
                 } else {
-                    System.out.print("\nNo update available.");
+                    System.out.print("\n\nNo update available.");
                 }
             }
         } catch (Exception url) {
