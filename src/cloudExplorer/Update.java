@@ -75,7 +75,7 @@ public class Update
                 NewJFrame.jTextArea1.append("\nInstalled Version: " + NewJFrame.release_version);
                 calibrate();
             } else {
-                System.out.print("\nChecking for update......");
+                System.out.print("\n\nChecking for update......");
                 System.out.print("\nInstalled Version: " + NewJFrame.release_version);
             }
 
