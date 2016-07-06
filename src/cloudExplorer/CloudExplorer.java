@@ -44,7 +44,6 @@ public class CloudExplorer {
             Thread UpdateThread = new Thread(new Update(null, true, false));
             UpdateThread.start();
             UpdateThread.join();
-            stop = 1;
         } catch (Exception upgrade) {
         }
 
