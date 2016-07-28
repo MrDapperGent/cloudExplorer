@@ -40,14 +40,15 @@ public class CloudExplorer {
     public static void main(String[] args) {
         int stop = 0;
 
-        try {
-            Thread UpdateThread = new Thread(new Update(null, true, false));
-            UpdateThread.start();
-            UpdateThread.join();
-        } catch (Exception upgrade) {
-        }
-
         if (args.length > 0) {
+
+            try {
+                Thread UpdateThread = new Thread(new Update(null, true, false));
+                UpdateThread.start();
+                UpdateThread.join();
+            } catch (Exception upgrade) {
+            }
+
             if (args[0].contains("daemon")) {
                 Daemon daemon = new Daemon();
                 daemon.gui = false;

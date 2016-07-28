@@ -1,4 +1,4 @@
-Version 7.4
+Version 7.41
 
 Bug Fixes: 
 
@@ -6,11 +6,13 @@ Bug Fixes:
 
 Improvements: 
 
-       NA
+       Update system uses AWS S3 instead of linux-toys.com
+       Native keyboard support for OS X
+       Removed duplicate update check upon launch
 
 New Features:
          
-       CLI can check for updates and install them with the 'upgrade' flag.
+       NA
           
 Features:
 

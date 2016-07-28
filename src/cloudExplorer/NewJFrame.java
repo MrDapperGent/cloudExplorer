@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -32,6 +33,7 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -39,14 +41,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JRadioButton;
+import javax.swing.KeyStroke;
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
+import javax.swing.text.DefaultEditorKit;
 
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     public static String major = "7";
-    public static String minor = "4";
+    public static String minor = "41";
+    String os = System.getProperty("os.name");
     public static String release_version = major + "." + minor;
     String version = "Cloud Explorer " + release_version;
     String[] folders = new String[1];
@@ -132,6 +137,12 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             UIManager.getLookAndFeelDefaults().put("Panel.foreground", Color.white);
             this.setIconImage(new ImageIcon(getClass()
                     .getResource("cloud.jpg")).getImage());
+            InputMap im = (InputMap) UIManager.get("TextField.focusInputMap");
+            if (os.toLowerCase().contains("mac")) {
+                im.put(KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.META_DOWN_MASK), DefaultEditorKit.copyAction);
+                im.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, KeyEvent.META_DOWN_MASK), DefaultEditorKit.pasteAction);
+                im.put(KeyStroke.getKeyStroke(KeyEvent.VK_X, KeyEvent.META_DOWN_MASK), DefaultEditorKit.cutAction);
+            }
             this.jTextField3.setText("https://s3.amazonaws.com");
             this.jTextField4.setText("443");
 

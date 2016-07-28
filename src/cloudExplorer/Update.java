@@ -79,7 +79,7 @@ public class Update
                 System.out.print("\nInstalled Version: " + NewJFrame.release_version);
             }
 
-            URL update = new URL("https://linux-toys.com/" + NewJFrame.major + "/versions.html");
+            URL update = new URL("https://cloudexplorer.s3.amazonaws.com/" + NewJFrame.major + "/versions.html");
             URLConnection yc = update.openConnection();
 
             BufferedReader in = new BufferedReader(new InputStreamReader(yc
