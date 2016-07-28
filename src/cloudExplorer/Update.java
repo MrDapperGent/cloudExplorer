@@ -54,8 +54,8 @@ public class Update
             calibrate();
             NewJFrame.jMenuItem23.doClick();
         } else {
-            System.out.print("\nDownload complete. The new version will now launch.");
-            System.out.print("\nIf the new version does not launch automatically, please restart Cloud Explorer.");
+            System.out.print("\nDownload complete. Please run Cloud Explorer again to use the updated version.\n\n");
+          
         }
     }
 
