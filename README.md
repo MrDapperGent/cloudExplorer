@@ -1,5 +1,6 @@
 # Description 
 Cloud Explorer is a open-source S3 client. It works on Windows, Linux, and Mac.  It has a graphical and command line interface for each supported operating system. If you have a feature suggestion or find a bug, please open an issue. 
+[![Codewake](https://www.codewake.com/badges/ask_question.svg)](https://www.codewake.com/p/cloud-explorer)
 
 ![Graph](http://i.imgur.com/aw5iKZf.png)
 
