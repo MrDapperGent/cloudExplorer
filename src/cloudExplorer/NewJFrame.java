@@ -137,11 +137,16 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             UIManager.getLookAndFeelDefaults().put("Panel.foreground", Color.white);
             this.setIconImage(new ImageIcon(getClass()
                     .getResource("cloud.jpg")).getImage());
-            InputMap im = (InputMap) UIManager.get("TextField.focusInputMap");
+
             if (os.toLowerCase().contains("mac")) {
+                InputMap im = (InputMap) UIManager.get("TextField.focusInputMap");
                 im.put(KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.META_DOWN_MASK), DefaultEditorKit.copyAction);
                 im.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, KeyEvent.META_DOWN_MASK), DefaultEditorKit.pasteAction);
                 im.put(KeyStroke.getKeyStroke(KeyEvent.VK_X, KeyEvent.META_DOWN_MASK), DefaultEditorKit.cutAction);
+                InputMap im2 = (InputMap) UIManager.get("TextArea.focusInputMap");
+                im2.put(KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.META_DOWN_MASK), DefaultEditorKit.copyAction);
+                im2.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, KeyEvent.META_DOWN_MASK), DefaultEditorKit.pasteAction);
+                im2.put(KeyStroke.getKeyStroke(KeyEvent.VK_X, KeyEvent.META_DOWN_MASK), DefaultEditorKit.cutAction);
             }
             this.jTextField3.setText("https://s3.amazonaws.com");
             this.jTextField4.setText("443");
