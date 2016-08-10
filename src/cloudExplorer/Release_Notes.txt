@@ -1,20 +1,21 @@
 Version 7.42
 
-Bug Fixes: 
+Bug Fixes:
 
       CLI:
             Some operations were not working with S3 ENVAR creds
-            Running perf tests would exist prematurely. 
-Improvements: 
+            Running perf tests would exit prematurely
+            
+Improvements:
 
        Update system uses AWS S3 instead of linux-toys.com
        Native keyboard support for OS X
        Removed duplicate update check upon launch
 
 New Features:
-         
+
        NA
-          
+
 Features:
 
 1. Tier buckets to and from Amazon Glacier.
@@ -42,7 +43,7 @@ Command-line Options:
 
 java -jar CloudExplorer.jar put filename bucket
 java -jar CloudExplorer.jar get filename bucket destination
-java -jar CloudExplorer.jar delete filename bucket 
+java -jar CloudExplorer.jar delete filename bucket
 
 #List bucket contents
 java -jar CloudExplorer.jar ls bucket
@@ -68,7 +69,7 @@ java -jar CloudExplorer.jar uploadtest bucket size threads operations
 #Performance Test - GET
 java -jar CloudExplorer.jar downloadtest bucket size threads operations
 
-#Search for files 
+#Search for files
 java -jar CloudExplorer.jar search bucket what
 
 #Create a folder
