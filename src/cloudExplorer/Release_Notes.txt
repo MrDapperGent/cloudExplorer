@@ -1,4 +1,4 @@
-Version 7.41
+Version 7.42
 
 Bug Fixes: 
 

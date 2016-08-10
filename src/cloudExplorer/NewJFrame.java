@@ -50,7 +50,7 @@ import javax.swing.text.DefaultEditorKit;
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     public static String major = "7";
-    public static String minor = "41";
+    public static String minor = "42";
     String os = System.getProperty("os.name");
     public static String release_version = major + "." + minor;
     String version = "Cloud Explorer " + release_version;
