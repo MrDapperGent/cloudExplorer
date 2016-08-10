@@ -111,7 +111,7 @@ public class CLI {
                 File temp = new File(temp_file);
                 if (temp.exists()) {
                     System.out.print("\n\nAttempting to create folder: " + folder);
-                    put = new Put(temp.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, folder + File.separator, false, false,false);
+                    put = new Put(temp.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, folder + File.separator, false, false, false);
                     Put.terminal = true;
                     put.run();
                     System.out.print("\nCreate folder operation complete\n\n");
@@ -173,13 +173,21 @@ public class CLI {
         operation = arg0;
         Put.terminal = true;
         Get.terminal = true;
-        if (operation.contains("listbuckets") || operation.contains("makebucket") || operation.contains("rmbucket") || operation.contains("ls") || operation.contains("createfolder") || operation.contains("deleteall")) {
-            if ((System.getenv("ACCESS_KEY") == null) || System.getenv("SECRET_KEY") == null || System.getenv("ENDPOINT") == null || System.getenv("REGION") == null) {
+
+        if ((System.getenv("ACCESS_KEY") == null) || System.getenv("SECRET_KEY") == null || System.getenv("ENDPOINT") == null || System.getenv("REGION") == null) {
+            File s3config = new File(s3_config_file);
+            if (s3config.exists()) {
                 saved_s3_configs = loadConfig(this.s3_config_file).toString().split(" ");
                 loadS3credentials();
             } else {
-                loadEnvars();
+                messageParser("\nError: S3 config file not found.\n\n");
+                System.exit(-1);
             }
+        } else {
+            loadEnvars();
+        }
+
+        if (operation.contains("listbuckets") || operation.contains("makebucket") || operation.contains("rmbucket") || operation.contains("ls") || operation.contains("createfolder") || operation.contains("deleteall")) {
 
             mainmenu();
             bucket = arg1;
@@ -219,14 +227,6 @@ public class CLI {
             mainmenu();
 
             try {
-                File s3config = new File(s3_config_file);
-                if (s3config.exists()) {
-                } else {
-                    messageParser("\nError: Build config file not found.");
-                }
-
-                saved_s3_configs = loadConfig(this.s3_config_file).toString().split(" ");
-                loadS3credentials();
 
                 new Thread(new Runnable() {
                     public void run() {
@@ -400,7 +400,7 @@ public class CLI {
                 if (folder != null) {
                     object = folder + File.separator + object;
                 }
-                put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object, false, false,false);
+                put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object, false, false, false);
                 put.run();
                 found = 0;
             }
@@ -659,9 +659,9 @@ public class CLI {
         try {
             NewJFrame.perf = true;
             System.out.print("\n\nUploading: " + put_file.getAbsolutePath().toString() + "........");
-            put = new Put(put_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, put_file.getName(), false, false,false);
+            put = new Put(put_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, put_file.getName(), false, false, false);
             Put.debug = true;
-            put.startc(put_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, put_file.getName(), false, false,false);
+            put.startc(put_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, put_file.getName(), false, false, false);
             System.out.print("\n\nPUT operation Complete\n\n\n");
         } catch (Exception send) {
             System.out.print("\n\nAn Error has occured while uploading the file");
@@ -717,96 +717,90 @@ public class CLI {
             } catch (Exception add) {
             }
 
-            if (tempFile.exists()) {
+            try {
+                String upload = tempFile.getAbsolutePath();
 
-                try {
-                    String upload = tempFile.getAbsolutePath();
-
-                    if (!performance_operation || mixed_mode) {
-                        put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false,false);
-                        put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false,false);
-                    }
-
-                    x = new double[op_count];
-                    y = new double[op_count];
-                    x_latency = new double[op_count];
-                    y_latency = new double[op_count];
-                    x_iops = new double[op_count];
-                    y_iops = new double[op_count];
-
-                    int counter = 0;
-                    int display_counter = 0;
-
-                    for (int z = 0; z != op_count; z++) {
-
-                        if (mixed_mode) {
-                            if (performance_operation) {
-                                performance_operation = false;
-                            } else {
-                                performance_operation = true;
-                            }
-                        }
-
-                        long t1 = System.currentTimeMillis();
-
-                        for (int i = 0; i != num_threads; i++) {
-
-                            if (performance_operation) {
-                                put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false,false);
-                                put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false,false);
-                            } else {
-                                get = new Get("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + i, null);
-                                get.startc("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + i, null);
-                            }
-                        }
-
-                        double t2 = System.currentTimeMillis();
-                        double diff = t2 - t1;
-                        double total_time = diff / 1000;
-
-                        double rate = (num_threads * file_size / total_time / 1024);
-                        rate = Math.round(rate * 100);
-                        rate = rate / 100;
-
-                        double iops = (num_threads / total_time);
-                        iops = Math.round(iops * 100);
-                        iops = iops / 100;
-
-                        if (performance_operation) {
-                            System.out.print("\nPUT Operation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s. OPS/s: " + iops);
-                        } else {
-                            System.out.print("\nGET Operation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s. OPS/s: " + iops);
-                        }
-                        if (!mixed_mode) {
-                            performance_logger(counter, rate, throughput_log);
-                            performance_logger(counter, iops, ops_log);
-                            performance_logger(counter, total_time, latency_log);
-                        }
-
-                        if (counter == 100) {
-                            counter = 0;
-                            x = new double[op_count];
-                            y = new double[op_count];
-                            x_latency = new double[op_count];
-                            y_latency = new double[op_count];
-                            x_iops = new double[op_count];
-                            y_iops = new double[op_count];
-                        }
-                        y[counter] = (Double) rate;
-                        x[counter] = counter;
-                        y_latency[counter] = total_time;
-                        x_latency[counter] = counter;
-                        y_iops[counter] = iops;
-                        x_iops[counter] = counter;
-                        counter++;
-                        display_counter++;
-                    }
-
-                } catch (Exception ex) {
+                if (!performance_operation || mixed_mode) {
+                    put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false, false);
+                    put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false, false);
                 }
 
-            } else {
-                System.out.print("\n Please specifiy more than 0 threads.");
+                x = new double[op_count];
+                y = new double[op_count];
+                x_latency = new double[op_count];
+                y_latency = new double[op_count];
+                x_iops = new double[op_count];
+                y_iops = new double[op_count];
+
+                int counter = 0;
+                int display_counter = 0;
+
+                for (int z = 0; z != op_count; z++) {
+
+                    if (mixed_mode) {
+                        if (performance_operation) {
+                            performance_operation = false;
+                        } else {
+                            performance_operation = true;
+                        }
+                    }
+
+                    long t1 = System.currentTimeMillis();
+
+                    for (int i = 0; i != num_threads; i++) {
+
+                        if (performance_operation) {
+                            put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false, false);
+                            put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false, false);
+                        } else {
+                            get = new Get("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + i, null);
+                            get.startc("performance_test_data", access_key, secret_key, bucket, endpoint, temp_file + i, null);
+                        }
+                    }
+
+                    double t2 = System.currentTimeMillis();
+                    double diff = t2 - t1;
+                    double total_time = diff / 1000;
+
+                    double rate = (num_threads * file_size / total_time / 1024);
+                    rate = Math.round(rate * 100);
+                    rate = rate / 100;
+
+                    double iops = (num_threads / total_time);
+                    iops = Math.round(iops * 100);
+                    iops = iops / 100;
+
+                    if (performance_operation) {
+                        System.out.print("\nPUT Operation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s. OPS/s: " + iops);
+                    } else {
+                        System.out.print("\nGET Operation: " + z + ". Time: " + total_time + " seconds." + " Average speed with " + num_threads + " thread(s) is: " + rate + " MB/s. OPS/s: " + iops);
+                    }
+                    if (!mixed_mode) {
+                        performance_logger(counter, rate, throughput_log);
+                        performance_logger(counter, iops, ops_log);
+                        performance_logger(counter, total_time, latency_log);
+                    }
+
+                    if (counter == 100) {
+                        counter = 0;
+                        x = new double[op_count];
+                        y = new double[op_count];
+                        x_latency = new double[op_count];
+                        y_latency = new double[op_count];
+                        x_iops = new double[op_count];
+                        y_iops = new double[op_count];
+                    }
+                    y[counter] = (Double) rate;
+                    x[counter] = counter;
+                    y_latency[counter] = total_time;
+                    x_latency[counter] = counter;
+                    y_iops[counter] = iops;
+                    x_iops[counter] = counter;
+                    counter++;
+                    display_counter++;
+                }
+
+            } catch (Exception ex) {
             }
 
             if (!mixed_mode) {

@@ -2,8 +2,9 @@ Version 7.41
 
 Bug Fixes: 
 
-       NA
-
+      CLI:
+            Some operations were not working with S3 ENVAR creds
+            Running perf tests would exist prematurely. 
 Improvements: 
 
        Update system uses AWS S3 instead of linux-toys.com
