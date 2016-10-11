@@ -1,6 +1,11 @@
 language: java
+addons:
+  artifacts: true
+  paths: $HOME/build/rusher81572/cloudExplorer/cloudExplorer/cloudExplorer.zip
 jdk:
   - oraclejdk8
 script:
 - ant
-
+- mkdir $HOME/cloudExplorer/cloudExplorer
+- cp -rf dist/* cloudExplorer
+- zip --exclude=*.git* -r cloudExplorer.zip cloudExplorer
