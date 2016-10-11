@@ -5,6 +5,6 @@ script:
 - ant
 - mkdir $HOME/build/rusher81572/cloudExplorer/cloudExplorer
 - cp -rf dist/* cloudExplorer
-- zip --exclude=*.git* -r cloudExplorer.zip cloudExplorer
-- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar put $HOME/build/rusher81572/cloudExplorer/cloudExplorer.zip cloudexplorer
+- zip --exclude=*.git* -r cloudExplorer-$VERSION.zip cloudExplorer
+- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar put $HOME/build/rusher81572/cloudExplorer/cloudExplorer-$VERSION.zip cloudexplorer
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar listbuckets
