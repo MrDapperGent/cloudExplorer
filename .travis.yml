@@ -6,6 +6,6 @@ jdk:
   - oraclejdk8
 script:
 - ant
-- mkdir $HOME/cloudExplorer/cloudExplorer
+- mkdir $HOME/build/cloudExplorer/cloudExplorer
 - cp -rf dist/* cloudExplorer
 - zip --exclude=*.git* -r cloudExplorer.zip cloudExplorer
