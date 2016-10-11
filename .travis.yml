@@ -1,7 +1,7 @@
 language: java
 addons:
   artifacts: true
-  paths: $HOME/build/rusher81572/cloudExplorer/cloudExplorer/cloudExplorer.zip
+  paths: $(ls $HOME/build/rusher81572/cloudExplorer/cloudExplorer/*.zip)
 jdk:
   - oraclejdk8
 script:
