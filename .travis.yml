@@ -7,4 +7,4 @@ script:
 - cp -rf dist/* cloudExplorer
 - zip --exclude=*.git* -r cloudExplorer.zip cloudExplorer
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar put $HOME/build/rusher81572/cloudExplorer.zip cloudexplorer
-- java -jar listbuckets
+- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar listbuckets
