@@ -143,7 +143,7 @@ public class Build {
             System.out.print("\n\n" + url);
 
         } catch (Exception send) {
-            System.out.print("\n\nAn Error has occured while uploading the file");
+            System.out.print("\n\nAn Error has occured while uploading the file\n\n" + send.getMessage());
             System.exit(-1);
         }
     }
