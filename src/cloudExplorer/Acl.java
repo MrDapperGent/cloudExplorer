@@ -164,7 +164,7 @@ public class Acl {
             clpbrd.setContents(stringSelection, null);
         } catch (Exception setACLpublic) {
             System.out.print("\n" +setACLpublic.getMessage() );
-            mainFrame.jTextArea1.append("\nException occured in ACL");
+         //   mainFrame.jTextArea1.append("\nException occured in ACL");
         }
         return URL;
     }
