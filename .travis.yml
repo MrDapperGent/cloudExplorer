@@ -3,6 +3,7 @@ jdk:
   - oraclejdk8
 script:
 - ant
+- cp $HOME/build/rusher81572/cloudExplorer/src/cloudExplorer/Release_Notes.txt $HOME/build/rusher81572/cloudExplorer/dist/
 - mkdir $HOME/build/rusher81572/cloudExplorer/cloudExplorer
 - cp -rf dist/* cloudExplorer
 - zip --exclude=*.git* -r cloudExplorer-$VERSION.zip cloudExplorer
