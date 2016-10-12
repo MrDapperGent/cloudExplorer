@@ -160,8 +160,8 @@ public class Acl {
             URL url = s3Client.generatePresignedUrl(generatePresignedUrlRequest);
             URL = ("Pre-Signed URL = " + url.toString());
             StringSelection stringSelection = new StringSelection(url.toString());
-            Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
-            clpbrd.setContents(stringSelection, null);
+           // Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
+            //clpbrd.setContents(stringSelection, null);
         } catch (Exception setACLpublic) {
             System.out.print("\n" +setACLpublic.getMessage() );
          //   mainFrame.jTextArea1.append("\nException occured in ACL");
