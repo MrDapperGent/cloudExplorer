@@ -163,7 +163,7 @@ public class Acl {
            // Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
             //clpbrd.setContents(stringSelection, null);
         } catch (Exception setACLpublic) {
-            System.out.print("\n" +setACLpublic.getMessage() );
+          //  System.out.print("\n" +setACLpublic.getMessage() );
          //   mainFrame.jTextArea1.append("\nException occured in ACL");
         }
         return URL;
