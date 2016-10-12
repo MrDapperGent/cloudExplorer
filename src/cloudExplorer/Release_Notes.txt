@@ -4,7 +4,7 @@ Bug Fixes:
 
       CLI:
             Some operations were not working with S3 ENVAR creds
-            Running perf tests would exit prematurely
+            Running performance tests would exit prematurely
       
       BUILD: 
             Fixed bug in Build.java to work with ENVAR's 
@@ -14,6 +14,8 @@ Improvements:
        Update system uses AWS S3 instead of linux-toys.com
        Native keyboard support for OS X
        Removed duplicate update check upon launch
+       Removed Public URL to Clipboard to fix a CLI issue.
+       Also removed Clipboard library requirements.
 
 New Features:
 

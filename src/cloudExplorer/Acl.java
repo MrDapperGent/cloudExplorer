@@ -29,8 +29,6 @@ import com.amazonaws.services.s3.model.CanonicalGrantee;
 import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
 import com.amazonaws.services.s3.model.Grant;
 import com.amazonaws.services.s3.model.Permission;
-import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -160,11 +158,7 @@ public class Acl {
             URL url = s3Client.generatePresignedUrl(generatePresignedUrlRequest);
             URL = ("Pre-Signed URL = " + url.toString());
             StringSelection stringSelection = new StringSelection(url.toString());
-           // Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
-            //clpbrd.setContents(stringSelection, null);
         } catch (Exception setACLpublic) {
-          //  System.out.print("\n" +setACLpublic.getMessage() );
-         //   mainFrame.jTextArea1.append("\nException occured in ACL");
         }
         return URL;
     }
