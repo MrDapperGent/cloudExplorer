@@ -87,6 +87,13 @@ public class Build {
         return remove_symbol;
     }
 
+    void loadEnvars() {
+        access_key = System.getenv("ACCESS_KEY");
+        secret_key = System.getenv("SECRET_KEY");
+        endpoint = System.getenv("ENDPOINT");
+        region = System.getenv("REGION");
+    }
+
     void start(String Aname, String Abuild_file, String Abucket) {
         build_name = Aname;
         bucket = Abucket;
@@ -96,14 +103,18 @@ public class Build {
 
         try {
             File s3config = new File(s3_config_file);
-            if (s3config.exists()) {
+            if ((System.getenv("ACCESS_KEY") == null) || System.getenv("SECRET_KEY") == null || System.getenv("ENDPOINT") == null || System.getenv("REGION") == null) {
+                if (s3config.exists()) {
+                    saved_s3_configs = loadConfig(this.s3_config_file).toString().split(" ");
+                    loadS3credentials();
+                } else {
+                    messageParser("\nError: S3 config file not found.\n\n");
+                    System.exit(-1);
+                }
             } else {
-                messageParser("\nError: Build config file not found.");
+                loadEnvars();
             }
-
-            saved_s3_configs = loadConfig(this.s3_config_file).toString().split(" ");
-            loadS3credentials();
-
+          
             if (build_file.exists()) {
 
                 new Thread(new Runnable() {
@@ -124,8 +135,8 @@ public class Build {
         try {
             NewJFrame.perf = true;
             System.out.print("\n\nUploading " + build_file.getAbsolutePath().toString() + "........");
-            put = new Put(build_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, build_name, false, false,false);
-            put.startc(build_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, build_name, false, false,false);
+            put = new Put(build_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, build_name, false, false, false);
+            put.startc(build_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, build_name, false, false, false);
             objectacl.setACLpublic(build_name, access_key, secret_key, endpoint, bucket);
             String url = objectacl.setACLurl(build_name, access_key, secret_key, endpoint, bucket);
             url = url.replace("Pre-Signed URL = ", "");
