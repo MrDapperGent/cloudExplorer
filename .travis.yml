@@ -8,3 +8,16 @@ script:
 - zip --exclude=*.git* -r cloudExplorer-$VERSION.zip cloudExplorer
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar put $HOME/build/rusher81572/cloudExplorer/cloudExplorer-$VERSION.zip cloudexplorer
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar listbuckets
+- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar
+- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar makebucket testing81572
+- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar createfolder testing81572 synctest
+- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar synctos3 $HOME/build/rusher81572/cloudExplorer/src testing81572 synctest
+- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar ls testing81572
+- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar syncfroms3 /tmp testing81572 synctest
+- ls /tmp/synctest
+- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar search png
+- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar deleteall testing81572
+- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar uploadtest testing81572 10 10 10 mixed
+- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar download testing81572 10 10 10 mixed
+- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar deleteall testing81572
+- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar rmbucket testing81572
