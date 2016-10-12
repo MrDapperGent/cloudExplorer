@@ -137,7 +137,7 @@ public class Build {
             System.out.print("\n\nUploading " + build_file.getAbsolutePath().toString() + "........");
             put = new Put(build_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, build_name, false, false, false);
             put.startc(build_file.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, build_name, false, false, false);
-          //  objectacl.setACLpublic(build_name, access_key, secret_key, endpoint, bucket);
+            objectacl.setACLpublic(build_name, access_key, secret_key, endpoint, bucket);
            // String url = objectacl.setACLurl(build_name, access_key, secret_key, endpoint, bucket);
             //url = url.replace("Pre-Signed URL = ", "");
            // System.out.print("\n\n" + url);
