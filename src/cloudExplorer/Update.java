@@ -105,6 +105,7 @@ public class Update
     public void message(String what) {
         if (gui) {
             NewJFrame.jTextArea1.append(what);
+            calibrate();
         } else {
             System.out.print(what);
         }
