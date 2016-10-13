@@ -1,12 +1,21 @@
 package cloudExplorer;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.filefilter.TrueFileFilter;
 
 public class Update
         implements Runnable {
@@ -23,39 +32,73 @@ public class Update
     }
 
     public void update() {
-        try {
-            String path = null;
-            if (gui) {
-                path = NewJFrame.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-            } else {
-                path = CloudExplorer.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-            }
+        String path = NewJFrame.class.getProtectionDomain().getCodeSource().getLocation().toString();
+        path = path.replace("CloudExplorer.jar", "");
+        path = path.replace("file:", "");
 
-            if (gui) {
-                NewJFrame.jTextArea1.append("\nDownloading updated version........");
-            } else {
-                System.out.print("\n\nDownloading updated version........");
-            }
+        try {
+            message("\nDownloading updated version........");
             URL download = new URL(this.updateURL);
             ReadableByteChannel rbc = Channels.newChannel(download.openStream());
-            FileOutputStream fos = new FileOutputStream(path);
+            FileOutputStream fos = new FileOutputStream(path + File.separator + "update.zip");
             fos.getChannel().transferFrom(rbc, 0L, 9223372036854775807L);
         } catch (Exception update) {
-            if (gui) {
-                NewJFrame.jTextArea1.append("\nError: " + update.getMessage());
-                calibrate();
+            message("\nError Downloading Zip: " + update.getMessage());
+        }
+
+        if (gui) {
+            NewJFrame.jTextArea1.append("\nDownload complete. Trying to Extract file.");
+            calibrate();
+            File check_zip = new File(path + "update.zip");
+            if (check_zip.exists()) {
+                Zip zip = new Zip(path + "update.zip", path, "unzip");
+                zip.decompress();
+                message("\nExtraction Complete. Trying to copy files.");
+                File scan_location = new File(path + File.separator + "cloudExplorer");
+                List<File> files = (List<File>) FileUtils.listFiles(scan_location, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE);
+                for (File file_found : files) {
+                    String dest = null;
+                    String source = (file_found.getAbsolutePath());
+                    try {
+                        InputStream is = null;
+                        OutputStream os = null;
+                        if (file_found.getAbsolutePath().contains("lib")) {
+                            dest = path + "lib" + File.separator + file_found.getName();
+                        } else {
+                            dest = path + file_found.getName();
+                        }
+
+                        try {
+                            is = new FileInputStream(source);
+                            os = new FileOutputStream(dest);
+                            byte[] buffer = new byte[1024];
+                            int length;
+                            while ((length = is.read(buffer)) > 0) {
+                                os.write(buffer, 0, length);
+                            }
+                        } finally {
+                            is.close();
+                            os.close();
+                        }
+                    } catch (Exception copy) {
+                        message("\nCopy file error occurred:" + copy.getMessage());
+                    }
+                }
+                message("\nFile copy complete. Deleteing old upgrade directory.");
+                scan_location.delete();
+                message("\nUpgrade complete. Please restart Cloud Explorer.");
+//      NewJFrame.jMenuItem23.doClick();
             } else {
-                System.out.print("\nError: " + update.getMessage());
+                message("\nError: Zip file not found!");
             }
         }
+    }
+
+    public void message(String what) {
         if (gui) {
-            NewJFrame.jTextArea1.append("\nDownload complete. The new version will now launch.");
-            NewJFrame.jTextArea1.append("\nIf the new version does not launch automatically, please restart Cloud Explorer.");
-            calibrate();
-            NewJFrame.jMenuItem23.doClick();
+            NewJFrame.jTextArea1.append(what);
         } else {
-            System.out.print("\nDownload complete. Please run Cloud Explorer again to use the updated version.\n\n");
-          
+            System.out.print(what);
         }
     }
 
@@ -70,14 +113,8 @@ public class Update
             NewJFrame.jPanel9.setVisible(true);
         }
         try {
-            if (gui) {
-                NewJFrame.jTextArea1.append("\nChecking for update......");
-                NewJFrame.jTextArea1.append("\nInstalled Version: " + NewJFrame.release_version);
-                calibrate();
-            } else {
-                System.out.print("\n\nChecking for update......");
-                System.out.print("\nInstalled Version: " + NewJFrame.release_version);
-            }
+            message("\nChecking for update......");
+            message("\nInstalled Version: " + NewJFrame.release_version);
 
             URL update = new URL("https://cloudexplorer.s3.amazonaws.com/" + NewJFrame.major + "/versions.html");
             URLConnection yc = update.openConnection();
@@ -102,47 +139,26 @@ public class Update
                 }
             }
             in.close();
-
-            if (gui) {
-                NewJFrame.jTextArea1.append("\nLatest version is: " + new_version);
-            } else {
-                System.out.print("\nLatest version is: " + new_version);
-            }
+            message("\nLatest version is: " + new_version);
 
             if (newver > currentversion) {
                 if (alert) {
-                    if (gui) {
-                        NewJFrame.jTextArea1.append("\n" + alert_message);
-                    } else {
-                        System.out.print("\n" + alert_message);
-                    }
+                    message("\n" + alert_message);
                 }
                 if (!check && !alert) {
                     update();
                 }
             } else {
-                if (gui) {
-                    NewJFrame.jTextArea1.append("\nNo update available.");
-                    calibrate();
-                } else {
-                    System.out.print("\n\nNo update available.");
-                }
+                message("\nNo update available.");
             }
         } catch (Exception url) {
-            if (gui) {
-                NewJFrame.jTextArea1.append("\nError: " + url.getMessage());
-                calibrate();
-            } else {
-                System.out.print("\nError: " + url.getMessage());
-            }
+            message("\nError: " + url.getMessage());
         }
     }
 
     public void calibrate() {
         try {
-            if (gui) {
-                NewJFrame.jTextArea1.setCaretPosition(NewJFrame.jTextArea1.getLineStartOffset(NewJFrame.jTextArea1.getLineCount() - 1));
-            }
+            NewJFrame.jTextArea1.setCaretPosition(NewJFrame.jTextArea1.getLineStartOffset(NewJFrame.jTextArea1.getLineCount() - 1));
         } catch (Exception e) {
         }
     }

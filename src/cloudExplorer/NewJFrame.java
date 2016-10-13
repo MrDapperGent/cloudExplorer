@@ -49,8 +49,8 @@ import javax.swing.text.DefaultEditorKit;
 
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
-    public static String major = "7";
-    public static String minor = "42";
+    public static String major = "8";
+    public static String minor = "00";
     String os = System.getProperty("os.name");
     public static String release_version = major + "." + minor;
     String version = "Cloud Explorer " + release_version;
@@ -2622,7 +2622,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             String new_object_name = convertObject(file.getAbsolutePath().toString(), "upload");
             //jTextField7.setText(jTextField7.getText().replace("null", ""));
             if (jCheckBox4.isSelected()) {
-                Zip zip = new Zip(upload, "compress");
+                Zip zip = new Zip(upload, null, "compress");
                 zip.run();
                 upload = Home + File.separator + "compress.tmp";
                 new_object_name = new_object_name + ".zip";

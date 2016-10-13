@@ -18,15 +18,20 @@ package cloudExplorer;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import static cloudExplorer.NewJFrame.jTextArea1;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
+import static org.jibble.pircbot.DccFileTransfer.BUFFER_SIZE;
 
 public class Zip implements Runnable {
 
     NewJFrame mainFrame;
     String what = null;
+    String where = null;
     Thread zip;
     String operation = null;
     String Home = System.getProperty("user.home");
@@ -62,13 +67,51 @@ public class Zip implements Runnable {
             calibrate();
         }
     }
-
-    public void uncompress() {
-
+  private void extractFile(ZipInputStream zipIn, String filePath) throws IOException {
+        BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(filePath));
+        byte[] bytesIn = new byte[BUFFER_SIZE];
+        int read = 0;
+        while ((read = zipIn.read(bytesIn)) != -1) {
+            bos.write(bytesIn, 0, read);
+        }
+        bos.close();
+    }
+  
+    public void decompress() {
+        calibrate();
+        calibrate();
+        FileInputStream fis;
+        byte[] buffer = new byte[1024];
+        try {
+  File destDir = new File(where);
+        if (!destDir.exists()) {
+            destDir.mkdir();
+        }
+        ZipInputStream zipIn = new ZipInputStream(new FileInputStream(what));
+        ZipEntry entry = zipIn.getNextEntry();
+        // iterates over entries in the zip file
+        while (entry != null) {
+            String filePath = where + File.separator + entry.getName();
+            if (!entry.isDirectory()) {
+                // if the entry is a file, extracts it
+                extractFile(zipIn, filePath);
+            } else {
+                // if the entry is a directory, make the directory
+                File dir = new File(filePath);
+                dir.mkdir();
+            }
+            zipIn.closeEntry();
+            entry = zipIn.getNextEntry();
+        }
+        zipIn.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    Zip(String Awhat, String Aoperation) {
+    Zip(String Awhat, String Awhere, String Aoperation) {
         what = Awhat;
+        where = Awhere;
         operation = Aoperation;
 
     }
@@ -94,7 +137,7 @@ public class Zip implements Runnable {
             if (operation.contains("compress")) {
                 compress();
             } else {
-                uncompress();
+                decompress();
             }
         } catch (Exception get) {
             //mainFrame.jTextArea1.append("\n\nAn error has occurred in GET.");
@@ -105,8 +148,8 @@ public class Zip implements Runnable {
         calibrate();
     }
 
-    void startc(String Awhat, String Aoperation) {
-        zip = new Thread(new Zip(Awhat, Aoperation));
+    void startc(String Awhat, String Awhere, String Aoperation) {
+        zip = new Thread(new Zip(Awhat, Awhere, Aoperation));
         zip.start();
     }
 

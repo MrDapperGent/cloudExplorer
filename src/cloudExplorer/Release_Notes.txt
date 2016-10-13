@@ -19,7 +19,9 @@ Improvements:
 
 New Features:
 
-       NA
+       More Intelligent Upgrades:
+            Downloads entire Zip archive and upgrades old software.
+            Now able to upgrade to future releases without breaking.
 
 Features:
 
