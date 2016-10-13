@@ -49,56 +49,54 @@ public class Update
             message("\nError Downloading Zip: " + update.getMessage());
         }
 
-        if (gui) {
-            NewJFrame.jTextArea1.append("\nDownload complete. Trying to Extract file.");
-            calibrate();
-            File check_zip = new File(path + "update.zip");
-            if (check_zip.exists()) {
-                Zip zip = new Zip(path + "update.zip", path, "unzip");
-                zip.decompress();
-                message("\nExtraction Complete. Trying to copy files.");
-                File scan_location = new File(path + File.separator + "cloudExplorer");
-                List<File> files = (List<File>) FileUtils.listFiles(scan_location, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE);
-                for (File file_found : files) {
-                    String dest = null;
-                    String source = (file_found.getAbsolutePath());
-                    try {
-                        InputStream is = null;
-                        OutputStream os = null;
-                        if (file_found.getAbsolutePath().contains("lib")) {
-                            dest = path + "lib" + File.separator + file_found.getName();
-                        } else {
-                            dest = path + file_found.getName();
-                        }
-
-                        try {
-                            is = new FileInputStream(source);
-                            os = new FileOutputStream(dest);
-                            byte[] buffer = new byte[1024];
-                            int length;
-                            while ((length = is.read(buffer)) > 0) {
-                                os.write(buffer, 0, length);
-                            }
-                        } finally {
-                            is.close();
-                            os.close();
-                        }
-                    } catch (Exception copy) {
-                        message("\nCopy file error occurred:" + copy.getMessage());
-                    }
-                }
-                message("\nFile copy complete. Deleteing old upgrade directory.");
+        message("\nDownload complete. Trying to Extract file.");
+        calibrate();
+        File check_zip = new File(path + "update.zip");
+        if (check_zip.exists()) {
+            Zip zip = new Zip(path + "update.zip", path, "unzip");
+            zip.decompress();
+            message("\nExtraction Complete. Trying to copy files.");
+            File scan_location = new File(path + File.separator + "cloudExplorer");
+            List<File> files = (List<File>) FileUtils.listFiles(scan_location, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE);
+            for (File file_found : files) {
+                String dest = null;
+                String source = (file_found.getAbsolutePath());
                 try {
-                    FileUtils.deleteDirectory(new File(scan_location.toString()));
-                    check_zip.delete();
-                } catch (IOException ex) {
-                    Logger.getLogger(Update.class.getName()).log(Level.SEVERE, null, ex);
+                    InputStream is = null;
+                    OutputStream os = null;
+                    if (file_found.getAbsolutePath().contains("lib")) {
+                        dest = path + "lib" + File.separator + file_found.getName();
+                    } else {
+                        dest = path + file_found.getName();
+                    }
+
+                    try {
+                        is = new FileInputStream(source);
+                        os = new FileOutputStream(dest);
+                        byte[] buffer = new byte[1024];
+                        int length;
+                        while ((length = is.read(buffer)) > 0) {
+                            os.write(buffer, 0, length);
+                        }
+                    } finally {
+                        is.close();
+                        os.close();
+                    }
+                } catch (Exception copy) {
+                    message("\nCopy file error occurred:" + copy.getMessage());
                 }
-                message("\nUpgrade complete. Please restart Cloud Explorer.");
-                //      NewJFrame.jMenuItem23.doClick();
-            } else {
-                message("\nError: Zip file not found!");
             }
+            message("\nFile copy complete. Deleteing old upgrade directory.");
+            try {
+                FileUtils.deleteDirectory(new File(scan_location.toString()));
+                check_zip.delete();
+            } catch (IOException ex) {
+                Logger.getLogger(Update.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            message("\nUpgrade complete. Please restart Cloud Explorer.");
+            //      NewJFrame.jMenuItem23.doClick();
+        } else {
+            message("\nError: Zip file not found!");
         }
     }
 
