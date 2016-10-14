@@ -21,7 +21,7 @@ script:
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar download testing81572 10 10 10 mixed
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar deleteall testing81572
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar rmbucket testing81572
-- sed -i 's/major = \"8\"/minor = \"7\"/'  $HOME/build/rusher81572/cloudExplorer/src/cloudExplorer/NewJFrame.java
+- sed -i 's/major = \"8\"/major = \"7\"/'  $HOME/build/rusher81572/cloudExplorer/src/cloudExplorer/NewJFrame.java
 - sed -i 's/minor = \"0\"/minor = \"00\"/'  $HOME/build/rusher81572/cloudExplorer/src/cloudExplorer/NewJFrame.java
 - ant
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar upgrade
