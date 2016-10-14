@@ -30,3 +30,4 @@ script:
 - cp -rf dist/* cloudExplorer
 - java -jar $HOME/build/rusher81572/cloudExplorer/cloudExplorer/CloudExplorer.jar upgrade
 - java -jar $HOME/build/rusher81572/cloudExplorer/cloudExplorer/CloudExplorer.jar help
+- ls -al $HOME/build/rusher81572/cloudExplorer/cloudExplorer/
