@@ -23,4 +23,4 @@ script:
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar deleteall testing81572
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar rmbucket testing81572
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar build cloudExplorer-$VERSION.zip $HOME/build/rusher81572/cloudExplorer/cloudExplorer-$VERSION.zip cloudexplorer
-- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar build $VERSION/CloudExplorer.jar $HOME/build/rusher81572/cloudExplorer/CloudExplorer.jar cloudexplorer
+- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar build $VERSION/CloudExplorer.jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar cloudexplorer
