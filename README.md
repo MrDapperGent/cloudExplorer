@@ -31,7 +31,7 @@ Cloud Explorer is a open-source S3 client. It works on Windows, Linux, and Mac. 
 
 # Downloading
 
-For the latest stable release, please click on the download link from the [Releases Page.](https://github.com/rusher81572/cloudExplorer/releases)
+For the latest stable release, click [Download.](https://cloudexplorer.s3.amazonaws.com/8/cloudExplorer-8.zip)
 
 For the latest development release, please download cloudExplorer-dev.zip from [Amazon S3.](https://cloudexplorer.s3.amazonaws.com:443/cloudExplorer-dev.zip)
 
