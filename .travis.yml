@@ -26,4 +26,4 @@ script:
 - ant
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar upgrade
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar help
-- ls $HOME/build/rusher81572/cloudExplorer/dist/libs
+- ls $HOME/build/rusher81572/cloudExplorer/dist
