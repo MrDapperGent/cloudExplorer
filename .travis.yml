@@ -2,11 +2,13 @@ language: java
 jdk:
   - oraclejdk8
 script:
+- echo "Compiling and packaging Cloud Explorer....."
 - ant
 - cp $HOME/build/rusher81572/cloudExplorer/src/cloudExplorer/Release_Notes.txt $HOME/build/rusher81572/cloudExplorer/dist/
 - mkdir $HOME/build/rusher81572/cloudExplorer/cloudExplorer
 - cp -rf dist/* cloudExplorer
 - zip --exclude=*.git* -r cloudExplorer-$VERSION.zip cloudExplorer
+- echo "Starting functional testing......"
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar listbuckets
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar makebucket testing81572
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar build cloudExplorer-$VERSION.zip $HOME/build/rusher81572/cloudExplorer/cloudExplorer-$VERSION.zip cloudexplorer
@@ -30,4 +32,4 @@ script:
 - cp -rf dist/* cloudExplorer
 - java -jar $HOME/build/rusher81572/cloudExplorer/cloudExplorer/CloudExplorer.jar upgrade
 - java -jar $HOME/build/rusher81572/cloudExplorer/cloudExplorer/CloudExplorer.jar help
-- ls -al $HOME/build/rusher81572/cloudExplorer/cloudExplorer/
+- ls -al $HOME/build/rusher81572/cloudExplorer/cloudExplorer/lib
