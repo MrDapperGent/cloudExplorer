@@ -76,7 +76,7 @@ java -jar dist/CloudExplorer.jar help
 
 # Upgrading
 
-To upgrade, please use the updater located in the application. Everytime Cloud Explorer is ran, it will check for the latest version. To apply the update, click "Help -> Check for updates". Starting with version 8, you will be able to upgrade to newer releases with major library changes without manually downloading the newer release from this site. Since there is no upgrade path from version 7 to 8, you will need to  download the version 8 release. 
+To upgrade, please use the updater located in the application. Everytime Cloud Explorer is ran, it will check for the latest version. To apply the update, click "Help -> Check for updates". Starting with version 8, you will be able to upgrade to newer releases with major library changes without manually downloading the newer release from this site. Since there is no upgrade path from version 7 to 8, you will need to download the version 8 release manually. 
 
 # How to migrate data between S3 accounts
 * Load the destination account and create or select a bucket to migrate to.
