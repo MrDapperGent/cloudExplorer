@@ -1,27 +1,17 @@
-Version 8.0
+Version 8.01
 
 Bug Fixes:
 
-      CLI:
-            Some operations were not working with S3 ENVAR creds
-            Running performance tests would exit prematurely
-      
-      BUILD: 
-            Fixed bug in Build.java to work with ENVAR's 
+      IRC:
+          Fixed issue where the message window will not appear if no IRC config is found.
 
 Improvements:
 
-       Update system uses AWS S3 instead of linux-toys.com
-       Native keyboard support for OS X
-       Removed duplicate update check upon launch
-       Removed Public URL to Clipboard to fix a CLI issue.
-       Also removed Clipboard library requirements.
+      NONE
 
 New Features:
 
-       More Intelligent Upgrades:
-            Downloads entire Zip archive and upgrades old software.
-            Now able to upgrade to future releases without breaking.
+     NONE
 
 Features:
 

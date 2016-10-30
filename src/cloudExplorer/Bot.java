@@ -182,6 +182,7 @@ public class Bot implements Runnable {
             } catch (IOException e) {
                 mainFrame.jTextArea1.append("\nConfig file not found!. Please create .cloudExplorerIRC in your home directory by running the GUI.");
                 calibrateTextArea();
+                mainFrame.jPanel9.setVisible(true);
             }
 
             load_gui_components();
@@ -189,6 +190,7 @@ public class Bot implements Runnable {
         } else {
             mainFrame.jTextArea1.append("\nConfig file not found!. Please create .cloudExplorerIRC in your home directory by running the GUI.");
             calibrateTextArea();
+            mainFrame.jPanel9.setVisible(true);
         }
 
     }
@@ -287,8 +289,8 @@ public class Bot implements Runnable {
         calibrateTextArea();
         mainFrame.jPanel9.setVisible(true);
         writer(ircarea.getText(), temp_file);
-        put = new Put(temp_file, access_key, secret_key, bucket, endpoint, "IRC Transcript-" + date() + ".txt", false, false,false);
-        put.startc(temp_file, access_key, secret_key, bucket, endpoint, "IRC Transcript-" + date() + ".txt", false, false,false);
+        put = new Put(temp_file, access_key, secret_key, bucket, endpoint, "IRC Transcript-" + date() + ".txt", false, false, false);
+        put.startc(temp_file, access_key, secret_key, bucket, endpoint, "IRC Transcript-" + date() + ".txt", false, false, false);
     }
 
     void start_bot() {
