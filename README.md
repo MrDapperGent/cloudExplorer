@@ -155,7 +155,7 @@ If you want to use the Cloud Explorer CLI from a VNC session, skip to "Using the
 
 Run the container:
 ```
-docker run -d --net=host cloudexplorer 
+docker run -d -p 6001:6001 -p 5901:5901 cloudexplorer
 ````
 
 To access to the container, use a VNC client such as vncviewer to connect to display #1.
