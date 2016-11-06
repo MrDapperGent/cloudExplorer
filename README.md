@@ -50,8 +50,9 @@ java -jar CloudExplorer.jar
 ```
 # Video demonstraton
 
-[How to use the Scality S3 server with Cloud Explorer] (https://youtu.be/2hhtBtmBSxE)
-[Older, but complete video] (https://www.youtube.com/watch?v=O1HVDYywZRY)
+### [How to use the Scality S3 server with Cloud Explorer] (https://youtu.be/2hhtBtmBSxE)
+
+### [Older, but complete video] (https://www.youtube.com/watch?v=O1HVDYywZRY)
 
 
 # How to compile from source
