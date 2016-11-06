@@ -48,7 +48,7 @@ If not, you can start the program with the Java command:
 ```
 java -jar CloudExplorer.jar
 ```
-# Video demonstraton
+# Video demonstratons
 
 ### [How to use the Scality S3 server with Cloud Explorer] (https://youtu.be/2hhtBtmBSxE)
 
