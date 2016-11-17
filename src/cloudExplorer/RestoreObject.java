@@ -22,8 +22,10 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import java.io.File;
 import static cloudExplorer.NewJFrame.jTextArea1;
 import com.amazonaws.ClientConfiguration;
+import com.amazonaws.services.s3.model.AmazonS3Exception;
 import com.amazonaws.services.s3.model.GetObjectMetadataRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.RestoreObjectRequest;
 
 public class RestoreObject implements Runnable {
 
@@ -60,15 +62,21 @@ public class RestoreObject implements Runnable {
         s3Client.setEndpoint(endpoint);
 
         try {
-            GetObjectMetadataRequest request = new GetObjectMetadataRequest(bucket, what);
-            ObjectMetadata response = s3Client.getObjectMetadata(request);
-            response.getOngoingRestore();
+            RestoreObjectRequest requestRestore = new RestoreObjectRequest(bucket, what, 2);
+            s3Client.restoreObject(requestRestore);
 
-            mainFrame.jTextArea1.append("\nRestored operation ran for Object: " + what + ". Please examiene this window for any errors.");
+            GetObjectMetadataRequest requestCheck = new GetObjectMetadataRequest(bucket, what);
+            ObjectMetadata response = s3Client.getObjectMetadata(requestCheck);
+
+            Boolean restoreFlag = response.getOngoingRestore();
+            mainFrame.jTextArea1.append("\nRestoration in progress. Please try to access the file again in a few hours.");
             mainFrame.calibrateTextArea();
-
-        } catch (Exception get) {
-            //  mainFrame.jTextArea1.append("\n\nError Message: " + get.getMessage());
+        } catch (AmazonS3Exception amazonS3Exception) {
+            mainFrame.jTextArea1.append("An Amazon S3 error occurred. Exception: %s" + amazonS3Exception.toString());
+            mainFrame.calibrateTextArea();
+        } catch (Exception ex) {
+            mainFrame.jTextArea1.append("Exception: %s" + ex.toString());
+            mainFrame.calibrateTextArea();
         }
 
         calibrate();
