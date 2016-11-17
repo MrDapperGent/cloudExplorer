@@ -1,9 +1,12 @@
-Version 8.01
+Version 8.02
 
 Bug Fixes:
 
       IRC:
           Fixed issue where the message window will not appear if no IRC config is found.
+
+      Restore from Glacier:
+          Actually works now.
 
 Improvements:
 

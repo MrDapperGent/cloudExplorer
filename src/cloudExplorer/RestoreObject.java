@@ -70,13 +70,13 @@ public class RestoreObject implements Runnable {
 
             Boolean restoreFlag = response.getOngoingRestore();
             mainFrame.jTextArea1.append("\nRestoration in progress. Please try to access the file again in a few hours.");
-            mainFrame.calibrateTextArea();
+            calibrate();
         } catch (AmazonS3Exception amazonS3Exception) {
             mainFrame.jTextArea1.append("An Amazon S3 error occurred. Exception: %s" + amazonS3Exception.toString());
-            mainFrame.calibrateTextArea();
+            calibrate();
         } catch (Exception ex) {
             mainFrame.jTextArea1.append("Exception: %s" + ex.toString());
-            mainFrame.calibrateTextArea();
+            calibrate();
         }
 
         calibrate();
