@@ -10,7 +10,12 @@ Bug Fixes:
 
 Improvements:
 
-      NONE
+      Misc dialog window calibration
+
+      Clearer Menus: 
+        Combined the "Objects" menu with the File menu
+        Renamed "Restore Object from Glacier" to  "Restore from Glacier"
+        Renamed "Modify Object ACL" to  "Modify ACL"
 
 New Features:
 

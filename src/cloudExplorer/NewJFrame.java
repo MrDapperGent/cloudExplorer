@@ -277,15 +277,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem23 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem16 = new javax.swing.JMenuItem();
+        jMenuItem27 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem22 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem16 = new javax.swing.JMenuItem();
-        jMenuItem27 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
@@ -1417,6 +1416,30 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu1.add(jMenuItem23);
 
+        jMenuItem6.setText("Modify ACL");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem6);
+
+        jMenuItem16.setText("Restore from Glacier");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem16);
+
+        jMenuItem27.setText("Create Folder");
+        jMenuItem27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem27ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem27);
+
         jMenuItem4.setText("Exit");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1456,35 +1479,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenu3.add(jMenuItem22);
 
         jMenuBar1.add(jMenu3);
-
-        jMenu2.setForeground(java.awt.Color.gray);
-        jMenu2.setText("Objects");
-
-        jMenuItem6.setText("Modify Object ACL");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem6);
-
-        jMenuItem16.setText("Restore Object from Glacier");
-        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem16ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem16);
-
-        jMenuItem27.setText("Create Folder");
-        jMenuItem27.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem27ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem27);
-
-        jMenuBar1.add(jMenu2);
 
         jMenu5.setForeground(java.awt.Color.gray);
         jMenu5.setText("Background Syncing");
@@ -3487,6 +3481,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jPanel9.setVisible(true);
         } else {
             jTextArea1.append("\nError: No bucket has been selected");
+            calibrateTextArea();
         }
 
     }//GEN-LAST:event_jMenuItem27ActionPerformed
@@ -3675,7 +3670,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu12;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
