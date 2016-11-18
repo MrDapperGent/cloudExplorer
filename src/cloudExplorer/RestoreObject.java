@@ -72,10 +72,10 @@ public class RestoreObject implements Runnable {
             mainFrame.jTextArea1.append("\nRestoration in progress. Please try to access the file again in a few hours.");
             calibrate();
         } catch (AmazonS3Exception amazonS3Exception) {
-            mainFrame.jTextArea1.append("An Amazon S3 error occurred. Exception: %s" + amazonS3Exception.toString());
+            mainFrame.jTextArea1.append("\nAn Amazon S3 error occurred. Exception: %s" + amazonS3Exception.toString());
             calibrate();
         } catch (Exception ex) {
-            mainFrame.jTextArea1.append("Exception: %s" + ex.toString());
+            mainFrame.jTextArea1.append("\nException: %s" + ex.toString());
             calibrate();
         }
 
