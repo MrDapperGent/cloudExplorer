@@ -54,18 +54,23 @@ public class SoundRecorder implements Runnable {
             soundThread.setBackground(Color.white);
             soundThread.setForeground(Color.BLUE);
             soundThread.setBorder(null);
+            soundThread.setFont(soundThread.getFont().deriveFont(14.0f));
             name.setBackground(Color.white);
             name.setForeground(Color.GRAY);
             name.setBorder(null);
+            name.setFont(name.getFont().deriveFont(14.0f));
             save.setBackground(Color.white);
             save.setForeground(Color.BLUE);
             save.setBorder(null);
+            save.setFont(save.getFont().deriveFont(14.0f));
             close.setBackground(Color.white);
             close.setBorder(null);
             close.setForeground(Color.BLUE);
+            close.setFont(close.getFont().deriveFont(14.0f));
             name.setMaximumSize(new Dimension(200, 20));
             audioName.setMaximumSize(new Dimension(300, 20));
             audioName.setForeground(Color.GRAY);
+            audioName.setFont(audioName.getFont().deriveFont(12.0f));
             soundThread.setIcon(mainFrame.genericEngine);
             save.setIcon(mainFrame.genericEngine);
             close.setIcon(mainFrame.genericEngine);
@@ -109,7 +114,7 @@ public class SoundRecorder implements Runnable {
                     if (temp.exists()) {
                         NewJFrame.jTextArea1.append("\nRecording has finished. Uploading file.");
                         mainFrame.calibrateTextArea();
-                        (new Thread(new Put(mainFrame.temp_file, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), audioName.getText() + ".wav", false, false,false))).start();
+                        (new Thread(new Put(mainFrame.temp_file, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), audioName.getText() + ".wav", false, false, false))).start();
                     }
                 }
             });
