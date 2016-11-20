@@ -95,10 +95,7 @@ public class Credentials {
             FileWriter fr = new FileWriter(config_file, true);
             BufferedWriter bfr = new BufferedWriter(fr);
             String str = null;
-            System.out.print("\nDebug: " + region);
-            if (region.length() < 1) {
-                System.out.print("\nRegion < 1");
-            }
+            
             if (region.length() < 1) {
                 region = "defaultAWS";
             }
