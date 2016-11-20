@@ -877,6 +877,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jTextField10.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jTextField10.setForeground(java.awt.Color.gray);
+        jTextField10.setText("Search Here");
         jTextField10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTextField10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
