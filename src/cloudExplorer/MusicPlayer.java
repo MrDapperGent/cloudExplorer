@@ -54,16 +54,20 @@ public class MusicPlayer implements Runnable {
             stopMusic.setBackground(Color.white);
             stopMusic.setForeground(Color.GRAY);
             stopMusic.setBorder(null);
+            stopMusic.setFont(stopMusic.getFont().deriveFont(14.0f));
+
             replayMusic.setBackground(Color.white);
             replayMusic.setBorder(null);
             replayMusic.setForeground(Color.GRAY);
+            replayMusic.setFont(replayMusic.getFont().deriveFont(14.0f));
             backwardMusic.setBackground(Color.white);
             backwardMusic.setBorder(null);
             backwardMusic.setForeground(Color.GRAY);
+            backwardMusic.setFont(backwardMusic.getFont().deriveFont(14.0f));
             forwardMusic.setBackground(Color.white);
             forwardMusic.setBorder(null);
             forwardMusic.setForeground(Color.GRAY);
-
+            forwardMusic.setFont(forwardMusic.getFont().deriveFont(14.0f));
             ImageIcon play = new ImageIcon(
                     getClass().getResource("Actions-media-playback-start-icon.png"));
             replayMusic.setIcon(play);
