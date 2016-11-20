@@ -24,7 +24,7 @@ import com.googlecode.charts4j.GCharts;
 import com.googlecode.charts4j.Plot;
 import com.googlecode.charts4j.Plots;
 import com.googlecode.charts4j.XYLineChart;
-import static java.awt.Color.GREEN;
+import static java.awt.Color.BLUE;
 import static java.awt.Color.WHITE;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -200,11 +200,11 @@ public class PerformanceThread implements Runnable {
 
                     if (!operation || mixed) {
                         if (!folder_enabled) {
-                            put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false,false);
-                            put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false,false);
+                            put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false, false);
+                            put.startc(upload, access_key, secret_key, bucket, endpoint, "performance_test_data", false, false, false);
                         } else {
-                            put = new Put(upload, access_key, secret_key, bucket, endpoint, folder + "performance_test_data", false, false,false);
-                            put.startc(upload, access_key, secret_key, bucket, endpoint, folder + "performance_test_data", false, false,false);
+                            put = new Put(upload, access_key, secret_key, bucket, endpoint, folder + "performance_test_data", false, false, false);
+                            put.startc(upload, access_key, secret_key, bucket, endpoint, folder + "performance_test_data", false, false, false);
                         }
                     }
 
@@ -235,19 +235,19 @@ public class PerformanceThread implements Runnable {
                             if (operation) {
                                 if (overwrite) {
                                     if (!folder_enabled) {
-                                        Runnable put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_PUT-" + i, false, false,false);
+                                        Runnable put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_PUT-" + i, false, false, false);
                                         executor.execute(put);
                                     } else {
-                                        Runnable put = new Put(upload, access_key, secret_key, bucket, endpoint, folder + "performance_test_data_PUT-" + i, false, false,false);
+                                        Runnable put = new Put(upload, access_key, secret_key, bucket, endpoint, folder + "performance_test_data_PUT-" + i, false, false, false);
                                         executor.execute(put);
                                     }
 
                                 } else {
                                     if (!folder_enabled) {
-                                        Runnable put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false,false);
+                                        Runnable put = new Put(upload, access_key, secret_key, bucket, endpoint, "performance_test_data_" + i + "_" + z, false, false, false);
                                         executor.execute(put);
                                     } else {
-                                        Runnable put = new Put(upload, access_key, secret_key, bucket, endpoint, folder + "performance_test_data_" + i + "_" + z, false, false,false);
+                                        Runnable put = new Put(upload, access_key, secret_key, bucket, endpoint, folder + "performance_test_data_" + i + "_" + z, false, false, false);
                                         executor.execute(put);
                                     }
                                 }
@@ -374,10 +374,12 @@ public class PerformanceThread implements Runnable {
         }
 
         JLabel throughputIcon = new JLabel("\n             Average " + type_operation + " Throughput \n\n" + Double.toString(throughput) + " MB/s");
-        throughputIcon.setForeground(GREEN);
+        throughputIcon.setFont(throughputIcon.getFont().deriveFont(19.0f));
+        throughputIcon.setForeground(BLUE);
         throughputIcon.setBackground(WHITE);
         JLabel iopsIcon = new JLabel("\n                                         " + type_operation + " OP/s \n\n" + Double.toString(iops));
-        iopsIcon.setForeground(GREEN);
+        iopsIcon.setFont(iopsIcon.getFont().deriveFont(19.0f));
+        iopsIcon.setForeground(BLUE);
         iopsIcon.setBackground(WHITE);
 
         //Configures the panel

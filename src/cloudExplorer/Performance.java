@@ -43,8 +43,8 @@ public class Performance implements Runnable {
     final JButton startPerformanceTest = new JButton("Start Test");
     final JButton abortPerformanceTest = new JButton("Close / Abort");
     final JButton close = new JButton("Close");
-    JLabel title = new JLabel("Performance Testing    ");
-    final JLabel fileSize = new JLabel("Object Size in KB: ");
+    JLabel title = new JLabel("Performance Testing");
+    final JLabel fileSize = new JLabel("File Size in KB: ");
     final JLabel threadCount = new JLabel("Thread Count:");
     final JLabel operationCount = new JLabel("Operation Count:");
     final JCheckBox latency_graph = new JCheckBox("Graph Latency ");
@@ -55,6 +55,8 @@ public class Performance implements Runnable {
     final JLabel blank2 = new JLabel(" ");
     final JLabel blank3 = new JLabel(" ");
     final JLabel blank4 = new JLabel(" ");
+    final JLabel blank5 = new JLabel(" ");
+    final JLabel blank6 = new JLabel(" ");
     final JTextField getFileSize = new JTextField("1024");
     final JTextField getTheadCount = new JTextField("5");
     final JTextField getOperationCount = new JTextField("5");
@@ -76,9 +78,13 @@ public class Performance implements Runnable {
     public void run() {
         try {
             jlist_label.setForeground(Color.GRAY);
+            jlist_label.setFont(jlist_label.getFont().deriveFont(14.0f));
             fileSize.setForeground(Color.GRAY);
+            fileSize.setFont(fileSize.getFont().deriveFont(14.0f));
             threadCount.setForeground(Color.GRAY);
+            threadCount.setFont(threadCount.getFont().deriveFont(14.0f));
             operationCount.setForeground(Color.GRAY);
+            operationCount.setFont(operationCount.getFont().deriveFont(14.0f));
             getFileSize.setMaximumSize(new Dimension(220, 20));
             getFileSize.setForeground(Color.GRAY);
             getTheadCount.setMaximumSize(new Dimension(220, 20));
@@ -89,32 +95,41 @@ public class Performance implements Runnable {
             latency_graph.setForeground(Color.GRAY);
             latency_graph.setSelected(false);
             latency_graph.setBorder(null);
+            latency_graph.setFont(latency_graph.getFont().deriveFont(14.0f));
             ops_graph.setBackground(Color.white);
             ops_graph.setForeground(Color.GRAY);
             ops_graph.setSelected(false);
             ops_graph.setBorder(null);
+            ops_graph.setFont(ops_graph.getFont().deriveFont(14.0f));
             throughput_graph.setBackground(Color.white);
             throughput_graph.setForeground(Color.GRAY);
             throughput_graph.setSelected(false);
             throughput_graph.setBorder(null);
+            throughput_graph.setFont(throughput_graph.getFont().deriveFont(14.0f));
             title.setForeground(Color.RED);
+            title.setFont(title.getFont().deriveFont(14.0f));
             overwrite_put.setBackground(Color.white);
             overwrite_put.setForeground(Color.GRAY);
             overwrite_put.setSelected(false);
             overwrite_put.setBorder(null);
+            overwrite_put.setFont(overwrite_put.getFont().deriveFont(14.0f));
 
             startPerformanceTest.setBackground(Color.white);
             startPerformanceTest.setForeground(Color.BLUE);
+            startPerformanceTest.setFont(startPerformanceTest.getFont().deriveFont(14.0f));
+
             abortPerformanceTest.setBackground(Color.white);
             abortPerformanceTest.setForeground(Color.BLUE);
             abortPerformanceTest.setBorder(null);
+            abortPerformanceTest.setFont(abortPerformanceTest.getFont().deriveFont(14.0f));
             startPerformanceTest.setBorder(null);
 
             close.setBackground(Color.white);
             close.setBorder(null);
             close.setForeground(Color.BLUE);
-
+            close.setFont(close.getFont().deriveFont(14.0f));
             close.setIcon(mainFrame.genericEngine);
+
             abortPerformanceTest.setIcon(mainFrame.genericEngine);
             startPerformanceTest.setIcon(mainFrame.genericEngine);
 
@@ -214,8 +229,10 @@ public class Performance implements Runnable {
             mainFrame.jPanel14.add(blank4);
             mainFrame.jPanel14.add(fileSize);
             mainFrame.jPanel14.add(getFileSize);
+             mainFrame.jPanel14.add(blank5);
             mainFrame.jPanel14.add(threadCount);
             mainFrame.jPanel14.add(getTheadCount);
+             mainFrame.jPanel14.add(blank6);
             mainFrame.jPanel14.add(operationCount);
             mainFrame.jPanel14.add(getOperationCount);
             mainFrame.jPanel14.add(blank2);
