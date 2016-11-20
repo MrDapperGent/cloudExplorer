@@ -200,8 +200,9 @@ public class Bot implements Runnable {
         mainFrame.jPanel11.setLayout(new BoxLayout(mainFrame.jPanel11, BoxLayout.Y_AXIS));
         mainFrame.jPanel14.setLayout(new BoxLayout(mainFrame.jPanel14, BoxLayout.Y_AXIS));
         final JLabel blank = new JLabel(" ");
+        ircarea = new JTextArea(" ");
         ircarea.setFont(ircarea.getFont().deriveFont(18.0f));
-        ircarea = new JTextArea("\nConnecting to server......");
+        ircarea.setText("\nConnecting to server......");
         irc_input_text = new JTextField("");
         irc_send_button = new JButton("Save to bucket");
         irc_send_button.setFont(irc_send_button.getFont().deriveFont(14.0f));
@@ -222,7 +223,8 @@ public class Bot implements Runnable {
         ircarea.setMaximumSize(new Dimension(1300, 500));
         irc_send_button.setMaximumSize(new Dimension(150, 20));
         irc_close_button.setMaximumSize(new Dimension(150, 20));
-        irc_input_text.setMaximumSize(new Dimension(1400, 20));
+        irc_input_text.setMaximumSize(new Dimension(1400, 30));
+        irc_input_text.setFont(irc_input_text.getFont().deriveFont(18.0f));
         irc_scrollpane.setMaximumSize(new Dimension(1500, 500));
 
         ircarea.setVisible(true);
