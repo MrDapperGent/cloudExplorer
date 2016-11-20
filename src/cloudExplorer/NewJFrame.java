@@ -50,7 +50,7 @@ import javax.swing.text.DefaultEditorKit;
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     public static String major = "8";
-    public static String minor = "01";
+    public static String minor = "02";
     String os = System.getProperty("os.name");
     public static String release_version = major + "." + minor;
     String version = "Cloud Explorer " + release_version;
@@ -189,6 +189,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jPanel3 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
         jButton9 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel17 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -209,7 +210,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jPanel21 = new javax.swing.JPanel();
         jScrollPane28 = new javax.swing.JScrollPane();
         jPanel12 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
         scrollPane1 = new java.awt.ScrollPane();
@@ -332,6 +332,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jScrollPane1.setPreferredSize(new java.awt.Dimension(240, 99));
 
         jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jTextArea1.setForeground(java.awt.Color.gray);
         jTextArea1.setRows(5);
         jTextArea1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -343,14 +344,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 911, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -359,15 +360,13 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addGap(270, 270, 270)
+                .addGap(21, 21, 21)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         panel1.setBackground(java.awt.Color.white);
@@ -388,6 +387,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jPanel16.setBackground(java.awt.SystemColor.text);
 
         jButton9.setBackground(java.awt.SystemColor.text);
+        jButton9.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jButton9.setForeground(java.awt.Color.gray);
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/user-info-icon.png"))); // NOI18N
         jButton9.setText("Load");
@@ -398,26 +398,44 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
 
+        jButton2.setBackground(java.awt.SystemColor.text);
+        jButton2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jButton2.setForeground(java.awt.Color.gray);
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Misc-Delete-Database-icon.png"))); // NOI18N
+        jButton2.setText("Delete");
+        jButton2.setBorder(null);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
         jPanel16Layout.setHorizontalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
-                .addGap(82, 82, Short.MAX_VALUE)
-                .addComponent(jButton9)
-                .addGap(19, 19, 19))
+                .addContainerGap()
+                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addContainerGap())
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel16Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jButton9)
-                .addGap(0, 0, 0))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton9)
+                    .addComponent(jButton2))
+                .addContainerGap())
         );
 
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel3.setForeground(java.awt.Color.gray);
         jLabel3.setText("Access Key");
 
+        jTextField1.setFont(new java.awt.Font("OpenSymbol", 0, 18)); // NOI18N
         jTextField1.setForeground(java.awt.Color.gray);
         jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -426,16 +444,19 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel4.setForeground(java.awt.Color.gray);
         jLabel4.setText("Secret Key");
 
-        jTextField2.setFont(new java.awt.Font("OpenSymbol", 0, 15)); // NOI18N
+        jTextField2.setFont(new java.awt.Font("OpenSymbol", 0, 18)); // NOI18N
         jTextField2.setForeground(java.awt.Color.gray);
         jTextField2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel5.setForeground(java.awt.Color.gray);
         jLabel5.setText("Host URL");
 
+        jTextField3.setFont(new java.awt.Font("OpenSymbol", 0, 18)); // NOI18N
         jTextField3.setForeground(java.awt.Color.gray);
         jTextField3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
@@ -444,21 +465,27 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel6.setForeground(java.awt.Color.gray);
         jLabel6.setText("Port");
 
+        jLabel7.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel7.setForeground(java.awt.Color.gray);
         jLabel7.setText("Region");
 
+        jLabel9.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel9.setForeground(java.awt.Color.gray);
         jLabel9.setText("Name");
 
+        jTextField4.setFont(new java.awt.Font("OpenSymbol", 0, 18)); // NOI18N
         jTextField4.setForeground(java.awt.Color.gray);
         jTextField4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
+        jTextField5.setFont(new java.awt.Font("OpenSymbol", 0, 18)); // NOI18N
         jTextField5.setForeground(java.awt.Color.gray);
         jTextField5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
+        jTextField7.setFont(new java.awt.Font("OpenSymbol", 0, 18)); // NOI18N
         jTextField7.setForeground(java.awt.Color.gray);
         jTextField7.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
@@ -475,18 +502,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addContainerGap()
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(45, 45, 45)
-                        .addComponent(jTextField5))
-                    .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(53, 53, 53)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(63, 63, 63)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel17Layout.createSequentialGroup()
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel5)
@@ -495,7 +510,17 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
+                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                            .addComponent(jTextField5)
+                            .addComponent(jTextField7))))
                 .addGap(0, 27, Short.MAX_VALUE))
         );
         jPanel17Layout.setVerticalGroup(
@@ -506,10 +531,12 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
@@ -528,6 +555,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         );
 
         jButton10.setBackground(java.awt.SystemColor.text);
+        jButton10.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jButton10.setForeground(java.awt.Color.gray);
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-edit-clear-icon.png"))); // NOI18N
         jButton10.setText("Clear");
@@ -539,6 +567,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton8.setBackground(java.awt.SystemColor.text);
+        jButton8.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jButton8.setForeground(java.awt.Color.gray);
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Save-icon.png"))); // NOI18N
         jButton8.setText("Save");
@@ -549,6 +578,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
 
+        jLabel15.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel15.setForeground(java.awt.Color.gray);
         jLabel15.setText("Saved Accounts");
 
@@ -594,21 +624,12 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jScrollPane27.setViewportView(jPanel21);
 
-        jButton2.setBackground(java.awt.SystemColor.text);
-        jButton2.setForeground(java.awt.Color.gray);
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Misc-Delete-Database-icon.png"))); // NOI18N
-        jButton2.setText("Delete");
-        jButton2.setBorder(null);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
+        jLabel14.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel14.setForeground(java.awt.Color.gray);
         jLabel14.setText("Account Information");
 
         jCheckBox1.setBackground(java.awt.SystemColor.text);
+        jCheckBox1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jCheckBox1.setForeground(java.awt.Color.blue);
         jCheckBox1.setText("Auto-load buckets");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -633,23 +654,21 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addComponent(jButton8)
                         .addGap(32, 32, 32))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(184, 184, 184)
+                        .addGap(183, 183, 183)
                         .addComponent(jLabel14)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane27, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, 0)
-                                    .addComponent(jButton2))))
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel15)
-                        .addGap(129, 129, 129))))
+                        .addGap(233, 233, 233))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(190, 190, 190))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane27, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(128, 128, 128))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -668,13 +687,11 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(jScrollPane27, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2))))
-                .addGap(0, 0, 0)
-                .addComponent(jCheckBox1)
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jCheckBox1)))
+                .addGap(111, 111, 111))
         );
 
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-document-decrypt-icon.png")), jPanel3, "Accounts"); // NOI18N
@@ -744,12 +761,12 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addGap(797, 797, 797)
+                .addGap(0, 0, 0)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
         );
 
         jScrollPane7.setViewportView(jPanel11);
@@ -769,6 +786,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         );
 
         jButton3.setBackground(java.awt.SystemColor.text);
+        jButton3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jButton3.setForeground(java.awt.Color.gray);
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-svn-update-icon.png"))); // NOI18N
         jButton3.setText("Get");
@@ -781,6 +799,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton4.setBackground(java.awt.SystemColor.text);
+        jButton4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jButton4.setForeground(java.awt.Color.gray);
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-trash-empty-icon.png"))); // NOI18N
         jButton4.setText("Del");
@@ -793,6 +812,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton7.setBackground(java.awt.SystemColor.text);
+        jButton7.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jButton7.setForeground(java.awt.Color.gray);
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-system-search-icon.png"))); // NOI18N
         jButton7.setText("Info");
@@ -805,6 +825,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton12.setBackground(java.awt.SystemColor.text);
+        jButton12.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jButton12.setForeground(java.awt.Color.gray);
         jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Apps-scribus-icon.png"))); // NOI18N
         jButton12.setText("Edit");
@@ -817,6 +838,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton13.setBackground(java.awt.SystemColor.text);
+        jButton13.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jButton13.setForeground(java.awt.Color.gray);
         jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Status-media-playlist-repeat-icon.png"))); // NOI18N
         jButton13.setText("Select All");
@@ -829,6 +851,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton1.setBackground(java.awt.SystemColor.text);
+        jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jButton1.setForeground(java.awt.Color.gray);
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-svn-commit-icon.png"))); // NOI18N
         jButton1.setText("Put");
@@ -841,6 +864,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton17.setBackground(java.awt.SystemColor.text);
+        jButton17.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jButton17.setForeground(java.awt.Color.gray);
         jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-media-playback-start-icon.png"))); // NOI18N
         jButton17.setText("Play");
@@ -853,6 +877,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton18.setBackground(java.awt.SystemColor.text);
+        jButton18.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jButton18.setForeground(java.awt.Color.gray);
         jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Apps-preferences-desktop-filetype-association-icon.png"))); // NOI18N
         jButton18.setText("Vers");
@@ -865,6 +890,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton19.setBackground(java.awt.SystemColor.text);
+        jButton19.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jButton19.setForeground(java.awt.Color.gray);
         jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Apps-digikam-icon.png"))); // NOI18N
         jButton19.setText("View");
@@ -946,10 +972,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addGap(15, 15, 15)
                         .addComponent(jButton17)
                         .addGap(10, 10, 10)
-                        .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton19))
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 769, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 926, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -976,8 +1002,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
                         .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26))
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17))
         );
 
         scrollPane1.add(jPanel1);
@@ -989,6 +1015,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jFileChooser1.setBackground(new java.awt.Color(255, 255, 255));
         jFileChooser1.setControlButtonsAreShown(false);
         jFileChooser1.setFileSelectionMode(javax.swing.JFileChooser.FILES_AND_DIRECTORIES);
+        jFileChooser1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jFileChooser1.setForeground(java.awt.Color.gray);
         jFileChooser1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jFileChooser1.setDragEnabled(true);
@@ -1005,6 +1032,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jPanel10.setBackground(java.awt.SystemColor.text);
 
         jButton5.setBackground(java.awt.SystemColor.text);
+        jButton5.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 18)); // NOI18N
         jButton5.setForeground(java.awt.Color.blue);
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-svn-commit-icon.png"))); // NOI18N
         jButton5.setText("Upload");
@@ -1016,6 +1044,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton15.setBackground(java.awt.SystemColor.text);
+        jButton15.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 18)); // NOI18N
         jButton15.setForeground(java.awt.Color.blue);
         jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-process-stop-icon.png"))); // NOI18N
         jButton15.setText("Abort");
@@ -1027,10 +1056,12 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jCheckBox5.setBackground(java.awt.SystemColor.text);
+        jCheckBox5.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 18)); // NOI18N
         jCheckBox5.setForeground(java.awt.Color.gray);
         jCheckBox5.setText("Encrypt\n");
 
         jCheckBox4.setBackground(java.awt.SystemColor.text);
+        jCheckBox4.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 18)); // NOI18N
         jCheckBox4.setForeground(java.awt.Color.gray);
         jCheckBox4.setText("Compress");
         jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
@@ -1040,10 +1071,12 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jCheckBox2.setBackground(java.awt.SystemColor.text);
+        jCheckBox2.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 18)); // NOI18N
         jCheckBox2.setForeground(java.awt.Color.gray);
         jCheckBox2.setText("RRS");
 
         jCheckBox7.setBackground(java.awt.SystemColor.text);
+        jCheckBox7.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 18)); // NOI18N
         jCheckBox7.setForeground(java.awt.Color.gray);
         jCheckBox7.setText("Infreq");
         jCheckBox7.addActionListener(new java.awt.event.ActionListener() {
@@ -1078,9 +1111,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addComponent(jCheckBox4)
                 .addGap(0, 0, 0)
                 .addComponent(jCheckBox5)
-                .addGap(0, 1, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        jLabel11.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 18)); // NOI18N
         jLabel11.setText("Upload To Folder:");
 
         jList2.setForeground(java.awt.Color.gray);
@@ -1096,22 +1130,20 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
                 .addGap(36, 36, 36)
-                .addComponent(jFileChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 829, Short.MAX_VALUE)
+                .addComponent(jFileChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 992, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9)
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addGap(46, 46, 46))
+                .addGap(3, 3, 3)
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 125, Short.MAX_VALUE))
+            .addComponent(jFileChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-go-up-icon.png")), jPanel2); // NOI18N
@@ -1121,6 +1153,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jFileChooser2.setBackground(new java.awt.Color(255, 255, 255));
         jFileChooser2.setControlButtonsAreShown(false);
         jFileChooser2.setFileSelectionMode(javax.swing.JFileChooser.FILES_AND_DIRECTORIES);
+        jFileChooser2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jFileChooser2.setForeground(java.awt.Color.gray);
         jFileChooser2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jFileChooser2.setDragEnabled(true);
@@ -1132,6 +1165,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton16.setBackground(java.awt.SystemColor.text);
+        jButton16.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 18)); // NOI18N
         jButton16.setForeground(java.awt.Color.blue);
         jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-process-stop-icon.png"))); // NOI18N
         jButton16.setText(" Abort");
@@ -1146,11 +1180,13 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jCheckBox3.setBackground(java.awt.SystemColor.text);
+        jCheckBox3.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 18)); // NOI18N
         jCheckBox3.setForeground(java.awt.Color.gray);
         jCheckBox3.setText("RRS");
         jCheckBox3.setBorder(null);
 
         jCheckBox6.setBackground(java.awt.SystemColor.text);
+        jCheckBox6.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 18)); // NOI18N
         jCheckBox6.setForeground(java.awt.Color.gray);
         jCheckBox6.setText("Encrypt\n");
         jCheckBox6.addActionListener(new java.awt.event.ActionListener() {
@@ -1160,6 +1196,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton14.setBackground(java.awt.SystemColor.text);
+        jButton14.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 18)); // NOI18N
         jButton14.setForeground(java.awt.Color.blue);
         jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/sync-icon.png"))); // NOI18N
         jButton14.setText("To S3");
@@ -1171,6 +1208,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton21.setBackground(java.awt.SystemColor.text);
+        jButton21.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 18)); // NOI18N
         jButton21.setForeground(java.awt.Color.blue);
         jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/sync-icon.png"))); // NOI18N
         jButton21.setText("From S3");
@@ -1181,11 +1219,13 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
 
+        jLabel12.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 18)); // NOI18N
         jLabel12.setText("Folders:");
 
         jScrollPane9.setViewportView(jList3);
 
         jCheckBox8.setBackground(java.awt.SystemColor.text);
+        jCheckBox8.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 18)); // NOI18N
         jCheckBox8.setForeground(java.awt.Color.gray);
         jCheckBox8.setText("Infreq");
         jCheckBox8.addActionListener(new java.awt.event.ActionListener() {
@@ -1214,31 +1254,29 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addGap(4, 4, 4)
                         .addComponent(jCheckBox3)))
                 .addGap(36, 36, 36)
-                .addComponent(jFileChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 826, Short.MAX_VALUE)
+                .addComponent(jFileChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 989, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jButton14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14)
-                        .addComponent(jCheckBox3)
-                        .addGap(0, 0, 0)
-                        .addComponent(jCheckBox6)
-                        .addGap(0, 0, 0)
-                        .addComponent(jCheckBox8)
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addComponent(jFileChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14))
+                .addComponent(jButton14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addComponent(jCheckBox3)
+                .addGap(0, 0, 0)
+                .addComponent(jCheckBox6)
+                .addGap(0, 0, 0)
+                .addComponent(jCheckBox8)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 113, Short.MAX_VALUE))
+            .addComponent(jFileChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/sign-sync-icon.png")), jPanel4); // NOI18N
@@ -1246,12 +1284,14 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
         jTextArea2.setColumns(20);
+        jTextArea2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jTextArea2.setForeground(java.awt.Color.gray);
         jTextArea2.setRows(5);
         jTextArea2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jScrollPane4.setViewportView(jTextArea2);
 
         jButton11.setBackground(java.awt.SystemColor.text);
+        jButton11.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 18)); // NOI18N
         jButton11.setForeground(java.awt.Color.blue);
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-svn-commit-icon.png"))); // NOI18N
         jButton11.setText("Save");
@@ -1270,12 +1310,15 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 18)); // NOI18N
         jLabel8.setForeground(java.awt.Color.gray);
         jLabel8.setText("File Name:");
 
+        jLabel2.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 18)); // NOI18N
         jLabel2.setForeground(java.awt.Color.gray);
         jLabel2.setText("Replace text:");
 
+        jLabel10.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 18)); // NOI18N
         jLabel10.setForeground(java.awt.Color.gray);
         jLabel10.setText("With:");
 
@@ -1286,6 +1329,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jTextField9.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jButton22.setBackground(java.awt.SystemColor.text);
+        jButton22.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 18)); // NOI18N
         jButton22.setForeground(java.awt.Color.blue);
         jButton22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/engine.png"))); // NOI18N
         jButton22.setText("Replace");
@@ -1297,6 +1341,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton23.setBackground(java.awt.SystemColor.text);
+        jButton23.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 18)); // NOI18N
         jButton23.setForeground(java.awt.Color.blue);
         jButton23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/engine.png"))); // NOI18N
         jButton23.setText("Undo");
@@ -1310,6 +1355,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jPanel8.setBackground(java.awt.SystemColor.text);
         jPanel8.setForeground(java.awt.Color.gray);
 
+        jLabel13.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 18)); // NOI18N
         jLabel13.setForeground(java.awt.Color.gray);
         jLabel13.setText("Folders:");
 
@@ -1353,17 +1399,17 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                             .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(10, 10, 10)
                         .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton11)
@@ -1380,8 +1426,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton23)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, 0))
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-document-edit-icon.png")), jPanel6); // NOI18N
@@ -1390,24 +1438,26 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1220, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jMenuBar1.setBorder(null);
 
         jMenu1.setForeground(java.awt.Color.gray);
         jMenu1.setText("File");
+        jMenu1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
 
+        jMenuItem23.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem23.setText("New Window");
         jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1416,6 +1466,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu1.add(jMenuItem23);
 
+        jMenuItem6.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem6.setText("Modify ACL");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1424,6 +1475,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu1.add(jMenuItem6);
 
+        jMenuItem16.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem16.setText("Restore from Glacier");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1432,6 +1484,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu1.add(jMenuItem16);
 
+        jMenuItem27.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem27.setText("Create Folder");
         jMenuItem27.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1440,6 +1493,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu1.add(jMenuItem27);
 
+        jMenuItem4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem4.setText("Exit");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1452,7 +1506,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jMenu3.setForeground(java.awt.Color.gray);
         jMenu3.setText("Bucket");
+        jMenu3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
 
+        jMenuItem1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem1.setText("Create Bucket");
         jMenuItem1.setToolTipText("");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -1462,6 +1518,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu3.add(jMenuItem1);
 
+        jMenuItem13.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem13.setText("Bucket Life Cycle");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1470,6 +1527,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu3.add(jMenuItem13);
 
+        jMenuItem22.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem22.setText("Add External Bucket");
         jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1482,7 +1540,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jMenu5.setForeground(java.awt.Color.gray);
         jMenu5.setText("Background Syncing");
+        jMenu5.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
 
+        jMenuItem15.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem15.setText("Run");
         jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1491,6 +1551,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu5.add(jMenuItem15);
 
+        jMenuItem9.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem9.setText("Configure");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1503,7 +1564,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jMenu12.setForeground(java.awt.Color.gray);
         jMenu12.setText("Snapshots and Migration");
+        jMenu12.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
 
+        jMenuItem32.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem32.setText("Set Migration/Snapshot Account and Bucket");
         jMenuItem32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1512,6 +1575,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu12.add(jMenuItem32);
 
+        jMenuItem33.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem33.setText("Set Current Folder as Snapshot Origin");
         jMenuItem33.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1520,6 +1584,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu12.add(jMenuItem33);
 
+        jMenuItem30.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem30.setText("Create or Restore a Bucket Snapshot");
         jMenuItem30.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1528,6 +1593,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu12.add(jMenuItem30);
 
+        jMenuItem17.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem17.setText("Migrate Bucket to Another S3 Account.");
         jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1540,9 +1606,12 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jMenu6.setForeground(java.awt.Color.gray);
         jMenu6.setText("Tools");
+        jMenu6.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
 
         jMenu10.setText("S3");
+        jMenu10.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
 
+        jMenuItem8.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem8.setText("Delete every object and version");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1551,6 +1620,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu10.add(jMenuItem8);
 
+        jMenuItem14.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem14.setText("Screen shot to S3");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1561,6 +1631,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jMenu6.add(jMenu10);
 
+        jMenuItem29.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem29.setText("Record Audio");
         jMenuItem29.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1570,7 +1641,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenu6.add(jMenuItem29);
 
         jMenu9.setText("IRC");
+        jMenu9.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
 
+        jMenuItem7.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem7.setText("Start IRC");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1579,6 +1652,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu9.add(jMenuItem7);
 
+        jMenuItem20.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem20.setText("Configure");
         jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1589,6 +1663,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jMenu6.add(jMenu9);
 
+        jMenuItem26.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem26.setText("Graph");
         jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1597,6 +1672,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu6.add(jMenuItem26);
 
+        jMenuItem24.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem24.setText("Delete Temp Files");
         jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1609,7 +1685,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jMenu7.setForeground(java.awt.Color.gray);
         jMenu7.setText("Performance");
+        jMenu7.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
 
+        jMenuItem3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem3.setText("PUT");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1618,6 +1696,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu7.add(jMenuItem3);
 
+        jMenuItem11.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem11.setText("GET");
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1626,6 +1705,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu7.add(jMenuItem11);
 
+        jMenuItem28.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem28.setText("Mixed - 50/50");
         jMenuItem28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1638,7 +1718,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jMenu11.setForeground(java.awt.Color.gray);
         jMenu11.setText("Console");
+        jMenu11.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
 
+        jMenuItem21.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem21.setText("On");
         jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1647,6 +1729,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu11.add(jMenuItem21);
 
+        jMenuItem2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem2.setText("Off");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1659,7 +1742,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jMenu8.setForeground(java.awt.Color.gray);
         jMenu8.setText("Help");
+        jMenu8.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
 
+        jMenuItem12.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem12.setText("About");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1668,6 +1753,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu8.add(jMenuItem12);
 
+        jMenuItem25.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem25.setText("Check for updates");
         jMenuItem25.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1676,6 +1762,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu8.add(jMenuItem25);
 
+        jMenuItem18.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem18.setText("Bucket Migraton");
         jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1684,6 +1771,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu8.add(jMenuItem18);
 
+        jMenuItem31.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem31.setText("Snapshots");
         jMenuItem31.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1692,6 +1780,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu8.add(jMenuItem31);
 
+        jMenuItem19.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem19.setText("Background Sync");
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1708,13 +1797,13 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap()
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2040,6 +2129,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     }
 
                     account_item[h].addItemListener(this);
+                    account_item[h].setFont(account_item[h].getFont().deriveFont(18.0f));
                     account_item[h].setBackground(Color.white);
                     account_item[h].setForeground(Color.BLUE);
                     jPanel21.add(account_item[h]);
@@ -2112,6 +2202,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     jPanel5.setLayout(new BoxLayout(jPanel5, BoxLayout.Y_AXIS));
                     bucket_item[h] = new JRadioButton();
                     bucket_item[h].setText(bucketarray[h]);
+                    bucket_item[h].setFont(bucket_item[h].getFont().deriveFont(18.0f));
                     bucket_item[h].addItemListener(this);
                     bucket_item[h].setBackground(Color.white);
                     if (bucket.VersioningStatus(cred.getAccess_key(), cred.getSecret_key(), bucketarray[h], cred.getEndpoint(), cred.getRegion(), false)) {
@@ -2127,10 +2218,13 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 objectarray = null;
                 jPanel11.removeAll();
                 JLabel helpmessage = new JLabel("1. Buckets are displayed on the left. Click on a bucket to see your files.");
+                helpmessage.setFont(helpmessage.getFont().deriveFont(18.0f));
                 JLabel blank = new JLabel("");
                 JLabel blank2 = new JLabel("");
                 JLabel helpmessage2 = new JLabel("2. You can search buckets by typing text in the search box.");
+                helpmessage2.setFont(helpmessage2.getFont().deriveFont(18.0f));
                 JLabel helpmessage3 = new JLabel("3. Buckets with versioning enabled are displayed in magenta.");
+                helpmessage3.setFont(helpmessage3.getFont().deriveFont(18.0f));
                 helpmessage.setForeground(Color.GRAY);
                 helpmessage2.setForeground(Color.GRAY);
                 helpmessage3.setForeground(Color.GRAY);
@@ -2168,6 +2262,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jPanel11.setLayout(new BoxLayout(jPanel11, BoxLayout.Y_AXIS));
             object_item[h] = new JRadioButton();
             object_item[h].setText(objectarray[h]);
+            object_item[h].setFont(object_item[h].getFont().deriveFont(18.0f));
             object_item[h].setBackground(Color.white);
             object_item[h].setForeground(Color.BLUE);
         }
@@ -2244,6 +2339,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         object_item[h].setText(cut[0]);
                         object_item[h].setBackground(Color.white);
                         object_item[h].setForeground(Color.gray);
+                        object_item[h].setFont(object_item[h].getFont().deriveFont(18.0f));
                         object_item[h].addActionListener(new ActionListener() {
 
                             public void actionPerformed(ActionEvent e) {
@@ -2326,6 +2422,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     object_item[h].setText(objectarray[h]);
                     object_item[h].setBackground(Color.white);
                     object_item[h].setForeground(Color.BLUE);
+                    object_item[h].setFont(object_item[h].getFont().deriveFont(18.0f));
                 }
             }
             jPanel11.setLayout(new BoxLayout(jPanel11, BoxLayout.PAGE_AXIS));

@@ -1,4 +1,4 @@
-Version 8.01
+Version 8.02
 
 Bug Fixes:
 
@@ -11,6 +11,8 @@ Bug Fixes:
 Improvements:
 
       Misc dialog window calibration
+      
+      Larger font sizes for easier reading
 
       Clearer Menus: 
         Combined the "Objects" menu with the File menu
