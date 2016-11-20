@@ -55,20 +55,25 @@ public class ConfigureObjectTransition implements Runnable {
 
             glacier.setBackground(Color.white);
             glacier.setForeground(Color.GRAY);
+            glacier.setFont(glacier.getFont().deriveFont(14.0f));
 
             label.setBackground(Color.white);
             label.setForeground(Color.GRAY);
+            label.setFont(label.getFont().deriveFont(14.0f));
 
             prefix.setBackground(Color.white);
             prefix.setForeground(Color.GRAY);
+            prefix.setFont(prefix.getFont().deriveFont(14.0f));
 
             commitTransition.setBackground(Color.white);
             commitTransition.setBorder(null);
             commitTransition.setForeground(Color.BLUE);
+            commitTransition.setFont(commitTransition.getFont().deriveFont(14.0f));
 
             disableRules.setBackground(Color.white);
             disableRules.setBorder(null);
             disableRules.setForeground(Color.BLUE);
+            disableRules.setFont(disableRules.getFont().deriveFont(14.0f));
 
             disableRules.setIcon(mainFrame.genericEngine);
             commitTransition.setIcon(mainFrame.genericEngine);

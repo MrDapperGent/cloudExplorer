@@ -52,14 +52,18 @@ public class MakeBucket implements Runnable {
             regionName.setMaximumSize(new Dimension(200, 20));
             name.setBackground(Color.WHITE);
             name.setForeground(Color.GRAY);
+            name.setFont(name.getFont().deriveFont(14.0f));
             region_name.setBackground(Color.WHITE);
             region_name.setForeground(Color.GRAY);
+            region_name.setFont(region_name.getFont().deriveFont(14.0f));
             createBucket.setBackground(Color.white);
             createBucket.setForeground(Color.BLUE);
+            createBucket.setFont(createBucket.getFont().deriveFont(14.0f));
             createBucket.setBorder(null);
             close.setBackground(Color.white);
             close.setBorder(null);
             close.setForeground(Color.BLUE);
+            close.setFont(close.getFont().deriveFont(14.0f));
 
             createBucket.setIcon(mainFrame.genericEngine);
             close.setIcon(mainFrame.genericEngine);
