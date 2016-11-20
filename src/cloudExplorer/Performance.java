@@ -36,7 +36,7 @@ public class Performance implements Runnable {
     Performance putperformance;
     Boolean operation = true;
     PerformanceThread performancethread;
-    JList jlist_perf = mainFrame.jList2;
+    JList jlist_perf = mainFrame.jList4;
     JScrollPane pane_perf = new JScrollPane();
     JPanel jlist_panel = new JPanel();
     JLabel jlist_label = new JLabel("Destination Folder:");

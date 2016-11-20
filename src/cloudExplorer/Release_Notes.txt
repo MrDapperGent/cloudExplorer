@@ -8,6 +8,9 @@ Bug Fixes:
       Restore from Glacier:
           Actually works now.
 
+      Upload:
+            Folder list no longer disabled after doing performance testing.
+
 Improvements:
 
       Misc dialog window calibration
