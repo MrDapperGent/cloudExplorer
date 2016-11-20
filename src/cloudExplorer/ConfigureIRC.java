@@ -51,9 +51,14 @@ public class ConfigureIRC implements Runnable {
 
         final JButton save = new JButton("Save");
         final JLabel server_label = new JLabel("Server:");
-        final JLabel info = new JLabel("Please enter your IRC account information here for the bot.");
+        final JLabel info = new JLabel("Please enter your account and server information to access an IRC server.");
         final JLabel blank = new JLabel(" ");
         final JLabel blank2 = new JLabel(" ");
+        final JLabel blank3 = new JLabel(" ");
+        final JLabel blank4 = new JLabel(" ");
+        final JLabel blank5 = new JLabel(" ");
+        final JLabel blank6 = new JLabel(" ");
+        final JLabel blank7 = new JLabel(" ");
         final JLabel password_label = new JLabel("Password:");
         final JLabel port_label = new JLabel("Port:");
         final JLabel nick_label = new JLabel("Nick:");
@@ -69,44 +74,57 @@ public class ConfigureIRC implements Runnable {
         server_label.setBackground(Color.white);
         server_label.setForeground(Color.GRAY);
         server_label.setBorder(null);
+        server_label.setFont(server_label.getFont().deriveFont(14.0f));
 
         password_label.setBackground(Color.white);
         password_label.setForeground(Color.GRAY);
         password_label.setBorder(null);
+        password_label.setFont(password_label.getFont().deriveFont(14.0f));
 
         port_label.setBackground(Color.white);
         port_label.setForeground(Color.GRAY);
         port_label.setBorder(null);
+        port_label.setFont(port_label.getFont().deriveFont(14.0f));
 
         info.setBackground(Color.white);
         info.setForeground(Color.GRAY);
         info.setBorder(null);
+        info.setFont(info.getFont().deriveFont(18.0f));
 
         nick_label.setBackground(Color.white);
         nick_label.setForeground(Color.GRAY);
         nick_label.setBorder(null);
+        nick_label.setFont(nick_label.getFont().deriveFont(14.0f));
 
         room_label.setBackground(Color.white);
         room_label.setForeground(Color.GRAY);
         room_label.setBorder(null);
+        room_label.setFont(room_label.getFont().deriveFont(14.0f));
 
         save.setBackground(Color.white);
         save.setForeground(Color.BLUE);
         save.setIcon(mainFrame.genericEngine);
         save.setBorder(null);
+        save.setFont(save.getFont().deriveFont(18.0f));
 
         close.setBackground(Color.white);
         close.setBorder(null);
         close.setIcon(mainFrame.genericEngine);
         close.setForeground(Color.BLUE);
+        close.setFont(close.getFont().deriveFont(18.0f));
 
         close.setMaximumSize(new Dimension(150, 15));
         save.setMaximumSize(new Dimension(150, 15));
-        server_field.setMaximumSize(new Dimension(250, 20));
-        port_field.setMaximumSize(new Dimension(100, 20));
-        password_field.setMaximumSize(new Dimension(250, 20));
-        room_field.setMaximumSize(new Dimension(250, 20));
-        nick_field.setMaximumSize(new Dimension(250, 20));
+        server_field.setMaximumSize(new Dimension(300, 30));
+        server_field.setFont(server_field.getFont().deriveFont(14.0f));
+        port_field.setMaximumSize(new Dimension(300, 30));
+        port_field.setFont(port_field.getFont().deriveFont(14.0f));
+        password_field.setMaximumSize(new Dimension(300, 30));
+        password_field.setFont(password_field.getFont().deriveFont(14.0f));
+        room_field.setMaximumSize(new Dimension(300, 30));
+        room_field.setFont(room_field.getFont().deriveFont(14.0f));
+        nick_field.setMaximumSize(new Dimension(300, 30));
+        nick_field.setFont(nick_field.getFont().deriveFont(14.0f));
 
         mainFrame.jPanel11.removeAll();
         mainFrame.jPanel14.removeAll();
@@ -116,17 +134,22 @@ public class ConfigureIRC implements Runnable {
         mainFrame.jPanel11.add(blank2);
         mainFrame.jPanel11.add(server_label);
         mainFrame.jPanel11.add(server_field);
+        mainFrame.jPanel11.add(blank3);
         mainFrame.jPanel11.add(nick_label);
         mainFrame.jPanel11.add(nick_field);
+        mainFrame.jPanel11.add(blank4);
         mainFrame.jPanel11.add(room_label);
         mainFrame.jPanel11.add(room_field);
+        mainFrame.jPanel11.add(blank5);
         mainFrame.jPanel11.add(password_label);
         mainFrame.jPanel11.add(password_field);
+        mainFrame.jPanel11.add(blank6);
         mainFrame.jPanel11.add(port_label);
         mainFrame.jPanel11.add(port_field);
 
         mainFrame.jPanel11.add(blank);
         mainFrame.jPanel11.add(close);
+        mainFrame.jPanel11.add(blank7);
         mainFrame.jPanel11.add(save);
 
         mainFrame.jPanel11.repaint();

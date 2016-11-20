@@ -200,10 +200,13 @@ public class Bot implements Runnable {
         mainFrame.jPanel11.setLayout(new BoxLayout(mainFrame.jPanel11, BoxLayout.Y_AXIS));
         mainFrame.jPanel14.setLayout(new BoxLayout(mainFrame.jPanel14, BoxLayout.Y_AXIS));
         final JLabel blank = new JLabel(" ");
+        ircarea.setFont(ircarea.getFont().deriveFont(18.0f));
         ircarea = new JTextArea("\nConnecting to server......");
         irc_input_text = new JTextField("");
         irc_send_button = new JButton("Save to bucket");
+        irc_send_button.setFont(irc_send_button.getFont().deriveFont(14.0f));
         irc_close_button = new JButton("Quit IRC         ");
+        irc_close_button.setFont(irc_close_button.getFont().deriveFont(14.0f));
         irc_scrollpane = new JScrollPane(ircarea);
 
         irc_send_button.setBackground(Color.white);
