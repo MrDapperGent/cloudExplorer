@@ -1194,6 +1194,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jLabel12.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 18)); // NOI18N
         jLabel12.setText("Folders:");
 
+        jList3.setForeground(java.awt.Color.gray);
         jScrollPane9.setViewportView(jList3);
 
         jCheckBox8.setBackground(java.awt.SystemColor.text);

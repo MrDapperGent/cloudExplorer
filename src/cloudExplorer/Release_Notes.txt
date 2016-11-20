@@ -11,6 +11,10 @@ Bug Fixes:
       Upload:
             Folder list no longer disabled after doing performance testing.
 
+      Sync:
+
+            Folder list is now correct color as other folder lists.
+
 Improvements:
 
       Misc dialog window calibration
