@@ -877,7 +877,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jTextField10.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jTextField10.setForeground(java.awt.Color.gray);
-        jTextField10.setText("Search Here");
+        jTextField10.setToolTipText("Search for files here");
         jTextField10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTextField10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1884,7 +1884,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 }
 
                 if (found == 0) {
-                    jTextArea1.append("\n\nNo files found for search.");
+                    jTextArea1.append("\n\nNo files found.");
                 } else {
                     int display = objectarray.length - 1;
                     jTextArea1.append("\n\nTotal number of files in this bucket: " + display);
@@ -2008,7 +2008,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                                     clear_old_radio_buttons();
                                     h = bucketarray.length;
                                     objectarray = null;
-                                    jTextArea1.append("\nPlease wait, loading objects.");
+                                    jTextArea1.append("\nPlease wait, loading files.");
                                     calibrateTextArea();
                                     java.awt.EventQueue.invokeLater(new Runnable() {
                                         public void run() {
