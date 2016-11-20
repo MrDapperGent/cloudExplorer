@@ -8,10 +8,6 @@ Bug Fixes:
       Restore from Glacier:
           Actually works now.
 
-      Graphing:
-           Now  the console window will be visible with an error message if the 
-           graph button is used without selecting a file.
-
 Improvements:
 
       Misc dialog window calibration
@@ -26,6 +22,10 @@ Improvements:
         Combined the "Objects" menu with the File menu
         Renamed "Restore Object from Glacier" to  "Restore from Glacier"
         Renamed "Modify Object ACL" to  "Modify ACL"
+
+      Graph:
+        The console window will be visible with an error message if no bucket
+        is selected.
 
 New Features:
 
