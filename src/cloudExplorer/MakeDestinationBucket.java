@@ -23,7 +23,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import static cloudExplorer.NewJFrame.jTextArea1;
 import java.io.File;
-import javax.swing.JCheckBox;
 
 public class MakeDestinationBucket implements Runnable {
 
@@ -50,13 +49,16 @@ public class MakeDestinationBucket implements Runnable {
             final JLabel blank3 = new JLabel(" ");
             startMigration.setBackground(Color.white);
             startMigration.setForeground(Color.BLUE);
+            startMigration.setFont(startMigration.getFont().deriveFont(14.0f));
             abortMigration.setBackground(Color.white);
             abortMigration.setForeground(Color.BLUE);
+            abortMigration.setFont(abortMigration.getFont().deriveFont(14.0f));
             startMigration.setBorder(null);
             abortMigration.setBorder(null);
             close.setBackground(Color.white);
             close.setBorder(null);
             close.setForeground(Color.BLUE);
+            close.setFont(close.getFont().deriveFont(14.0f));
             close.setIcon(mainFrame.genericEngine);
             abortMigration.setIcon(mainFrame.genericEngine);
             startMigration.setIcon(mainFrame.genericEngine);
@@ -70,8 +72,8 @@ public class MakeDestinationBucket implements Runnable {
                     calibrate();
                     ReloadObjects object = new ReloadObjects(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), mainFrame);
                     object.run();
-                    migrate = new BucketMigration(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, false, false, null,false);
-                    migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, false, false, null,false);
+                    migrate = new BucketMigration(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, false, false, null, false);
+                    migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, false, false, null, false);
 
                 }
             });

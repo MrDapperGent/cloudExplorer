@@ -55,10 +55,14 @@ public class Snapshot implements Runnable {
             final JLabel blank4 = new JLabel(" ");
             restoreSnapshot.setBackground(Color.white);
             restoreSnapshot.setForeground(Color.BLUE);
+            restoreSnapshot.setFont(restoreSnapshot.getFont().deriveFont(14.0f));
             sync_deltas.setBackground(Color.white);
             sync_deltas.setForeground(Color.BLUE);
+            sync_deltas.setFont(sync_deltas.getFont().deriveFont(14.0f));
             createSnapshot.setBackground(Color.white);
             createSnapshot.setForeground(Color.BLUE);
+            createSnapshot.setFont(createSnapshot.getFont().deriveFont(14.0f));
+
             abortMigration.setBackground(Color.white);
             abortMigration.setForeground(Color.BLUE);
             createSnapshot.setBorder(null);
@@ -66,6 +70,7 @@ public class Snapshot implements Runnable {
             abortMigration.setBorder(null);
             close.setBackground(Color.white);
             close.setBorder(null);
+            close.setFont(close.getFont().deriveFont(14.0f));
             close.setForeground(Color.BLUE);
             close.setIcon(mainFrame.genericEngine);
             abortMigration.setIcon(mainFrame.genericEngine);
