@@ -130,10 +130,12 @@ public class Graph implements Runnable {
         intro_label_main.setBackground(Color.white);
         intro_label_main.setForeground(Color.GRAY);
         intro_label_main.setBorder(null);
+        intro_label_main.setFont(intro_label_main.getFont().deriveFont(18.0f));
 
         intro_label_main_two.setBackground(Color.white);
         intro_label_main_two.setForeground(Color.GRAY);
         intro_label_main_two.setBorder(null);
+        intro_label_main_two.setFont(intro_label_main_two.getFont().deriveFont(18.0f));
 
         line_checkbox.setBackground(Color.white);
         line_checkbox.setForeground(Color.GRAY);
@@ -166,6 +168,7 @@ public class Graph implements Runnable {
         intro_label.setBackground(Color.white);
         intro_label.setForeground(Color.GRAY);
         intro_label.setBorder(null);
+        intro_label.setFont(intro_label.getFont().deriveFont(14.0f));
 
         graph_size_y.setBackground(Color.white);
         graph_size_y.setForeground(Color.GRAY);
@@ -182,11 +185,12 @@ public class Graph implements Runnable {
         save.setBackground(Color.white);
         save.setForeground(Color.BLUE);
         save.setBorder(null);
+        save.setFont(save.getFont().deriveFont(14.0f));
 
         close.setBackground(Color.white);
         close.setBorder(null);
         close.setForeground(Color.BLUE);
-
+        close.setFont(close.getFont().deriveFont(14.0f));
         close.setMaximumSize(new Dimension(150, 15));
         save.setMaximumSize(new Dimension(150, 15));
 
