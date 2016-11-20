@@ -582,7 +582,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
 
-        jLabel15.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel15.setForeground(java.awt.Color.gray);
         jLabel15.setText("Saved Accounts");
 
@@ -608,7 +608,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jScrollPane27.setViewportView(jPanel21);
 
-        jLabel14.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel14.setForeground(java.awt.Color.gray);
         jLabel14.setText("Account Information");
 
