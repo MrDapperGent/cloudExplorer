@@ -63,30 +63,37 @@ public class BucketACL implements Runnable {
             refresh_bucket.setBackground(Color.white);
             refresh_bucket.setBorder(null);
             refresh_bucket.setForeground(Color.GRAY);
+            refresh_bucket.setFont(refresh_bucket.getFont().deriveFont(14.0f));
 
             share_button.setBackground(Color.white);
             share_button.setBorder(null);
             share_button.setForeground(Color.GRAY);
+            share_button.setFont(share_button.getFont().deriveFont(14.0f));
 
             static_website.setBackground(Color.white);
             static_website.setBorder(null);
             static_website.setForeground(Color.GRAY);
+            static_website.setFont(static_website.getFont().deriveFont(14.0f));
 
             enable_versioning.setBackground(Color.white);
             enable_versioning.setBorder(null);
             enable_versioning.setForeground(Color.GRAY);
+            enable_versioning.setFont(enable_versioning.getFont().deriveFont(14.0f));
 
             suspend_versioning.setBackground(Color.white);
             suspend_versioning.setBorder(null);
             suspend_versioning.setForeground(Color.GRAY);
+            suspend_versioning.setFont(suspend_versioning.getFont().deriveFont(14.0f));
 
             disable_website.setBackground(Color.white);
             disable_website.setBorder(null);
             disable_website.setForeground(Color.GRAY);
+            disable_website.setFont(disable_website.getFont().deriveFont(14.0f));
 
             delete_bucket.setBackground(Color.white);
             delete_bucket.setBorder(null);
             delete_bucket.setForeground(Color.GRAY);
+            delete_bucket.setFont(delete_bucket.getFont().deriveFont(14.0f));
 
             enable_versioning.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
