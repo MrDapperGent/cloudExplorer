@@ -2429,7 +2429,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
                 while (object_thread_status) {
                 }
-      
+
                 if (drawFolders) {
                     drawFolders();
                 } else {
@@ -2654,10 +2654,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         } else {
             reloadAccounts();
             if (active_account >= 0) {
-             //   if (NewJFrame.jCheckBox1.isSelected()) {
-                    HostChecker hostchecker = new HostChecker(jTextField3.getText(), this);
-                    hostchecker.startc();
-               // }
+                //   if (NewJFrame.jCheckBox1.isSelected()) {
+                HostChecker hostchecker = new HostChecker(jTextField3.getText(), this);
+                hostchecker.startc();
+                // }
 
             } else {
                 jTextArea1.append("\nError: No account has been selected.");
@@ -3511,6 +3511,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
 
         } else {
+            jPanel9.setVisible(true);
             jTextArea1.append("\nError: No bucket has been selected");
             calibrateTextArea();
         }
@@ -3644,7 +3645,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private void jCheckBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox8ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox8ActionPerformed
-     void cleanup() {
+    void cleanup() {
         try {
             jPanel9.setVisible(true);
             NewJFrame.jTextArea1.append("\n\nScanning for stale tmp files and will delete if found.....");

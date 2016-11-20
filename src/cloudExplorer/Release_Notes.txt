@@ -8,6 +8,10 @@ Bug Fixes:
       Restore from Glacier:
           Actually works now.
 
+      Graphing:
+           Now  the console window will be visible with an error message if the 
+           graph button is used without selecting a file.
+
 Improvements:
 
       Misc dialog window calibration
