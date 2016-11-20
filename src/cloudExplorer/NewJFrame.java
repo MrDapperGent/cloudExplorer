@@ -1589,7 +1589,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenu10.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
 
         jMenuItem8.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jMenuItem8.setText("Delete every object and version");
+        jMenuItem8.setText("Delete every file and version");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem8ActionPerformed(evt);
@@ -1884,10 +1884,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 }
 
                 if (found == 0) {
-                    jTextArea1.append("\n\nNo objects found for search.");
+                    jTextArea1.append("\n\nNo files found for search.");
                 } else {
                     int display = objectarray.length - 1;
-                    jTextArea1.append("\n\nLoaded objects. Total number of objects in this bucket: " + display);
+                    jTextArea1.append("\n\nTotal number of files in this bucket: " + display);
                 }
                 jTextField10.setText("");
             } catch (Exception searchBar) {
@@ -2429,7 +2429,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
                 while (object_thread_status) {
                 }
-
+      
                 if (drawFolders) {
                     drawFolders();
                 } else {
