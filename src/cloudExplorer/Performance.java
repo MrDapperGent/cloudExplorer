@@ -236,8 +236,8 @@ public class Performance implements Runnable {
             mainFrame.jPanel14.add(operationCount);
             mainFrame.jPanel14.add(getOperationCount);
             mainFrame.jPanel14.add(blank2);
-            pane_perf.setPreferredSize(new Dimension(75, 50));
-            jlist_perf.setPreferredSize(new Dimension(75, 50));
+            pane_perf.setPreferredSize(new Dimension(60, 50));
+            jlist_perf.setPreferredSize(new Dimension(60, 50));
             mainFrame.jPanel14.add(jlist_label);
             mainFrame.jPanel14.add(pane_perf);
             mainFrame.jPanel14.add(blank3);
