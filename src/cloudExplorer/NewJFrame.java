@@ -3551,6 +3551,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             fol.startc();
             jPanel9.setVisible(true);
         } else {
+            jPanel9.setVisible(true);
             jTextArea1.append("\nError: No bucket has been selected");
             calibrateTextArea();
         }

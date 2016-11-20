@@ -23,9 +23,10 @@ Improvements:
         Renamed "Restore Object from Glacier" to  "Restore from Glacier"
         Renamed "Modify Object ACL" to  "Modify ACL"
 
-      Graph:
+      Graph and Folders:
         The console window will be visible with an error message if no bucket
         is selected.
+
 
 New Features:
 

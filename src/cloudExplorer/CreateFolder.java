@@ -46,15 +46,19 @@ public class CreateFolder implements Runnable {
             final JLabel blank3 = new JLabel(" ");
             final JTextField folderName = new JTextField();
             final JLabel name = new JLabel("Folder Name:");
-            folderName.setMaximumSize(new Dimension(200, 20));
+            folderName.setMaximumSize(new Dimension(200, 30));
+              folderName.setFont(folderName.getFont().deriveFont(14.0f));
             name.setBackground(Color.white);
             name.setForeground(Color.GRAY);
+            name.setFont(name.getFont().deriveFont(14.0f));
             createFolder.setBackground(Color.white);
             createFolder.setForeground(Color.BLUE);
             createFolder.setBorder(null);
+            createFolder.setFont(createFolder.getFont().deriveFont(14.0f));
             close.setBackground(Color.white);
             close.setBorder(null);
             close.setForeground(Color.BLUE);
+            close.setFont(close.getFont().deriveFont(14.0f));
 
             createFolder.setIcon(mainFrame.genericEngine);
             close.setIcon(mainFrame.genericEngine);
@@ -88,7 +92,7 @@ public class CreateFolder implements Runnable {
             mainFrame.jPanel14.add(name);
             mainFrame.jPanel14.add(folderName);
             mainFrame.jPanel14.add(blank3);
-           // mainFrame.jPanel14.add(blank);
+            // mainFrame.jPanel14.add(blank);
             mainFrame.jPanel14.add(createFolder);
             //mainFrame.jPanel14.add(blank2);
             mainFrame.jPanel14.add(close);
