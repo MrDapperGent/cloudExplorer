@@ -50,22 +50,27 @@ public class ObjectACL implements Runnable {
             public_box.setBackground(Color.WHITE);
             public_box.setForeground(Color.GRAY);
             public_box.setBorder(null);
+            public_box.setFont(public_box.getFont().deriveFont(14.0f));
 
             url_box.setBackground(Color.white);
             url_box.setBorder(null);
             url_box.setForeground(Color.GRAY);
+            url_box.setFont(url_box.getFont().deriveFont(14.0f));
 
             private_box.setBackground(Color.white);
             private_box.setBorder(null);
             private_box.setForeground(Color.GRAY);
+            private_box.setFont(private_box.getFont().deriveFont(14.0f));
 
             acl.setBackground(Color.white);
             acl.setBorder(null);
             acl.setForeground(Color.BLUE);
+            acl.setFont(acl.getFont().deriveFont(14.0f));
 
             close.setBackground(Color.white);
             close.setBorder(null);
             close.setForeground(Color.BLUE);
+            close.setFont(close.getFont().deriveFont(14.0f));
 
             close.setIcon(mainFrame.genericEngine);
 
