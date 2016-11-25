@@ -1990,10 +1990,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 }
 
                 if (found == 0) {
-                    jTextArea1.append("\n\nNo objects found for search.");
+                    jTextArea1.append("\n\nNo files found for search.");
                 } else {
                     int display = objectarray.length - 1;
-                    jTextArea1.append("\n\nLoaded objects. Total number of objects in this bucket: " + display);
+                    jTextArea1.append("\n\nLoaded files. Total number of files in this bucket: " + display);
                 }
                 jTextField10.setText("");
             } catch (Exception searchBar) {
@@ -2812,7 +2812,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 }
 
             } else {
-                jTextArea1.append("\nError: Bucket has no objects to sync");
+                jTextArea1.append("\nError: Bucket has no files to sync");
                 calibrateTextArea();
             }
             calibrateTextArea();
@@ -3243,7 +3243,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             } catch (Exception versioning) {
             }
             if (!countSelected) {
-                jTextArea1.append("\nPleae wait. Reloading Objects to show all versions");
+                jTextArea1.append("\nPleae wait. Reloading files to show all versions");
                 calibrateTextArea();
                 jButton6.doClick();
                 jButton1.setEnabled(false);

@@ -419,7 +419,7 @@ public class CLI {
                 System.out.print("\n\n\nError, no bucket specified.\n\n\n");
             }
         } catch (Exception reloadObjects) {
-            System.out.print("\n\n\nError with loading objects:\n\n\n");
+            System.out.print("\n\n\nError with loading files:\n\n\n");
         }
     }
 
@@ -510,7 +510,7 @@ public class CLI {
             int found = 0;
 
             if (op == 0) {
-                System.out.print("\n\nLoading objects for Bucket: " + bucket + "........\n\n");
+                System.out.print("\n\nLoading files for Bucket: " + bucket + "........\n\n");
             } else {
                 System.out.print("\n\nSearching for \"" + get_file + "\" in bucket \"" + bucket + "\"........\n\n");
             }
@@ -535,7 +535,7 @@ public class CLI {
             System.out.print("\n\n\nBucket listing operation complete. Found: " + found + " file(s).\n\n\n");
 
         } catch (Exception ls) {
-            System.out.print("\n\nAn Error has occured while listing the objects or the bucket does not exist.\n\n\n");
+            System.out.print("\n\nAn Error has occured while listing the files or the bucket does not exist.\n\n\n");
             System.exit(-1);
         }
     }
