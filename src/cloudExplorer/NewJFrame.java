@@ -1125,6 +1125,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         );
 
         jLabel11.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 18)); // NOI18N
+        jLabel11.setForeground(java.awt.Color.gray);
         jLabel11.setText("Upload To Folder:");
 
         jList2.setForeground(java.awt.Color.gray);
@@ -1230,7 +1231,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jLabel12.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 18)); // NOI18N
-        jLabel12.setText("Folders:");
+        jLabel12.setForeground(java.awt.Color.gray);
+        jLabel12.setText("Sync to Folder:");
 
         jList3.setForeground(java.awt.Color.gray);
         jScrollPane9.setViewportView(jList3);
