@@ -1490,7 +1490,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
         jMenu1.add(jMenuItem27);
 
-        jMenuItem34.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        jMenuItem34.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem34.setText("Abort Transfer");
         jMenuItem34.setToolTipText("");
         jMenuItem34.addActionListener(new java.awt.event.ActionListener() {
