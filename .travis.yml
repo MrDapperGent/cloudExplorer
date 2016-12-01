@@ -3,7 +3,7 @@ jdk:
   - oraclejdk8
 script:
 - echo "Updating to the latest AWS JDK....."
-- sh upgrade-sdk.sh
+- pwd;ls
 - echo "Compiling and packaging Cloud Explorer....."
 - ant
 - mkdir $HOME/build/rusher81572/cloudExplorer/cloudExplorer
