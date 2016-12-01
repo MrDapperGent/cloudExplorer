@@ -6,6 +6,7 @@ function cleanup(){
   echo;echo "Cleaning up....."
   rm -rf aws*
   rm -rf sdk.zip
+  rm -f libs/aws*
 }
 
 function copylibs(){
