@@ -1187,7 +1187,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton16.setBackground(java.awt.SystemColor.text);
-        jButton16.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 16)); // NOI18N
+        jButton16.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 14)); // NOI18N
         jButton16.setForeground(java.awt.Color.blue);
         jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/Actions-process-stop-icon.png"))); // NOI18N
         jButton16.setText(" Abort");
@@ -1218,7 +1218,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton14.setBackground(java.awt.SystemColor.text);
-        jButton14.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 16)); // NOI18N
+        jButton14.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 14)); // NOI18N
         jButton14.setForeground(java.awt.Color.blue);
         jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/sync-icon.png"))); // NOI18N
         jButton14.setText("To S3");
@@ -1230,7 +1230,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         });
 
         jButton21.setBackground(java.awt.SystemColor.text);
-        jButton21.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 16)); // NOI18N
+        jButton21.setFont(new java.awt.Font("Abadi MT Condensed Extra Bold", 0, 14)); // NOI18N
         jButton21.setForeground(java.awt.Color.blue);
         jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cloudExplorer/sync-icon.png"))); // NOI18N
         jButton21.setText("From S3");

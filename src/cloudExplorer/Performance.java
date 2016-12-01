@@ -236,10 +236,10 @@ public class Performance implements Runnable {
             mainFrame.jPanel14.add(operationCount);
             mainFrame.jPanel14.add(getOperationCount);
             mainFrame.jPanel14.add(blank2);
-            pane_perf.setPreferredSize(new Dimension(60, 50));
-            jlist_perf.setPreferredSize(new Dimension(60, 50));
-            mainFrame.jPanel14.add(jlist_label);
-            mainFrame.jPanel14.add(pane_perf);
+            pane_perf.setPreferredSize(new Dimension(60, 40));
+            jlist_perf.setPreferredSize(new Dimension(60, 40));
+            //mainFrame.jPanel14.add(jlist_label);
+            //mainFrame.jPanel14.add(pane_perf);
             mainFrame.jPanel14.add(blank3);
             if (!mixed_traffic) {
                 mainFrame.jPanel14.add(throughput_graph);
