@@ -52,7 +52,7 @@ public class BucketACL implements Runnable {
 
             final JRadioButton static_website = new JRadioButton("Static Website");
             final JRadioButton refresh_bucket = new JRadioButton("Refresh Bucket");
-            final JRadioButton disable_website = new JRadioButton("Disable Static Website");
+            final JRadioButton disable_website = new JRadioButton("Stop Static Website");
             final JRadioButton enable_versioning = new JRadioButton("Enable Versioning");
             final JRadioButton suspend_versioning = new JRadioButton("Suspend Versioning");
             final JRadioButton delete_bucket = new JRadioButton("Delete Bucket");

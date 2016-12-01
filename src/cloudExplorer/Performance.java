@@ -39,7 +39,7 @@ public class Performance implements Runnable {
     JList jlist_perf = mainFrame.jList4;
     JScrollPane pane_perf = new JScrollPane();
     JPanel jlist_panel = new JPanel();
-    JLabel jlist_label = new JLabel("Destination Folder:");
+    JLabel jlist_label = new JLabel("Folders:");
     final JButton startPerformanceTest = new JButton("Start Test");
     final JButton abortPerformanceTest = new JButton("Close / Abort");
     final JButton close = new JButton("Close");

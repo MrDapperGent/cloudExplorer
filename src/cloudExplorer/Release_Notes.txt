@@ -1,36 +1,14 @@
-# Version 8.1
+# Version 8.2
 
 ### Bug Fixes:
 
-###### IRC:
-- Fixed issue where the message window will not appear if no IRC config is found.
+###### GUI:
+- GUI was not aligned properly on Linux and Windows
 
-###### Restore from Glacier:
-- Actually works now.
-
-###### Upload:
-- Folder list no longer disabled after doing performance testing.
-
-###### Sync:
-- Folder list is now correct color as other folder lists.
 
 ### Improvements:
 
-- Misc dialog window calibration
-
-- Larger font sizes for easier reading
-
-- Larger Window Frame
-
-- More screen space under each tab
-
-###### Clearer Menus:
-- Combined the "Objects" menu with the File menu
-- Renamed "Restore Object from Glacier" to  "Restore from Glacier"
-- Renamed "Modify Object ACL" to  "Modify ACL"
-
-###### Graph and Folders:
-- The console window will be visible with an error message if no bucket is selected.
+- none
 
 
 ### New Features:

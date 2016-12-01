@@ -1164,8 +1164,9 @@
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="jButton9" min="-2" pref="131" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
                                       <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jScrollPane27" min="-2" pref="421" max="-2" attributes="0"/>
                               </Group>
@@ -2288,7 +2289,7 @@
                       <Color blue="ff" green="ff" id="Text" palette="2" red="ff" type="palette"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Abadi MT Condensed Extra Bold" size="14" style="0"/>
+                      <Font name="Abadi MT Condensed Extra Bold" size="16" style="0"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="0" id="blue" palette="1" red="0" type="palette"/>
@@ -2348,7 +2349,7 @@
                       <Color blue="ff" green="ff" id="Text" palette="2" red="ff" type="palette"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Abadi MT Condensed Extra Bold" size="14" style="0"/>
+                      <Font name="Abadi MT Condensed Extra Bold" size="16" style="0"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="0" id="blue" palette="1" red="0" type="palette"/>
@@ -2371,7 +2372,7 @@
                       <Color blue="ff" green="ff" id="Text" palette="2" red="ff" type="palette"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Abadi MT Condensed Extra Bold" size="14" style="0"/>
+                      <Font name="Abadi MT Condensed Extra Bold" size="16" style="0"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="0" id="blue" palette="1" red="0" type="palette"/>
