@@ -6,7 +6,6 @@ function cleanup(){
   echo;echo "Cleaning up....."
   rm -rf aws*
   rm -rf sdk.zip
-  rm -f libs/aws*
 }
 
 function copylibs(){
@@ -25,6 +24,7 @@ function getsdk(){
   curl https://sdk-for-java.amazonwebservices.com/latest/aws-java-sdk.zip  --output sdk.zip
   echo;echo "Extracting the SDK....."
   unzip -o -q sdk.zip
+  rm -f libs/aws*
 }
 
 clear
