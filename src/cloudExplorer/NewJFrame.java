@@ -50,7 +50,7 @@ import javax.swing.text.DefaultEditorKit;
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     public static String major = "8";
-    public static String minor = "21";
+    public static String minor = "22";
     String os = System.getProperty("os.name");
     public static String release_version = major + "." + minor;
     String version = "Cloud Explorer " + release_version;
@@ -390,7 +390,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jLabel3.setForeground(java.awt.Color.gray);
         jLabel3.setText("Access Key");
 
-        jTextField1.setFont(new java.awt.Font("OpenSymbol", 0, 18)); // NOI18N
+        jTextField1.setFont(jTextField1.getFont().deriveFont(jTextField1.getFont().getSize()+5f));
         jTextField1.setForeground(java.awt.Color.gray);
         jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -403,7 +403,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jLabel4.setForeground(java.awt.Color.gray);
         jLabel4.setText("Secret Key");
 
-        jTextField2.setFont(new java.awt.Font("OpenSymbol", 0, 18)); // NOI18N
+        jTextField2.setFont(jTextField2.getFont().deriveFont(jTextField2.getFont().getSize()+5f));
         jTextField2.setForeground(java.awt.Color.gray);
         jTextField2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -411,7 +411,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jLabel5.setForeground(java.awt.Color.gray);
         jLabel5.setText("Host URL");
 
-        jTextField3.setFont(new java.awt.Font("OpenSymbol", 0, 18)); // NOI18N
+        jTextField3.setFont(jTextField3.getFont().deriveFont(jTextField3.getFont().getSize()+5f));
         jTextField3.setForeground(java.awt.Color.gray);
         jTextField3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
@@ -432,15 +432,15 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jLabel9.setForeground(java.awt.Color.gray);
         jLabel9.setText("Name");
 
-        jTextField4.setFont(new java.awt.Font("OpenSymbol", 0, 18)); // NOI18N
+        jTextField4.setFont(jTextField4.getFont().deriveFont(jTextField4.getFont().getSize()+5f));
         jTextField4.setForeground(java.awt.Color.gray);
         jTextField4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jTextField5.setFont(new java.awt.Font("OpenSymbol", 0, 18)); // NOI18N
+        jTextField5.setFont(jTextField5.getFont().deriveFont(jTextField5.getFont().getSize()+5f));
         jTextField5.setForeground(java.awt.Color.gray);
         jTextField5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jTextField7.setFont(new java.awt.Font("OpenSymbol", 0, 18)); // NOI18N
+        jTextField7.setFont(jTextField7.getFont().deriveFont(jTextField7.getFont().getSize()+5f));
         jTextField7.setForeground(java.awt.Color.gray);
         jTextField7.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
@@ -544,13 +544,12 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel17Layout.createSequentialGroup()
-                                .addComponent(jButton10)
-                                .addGap(134, 134, 134)
-                                .addComponent(jButton8)
-                                .addGap(91, 91, 91))))
+                                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel17Layout.createSequentialGroup()
+                                        .addComponent(jButton10)
+                                        .addGap(134, 134, 134)
+                                        .addComponent(jButton8)))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
