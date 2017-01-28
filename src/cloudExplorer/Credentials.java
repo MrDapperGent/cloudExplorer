@@ -97,7 +97,7 @@ public class Credentials {
             String str = null;
             
             if (region.length() < 1) {
-                region = "defaultAWS";
+                region = "us-west-1";
             }
             if (name == null) {
                 str = ("\n" + access_key + "@" + secret_key + "@" + host + "@" + port + "@" + region);

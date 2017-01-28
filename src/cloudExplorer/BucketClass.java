@@ -108,15 +108,13 @@ public class BucketClass {
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
-        s3Client.setEndpoint(endpoint);
+        
+        if (region.contains("defaultAWS") || region.length() < 1) {
+            region = "us-west-1";
+        }
         try {
-            if (endpoint.contains("amazon")) {
-                s3Client.createBucket(new CreateBucketRequest(bucket));
-
-            } else {
-                s3Client.createBucket(new CreateBucketRequest(bucket, region));
-            }
-
+            s3Client.setEndpoint(endpoint);
+            s3Client.createBucket(new CreateBucketRequest(bucket, region));
             message = ("\nAttempting to create the bucket. Please view the Bucket list window for an update.");
         } catch (AmazonServiceException ase) {
             if (NewJFrame.gui) {
