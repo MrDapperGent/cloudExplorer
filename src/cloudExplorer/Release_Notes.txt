@@ -12,7 +12,7 @@
 
 
 ### New Features:
-- Crete and delete buckets in different regions
+- Create and delete buckets in different regions
 
 Features:
 
