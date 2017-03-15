@@ -27,6 +27,7 @@ import java.io.InputStream;
 import static cloudExplorer.NewJFrame.jTextArea1;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.ClientConfiguration;
+import com.amazonaws.services.s3.S3ClientOptions;
 
 public class Get implements Runnable {
 
@@ -83,6 +84,7 @@ public class Get implements Runnable {
         File file = new File(what);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
+        s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(false).build());
         s3Client.setEndpoint(endpoint);
 
         try {

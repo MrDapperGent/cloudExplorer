@@ -22,6 +22,7 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import java.io.File;
 import static cloudExplorer.NewJFrame.jTextArea1;
 import com.amazonaws.ClientConfiguration;
+import com.amazonaws.services.s3.S3ClientOptions;
 import com.amazonaws.services.s3.model.AmazonS3Exception;
 import com.amazonaws.services.s3.model.GetObjectMetadataRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
@@ -59,6 +60,7 @@ public class RestoreObject implements Runnable {
         File file = new File(what);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
+        s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(false).build());
         s3Client.setEndpoint(endpoint);
 
         try {

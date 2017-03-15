@@ -22,6 +22,7 @@ import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.S3ClientOptions;
 import com.amazonaws.services.s3.model.Bucket;
 import com.amazonaws.services.s3.model.BucketVersioningConfiguration;
 import com.amazonaws.services.s3.model.CreateBucketRequest;
@@ -43,6 +44,8 @@ public class BucketClass {
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
+        s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(false).build());
+  
         s3Client.setEndpoint(endpoint);
         try {
             message = s3Client.getBucketVersioningConfiguration(bucket).getStatus().toString();
@@ -63,6 +66,7 @@ public class BucketClass {
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
+        s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(false).build());
         s3Client.setEndpoint(endpoint);
         try {
             message = s3Client.getBucketLifecycleConfiguration(bucket).getRules().toString();
@@ -83,6 +87,7 @@ public class BucketClass {
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
+        s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(false).build());
         s3Client.setEndpoint(endpoint);
         try {
             SetBucketVersioningConfigurationRequest request;
@@ -113,6 +118,7 @@ public class BucketClass {
             region = "us-west-1";
         }
         try {
+            s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(false).build());
             s3Client.setEndpoint(endpoint);
             s3Client.createBucket(new CreateBucketRequest(bucket, region));
             message = ("\nAttempting to create the bucket. Please view the Bucket list window for an update.");
@@ -151,6 +157,7 @@ public class BucketClass {
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
+        s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(false).build());
         s3Client.setEndpoint(endpoint);
         String[] array = new String[10];
 
@@ -207,6 +214,7 @@ public class BucketClass {
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
+        s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(false).build());
         s3Client.setEndpoint(endpoint);
         ListObjectsRequest listObjectsRequest = null;
         try {
@@ -239,6 +247,7 @@ public class BucketClass {
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
+        s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(false).build());
         s3Client.setEndpoint(endpoint);
         objectlist = null;
 
@@ -288,6 +297,7 @@ public class BucketClass {
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
+        s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(false).build());
         s3Client.setEndpoint(endpoint);
         message = ("\nDeleting bucket: " + bucket);
         try {

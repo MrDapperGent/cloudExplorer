@@ -1,4 +1,4 @@
-# Version 8.23
+# Version 9.0
 
 ### Bug Fixes:
 
@@ -13,6 +13,7 @@
 
 ### New Features:
 - Create and delete buckets in different regions
+- Supports connecting to an S3 Server by IP address 
 
 Features:
 

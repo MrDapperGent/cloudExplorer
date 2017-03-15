@@ -20,6 +20,7 @@ import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.S3ClientOptions;
 import com.amazonaws.services.s3.model.S3VersionSummary;
 import com.amazonaws.services.s3.model.VersionListing;
 import java.util.List;
@@ -44,6 +45,7 @@ public class Versioning {
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
             AmazonS3 s3Client = new AmazonS3Client(credentials,
                     new ClientConfiguration());
+            s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(false).build());
             s3Client.setEndpoint(endpoint);
 
             VersionListing vListing;

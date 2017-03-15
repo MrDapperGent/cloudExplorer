@@ -28,6 +28,7 @@ import javax.activation.MimetypesFileTypeMap;
 import static cloudExplorer.NewJFrame.jTextArea1;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.ClientConfiguration;
+import com.amazonaws.services.s3.S3ClientOptions;
 import com.amazonaws.services.s3.model.StorageClass;
 
 public class Put implements Runnable {
@@ -74,6 +75,7 @@ public class Put implements Runnable {
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
             AmazonS3 s3Client = new AmazonS3Client(credentials,
                     new ClientConfiguration());
+            s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(false).build());
             s3Client.setEndpoint(endpoint);
             TransferManager tx = new TransferManager(s3Client);
             File file = new File(what);
