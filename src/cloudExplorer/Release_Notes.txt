@@ -1,10 +1,11 @@
-# Version 9.0
+# Version 9.01
 
 ### Bug Fixes:
 
 - Fix allows creating and deleting buckets in different regions
 - Now uses default system font to fix an issue with Ubuntu
 - Windows and Linux GUI alignment
+- Sync Fix to support top-level folder
 
 ### Improvements:
 

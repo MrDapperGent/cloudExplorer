@@ -96,15 +96,23 @@ public class SyncToS3 implements Runnable {
     }
 
     public void run() {
+        int index = mainFrame.jList3.getSelectedIndex(); //get selected index
 
         List<File> files = (List<File>) FileUtils.listFiles(location, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE);
         for (File file_found : files) {
             int found = 0;
             String clean_object_name[] = location.toString().split(Pattern.quote(File.separator));
             String object = file_found.getAbsolutePath().toString();
+
             object = object.replace(location.toString(), "");
             object = clean_object_name[clean_object_name.length - 1] + object;
-
+            try {
+                if (index != -1) {
+                    object = mainFrame.jList3.getSelectedValue().toString() + object;
+                }
+            } catch (Exception indaex) {
+            }
+   
             for (int y = 1; y != objectarray.length; y++) {
                 if (objectarray[y].contains(object) && objectarray[y].length() == object.length()) {
                     if (!modified_check(objectarray[y], file_found.getAbsolutePath())) {
@@ -117,15 +125,6 @@ public class SyncToS3 implements Runnable {
             if (found == 0) {
 
                 if (SyncToS3.running) {
-                    int index = mainFrame.jList3.getSelectedIndex(); //get selected index
-
-                    try {
-                        if (index != -1) {
-                            object = mainFrame.jList3.getSelectedValue().toString() + object;
-                        }
-                    } catch (Exception indaex) {
-
-                    }
                     put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object, rrs, encrypt, infreq);
                     put.run();
                 }
