@@ -16,6 +16,8 @@ script:
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar synctos3 $HOME/build/rusher81572/cloudExplorer/src $TESTBUCKET synctest
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar ls $TESTBUCKET
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar syncfroms3 /tmp $TESTBUCKET synctest
+- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar synctos3 /tmp/synctest $TESTBUCKET
+- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar syncfroms3 /tmp $TESTBUCKET synctest
 - ls /tmp/synctest/src/cloudExplorer
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar search $TESTBUCKET png
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar deleteall $TESTBUCKET
