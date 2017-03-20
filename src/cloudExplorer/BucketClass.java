@@ -166,7 +166,7 @@ public class BucketClass {
             int month = 1000 * 60 * 60 * 24 * 30;
             Date oneWeekAgo = new Date(System.currentTimeMillis() - month);
             tm.abortMultipartUploads(bucket, oneWeekAgo);
-            message = ("\nSent request to delete all the MP uploads in the past month");
+            message = ("\nSent request to delete all the multi-part uploads in the past month");
         } catch (AmazonServiceException multipart) {
             if (NewJFrame.gui) {
                 mainFrame.jTextArea1.append("\n\nError Message:    " + multipart.getMessage());

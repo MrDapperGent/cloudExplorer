@@ -3699,7 +3699,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private void jMenuItem35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem35ActionPerformed
         if (active_bucket > 0) {
             BucketClass listmp = new BucketClass();
-            NewJFrame.jTextArea1.append(listmp.abortMPUploads(cred.getAccess_key(),cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), cred.getRegion()));
+            jPanel9.setVisible(true);
+            NewJFrame.jTextArea1.append(listmp.abortMPUploads(cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), cred.getRegion()));
             calibrateTextArea();
         } else {
             jTextArea1.append("\nError: No bucket has been selected\n");
