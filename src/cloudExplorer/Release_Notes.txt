@@ -1,10 +1,6 @@
-# Version 9.01
+# Version 9.02
 
 ### Bug Fixes:
-
-- Fix allows creating and deleting buckets in different regions
-- Now uses default system font to fix an issue with Ubuntu
-- Windows and Linux GUI alignment
 - Sync Fix to support top-level folder
 
 ### Improvements:
@@ -13,8 +9,7 @@
 
 
 ### New Features:
-- Create and delete buckets in different regions
-- Supports connecting to an S3 Server by IP address 
+- Abort multi-part uploads
 
 Features:
 

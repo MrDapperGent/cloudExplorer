@@ -20,6 +20,7 @@ import com.amazonaws.AmazonServiceException;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.S3ClientOptions;
@@ -27,10 +28,14 @@ import com.amazonaws.services.s3.model.Bucket;
 import com.amazonaws.services.s3.model.BucketVersioningConfiguration;
 import com.amazonaws.services.s3.model.CreateBucketRequest;
 import com.amazonaws.services.s3.model.DeleteBucketRequest;
+import com.amazonaws.services.s3.model.ListMultipartUploadsRequest;
 import com.amazonaws.services.s3.model.ListObjectsRequest;
+import com.amazonaws.services.s3.model.MultipartUploadListing;
 import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.amazonaws.services.s3.model.SetBucketVersioningConfigurationRequest;
+import com.amazonaws.services.s3.transfer.TransferManager;
+import java.util.Date;
 
 public class BucketClass {
 
@@ -45,7 +50,7 @@ public class BucketClass {
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
         s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(false).build());
-  
+
         s3Client.setEndpoint(endpoint);
         try {
             message = s3Client.getBucketVersioningConfiguration(bucket).getStatus().toString();
@@ -113,7 +118,7 @@ public class BucketClass {
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
-        
+
         if (region.contains("defaultAWS") || region.length() < 1) {
             region = "us-west-1";
         }
@@ -140,6 +145,46 @@ public class BucketClass {
         }
         if (message == null) {
             message = "Failed to create bucket.";
+        }
+        return message;
+
+    }
+
+    String abortMPUploads(String access_key, String secret_key, String bucket, String endpoint, String region) {
+        String message = null;
+        AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
+        AmazonS3 s3Client = new AmazonS3Client(credentials,
+                new ClientConfiguration());
+
+        if (region.contains("defaultAWS") || region.length() < 1) {
+            region = "us-west-1";
+        }
+        try {
+            s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(false).build());
+            s3Client.setEndpoint(endpoint);
+            TransferManager tm = new TransferManager(s3Client);
+            int month = 1000 * 60 * 60 * 24 * 30;
+            Date oneWeekAgo = new Date(System.currentTimeMillis() - month);
+            tm.abortMultipartUploads(bucket, oneWeekAgo);
+            message = ("\nSent request to delete all the MP uploads in the past month");
+        } catch (AmazonServiceException multipart) {
+            if (NewJFrame.gui) {
+                mainFrame.jTextArea1.append("\n\nError Message:    " + multipart.getMessage());
+                mainFrame.jTextArea1.append("\nHTTP Status Code: " + multipart.getStatusCode());
+                mainFrame.jTextArea1.append("\nAWS Error Code:   " + multipart.getErrorCode());
+                mainFrame.jTextArea1.append("\nError Type:       " + multipart.getErrorType());
+                mainFrame.jTextArea1.append("\nRequest ID:       " + multipart.getRequestId());
+                calibrate();
+            } else {
+                System.out.print("\n\nError Message:    " + multipart.getMessage());
+                System.out.print("\nHTTP Status Code: " + multipart.getStatusCode());
+                System.out.print("\nAWS Error Code:   " + multipart.getErrorCode());
+                System.out.print("\nError Type:       " + multipart.getErrorType());
+                System.out.print("\nRequest ID:       " + multipart.getRequestId());
+            }
+        }
+        if (message == null) {
+            message = "Failed to list multi-part uploads.";
         }
         return message;
 

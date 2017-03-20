@@ -50,7 +50,7 @@ import javax.swing.text.DefaultEditorKit;
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
     public static String major = "9";
-    public static String minor = "01";
+    public static String minor = "02";
     String os = System.getProperty("os.name");
     public static String release_version = major + "." + minor;
     String version = "Cloud Explorer " + release_version;
@@ -286,6 +286,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem35 = new javax.swing.JMenuItem();
         jMenuItem22 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem15 = new javax.swing.JMenuItem();
@@ -1532,6 +1533,15 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
         jMenu3.add(jMenuItem13);
+
+        jMenuItem35.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jMenuItem35.setText("Abort Multi-part Uploads");
+        jMenuItem35.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem35ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem35);
 
         jMenuItem22.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jMenuItem22.setText("Add External Bucket");
@@ -3685,6 +3695,16 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             reloadBuckets();
         }
     }//GEN-LAST:event_jMenuItem34ActionPerformed
+
+    private void jMenuItem35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem35ActionPerformed
+        if (active_bucket > 0) {
+            BucketClass listmp = new BucketClass();
+            NewJFrame.jTextArea1.append(listmp.abortMPUploads(cred.getAccess_key(),cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), cred.getRegion()));
+            calibrateTextArea();
+        } else {
+            jTextArea1.append("\nError: No bucket has been selected\n");
+        }
+    }//GEN-LAST:event_jMenuItem35ActionPerformed
     void cleanup() {
         try {
             jPanel9.setVisible(true);
@@ -3820,6 +3840,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenuItem jMenuItem32;
     private javax.swing.JMenuItem jMenuItem33;
     private javax.swing.JMenuItem jMenuItem34;
+    private javax.swing.JMenuItem jMenuItem35;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
