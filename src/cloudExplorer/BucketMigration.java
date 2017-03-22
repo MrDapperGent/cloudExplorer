@@ -100,6 +100,11 @@ public class BucketMigration implements Runnable {
                 }
             }
         } catch (Exception loadConfig) {
+            if (NewJFrame.gui) {
+                jTextArea1.append(loadConfig.getMessage());
+            } else {
+                System.out.print(loadConfig.getMessage());
+            }
         }
         String remove_null = data.replace("null", "");
         return remove_null;
@@ -129,6 +134,11 @@ public class BucketMigration implements Runnable {
                 }
             }
         } catch (Exception modifiedChecker) {
+            if (NewJFrame.gui) {
+                jTextArea1.append(modifiedChecker.getMessage());
+            } else {
+                System.out.print(modifiedChecker.getMessage());
+            }
         }
         return recopy;
     }
@@ -143,13 +153,13 @@ public class BucketMigration implements Runnable {
                         if (modified_check(restoreArray[i], original_name)) {
                             get = new Get(restoreArray[i], new_access_key, new_secret_key, new_bucket, new_endpoint, temp_file, null);
                             get.run();
-                            put = new Put(temp_file, access_key, secret_key, bucket, endpoint, original_name, false, false,false);
+                            put = new Put(temp_file, access_key, secret_key, bucket, endpoint, original_name, false, false, false);
                             put.run();
                         }
                     } else {
                         get = new Get(restoreArray[i], new_access_key, new_secret_key, new_bucket, new_endpoint, temp_file, null);
                         get.run();
-                        put = new Put(temp_file, access_key, secret_key, bucket, endpoint, original_name, false, false,false);
+                        put = new Put(temp_file, access_key, secret_key, bucket, endpoint, original_name, false, false, false);
                         put.run();
                     }
                 }
@@ -186,15 +196,15 @@ public class BucketMigration implements Runnable {
                                 get.run();
                                 if (deltas) {
                                     change_folder = mainFrame.snap_folder.replace("Snapshot-", "Snapshot-Changes-");
-                                    put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, change_folder + mainFrame.objectarray[i], false, false,false);
+                                    put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, change_folder + mainFrame.objectarray[i], false, false, false);
                                 } else {
-                                    put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + sep + mainFrame.objectarray[i], false, false,false);
+                                    put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + sep + mainFrame.objectarray[i], false, false, false);
                                 }
                                 put.run();
                             } else {
                                 get = new Get(mainFrame.objectarray[i], access_key, secret_key, bucket, endpoint, temp_file, null);
                                 get.run();
-                                put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, mainFrame.objectarray[i], false, false,false);
+                                put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, mainFrame.objectarray[i], false, false, false);
                                 put.run();
                             }
                         }
@@ -204,12 +214,12 @@ public class BucketMigration implements Runnable {
                         if (snapshot) {
                             if (deltas) {
                                 change_folder = mainFrame.snap_folder.replace("Snapshot-", "Snapshot-Changes-");
-                                put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, change_folder + mainFrame.objectarray[i], false, false,false);
+                                put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, change_folder + mainFrame.objectarray[i], false, false, false);
                             } else {
-                                put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + sep + mainFrame.objectarray[i], false, false,false);
+                                put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + sep + mainFrame.objectarray[i], false, false, false);
                             }
                         } else {
-                            put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, mainFrame.objectarray[i], false, false,false);
+                            put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, mainFrame.objectarray[i], false, false, false);
                         }
                         put.run();
                     }
@@ -218,9 +228,17 @@ public class BucketMigration implements Runnable {
         }
 
         if (snapshot) {
-            jTextArea1.append("\nBucket snapshot complete.");
+            if (NewJFrame.gui) {
+                jTextArea1.append("\nBucket snapshot complete.");
+            } else {
+                System.out.print("\nBucket snapshot complete.");
+            }
         } else {
-            jTextArea1.append("\nBucket migration complete.");
+            if (NewJFrame.gui) {
+                jTextArea1.append("\nBucket migration complete.");
+            } else {
+                System.out.print("\n\nBucket migration complete.");
+            }
         }
 
         mainFrame.drawBuckets();
@@ -245,6 +263,11 @@ public class BucketMigration implements Runnable {
             }
 
         } catch (Exception loadconfig) {
+            if (NewJFrame.gui) {
+                jTextArea1.append(loadconfig.getMessage());
+            } else {
+                System.out.print(loadconfig.getMessage());
+            }
         }
     }
 
@@ -263,8 +286,14 @@ public class BucketMigration implements Runnable {
                 bucketlist = bucketlist + " " + bucket.getName();
             }
         } catch (Exception listBucket) {
-            mainFrame.jTextArea1.append("\n\nAn error has occurred in listBucket.");
-            mainFrame.jTextArea1.append("\n\nError Message:    " + listBucket.getMessage());
+            if (NewJFrame.gui) {
+                mainFrame.jTextArea1.append("\n\nAn error has occurred in listBucket.");
+                mainFrame.jTextArea1.append("\n\nError Message:    " + listBucket.getMessage());
+            } else {
+                System.out.print("\n\nAn error has occurred in listBucket.");
+                System.out.print("\n\nError Message:    " + listBucket.getMessage());
+            }
+
         }
         String parse = null;
 
@@ -295,8 +324,11 @@ public class BucketMigration implements Runnable {
 
     public void run() {
         File config = new File(config_file);
-        if (config.exists()) {
-            loadDestinationAccount();
+        if (config.exists() || !NewJFrame.gui) {
+            if (NewJFrame.gui) {
+                loadDestinationAccount();
+            }
+
             if (!restoreSnapshot) {
                 checkBucket();
             }
@@ -308,14 +340,24 @@ public class BucketMigration implements Runnable {
                     scanDestination();
                     migrate();
                 } else {
-                    jTextArea1.append("\nError: Destination S3 account does not have the bucket: " + new_bucket + ".");
-                    calibrate();
+                    if (NewJFrame.gui) {
+                        jTextArea1.append("\nError: Destination S3 account does not have the bucket: " + new_bucket + ".");
+                        calibrate();
+                    } else {
+                        System.out.print("\nError: Destination S3 account does not have the bucket: " + new_bucket + ".");
+                    }
+
                 }
             }
 
         } else {
-            jTextArea1.append("\nError: Migration config file does not exist. Please create one under the Settings tab.");
-            calibrate();
+            if (NewJFrame.gui) {
+                jTextArea1.append("\nError: Migration config file does not exist. Please create one under the Settings tab.");
+                calibrate();
+            } else {
+                System.out.print("\nError: Migration config file does not exist. Please create one in the GUI under the Settings tab.\n\n");
+            }
+
         }
 
     }
