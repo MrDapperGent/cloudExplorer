@@ -10,6 +10,7 @@
 ### New Features:
 - Abort multi-part uploads
 - Migrate Buckets with CLI
+- Snapshot Buckets with CLI
 
 Features:
 
@@ -83,6 +84,15 @@ MIGRATE_SECRET_KEY
 MIGRATE_ENDPOINT
 MIGRATE_REGION
 java -jar CloudExplorer.jar migrate bucket destination_bucket
+
+#Snapshot a Bucket
+The following variables need to be set for the destination account first:
+MIGRATE_ACCESS_KEY
+MIGRATE_SECRET_KEY
+MIGRATE_ENDPOINT
+MIGRATE_REGION
+java -jar CloudExplorer.jar snapshot bucket snapshot_bucket
+
 
 IRC Options:
 
