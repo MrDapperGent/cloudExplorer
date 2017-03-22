@@ -62,18 +62,15 @@ public class BucketMigrationCLI implements Runnable {
     Boolean deltas = false;
     String change_folder = null;
     String[] object_array;
-    
-  
 
     BucketMigrationCLI(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobject_array) {
-         access_key = Aaccess_key;
+        access_key = Aaccess_key;
         secret_key = Asecret_key;
         bucket = Abucket;
         endpoint = Aendpoint;
         object_array = Aobject_array;
     }
 
- 
     String date(String format) {
         Date date = new Date();
         SimpleDateFormat dt = new SimpleDateFormat(format);
@@ -96,8 +93,8 @@ public class BucketMigrationCLI implements Runnable {
                     recopy = true;
                 }
             }
-        } catch (Exception modifiedChecker) {       
-                System.out.print(modifiedChecker.getMessage());
+        } catch (Exception modifiedChecker) {
+            System.out.print("\n\nError with verifying files:\n" + modifiedChecker.getMessage() + "\n\n");
         }
         return recopy;
     }
@@ -124,7 +121,7 @@ public class BucketMigrationCLI implements Runnable {
                 }
             }
         }
-       System.out.print("\nSnapshot restore operation complete.");
+        System.out.print("\nSnapshot restore operation complete.");
     }
 
     public void migrate() {
@@ -171,7 +168,7 @@ public class BucketMigrationCLI implements Runnable {
                         get.run();
                         if (snapshot) {
                             if (deltas) {
-                               // change_folder = mainFrame.snap_folder.replace("Snapshot-", "Snapshot-Changes-");
+                                // change_folder = mainFrame.snap_folder.replace("Snapshot-", "Snapshot-Changes-");
                                 put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, change_folder + object_array[i], false, false, false);
                             } else {
                                 put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + sep + object_array[i], false, false, false);
@@ -186,15 +183,12 @@ public class BucketMigrationCLI implements Runnable {
         }
 
         if (snapshot) {
-                System.out.print("\nBucket snapshot complete.\n\n");
-        } else {        
-                System.out.print("\n\nBucket migration complete.\n\n");
+            System.out.print("\nBucket snapshot complete.\n\n");
+        } else {
+            System.out.print("\n\nBucket migration complete.\n\n");
         }
 
-
     }
-
- 
 
     String listBuckets(String access_key, String secret_key, String endpoint) {
 
@@ -210,9 +204,9 @@ public class BucketMigrationCLI implements Runnable {
             for (Bucket bucket : s3Client.listBuckets()) {
                 bucketlist = bucketlist + " " + bucket.getName();
             }
-        } catch (Exception listBucket) { 
-                System.out.print("\n\nAn error has occurred in listBucket.");
-                System.out.print("\n\nError Message:    " + listBucket.getMessage());
+        } catch (Exception listBucket) {
+            System.out.print("\n\nAn error has occurred in listBucket.");
+            System.out.print("\n\nError Message:    " + listBucket.getMessage());
         }
         String parse = null;
 
@@ -244,7 +238,7 @@ public class BucketMigrationCLI implements Runnable {
     public void run() {
         File config = new File(config_file);
         if (config.exists() || !NewJFrame.gui) {
-          
+
             if (!restoreSnapshot) {
                 checkBucket();
             }
@@ -256,12 +250,12 @@ public class BucketMigrationCLI implements Runnable {
                     scanDestination();
                     migrate();
                 } else {
-                        System.out.print("\nError: Destination S3 account does not have the bucket: " + new_bucket + ".");        
+                    System.out.print("\nError: Destination S3 account does not have the bucket: " + new_bucket + ".");
                 }
             }
 
-        } else {      
-                System.out.print("\nError: Migration config file does not exist. Please create one in the GUI under the Settings tab.\n\n");
+        } else {
+            System.out.print("\nError: Migration config file does not exist. Please create one in the GUI under the Settings tab.\n\n");
 
         }
 
