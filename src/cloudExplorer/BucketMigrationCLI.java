@@ -78,6 +78,16 @@ public class BucketMigrationCLI implements Runnable {
     }
 
     boolean modified_check(String snapFile, String origFile) {
+        System.out.print("\nDebug 1");
+        System.out.print("\n" + snapFile + " " + origFile);
+        System.out.print(access_key);
+        System.out.print(secret_key);
+        System.out.print(endpoint);
+        System.out.print(bucket);
+        System.out.print(new_access_key);
+        System.out.print(new_secret_key);
+        System.out.print(new_endpoint);
+        System.out.print(new_bucket);
         boolean recopy = false;
         String snapFile_md5String = null;
         String origFile_md5String = null;
@@ -133,6 +143,15 @@ public class BucketMigrationCLI implements Runnable {
                 } else {
                     sep = lin;
                 }
+                System.out.print("\nDebug 0");
+                System.out.print(access_key);
+                System.out.print(secret_key);
+                System.out.print(endpoint);
+                System.out.print(bucket);
+                System.out.print(new_access_key);
+                System.out.print(new_secret_key);
+                System.out.print(new_endpoint);
+                System.out.print(new_bucket);
 
                 String search = null;
                 if (snapshot) {
