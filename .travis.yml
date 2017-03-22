@@ -13,6 +13,7 @@ script:
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar listbuckets
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar makebucket $TESTBUCKET
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar makebucket $MIGRATE_BUCKET
+- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar makebucket $SNAPSHOT_BUCKET
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar createfolder $TESTBUCKET synctest
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar synctos3 $HOME/build/rusher81572/cloudExplorer/src $TESTBUCKET synctest
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar ls $TESTBUCKET
@@ -23,12 +24,15 @@ script:
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar search $TESTBUCKET png
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar migrate $TESTBUCKET $MIGRATE_BUCKET
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar migrate $MIGRATE_BUCKET $TESTBUCKET
+- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar snapshot $TESTBUCKET $SNAPSHOT_BUCKET
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar deleteall $MIGRATE_BUCKET
+- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar deleteall $SNAPSHOT_BUCKET
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar deleteall $TESTBUCKET
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar uploadtest $TESTBUCKET 10 10 10 mixed
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar download $TESTBUCKET 10 10 10 mixed
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar deleteall $TESTBUCKET
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar rmbucket $TESTBUCKET
+- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar rmbucket $SNAPSHOT_BUCKET
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar rmbucket $MIGRATE_BUCKET
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar build $VERSION/cloudExplorer-$VERSION.zip $HOME/build/rusher81572/cloudExplorer/cloudExplorer-$VERSION.zip $PUBBUCKET
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar build cloudExplorer-dev.zip $HOME/build/rusher81572/cloudExplorer/cloudExplorer-$VERSION.zip $PUBBUCKET

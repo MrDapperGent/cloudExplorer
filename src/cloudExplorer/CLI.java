@@ -280,7 +280,12 @@ public class CLI {
                         }
                         if (operation.contains("migrate")) {
                             bucket = arg1;
-                            migrateBucket(arg1, arg2);
+                            migrateBucket(arg1, arg2, "migrate");
+                            System.exit(-1);
+                        }
+                        if (operation.contains("snapshot")) {
+                            bucket = arg1;
+                            migrateBucket(arg1, arg2, "snapshot");
                             System.exit(-1);
                         }
 
@@ -634,14 +639,18 @@ public class CLI {
         }
     }
 
-    void migrateBucket(String bucket, String destination_bucket) {
+    void migrateBucket(String bucket, String destination_bucket, String operation) {
 
         if ((System.getenv("MIGRATE_ACCESS_KEY") == null) || System.getenv("MIGRATE_SECRET_KEY") == null || System.getenv("MIGRATE_ENDPOINT") == null || System.getenv("MIGRATE_REGION") == null || destination_bucket == null) {
             System.out.print("\nError: Missing a complete set of S3 Credentials in environment variables.\n\n");
         } else {
-            System.out.print("\nStarting to migrate " + bucket + " to " + destination_bucket + "\n\n");
+            System.out.print("\nStarting to " + operation + " "  + bucket + " to " + destination_bucket + "\n\n");
             reloadObjects();
-            migrate = new BucketMigrationCLI(access_key, secret_key, bucket, endpoint, object_array);                              
+            if (operation.contains("migrate")) {
+                migrate = new BucketMigrationCLI(access_key, secret_key, bucket, endpoint, object_array, false);
+            } else {
+                migrate = new BucketMigrationCLI(access_key, secret_key, bucket, endpoint, object_array, true);
+            }
             migrate.new_access_key = System.getenv("MIGRATE_ACCESS_KEY");
             migrate.new_secret_key = System.getenv("MIGRATE_SECRET_KEY");
             migrate.new_endpoint = System.getenv("MIGRATE_ENDPOINT");
