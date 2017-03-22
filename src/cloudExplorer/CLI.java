@@ -72,8 +72,7 @@ public class CLI {
     public static Boolean mixed_mode = false;
     String win = "\\";
     String lin = "/";
-    BucketMigration migrate;
-  
+    BucketMigrationCLI migrate;
 
     void messageParser(String message) {
         System.out.print(message);
@@ -175,7 +174,7 @@ public class CLI {
         operation = arg0;
         Put.terminal = true;
         Get.terminal = true;
-     
+
         if ((System.getenv("ACCESS_KEY") == null) || System.getenv("SECRET_KEY") == null || System.getenv("ENDPOINT") == null || System.getenv("REGION") == null) {
             File s3config = new File(s3_config_file);
             if (s3config.exists()) {
@@ -635,25 +634,17 @@ public class CLI {
     }
 
     void migrateBucket(String bucket, String destination_bucket) {
-      
+
         if ((System.getenv("MIGRATE_ACCESS_KEY") == null) || System.getenv("MIGRATE_SECRET_KEY") == null || System.getenv("MIGRATE_ENDPOINT") == null || System.getenv("MIGRATE_REGION") == null || destination_bucket == null) {
             System.out.print("\nError: Missing a complete set of S3 Credentials in environment variables.\n\n");
         } else {
-            NewJFrame mainFrame = new NewJFrame();
             System.out.print("\nStarting to migrate " + bucket + " to " + destination_bucket + "\n\n");
-            NewJFrame.gui = false;
-            mainFrame.cred.setAccess_key(access_key);
-            mainFrame.cred.setSecret_key(secret_key);
-            mainFrame.cred.setEndpoint(endpoint);
-            mainFrame.cred.setRegion(region);
-            mainFrame.cred.setBucket(bucket);
-            ReloadObjects object = new ReloadObjects(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame);
-            object.run();
-            migrate = new BucketMigration(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, false, false, null, false);
+            reloadObjects();
+            migrate = new BucketMigrationCLI(access_key, secret_key, bucket, endpoint, object_array);                              
             migrate.new_access_key = System.getenv("MIGRATE_ACCESS_KEY");
             migrate.new_secret_key = System.getenv("MIGRATE_SECRET_KEY");
             migrate.new_endpoint = System.getenv("MIGRATE_ENDPOINT");
-            migrate.new_region =  System.getenv("MIGRATE_REGION");
+            migrate.new_region = System.getenv("MIGRATE_REGION");
             migrate.new_bucket = destination_bucket;
             migrate.run();
         }
