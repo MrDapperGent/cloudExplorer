@@ -72,7 +72,6 @@ public class CLI {
     public static Boolean mixed_mode = false;
     String win = "\\";
     String lin = "/";
-    NewJFrame mainFrame = new NewJFrame();
     BucketMigration migrate;
   
 
@@ -636,9 +635,11 @@ public class CLI {
     }
 
     void migrateBucket(String bucket, String destination_bucket) {
+      
         if ((System.getenv("MIGRATE_ACCESS_KEY") == null) || System.getenv("MIGRATE_SECRET_KEY") == null || System.getenv("MIGRATE_ENDPOINT") == null || System.getenv("MIGRATE_REGION") == null || destination_bucket == null) {
             System.out.print("\nError: Missing a complete set of S3 Credentials in environment variables.\n\n");
         } else {
+            NewJFrame mainFrame = new NewJFrame();
             System.out.print("\nStarting to migrate " + bucket + " to " + destination_bucket + "\n\n");
             NewJFrame.gui = false;
             mainFrame.cred.setAccess_key(access_key);
