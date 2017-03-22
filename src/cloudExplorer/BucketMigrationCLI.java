@@ -78,16 +78,6 @@ public class BucketMigrationCLI implements Runnable {
     }
 
     boolean modified_check(String snapFile, String origFile) {
-        System.out.print("\nDebug 1");
-        System.out.print("\n" + snapFile + " " + origFile);
-        System.out.print(access_key);
-        System.out.print(secret_key);
-        System.out.print(endpoint);
-        System.out.print(bucket);
-        System.out.print(new_access_key);
-        System.out.print(new_secret_key);
-        System.out.print(new_endpoint);
-        System.out.print(new_bucket);
         boolean recopy = false;
         String snapFile_md5String = null;
         String origFile_md5String = null;
@@ -143,15 +133,6 @@ public class BucketMigrationCLI implements Runnable {
                 } else {
                     sep = lin;
                 }
-                System.out.print("\nDebug 0");
-                System.out.print(access_key);
-                System.out.print(secret_key);
-                System.out.print(endpoint);
-                System.out.print(bucket);
-                System.out.print(new_access_key);
-                System.out.print(new_secret_key);
-                System.out.print(new_endpoint);
-                System.out.print(new_bucket);
 
                 String search = null;
                 if (snapshot) {
@@ -245,6 +226,7 @@ public class BucketMigrationCLI implements Runnable {
     }
 
     void scanDestination() {
+
         BucketClass bucketObject = new BucketClass();
         destinationBucketlist = bucketObject.listBucketContents(new_access_key, new_secret_key, new_bucket, new_endpoint);
         if (restoreSnapshot) {
@@ -255,27 +237,19 @@ public class BucketMigrationCLI implements Runnable {
     }
 
     public void run() {
-        File config = new File(config_file);
-        if (config.exists() || !NewJFrame.gui) {
-
-            if (!restoreSnapshot) {
-                checkBucket();
-            }
-            if (restoreSnapshot) {
-                scanDestination();
-                snapBack();
-            } else {
-                if (bucketlist.contains(new_bucket)) {
-                    scanDestination();
-                    migrate();
-                } else {
-                    System.out.print("\nError: Destination S3 account does not have the bucket: " + new_bucket + ".");
-                }
-            }
-
+        if (!restoreSnapshot) {
+            checkBucket();
+        }
+        if (restoreSnapshot) {
+            scanDestination();
+            snapBack();
         } else {
-            System.out.print("\nError: Migration config file does not exist. Please create one in the GUI under the Settings tab.\n\n");
-
+            if (bucketlist.contains(new_bucket)) {
+                scanDestination();
+                migrate();
+            } else {
+                System.out.print("\nError: Destination S3 account does not have the bucket: " + new_bucket + ".");
+            }
         }
 
     }

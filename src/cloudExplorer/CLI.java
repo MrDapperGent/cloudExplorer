@@ -279,6 +279,7 @@ public class CLI {
                             }
                         }
                         if (operation.contains("migrate")) {
+                            bucket = arg1;
                             migrateBucket(arg1, arg2);
                             System.exit(-1);
                         }
