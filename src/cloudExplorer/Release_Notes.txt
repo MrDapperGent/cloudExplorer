@@ -1,15 +1,15 @@
-# Version 9.02
+# Version 9.03
 
 ### Bug Fixes:
 - Sync Fix to support top-level folder
 
 ### Improvements:
-
-- If no region is entered, it will default to us-west-1.
+- None
 
 
 ### New Features:
 - Abort multi-part uploads
+- Migrate Buckets with CLI
 
 Features:
 
@@ -76,6 +76,13 @@ java -jar CloudExplorer.jar deleteall bucket
 #Check for Cloud Explorer updates
 java -jar CloudExplorer.jar upgrade
 
+#Migrate a Bucket to another account/bucket
+The following variables need to be set for the destination account first:
+MIGRATE_ACCESS_KEY
+MIGRATE_SECRET_KEY
+MIGRATE_ENDPOINT
+MIGRATE_REGION
+java -jar CloudExplorer.jar migrate bucket destination_bucket
 
 IRC Options:
 
