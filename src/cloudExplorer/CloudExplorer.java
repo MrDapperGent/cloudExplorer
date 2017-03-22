@@ -28,6 +28,7 @@ public class CloudExplorer {
                 + "\nmakebucket what"
                 + "\nsynctos3 location bucket [folder]"
                 + "\nmigrate bucket destination_bucket"
+                + "\nsnapshot bucket snapshot_bucket"
                 + "\nsyncfroms3 destination bucket [folder]"
                 + "\nuploadtest bucket size threads operations [mixed]"
                 + "\ndownloadtest bucket size threads operations [mixed]"
