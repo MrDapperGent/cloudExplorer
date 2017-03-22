@@ -281,12 +281,12 @@ public class CLI {
                         if (operation.contains("migrate")) {
                             bucket = arg1;
                             migrateBucket(arg1, arg2, "migrate");
-                            System.exit(-1);
+                            System.exit(0);
                         }
                         if (operation.contains("snapshot")) {
                             bucket = arg1;
                             migrateBucket(arg1, arg2, "snapshot");
-                            System.exit(-1);
+                            System.exit(0);
                         }
 
                         if (operation.contains("search")) {
