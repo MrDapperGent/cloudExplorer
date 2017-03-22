@@ -425,7 +425,7 @@ public class CLI {
                 System.out.print("\n\n\nError, no bucket specified.\n\n\n");
             }
         } catch (Exception reloadObjects) {
-            System.out.print("\n\n\nError with loading files:\n\n\n");
+            System.out.print("\n\n\nError with loading files:\n\n" + reloadObjects.getMessage() + "\n\n");
         }
     }
 
