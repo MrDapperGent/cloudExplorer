@@ -25,6 +25,8 @@ import java.io.FileWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.regex.Pattern;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FileUtils;
@@ -73,6 +75,8 @@ public class CLI {
     String win = "\\";
     String lin = "/";
     BucketMigrationCLI migrate;
+    Runnable checkmetadata;
+    ExecutorService executor = Executors.newFixedThreadPool((int) 5);
 
     void messageParser(String message) {
         System.out.print(message);
@@ -344,42 +348,7 @@ public class CLI {
         return what;
     }
 
-    boolean modified_check(String remoteFile, String localFile, Boolean tos3) {
-        boolean recopy = false;
-        long milli;
-        FileInputStream fis = null;
-        String local_md5String = null;
-        String remote_md5String = null;
-
-        try {
-            File check_localFile = new File(localFile);
-            SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
-            Date remote = sdf.parse(bucketObject.getObjectInfo(remoteFile, access_key, secret_key, bucket, endpoint, "objectdate"));
-            milli = check_localFile.lastModified();
-            Date local = new Date(milli);
-            fis = new FileInputStream(localFile);
-            local_md5String = DigestUtils.md5Hex(fis);
-            remote_md5String = bucketObject.getObjectInfo(remoteFile, access_key, secret_key, bucket, endpoint, "checkmd5");
-            if (tos3) {
-                if (local_md5String.contains(remote_md5String)) {
-                } else {
-                    if (local.after(remote)) {
-                        recopy = true;
-                    }
-                }
-            } else {
-                if (local_md5String.contains(remote_md5String)) {
-                } else {
-                    if (remote.after(local)) {
-                        recopy = true;
-                    }
-                }
-            }
-        } catch (Exception modifiedChecker) {
-        }
-        return recopy;
-    }
-
+   
     void syncToS3(String folder
     ) {
         if (folder != null) {
@@ -398,24 +367,12 @@ public class CLI {
             String object = file_found.getAbsolutePath().toString();
             object = object.replace(destination, "");
             object = clean_object_name[clean_object_name.length - 1] + object;
-            int found = 0;
-            for (int y = 1; y != object_array.length; y++) {
-                if (object_array[y].contains(object) && (object_array[y].length() == object.length())) {
-                    if (!modified_check(object_array[y], file_found.getAbsolutePath(), true)) {
-                        found++;
-                    }
-                }
+            if (folder != null) {
+                object = folder + File.separator + object;
             }
 
-            if (found == 0) {
-
-                if (folder != null) {
-                    object = folder + File.separator + object;
-                }
-                put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object, false, false, false);
-                put.run();
-                found = 0;
-            }
+            checkmetadata = new MetaDataCheck(object, file_found.getAbsolutePath(), file_found, object, bucket, access_key, secret_key, endpoint, false, false, false);
+            executor.execute(checkmetadata);
         }
 
         System.out.print(
@@ -644,7 +601,7 @@ public class CLI {
         if ((System.getenv("MIGRATE_ACCESS_KEY") == null) || System.getenv("MIGRATE_SECRET_KEY") == null || System.getenv("MIGRATE_ENDPOINT") == null || System.getenv("MIGRATE_REGION") == null || destination_bucket == null) {
             System.out.print("\nError: Missing a complete set of S3 Credentials in environment variables.\n\n");
         } else {
-            System.out.print("\nStarting to " + operation + " "  + bucket + " to " + destination_bucket + "\n\n");
+            System.out.print("\nStarting to " + operation + " " + bucket + " to " + destination_bucket + "\n\n");
             reloadObjects();
             if (operation.contains("migrate")) {
                 migrate = new BucketMigrationCLI(access_key, secret_key, bucket, endpoint, object_array, false);

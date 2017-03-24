@@ -19,16 +19,14 @@ import java.io.File;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
-import static cloudExplorer.NewJFrame.jTextArea1;
-import java.io.FileInputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.regex.Pattern;
-import org.apache.commons.codec.digest.DigestUtils;
 
 public class SyncToS3 implements Runnable {
 
     NewJFrame mainFrame;
+    Runnable checkmetadata;
     String[] objectarray;
     String[] ObjectsConverted;
     String access_key = null;
@@ -47,6 +45,7 @@ public class SyncToS3 implements Runnable {
     String Home = System.getProperty("user.home");
     String win = "\\";
     String lin = "/";
+    ExecutorService executor = Executors.newFixedThreadPool((int) 5);
 
     SyncToS3(NewJFrame AmainFrame, File Alocation, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobjectarray, Boolean Arrs, Boolean Aencrypt, Boolean Ainfreq) {
         objectarray = Aobjectarray;
@@ -63,36 +62,9 @@ public class SyncToS3 implements Runnable {
 
     public void calibrate() {
         try {
-            jTextArea1.setCaretPosition(jTextArea1.getLineStartOffset(jTextArea1.getLineCount() - 1));
+            mainFrame.jTextArea1.setCaretPosition(mainFrame.jTextArea1.getLineStartOffset(mainFrame.jTextArea1.getLineCount() - 1));
         } catch (Exception e) {
         }
-    }
-
-    boolean modified_check(String remoteFile, String localFile) {
-        boolean recopy = false;
-        long milli;
-        FileInputStream fis = null;
-        String local_md5String = null;
-        String remote_md5String = null;
-        try {
-            File check_localFile = new File(localFile);
-            SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
-            fis = new FileInputStream(localFile);
-            local_md5String = DigestUtils.md5Hex(fis);
-            remote_md5String = mainFrame.bucket.getObjectInfo(remoteFile, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), "checkmd5");
-            Date remote = sdf.parse(mainFrame.bucket.getObjectInfo(remoteFile, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), "objectdate"));
-            milli = check_localFile.lastModified();
-            Date local = new Date(milli);
-
-            if (local_md5String.contains(remote_md5String)) {
-            } else {
-                if (local.after(remote)) {
-                    recopy = true;
-                }
-            }
-        } catch (Exception modifiedChecker) {
-        }
-        return recopy;
     }
 
     public void run() {
@@ -100,7 +72,6 @@ public class SyncToS3 implements Runnable {
 
         List<File> files = (List<File>) FileUtils.listFiles(location, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE);
         for (File file_found : files) {
-            int found = 0;
             String clean_object_name[] = location.toString().split(Pattern.quote(File.separator));
             String object = file_found.getAbsolutePath().toString();
 
@@ -112,25 +83,15 @@ public class SyncToS3 implements Runnable {
                 }
             } catch (Exception indaex) {
             }
-   
-            for (int y = 1; y != objectarray.length; y++) {
-                if (objectarray[y].contains(object) && objectarray[y].length() == object.length()) {
-                    if (!modified_check(objectarray[y], file_found.getAbsolutePath())) {
-                        calibrate();
-                        found++;
-                    }
-                }
-            }
 
-            if (found == 0) {
-
-                if (SyncToS3.running) {
-                    put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object, rrs, encrypt, infreq);
-                    put.run();
-                }
-                found = 0;
-            }
+            checkmetadata = new MetaDataCheck(object, file_found.getAbsolutePath(), file_found, object, bucket, access_key, secret_key, endpoint, rrs, encrypt, infreq);
+            executor.execute(checkmetadata);
         }
+        executor.shutdown();
+
+        while (!executor.isTerminated()) {
+        }
+
         mainFrame.drawBuckets();
         mainFrame.jTextArea1.append("\nSync operation finished running. Please observe this window for any transfers that may still be running.");
         calibrate();
