@@ -146,9 +146,7 @@ public class SyncEngine implements Runnable {
 
                 if (local_md5String.contains(remote_md5String)) {
                 } else {
-                    if (local.after(remote)) {
-                        recopy = true;
-                    }
+                    recopy = true;
                 }
             }
             if (recopy) {
