@@ -85,9 +85,10 @@ public class SyncToS3 implements Runnable {
             } catch (Exception indaex) {
             }
 
-            syncengine = new SyncEngine(object, file_found.getAbsolutePath(), file_found, object, bucket, access_key, secret_key, endpoint, rrs, encrypt, infreq, false, null);
+            syncengine = new SyncEngine(object, file_found.getAbsolutePath(), file_found, object, bucket, access_key, secret_key, endpoint, rrs, encrypt, infreq, true, null);
             executor.execute(syncengine);
         }
+       
         executor.shutdown();
 
         while (!executor.isTerminated()) {
@@ -98,39 +99,7 @@ public class SyncToS3 implements Runnable {
         calibrate();
     }
 
-    String makeDirectory(String what) {
-
-        if (what.substring(0, 2).contains(":")) {
-            what = what.substring(3, what.length());
-        }
-
-        if (what.substring(0, 1).contains("/")) {
-            what = what.substring(1, what.length());
-        }
-
-        if (what.contains("/")) {
-            what = what.replace("/", File.separator);
-        }
-
-        if (what.contains(win)) {
-            what = what.replace(win, File.separator);
-        }
-
-        int slash_counter = 0;
-        int another_counter = 0;
-
-        for (int y = 0; y != what.length(); y++) {
-            if (what.substring(y, y + 1).contains(File.separator)) {
-                slash_counter++;
-                another_counter = y;
-            }
-        }
-
-        File dir = new File(what.substring(0, another_counter));
-        dir.mkdirs();
-        return what;
-    }
-
+    
     void startc(NewJFrame AmainFrame, File location, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobjectarray, Boolean Arrs, Boolean Aencrypt, Boolean Ainfreq
     ) {
         if (SyncToS3.running) {
@@ -142,6 +111,7 @@ public class SyncToS3 implements Runnable {
 
     void stop() {
         SyncToS3.running = false;
+        executor.shutdown();
         syncToS3.stop();
         syncToS3.isInterrupted();
         mainFrame.jTextArea1.setText("\nUpload complete or aborted.\n");

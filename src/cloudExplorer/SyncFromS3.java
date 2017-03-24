@@ -17,10 +17,8 @@ package cloudExplorer;
 
 import java.io.File;
 import static cloudExplorer.NewJFrame.jTextArea1;
-import java.io.FileInputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import org.apache.commons.codec.digest.DigestUtils;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class SyncFromS3 implements Runnable {
 
@@ -37,6 +35,8 @@ public class SyncFromS3 implements Runnable {
     Thread syncFromS3;
     String win = "\\";
     String lin = "/";
+    Runnable syncengine;
+    ExecutorService executor = Executors.newFixedThreadPool((int) 5);
 
     SyncFromS3(NewJFrame AmainFrame, String[] Aobjectarray, String[] AObjectsConverted, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String Adestination) {
         objectarray = Aobjectarray;
@@ -56,66 +56,6 @@ public class SyncFromS3 implements Runnable {
         }
     }
 
-    String makeDirectory(String what) {
-
-        if (what.substring(0, 2).contains(":")) {
-            what = what.substring(3, what.length());
-        }
-        if (what.substring(0, 1).contains("/")) {
-            what = what.substring(1, what.length());
-        }
-        if (what.contains("/")) {
-            what = what.replace("/", File.separator);
-        }
-
-        if (what.contains("\\")) {
-            what = what.replace("\\", File.separator);
-        }
-
-        int slash_counter = 0;
-        int another_counter = 0;
-
-        for (int y = 0; y != what.length(); y++) {
-            if (what.substring(y, y + 1).contains(File.separator)) {
-                slash_counter++;
-                another_counter = y;
-            }
-        }
-
-        File dir = new File(File.separator + what.substring(0, another_counter));
-        dir.mkdirs();
-        return what;
-
-    }
-
-    boolean modified_check(String remoteFile, String localFile) {
-        boolean recopy = false;
-        long milli;
-        String local_md5String = null;
-        String remote_md5String = null;
-        FileInputStream fis = null;
-
-        try {
-            File check_localFile = new File(localFile);
-            SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
-            fis = new FileInputStream(localFile);
-            local_md5String = DigestUtils.md5Hex(fis);
-            remote_md5String = mainFrame.bucket.getObjectInfo(remoteFile, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), "checkmd5");
-            Date remote = sdf.parse(mainFrame.bucket.getObjectInfo(remoteFile, mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), "objectdate"));
-            milli = check_localFile.lastModified();
-            Date local = new Date(milli);
-
-            if (local_md5String.contains(remote_md5String)) {
-            } else {
-                if (remote.after(local)) {
-                    recopy = true;
-                }
-            }
-        } catch (Exception modifiedChecker) {
-        }
-        return recopy;
-    }
-
     public void run() {
         try {
             File[] foo = new File[objectarray.length];
@@ -125,73 +65,15 @@ public class SyncFromS3 implements Runnable {
                 if (objectarray[i] != null) {
                     int found = 0;
                     foo[i] = new File(destination + File.separator + objectarray[i]);
-
-                    if (foo[i].exists()) {
-                        if (!modified_check(objectarray[i], foo[i].getAbsolutePath())) {
-                            calibrate();
-                            found++;
+                    if (index > -1) {
+                        if (objectarray[i].contains(mainFrame.jList3.getSelectedValue().toString())) {
+                            syncengine = new SyncEngine(objectarray[i], null, null, objectarray[i], bucket, access_key, secret_key, endpoint, null, null, null, false, destination);
                         }
-                        calibrate();
+                    } else {
+                        syncengine = new SyncEngine(objectarray[i], null, null, objectarray[i], bucket, access_key, secret_key, endpoint, null, null, null, false, destination);
+
                     }
-                    if (found == 0) {
-
-                        if (index > -1) {
-                            if (objectarray[i].contains(mainFrame.jList3.getSelectedValue().toString())) {
-                                makeDirectory(destination + File.separator + objectarray[i]);
-                                makeDirectory(objectarray[i]);
-                            }
-                        } else {
-                            makeDirectory(destination + File.separator + objectarray[i]);
-                            makeDirectory(objectarray[i]);
-                        }
-
-                        if (SyncFromS3.running) {
-                            try {
-                                String transcoded_object = null;
-                                if (objectarray[i].contains(win) || (objectarray[i].contains(lin))) {
-                                    if (objectarray[i].contains(win) && File.separator.contains(win)) {
-                                        transcoded_object = objectarray[i];
-                                    }
-
-                                    if (objectarray[i].contains(lin) && File.separator.contains(lin)) {
-                                        transcoded_object = objectarray[i];
-                                    }
-
-                                    if (objectarray[i].contains(lin) && File.separator.contains(win)) {
-                                        transcoded_object = objectarray[i].replace(lin, win);
-                                    }
-
-                                    if (objectarray[i].contains(win) && File.separator.contains(lin)) {
-                                        transcoded_object = objectarray[i].replace(win, lin);
-                                    }
-                                    if (index > -1) {
-                                        if (objectarray[i].contains(mainFrame.jList3.getSelectedValue().toString())) {
-                                            get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + transcoded_object, null);
-                                            get.run();
-                                        }
-                                    } else {
-                                        get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + transcoded_object, null);
-                                        get.run();
-                                    }
-                                } else {
-                                    if (index > -1) {
-                                        if (objectarray[i].contains(mainFrame.jList3.getSelectedValue().toString())) {
-                                            get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + objectarray[i], null);
-                                            get.run();
-                                        }
-                                    } else {
-                                        get = new Get(objectarray[i], access_key, secret_key, bucket, endpoint, destination + File.separator + objectarray[i], null);
-                                        get.run();
-                                    }
-
-                                }
-
-                                found = 0;
-                            } catch (Exception fo) {
-
-                            }
-                        }
-                    }
+                    executor.execute(syncengine);
                 }
             }
 
@@ -199,6 +81,10 @@ public class SyncFromS3 implements Runnable {
             mainFrame.jTextArea1.append("\n" + SyncLocal.getMessage());
         }
 
+        executor.shutdown();
+
+        while (!executor.isTerminated()) {
+        }
         mainFrame.drawBuckets();
 
         mainFrame.jTextArea1.append(
@@ -216,6 +102,7 @@ public class SyncFromS3 implements Runnable {
 
     void stop() {
         SyncFromS3.running = false;
+        executor.shutdown();
         syncFromS3.stop();
         syncFromS3.isInterrupted();
         mainFrame.jTextArea1.setText("\nAborted Download\n");
