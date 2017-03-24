@@ -334,6 +334,7 @@ public class CLI {
 
             syncengine = new SyncEngine(object, file_found.getAbsolutePath(), file_found, object, bucket, access_key, secret_key, endpoint, false, false, false, true, null);
             executor.execute(syncengine);
+            System.gc();
         }
         executor.shutdown();
         while (!executor.isTerminated()) {
@@ -378,6 +379,7 @@ public class CLI {
 
                     }
                     executor.execute(syncengine);
+                    System.gc();
                 }
             }
             executor.shutdown();

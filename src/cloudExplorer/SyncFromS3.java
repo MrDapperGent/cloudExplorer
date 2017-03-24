@@ -61,22 +61,23 @@ public class SyncFromS3 implements Runnable {
             File[] foo = new File[objectarray.length];
             int index = mainFrame.jList3.getSelectedIndex(); //get selected index
             for (int i = 1; i != objectarray.length; i++) {
-
-                if (objectarray[i] != null) {
-                    int found = 0;
-                    foo[i] = new File(destination + File.separator + objectarray[i]);
-                    if (index > -1) {
-                        if (objectarray[i].contains(mainFrame.jList3.getSelectedValue().toString())) {
+                if (SyncFromS3.running) {
+                    if (objectarray[i] != null) {
+                        int found = 0;
+                        foo[i] = new File(destination + File.separator + objectarray[i]);
+                        if (index > -1) {
+                            if (objectarray[i].contains(mainFrame.jList3.getSelectedValue().toString())) {
+                                syncengine = new SyncEngine(objectarray[i], null, null, objectarray[i], bucket, access_key, secret_key, endpoint, null, null, null, false, destination);
+                            }
+                        } else {
                             syncengine = new SyncEngine(objectarray[i], null, null, objectarray[i], bucket, access_key, secret_key, endpoint, null, null, null, false, destination);
-                        }
-                    } else {
-                        syncengine = new SyncEngine(objectarray[i], null, null, objectarray[i], bucket, access_key, secret_key, endpoint, null, null, null, false, destination);
 
+                        }
+                        executor.execute(syncengine);
+                        System.gc();
                     }
-                    executor.execute(syncengine);
                 }
             }
-
         } catch (Exception SyncLocal) {
             mainFrame.jTextArea1.append("\n" + SyncLocal.getMessage());
         }
@@ -102,7 +103,6 @@ public class SyncFromS3 implements Runnable {
 
     void stop() {
         SyncFromS3.running = false;
-        executor.shutdown();
         syncFromS3.stop();
         syncFromS3.isInterrupted();
         mainFrame.jTextArea1.setText("\nAborted Download\n");

@@ -67,28 +67,30 @@ public class SyncToS3 implements Runnable {
         }
     }
 
-    
     public void run() {
         int index = mainFrame.jList3.getSelectedIndex(); //get selected index
 
         List<File> files = (List<File>) FileUtils.listFiles(location, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE);
+
         for (File file_found : files) {
-            String clean_object_name[] = location.toString().split(Pattern.quote(File.separator));
-            String object = file_found.getAbsolutePath().toString();
+            if (SyncToS3.running) {
+                String clean_object_name[] = location.toString().split(Pattern.quote(File.separator));
+                String object = file_found.getAbsolutePath().toString();
 
-            object = object.replace(location.toString(), "");
-            object = clean_object_name[clean_object_name.length - 1] + object;
-            try {
-                if (index != -1) {
-                    object = mainFrame.jList3.getSelectedValue().toString() + object;
+                object = object.replace(location.toString(), "");
+                object = clean_object_name[clean_object_name.length - 1] + object;
+                try {
+                    if (index != -1) {
+                        object = mainFrame.jList3.getSelectedValue().toString() + object;
+                    }
+                } catch (Exception indaex) {
                 }
-            } catch (Exception indaex) {
-            }
 
-            syncengine = new SyncEngine(object, file_found.getAbsolutePath(), file_found, object, bucket, access_key, secret_key, endpoint, rrs, encrypt, infreq, true, null);
-            executor.execute(syncengine);
+                syncengine = new SyncEngine(object, file_found.getAbsolutePath(), file_found, object, bucket, access_key, secret_key, endpoint, rrs, encrypt, infreq, true, null);
+                executor.execute(syncengine);
+                System.gc();
+            }
         }
-       
         executor.shutdown();
 
         while (!executor.isTerminated()) {
@@ -99,7 +101,6 @@ public class SyncToS3 implements Runnable {
         calibrate();
     }
 
-    
     void startc(NewJFrame AmainFrame, File location, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobjectarray, Boolean Arrs, Boolean Aencrypt, Boolean Ainfreq
     ) {
         if (SyncToS3.running) {
@@ -111,7 +112,6 @@ public class SyncToS3 implements Runnable {
 
     void stop() {
         SyncToS3.running = false;
-        executor.shutdown();
         syncToS3.stop();
         syncToS3.isInterrupted();
         mainFrame.jTextArea1.setText("\nUpload complete or aborted.\n");
