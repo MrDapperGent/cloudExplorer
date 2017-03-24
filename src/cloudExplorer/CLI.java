@@ -18,17 +18,13 @@ package cloudExplorer;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.regex.Pattern;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 
@@ -75,7 +71,7 @@ public class CLI {
     String win = "\\";
     String lin = "/";
     BucketMigrationCLI migrate;
-    Runnable checkmetadata;
+    Runnable syncengine;
     ExecutorService executor = Executors.newFixedThreadPool((int) 5);
 
     void messageParser(String message) {
@@ -314,41 +310,6 @@ public class CLI {
         }
     }
 
-    String makeDirectory(String what
-    ) {
-
-        if (what.substring(0, 2).contains(":")) {
-            what = what.substring(3, what.length());
-        }
-
-        if (what.substring(0, 1).contains("/")) {
-            what = what.substring(1, what.length());
-        }
-
-        if (what.contains("/")) {
-            what = what.replace("/", File.separator);
-        }
-
-        if (what.contains("\\")) {
-            what = what.replace("\\", File.separator);
-        }
-
-        int slash_counter = 0;
-        int another_counter = 0;
-
-        for (int y = 0; y != what.length(); y++) {
-            if (what.substring(y, y + 1).contains(File.separator)) {
-                slash_counter++;
-                another_counter = y;
-            }
-        }
-
-        File dir = new File(File.separator + what.substring(0, another_counter));
-        dir.mkdirs();
-        return what;
-    }
-
-   
     void syncToS3(String folder
     ) {
         if (folder != null) {
@@ -371,8 +332,11 @@ public class CLI {
                 object = folder + File.separator + object;
             }
 
-            checkmetadata = new MetaDataCheck(object, file_found.getAbsolutePath(), file_found, object, bucket, access_key, secret_key, endpoint, false, false, false);
-            executor.execute(checkmetadata);
+            syncengine = new SyncEngine(object, file_found.getAbsolutePath(), file_found, object, bucket, access_key, secret_key, endpoint, false, false, false, true, null);
+            executor.execute(syncengine);
+        }
+        executor.shutdown();
+        while (!executor.isTerminated()) {
         }
 
         System.out.print(
@@ -403,71 +367,23 @@ public class CLI {
             File[] foo = new File[object_array.length];
             for (int i = 1; i != object_array.length; i++) {
                 if (object_array[i] != null) {
-
                     int found = 0;
                     foo[i] = new File(destination + File.separator + object_array[i]);
-
-                    if (foo[i].exists()) {
-                        if (!modified_check(object_array[i], foo[i].getAbsolutePath(), false)) {
-                            found++;
+                    if (folder != null) {
+                        if (object_array[i].contains(folder)) {
+                            syncengine = new SyncEngine(object_array[i], null, null, object_array[i], bucket, access_key, secret_key, endpoint, null, null, null, false, destination);
                         }
+                    } else {
+                        syncengine = new SyncEngine(object_array[i], null, null, object_array[i], bucket, access_key, secret_key, endpoint, null, null, null, false, destination);
+
                     }
-                    if (found == 0) {
-                        if (folder != null) {
-                            if (object_array[i].contains(folder)) {
-                                makeDirectory(destination + File.separator + object_array[i]);
-                                makeDirectory(object_array[i]);
-                            }
-                        } else {
-                            makeDirectory(destination + File.separator + object_array[i]);
-                            makeDirectory(object_array[i]);
-                        }
-                        try {
-                            String transcoded_object = null;
-                            if (object_array[i].contains(win) || (object_array[i].contains(lin))) {
-                                if (object_array[i].contains(win) && File.separator.contains(win)) {
-                                    transcoded_object = object_array[i];
-                                }
-
-                                if (object_array[i].contains(lin) && File.separator.contains(lin)) {
-                                    transcoded_object = object_array[i];
-                                }
-
-                                if (object_array[i].contains(lin) && File.separator.contains(win)) {
-                                    transcoded_object = object_array[i].replace(lin, win);
-                                }
-
-                                if (object_array[i].contains(win) && File.separator.contains(lin)) {
-                                    transcoded_object = object_array[i].replace(win, lin);
-                                }
-                                if (folder != null) {
-                                    if (object_array[i].contains(folder)) {
-                                        get = new Get(object_array[i], access_key, secret_key, bucket, endpoint, destination + File.separator + transcoded_object, null);
-                                        get.run();
-                                    }
-                                } else {
-                                    get = new Get(object_array[i], access_key, secret_key, bucket, endpoint, destination + File.separator + transcoded_object, null);
-                                    get.run();
-                                }
-                            } else {
-                                if (folder != null) {
-                                    if (object_array[i].contains(folder)) {
-                                        get = new Get(object_array[i], access_key, secret_key, bucket, endpoint, destination + File.separator + object_array[i], null);
-                                        get.run();
-                                    }
-                                } else {
-                                    get = new Get(object_array[i], access_key, secret_key, bucket, endpoint, destination + File.separator + object_array[i], null);
-                                    get.run();
-                                }
-                            }
-
-                            found = 0;
-                            System.out.print("\nSync operation complete.\n\n\n");
-                        } catch (Exception sync) {
-                        }
-                    }
+                    executor.execute(syncengine);
                 }
             }
+            executor.shutdown();
+            while (!executor.isTerminated()) {
+            }
+            System.out.print("\nSync operation finished running");
         } catch (Exception sync) {
         }
 

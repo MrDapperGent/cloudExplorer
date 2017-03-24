@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
 public class SyncToS3 implements Runnable {
 
     NewJFrame mainFrame;
-    Runnable checkmetadata;
+    Runnable syncengine;
     String[] objectarray;
     String[] ObjectsConverted;
     String access_key = null;
@@ -67,6 +67,7 @@ public class SyncToS3 implements Runnable {
         }
     }
 
+    
     public void run() {
         int index = mainFrame.jList3.getSelectedIndex(); //get selected index
 
@@ -84,8 +85,8 @@ public class SyncToS3 implements Runnable {
             } catch (Exception indaex) {
             }
 
-            checkmetadata = new MetaDataCheck(object, file_found.getAbsolutePath(), file_found, object, bucket, access_key, secret_key, endpoint, rrs, encrypt, infreq);
-            executor.execute(checkmetadata);
+            syncengine = new SyncEngine(object, file_found.getAbsolutePath(), file_found, object, bucket, access_key, secret_key, endpoint, rrs, encrypt, infreq, false, null);
+            executor.execute(syncengine);
         }
         executor.shutdown();
 
