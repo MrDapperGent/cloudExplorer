@@ -66,14 +66,16 @@ public class BucketMigrationCLI implements Runnable {
     String[] object_array;
     Runnable migrationengine;
     ExecutorService executor = Executors.newFixedThreadPool((int) 5);
+    String snapfolder;
 
-    BucketMigrationCLI(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobject_array, Boolean Asnapshot) {
+    BucketMigrationCLI(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobject_array, Boolean Asnapshot, String Asnapfolder) {
         access_key = Aaccess_key;
         secret_key = Asecret_key;
         bucket = Abucket;
         endpoint = Aendpoint;
         object_array = Aobject_array;
         snapshot = Asnapshot;
+        snapfolder = Asnapfolder;
     }
 
     String date(String format) {
@@ -110,7 +112,7 @@ public class BucketMigrationCLI implements Runnable {
                 } else {
                     sep = lin;
                 }
-
+                String snapshot_data = null;
                 String search = null;
                 if (snapshot) {
                     search = "Snapshot-" + bucket + "-" + date + sep + object_array;
@@ -121,22 +123,20 @@ public class BucketMigrationCLI implements Runnable {
                 if (object_array[i].contains("Snapshot-Changes-")) {
                 } else {
                     if (snapshot) {
-                        get = new Get(object_array[i], access_key, secret_key, bucket, endpoint, temp_file, null);
-                        get.run();
                         if (deltas) {
-                            //change_folder = mainFrame.snap_folder.replace("Snapshot-", "Snapshot-Changes-");
-                            put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, change_folder + object_array[i], false, false, false);
+                            if(NewJFrame.gui){
+                            change_folder = snapfolder.replace("Snapshot-", "Snapshot-Changes-");
+                            }
+                            snapshot_data = change_folder + object_array[i];
                         } else {
-                            put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + sep + object_array[i], false, false, false);
+                            snapshot_data = "Snapshot-" + bucket + "-" + date + sep + object_array[i];
                         }
-                        put.run();
-                    } else {
-                        migrationengine = new MigrationEngine(object_array[i], bucket, access_key, secret_key, endpoint, new_bucket, new_access_key, new_secret_key, new_endpoint);
-                        executor.execute(migrationengine);
                     }
+                    migrationengine = new MigrationEngine(object_array[i], bucket, access_key, secret_key, endpoint, new_bucket, new_access_key, new_secret_key, new_endpoint, snapshot_data);
+                    executor.execute(migrationengine);
+                    System.gc();
                 }
             }
-            System.gc();
         }
         executor.shutdown();
 
@@ -214,8 +214,8 @@ public class BucketMigrationCLI implements Runnable {
 
     }
 
-    void startc(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobject_array, Boolean Asnapshot) {
-        bucketMigration = new Thread(new BucketMigrationCLI(Aaccess_key, Asecret_key, Abucket, Aendpoint, Aobject_array, Asnapshot));
+    void startc(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobject_array, Boolean Asnapshot, String Asnapfolder) {
+        bucketMigration = new Thread(new BucketMigrationCLI(Aaccess_key, Asecret_key, Abucket, Aendpoint, Aobject_array, Asnapshot, Asnapfolder));
         bucketMigration.start();
     }
 

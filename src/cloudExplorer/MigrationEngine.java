@@ -31,8 +31,9 @@ public class MigrationEngine implements Runnable {
     String lin = "/";
     File check_localFile;
     String Home = System.getProperty("user.home");
+    String snapshot;
 
-    MigrationEngine(String AremoteFile, String Abucket, String Aaccess_key, String Asecret_key, String Aendpoint, String Amigration_bucket, String Amigration_access_key, String Amigration_secret_key, String Amigration_endpoint) {
+    MigrationEngine(String AremoteFile, String Abucket, String Aaccess_key, String Asecret_key, String Aendpoint, String Amigration_bucket, String Amigration_access_key, String Amigration_secret_key, String Amigration_endpoint, String Asnapshot) {
         remoteFile = AremoteFile;
         bucket = Abucket;
         access_key = Aaccess_key;
@@ -42,6 +43,7 @@ public class MigrationEngine implements Runnable {
         migration_access_key = Amigration_access_key;
         migration_secret_key = Amigration_secret_key;
         migration_endpoint = Amigration_endpoint;
+        snapshot = Asnapshot;
     }
 
     public String Transcode(String what) {
@@ -125,6 +127,9 @@ public class MigrationEngine implements Runnable {
         if (recopy) {
             get = new Get(remoteFile, access_key, secret_key, bucket, endpoint, uuid, null);
             get.run();
+            if (snapshot != null) {
+                put = new Put(uuid, migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, snapshot, false, false, false);
+            }
             put = new Put(uuid, migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, remoteFile, false, false, false);
             put.run();
             File delete = new File(uuid);
