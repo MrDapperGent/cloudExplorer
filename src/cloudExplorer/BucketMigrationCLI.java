@@ -25,6 +25,8 @@ import com.amazonaws.services.s3.S3ClientOptions;
 import com.amazonaws.services.s3.model.Bucket;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class BucketMigrationCLI implements Runnable {
 
@@ -62,6 +64,8 @@ public class BucketMigrationCLI implements Runnable {
     Boolean deltas = false;
     String change_folder = null;
     String[] object_array;
+    Runnable migrationengine;
+    ExecutorService executor = Executors.newFixedThreadPool((int) 5);
 
     BucketMigrationCLI(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobject_array, Boolean Asnapshot) {
         access_key = Aaccess_key;
@@ -78,53 +82,25 @@ public class BucketMigrationCLI implements Runnable {
         return dt.format(date);
     }
 
-    boolean modified_check(String snapFile, String origFile) {
-        boolean recopy = false;
-        String snapFile_md5String = null;
-        String origFile_md5String = null;
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
-            snapFile_md5String = bucketinfo.getObjectInfo(snapFile, new_access_key, new_secret_key, new_bucket, new_endpoint, "checkmd5");
-            Date snapFileDate = sdf.parse(bucketinfo.getObjectInfo(snapFile, new_access_key, new_secret_key, new_bucket, new_endpoint, "objectdate"));
-            origFile_md5String = bucketinfo.getObjectInfo(origFile, access_key, secret_key, bucket, endpoint, "checkmd5");
-            Date origFileDate = sdf.parse(bucketinfo.getObjectInfo(origFile, access_key, secret_key, bucket, endpoint, "objectdate"));
-            if (snapFile_md5String.contains(origFile_md5String) || snapFile_md5String.contains(origFile_md5String)) {
-            } else {
-                if ((origFileDate.after(snapFileDate) || snapFileDate.after(origFileDate))) {
-                    recopy = true;
-                }
-            }
-        } catch (Exception modifiedChecker) {
-            System.out.print("\n\nError with verifying files:\n" + modifiedChecker.getMessage() + "\n\n");
-        }
-        return recopy;
-    }
-
-    public void snapBack() {
-        for (int i = 1; i != restoreArray.length; i++) {
-
-            if (restoreArray[i] != null) {
-                if (restoreArray[i].contains(active_folder)) {
-                    String original_name = restoreArray[i].replaceAll(active_folder, "");
-                    if (objectlist.contains(original_name)) {
-                        if (modified_check(restoreArray[i], original_name)) {
-                            get = new Get(restoreArray[i], new_access_key, new_secret_key, new_bucket, new_endpoint, temp_file, null);
-                            get.run();
-                            put = new Put(temp_file, access_key, secret_key, bucket, endpoint, original_name, false, false, false);
-                            put.run();
-                        }
-                    } else {
-                        get = new Get(restoreArray[i], new_access_key, new_secret_key, new_bucket, new_endpoint, temp_file, null);
-                        get.run();
-                        put = new Put(temp_file, access_key, secret_key, bucket, endpoint, original_name, false, false, false);
-                        put.run();
-                    }
-                }
-            }
-        }
-        System.out.print("\nSnapshot restore operation complete.");
-    }
-
+    /**
+     *
+     * public void snapBack() { for (int i = 1; i != restoreArray.length; i++) {
+     *
+     * if (restoreArray[i] != null) { if
+     * (restoreArray[i].contains(active_folder)) { String original_name =
+     * restoreArray[i].replaceAll(active_folder, ""); if
+     * (objectlist.contains(original_name)) { if
+     * (modified_check(restoreArray[i], original_name)) { get = new
+     * Get(restoreArray[i], new_access_key, new_secret_key, new_bucket,
+     * new_endpoint, temp_file, null); get.run(); put = new Put(temp_file,
+     * access_key, secret_key, bucket, endpoint, original_name, false, false,
+     * false); put.run(); } } else { get = new Get(restoreArray[i],
+     * new_access_key, new_secret_key, new_bucket, new_endpoint, temp_file,
+     * null); get.run(); put = new Put(temp_file, access_key, secret_key,
+     * bucket, endpoint, original_name, false, false, false); put.run(); } } } }
+     * System.out.print("\nSnapshot restore operation complete."); }
+     *
+     */
     public void migrate() {
         String date = date("yyyy-MM-dd");
         for (int i = 1; i != object_array.length; i++) {
@@ -144,45 +120,28 @@ public class BucketMigrationCLI implements Runnable {
 
                 if (object_array[i].contains("Snapshot-Changes-")) {
                 } else {
-                    if (destinationBucketlist.contains(search)) {
-
-                        if (modified_check(search, object_array[i])) {
-                            if (snapshot) {
-                                get = new Get(object_array[i], access_key, secret_key, bucket, endpoint, temp_file, null);
-                                get.run();
-                                if (deltas) {
-                                    //change_folder = mainFrame.snap_folder.replace("Snapshot-", "Snapshot-Changes-");
-                                    put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, change_folder + object_array[i], false, false, false);
-                                } else {
-                                    put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + sep + object_array[i], false, false, false);
-                                }
-                                put.run();
-                            } else {
-                                get = new Get(object_array[i], access_key, secret_key, bucket, endpoint, temp_file, null);
-                                get.run();
-                                put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, object_array[i], false, false, false);
-                                put.run();
-                            }
-                        }
-                    } else {
+                    if (snapshot) {
                         get = new Get(object_array[i], access_key, secret_key, bucket, endpoint, temp_file, null);
                         get.run();
-                        if (snapshot) {
-                            if (deltas) {
-                                // change_folder = mainFrame.snap_folder.replace("Snapshot-", "Snapshot-Changes-");
-                                put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, change_folder + object_array[i], false, false, false);
-                            } else {
-                                put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + sep + object_array[i], false, false, false);
-                            }
+                        if (deltas) {
+                            //change_folder = mainFrame.snap_folder.replace("Snapshot-", "Snapshot-Changes-");
+                            put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, change_folder + object_array[i], false, false, false);
                         } else {
-                            put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, object_array[i], false, false, false);
+                            put = new Put(temp_file, new_access_key, new_secret_key, new_bucket, new_endpoint, "Snapshot-" + bucket + "-" + date + sep + object_array[i], false, false, false);
                         }
                         put.run();
+                    } else {
+                        migrationengine = new MigrationEngine(object_array[i], bucket, access_key, secret_key, endpoint, new_bucket, new_access_key, new_secret_key, new_endpoint);
+                        executor.execute(migrationengine);
                     }
                 }
             }
+            System.gc();
         }
+        executor.shutdown();
 
+        while (!executor.isTerminated()) {
+        }
         if (snapshot) {
             System.out.print("\nBucket snapshot complete.\n\n");
         } else {
@@ -242,8 +201,8 @@ public class BucketMigrationCLI implements Runnable {
             checkBucket();
         }
         if (restoreSnapshot) {
-            scanDestination();
-            snapBack();
+            //          scanDestination();
+//            snapBack();
         } else {
             if (bucketlist.contains(new_bucket)) {
                 scanDestination();
