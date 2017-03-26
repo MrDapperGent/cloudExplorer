@@ -5,6 +5,7 @@
 
 ### Improvements:
 - Faster Syncing, Bucket Migrations, and Snapshots - 5 files at a time with metadata checks.
+- Cleaner and shared code between CLI and GUI
 
 
 ### New Features:
