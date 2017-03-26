@@ -59,8 +59,6 @@ public class BucketMigrationCLI implements Runnable {
 
     String active_folder = null;
     String objectlist = null;
-    String win = "\\";
-    String lin = "/";
     String sep = null;
     Boolean deltas = false;
     String change_folder = null;
@@ -102,25 +100,15 @@ public class BucketMigrationCLI implements Runnable {
      * null); get.run(); put = new Put(temp_file, access_key, secret_key,
      * bucket, endpoint, original_name, false, false, false); put.run(); } } } }
      * System.out.print("\nSnapshot restore operation complete."); }
-*
+     *
      */
     public void migrate() {
         String date = date("yyyy-MM-dd");
         for (int i = 1; i != object_array.length; i++) {
             if (object_array[i] != null) {
-                if (object_array[i].contains(win)) {
-                    sep = win;
-                } else {
-                    sep = lin;
-                }
+               
                 String snapshot_data = null;
-                String search = null;
-                if (snapshot) {
-                    search = "Snapshot-" + bucket + "-" + date + sep + object_array;
-                } else {
-                    search = object_array[i];
-                }
-
+               
                 if (object_array[i].contains("Snapshot-Changes-")) {
                 } else {
                     if (snapshot) {
@@ -135,7 +123,6 @@ public class BucketMigrationCLI implements Runnable {
                         migrationengine = new MigrationEngine(object_array[i], new_bucket, new_access_key, new_secret_key, new_endpoint, bucket, access_key, secret_key, endpoint, snapshot_data);
                     } else {
                         migrationengine = new MigrationEngine(object_array[i], bucket, access_key, secret_key, endpoint, new_bucket, new_access_key, new_secret_key, new_endpoint, snapshot_data);
-                        System.out.print("\n" +object_array[i] +  bucket + access_key +secret_key+ endpoint+ new_bucket+ new_access_key+ new_secret_key+new_endpoint + snapshot_data);
                     }
                     executor.execute(migrationengine);
                     System.gc();
