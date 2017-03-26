@@ -4,7 +4,7 @@
 - Sync Fix to support top-level folder
 
 ### Improvements:
-- Faster Syncing - 5 files at a time with metadata checks.
+- Faster Syncing, Bucket Migrations, and Snapshots - 5 files at a time with metadata checks.
 
 
 ### New Features:
