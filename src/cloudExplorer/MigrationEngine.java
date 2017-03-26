@@ -128,9 +128,11 @@ public class MigrationEngine implements Runnable {
             get = new Get(remoteFile, access_key, secret_key, bucket, endpoint, uuid, null);
             get.run();
             if (snapshot != null) {
+                System.out.print("\nSDebug 1:" + snapshot);
                 put = new Put(uuid, migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, snapshot, false, false, false);
             } else {
-                 put = new Put(uuid, migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, remoteFile, false, false, false); 
+                System.out.print("\nSDebug 2:" + snapshot);
+                put = new Put(uuid, migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, remoteFile, false, false, false);
             }
             put.run();
             File delete = new File(uuid);
