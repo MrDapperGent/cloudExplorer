@@ -104,10 +104,8 @@ public class Snapshot implements Runnable {
                     jTextArea1.setText("\nBucket snapshot has started. Please view this window for any errors.");
                     calibrate();
                     if (active_folder != null) {
-                        ReloadObjects object = new ReloadObjects(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), mainFrame);
-                        object.run();
-                        migrate = new BucketMigrationCLI(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.objectarray, true, active_folder, deltas, true);
-                        migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.objectarray, true, active_folder, deltas, true);
+                        migrate = new BucketMigrationCLI(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.objectarray, false, active_folder, deltas, true);
+                        migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.objectarray, false, active_folder, deltas, true);
                     } else {
                         jTextArea1.setText("\nError: You did not select an active folder to restore from.");
                         calibrate();

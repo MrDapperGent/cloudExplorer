@@ -17,6 +17,7 @@ public class MigrationEngine implements Runnable {
     String localFile;
     String bucket;
     String endpoint;
+    String restoreSnapshot;
     String access_key;
     String secret_key;
     String object;
@@ -33,7 +34,7 @@ public class MigrationEngine implements Runnable {
     String Home = System.getProperty("user.home");
     String snapshot;
 
-    MigrationEngine(String AremoteFile, String Abucket, String Aaccess_key, String Asecret_key, String Aendpoint, String Amigration_bucket, String Amigration_access_key, String Amigration_secret_key, String Amigration_endpoint, String Asnapshot) {
+    MigrationEngine(String AremoteFile, String Abucket, String Aaccess_key, String Asecret_key, String Aendpoint, String Amigration_bucket, String Amigration_access_key, String Amigration_secret_key, String Amigration_endpoint, String Asnapshot, String ArestoreSnapshot) {
         remoteFile = AremoteFile;
         bucket = Abucket;
         access_key = Aaccess_key;
@@ -44,6 +45,7 @@ public class MigrationEngine implements Runnable {
         migration_secret_key = Amigration_secret_key;
         migration_endpoint = Amigration_endpoint;
         snapshot = Asnapshot;
+        restoreSnapshot = ArestoreSnapshot;
     }
 
     public String Transcode(String what) {
@@ -103,7 +105,6 @@ public class MigrationEngine implements Runnable {
     }
 
     public void run() {
-
         boolean recopy = false;
         String snapFile_md5String = null;
         String origFile_md5String = null;
@@ -111,7 +112,12 @@ public class MigrationEngine implements Runnable {
 
         try {
             snapFile_md5String = Bucket.getObjectInfo(remoteFile, migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, "checkmd5");
-            origFile_md5String = Bucket.getObjectInfo(remoteFile, access_key, secret_key, bucket, endpoint, "checkmd5");
+            if (restoreSnapshot != null) {
+                origFile_md5String = Bucket.getObjectInfo(remoteFile.replace(restoreSnapshot, ""), access_key, secret_key, bucket, endpoint, "checkmd5");
+            } else {
+                origFile_md5String = Bucket.getObjectInfo(remoteFile, access_key, secret_key, bucket, endpoint, "checkmd5");
+            }
+
             if (snapFile_md5String == null) {
                 recopy = true;
             } else {
@@ -130,7 +136,11 @@ public class MigrationEngine implements Runnable {
             if (snapshot != null) {
                 put = new Put(uuid, migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, snapshot, false, false, false);
             } else {
-                put = new Put(uuid, migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, remoteFile, false, false, false);
+                if (restoreSnapshot != null) {
+                    put = new Put(uuid, migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, remoteFile.replace(restoreSnapshot, ""), false, false, false);
+                } else {
+                    put = new Put(uuid, migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, remoteFile, false, false, false);
+                }
             }
             put.run();
             File delete = new File(uuid);

@@ -97,6 +97,7 @@ public class BucketMigrationCLI implements Runnable {
 
     public void migrate() {
         String date = date("yyyy-MM-dd");
+
         for (int i = 1; i != object_array.length; i++) {
             if (object_array[i] != null) {
 
@@ -119,9 +120,9 @@ public class BucketMigrationCLI implements Runnable {
                         }
                     }
                     if (restoreSnapshot) {
-                        migrationengine = new MigrationEngine(object_array[i], new_bucket, new_access_key, new_secret_key, new_endpoint, bucket, access_key, secret_key, endpoint, snapshot_data);
+                        migrationengine = new MigrationEngine(object_array[i], new_bucket, new_access_key, new_secret_key, new_endpoint, bucket, access_key, secret_key, endpoint, null, snapfolder);
                     } else {
-                        migrationengine = new MigrationEngine(object_array[i], bucket, access_key, secret_key, endpoint, new_bucket, new_access_key, new_secret_key, new_endpoint, snapshot_data);
+                        migrationengine = new MigrationEngine(object_array[i], bucket, access_key, secret_key, endpoint, new_bucket, new_access_key, new_secret_key, new_endpoint, snapshot_data, null);
                     }
                     executor.execute(migrationengine);
                     System.gc();
@@ -233,13 +234,8 @@ public class BucketMigrationCLI implements Runnable {
     }
 
     void scanDestination() {
-
         BucketClass bucketObject = new BucketClass();
         destinationBucketlist = bucketObject.listBucketContents(new_access_key, new_secret_key, new_bucket, new_endpoint);
-        if (restoreSnapshot) {
-            restoreArray = destinationBucketlist.split("@@");
-            objectlist = bucketObject.listBucketContents(access_key, secret_key, bucket, endpoint);
-        }
         System.gc();
     }
 
@@ -248,8 +244,11 @@ public class BucketMigrationCLI implements Runnable {
             loadDestinationAccount();
         }
 
-        if (!restoreSnapshot) {
-            checkBucket();
+        checkBucket();
+        
+        if (restoreSnapshot) {
+            objectlist = bucketObject.listBucketContents(new_access_key, new_secret_key, new_bucket, new_endpoint);
+            object_array = objectlist.split("@@");
         }
         if (bucketlist.contains(new_bucket)) {
             scanDestination();
