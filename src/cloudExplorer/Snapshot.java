@@ -85,11 +85,16 @@ public class Snapshot implements Runnable {
                     if (sync_deltas.isSelected()) {
                         deltas = true;
                     }
-                    jTextArea1.setText("\nBucket snapshot has started. Please view this window for any errors.");
-                    ReloadObjects object = new ReloadObjects(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), mainFrame);
-                    object.run();
-                    migrate = new BucketMigrationCLI(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.objectarray, true, mainFrame.snap_folder, deltas); 
-                    migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.objectarray, true, mainFrame.snap_folder, deltas);
+                    if (deltas && mainFrame.snap_folder == null) {
+                        jTextArea1.append("\nError, you did not select a set a Snapshot origin folder.");
+                        calibrate();
+                    } else {
+                        jTextArea1.setText("\nBucket snapshot has started. Please view this window for any errors.");
+                        ReloadObjects object = new ReloadObjects(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), mainFrame);
+                        object.run();
+                        migrate = new BucketMigrationCLI(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.objectarray, true, mainFrame.snap_folder, deltas);
+                        migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.objectarray, true, mainFrame.snap_folder, deltas);
+                    }
                 }
             });
 
