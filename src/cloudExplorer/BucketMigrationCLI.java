@@ -85,24 +85,6 @@ public class BucketMigrationCLI implements Runnable {
         return dt.format(date);
     }
 
-    /**
-     * public void snapBack() { for (int i = 1; i != restoreArray.length; i++) {
-     *
-     * if (restoreArray[i] != null) { if
-     * (restoreArray[i].contains(active_folder)) { String original_name =
-     * restoreArray[i].replaceAll(active_folder, ""); if
-     * (objectlist.contains(original_name)) { if
-     * (modified_check(restoreArray[i], original_name)) { get = new
-     * Get(restoreArray[i], new_access_key, new_secret_key, new_bucket,
-     * new_endpoint, temp_file, null); get.run(); put = new Put(temp_file,
-     * access_key, secret_key, bucket, endpoint, original_name, false, false,
-     * false); put.run(); } } else { get = new Get(restoreArray[i],
-     * new_access_key, new_secret_key, new_bucket, new_endpoint, temp_file,
-     * null); get.run(); put = new Put(temp_file, access_key, secret_key,
-     * bucket, endpoint, original_name, false, false, false); put.run(); } } } }
-     * System.out.print("\nSnapshot restore operation complete."); }
-     *
-     */
     public void migrate() {
         String date = date("yyyy-MM-dd");
         for (int i = 1; i != object_array.length; i++) {
