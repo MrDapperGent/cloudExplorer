@@ -56,6 +56,7 @@ public class BucketMigrationCLI implements Runnable {
     Boolean snapshot = false;
     BucketClass bucketObject = new BucketClass();
     Boolean restoreSnapshot = false;
+  
     String active_folder = null;
     String objectlist = null;
     String win = "\\";
@@ -68,7 +69,7 @@ public class BucketMigrationCLI implements Runnable {
     ExecutorService executor = Executors.newFixedThreadPool((int) 5);
     String snapfolder;
 
-    BucketMigrationCLI(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobject_array, Boolean Asnapshot, String Asnapfolder) {
+    BucketMigrationCLI(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobject_array, Boolean Asnapshot, String Asnapfolder, Boolean Adeltas) {
         access_key = Aaccess_key;
         secret_key = Asecret_key;
         bucket = Abucket;
@@ -76,6 +77,7 @@ public class BucketMigrationCLI implements Runnable {
         object_array = Aobject_array;
         snapshot = Asnapshot;
         snapfolder = Asnapfolder;
+        deltas = Adeltas;
     }
 
     String date(String format) {
@@ -214,9 +216,11 @@ public class BucketMigrationCLI implements Runnable {
 
     }
 
-    void startc(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobject_array, Boolean Asnapshot, String Asnapfolder) {
-        bucketMigration = new Thread(new BucketMigrationCLI(Aaccess_key, Asecret_key, Abucket, Aendpoint, Aobject_array, Asnapshot, Asnapfolder));
+    void startc(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobject_array, Boolean Asnapshot, String Asnapfolder, Boolean Adeltas) {
+        bucketMigration = new Thread(new BucketMigrationCLI(Aaccess_key, Asecret_key, Abucket, Aendpoint, Aobject_array, Asnapshot, Asnapfolder, Adeltas));
         bucketMigration.start();
     }
-
+void stop() {
+       bucketMigration.stop();
+    }
 }

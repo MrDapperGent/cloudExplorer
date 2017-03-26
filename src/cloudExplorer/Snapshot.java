@@ -31,7 +31,7 @@ public class Snapshot implements Runnable {
     public static String response = null;
     public static String region = null;
     public static String dest_bucket = null;
-    BucketMigration migrate;
+    BucketMigrationCLI migrate;
     String Home = System.getProperty("user.home");
     String config_file = (Home + File.separator + "s3Migrate.config");
     String active_folder = null;
@@ -88,8 +88,8 @@ public class Snapshot implements Runnable {
                     jTextArea1.setText("\nBucket snapshot has started. Please view this window for any errors.");
                     ReloadObjects object = new ReloadObjects(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), mainFrame);
                     object.run();
-                    migrate = new BucketMigration(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, true, false, null, deltas);
-                    migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, true, false, null, deltas);
+                    migrate = new BucketMigrationCLI(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.objectarray, true, mainFrame.snap_folder, deltas);
+                    migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.objectarray, true, mainFrame.snap_folder, deltas);
                 }
             });
 
@@ -101,8 +101,8 @@ public class Snapshot implements Runnable {
                     if (active_folder != null) {
                         ReloadObjects object = new ReloadObjects(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), mainFrame);
                         object.run();
-                        migrate = new BucketMigration(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, true, true, active_folder, deltas);
-                        migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, true, true, active_folder, deltas);
+                        migrate = new BucketMigrationCLI(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.objectarray, true, active_folder, deltas);
+                        migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.objectarray, true, active_folder, deltas);
                     } else {
                         jTextArea1.setText("\nError: You did not select an active folder to restore from.");
                         calibrate();

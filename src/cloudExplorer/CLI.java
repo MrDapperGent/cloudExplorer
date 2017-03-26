@@ -522,9 +522,9 @@ public class CLI {
             System.out.print("\nStarting to " + operation + " " + bucket + " to " + destination_bucket + "\n\n");
             reloadObjects();
             if (operation.contains("migrate")) {
-                migrate = new BucketMigrationCLI(access_key, secret_key, bucket, endpoint, object_array, false,null);
+                migrate = new BucketMigrationCLI(access_key, secret_key, bucket, endpoint, object_array, false,null,false);
             } else {
-                migrate = new BucketMigrationCLI(access_key, secret_key, bucket, endpoint, object_array, true,null);
+                migrate = new BucketMigrationCLI(access_key, secret_key, bucket, endpoint, object_array, true,null,true);
             }
             migrate.new_access_key = System.getenv("MIGRATE_ACCESS_KEY");
             migrate.new_secret_key = System.getenv("MIGRATE_SECRET_KEY");

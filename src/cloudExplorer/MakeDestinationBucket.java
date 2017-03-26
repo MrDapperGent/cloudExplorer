@@ -30,7 +30,7 @@ public class MakeDestinationBucket implements Runnable {
     public static String response = null;
     public static String region = null;
     public static String dest_bucket = null;
-    BucketMigration migrate;
+    BucketMigrationCLI migrate;
     String Home = System.getProperty("user.home");
     String config_file = (Home + File.separator + "s3Migrate.config");
     String active_folder = null;
@@ -72,9 +72,8 @@ public class MakeDestinationBucket implements Runnable {
                     calibrate();
                     ReloadObjects object = new ReloadObjects(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), mainFrame);
                     object.run();
-                    migrate = new BucketMigration(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, false, false, null, false);
-                    migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame, false, false, null, false);
-
+                    migrate = new BucketMigrationCLI(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.objectarray, false, mainFrame.snap_folder, false);
+                    migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.objectarray, false, mainFrame.snap_folder, false);
                 }
             });
 
