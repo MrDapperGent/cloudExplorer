@@ -56,7 +56,7 @@ public class BucketMigrationCLI implements Runnable {
     Boolean snapshot = false;
     BucketClass bucketObject = new BucketClass();
     Boolean restoreSnapshot = false;
-  
+
     String active_folder = null;
     String objectlist = null;
     String win = "\\";
@@ -85,26 +85,39 @@ public class BucketMigrationCLI implements Runnable {
         SimpleDateFormat dt = new SimpleDateFormat(format);
         return dt.format(date);
     }
+/**
+    public void snapBack() {
+        for (int i = 1; i != restoreArray.length; i++) {
 
-    /**
-     *
-     * public void snapBack() { for (int i = 1; i != restoreArray.length; i++) {
-     *
-     * if (restoreArray[i] != null) { if
-     * (restoreArray[i].contains(active_folder)) { String original_name =
-     * restoreArray[i].replaceAll(active_folder, ""); if
-     * (objectlist.contains(original_name)) { if
-     * (modified_check(restoreArray[i], original_name)) { get = new
-     * Get(restoreArray[i], new_access_key, new_secret_key, new_bucket,
-     * new_endpoint, temp_file, null); get.run(); put = new Put(temp_file,
-     * access_key, secret_key, bucket, endpoint, original_name, false, false,
-     * false); put.run(); } } else { get = new Get(restoreArray[i],
-     * new_access_key, new_secret_key, new_bucket, new_endpoint, temp_file,
-     * null); get.run(); put = new Put(temp_file, access_key, secret_key,
-     * bucket, endpoint, original_name, false, false, false); put.run(); } } } }
-     * System.out.print("\nSnapshot restore operation complete."); }
-     *
-     */
+            if (restoreArray[i] != null) {
+                if (restoreArray[i].contains(active_folder)) {
+                    String original_name
+                            = restoreArray[i].replaceAll(active_folder, "");
+                    if (objectlist.contains(original_name)) {
+                        if (modified_check(restoreArray[i], original_name)) {
+                            get = new Get(restoreArray[i], new_access_key, new_secret_key, new_bucket,
+                                    new_endpoint, temp_file, null);
+                            get.run();
+                            put = new Put(temp_file,
+                                    access_key, secret_key, bucket, endpoint, original_name, false, false,
+                                    false);
+                            put.run();
+                        }
+                    } else {
+                        get = new Get(restoreArray[i],
+                                new_access_key, new_secret_key, new_bucket, new_endpoint, temp_file,
+                                null);
+                        get.run();
+                        put = new Put(temp_file, access_key, secret_key,
+                                bucket, endpoint, original_name, false, false, false);
+                        put.run();
+                    }
+                }
+            }
+        }
+        System.out.print("\nSnapshot restore operation complete.");
+    }
+**/
     public void migrate() {
         String date = date("yyyy-MM-dd");
         for (int i = 1; i != object_array.length; i++) {
@@ -126,15 +139,20 @@ public class BucketMigrationCLI implements Runnable {
                 } else {
                     if (snapshot) {
                         if (deltas) {
-                            if(NewJFrame.gui){
-                            change_folder = snapfolder.replace("Snapshot-", "Snapshot-Changes-");
+                            if (NewJFrame.gui) {
+                                change_folder = snapfolder.replace("Snapshot-", "Snapshot-Changes-");
                             }
                             snapshot_data = change_folder + object_array[i];
                         } else {
                             snapshot_data = "Snapshot-" + bucket + "-" + date + sep + object_array[i];
                         }
                     }
-                    migrationengine = new MigrationEngine(object_array[i], bucket, access_key, secret_key, endpoint, new_bucket, new_access_key, new_secret_key, new_endpoint, snapshot_data);
+                    if (restoreSnapshot) {
+                        migrationengine = new MigrationEngine(object_array[i], new_bucket, new_access_key, new_secret_key, new_endpoint, bucket, access_key, secret_key, endpoint, snapshot_data);
+                    } else {
+                        migrationengine = new MigrationEngine(object_array[i], bucket, access_key, secret_key, endpoint, new_bucket, new_access_key, new_secret_key, new_endpoint, snapshot_data);
+
+                    }
                     executor.execute(migrationengine);
                     System.gc();
                 }
@@ -145,9 +163,18 @@ public class BucketMigrationCLI implements Runnable {
         while (!executor.isTerminated()) {
         }
         if (snapshot) {
+            if (NewJFrame.gui) {
+                NewJFrame.jTextArea1.append("\nBucket snapshot complete.\n\n");
+            } else {
+                System.out.print("\nBucket snapshot complete.\n\n");
+            }
             System.out.print("\nBucket snapshot complete.\n\n");
         } else {
-            System.out.print("\n\nBucket migration complete.\n\n");
+            if (NewJFrame.gui) {
+                NewJFrame.jTextArea1.append("\n\nBucket migration complete.\n\n");
+            } else {
+                System.out.print("\n\nBucket migration complete.\n\n");
+            }
         }
 
     }
@@ -167,8 +194,14 @@ public class BucketMigrationCLI implements Runnable {
                 bucketlist = bucketlist + " " + bucket.getName();
             }
         } catch (Exception listBucket) {
-            System.out.print("\n\nAn error has occurred in listBucket.");
-            System.out.print("\n\nError Message:    " + listBucket.getMessage());
+            if (NewJFrame.gui) {
+                NewJFrame.jTextArea1.append("\n\nAn error has occurred in listBucket.");
+                NewJFrame.jTextArea1.append("\n\nError Message:    " + listBucket.getMessage());
+            } else {
+                System.out.print("\n\nAn error has occurred in listBucket.");
+                System.out.print("\n\nError Message:    " + listBucket.getMessage());
+            }
+
         }
         String parse = null;
 
@@ -202,25 +235,24 @@ public class BucketMigrationCLI implements Runnable {
         if (!restoreSnapshot) {
             checkBucket();
         }
-        if (restoreSnapshot) {
-            //          scanDestination();
-//            snapBack();
+        if (bucketlist.contains(new_bucket)) {
+            scanDestination();
+            migrate();
         } else {
-            if (bucketlist.contains(new_bucket)) {
-                scanDestination();
-                migrate();
+            if (NewJFrame.gui) {
+                NewJFrame.jTextArea1.append("\nError: Destination S3 account does not have the bucket: " + new_bucket + ".");
             } else {
                 System.out.print("\nError: Destination S3 account does not have the bucket: " + new_bucket + ".");
             }
         }
-
     }
 
     void startc(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobject_array, Boolean Asnapshot, String Asnapfolder, Boolean Adeltas) {
         bucketMigration = new Thread(new BucketMigrationCLI(Aaccess_key, Asecret_key, Abucket, Aendpoint, Aobject_array, Asnapshot, Asnapfolder, Adeltas));
         bucketMigration.start();
     }
-void stop() {
-       bucketMigration.stop();
+
+    void stop() {
+        bucketMigration.stop();
     }
 }
