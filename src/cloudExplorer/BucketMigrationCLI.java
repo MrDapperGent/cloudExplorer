@@ -23,6 +23,8 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.S3ClientOptions;
 import com.amazonaws.services.s3.model.Bucket;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.ExecutorService;
@@ -175,6 +177,47 @@ public class BucketMigrationCLI implements Runnable {
         return parse;
     }
 
+    String loadMigrationConfig() {
+        String data = null;
+
+        try {
+            FileReader fr = new FileReader(config_file);
+            BufferedReader bfr = new BufferedReader(fr);
+            String read = null;
+
+            while ((read = bfr.readLine()) != null) {
+                if (read.length() > 1) {
+                    if (read.contains("@")) {
+                        data = data + read;
+                    }
+                }
+            }
+        } catch (Exception loadConfig) {
+        }
+        String remove_null = data.replace("null", "");
+        return remove_null;
+
+    }
+
+    void loadDestinationAccount() {
+        String account = loadMigrationConfig();
+        String[] account_array = new String[6];
+        try {
+            account_array = account.split("@");
+            for (int i = 0; i != 6; i++) {
+                if (account_array[i] != null) {
+                    new_access_key = account_array[0];
+                    new_secret_key = account_array[1];
+                    new_endpoint = account_array[2] + ":" + account_array[3];
+                    new_region = account_array[4];
+                    new_bucket = account_array[5];
+                }
+            }
+
+        } catch (Exception loadconfig) {
+        }
+    }
+
     void checkBucket() {
         ReloadBuckets buckets = new ReloadBuckets(new_access_key, new_secret_key, new_endpoint, null);
         bucketlist = listBuckets(new_access_key, new_secret_key, new_endpoint);
@@ -192,6 +235,10 @@ public class BucketMigrationCLI implements Runnable {
     }
 
     public void run() {
+        if (NewJFrame.gui) {
+            loadDestinationAccount();
+        }
+        
         if (!restoreSnapshot) {
             checkBucket();
         }

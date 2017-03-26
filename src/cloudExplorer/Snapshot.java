@@ -88,7 +88,7 @@ public class Snapshot implements Runnable {
                     jTextArea1.setText("\nBucket snapshot has started. Please view this window for any errors.");
                     ReloadObjects object = new ReloadObjects(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), mainFrame);
                     object.run();
-                    migrate = new BucketMigrationCLI(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.objectarray, true, mainFrame.snap_folder, deltas);
+                    migrate = new BucketMigrationCLI(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.objectarray, true, mainFrame.snap_folder, deltas); 
                     migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.objectarray, true, mainFrame.snap_folder, deltas);
                 }
             });
