@@ -72,8 +72,8 @@ public class MakeDestinationBucket implements Runnable {
                     calibrate();
                     ReloadObjects object = new ReloadObjects(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.getEndpoint(), mainFrame);
                     object.run();
-                    migrate = new BucketMigrationCLI(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.objectarray, false, mainFrame.snap_folder, false);
-                    migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.objectarray, false, mainFrame.snap_folder, false);
+                    migrate = new BucketMigrationCLI(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.objectarray, false, mainFrame.snap_folder, false, false);
+                    migrate.startc(mainFrame.cred.access_key, mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.objectarray, false, mainFrame.snap_folder, false, false);
                 }
             });
 
