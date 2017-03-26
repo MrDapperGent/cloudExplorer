@@ -138,7 +138,6 @@ public class BucketMigrationCLI implements Runnable {
             } else {
                 System.out.print("\nBucket snapshot complete.\n\n");
             }
-            System.out.print("\nBucket snapshot complete.\n\n");
         } else {
             if (NewJFrame.gui) {
                 NewJFrame.jTextArea1.append("\n\nBucket migration complete.\n\n");
