@@ -129,8 +129,9 @@ public class MigrationEngine implements Runnable {
             get.run();
             if (snapshot != null) {
                 put = new Put(uuid, migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, snapshot, false, false, false);
+            } else {
+                 put = new Put(uuid, migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, remoteFile, false, false, false); 
             }
-            put = new Put(uuid, migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, remoteFile, false, false, false);
             put.run();
             File delete = new File(uuid);
             delete.delete();
