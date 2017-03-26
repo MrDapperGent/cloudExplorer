@@ -56,7 +56,8 @@ public class BucketMigrationCLI implements Runnable {
     Boolean snapshot = false;
     BucketClass bucketObject = new BucketClass();
     Boolean restoreSnapshot = false;
-
+    String win = "\\";
+    String lin = "/";
     String active_folder = null;
     String objectlist = null;
     String sep = null;
@@ -106,9 +107,15 @@ public class BucketMigrationCLI implements Runnable {
         String date = date("yyyy-MM-dd");
         for (int i = 1; i != object_array.length; i++) {
             if (object_array[i] != null) {
-               
+
                 String snapshot_data = null;
-               
+
+                if (object_array[i].contains(win)) {
+                    sep = win;
+                } else {
+                    sep = lin;
+                }
+
                 if (object_array[i].contains("Snapshot-Changes-")) {
                 } else {
                     if (snapshot) {
