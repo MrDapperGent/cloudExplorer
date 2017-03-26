@@ -81,6 +81,13 @@ public class BucketMigrationCLI implements Runnable {
         deltas = Adeltas;
     }
 
+    public void calibrate() {
+        try {
+            NewJFrame.jTextArea1.setCaretPosition(NewJFrame.jTextArea1.getLineStartOffset(NewJFrame.jTextArea1.getLineCount() - 1));
+        } catch (Exception e) {
+        }
+    }
+
     String date(String format) {
         Date date = new Date();
         SimpleDateFormat dt = new SimpleDateFormat(format);
@@ -127,6 +134,7 @@ public class BucketMigrationCLI implements Runnable {
         if (snapshot) {
             if (NewJFrame.gui) {
                 NewJFrame.jTextArea1.append("\nBucket snapshot complete.\n\n");
+                calibrate();
             } else {
                 System.out.print("\nBucket snapshot complete.\n\n");
             }
@@ -134,6 +142,7 @@ public class BucketMigrationCLI implements Runnable {
         } else {
             if (NewJFrame.gui) {
                 NewJFrame.jTextArea1.append("\n\nBucket migration complete.\n\n");
+                calibrate();
             } else {
                 System.out.print("\n\nBucket migration complete.\n\n");
             }
@@ -238,7 +247,7 @@ public class BucketMigrationCLI implements Runnable {
         if (NewJFrame.gui) {
             loadDestinationAccount();
         }
-        
+
         if (!restoreSnapshot) {
             checkBucket();
         }
