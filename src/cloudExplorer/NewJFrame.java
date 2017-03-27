@@ -1601,7 +1601,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenu12.add(jMenuItem33);
 
         jMenuItem30.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jMenuItem30.setText("Snapshots");
+        jMenuItem30.setText("Snapshot");
         jMenuItem30.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem30ActionPerformed(evt);
@@ -1610,7 +1610,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenu12.add(jMenuItem30);
 
         jMenuItem17.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jMenuItem17.setText("Migrate Bucket");
+        jMenuItem17.setText("Migration");
         jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem17ActionPerformed(evt);
