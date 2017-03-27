@@ -110,18 +110,17 @@ public class MigrationEngine implements Runnable {
         String uuid = Home + File.separator + UUID.randomUUID().toString();
 
         try {
-            snapFile_md5String = Bucket.getObjectInfo(remoteFile, migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, "checkmd5");
             if (restoreSnapshot != null) {
-                origFile_md5String = Bucket.getObjectInfo(remoteFile.replace(restoreSnapshot, ""), access_key, secret_key, bucket, endpoint, "checkmd5");
+                snapFile_md5String = Bucket.getObjectInfo(remoteFile.replace(restoreSnapshot, ""), migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, "checkmd5");
             } else {
-                origFile_md5String = Bucket.getObjectInfo(remoteFile, access_key, secret_key, bucket, endpoint, "checkmd5");
+                snapFile_md5String = Bucket.getObjectInfo(remoteFile, migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, "checkmd5");
             }
-
+            origFile_md5String = Bucket.getObjectInfo(remoteFile, access_key, secret_key, bucket, endpoint, "checkmd5");
+            
             if (snapFile_md5String == null) {
                 recopy = true;
             } else {
-                if (snapFile_md5String.contains(origFile_md5String)) {
-                } else {
+                if (!snapFile_md5String.contains(origFile_md5String)) {
                     recopy = true;
                 }
             }
