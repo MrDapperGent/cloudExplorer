@@ -1,5 +1,5 @@
-# Description 
-Cloud Explorer is a open-source S3 client. It works on Windows, Linux, and Mac.  It has a graphical and command line interface for each supported operating system. If you have a feature suggestion or find a bug, please open an issue. 
+# Description
+Cloud Explorer is a open-source S3 client. It works on Windows, Linux, and Mac.  It has a graphical and command line interface for each supported operating system. If you have a feature suggestion or find a bug, please open an issue.
 [![Codewake](https://www.codewake.com/badges/ask_question.svg)](https://www.codewake.com/p/cloud-explorer)
 
 ![Graph](http://i.imgur.com/aw5iKZf.png)
@@ -42,7 +42,7 @@ A copy of the GNU GPL is located in `LICENSE.txt`.
 
 # How to run the program
 
-To run the application, most users should be able to run the program by double clicking on the CloudExplorer.jar file. 
+To run the application, most users should be able to run the program by double clicking on the CloudExplorer.jar file.
 
 If not, you can start the program with the Java command:
 ```
@@ -60,7 +60,7 @@ java -jar CloudExplorer.jar
 If you want to make changes to the GUI, here is a video demonstration on how to compile Cloud Explorer with NetBeans: http://youtu.be/54v3rIUh0h8
 
 ## 1. Install and Configure Java
-``` 
+```
 apt-get update
 apt-get -y install git ant openjdk-8-jdk-headless
 ```
@@ -72,35 +72,35 @@ ant
 ```
 ## 3. Run Cloud Explorer
 ```
-Double click on dist/CloudExplorer.jar 
+Double click on dist/CloudExplorer.jar
 or....
 java -jar dist/CloudExplorer.jar help
 ```
 
 # Upgrading
 
-To upgrade, please use the updater located in the application. Everytime Cloud Explorer is ran, it will check for the latest version. To apply the update, click "Help -> Check for updates". Starting with version 8, you will be able to upgrade to newer releases with major library changes without manually downloading the newer release from this site. Since there is no upgrade path from version 7 to 8, you will need to download the version 8 release manually. 
+To upgrade, please use the updater located in the application. Everytime Cloud Explorer is ran, it will check for the latest version. To apply the update, click "Help -> Check for updates". Starting with version 8, you will be able to upgrade to newer releases with major library changes without manually downloading the newer release from this site. Since there is no upgrade path from version 7 to 8, you will need to download the version 8 release manually.
 
 # How to migrate data between S3 accounts
 * Load the destination account and create or select a bucket to migrate to.
 * From the menu "Snapshots and Migration", click "Set Migration/Snapshot Account and Bucket".
 * Switch to the origin account and select the bucket to migrate.
-* Under the "Snapshots and Migration", select "Migrate Bucket to Another S3 Account".
-* Click Start Migration
+* Under the "Snapshots and Migration", select "Migration".
+* Click "Start Migration".
 
 # How to create a bucket snapshot
 * Load the destination account and create or select a bucket to store the snapshot.
 * From the menu "Snapshots and Migration", click "Set Migration/Snapshot Account and Bucket".
 * Switch to the origin account and select the bucket to snap.
-* Under the "Snapshots and Migration", select "Create or Restore a Bucket Snapshot".
-* Click Create Snapshot
+* Under the "Snapshots and Migration", select "Snapshots".
+* Click "Create Snapshot".
 
 # Background Sync
 
-Background Sync allows Cloud Explorer to sync a directory in the background to S3 every 5 minutes. Sync will only upload files that do not exist on S3 and no files will be deleted. 
+Background Sync allows Cloud Explorer to sync a directory in the background to S3 every 5 minutes. Sync will only upload files that do not exist on S3 and no files will be deleted.
 <br>
 <br>
-From the GUI: 
+From the GUI:
 * Click on "Background Syncing"
 * Click Configure
 * Click Save.
@@ -117,17 +117,17 @@ Create your config file from the GUI.
 
 # Running Cloud Explorer in Docker
 
-The following steps will explain how to run Cloud Explorer from a Docker container. The template will install an Ubuntu container using the FVWM window manager. 
+The following steps will explain how to run Cloud Explorer from a Docker container. The template will install an Ubuntu container using the FVWM window manager.
 
 ### Creating the container
 
 First, clone this repo:
 ```
-git clone https://github.com/rusher81572/cloudExplorer.git 
+git clone https://github.com/rusher81572/cloudExplorer.git
 cd cloudExplorer
 ```
 
-### Build Cloud Explorer 
+### Build Cloud Explorer
 ```
 ant
 ```
@@ -146,7 +146,7 @@ docker build -t cloudexplorer .
 ### Running the container - CLI
 
 
-To use enviornment variables to store S3 account information when using the Cloud Explorer CLI instead of uploading an s3.config file:
+To use environment variables to store S3 account information when using the Cloud Explorer CLI instead of uploading an s3.config file:
 ```
 docker run -it --net=host -e ACCESS_KEY='****' -e SECRET_KEY='***' -e ENDPOINT='https://s3.amazonaws.com:443' -e REGION='default' cloudexplorer bash
 java -jar /CloudExplorer.jar help
@@ -167,9 +167,9 @@ vncviewer docker_host_ip:1
 ```
 The default password for VNC is 123456. You should see the Cloud Explorer GUI after authentication.
 
-### Using the CLI in VNC 
+### Using the CLI in VNC
 
 If you want to use the Cloud Explorer CLI, start a terminal in the VNC session by right clicking on the desktop and choose "xterm". Finally, run the following command:
 ```
 java -jar /CloudExplorer.jar help
-```	
+```
