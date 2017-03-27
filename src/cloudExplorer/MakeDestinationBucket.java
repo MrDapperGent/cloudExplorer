@@ -42,25 +42,19 @@ public class MakeDestinationBucket implements Runnable {
     public void run() {
         try {
             final JButton startMigration = new JButton("Start Migration");
-            final JButton abortMigration = new JButton("Abort");
-            final JButton close = new JButton("Close");
+            final JButton close = new JButton("Stop/Close");
             final JLabel blank = new JLabel(" ");
             final JLabel blank2 = new JLabel(" ");
             final JLabel blank3 = new JLabel(" ");
             startMigration.setBackground(Color.white);
             startMigration.setForeground(Color.BLUE);
             startMigration.setFont(startMigration.getFont().deriveFont(14.0f));
-            abortMigration.setBackground(Color.white);
-            abortMigration.setForeground(Color.BLUE);
-            abortMigration.setFont(abortMigration.getFont().deriveFont(14.0f));
             startMigration.setBorder(null);
-            abortMigration.setBorder(null);
             close.setBackground(Color.white);
             close.setBorder(null);
             close.setForeground(Color.BLUE);
             close.setFont(close.getFont().deriveFont(14.0f));
             close.setIcon(mainFrame.genericEngine);
-            abortMigration.setIcon(mainFrame.genericEngine);
             startMigration.setIcon(mainFrame.genericEngine);
 
             mainFrame.jPanel15.setVisible(false);
@@ -77,16 +71,10 @@ public class MakeDestinationBucket implements Runnable {
                 }
             });
 
-            abortMigration.addActionListener(new ActionListener() {
-
-                public void actionPerformed(ActionEvent e) {
-                    migrate.stop();
-                }
-            });
-
             close.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
+                     migrate.stop();
                     mainFrame.jPanel14.removeAll();
                     mainFrame.jPanel14.repaint();
                     mainFrame.jPanel14.revalidate();
@@ -99,7 +87,6 @@ public class MakeDestinationBucket implements Runnable {
             mainFrame.jPanel14.setLayout(new BoxLayout(mainFrame.jPanel14, BoxLayout.Y_AXIS));
             mainFrame.jPanel14.add(blank);
             mainFrame.jPanel14.add(startMigration);
-            mainFrame.jPanel14.add(abortMigration);
             mainFrame.jPanel14.add(close);
             mainFrame.jPanel14.repaint();
             mainFrame.jPanel14.revalidate();

@@ -245,7 +245,7 @@ public class BucketMigrationCLI implements Runnable {
         }
 
         checkBucket();
-        
+
         if (restoreSnapshot) {
             objectlist = bucketObject.listBucketContents(new_access_key, new_secret_key, new_bucket, new_endpoint);
             object_array = objectlist.split("@@");
@@ -269,5 +269,6 @@ public class BucketMigrationCLI implements Runnable {
 
     void stop() {
         bucketMigration.stop();
+        bucketMigration.isInterrupted();
     }
 }

@@ -46,8 +46,7 @@ public class Snapshot implements Runnable {
         try {
             final JButton createSnapshot = new JButton("Create Snapshot");
             final JButton restoreSnapshot = new JButton("Restore Snapshot");
-            final JButton abortMigration = new JButton("Abort");
-            final JButton close = new JButton("Close");
+            final JButton close = new JButton("Stop/Close");
             final JCheckBox sync_deltas = new JCheckBox("Sync Only Changes");
             final JLabel blank = new JLabel(" ");
             final JLabel blank2 = new JLabel(" ");
@@ -63,17 +62,13 @@ public class Snapshot implements Runnable {
             createSnapshot.setForeground(Color.BLUE);
             createSnapshot.setFont(createSnapshot.getFont().deriveFont(14.0f));
 
-            abortMigration.setBackground(Color.white);
-            abortMigration.setForeground(Color.BLUE);
             createSnapshot.setBorder(null);
             restoreSnapshot.setBorder(null);
-            abortMigration.setBorder(null);
             close.setBackground(Color.white);
             close.setBorder(null);
             close.setFont(close.getFont().deriveFont(14.0f));
             close.setForeground(Color.BLUE);
             close.setIcon(mainFrame.genericEngine);
-            abortMigration.setIcon(mainFrame.genericEngine);
             restoreSnapshot.setIcon(mainFrame.genericEngine);
             createSnapshot.setIcon(mainFrame.genericEngine);
 
@@ -113,16 +108,10 @@ public class Snapshot implements Runnable {
                 }
             });
 
-            abortMigration.addActionListener(new ActionListener() {
-
-                public void actionPerformed(ActionEvent e) {
-                    migrate.stop();
-                }
-            });
-
             close.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
+                    migrate.stop();
                     mainFrame.jPanel14.removeAll();
                     mainFrame.jPanel14.repaint();
                     mainFrame.jPanel14.revalidate();
