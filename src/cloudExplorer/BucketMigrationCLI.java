@@ -60,7 +60,6 @@ public class BucketMigrationCLI implements Runnable {
     Boolean restoreSnapshot = false;
     String win = "\\";
     String lin = "/";
-    String active_folder = null;
     String objectlist = null;
     String sep = null;
     Boolean deltas = false;
