@@ -132,6 +132,7 @@ public class MigrationEngine implements Runnable {
             get = new Get(remoteFile, access_key, secret_key, bucket, endpoint, uuid, null);
             get.run();
             if (snapshot != null) {
+                System.out.print("\nDebug:" + snapshot);
                 put = new Put(uuid, migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, snapshot, false, false, false);
             } else {
                 if (restoreSnapshot != null) {

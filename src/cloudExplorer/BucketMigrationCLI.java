@@ -114,7 +114,6 @@ public class BucketMigrationCLI implements Runnable {
                         if (deltas) {
                             change_folder = snapfolder.replace("Snapshot-", "Snapshot-Changes-");
                             snapshot_data = change_folder + object_array[i];
-                            System.out.print("\nDebug:" + snapshot_data);
                         } else {
                             snapshot_data = "Snapshot-" + bucket + "-" + date + sep + object_array[i];
                         }
