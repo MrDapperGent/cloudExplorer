@@ -530,6 +530,7 @@ public class CLI {
                 migrate = new BucketMigrationCLI(access_key, secret_key, bucket, endpoint, object_array, false, null, false, false);
             } else {
                 if (existing_snapshot_folder != null) {
+                    System.out.print("\nDebug:" +existing_snapshot_folder );
                     migrate = new BucketMigrationCLI(access_key, secret_key, bucket, endpoint, object_array, true, existing_snapshot_folder, true, false);
                 } else {
                     migrate = new BucketMigrationCLI(access_key, secret_key, bucket, endpoint, object_array, true, null, false, false);
