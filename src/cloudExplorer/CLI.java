@@ -280,12 +280,17 @@ public class CLI {
                         }
                         if (operation.contains("migrate")) {
                             bucket = arg1;
-                            migrateBucket(arg1, arg2, "migrate");
+                            migrateBucket(arg1, arg2, "migrate", null);
                             System.exit(0);
                         }
                         if (operation.contains("snapshot")) {
                             bucket = arg1;
-                            migrateBucket(arg1, arg2, "snapshot");
+                            if (arg3 != null) {
+                                migrateBucket(arg1, arg2, "snapshot", arg3);
+                            } else {
+                                migrateBucket(arg1, arg2, "snapshot", null);
+                            }
+
                             System.exit(0);
                         }
 
@@ -514,7 +519,7 @@ public class CLI {
         }
     }
 
-    void migrateBucket(String bucket, String destination_bucket, String operation) {
+    void migrateBucket(String bucket, String destination_bucket, String operation, String existing_snapshot_folder) {
 
         if ((System.getenv("MIGRATE_ACCESS_KEY") == null) || System.getenv("MIGRATE_SECRET_KEY") == null || System.getenv("MIGRATE_ENDPOINT") == null || System.getenv("MIGRATE_REGION") == null || destination_bucket == null) {
             System.out.print("\nError: Missing a complete set of S3 Credentials in environment variables.\n\n");
@@ -522,9 +527,13 @@ public class CLI {
             System.out.print("\nStarting to " + operation + " " + bucket + " to " + destination_bucket + "\n\n");
             reloadObjects();
             if (operation.contains("migrate")) {
-                migrate = new BucketMigrationCLI(access_key, secret_key, bucket, endpoint, object_array, false,null,false, false);
+                migrate = new BucketMigrationCLI(access_key, secret_key, bucket, endpoint, object_array, false, null, false, false);
             } else {
-                migrate = new BucketMigrationCLI(access_key, secret_key, bucket, endpoint, object_array, true,null,false, false);
+                if (existing_snapshot_folder != null) {
+                    migrate = new BucketMigrationCLI(access_key, secret_key, bucket, endpoint, object_array, true, existing_snapshot_folder, true, false);
+                } else {
+                    migrate = new BucketMigrationCLI(access_key, secret_key, bucket, endpoint, object_array, true, null, false, false);
+                }
             }
             migrate.new_access_key = System.getenv("MIGRATE_ACCESS_KEY");
             migrate.new_secret_key = System.getenv("MIGRATE_SECRET_KEY");

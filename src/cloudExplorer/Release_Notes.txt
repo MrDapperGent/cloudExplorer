@@ -12,6 +12,7 @@
 - Abort multi-part uploads
 - Migrate Buckets with CLI
 - Snapshot Buckets with CLI
+- Snapshot deltas with CLI 
 
 Features:
 
@@ -92,7 +93,7 @@ MIGRATE_ACCESS_KEY
 MIGRATE_SECRET_KEY
 MIGRATE_ENDPOINT
 MIGRATE_REGION
-java -jar CloudExplorer.jar snapshot bucket snapshot_bucket
+java -jar CloudExplorer.jar snapshot bucket snapshot_bucket [existing_snapshot_folder]
 
 
 IRC Options:
