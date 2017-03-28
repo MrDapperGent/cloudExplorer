@@ -2,6 +2,7 @@
 
 ### Bug Fixes:
 - Sync Fix to support top-level folder
+- setPathStyleAccess fix
 
 ### Improvements:
 - Faster Syncing, Bucket Migrations, and Snapshots - 5 files at a time with metadata checks.

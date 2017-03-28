@@ -46,7 +46,7 @@ public class Acl {
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
             AmazonS3 s3Client = new AmazonS3Client(credentials,
                     new ClientConfiguration());
-            s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(false).build());
+            s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(true).build());
             s3Client.setEndpoint(endpoint);
             AccessControlList bucketAcl = s3Client.getBucketAcl(bucket);
             Grant grant = null;
@@ -82,7 +82,7 @@ public class Acl {
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
             AmazonS3 s3Client = new AmazonS3Client(credentials,
                     new ClientConfiguration());
-            s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(false).build());
+            s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(true).build());
             s3Client.setEndpoint(endpoint);
             s3Client.setObjectAcl(bucket, object, CannedAccessControlList.PublicRead);
         } catch (Exception setACLpublic) {
@@ -95,7 +95,7 @@ public class Acl {
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
             AmazonS3 s3Client = new AmazonS3Client(credentials,
                     new ClientConfiguration());
-            s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(false).build());
+            s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(true).build());
             s3Client.setEndpoint(endpoint);
             s3Client.setObjectAcl(bucket, object, CannedAccessControlList.Private);
         } catch (Exception setACLprivate) {
@@ -109,7 +109,7 @@ public class Acl {
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
             AmazonS3 s3Client = new AmazonS3Client(credentials,
                     new ClientConfiguration());
-            s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(false).build());
+            s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(true).build());
             s3Client.setEndpoint(endpoint);
             message = s3Client.getObjectAcl(bucket, object).toString();
         } catch (Exception viewACL) {
@@ -124,7 +124,7 @@ public class Acl {
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
             AmazonS3 s3Client = new AmazonS3Client(credentials,
                     new ClientConfiguration());
-            s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(false).build());
+            s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(true).build());
             s3Client.setEndpoint(endpoint);
             BucketWebsiteConfiguration bucketWebsiteConfiguration = s3Client.getBucketWebsiteConfiguration(bucket);
             s3Client.setBucketAcl(bucket, CannedAccessControlList.PublicRead);
@@ -139,7 +139,7 @@ public class Acl {
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
             AmazonS3 s3Client = new AmazonS3Client(credentials,
                     new ClientConfiguration());
-            s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(false).build());
+            s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(true).build());
             s3Client.setEndpoint(endpoint);
             s3Client.deleteBucketWebsiteConfiguration(bucket);
         } catch (Exception removeBUCKETwebsite) {
@@ -153,7 +153,7 @@ public class Acl {
             AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
             AmazonS3 s3Client = new AmazonS3Client(credentials,
                     new ClientConfiguration());
-            s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(false).build());
+            s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(true).build());
             s3Client.setEndpoint(endpoint);
             java.util.Date expiration = new java.util.Date();
             long milliSeconds = expiration.getTime();
