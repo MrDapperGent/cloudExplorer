@@ -20,7 +20,6 @@ import com.amazonaws.AmazonServiceException;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.S3ClientOptions;
@@ -28,9 +27,9 @@ import com.amazonaws.services.s3.model.Bucket;
 import com.amazonaws.services.s3.model.BucketVersioningConfiguration;
 import com.amazonaws.services.s3.model.CreateBucketRequest;
 import com.amazonaws.services.s3.model.DeleteBucketRequest;
-import com.amazonaws.services.s3.model.ListMultipartUploadsRequest;
 import com.amazonaws.services.s3.model.ListObjectsRequest;
-import com.amazonaws.services.s3.model.MultipartUploadListing;
+import com.amazonaws.services.s3.model.ListObjectsV2Request;
+import com.amazonaws.services.s3.model.ListObjectsV2Result;
 import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.amazonaws.services.s3.model.SetBucketVersioningConfigurationRequest;
@@ -38,11 +37,11 @@ import com.amazonaws.services.s3.transfer.TransferManager;
 import java.util.Date;
 
 public class BucketClass {
-
+    
     String objectlist = null;
     public static Boolean terminal = false;
     NewJFrame mainFrame;
-
+    
     Boolean VersioningStatus(String access_key, String secret_key, String bucket, String endpoint, String region, Boolean enable) {
         String message = null;
         boolean result = false;
@@ -50,7 +49,7 @@ public class BucketClass {
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
         s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(false).build());
-
+        
         s3Client.setEndpoint(endpoint);
         try {
             message = s3Client.getBucketVersioningConfiguration(bucket).getStatus().toString();
@@ -61,10 +60,10 @@ public class BucketClass {
             }
         } catch (Exception versioning) {
         }
-
+        
         return result;
     }
-
+    
     Boolean LifeCycleStatus(String access_key, String secret_key, String bucket, String endpoint, String region, Boolean enable) {
         String message = null;
         boolean result = false;
@@ -82,12 +81,12 @@ public class BucketClass {
             }
         } catch (Exception lifecyclestatus) {
         }
-
+        
         return result;
     }
-
+    
     String controlVersioning(String access_key, String secret_key, String bucket, String endpoint, String region, Boolean enable) {
-
+        
         String message = null;
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
@@ -110,15 +109,15 @@ public class BucketClass {
             message = "\nVersioning failed.";
         }
         return message;
-
+        
     }
-
+    
     String makeBucket(String access_key, String secret_key, String bucket, String endpoint, String region) {
         String message = null;
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
-
+        
         if (region.contains("defaultAWS") || region.length() < 1) {
             region = "us-west-1";
         }
@@ -147,15 +146,15 @@ public class BucketClass {
             message = "Failed to create bucket.";
         }
         return message;
-
+        
     }
-
+    
     String abortMPUploads(String access_key, String secret_key, String bucket, String endpoint, String region) {
         String message = null;
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
-
+        
         if (region.contains("defaultAWS") || region.length() < 1) {
             region = "us-west-1";
         }
@@ -187,34 +186,34 @@ public class BucketClass {
             message = "Failed to list multi-part uploads.";
         }
         return message;
-
+        
     }
-
+    
     public void calibrate() {
         try {
             jTextArea1.setCaretPosition(jTextArea1.getLineStartOffset(jTextArea1.getLineCount() - 1));
         } catch (Exception e) {
         }
     }
-
+    
     String listBuckets(String access_key, String secret_key, String endpoint) {
-
+        
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
         s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(false).build());
         s3Client.setEndpoint(endpoint);
         String[] array = new String[10];
-
+        
         String bucketlist = null;
-
+        
         int i = 0;
         try {
-
+            
             for (Bucket bucket : s3Client.listBuckets()) {
                 bucketlist = bucketlist + " " + bucket.getName();
             }
-
+            
         } catch (AmazonServiceException ase) {
             if (NewJFrame.gui) {
                 mainFrame.jTextArea1.append("\n\nError Message:    " + ase.getMessage());
@@ -230,9 +229,9 @@ public class BucketClass {
                 System.out.print("\nError Type:       " + ase.getErrorType());
                 System.out.print("\nRequest ID:       " + ase.getRequestId());
             }
-
+            
         } catch (Exception lsbuckets) {
-
+            
             if (lsbuckets.getMessage().contains("peer not authenticated") || lsbuckets.getMessage().contains("hostname in certificate didn't match")) {
                 if (NewJFrame.gui) {
                     mainFrame.jTextArea1.append("\nError: This program does not support non-trusted SSL certificates\n\nor your SSL certificates are incorrect.");
@@ -242,42 +241,41 @@ public class BucketClass {
             }
         }
         String parse = null;
-
+        
         if (bucketlist != null) {
             parse = bucketlist.replace("null", "");
-
+            
         } else {
             parse = "no_bucket_found";
         }
-
+        
         return parse;
     }
-
+    
     String listBucketContents(String access_key, String secret_key, String bucket, String endpoint) {
         objectlist = null;
-
+        
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
         s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(false).build());
         s3Client.setEndpoint(endpoint);
-        ListObjectsRequest listObjectsRequest = null;
+        final ListObjectsV2Request req = new ListObjectsV2Request().withBucketName(bucket).withDelimiter("");
+        ListObjectsV2Result result;
         try {
-            ObjectListing current = s3Client.listObjects((bucket));
-            listObjectsRequest = new ListObjectsRequest().withBucketName(bucket);
-            ObjectListing objectListing;
-            do {
-                objectListing = s3Client.listObjects(listObjectsRequest);
-                for (S3ObjectSummary objectSummary : objectListing.getObjectSummaries()) {
+            do {                
+                result = s3Client.listObjectsV2(req);
+                for (S3ObjectSummary objectSummary
+                        : result.getObjectSummaries()) {
                     objectlist = objectlist + "@@" + objectSummary.getKey();
                 }
-                listObjectsRequest.setMarker(objectListing.getNextMarker());
-            } while (objectListing.isTruncated());
-
+                req.setContinuationToken(result.getNextContinuationToken());
+            } while (result.isTruncated() == true);            
+            
         } catch (Exception listBucket) {
             mainFrame.jTextArea1.append("\n" + listBucket.getMessage());
         }
-
+        
         String parse = null;
         if (objectlist != null) {
             parse = objectlist;
@@ -286,7 +284,7 @@ public class BucketClass {
         }
         return parse;
     }
-
+    
     String getObjectInfo(String key, String access_key, String secret_key, String bucket, String endpoint, String process
     ) {
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
@@ -295,15 +293,15 @@ public class BucketClass {
         s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(false).build());
         s3Client.setEndpoint(endpoint);
         objectlist = null;
-
+        
         try {
             ObjectListing current = s3Client.listObjects((bucket));
-
+            
             ListObjectsRequest listObjectsRequest = new ListObjectsRequest().withBucketName(bucket);
             ObjectListing objectListing;
             do {
                 objectListing = s3Client.listObjects(listObjectsRequest);
-
+                
                 for (S3ObjectSummary objectSummary : objectListing.getObjectSummaries()) {
                     if (process.contains("checkmd5")) {
                         if (objectSummary.getKey().contains(key)) {
@@ -317,25 +315,25 @@ public class BucketClass {
                             break;
                         }
                     }
-
+                    
                     if (process.contains("objectdate")) {
                         if (objectSummary.getKey().contains(key)) {
                             objectlist = String.valueOf(objectSummary.getLastModified());
                             break;
                         }
-
+                        
                     }
                 }
                 listObjectsRequest.setMarker(objectListing.getNextMarker());
             } while (objectListing.isTruncated());
-
+            
         } catch (Exception listBucket) {
             mainFrame.jTextArea1.append("\n" + listBucket.getMessage());
         }
-
+        
         return objectlist;
     }
-
+    
     String deleteBucket(String access_key, String secret_key, String bucket, String endpoint, String region
     ) {
         String message = null;
@@ -354,11 +352,11 @@ public class BucketClass {
                 message = message + "\n" + Delete.getMessage();
             }
         }
-
+        
         if (message == null) {
             message = "\nDelete operation failed.";
         }
-
+        
         return message;
     }
 }

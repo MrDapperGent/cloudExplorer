@@ -6,7 +6,7 @@
 ### Improvements:
 - Faster Syncing, Bucket Migrations, and Snapshots - 5 files at a time with metadata checks.
 - Cleaner and shared code between CLI and GUI
-
+- Uses the new ListObjectsV2Request from the S3 JDK
 
 ### New Features:
 - Abort multi-part uploads
