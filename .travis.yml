@@ -26,6 +26,7 @@ script:
 #- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar migrate $MIGRATE_BUCKET $TESTBUCKET
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar snapshot $TESTBUCKET $SNAPSHOT_BUCKET
 - echo > /tmp/synctest/src/cloudExplorer/Abort.java
+- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar synctos3 /tmp/synctest $TESTBUCKET
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar snapshot $TESTBUCKET $SNAPSHOT_BUCKET Snapshot-$TESTBUCKET-`date +"%Y-%m-%d"`
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar deleteall $MIGRATE_BUCKET
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar deleteall $SNAPSHOT_BUCKET
