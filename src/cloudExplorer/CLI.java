@@ -175,7 +175,7 @@ public class CLI {
         Put.terminal = true;
         Get.terminal = true;
 
-        if ((System.getenv("ACCESS_KEY") == null) || System.getenv("SECRET_KEY") == null || System.getenv("ENDPOINT") == null || System.getenv("REGION") == null) {
+        if ((System.getenv("ACCESS_KEY") == null) || System.getenv("SECRET_KEY") == null || System.getenv("ENDPOINT") == null) {
             File s3config = new File(s3_config_file);
             if (s3config.exists()) {
                 saved_s3_configs = loadConfig(this.s3_config_file).toString().split(" ");
