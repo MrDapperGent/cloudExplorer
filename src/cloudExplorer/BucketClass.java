@@ -124,9 +124,6 @@ public class BucketClass {
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
 
-        if (region.contains("defaultAWS") || region.length() < 1) {
-            region = "us-west-1";
-        }
         try {
             if (!endpoint.contains("amazonaws.com")) {
                 s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(true).build());
@@ -163,9 +160,6 @@ public class BucketClass {
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
 
-        if (region.contains("defaultAWS") || region.length() < 1) {
-            region = "us-west-1";
-        }
         try {
             if (!endpoint.contains("amazonaws.com")) {
                 s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(true).build());
