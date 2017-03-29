@@ -30,7 +30,6 @@ public class CreateFolder implements Runnable {
 
     NewJFrame mainFrame;
     public static String response = null;
-    public static String region = null;
 
     public CreateFolder(NewJFrame Frame) {
         mainFrame = Frame;

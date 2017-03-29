@@ -35,7 +35,6 @@ public class Build {
     String access_key = null;
     String endpoint = null;
     String bucket = null;
-    String region = null;
 
     void messageParser(String message) {
         System.out.print(message);
@@ -64,7 +63,6 @@ public class Build {
             access_key = saved_s3_configs[0];
             secret_key = saved_s3_configs[1];
             endpoint = saved_s3_configs[2] + ":" + saved_s3_configs[3];
-            region = saved_s3_configs[4];
         } catch (Exception loadS3Credentials) {
         }
     }
@@ -91,7 +89,6 @@ public class Build {
         access_key = System.getenv("ACCESS_KEY");
         secret_key = System.getenv("SECRET_KEY");
         endpoint = System.getenv("ENDPOINT");
-        region = System.getenv("REGION");
     }
 
     void start(String Aname, String Abuild_file, String Abucket) {
@@ -103,7 +100,7 @@ public class Build {
 
         try {
             File s3config = new File(s3_config_file);
-            if ((System.getenv("ACCESS_KEY") == null) || System.getenv("SECRET_KEY") == null || System.getenv("ENDPOINT") == null || System.getenv("REGION") == null) {
+            if ((System.getenv("ACCESS_KEY") == null) || System.getenv("SECRET_KEY") == null || System.getenv("ENDPOINT") == null) {
                 if (s3config.exists()) {
                     saved_s3_configs = loadConfig(this.s3_config_file).toString().split(" ");
                     loadS3credentials();

@@ -30,7 +30,6 @@ public class AddExternalBucket implements Runnable {
 
     NewJFrame mainFrame;
     public static String response = null;
-    public static String region = null;
 
     public AddExternalBucket(NewJFrame Frame) {
         mainFrame = Frame;
@@ -45,16 +44,11 @@ public class AddExternalBucket implements Runnable {
             final JLabel blank2 = new JLabel(" ");
             final JLabel blank3 = new JLabel(" ");
             final JTextField bucketName = new JTextField();
-            final JTextField regionName = new JTextField(mainFrame.cred.getRegion());
             final JLabel name = new JLabel("Bucket Name:");
-            final JLabel region_name = new JLabel("Region Name:");
             bucketName.setMaximumSize(new Dimension(200, 20));
-            regionName.setMaximumSize(new Dimension(200, 20));
             name.setBackground(Color.WHITE);
             name.setForeground(Color.GRAY);
             name.setFont(name.getFont().deriveFont(14.0f));
-            region_name.setBackground(Color.white);
-            region_name.setForeground(Color.BLUE);
             createBucket.setBackground(Color.white);
             createBucket.setForeground(Color.BLUE);
             createBucket.setFont(createBucket.getFont().deriveFont(14.0f));
@@ -104,9 +98,6 @@ public class AddExternalBucket implements Runnable {
             mainFrame.jPanel14.setLayout(new BoxLayout(mainFrame.jPanel14, BoxLayout.Y_AXIS));
             mainFrame.jPanel14.add(name);
             mainFrame.jPanel14.add(bucketName);
-            //mainFrame.jPanel14.add(blank3);
-            // mainFrame.jPanel14.add(region_name);
-            // mainFrame.jPanel14.add(regionName);
             mainFrame.jPanel14.add(blank);
             mainFrame.jPanel14.add(createBucket);
             mainFrame.jPanel14.add(blank2);

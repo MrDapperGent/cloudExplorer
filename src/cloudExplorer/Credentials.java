@@ -25,7 +25,6 @@ public class Credentials {
     String secret_key = null;
     String end_point = null;
     String bucket = null;
-    String region = null;
     String Home = System.getProperty("user.home");
     String userid = null;
     String groupid = null;
@@ -33,9 +32,6 @@ public class Credentials {
     String config_file = (Home + File.separator + "s3.config");
     NewJFrame mainFrame;
 
-    public String getRegion() {
-        return region;
-    }
 
     public String getBucket() {
         return bucket;
@@ -77,10 +73,7 @@ public class Credentials {
         bucket = what;
     }
 
-    void setRegion(String what) {
-        region = what;
-    }
-
+  
     void setGROUPID(String what) {
         groupid = what;
     }
@@ -89,20 +82,17 @@ public class Credentials {
         userid = what;
     }
 
-    String writeConfig(String access_key, String secret_key, String host, String port, String region, String name) {
+    String writeConfig(String access_key, String secret_key, String host, String port, String name) {
         try {
             config_file = (Home + File.separator + "s3.config");
             FileWriter fr = new FileWriter(config_file, true);
             BufferedWriter bfr = new BufferedWriter(fr);
             String str = null;
 
-            if (region.length() < 1) {
-                region = "us-west-1";
-            }
             if (name == null) {
-                str = ("\n" + access_key + "@" + secret_key + "@" + host + "@" + port + "@" + region);
+                str = ("\n" + access_key + "@" + secret_key + "@" + host + "@" + port);
             } else {
-                str = ("\n" + access_key + "@" + secret_key + "@" + host + "@" + port + "@" + region + "@" + name);
+                str = ("\n" + access_key + "@" + secret_key + "@" + host + "@" + port + "@" + name);
             }
             bfr.write(str);
             bfr.close();
@@ -111,12 +101,12 @@ public class Credentials {
         return "\nSaved Config";
     }
 
-    String writeMigrateConfig(String access_key, String secret_key, String host, String port, String region, String bucket) {
+    String writeMigrateConfig(String access_key, String secret_key, String host, String port, String bucket) {
         try {
             config_file = (Home + File.separator + "s3Migrate.config");
             FileWriter fr = new FileWriter(config_file);
             BufferedWriter bfr = new BufferedWriter(fr);
-            String str = (access_key + "@" + secret_key + "@" + host + "@" + port + "@" + region + "@" + bucket);
+            String str = (access_key + "@" + secret_key + "@" + host + "@" + port + "@" + bucket);
             bfr.write(str);
             bfr.close();
         } catch (Exception writeConfig) {

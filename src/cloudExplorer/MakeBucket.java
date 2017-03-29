@@ -30,7 +30,6 @@ public class MakeBucket implements Runnable {
 
     NewJFrame mainFrame;
     public static String response = null;
-    public static String region = null;
 
     public MakeBucket(NewJFrame Frame) {
         mainFrame = Frame;
@@ -45,17 +44,11 @@ public class MakeBucket implements Runnable {
             final JLabel blank2 = new JLabel(" ");
             final JLabel blank3 = new JLabel(" ");
             final JTextField bucketName = new JTextField();
-            final JTextField regionName = new JTextField(mainFrame.cred.getRegion());
             final JLabel name = new JLabel("Bucket Name:");
-            final JLabel region_name = new JLabel("Region Name:");
             bucketName.setMaximumSize(new Dimension(200, 20));
-            regionName.setMaximumSize(new Dimension(200, 20));
             name.setBackground(Color.WHITE);
             name.setForeground(Color.GRAY);
             name.setFont(name.getFont().deriveFont(14.0f));
-            region_name.setBackground(Color.WHITE);
-            region_name.setForeground(Color.GRAY);
-            region_name.setFont(region_name.getFont().deriveFont(14.0f));
             createBucket.setBackground(Color.white);
             createBucket.setForeground(Color.BLUE);
             createBucket.setFont(createBucket.getFont().deriveFont(14.0f));
@@ -75,8 +68,8 @@ public class MakeBucket implements Runnable {
                     if (bucketName.getText().length() < 3) {
                         close.doClick();
                     } else {
-                        MakeBucketThread bt = new MakeBucketThread(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), bucketName.getText().toLowerCase(), mainFrame.cred.getEndpoint(), regionName.getText(), mainFrame);
-                        bt.startc(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), bucketName.getText().toLowerCase(), mainFrame.cred.getEndpoint(), regionName.getText(), mainFrame);
+                        MakeBucketThread bt = new MakeBucketThread(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), bucketName.getText().toLowerCase(), mainFrame.cred.getEndpoint(), mainFrame);
+                        bt.startc(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), bucketName.getText().toLowerCase(), mainFrame.cred.getEndpoint(), mainFrame);
                         close.doClick();
                     }
                 }
@@ -98,8 +91,6 @@ public class MakeBucket implements Runnable {
             mainFrame.jPanel14.add(name);
             mainFrame.jPanel14.add(bucketName);
             mainFrame.jPanel14.add(blank3);
-            mainFrame.jPanel14.add(region_name);
-            mainFrame.jPanel14.add(regionName);
             mainFrame.jPanel14.add(blank);
             mainFrame.jPanel14.add(createBucket);
             mainFrame.jPanel14.add(close);

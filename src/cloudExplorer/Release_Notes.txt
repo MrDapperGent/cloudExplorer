@@ -1,5 +1,9 @@
 # Version 9.04
 
+### Important Announcement: 
+Regions are no longer supported or needed in the configuration file.
+Please re-create the config files for each account. 
+
 ### Bug Fixes:
 - Sync Fix to support top-level folder
 - setPathStyleAccess fix
@@ -8,6 +12,7 @@
 - Faster Syncing, Bucket Migrations, and Snapshots - 5 files at a time with metadata checks.
 - Cleaner and shared code between CLI and GUI
 - Uses the new ListObjectsV2Request from the S3 JDK
+- Region is no longer required in configuration.
 
 ### New Features:
 - Abort multi-part uploads
@@ -85,7 +90,6 @@ The following variables need to be set for the destination account first:
 MIGRATE_ACCESS_KEY
 MIGRATE_SECRET_KEY
 MIGRATE_ENDPOINT
-MIGRATE_REGION
 java -jar CloudExplorer.jar migrate bucket destination_bucket
 
 #Snapshot a Bucket
@@ -93,7 +97,6 @@ The following variables need to be set for the destination account first:
 MIGRATE_ACCESS_KEY
 MIGRATE_SECRET_KEY
 MIGRATE_ENDPOINT
-MIGRATE_REGION
 java -jar CloudExplorer.jar snapshot bucket snapshot_bucket [existing_snapshot_folder]
 
 

@@ -21,18 +21,16 @@ public class DeleteBucketThread implements Runnable {
 
     NewJFrame mainFrame;
     public static String response = null;
-    public static String region = null;
     public static String access_key = null;
     public static String secret_key = null;
     public static String endpoint = null;
 
     public String bucket = null;
 
-    public DeleteBucketThread(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String Aregion, NewJFrame AmainFrame) {
+    public DeleteBucketThread(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, NewJFrame AmainFrame) {
         access_key = Aaccess_key;
         secret_key = Asecret_key;
         bucket = Abucket;
-        region = Aregion;
         endpoint = Aendpoint;
         mainFrame = AmainFrame;
     }
@@ -40,7 +38,7 @@ public class DeleteBucketThread implements Runnable {
     public void run() {
         try {
             BucketClass deletebucket = new BucketClass();
-            mainFrame.jTextArea1.append("\n" + deletebucket.deleteBucket(access_key, secret_key, bucket, endpoint, region));
+            mainFrame.jTextArea1.append("\n" + deletebucket.deleteBucket(access_key, secret_key, bucket, endpoint));
             mainFrame.active_bucket = 0;
             mainFrame.reloadBuckets();
         } catch (Exception makebucket) {
@@ -48,7 +46,7 @@ public class DeleteBucketThread implements Runnable {
         }
     }
 
-    void startc(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String Aregion, NewJFrame AmainFrame) {
-        (new Thread(new DeleteBucketThread(Aaccess_key, Asecret_key, Abucket, Aendpoint, Aregion, AmainFrame))).start();
+    void startc(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, NewJFrame AmainFrame) {
+        (new Thread(new DeleteBucketThread(Aaccess_key, Asecret_key, Abucket, Aendpoint, AmainFrame))).start();
     }
 }

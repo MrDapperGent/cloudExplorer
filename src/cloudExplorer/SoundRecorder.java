@@ -32,7 +32,6 @@ public class SoundRecorder implements Runnable {
 
     NewJFrame mainFrame;
     public static String response = null;
-    public static String region = null;
     Thread soundRecordThread;
     Random rand = new Random(System.currentTimeMillis());
     int random = rand.nextInt(256);

@@ -27,8 +27,6 @@ import java.io.File;
 public class MakeDestinationBucket implements Runnable {
 
     NewJFrame mainFrame;
-    public static String response = null;
-    public static String region = null;
     public static String dest_bucket = null;
     BucketMigrationCLI migrate;
     String Home = System.getProperty("user.home");

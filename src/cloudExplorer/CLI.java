@@ -53,7 +53,6 @@ public class CLI {
     String access_key = null;
     String endpoint = null;
     String bucket = null;
-    String region = null;
     double[] x;
     double[] y;
     double[] x_latency;
@@ -135,7 +134,6 @@ public class CLI {
             access_key = saved_s3_configs[0];
             secret_key = saved_s3_configs[1];
             endpoint = saved_s3_configs[2] + ":" + saved_s3_configs[3];
-            region = saved_s3_configs[4];
         } catch (Exception loadS3Credentials) {
         }
     }
@@ -166,7 +164,6 @@ public class CLI {
         access_key = System.getenv("ACCESS_KEY");
         secret_key = System.getenv("SECRET_KEY");
         endpoint = System.getenv("ENDPOINT");
-        region = System.getenv("REGION");
     }
 
     void start(String arg0, final String arg1, final String arg2, final String arg3, final String arg4, final String arg5
@@ -512,7 +509,7 @@ public class CLI {
         try {
             BucketClass.terminal = true;
             System.out.print("\n\n\nCreating Bucket \"" + bucket + "\".......");
-            bucketObject.makeBucket(access_key, secret_key, bucket, endpoint, region);
+            bucketObject.makeBucket(access_key, secret_key, bucket, endpoint);
             System.out.printf("\n\n\nBucket creation operaton complete.\n\n\n");
         } catch (Exception makeBucket) {
             System.out.print("\n\n\nAn error has occurred with making a bucket.\n\n\n");
@@ -521,7 +518,7 @@ public class CLI {
 
     void migrateBucket(String bucket, String destination_bucket, String operation, String existing_snapshot_folder) {
 
-        if ((System.getenv("MIGRATE_ACCESS_KEY") == null) || System.getenv("MIGRATE_SECRET_KEY") == null || System.getenv("MIGRATE_ENDPOINT") == null || System.getenv("MIGRATE_REGION") == null || destination_bucket == null) {
+        if ((System.getenv("MIGRATE_ACCESS_KEY") == null) || System.getenv("MIGRATE_SECRET_KEY") == null || System.getenv("MIGRATE_ENDPOINT") == null || destination_bucket == null) {
             System.out.print("\nError: Missing a complete set of S3 Credentials in environment variables.\n\n");
         } else {
             System.out.print("\nStarting to " + operation + " " + bucket + " to " + destination_bucket + "\n\n");
@@ -538,7 +535,6 @@ public class CLI {
             migrate.new_access_key = System.getenv("MIGRATE_ACCESS_KEY");
             migrate.new_secret_key = System.getenv("MIGRATE_SECRET_KEY");
             migrate.new_endpoint = System.getenv("MIGRATE_ENDPOINT");
-            migrate.new_region = System.getenv("MIGRATE_REGION");
             migrate.new_bucket = destination_bucket;
             migrate.run();
         }
@@ -548,7 +544,7 @@ public class CLI {
         try {
             BucketClass.terminal = true;
             System.out.print("\n\n\nDeleting Bucket \"" + bucket + "\".......");
-            bucketObject.deleteBucket(access_key, secret_key, bucket, endpoint, region);
+            bucketObject.deleteBucket(access_key, secret_key, bucket, endpoint);
             System.out.print("\n\n\nBucket Delete operation Complete\n\n\n");
 
         } catch (Exception deleteBucket) {

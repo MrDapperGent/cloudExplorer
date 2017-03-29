@@ -98,7 +98,7 @@ public class BucketACL implements Runnable {
             enable_versioning.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     if (enable_versioning.isSelected()) {
-                        jTextArea1.append(mainFrame.bucket.controlVersioning(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.cred.getRegion(), true));
+                        jTextArea1.append(mainFrame.bucket.controlVersioning(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), true));
                         mainFrame.reloadBuckets();
                         mainFrame.jPanel15.setVisible(false);
                         enable_versioning.setSelected(false);
@@ -198,7 +198,7 @@ public class BucketACL implements Runnable {
             suspend_versioning.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     if (suspend_versioning.isSelected()) {
-                        jTextArea1.append(mainFrame.bucket.controlVersioning(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), mainFrame.cred.getRegion(), false));
+                        jTextArea1.append(mainFrame.bucket.controlVersioning(mainFrame.cred.getAccess_key(), mainFrame.cred.getSecret_key(), mainFrame.cred.getBucket(), mainFrame.cred.getEndpoint(), false));
                         suspend_versioning.setSelected(false);
                         refresh();
                     }
@@ -220,8 +220,8 @@ public class BucketACL implements Runnable {
                 public void actionPerformed(ActionEvent e) {
                     if (delete_bucket.isSelected()) {
                         mainFrame.bucket_item[mainFrame.active_bucket].setSelected(false);
-                        DeleteBucketThread delBucket = new DeleteBucketThread(mainFrame.cred.access_key, mainFrame.cred.secret_key, mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.end_point, mainFrame.cred.region, mainFrame);
-                        delBucket.startc(mainFrame.cred.access_key, mainFrame.cred.secret_key, mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.end_point, mainFrame.cred.region, mainFrame);
+                        DeleteBucketThread delBucket = new DeleteBucketThread(mainFrame.cred.access_key, mainFrame.cred.secret_key, mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.end_point, mainFrame);
+                        delBucket.startc(mainFrame.cred.access_key, mainFrame.cred.secret_key, mainFrame.bucket_item[mainFrame.active_bucket].getText(), mainFrame.cred.end_point, mainFrame);
                         delete_bucket.setSelected(false);
                         mainFrame.jPanel15.setVisible(false);
                         refresh();

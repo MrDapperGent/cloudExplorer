@@ -196,10 +196,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jLabel5 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jButton10 = new javax.swing.JButton();
@@ -425,10 +423,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jLabel6.setForeground(java.awt.Color.gray);
         jLabel6.setText("Port");
 
-        jLabel7.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel7.setForeground(java.awt.Color.gray);
-        jLabel7.setText("Region");
-
         jLabel9.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel9.setForeground(java.awt.Color.gray);
         jLabel9.setText("Name");
@@ -436,10 +430,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jTextField4.setFont(jTextField4.getFont().deriveFont(jTextField4.getFont().getSize()+5f));
         jTextField4.setForeground(java.awt.Color.gray);
         jTextField4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
-        jTextField5.setFont(jTextField5.getFont().deriveFont(jTextField5.getFont().getSize()+5f));
-        jTextField5.setForeground(java.awt.Color.gray);
-        jTextField5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jTextField7.setFont(jTextField7.getFont().deriveFont(jTextField7.getFont().getSize()+5f));
         jTextField7.setForeground(java.awt.Color.gray);
@@ -519,7 +509,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jPanel17Layout.setHorizontalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
-                .addGap(223, 223, 223)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel14)
                 .addGap(167, 167, 167))
             .addGroup(jPanel17Layout.createSequentialGroup()
@@ -544,8 +534,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel17Layout.createSequentialGroup()
                                         .addComponent(jButton10)
                                         .addGap(134, 134, 134)
@@ -554,10 +542,12 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel5))
-                        .addGap(494, 494, 494))))
+                            .addComponent(jLabel5)
+                            .addGroup(jPanel17Layout.createSequentialGroup()
+                                .addGap(113, 113, 113)
+                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel9))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -581,13 +571,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(55, 55, 55)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton10)
                     .addComponent(jButton8))
@@ -2133,9 +2119,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     String[] analyze_array = account_array[h].split("@");
                     jPanel21.setLayout(new BoxLayout(jPanel21, BoxLayout.Y_AXIS));
                     account_item[h] = new JRadioButton();
-
-                    if (analyze_array.length == 6) {
-                        account_item[h].setText(analyze_array[5]);
+               
+                    if (analyze_array.length == 5) {
+                        account_item[h].setText(analyze_array[4]);
                     } else {
                         account_item[h].setText(analyze_array[2]);
                     }
@@ -2217,7 +2203,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     bucket_item[h].setFont(bucket_item[h].getFont().deriveFont(18.0f));
                     bucket_item[h].addItemListener(this);
                     bucket_item[h].setBackground(Color.white);
-                    if (bucket.VersioningStatus(cred.getAccess_key(), cred.getSecret_key(), bucketarray[h], cred.getEndpoint(), cred.getRegion(), false)) {
+                    if (bucket.VersioningStatus(cred.getAccess_key(), cred.getSecret_key(), bucketarray[h], cred.getEndpoint(), false)) {
                         bucket_item[h].setForeground(Color.MAGENTA);
                     } else {
                         bucket_item[h].setForeground(Color.GRAY);
@@ -2620,7 +2606,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jTextField2.setText("");
             jTextField3.setText("");
             jTextField4.setText("");
-            jTextField5.setText("");
             jTextField7.setText("");
         } catch (Exception clear) {
         }
@@ -2643,7 +2628,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jTextField2.setText("");
         jTextField3.setText("");
         jTextField4.setText("");
-        jTextField5.setText("");
         jTextField7.setText("");
 
         try {
@@ -2657,9 +2641,8 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         jTextField2.setText(account[1]);
                         jTextField3.setText(account[2]);
                         jTextField4.setText(account[3]);
-                        jTextField5.setText(account[4]);
-                        if (account.length == 6) {
-                            jTextField7.setText(account[5]);
+                        if (account.length == 5) {
+                            jTextField7.setText(account[4]);
                         }
                     }
                 }
@@ -2703,7 +2686,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        String save = cred.writeConfig(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jTextField5.getText(), jTextField7.getText());
+        String save = cred.writeConfig(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jTextField7.getText());
         jTextArea1.append(save);
         account_counter = 0;
         jButton9.doClick();
@@ -2910,7 +2893,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jTextField2.setText("");
             jTextField3.setText("");
             jTextField4.setText("");
-            jTextField5.setText("");
         } else {
             jTextArea1.append("\nError: No accounts have been loaded.\n");
         }
@@ -3617,7 +3599,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         if (active_account > 0) {
             if (active_bucket > 0) {
                 jPanel9.setVisible(true);
-                String save = cred.writeMigrateConfig(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jTextField5.getText(), bucketarray[active_bucket]);
+                String save = cred.writeMigrateConfig(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), bucketarray[active_bucket]);
                 jTextArea1.append(save);
                 calibrateTextArea();
             } else {
@@ -3700,7 +3682,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         if (active_bucket > 0) {
             BucketClass listmp = new BucketClass();
             jPanel9.setVisible(true);
-            NewJFrame.jTextArea1.append(listmp.abortMPUploads(cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint(), cred.getRegion()));
+            NewJFrame.jTextArea1.append(listmp.abortMPUploads(cred.getAccess_key(), cred.getSecret_key(), cred.getBucket(), cred.getEndpoint()));
             calibrateTextArea();
         } else {
             jTextArea1.append("\nError: No bucket has been selected\n");
@@ -3733,7 +3715,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             cred.setSecret_key(jTextField2.getText());
             String endpoint = (jTextField3.getText() + ":" + jTextField4.getText());
             cred.setEndpoint(endpoint);
-            cred.setRegion(jTextField5.getText());
         } catch (Exception var) {
 
         }
@@ -3795,7 +3776,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     public static javax.swing.JList jList2;
@@ -3882,7 +3862,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JTextField jTextField2;
     public static javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     public static javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;

@@ -45,7 +45,6 @@ public class BucketMigrationCLI implements Runnable {
     String new_access_key = null;
     String new_secret_key = null;
     String new_endpoint = null;
-    String new_region = null;
     Thread bucketMigration;
     String destinationBucketlist = null;
     String[] restoreArray = null;
@@ -220,7 +219,6 @@ public class BucketMigrationCLI implements Runnable {
                     new_access_key = account_array[0];
                     new_secret_key = account_array[1];
                     new_endpoint = account_array[2] + ":" + account_array[3];
-                    new_region = account_array[4];
                     new_bucket = account_array[5];
                 }
             }

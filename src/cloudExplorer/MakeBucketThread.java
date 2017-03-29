@@ -21,18 +21,16 @@ public class MakeBucketThread implements Runnable {
 
     NewJFrame mainFrame;
     public static String response = null;
-    public static String region = null;
     public static String access_key = null;
     public static String secret_key = null;
     public static String endpoint = null;
 
     public String bucket = null;
 
-    public MakeBucketThread(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String Aregion, NewJFrame AmainFrame) {
+    public MakeBucketThread(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, NewJFrame AmainFrame) {
         access_key = Aaccess_key;
         secret_key = Asecret_key;
         bucket = Abucket;
-        region = Aregion;
         endpoint = Aendpoint;
         mainFrame = AmainFrame;
 
@@ -41,14 +39,14 @@ public class MakeBucketThread implements Runnable {
     public void run() {
         try {
             BucketClass makebucket = new BucketClass();
-            mainFrame.jTextArea1.append("\n" + makebucket.makeBucket(access_key, secret_key, bucket, endpoint, region));
+            mainFrame.jTextArea1.append("\n" + makebucket.makeBucket(access_key, secret_key, bucket, endpoint));
             mainFrame.reloadBuckets();
         } catch (Exception makebucket) {
             jTextArea1.append("\n" + makebucket.getMessage());
         }
     }
 
-    void startc(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String Aregion, NewJFrame AmainFrame) {
-        (new Thread(new MakeBucketThread(Aaccess_key, Asecret_key, Abucket, Aendpoint, Aregion, AmainFrame))).start();
+    void startc(String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, NewJFrame AmainFrame) {
+        (new Thread(new MakeBucketThread(Aaccess_key, Asecret_key, Abucket, Aendpoint, AmainFrame))).start();
     }
 }

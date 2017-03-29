@@ -16,14 +16,10 @@
 package cloudExplorer;
 
 import static cloudExplorer.NewJFrame.jTextArea1;
-import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
-import com.amazonaws.regions.Region;
-import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.S3ClientOptions;
@@ -47,7 +43,7 @@ public class BucketClass {
     public static Boolean terminal = false;
     NewJFrame mainFrame;
 
-    Boolean VersioningStatus(String access_key, String secret_key, String bucket, String endpoint, String region, Boolean enable) {
+    Boolean VersioningStatus(String access_key, String secret_key, String bucket, String endpoint, Boolean enable) {
         String message = null;
         boolean result = false;
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
@@ -69,7 +65,7 @@ public class BucketClass {
         return result;
     }
 
-    Boolean LifeCycleStatus(String access_key, String secret_key, String bucket, String endpoint, String region, Boolean enable) {
+    Boolean LifeCycleStatus(String access_key, String secret_key, String bucket, String endpoint, Boolean enable) {
         String message = null;
         boolean result = false;
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
@@ -90,7 +86,7 @@ public class BucketClass {
         return result;
     }
 
-    String controlVersioning(String access_key, String secret_key, String bucket, String endpoint, String region, Boolean enable) {
+    String controlVersioning(String access_key, String secret_key, String bucket, String endpoint, Boolean enable) {
 
         String message = null;
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
@@ -117,7 +113,7 @@ public class BucketClass {
 
     }
 
-    String makeBucket(String access_key, String secret_key, String bucket, String endpoint, String region) {
+    String makeBucket(String access_key, String secret_key, String bucket, String endpoint) {
         String message = null;
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
@@ -150,15 +146,12 @@ public class BucketClass {
         return message;
     }
 
-    String abortMPUploads(String access_key, String secret_key, String bucket, String endpoint, String region) {
+    String abortMPUploads(String access_key, String secret_key, String bucket, String endpoint) {
         String message = null;
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
 
-        if (region.contains("defaultAWS") || region.length() < 1) {
-            region = "us-west-1";
-        }
         try {
             s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(true).build());
             s3Client.setEndpoint(endpoint);
@@ -335,7 +328,7 @@ public class BucketClass {
         return objectlist;
     }
 
-    String deleteBucket(String access_key, String secret_key, String bucket, String endpoint, String region
+    String deleteBucket(String access_key, String secret_key, String bucket, String endpoint
     ) {
         String message = null;
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
