@@ -67,7 +67,8 @@ public class Zip implements Runnable {
             calibrate();
         }
     }
-  private void extractFile(ZipInputStream zipIn, String filePath) throws IOException {
+
+    private void extractFile(ZipInputStream zipIn, String filePath) throws IOException {
         BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(filePath));
         byte[] bytesIn = new byte[BUFFER_SIZE];
         int read = 0;
@@ -76,34 +77,34 @@ public class Zip implements Runnable {
         }
         bos.close();
     }
-  
+
     public void decompress() {
         calibrate();
         calibrate();
         FileInputStream fis;
         byte[] buffer = new byte[1024];
         try {
-  File destDir = new File(where);
-        if (!destDir.exists()) {
-            destDir.mkdir();
-        }
-        ZipInputStream zipIn = new ZipInputStream(new FileInputStream(what));
-        ZipEntry entry = zipIn.getNextEntry();
-        // iterates over entries in the zip file
-        while (entry != null) {
-            String filePath = where + File.separator + entry.getName();
-            if (!entry.isDirectory()) {
-                // if the entry is a file, extracts it
-                extractFile(zipIn, filePath);
-            } else {
-                // if the entry is a directory, make the directory
-                File dir = new File(filePath);
-                dir.mkdir();
+            File destDir = new File(where);
+            if (!destDir.exists()) {
+                destDir.mkdir();
             }
-            zipIn.closeEntry();
-            entry = zipIn.getNextEntry();
-        }
-        zipIn.close();
+            ZipInputStream zipIn = new ZipInputStream(new FileInputStream(what));
+            ZipEntry entry = zipIn.getNextEntry();
+            // iterates over entries in the zip file
+            while (entry != null) {
+                String filePath = where + File.separator + entry.getName();
+                if (!entry.isDirectory()) {
+                    // if the entry is a file, extracts it
+                    extractFile(zipIn, filePath);
+                } else {
+                    // if the entry is a directory, make the directory
+                    File dir = new File(filePath);
+                    dir.mkdir();
+                }
+                zipIn.closeEntry();
+                entry = zipIn.getNextEntry();
+            }
+            zipIn.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

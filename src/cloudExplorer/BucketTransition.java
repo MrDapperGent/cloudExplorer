@@ -63,7 +63,9 @@ public class BucketTransition implements Runnable {
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
-        s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(true).build());
+        if (!endpoint.contains("amazonaws.com")) {
+            s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(true).build());
+        }
         s3Client.setEndpoint(endpoint);
         int converted_days = 0;
         if (!disabled) {

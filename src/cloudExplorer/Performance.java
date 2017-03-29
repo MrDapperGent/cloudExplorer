@@ -229,10 +229,10 @@ public class Performance implements Runnable {
             mainFrame.jPanel14.add(blank4);
             mainFrame.jPanel14.add(fileSize);
             mainFrame.jPanel14.add(getFileSize);
-             mainFrame.jPanel14.add(blank5);
+            mainFrame.jPanel14.add(blank5);
             mainFrame.jPanel14.add(threadCount);
             mainFrame.jPanel14.add(getTheadCount);
-             mainFrame.jPanel14.add(blank6);
+            mainFrame.jPanel14.add(blank6);
             mainFrame.jPanel14.add(operationCount);
             mainFrame.jPanel14.add(getOperationCount);
             mainFrame.jPanel14.add(blank2);

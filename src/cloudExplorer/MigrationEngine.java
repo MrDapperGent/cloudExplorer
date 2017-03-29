@@ -116,7 +116,7 @@ public class MigrationEngine implements Runnable {
                 snapFile_md5String = Bucket.getObjectInfo(remoteFile, migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, "checkmd5");
             }
             origFile_md5String = Bucket.getObjectInfo(remoteFile, access_key, secret_key, bucket, endpoint, "checkmd5");
-            
+
             if (snapFile_md5String == null) {
                 recopy = true;
             } else {

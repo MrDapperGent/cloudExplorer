@@ -47,7 +47,7 @@ public class CreateFolder implements Runnable {
             final JTextField folderName = new JTextField();
             final JLabel name = new JLabel("Folder Name:");
             folderName.setMaximumSize(new Dimension(200, 30));
-              folderName.setFont(folderName.getFont().deriveFont(14.0f));
+            folderName.setFont(folderName.getFont().deriveFont(14.0f));
             name.setBackground(Color.white);
             name.setForeground(Color.GRAY);
             name.setFont(name.getFont().deriveFont(14.0f));

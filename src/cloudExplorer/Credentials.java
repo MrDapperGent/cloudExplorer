@@ -95,7 +95,7 @@ public class Credentials {
             FileWriter fr = new FileWriter(config_file, true);
             BufferedWriter bfr = new BufferedWriter(fr);
             String str = null;
-            
+
             if (region.length() < 1) {
                 region = "us-west-1";
             }

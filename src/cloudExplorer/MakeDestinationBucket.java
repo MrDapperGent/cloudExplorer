@@ -74,7 +74,7 @@ public class MakeDestinationBucket implements Runnable {
             close.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
-                     migrate.stop();
+                    migrate.stop();
                     mainFrame.jPanel14.removeAll();
                     mainFrame.jPanel14.repaint();
                     mainFrame.jPanel14.revalidate();
