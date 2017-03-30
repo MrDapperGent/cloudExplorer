@@ -1,4 +1,4 @@
-# Version 9.04
+# Version 9.05
 
 ### Important Announcement: 
 Regions are no longer supported or needed in the configuration file.
@@ -13,6 +13,7 @@ Please re-create the config files for each account.
 - Cleaner and shared code between CLI and GUI
 - Uses the new ListObjectsV2Request from the S3 JDK
 - Region is no longer required in configuration.
+- CLI does not check for updates for each command anymore.
 
 ### New Features:
 - Abort multi-part uploads
