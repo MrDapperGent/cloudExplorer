@@ -14,6 +14,7 @@ Please re-create the config files for each account.
 - Uses the new ListObjectsV2Request from the S3 JDK
 - Region is no longer required in configuration.
 - CLI does not check for updates for each command anymore.
+- Background Sync mode: now saves the account info and bucket in the config file.
 
 ### New Features:
 - Abort multi-part uploads

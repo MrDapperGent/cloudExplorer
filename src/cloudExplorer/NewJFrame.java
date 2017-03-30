@@ -2829,7 +2829,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                         try {
                             FileWriter fr = new FileWriter(Home + File.separator + "s3config.sync");
                             BufferedWriter bfr = new BufferedWriter(fr);
-                            bfr.write(bg_choose.getSelectedFile().toString() + " " + bucket_item[active_bucket].getText());
+                            bfr.write(cred.access_key + "@" + cred.secret_key + "@" + cred.end_point + "@" + bg_choose.getSelectedFile().toString() + "@" + bucket_item[active_bucket].getText());
                             bfr.close();
                         } catch (Exception writeConfig) {
                             jTextArea1.append("\n" + writeConfig.getMessage());

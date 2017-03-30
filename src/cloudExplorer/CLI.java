@@ -312,8 +312,7 @@ public class CLI {
         }
     }
 
-    void syncToS3(String folder
-    ) {
+    void syncToS3(String folder) {
         if (folder != null) {
             System.out.print("\n\nStarting sync from: " + destination + " to bucket: " + bucket + " in folder: " + folder + " \n");
         } else {

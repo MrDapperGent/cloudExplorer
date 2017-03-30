@@ -27,7 +27,7 @@ public class Daemon {
     String sync_config_file = Home + File.separator + "s3config.sync";
     String s3_config_file = Home + File.separator + "s3.config";
     String[] saved_s3_configs = null;
-    String[] saved_directory_to_sync = null;
+    String[] sync_config = null;
     File dirToSync = new File("");
     String bucket = null;
     boolean gui = false;
@@ -77,17 +77,10 @@ public class Daemon {
         sync_config_file = (Home + File.separator + "s3config.sync");
 
         mainmenu();
-        if (!gui) {
-            messageParser("\n\nCloud Explorer will sync the directory listed in the config file:\n\n" + sync_config_file + " to S3 every 5 minutes.");
-        }
         try {
-            File s3config = new File(s3_config_file);
-            if (s3config.exists()) {
-            } else {
-                messageParser("\nError: Sync config file not found.");
-                if (!gui) {
-                    System.exit(-1);
-                }
+            
+            if (!gui) {
+                messageParser("\n\nCloud Explorer will sync the directory listed in the config file:\n\n" + sync_config_file + " to S3 every 5 minutes.");
             }
 
             File syncconfig = new File(sync_config_file);
@@ -99,16 +92,18 @@ public class Daemon {
                 }
             }
 
-            saved_directory_to_sync = loadConfig(sync_config_file).toString().split(" ");
-            bucket = saved_directory_to_sync[1];
-            dirToSync = new File(saved_directory_to_sync[0]);
+            sync_config = loadConfig(sync_config_file).toString().split("@");
+            System.out.print("\nDebug:" + sync_config);
+            bucket = sync_config[4];
+            dirToSync = new File(sync_config[3]);
 
-            File syncDIR = new File(saved_directory_to_sync[0]);
+            File syncDIR = new File(sync_config[3]);
             if (syncDIR.exists()) {
-
-                cli.saved_s3_configs = cli.loadConfig(cli.s3_config_file).toString().split(" ");
+                System.out.print("\nHere");
                 cli.bucket = bucket;
-                cli.loadS3credentials();
+                cli.access_key = sync_config[0];
+                cli.secret_key = sync_config[1];
+                cli.endpoint = sync_config[2];
                 cli.destination = dirToSync.toString();
 
                 new Thread(new Runnable() {
@@ -123,7 +118,7 @@ public class Daemon {
                             cli.destination = final_dir;
                             cli.syncFromS3(null);
 
-                            Thread.sleep(TimeUnit.MINUTES.toMillis(5));
+                            //    Thread.sleep(TimeUnit.MINUTES.toMillis(5));
                             if (gui) {
                                 mainFrame.jTextArea1.setText("");
                             }
