@@ -70,6 +70,23 @@ public class BackgroundSync implements Runnable {
     }
 
     public void sync() {
+        reloadObjects();
+        String[] transcode = null;
+        String transcoded_directory = null;
+
+        if (directory.contains(win) || directory.contains(lin)) {
+            if (directory.contains(win)) {
+                sep = win;
+                transcode = directory.split(Pattern.quote("\\"));
+            }
+
+            if (directory.contains(lin)) {
+                sep = lin;
+                transcode = directory.split(Pattern.quote("/"));
+            }
+
+            transcoded_directory = directory.replace(sep + transcode[transcode.length - 1], "");
+        }
 
         if (NewJFrame.gui) {
             NewJFrame.jTextArea1.append("\nStarting sync from: " + directory + " to bucket: " + bucket);
@@ -77,38 +94,8 @@ public class BackgroundSync implements Runnable {
         } else {
             System.out.print("\nStarting sync from: " + directory + " to bucket: " + bucket);
         }
-        try {
-            reloadObjects();
-            File[] foo = new File[object_array.length];
-            for (int i = 1; i != object_array.length; i++) {
-                if (object_array[i] != null) {
-                    int found = 0;
-                    foo[i] = new File(directory + File.separator + object_array[i]);
-                    syncengine = new SyncEngine(object_array[i], null, null, object_array[i], bucket, access_key, secret_key, endpoint, null, null, null, false, directory);
-                    executor.execute(syncengine);
-                }
-            }
-            executor.shutdown();
-            while (!executor.isTerminated()) {
-            }
-
-        } catch (Exception sync) {
-            if (NewJFrame.gui) {
-                NewJFrame.jTextArea1.append("\nError:" + sync.getMessage());
-                calibrate();
-            } else {
-                System.out.print("\nError:" + sync.getMessage());
-            }
-        }
 
         try {
-            if (NewJFrame.gui) {
-                NewJFrame.jTextArea1.append("\nStarting sync from bucket: " + bucket + " to: " + directory);
-                calibrate();
-            } else {
-                System.out.print("\nStarting sync from bucket: " + bucket + " to: " + directory);
-            }
-            reloadObjects();
             File dir = new File(directory);
             List<File> files = (List<File>) FileUtils.listFiles(dir, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE);
             for (File file_found : files) {
@@ -123,8 +110,7 @@ public class BackgroundSync implements Runnable {
             executor2.shutdown();
             while (!executor2.isTerminated()) {
             }
-
-            Thread.sleep(100);
+            reloadObjects();
         } catch (Exception e) {
             if (NewJFrame.gui) {
                 NewJFrame.jTextArea1.append("\nError:" + e.getMessage());
@@ -135,12 +121,41 @@ public class BackgroundSync implements Runnable {
         }
 
         if (NewJFrame.gui) {
-            NewJFrame.jTextArea1.append("\n\nBackground Sync complete.\n\n");
+            NewJFrame.jTextArea1.append("\nStarting sync from bucket: " + bucket + " to: " + transcoded_directory);
             calibrate();
         } else {
-            System.out.print("\n\nBackground Sync complete.\n\n");
+            System.out.print("\nStarting sync from bucket: " + bucket + " to: " + transcoded_directory);
         }
-        //Thread.sleep(300000);
+
+        try {
+            File[] foo = new File[object_array.length];
+            for (int i = 1; i != object_array.length; i++) {
+                if (object_array[i] != null) {
+                    int found = 0;
+                    foo[i] = new File(transcoded_directory + File.separator + object_array[i]);
+                    syncengine = new SyncEngine(object_array[i], null, null, object_array[i], bucket, access_key, secret_key, endpoint, null, null, null, false, transcoded_directory);
+                    executor.execute(syncengine);
+                }
+            }
+            executor.shutdown();
+            while (!executor.isTerminated()) {
+            }
+
+            if (NewJFrame.gui) {
+                NewJFrame.jTextArea1.append("\n\nBackground Sync complete.\n\n");
+                calibrate();
+            } else {
+                System.out.print("\n\nBackground Sync complete.\n\n");
+            }
+            Thread.sleep(300000);
+        } catch (Exception sync) {
+            if (NewJFrame.gui) {
+                NewJFrame.jTextArea1.append("\nError:" + sync.getMessage());
+                calibrate();
+            } else {
+                System.out.print("\nError:" + sync.getMessage());
+            }
+        }
     }
 
     String loadSyncConfig() {
@@ -200,7 +215,6 @@ public class BackgroundSync implements Runnable {
             endpoint = System.getenv("ENDPOINT");
             directory = System.getenv("DIRECTORY");
         }
-        reloadObjects();
         while (true) {
             sync();
             executor = Executors.newFixedThreadPool((int) 5);
