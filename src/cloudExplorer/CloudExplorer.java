@@ -50,10 +50,15 @@ public class CloudExplorer {
                 cli.start(args[0], null, null, null, null, null);
                 stop = 1;
             } else if (args[0].contains("backgroundsync")) {
-                NewJFrame.gui = false;
-                BackgroundSync bgsync = new BackgroundSync();
-                bgsync.startc();
-                stop = 1;
+                if ((System.getenv("ACCESS_KEY") == null) || System.getenv("SECRET_KEY") == null || System.getenv("ENDPOINT") == null || System.getenv("DIRECTORY") == null || System.getenv("BUCKET") == null) {
+                    System.out.print("\nError, missing required environment variables.\n\n");
+                    System.exit(-1);
+                } else {
+                    NewJFrame.gui = false;
+                    BackgroundSync bgsync = new BackgroundSync();
+                    bgsync.startc();
+                    stop = 1;
+                }
             } else if (args[0].contains("upgrade")) {
                 try {
                     Thread UpdateThread = new Thread(new Update(null, false, false));
