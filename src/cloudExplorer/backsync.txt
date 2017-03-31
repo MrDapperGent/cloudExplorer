@@ -1,0 +1,11 @@
+[Background Sync]
+
+Background Sync allows Cloud Explorer to function like Dropbox. It will sync to and from the S3 server. 
+From the GUI:
+Click on "Background Syncing"
+Click Configure
+Click on a destination Directory
+Click Save.
+Click on "Background Syncing"
+Click "Run".
+Syncing will occur every 5 minutes.
