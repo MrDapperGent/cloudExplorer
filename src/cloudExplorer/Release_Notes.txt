@@ -7,6 +7,7 @@ Please re-create the config files for each account.
 ### Bug Fixes:
 - Sync Fix to support top-level folder
 - setPathStyleAccess fix
+- Removed Background Syncing, will replace code later
 
 ### Improvements:
 - Faster Syncing, Bucket Migrations, and Snapshots - 5 files at a time with metadata checks.

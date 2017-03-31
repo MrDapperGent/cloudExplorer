@@ -286,9 +286,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem35 = new javax.swing.JMenuItem();
         jMenuItem22 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuItem15 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
         jMenu12 = new javax.swing.JMenu();
         jMenuItem32 = new javax.swing.JMenuItem();
         jMenuItem33 = new javax.swing.JMenuItem();
@@ -538,7 +535,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                                         .addComponent(jButton10)
                                         .addGap(134, 134, 134)
                                         .addComponent(jButton8)))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addContainerGap(12, Short.MAX_VALUE))))
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
@@ -676,7 +673,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                 .addGap(10, 10, 10)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
-                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -1539,30 +1536,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenu3.add(jMenuItem22);
 
         jMenuBar1.add(jMenu3);
-
-        jMenu5.setForeground(java.awt.Color.gray);
-        jMenu5.setText("Background Syncing");
-        jMenu5.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-
-        jMenuItem15.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jMenuItem15.setText("Run");
-        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem15ActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMenuItem15);
-
-        jMenuItem9.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jMenuItem9.setText("Configure");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMenuItem9);
-
-        jMenuBar1.add(jMenu5);
 
         jMenu12.setForeground(java.awt.Color.gray);
         jMenu12.setText("Snapshots and Migration");
@@ -2804,60 +2777,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField10ActionPerformed
 
-    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-        Daemon daemon = new Daemon();
-        daemon.gui = true;
-        jPanel9.setVisible(true);
-        daemon.start();
-    }//GEN-LAST:event_jMenuItem15ActionPerformed
-
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        try {
-
-            if (active_bucket > 0) {
-                final JFrame bg_frame = new JFrame("Directory to Sync:");
-                final JFileChooser bg_choose = new JFileChooser();
-                bg_choose.setControlButtonsAreShown(false);
-                bg_choose.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-                final JButton bg_button = new JButton("Save");
-
-                bg_button.addActionListener(new ActionListener() {
-
-                    public void actionPerformed(ActionEvent e) {
-
-                        File choice = new File(bg_choose.getSelectedFile().toString());
-                        try {
-                            FileWriter fr = new FileWriter(Home + File.separator + "s3config.sync");
-                            BufferedWriter bfr = new BufferedWriter(fr);
-                            bfr.write(cred.access_key + "@" + cred.secret_key + "@" + cred.end_point + "@" + bg_choose.getSelectedFile().toString() + "@" + bucket_item[active_bucket].getText());
-                            bfr.close();
-                        } catch (Exception writeConfig) {
-                            jTextArea1.append("\n" + writeConfig.getMessage());
-                        }
-                        jPanel9.setVisible(true);
-                        jTextArea1.append("\nWritten config: " + Home + File.separator + "s3config.sync");
-                        calibrateTextArea();
-                        bg_frame.setVisible(false);
-                    }
-                });
-
-                JPanel bg_panel = new JPanel();
-                bg_frame.setResizable(false);
-                bg_panel.setLayout(new BoxLayout(bg_panel, BoxLayout.PAGE_AXIS));
-                bg_panel.add(bg_choose);
-                bg_frame.add(bg_panel);
-                bg_panel.add(bg_button);
-                bg_frame.setLocation(500, 500);
-                bg_frame.pack();
-                bg_frame.setVisible(true);
-            } else {
-                jTextArea1.append("\nError: No bucket has been selected");
-            }
-        } catch (Exception Download) {
-            jTextArea1.append("\n" + Download.getMessage());
-        }
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
         if (total_accounts != 0) {
@@ -3787,7 +3706,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenu jMenu12;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
@@ -3799,7 +3717,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
@@ -3827,7 +3744,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     public static javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     public static javax.swing.JPanel jPanel11;

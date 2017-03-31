@@ -44,12 +44,7 @@ public class CloudExplorer {
 
         if (args.length > 0) {
 
-            if (args[0].contains("daemon")) {
-                Daemon daemon = new Daemon();
-                daemon.gui = false;
-                daemon.start();
-                stop = 1;
-            } else if (args[0].contains("listbuckets")) {
+            if (args[0].contains("listbuckets")) {
                 CLI cli = new CLI();
                 cli.start(args[0], null, null, null, null, null);
                 stop = 1;
