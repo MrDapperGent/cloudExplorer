@@ -108,6 +108,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     public static String active_folder = null;
     public static String snap_folder = null;
     public static int abortType = 0;
+    String sync_config_file = (Home + File.separator + "s3config.sync");
     BackgroundSync bgsync = new BackgroundSync();
 
     public NewJFrame() {
@@ -2816,10 +2817,16 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     }//GEN-LAST:event_jTextField10ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        File sync_config = new File(sync_config_file);
+        if (sync_config.exists()) {
+            NewJFrame.gui = true;
+            jPanel9.setVisible(true);
+            bgsync.startc();
+        } else {
+            jTextArea1.append("\nError: The Background Sync configuration files does not exist. Please create one.");
+            calibrateTextArea();
+        }
 
-        NewJFrame.gui = true;
-        jPanel9.setVisible(true);
-        bgsync.startc();
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
