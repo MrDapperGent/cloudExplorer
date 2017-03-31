@@ -7,7 +7,7 @@ Please re-create the config files for each account.
 ### Bug Fixes:
 - Sync Fix to support top-level folder
 - setPathStyleAccess fix
-- Removed Background Syncing, will replace code later
+- Background Syncing now dies bidirectional sync properly.
 
 ### Improvements:
 - Faster Syncing, Bucket Migrations, and Snapshots - 5 files at a time with metadata checks.
@@ -15,6 +15,7 @@ Please re-create the config files for each account.
 - Uses the new ListObjectsV2Request from the S3 JDK
 - Region is no longer required in configuration.
 - CLI does not check for updates for each command anymore.
+- Background Sync rewritten
 - Background Sync mode: now saves the account info and bucket in the config file.
 
 ### New Features:
