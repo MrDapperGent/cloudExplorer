@@ -19,6 +19,7 @@ public class CloudExplorer {
 
     public static void helpargs() {
         System.out.print("\n[Cloud Explorer - CLI arguments]\n"
+                + "\nbackgroundsync"
                 + "\nput filename bucket"
                 + "\nget filename bucket destination"
                 + "\ndelete filename bucket"

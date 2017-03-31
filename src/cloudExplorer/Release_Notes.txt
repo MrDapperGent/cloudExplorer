@@ -96,6 +96,15 @@ MIGRATE_SECRET_KEY
 MIGRATE_ENDPOINT
 java -jar CloudExplorer.jar migrate bucket destination_bucket
 
+#Background Sync from CLI:
+The following variables need to be set first if a config file does not exist:
+ACCESS_KEY
+SECRET_KEY
+ENDPOINT
+BUCKET
+DIRECTORY
+java -jar CloudExplorer.jar backgroundsync
+
 #Snapshot a Bucket
 The following variables need to be set for the destination account first:
 MIGRATE_ACCESS_KEY
