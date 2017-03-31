@@ -231,5 +231,7 @@ public class BackgroundSync implements Runnable {
     void stop() {
         bucketSync.stop();
         bucketSync.isInterrupted();
+        NewJFrame.jTextArea1.setText("\nBackground Sync Cancelled.\n");
+        calibrate();
     }
 }
