@@ -207,6 +207,11 @@ public class BackgroundSync implements Runnable {
     }
 
     public void run() {
+        if(!NewJFrame.gui){
+            CLI cli = new CLI();
+            cli.operation = "Background Sync";
+            cli.mainmenu();
+        }
         if ((System.getenv("ACCESS_KEY") == null) || System.getenv("SECRET_KEY") == null || System.getenv("ENDPOINT") == null || System.getenv("DIRECTORY") == null || System.getenv("BUCKET") == null) {
             loadAccount();
         } else {

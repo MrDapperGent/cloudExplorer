@@ -49,7 +49,11 @@ public class CloudExplorer {
                 CLI cli = new CLI();
                 cli.start(args[0], null, null, null, null, null);
                 stop = 1;
-
+            } else if (args[0].contains("backgroundsync")) {
+                NewJFrame.gui = false;
+                BackgroundSync bgsync = new BackgroundSync();
+                bgsync.startc();
+                stop = 1;
             } else if (args[0].contains("upgrade")) {
                 try {
                     Thread UpdateThread = new Thread(new Update(null, false, false));
