@@ -95,26 +95,6 @@ To upgrade, please use the updater located in the application. Everytime Cloud E
 * Under the "Snapshots and Migration", select "Snapshots".
 * Click "Create Snapshot".
 
-# Background Sync
-
-Background Sync allows Cloud Explorer to sync a directory in the background to S3 every 5 minutes. Sync will only upload files that do not exist on S3 and no files will be deleted.
-<br>
-<br>
-From the GUI:
-* Click on "Background Syncing"
-* Click Configure
-* Click Save.
-* Click on "Background Syncing"
-* Click "Run".
-* Syncing will occur every 5 minutes.
-
-Starting background sync from the Command Line (Useful for running as a background process):
-
-Create your config file from the GUI.
-```
-	$ java -jar CloudExplorer.jar daemon
-```
-
 # Running Cloud Explorer in Docker
 
 The following steps will explain how to run Cloud Explorer from a Docker container. The template will install an Ubuntu container using the FVWM window manager.
