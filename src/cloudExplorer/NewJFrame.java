@@ -286,6 +286,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem35 = new javax.swing.JMenuItem();
         jMenuItem22 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem15 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem36 = new javax.swing.JMenuItem();
         jMenu12 = new javax.swing.JMenu();
         jMenuItem32 = new javax.swing.JMenuItem();
         jMenuItem33 = new javax.swing.JMenuItem();
@@ -313,6 +317,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenuItem25 = new javax.swing.JMenuItem();
         jMenuItem18 = new javax.swing.JMenuItem();
         jMenuItem31 = new javax.swing.JMenuItem();
+        jMenuItem19 = new javax.swing.JMenuItem();
 
         jMenuItem5.setText("jMenuItem5");
 
@@ -1536,6 +1541,39 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
         jMenuBar1.add(jMenu3);
 
+        jMenu5.setForeground(java.awt.Color.gray);
+        jMenu5.setText("Background Syncing");
+        jMenu5.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+
+        jMenuItem15.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jMenuItem15.setText("Run");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem15);
+
+        jMenuItem9.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jMenuItem9.setText("Configure");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem9);
+
+        jMenuItem36.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jMenuItem36.setText("Stop Sync");
+        jMenuItem36.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem36ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem36);
+
+        jMenuBar1.add(jMenu5);
+
         jMenu12.setForeground(java.awt.Color.gray);
         jMenu12.setText("Snapshots and Migration");
         jMenu12.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
@@ -1753,6 +1791,15 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
         jMenu8.add(jMenuItem31);
+
+        jMenuItem19.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jMenuItem19.setText("Background Sync");
+        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem19ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem19);
 
         jMenuBar1.add(jMenu8);
 
@@ -2082,7 +2129,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
                     String[] analyze_array = account_array[h].split("@");
                     jPanel21.setLayout(new BoxLayout(jPanel21, BoxLayout.Y_AXIS));
                     account_item[h] = new JRadioButton();
-               
+
                     if (analyze_array.length == 5) {
                         account_item[h].setText(analyze_array[4]);
                     } else {
@@ -2767,6 +2814,60 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField10ActionPerformed
 
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        BackgroundSync bgsync = new BackgroundSync();
+        NewJFrame.gui = true;
+        jPanel9.setVisible(true);
+        bgsync.startc();
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        try {
+
+            if (active_bucket > 0) {
+                final JFrame bg_frame = new JFrame("Directory to Sync:");
+                final JFileChooser bg_choose = new JFileChooser();
+                bg_choose.setControlButtonsAreShown(false);
+                bg_choose.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                final JButton bg_button = new JButton("Save");
+
+                bg_button.addActionListener(new ActionListener() {
+
+                    public void actionPerformed(ActionEvent e) {
+
+                        File choice = new File(bg_choose.getSelectedFile().toString());
+                        try {
+                            FileWriter fr = new FileWriter(Home + File.separator + "s3config.sync");
+                            BufferedWriter bfr = new BufferedWriter(fr);
+                            bfr.write(cred.getAccess_key() + "@" + cred.getSecret_key() + "@" + cred.getEndpoint() + "@" + bg_choose.getSelectedFile().toString() + "@" + bucket_item[active_bucket].getText());
+                            bfr.close();
+                        } catch (Exception writeConfig) {
+                            jTextArea1.append("\n" + writeConfig.getMessage());
+                        }
+                        jPanel9.setVisible(true);
+                        jTextArea1.append("\nWritten config: " + Home + File.separator + "s3config.sync");
+                        calibrateTextArea();
+                        bg_frame.setVisible(false);
+                    }
+                });
+
+                JPanel bg_panel = new JPanel();
+                bg_frame.setResizable(false);
+                bg_panel.setLayout(new BoxLayout(bg_panel, BoxLayout.PAGE_AXIS));
+                bg_panel.add(bg_choose);
+                bg_frame.add(bg_panel);
+                bg_panel.add(bg_button);
+                bg_frame.setLocation(500, 500);
+                bg_frame.pack();
+                bg_frame.setVisible(true);
+            } else {
+                jTextArea1.append("\nError: No bucket has been selected");
+            }
+        } catch (Exception Download) {
+            jTextArea1.append("\n" + Download.getMessage());
+        }
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
         if (total_accounts != 0) {
@@ -3281,6 +3382,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         helpMenu("migrate.txt");
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+        helpMenu("backsync.txt");
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
+
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         if (active_bucket > 0) {
             jButton1.setEnabled(false);
@@ -3593,6 +3698,10 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jTextArea1.append("\nError: No bucket has been selected\n");
         }
     }//GEN-LAST:event_jMenuItem35ActionPerformed
+
+    private void jMenuItem36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem36ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem36ActionPerformed
     void cleanup() {
         try {
             jPanel9.setVisible(true);
@@ -3692,6 +3801,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenu jMenu12;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
@@ -3703,9 +3813,11 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
@@ -3724,11 +3836,13 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenuItem jMenuItem33;
     private javax.swing.JMenuItem jMenuItem34;
     private javax.swing.JMenuItem jMenuItem35;
+    private javax.swing.JMenuItem jMenuItem36;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     public static javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     public static javax.swing.JPanel jPanel11;
