@@ -313,7 +313,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         jMenuItem25 = new javax.swing.JMenuItem();
         jMenuItem18 = new javax.swing.JMenuItem();
         jMenuItem31 = new javax.swing.JMenuItem();
-        jMenuItem19 = new javax.swing.JMenuItem();
 
         jMenuItem5.setText("jMenuItem5");
 
@@ -1754,15 +1753,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             }
         });
         jMenu8.add(jMenuItem31);
-
-        jMenuItem19.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jMenuItem19.setText("Background Sync");
-        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem19ActionPerformed(evt);
-            }
-        });
-        jMenu8.add(jMenuItem19);
 
         jMenuBar1.add(jMenu8);
 
@@ -3291,10 +3281,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
         helpMenu("migrate.txt");
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
-    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
-        helpMenu("backsync.txt");
-    }//GEN-LAST:event_jMenuItem19ActionPerformed
-
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         if (active_bucket > 0) {
             jButton1.setEnabled(false);
@@ -3720,7 +3706,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
-    private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
