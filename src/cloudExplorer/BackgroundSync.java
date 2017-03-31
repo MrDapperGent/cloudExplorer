@@ -207,13 +207,14 @@ public class BackgroundSync implements Runnable {
     }
 
     public void run() {
-        if ((System.getenv("ACCESS_KEY") == null) || System.getenv("SECRET_KEY") == null || System.getenv("ENDPOINT") == null || System.getenv("DIRECTORY") == null) {
+        if ((System.getenv("ACCESS_KEY") == null) || System.getenv("SECRET_KEY") == null || System.getenv("ENDPOINT") == null || System.getenv("DIRECTORY") == null || System.getenv("BUCKET") == null) {
             loadAccount();
         } else {
             access_key = System.getenv("ACCESS_KEY");
             secret_key = System.getenv("SECRET_KEY");
             endpoint = System.getenv("ENDPOINT");
             directory = System.getenv("DIRECTORY");
+            bucket = System.getenv("BUCKET");
         }
         while (true) {
             sync();

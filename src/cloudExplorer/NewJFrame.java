@@ -108,6 +108,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     public static String active_folder = null;
     public static String snap_folder = null;
     public static int abortType = 0;
+    BackgroundSync bgsync = new BackgroundSync();
 
     public NewJFrame() {
         try {
@@ -2815,7 +2816,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     }//GEN-LAST:event_jTextField10ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-        BackgroundSync bgsync = new BackgroundSync();
+
         NewJFrame.gui = true;
         jPanel9.setVisible(true);
         bgsync.startc();
@@ -3700,7 +3701,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     }//GEN-LAST:event_jMenuItem35ActionPerformed
 
     private void jMenuItem36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem36ActionPerformed
-        // TODO add your handling code here:
+        bgsync.stop();
     }//GEN-LAST:event_jMenuItem36ActionPerformed
     void cleanup() {
         try {
