@@ -104,46 +104,47 @@ public class MigrationEngine implements Runnable {
     }
 
     public void run() {
-        boolean recopy = false;
-        String snapFile_md5String = null;
-        String origFile_md5String = null;
-        String uuid = Home + File.separator + UUID.randomUUID().toString();
+        if (SyncManager.running) {
+            boolean recopy = false;
+            String snapFile_md5String = null;
+            String origFile_md5String = null;
+            String uuid = Home + File.separator + UUID.randomUUID().toString();
 
-        try {
-            if (restoreSnapshot != null) {
-                snapFile_md5String = Bucket.getObjectInfo(remoteFile.replace(restoreSnapshot, ""), migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, "checkmd5");
-            } else {
-                snapFile_md5String = Bucket.getObjectInfo(remoteFile, migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, "checkmd5");
-            }
-            origFile_md5String = Bucket.getObjectInfo(remoteFile, access_key, secret_key, bucket, endpoint, "checkmd5");
-
-            if (snapFile_md5String == null) {
-                recopy = true;
-            } else {
-                if (!snapFile_md5String.contains(origFile_md5String)) {
-                    recopy = true;
-                }
-            }
-        } catch (Exception modifiedChecker) {
-            System.out.print("\n\nError:" + modifiedChecker.getMessage() + "\n\n");
-        }
-
-        if (recopy) {
-            get = new Get(remoteFile, access_key, secret_key, bucket, endpoint, uuid, null);
-            get.run();
-            if (snapshot != null) {
-                put = new Put(uuid, migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, snapshot, false, false, false);
-            } else {
+            try {
                 if (restoreSnapshot != null) {
-                    put = new Put(uuid, migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, remoteFile.replace(restoreSnapshot, ""), false, false, false);
+                    snapFile_md5String = Bucket.getObjectInfo(remoteFile.replace(restoreSnapshot, ""), migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, "checkmd5");
                 } else {
-                    put = new Put(uuid, migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, remoteFile, false, false, false);
+                    snapFile_md5String = Bucket.getObjectInfo(remoteFile, migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, "checkmd5");
                 }
+                origFile_md5String = Bucket.getObjectInfo(remoteFile, access_key, secret_key, bucket, endpoint, "checkmd5");
+
+                if (snapFile_md5String == null) {
+                    recopy = true;
+                } else {
+                    if (!snapFile_md5String.contains(origFile_md5String)) {
+                        recopy = true;
+                    }
+                }
+            } catch (Exception modifiedChecker) {
+                System.out.print("\n\nError:" + modifiedChecker.getMessage() + "\n\n");
             }
-            put.run();
-            File delete = new File(uuid);
-            delete.delete();
+
+            if (recopy) {
+                get = new Get(remoteFile, access_key, secret_key, bucket, endpoint, uuid, null);
+                get.run();
+                if (snapshot != null) {
+                    put = new Put(uuid, migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, snapshot, false, false, false);
+                } else {
+                    if (restoreSnapshot != null) {
+                        put = new Put(uuid, migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, remoteFile.replace(restoreSnapshot, ""), false, false, false);
+                    } else {
+                        put = new Put(uuid, migration_access_key, migration_secret_key, migration_bucket, migration_endpoint, remoteFile, false, false, false);
+                    }
+                }
+                put.run();
+                File delete = new File(uuid);
+                delete.delete();
+            }
         }
     }
-
 }

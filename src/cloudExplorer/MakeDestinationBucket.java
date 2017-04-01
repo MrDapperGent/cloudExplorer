@@ -38,6 +38,7 @@ public class MakeDestinationBucket implements Runnable {
     }
 
     public void run() {
+        SyncManager.running = true;
         try {
             final JButton startMigration = new JButton("Start Migration");
             final JButton close = new JButton("Stop/Close");
