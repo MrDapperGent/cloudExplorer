@@ -1,4 +1,4 @@
-# Version 9.06
+# Version 9.07
 
 ### Important Announcement: 
 Regions are no longer supported or needed in the configuration file.

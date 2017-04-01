@@ -144,10 +144,17 @@ public class SyncEngine implements Runnable {
                     Date remote = sdf.parse(Bucket.getObjectInfo(remoteFile, access_key, secret_key, bucket, endpoint, "objectdate"));
                     milli = check_localFile.lastModified();
                     Date local = new Date(milli);
-
                     if (local_md5String.contains(remote_md5String)) {
                     } else {
-                        recopy = true;
+                        if (ToS3) {
+                            if (local.after(remote)) {
+                                recopy = true;
+                            }
+                        } else {
+                            if (remote.after(local)) {
+                                recopy = true;
+                            }
+                        }
                     }
                 }
                 if (recopy) {
