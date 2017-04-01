@@ -91,13 +91,13 @@ public class SyncFromS3 implements Runnable {
                 "\nSync operation finished running. Please observe this window for any transfers that may still be running.");
         calibrate();
     }
-    
+
     void startc(NewJFrame AmainFrame, String[] Aobjectarray, String[] AObjectsConverted, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String Adestination) {
 
-        if (SyncManager.running) {
-            syncFromS3 = new Thread(new SyncFromS3(AmainFrame, Aobjectarray, AObjectsConverted, Aaccess_key, Asecret_key, Abucket, Aendpoint, Adestination));
-            syncFromS3.start();
-        }
+        SyncManager.running = true;
+        syncFromS3 = new Thread(new SyncFromS3(AmainFrame, Aobjectarray, AObjectsConverted, Aaccess_key, Asecret_key, Abucket, Aendpoint, Adestination));
+        syncFromS3.start();
+
     }
 
     void stop() {

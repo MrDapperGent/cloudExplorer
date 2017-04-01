@@ -2775,7 +2775,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             objectarray = null;
             abortType = 2;
             reloadObjects(false);
-            SyncManager.running = true;
             if (objectarray.length > 1) {
                 jPanel9.setVisible(true);
                 jTextArea1.setText("\n\nStarted Sync.");
@@ -3680,8 +3679,6 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             put.stop();
         } else {
             try {
-                //syncToS3.stop();
-                //syncFromS3.stop();
                 SyncManager.running = false;
             } catch (Exception abo) {
                 System.out.print("\nError:" + abo.getMessage());

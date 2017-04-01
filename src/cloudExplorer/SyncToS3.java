@@ -68,7 +68,7 @@ public class SyncToS3 implements Runnable {
     }
 
     public void run() {
-        SyncManager.running = true; 
+        SyncManager.running = true;
         int index = mainFrame.jList3.getSelectedIndex(); //get selected index
 
         List<File> files = (List<File>) FileUtils.listFiles(location, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE);
@@ -102,13 +102,11 @@ public class SyncToS3 implements Runnable {
         calibrate();
     }
 
-    void startc(NewJFrame AmainFrame, File location, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobjectarray, Boolean Arrs, Boolean Aencrypt, Boolean Ainfreq
-    ) {
-        if (SyncManager.running) {
-            syncToS3 = new Thread(new SyncToS3(AmainFrame, location, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aobjectarray, Arrs, Aencrypt, Ainfreq));
-            syncToS3.start();
+    void startc(NewJFrame AmainFrame, File location, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobjectarray, Boolean Arrs, Boolean Aencrypt, Boolean Ainfreq) {
+        SyncManager.running = true;
+        syncToS3 = new Thread(new SyncToS3(AmainFrame, location, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aobjectarray, Arrs, Aencrypt, Ainfreq));
+        syncToS3.start();
 
-        }
     }
 
     void stop() {
