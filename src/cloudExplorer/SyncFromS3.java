@@ -105,5 +105,6 @@ public class SyncFromS3 implements Runnable {
         syncFromS3.stop();
         syncFromS3.isInterrupted();
         mainFrame.jTextArea1.setText("\nAborted Download\n");
+        System.gc();
     }
 }

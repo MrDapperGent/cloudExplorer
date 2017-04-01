@@ -114,6 +114,7 @@ public class SyncToS3 implements Runnable {
         syncToS3.stop();
         syncToS3.isInterrupted();
         mainFrame.jTextArea1.setText("\nUpload complete or aborted.\n");
+        System.gc();
     }
 
 }
