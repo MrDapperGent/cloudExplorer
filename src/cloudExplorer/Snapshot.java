@@ -42,6 +42,7 @@ public class Snapshot implements Runnable {
     }
 
     public void run() {
+        SyncManager.running = true;
         try {
             final JButton createSnapshot = new JButton("Create Snapshot");
             final JButton restoreSnapshot = new JButton("Restore Snapshot");
@@ -110,6 +111,7 @@ public class Snapshot implements Runnable {
             close.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
+                    SyncManager.running = false;
                     migrate.stop();
                     mainFrame.jPanel14.removeAll();
                     mainFrame.jPanel14.repaint();
