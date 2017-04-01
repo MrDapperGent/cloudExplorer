@@ -104,7 +104,7 @@ public class SyncToS3 implements Runnable {
 
     void startc(NewJFrame AmainFrame, File location, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String[] Aobjectarray, Boolean Arrs, Boolean Aencrypt, Boolean Ainfreq
     ) {
-        if (SyncToS3.running) {
+        if (SyncManager.running) {
             syncToS3 = new Thread(new SyncToS3(AmainFrame, location, Aaccess_key, Asecret_key, Abucket, Aendpoint, Aobjectarray, Arrs, Aencrypt, Ainfreq));
             syncToS3.start();
 

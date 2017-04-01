@@ -3680,11 +3680,11 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             put.stop();
         } else {
             try {
-                syncToS3.stop();
-                syncFromS3.stop();
+                //syncToS3.stop();
+                //syncFromS3.stop();
                 SyncManager.running = false;
             } catch (Exception abo) {
-
+                System.out.print("\nError:" + abo.getMessage());
             }
             reloadBuckets();
         }

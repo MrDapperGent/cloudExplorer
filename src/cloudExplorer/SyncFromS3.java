@@ -56,7 +56,6 @@ public class SyncFromS3 implements Runnable {
     }
 
     public void run() {
-        SyncManager.running = true;
         try {
             File[] foo = new File[objectarray.length];
             int index = mainFrame.jList3.getSelectedIndex(); //get selected index
@@ -92,7 +91,7 @@ public class SyncFromS3 implements Runnable {
                 "\nSync operation finished running. Please observe this window for any transfers that may still be running.");
         calibrate();
     }
-
+    
     void startc(NewJFrame AmainFrame, String[] Aobjectarray, String[] AObjectsConverted, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String Adestination) {
 
         if (SyncManager.running) {
