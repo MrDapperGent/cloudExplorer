@@ -108,7 +108,7 @@ public class MigrationEngine implements Runnable {
             boolean recopy = false;
             String snapFile_md5String = null;
             String origFile_md5String = null;
-            String uuid = Home + File.separator + UUID.randomUUID().toString();
+            String uuid = Home + File.separator + UUID.randomUUID().toString() + ".cloudexplorerSync";
 
             try {
                 if (restoreSnapshot != null) {
