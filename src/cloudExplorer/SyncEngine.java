@@ -113,57 +113,57 @@ public class SyncEngine implements Runnable {
     }
 
     public void run() {
-        Boolean recopy = false;
-        long milli;
-        FileInputStream fis = null;
-        String local_md5String = null;
-        String remote_md5String = null;
-        try {
-            if (!ToS3) {
-                localFile = destination + File.separator + Transcode(remoteFile);
-            }
-            check_localFile = new File(localFile);
-            SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
-
-            if ((!ToS3) && check_localFile.exists()) {
-                fis = new FileInputStream(localFile);
-                local_md5String = DigestUtils.md5Hex(fis);
-            }
-
-            if (ToS3) {
-                fis = new FileInputStream(localFile);
-                local_md5String = DigestUtils.md5Hex(fis);
-            }
-
-            remote_md5String = Bucket.getObjectInfo(remoteFile, access_key, secret_key, bucket, endpoint, "checkmd5");
-
-            if ((remote_md5String == null) || (local_md5String == null)) {
-                recopy = true;
-            } else {
-                Date remote = sdf.parse(Bucket.getObjectInfo(remoteFile, access_key, secret_key, bucket, endpoint, "objectdate"));
-                milli = check_localFile.lastModified();
-                Date local = new Date(milli);
-
-                if (local_md5String.contains(remote_md5String)) {
-                } else {
-                    recopy = true;
+        if (SyncManager.running) {
+            Boolean recopy = false;
+            long milli;
+            FileInputStream fis = null;
+            String local_md5String = null;
+            String remote_md5String = null;
+            try {
+                if (!ToS3) {
+                    localFile = destination + File.separator + Transcode(remoteFile);
                 }
-            }
-            if (recopy) {
+                check_localFile = new File(localFile);
+                SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+
+                if ((!ToS3) && check_localFile.exists()) {
+                    fis = new FileInputStream(localFile);
+                    local_md5String = DigestUtils.md5Hex(fis);
+                }
+
                 if (ToS3) {
-                    put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object, rrs, encrypt, infreq);
-                    put.run();
-                } else {
-                    makeDirectory(destination + File.separator + remoteFile);
-                    makeDirectory(remoteFile);
-                    get = new Get(remoteFile, access_key, secret_key, bucket, endpoint, destination + File.separator + Transcode(remoteFile), null);
-                    get.run();
+                    fis = new FileInputStream(localFile);
+                    local_md5String = DigestUtils.md5Hex(fis);
                 }
-            }
 
-        } catch (Exception modifiedChecker) {
-            System.out.print("\nError: " + modifiedChecker.getMessage());
+                remote_md5String = Bucket.getObjectInfo(remoteFile, access_key, secret_key, bucket, endpoint, "checkmd5");
+
+                if ((remote_md5String == null) || (local_md5String == null)) {
+                    recopy = true;
+                } else {
+                    Date remote = sdf.parse(Bucket.getObjectInfo(remoteFile, access_key, secret_key, bucket, endpoint, "objectdate"));
+                    milli = check_localFile.lastModified();
+                    Date local = new Date(milli);
+
+                    if (local_md5String.contains(remote_md5String)) {
+                    } else {
+                        recopy = true;
+                    }
+                }
+                if (recopy) {
+                    if (ToS3) {
+                        put = new Put(file_found.getAbsolutePath().toString(), access_key, secret_key, bucket, endpoint, object, rrs, encrypt, infreq);
+                        put.run();
+                    } else {
+                        makeDirectory(destination + File.separator + remoteFile);
+                        makeDirectory(remoteFile);
+                        get = new Get(remoteFile, access_key, secret_key, bucket, endpoint, destination + File.separator + Transcode(remoteFile), null);
+                        get.run();
+                    }
+                }
+            } catch (Exception modifiedChecker) {
+                System.out.print("\nError: " + modifiedChecker.getMessage());
+            }
         }
     }
-
 }

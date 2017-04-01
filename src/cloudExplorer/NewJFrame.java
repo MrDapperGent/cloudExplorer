@@ -2775,7 +2775,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             objectarray = null;
             abortType = 2;
             reloadObjects(false);
-            SyncFromS3.running = true;
+            SyncManager.running = true;
             if (objectarray.length > 1) {
                 jPanel9.setVisible(true);
                 jTextArea1.setText("\n\nStarted Sync.");
@@ -3680,15 +3680,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             put.stop();
         } else {
             try {
-                if (SyncToS3.running) {
-                    Abort abortToS3 = new Abort("To");
-                    abortToS3.run();
-                }
-
-                if (SyncFromS3.running) {
-                    Abort abortFromS3 = new Abort("From");
-                    abortFromS3.run();
-                }
+                syncToS3.stop();
+                syncFromS3.stop();
+                SyncManager.running = false;
             } catch (Exception abo) {
 
             }

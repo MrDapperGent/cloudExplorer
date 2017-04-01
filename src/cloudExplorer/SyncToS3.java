@@ -68,12 +68,13 @@ public class SyncToS3 implements Runnable {
     }
 
     public void run() {
+        SyncManager.running = true; 
         int index = mainFrame.jList3.getSelectedIndex(); //get selected index
 
         List<File> files = (List<File>) FileUtils.listFiles(location, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE);
 
         for (File file_found : files) {
-            if (SyncToS3.running) {
+            if (SyncManager.running) {
                 String clean_object_name[] = location.toString().split(Pattern.quote(File.separator));
                 String object = file_found.getAbsolutePath().toString();
 
@@ -111,7 +112,7 @@ public class SyncToS3 implements Runnable {
     }
 
     void stop() {
-        SyncToS3.running = false;
+        SyncManager.running = false;
         syncToS3.stop();
         syncToS3.isInterrupted();
         mainFrame.jTextArea1.setText("\nUpload complete or aborted.\n");

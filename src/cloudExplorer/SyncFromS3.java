@@ -30,7 +30,6 @@ public class SyncFromS3 implements Runnable {
     String endpoint = null;
     String secret_key = null;
     String destination = null;
-    public static Boolean running = false;
     Get get;
     Thread syncFromS3;
     String win = "\\";
@@ -57,11 +56,12 @@ public class SyncFromS3 implements Runnable {
     }
 
     public void run() {
+        SyncManager.running = true;
         try {
             File[] foo = new File[objectarray.length];
             int index = mainFrame.jList3.getSelectedIndex(); //get selected index
             for (int i = 1; i != objectarray.length; i++) {
-                if (SyncFromS3.running) {
+                if (SyncManager.running) {
                     if (objectarray[i] != null) {
                         int found = 0;
                         foo[i] = new File(destination + File.separator + objectarray[i]);
@@ -95,14 +95,14 @@ public class SyncFromS3 implements Runnable {
 
     void startc(NewJFrame AmainFrame, String[] Aobjectarray, String[] AObjectsConverted, String Aaccess_key, String Asecret_key, String Abucket, String Aendpoint, String Adestination) {
 
-        if (SyncFromS3.running) {
+        if (SyncManager.running) {
             syncFromS3 = new Thread(new SyncFromS3(AmainFrame, Aobjectarray, AObjectsConverted, Aaccess_key, Asecret_key, Abucket, Aendpoint, Adestination));
             syncFromS3.start();
         }
     }
 
     void stop() {
-        SyncFromS3.running = false;
+        SyncManager.running = false;
         syncFromS3.stop();
         syncFromS3.isInterrupted();
         mainFrame.jTextArea1.setText("\nAborted Download\n");
