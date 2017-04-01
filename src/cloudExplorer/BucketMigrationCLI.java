@@ -219,7 +219,7 @@ public class BucketMigrationCLI implements Runnable {
                     new_access_key = account_array[0];
                     new_secret_key = account_array[1];
                     new_endpoint = account_array[2] + ":" + account_array[3];
-                    new_bucket = account_array[5];
+                    new_bucket = account_array[4];
                 }
             }
 
@@ -249,6 +249,7 @@ public class BucketMigrationCLI implements Runnable {
             objectlist = bucketObject.listBucketContents(new_access_key, new_secret_key, new_bucket, new_endpoint);
             object_array = objectlist.split("@@");
         }
+        
         if (bucketlist.contains(new_bucket)) {
             scanDestination();
             migrate();
