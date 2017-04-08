@@ -322,7 +322,7 @@ public class BucketClass {
             } while (objectListing.isTruncated());
 
         } catch (Exception listBucket) {
-            mainFrame.jTextArea1.append("\n" + listBucket.getMessage());
+          //  mainFrame.jTextArea1.append("\n" + listBucket.getMessage());
         }
 
         return objectlist;

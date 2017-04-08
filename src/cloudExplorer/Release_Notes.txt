@@ -1,4 +1,4 @@
-# Version 10.0
+# Version 10.01
 
 ### Important Announcement: 
 Regions are no longer supported or needed in the configuration file.
@@ -17,7 +17,8 @@ Please re-create the config files for each account.
 - CLI does not check for updates for each command anymore.
 - Background Sync rewritten
 - Background Sync mode: now saves the account info and bucket in the config file.
-
+- Suppress md5 check error for Minio.io
+ 
 ### New Features:
 - Abort multi-part uploads
 - Migrate Buckets with CLI
