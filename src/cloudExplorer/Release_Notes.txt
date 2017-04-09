@@ -1,4 +1,4 @@
-# Version 10.01
+# Version 10.02
 
 ### Important Announcement: 
 Regions are no longer supported or needed in the configuration file.
@@ -8,6 +8,7 @@ Please re-create the config files for each account.
 - Sync Fix to support top-level folder
 - setPathStyleAccess fix
 - Background Syncing now does bidirectional sync properly.
+- Autodetect AWS Regions to list objects properly
 
 ### Improvements:
 - Faster Syncing, Bucket Migrations, and Snapshots - 5 files at a time with metadata checks.

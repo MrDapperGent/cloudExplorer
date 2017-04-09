@@ -256,6 +256,24 @@ public class BucketClass {
         s3Client.setEndpoint(endpoint);
         final ListObjectsV2Request req = new ListObjectsV2Request().withBucketName(bucket).withDelimiter("");
         ListObjectsV2Result result;
+
+        if (endpoint.contains("amazonaws.com")) {
+            String aws_endpoint = s3Client.getBucketLocation(new GetBucketLocationRequest(bucket));
+
+            if (aws_endpoint.contains("US")) {
+                s3Client.setEndpoint("https://s3.amazonaws.com");
+            } else if (aws_endpoint.contains("us-west")) {
+                s3Client.setEndpoint("https://s3-" + aws_endpoint + ".amazonaws.com");
+            } else if (aws_endpoint.contains("eu-west")) {
+                s3Client.setEndpoint("https://s3-" + aws_endpoint + ".amazonaws.com");
+            } else if (aws_endpoint.contains("ap-")) {
+                s3Client.setEndpoint("https://s3-" + aws_endpoint + ".amazonaws.com");
+            } else if (aws_endpoint.contains("sa-east-1")) {
+                s3Client.setEndpoint("https://s3-" + aws_endpoint + ".amazonaws.com");
+            } else {
+                s3Client.setEndpoint("https://s3." + aws_endpoint + ".amazonaws.com");
+            }
+        }
         try {
             do {
                 result = s3Client.listObjectsV2(req);
@@ -279,7 +297,9 @@ public class BucketClass {
         return parse;
     }
 
-    String getObjectInfo(String key, String access_key, String secret_key, String bucket, String endpoint, String process
+    String getObjectInfo(String key, String access_key,
+            String secret_key, String bucket,
+            String endpoint, String process
     ) {
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
@@ -322,13 +342,14 @@ public class BucketClass {
             } while (objectListing.isTruncated());
 
         } catch (Exception listBucket) {
-          //  mainFrame.jTextArea1.append("\n" + listBucket.getMessage());
+            //  mainFrame.jTextArea1.append("\n" + listBucket.getMessage());
         }
 
         return objectlist;
     }
 
-    String deleteBucket(String access_key, String secret_key, String bucket, String endpoint
+    String deleteBucket(String access_key, String secret_key,
+            String bucket, String endpoint
     ) {
         String message = null;
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
