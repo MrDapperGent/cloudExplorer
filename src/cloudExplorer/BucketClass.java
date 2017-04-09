@@ -320,7 +320,6 @@ public class BucketClass {
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
-        s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(true).build());
 
         final ListObjectsV2Request req = new ListObjectsV2Request().withBucketName(bucket).withDelimiter("");
         ListObjectsV2Result result;
@@ -342,6 +341,7 @@ public class BucketClass {
             }
         } else {
             s3Client.setEndpoint(endpoint);
+            s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(true).build());
         }
 
         try {
