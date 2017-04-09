@@ -164,13 +164,35 @@ public class BucketClass {
 
     }
 
-    String makeBucket(String access_key, String secret_key, String bucket, String endpoint) {
+    String makeBucket(String access_key, String secret_key, String bucket, String endpoint, String region) {
         String message = null;
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
-        s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(true).build());
-        s3Client.setEndpoint(endpoint);
+
+        if (endpoint.contains("amazonaws.com")) {
+            s3Client.setEndpoint(endpoint);
+
+            if (region.length() > 3) {
+                if (region.contains("us-east-1")) {
+                    s3Client.setEndpoint("https://s3.amazonaws.com");
+                } else if (region.contains("us-west")) {
+                    s3Client.setEndpoint("https://s3-" + region + ".amazonaws.com");
+                } else if (region.contains("eu-west")) {
+                    s3Client.setEndpoint("https://s3-" + region + ".amazonaws.com");
+                } else if (region.contains("ap-")) {
+                    s3Client.setEndpoint("https://s3-" + region + ".amazonaws.com");
+                } else if (region.contains("sa-east-1")) {
+                    s3Client.setEndpoint("https://s3-" + region + ".amazonaws.com");
+                } else {
+                    s3Client.setEndpoint("https://s3." + region + ".amazonaws.com");
+                }
+            }
+        } else {
+            s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(true).build());
+            s3Client.setEndpoint(endpoint);
+        }
+
         message = ("\nAttempting to create the bucket. Please view the Bucket list window for an update.");
 
         try {

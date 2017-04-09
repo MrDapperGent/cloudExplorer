@@ -508,7 +508,7 @@ public class CLI {
         try {
             BucketClass.terminal = true;
             System.out.print("\n\n\nCreating Bucket \"" + bucket + "\".......");
-            bucketObject.makeBucket(access_key, secret_key, bucket, endpoint);
+            bucketObject.makeBucket(access_key, secret_key, bucket, endpoint, null);
             System.out.printf("\n\n\nBucket creation operaton complete.\n\n\n");
         } catch (Exception makeBucket) {
             System.out.print("\n\n\nAn error has occurred with making a bucket.\n\n\n");

@@ -5,26 +5,13 @@ Regions are no longer supported or needed in the configuration file.
 Please re-create the config files for each account. 
 
 ### Bug Fixes:
-- Sync Fix to support top-level folder
-- setPathStyleAccess fix
-- Background Syncing now does bidirectional sync properly.
 - Autodetect AWS Regions to list objects properly
 
 ### Improvements:
-- Faster Syncing, Bucket Migrations, and Snapshots - 5 files at a time with metadata checks.
-- Cleaner and shared code between CLI and GUI
-- Uses the new ListObjectsV2Request from the S3 JDK
-- Region is no longer required in configuration.
-- CLI does not check for updates for each command anymore.
-- Background Sync rewritten
-- Background Sync mode: now saves the account info and bucket in the config file.
-- Suppress md5 check error for Minio.io
+- You can now create buckets in different regions
  
 ### New Features:
-- Abort multi-part uploads
-- Migrate Buckets with CLI
-- Snapshot Buckets with CLI
-- Snapshot deltas with CLI 
+- None
 
 Features:
 
