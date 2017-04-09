@@ -253,13 +253,12 @@ public class BucketClass {
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
         s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(true).build());
-        s3Client.setEndpoint(endpoint);
+
         final ListObjectsV2Request req = new ListObjectsV2Request().withBucketName(bucket).withDelimiter("");
         ListObjectsV2Result result;
 
         if (endpoint.contains("amazonaws.com")) {
             String aws_endpoint = s3Client.getBucketLocation(new GetBucketLocationRequest(bucket));
-
             if (aws_endpoint.contains("US")) {
                 s3Client.setEndpoint("https://s3.amazonaws.com");
             } else if (aws_endpoint.contains("us-west")) {
@@ -273,7 +272,10 @@ public class BucketClass {
             } else {
                 s3Client.setEndpoint("https://s3." + aws_endpoint + ".amazonaws.com");
             }
+        } else {
+            s3Client.setEndpoint(endpoint);
         }
+
         try {
             do {
                 result = s3Client.listObjectsV2(req);
