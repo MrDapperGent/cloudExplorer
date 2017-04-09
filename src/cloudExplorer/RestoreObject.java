@@ -24,6 +24,7 @@ import static cloudExplorer.NewJFrame.jTextArea1;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.services.s3.S3ClientOptions;
 import com.amazonaws.services.s3.model.AmazonS3Exception;
+import com.amazonaws.services.s3.model.GetBucketLocationRequest;
 import com.amazonaws.services.s3.model.GetObjectMetadataRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.RestoreObjectRequest;
@@ -60,10 +61,25 @@ public class RestoreObject implements Runnable {
         File file = new File(what);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
-        if (!endpoint.contains("amazonaws.com")) {
+        if (endpoint.contains("amazonaws.com")) {
+            String aws_endpoint = s3Client.getBucketLocation(new GetBucketLocationRequest(bucket));
+            if (aws_endpoint.contains("US")) {
+                s3Client.setEndpoint("https://s3.amazonaws.com");
+            } else if (aws_endpoint.contains("us-west")) {
+                s3Client.setEndpoint("https://s3-" + aws_endpoint + ".amazonaws.com");
+            } else if (aws_endpoint.contains("eu-west")) {
+                s3Client.setEndpoint("https://s3-" + aws_endpoint + ".amazonaws.com");
+            } else if (aws_endpoint.contains("ap-")) {
+                s3Client.setEndpoint("https://s3-" + aws_endpoint + ".amazonaws.com");
+            } else if (aws_endpoint.contains("sa-east-1")) {
+                s3Client.setEndpoint("https://s3-" + aws_endpoint + ".amazonaws.com");
+            } else {
+                s3Client.setEndpoint("https://s3." + aws_endpoint + ".amazonaws.com");
+            }
+        } else {
             s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(true).build());
+            s3Client.setEndpoint(endpoint);
         }
-        s3Client.setEndpoint(endpoint);
 
         try {
             RestoreObjectRequest requestRestore = new RestoreObjectRequest(bucket, what, 2);
