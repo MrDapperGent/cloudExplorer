@@ -173,7 +173,7 @@ public class BucketClass {
         if (endpoint.contains("amazonaws.com")) {
             s3Client.setEndpoint(endpoint);
 
-            if (region.length() > 3) {
+            if (region.length() > 5) {
                 if (region.contains("us-east-1")) {
                     s3Client.setEndpoint("https://s3.amazonaws.com");
                 } else if (region.contains("us-west")) {
