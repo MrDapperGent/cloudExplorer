@@ -49,9 +49,26 @@ public class BucketClass {
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
-        s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(true).build());
 
-        s3Client.setEndpoint(endpoint);
+        if (endpoint.contains("amazonaws.com")) {
+            String aws_endpoint = s3Client.getBucketLocation(new GetBucketLocationRequest(bucket));
+            if (aws_endpoint.contains("US")) {
+                s3Client.setEndpoint("https://s3.amazonaws.com");
+            } else if (aws_endpoint.contains("us-west")) {
+                s3Client.setEndpoint("https://s3-" + aws_endpoint + ".amazonaws.com");
+            } else if (aws_endpoint.contains("eu-west")) {
+                s3Client.setEndpoint("https://s3-" + aws_endpoint + ".amazonaws.com");
+            } else if (aws_endpoint.contains("ap-")) {
+                s3Client.setEndpoint("https://s3-" + aws_endpoint + ".amazonaws.com");
+            } else if (aws_endpoint.contains("sa-east-1")) {
+                s3Client.setEndpoint("https://s3-" + aws_endpoint + ".amazonaws.com");
+            } else {
+                s3Client.setEndpoint("https://s3." + aws_endpoint + ".amazonaws.com");
+            }
+        } else {
+            s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(true).build());
+            s3Client.setEndpoint(endpoint);
+        }
         try {
             message = s3Client.getBucketVersioningConfiguration(bucket).getStatus().toString();
             if (message.contains("Enabled") || message.contains("Suspended")) {
@@ -71,8 +88,25 @@ public class BucketClass {
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
-        s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(true).build());
-        s3Client.setEndpoint(endpoint);
+        if (endpoint.contains("amazonaws.com")) {
+            String aws_endpoint = s3Client.getBucketLocation(new GetBucketLocationRequest(bucket));
+            if (aws_endpoint.contains("US")) {
+                s3Client.setEndpoint("https://s3.amazonaws.com");
+            } else if (aws_endpoint.contains("us-west")) {
+                s3Client.setEndpoint("https://s3-" + aws_endpoint + ".amazonaws.com");
+            } else if (aws_endpoint.contains("eu-west")) {
+                s3Client.setEndpoint("https://s3-" + aws_endpoint + ".amazonaws.com");
+            } else if (aws_endpoint.contains("ap-")) {
+                s3Client.setEndpoint("https://s3-" + aws_endpoint + ".amazonaws.com");
+            } else if (aws_endpoint.contains("sa-east-1")) {
+                s3Client.setEndpoint("https://s3-" + aws_endpoint + ".amazonaws.com");
+            } else {
+                s3Client.setEndpoint("https://s3." + aws_endpoint + ".amazonaws.com");
+            }
+        } else {
+            s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(true).build());
+            s3Client.setEndpoint(endpoint);
+        }
         try {
             message = s3Client.getBucketLifecycleConfiguration(bucket).getRules().toString();
             if (message == null) {
@@ -92,8 +126,25 @@ public class BucketClass {
         AWSCredentials credentials = new BasicAWSCredentials(access_key, secret_key);
         AmazonS3 s3Client = new AmazonS3Client(credentials,
                 new ClientConfiguration());
-        s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(true).build());
-        s3Client.setEndpoint(endpoint);
+        if (endpoint.contains("amazonaws.com")) {
+            String aws_endpoint = s3Client.getBucketLocation(new GetBucketLocationRequest(bucket));
+            if (aws_endpoint.contains("US")) {
+                s3Client.setEndpoint("https://s3.amazonaws.com");
+            } else if (aws_endpoint.contains("us-west")) {
+                s3Client.setEndpoint("https://s3-" + aws_endpoint + ".amazonaws.com");
+            } else if (aws_endpoint.contains("eu-west")) {
+                s3Client.setEndpoint("https://s3-" + aws_endpoint + ".amazonaws.com");
+            } else if (aws_endpoint.contains("ap-")) {
+                s3Client.setEndpoint("https://s3-" + aws_endpoint + ".amazonaws.com");
+            } else if (aws_endpoint.contains("sa-east-1")) {
+                s3Client.setEndpoint("https://s3-" + aws_endpoint + ".amazonaws.com");
+            } else {
+                s3Client.setEndpoint("https://s3." + aws_endpoint + ".amazonaws.com");
+            }
+        } else {
+            s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(true).build());
+            s3Client.setEndpoint(endpoint);
+        }
         try {
             SetBucketVersioningConfigurationRequest request;
             if (enable) {
@@ -153,8 +204,25 @@ public class BucketClass {
                 new ClientConfiguration());
 
         try {
-            s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(true).build());
-            s3Client.setEndpoint(endpoint);
+            if (endpoint.contains("amazonaws.com")) {
+                String aws_endpoint = s3Client.getBucketLocation(new GetBucketLocationRequest(bucket));
+                if (aws_endpoint.contains("US")) {
+                    s3Client.setEndpoint("https://s3.amazonaws.com");
+                } else if (aws_endpoint.contains("us-west")) {
+                    s3Client.setEndpoint("https://s3-" + aws_endpoint + ".amazonaws.com");
+                } else if (aws_endpoint.contains("eu-west")) {
+                    s3Client.setEndpoint("https://s3-" + aws_endpoint + ".amazonaws.com");
+                } else if (aws_endpoint.contains("ap-")) {
+                    s3Client.setEndpoint("https://s3-" + aws_endpoint + ".amazonaws.com");
+                } else if (aws_endpoint.contains("sa-east-1")) {
+                    s3Client.setEndpoint("https://s3-" + aws_endpoint + ".amazonaws.com");
+                } else {
+                    s3Client.setEndpoint("https://s3." + aws_endpoint + ".amazonaws.com");
+                }
+            } else {
+                s3Client.setS3ClientOptions(S3ClientOptions.builder().setPathStyleAccess(true).build());
+                s3Client.setEndpoint(endpoint);
+            }
             TransferManager tm = new TransferManager(s3Client);
             int month = 1000 * 60 * 60 * 24 * 30;
             Date oneWeekAgo = new Date(System.currentTimeMillis() - month);
