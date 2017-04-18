@@ -201,19 +201,23 @@ public class BucketClass {
             }
             String bucketLocation = s3Client.getBucketLocation(new GetBucketLocationRequest(bucket));
         } catch (AmazonServiceException ase) {
-            if (NewJFrame.gui) {
-                mainFrame.jTextArea1.append("\n\nError Message:    " + ase.getMessage());
-                mainFrame.jTextArea1.append("\nHTTP Status Code: " + ase.getStatusCode());
-                mainFrame.jTextArea1.append("\nAWS Error Code:   " + ase.getErrorCode());
-                mainFrame.jTextArea1.append("\nError Type:       " + ase.getErrorType());
-                mainFrame.jTextArea1.append("\nRequest ID:       " + ase.getRequestId());
-                calibrate();
+            if (ase.getMessage().contains("InvalidLocationConstraint")) {
+                s3Client.createBucket(new CreateBucketRequest(bucket, region));
             } else {
-                System.out.print("\n\nError Message:    " + ase.getMessage());
-                System.out.print("\nHTTP Status Code: " + ase.getStatusCode());
-                System.out.print("\nAWS Error Code:   " + ase.getErrorCode());
-                System.out.print("\nError Type:       " + ase.getErrorType());
-                System.out.print("\nRequest ID:       " + ase.getRequestId());
+                if (NewJFrame.gui) {
+                    mainFrame.jTextArea1.append("\n\nError Message:    " + ase.getMessage());
+                    mainFrame.jTextArea1.append("\nHTTP Status Code: " + ase.getStatusCode());
+                    mainFrame.jTextArea1.append("\nAWS Error Code:   " + ase.getErrorCode());
+                    mainFrame.jTextArea1.append("\nError Type:       " + ase.getErrorType());
+                    mainFrame.jTextArea1.append("\nRequest ID:       " + ase.getRequestId());
+                    calibrate();
+                } else {
+                    System.out.print("\n\nError Message:    " + ase.getMessage());
+                    System.out.print("\nHTTP Status Code: " + ase.getStatusCode());
+                    System.out.print("\nAWS Error Code:   " + ase.getErrorCode());
+                    System.out.print("\nError Type:       " + ase.getErrorType());
+                    System.out.print("\nRequest ID:       " + ase.getRequestId());
+                }
             }
         }
         return message;
@@ -377,7 +381,21 @@ public class BucketClass {
             } while (result.isTruncated() == true);
 
         } catch (Exception listBucket) {
-            mainFrame.jTextArea1.append("\n" + listBucket.getMessage());
+            if (listBucket.getMessage().contains("501")) {
+                ListObjectsRequest listObjectsRequest = null;
+                ObjectListing current = s3Client.listObjects((bucket));
+                listObjectsRequest = new ListObjectsRequest().withBucketName(bucket);
+                ObjectListing objectListing;
+                do {
+                    objectListing = s3Client.listObjects(listObjectsRequest);
+                    for (S3ObjectSummary objectSummary : objectListing.getObjectSummaries()) {
+                        objectlist = objectlist + "@@" + objectSummary.getKey();
+                    }
+                    listObjectsRequest.setMarker(objectListing.getNextMarker());
+                } while (objectListing.isTruncated());
+            } else {
+                mainFrame.jTextArea1.append("\n" + listBucket.getMessage());
+            }
         }
 
         String parse = null;

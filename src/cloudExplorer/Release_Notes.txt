@@ -1,4 +1,4 @@
-# Version 10.02
+# Version 10.03
 
 ### Important Announcement: 
 Regions are no longer supported or needed in the configuration file.
@@ -9,7 +9,8 @@ Please re-create the config files for each account.
 
 ### Improvements:
 - You can now create buckets in different regions
- 
+- Backward compatibility for ListObjectsV1
+
 ### New Features:
 - None
 
