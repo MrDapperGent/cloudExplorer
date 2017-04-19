@@ -11,9 +11,9 @@ script:
 - zip --exclude=*.git* -r cloudExplorer-$VERSION.zip cloudExplorer
 - echo "Starting functional testing......"
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar listbuckets
-- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar makebucket $TESTBUCKET
-- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar makebucket $MIGRATE_BUCKET
-- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar makebucket $SNAPSHOT_BUCKET
+- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar makebucket $TESTBUCKET us-east-2
+- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar makebucket $MIGRATE_BUCKET us-west-1
+- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar makebucket $SNAPSHOT_BUCKET ca-central-1
 #- java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar createfolder $TESTBUCKET synctest
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar synctos3 $HOME/build/rusher81572/cloudExplorer/src $TESTBUCKET synctest
 - java -jar $HOME/build/rusher81572/cloudExplorer/dist/CloudExplorer.jar ls $TESTBUCKET
