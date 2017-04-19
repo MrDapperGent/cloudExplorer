@@ -26,7 +26,7 @@ public class CloudExplorer {
                 + "\nls bucket"
                 + "\nlistbuckets"
                 + "\nrmbucket bucket"
-                + "\nmakebucket what"
+                + "\nmakebucket what region"
                 + "\nsynctos3 location bucket [folder]"
                 + "\nmigrate bucket destination_bucket"
                 + "\nsnapshot bucket snapshot_bucket [existing_snapshot_folder]"

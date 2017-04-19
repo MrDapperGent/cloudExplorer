@@ -72,6 +72,7 @@ public class CLI {
     BucketMigrationCLI migrate;
     Runnable syncengine;
     ExecutorService executor = Executors.newFixedThreadPool((int) 5);
+    String region = null;
 
     void messageParser(String message) {
         System.out.print(message);
@@ -189,6 +190,7 @@ public class CLI {
 
             mainmenu();
             bucket = arg1;
+            region = arg2;
 
             if (operation.contains("ls")) {
                 ls(0);
@@ -204,7 +206,12 @@ public class CLI {
             }
 
             if (operation.contains("makebucket")) {
-                makeBucket();
+                if (region == null) {
+                    System.out.print("\nError: No region specified!\n\n");
+                    System.exit(-1);
+                } else {
+                    makeBucket();
+                }
             }
             if (operation.contains("rmbucket")) {
                 rmBucket();
@@ -508,7 +515,7 @@ public class CLI {
         try {
             BucketClass.terminal = true;
             System.out.print("\n\n\nCreating Bucket \"" + bucket + "\".......");
-            bucketObject.makeBucket(access_key, secret_key, bucket, endpoint, "");
+            bucketObject.makeBucket(access_key, secret_key, bucket, endpoint, region);
             System.out.printf("\n\n\nBucket creation operaton complete.\n\n\n");
         } catch (Exception makeBucket) {
             System.out.print("\n\n\nAn error has occurred with making a bucket.\n\n\n");
