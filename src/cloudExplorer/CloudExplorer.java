@@ -37,6 +37,7 @@ public class CloudExplorer {
                 + "\ncreatefolder bucket what"
                 + "\ndeleteall bucket"
                 + "\nupgrade"
+                + "\nadd-account access_key secret_key endpoint port name"
                 + "\n\n\n");
     }
 

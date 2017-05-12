@@ -13,7 +13,7 @@ Please re-create the config files for each account.
 - Added region support to CLI when creating buckets. (Required parameter)
 
 ### New Features:
-- None
+- Add S3 account via CLI
 
 Features:
 
@@ -79,6 +79,9 @@ java -jar CloudExplorer.jar deleteall bucket
 
 #Check for Cloud Explorer updates
 java -jar CloudExplorer.jar upgrade
+
+#Add S3 Account to config
+java -jar CloudExplorer.jar add-account access_key secret_key endpoint port name
 
 #Migrate a Bucket to another account/bucket
 The following variables need to be set for the destination account first:

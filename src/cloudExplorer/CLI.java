@@ -123,6 +123,13 @@ public class CLI {
         }
     }
 
+    void addS3Accont(String access_key, String secret_key, String endpoint, String port, String name) {
+        Credentials cred = new Credentials();
+        cred.writeConfig(access_key, secret_key, endpoint, port, name);
+        System.out.print("\nAdded Account:" + name + "\n\n");
+
+    }
+
     void loadS3credentials() {
         try {
             for (String what : saved_s3_configs) {
@@ -186,12 +193,21 @@ public class CLI {
             loadEnvars();
         }
 
-        if (operation.contains("listbuckets") || operation.contains("makebucket") || operation.contains("rmbucket") || operation.contains("ls") || operation.contains("createfolder") || operation.contains("deleteall")) {
+        if (operation.contains("listbuckets") || operation.contains("makebucket") || operation.contains("rmbucket") || operation.contains("ls") || operation.contains("createfolder") || operation.contains("deleteall") || operation.contains("add-account")) {
 
             mainmenu();
             bucket = arg1;
             region = arg2;
 
+            if (operation.contains("add-account")) {
+                if (arg1 != null && arg2 != null && arg3 != null && arg4 != null && arg5 != null) {
+                    addS3Accont(arg1, arg2, arg3, arg4, arg5);
+                } else {
+                    System.out.print("\nError: Missing arguments.\n\n");
+                    System.exit(-1);
+                }
+
+            }
             if (operation.contains("ls")) {
                 ls(0);
             }
