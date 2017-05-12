@@ -83,6 +83,9 @@ java -jar CloudExplorer.jar upgrade
 #Add S3 Account to config
 java -jar CloudExplorer.jar add-account access_key secret_key endpoint port name
 
+#Remove S3 Account from config
+java -jar CloudExplorer.jar remove-account name
+
 #Migrate a Bucket to another account/bucket
 The following variables need to be set for the destination account first:
 MIGRATE_ACCESS_KEY

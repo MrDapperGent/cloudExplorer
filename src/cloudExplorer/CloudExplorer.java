@@ -38,6 +38,7 @@ public class CloudExplorer {
                 + "\ndeleteall bucket"
                 + "\nupgrade"
                 + "\nadd-account access_key secret_key endpoint port name"
+                + "\nremove-account name"
                 + "\n\n\n");
     }
 

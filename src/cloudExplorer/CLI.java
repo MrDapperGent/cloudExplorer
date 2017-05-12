@@ -18,12 +18,15 @@ package cloudExplorer;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
@@ -123,10 +126,41 @@ public class CLI {
         }
     }
 
-    void addS3Accont(String access_key, String secret_key, String endpoint, String port, String name) {
+    void addS3Account(String access_key, String secret_key, String endpoint, String port, String name) {
         Credentials cred = new Credentials();
         cred.writeConfig(access_key, secret_key, endpoint, port, name);
         System.out.print("\nAdded Account:" + name + "\n\n");
+
+    }
+
+    void removeS3Account(String name) {
+        try {
+            StringBuffer config = new StringBuffer();
+            FileReader fr = new FileReader(s3_config_file);
+            BufferedReader bfr = new BufferedReader(fr);
+            String read = null;
+            while ((read = bfr.readLine()) != null) {
+                if (read != null) {
+                    if (read.length() > 1 && read != null) {
+                        if (!read.contains(name)) {
+                            config.append("\n" + read);
+                        }
+                    }
+                }
+            }
+
+            bfr.close();
+
+            FileWriter frr = new FileWriter(s3_config_file);
+            BufferedWriter bfrr = new BufferedWriter(frr);
+            read = null;
+            bfrr.write("\n" + config.toString());
+            bfrr.close();
+
+            System.out.print("\nRemoved account: " + name + "\n\n");
+        } catch (Exception ex) {
+            System.out.print("\nError: " + ex.getMessage());
+        }
 
     }
 
@@ -193,7 +227,7 @@ public class CLI {
             loadEnvars();
         }
 
-        if (operation.contains("listbuckets") || operation.contains("makebucket") || operation.contains("rmbucket") || operation.contains("ls") || operation.contains("createfolder") || operation.contains("deleteall") || operation.contains("add-account")) {
+        if (operation.contains("listbuckets") || operation.contains("makebucket") || operation.contains("rmbucket") || operation.contains("ls") || operation.contains("createfolder") || operation.contains("deleteall") || operation.contains("remove-account") || operation.contains("add-account")) {
 
             mainmenu();
             bucket = arg1;
@@ -201,12 +235,20 @@ public class CLI {
 
             if (operation.contains("add-account")) {
                 if (arg1 != null && arg2 != null && arg3 != null && arg4 != null && arg5 != null) {
-                    addS3Accont(arg1, arg2, arg3, arg4, arg5);
+                    addS3Account(arg1, arg2, arg3, arg4, arg5);
                 } else {
                     System.out.print("\nError: Missing arguments.\n\n");
                     System.exit(-1);
                 }
+            }
 
+            if (operation.contains("remove-account")) {
+                if (arg1 != null) {
+                    removeS3Account(arg1);
+                } else {
+                    System.out.print("\nError: Missing arguments.\n\n");
+                    System.exit(-1);
+                }
             }
             if (operation.contains("ls")) {
                 ls(0);
