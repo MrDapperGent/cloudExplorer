@@ -89,7 +89,7 @@ public class Delete implements Runnable {
                 s3Client.deleteObject(new DeleteObjectRequest(bucket, what));
             }
             if (!debug) {
-                NewJFrame.jTextArea1.append("\nDeleted object: " + what);
+                NewJFrame.jTextArea1.append("\nDeleted file: " + what);
             }
             calibrate();
         } catch (AmazonServiceException ase) {
