@@ -49,8 +49,8 @@ import javax.swing.text.DefaultEditorKit;
 
 public class NewJFrame extends javax.swing.JFrame implements ItemListener {
 
-    public static String major = "10";
-    public static String minor = "05";
+    public static String major = "11";
+    public static String minor = "0";
     String os = System.getProperty("os.name");
     public static String release_version = major + "." + minor;
     String version = "Cloud Explorer " + release_version;

@@ -1,4 +1,4 @@
-# Version 10.05
+# Version 11.0
 
 ### Important Announcement: 
 Regions are no longer supported or needed in the configuration file.
