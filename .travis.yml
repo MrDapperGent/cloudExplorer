@@ -1,6 +1,6 @@
 language: java
 jdk:
-  - oraclejdk8
+  - oraclejdk9
 script:
 - echo "Updating to the latest AWS JDK....."
 - bash upgrade-sdk.sh
