@@ -142,5 +142,5 @@ The default password for VNC is 123456. You should see the Cloud Explorer GUI af
 
 If you want to use the Cloud Explorer CLI, start a terminal in the VNC session by right clicking on the desktop and choose "xterm". Finally, run the following command:
 ```
-java -jar /CloudExplorer.jar help
+java -jar /cloudExplorer/dist/CloudExplorer.jar help
 ```
