@@ -104,12 +104,6 @@ git clone https://github.com/rusher81572/cloudExplorer.git
 cd cloudExplorer
 ```
 
-### Build Cloud Explorer
-```
-ant
-```
-
-###
 If you want to use your existing S3 configuration file, copy s3.config from your home directory into the cloudExplorer directory. Modify DockerFile by adding the following before the CMD line:
 ```
 ADD s3.config /root/
@@ -126,7 +120,7 @@ docker build -t cloudexplorer .
 To use environment variables to store S3 account information when using the Cloud Explorer CLI instead of uploading an s3.config file:
 ```
 docker run -it --net=host -e ACCESS_KEY='****' -e SECRET_KEY='***' -e ENDPOINT='https://s3.amazonaws.com:443' -e REGION='default' cloudexplorer bash
-java -jar /CloudExplorer.jar help
+java -jar /cloudExplorer/dist/CloudExplorer.jar help
 ```
 
 If you want to use the Cloud Explorer CLI from a VNC session, skip to "Using the CLI in VNC".
