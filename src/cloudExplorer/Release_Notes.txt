@@ -1,19 +1,17 @@
-# Version 11.0
+# Version 12.0
 
 ### Important Announcement: 
 Regions are no longer supported or needed in the configuration file.
 Please re-create the config files for each account. 
 
 ### Bug Fixes:
-- Autodetect AWS Regions to list objects properly
+- Upgraded libraries for Windows 10 Support
 
 ### Improvements:
-- You can now create buckets in different regions
-- Backward compatibility for ListObjectsV1
-- Added region support to CLI when creating buckets. (Required parameter)
+- Latest AWS Libraries
 
 ### New Features:
-- Add and remove S3 account via CLI
+- None
 
 Features:
 

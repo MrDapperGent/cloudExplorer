@@ -26,14 +26,14 @@ Cloud Explorer is a open-source S3 client. It works on Windows, Linux, and Mac. 
 
 # System Requirements
 
-* Java 8 
+* Java 10
 * S3 credentials
 
 *Java 9 support is in the dev version referenced in the next section*
 
 # Downloading
 
-For the latest stable release, click [Download.](https://cloudexplorer.s3.amazonaws.com/11/cloudExplorer-11.zip)
+For the latest stable release, click [Download.](https://cloudexplorer.s3.amazonaws.com/12/cloudExplorer-12.zip)
 
 For the latest development release, please download cloudExplorer-dev.zip from [Amazon S3.](https://cloudexplorer.s3.amazonaws.com:443/cloudExplorer-dev.zip) [![Build Status](https://travis-ci.org/rusher81572/cloudExplorer.svg?branch=master)](https://travis-ci.org/rusher81572/cloudExplorer)
 
