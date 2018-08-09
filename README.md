@@ -57,11 +57,12 @@ If you want to make changes to the GUI, here is a video demonstration on how to 
 ## 1. Install and Configure Java
 ```
 apt-get update
-apt-get -y install git ant openjdk-8-jdk-headless
+apt-get -y install git ant openjdk-10-jdk-headless
 ```
 ## 2. Clone this repository and run ant to compile the project
 ```
-git clone https://github.com/rusher81572/cloudExplorer.git
+git clone https://github.com/rusher
+1572/cloudExplorer.git
 cd cloudExplorer
 ant
 ```
@@ -74,7 +75,7 @@ java -jar dist/CloudExplorer.jar help
 
 # Upgrading
 
-To upgrade, please use the updater located in the application. Everytime Cloud Explorer is ran, it will check for the latest version. To apply the update, click "Help -> Check for updates". Starting with version 8, you will be able to upgrade to newer releases with major library changes without manually downloading the newer release from this site. Since there is no upgrade path from version 7 to 8, you will need to download the version 8 release manually.
+To upgrade, please use the updater located in the application. Everytime Cloud Explorer is ran, it will check for the latest version. To apply the update, click "Help -> Check for updates". 
 
 # How to migrate data between S3 accounts
 * Load the destination account and create or select a bucket to migrate to.
