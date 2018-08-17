@@ -35,6 +35,8 @@ For the latest stable release, click [Download.](https://cloudexplorer.s3.amazon
 
 For the latest development release, please download cloudExplorer-dev.zip from [Amazon S3.](https://cloudexplorer.s3.amazonaws.com:443/cloudExplorer-dev.zip) [![Build Status](https://travis-ci.org/rusher81572/cloudExplorer.svg?branch=master)](https://travis-ci.org/rusher81572/cloudExplorer)
 
+If you need Java 8 support, please use [Cloud Explorer ](https://cloudexplorer.s3.amazonaws.com/11/cloudExplorer-11.zip)
+
 # How to run the program
 
 To run the application, most users should be able to run the program by double clicking on the CloudExplorer.jar file.
