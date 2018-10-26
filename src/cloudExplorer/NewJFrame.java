@@ -2251,6 +2251,7 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
     }
 
     void reloadBuckets() {
+        try {
         if ((jTextField1.getText().length() > 1 || jTextField2.getText().length() > 1)) {
             var();
             bucketarray = null;
@@ -2262,6 +2263,9 @@ public class NewJFrame extends javax.swing.JFrame implements ItemListener {
             jTextArea1.append("\nError: Configuration not loaded\n");
         }
         calibrateTextArea();
+        } catch (Exception reload){
+            System.out.print("\nDebug: " + reload.getMessage());
+        }
     }
 
     void redrawObjects() {
