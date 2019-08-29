@@ -63,8 +63,7 @@ apt-get -y install git ant openjdk-10-jdk-headless
 ```
 ## 2. Clone this repository and run ant to compile the project
 ```
-git clone https://github.com/rusher
-1572/cloudExplorer.git
+git clone https://github.com/rusher81572/cloudExplorer.git
 cd cloudExplorer
 ant
 ```
