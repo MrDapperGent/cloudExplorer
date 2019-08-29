@@ -1,6 +1,6 @@
-FROM ubuntu
+FROM ubuntu:rolling
 RUN apt-get update;
-RUN apt-get update;apt-get -y install git ant fvwm xterm tightvncserver openjdk-11-jdk-headless xfonts-base
+RUN apt-get update;apt-get -y install git ant fvwm xterm tightvncserver openjdk-11-jdk xfonts-base
 
 #Configure Startup Script
 RUN echo "#!/bin/bash" > /opt/start.sh

@@ -26,16 +26,14 @@ Cloud Explorer is a open-source S3 client. It works on Windows, Linux, and Mac. 
 
 # System Requirements
 
-* Java 10
+* Java 11
 * S3 credentials
 
 # Downloading
 
-For the latest stable release, click [Download.](https://cloudexplorer.s3.amazonaws.com/12/cloudExplorer-12.zip)
+For the latest stable release, click [Download.](https://cloudexplorer.s3.amazonaws.com/13/cloudExplorer-13.zip)
 
 For the latest development release, please download cloudExplorer-dev.zip from [Amazon S3.](https://cloudexplorer.s3.amazonaws.com:443/cloudExplorer-dev.zip) [![Build Status](https://travis-ci.org/rusher81572/cloudExplorer.svg?branch=master)](https://travis-ci.org/rusher81572/cloudExplorer)
-
-If you need Java 8 support, please use [Cloud Explorer 11](https://cloudexplorer.s3.amazonaws.com/11/cloudExplorer-11.zip)
 
 # How to run the program
 
@@ -45,21 +43,13 @@ If not, you can start the program with the Java command:
 ```
 java -jar CloudExplorer.jar
 ```
-# Video demonstratons
-
-### [How to use the Scality S3 server with Cloud Explorer](https://youtu.be/2hhtBtmBSxE)
-
-### [Older, but complete video](https://www.youtube.com/watch?v=O1HVDYywZRY)
-
 
 # How to compile from source
-
-If you want to make changes to the GUI, here is a video demonstration on how to compile Cloud Explorer with NetBeans: http://youtu.be/54v3rIUh0h8
 
 ## 1. Install and Configure Java
 ```
 apt-get update
-apt-get -y install git ant openjdk-10-jdk-headless
+apt-get -y install git ant openjdk-11-jdk
 ```
 ## 2. Clone this repository and run ant to compile the project
 ```
@@ -67,7 +57,12 @@ git clone https://github.com/rusher81572/cloudExplorer.git
 cd cloudExplorer
 ant
 ```
-## 3. Run Cloud Explorer
+## 3. Install the AWS Libraries
+```
+bash upgrade-sdk.sh
+```
+
+## 4. Run Cloud Explorer
 ```
 Double click on dist/CloudExplorer.jar
 or....
